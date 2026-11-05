@@ -10,96 +10,120 @@
 <link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:"Arial Black",Impact,Arial,sans-serif;touch-action:none;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;position:fixed;inset:0}
+html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial,Helvetica,sans-serif;touch-action:none;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;position:fixed;inset:0}
 #game,#game canvas{display:block;position:fixed;inset:0}
-.vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 55%,rgba(0,0,0,.42) 100%)}
-.ui{position:fixed;pointer-events:none}
-#logo{left:calc(14px + env(safe-area-inset-left));top:calc(10px + env(safe-area-inset-top));color:#ffd23f;font-size:28px;letter-spacing:2px;text-shadow:3px 3px 0 #000,0 0 14px rgba(255,120,0,.5);line-height:1}
-#logo small{display:block;font:italic 700 11px Arial,sans-serif;color:#fff;letter-spacing:3px;text-shadow:2px 2px 0 #000}
-#cityName{display:block;font:700 12px Arial,sans-serif;color:#9fe7ff;letter-spacing:1px;margin-top:4px;text-shadow:1px 1px 0 #000;max-width:46vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#time{right:calc(78px + env(safe-area-inset-right));top:calc(26px + env(safe-area-inset-top));color:#fff;font:700 12px Arial,sans-serif;letter-spacing:3px;text-shadow:2px 2px 0 #000;opacity:.85}
-#street{left:50%;top:14%;transform:translateX(-50%);color:#fff;font-size:24px;letter-spacing:3px;text-shadow:3px 3px 0 #000;opacity:0;white-space:nowrap}
-#street.pop{animation:pop 3.2s ease-out}
-@keyframes pop{0%{opacity:0;transform:translate(-50%,-10px)}10%{opacity:1;transform:translate(-50%,0)}75%{opacity:1}100%{opacity:0}}
-#prompt{left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);color:#5dff6a;font-size:15px;text-shadow:2px 2px 0 #000;transition:opacity .2s;white-space:nowrap;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:6px}
-#osm{right:calc(8px + env(safe-area-inset-right));bottom:calc(2px + env(safe-area-inset-bottom));font:10px Arial,sans-serif;color:rgba(255,255,255,.55)}
-#hint{left:50%;top:22%;transform:translateX(-50%);color:#fff;font:700 15px/1.5 Arial,sans-serif;text-align:center;background:rgba(0,0,0,.55);padding:10px 16px;border-radius:10px;transition:opacity .6s;text-shadow:1px 1px 0 #000}
-#hint.hidden{opacity:0}
-/* touch controls */
-#stickZone{position:fixed;left:0;top:70px;bottom:0;width:50%;touch-action:none;z-index:2}
-#stick{position:fixed;inset:0;pointer-events:none;z-index:3}
-#stickBase,#stickKnob{position:fixed;left:0;top:0;border-radius:50%}
-#stickBase{width:128px;height:128px;margin:-64px 0 0 -64px;border:3px solid rgba(255,255,255,.35);background:rgba(0,0,0,.22);opacity:.55;transition:opacity .15s}
-#stickKnob{width:60px;height:60px;margin:-30px 0 0 -30px;background:radial-gradient(circle at 40% 35%,#fff6c8,#ffd23f 55%,#c98a00);box-shadow:0 2px 0 #000,0 0 12px rgba(255,200,0,.5);opacity:.6}
-#stick.live #stickBase{opacity:1}#stick.live #stickKnob{opacity:.95}
-.tbtn{position:fixed;z-index:4;border-radius:50%;border:3px solid rgba(0,0,0,.6);color:#111;font:900 13px "Arial Black",Arial,sans-serif;letter-spacing:.5px;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;box-shadow:0 4px 0 rgba(0,0,0,.6);padding:0}
-#btnCar{right:calc(22px + env(safe-area-inset-right));bottom:calc(26px + env(safe-area-inset-bottom));width:96px;height:96px;background:radial-gradient(circle at 40% 35%,#c9ffcf,#5dff6a 60%,#22a332);font-size:12px}
-#btnCar.dim{opacity:.45}
-#btnBrake{right:calc(132px + env(safe-area-inset-right));bottom:calc(20px + env(safe-area-inset-bottom));width:80px;height:80px;background:radial-gradient(circle at 40% 35%,#ffd0c8,#ff5a3c 60%,#b3200a);color:#fff;text-shadow:1px 1px 0 #000}
-#btnBrake.down,#btnCar:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.6)}
-#menuBtn{position:fixed;z-index:4;right:calc(12px + env(safe-area-inset-right));top:calc(10px + env(safe-area-inset-top));width:54px;height:54px;border-radius:12px;border:2px solid rgba(255,255,255,.25);background:rgba(0,0,0,.55);color:#ffd23f;font-size:26px;line-height:1}
+.vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 58%,rgba(0,0,0,.38) 100%)}
+.ui{position:fixed;pointer-events:none;z-index:2}
+#logo{left:calc(12px + env(safe-area-inset-left));top:calc(8px + env(safe-area-inset-top));color:#ffd23f;font:700 22px/1 "Arial Black",Impact,Arial,sans-serif;letter-spacing:1.5px;text-shadow:2px 2px 0 #000,0 0 10px rgba(255,120,0,.35)}
+#logo small{display:block;font:italic 700 10px Arial,sans-serif;color:#eee;letter-spacing:2px;text-shadow:1px 1px 0 #000;margin-top:2px}
+#cityName{display:block;font:700 11px Arial,sans-serif;color:#9fe7ff;letter-spacing:.5px;margin-top:3px;text-shadow:1px 1px 0 #000;max-width:42vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#hudRight{right:calc(12px + env(safe-area-inset-right));top:calc(8px + env(safe-area-inset-top));text-align:right;color:#fff;font:700 12px Arial,sans-serif;text-shadow:1px 1px 0 #000;pointer-events:none}
+#time{letter-spacing:2px;opacity:.85;font-size:11px}
+#money{margin-top:4px;color:#b8f0a0;font-size:14px}
+#street{left:50%;top:12%;transform:translateX(-50%);color:#fff;font:700 20px "Arial Black",Arial,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000;opacity:0;white-space:nowrap}
+#street.pop{animation:pop 3s ease-out}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-8px)}10%{opacity:1;transform:translate(-50%,0)}75%{opacity:1}100%{opacity:0}}
+#prompt{left:50%;bottom:calc(118px + env(safe-area-inset-bottom));transform:translateX(-50%);color:#d8ffe0;font:700 13px Arial,sans-serif;text-shadow:1px 1px 0 #000;transition:opacity .2s;white-space:nowrap;background:rgba(8,10,16,.55);padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.12);max-width:90vw;overflow:hidden;text-overflow:ellipsis}
+#hint{left:50%;top:20%;transform:translateX(-50%);color:#fff;font:700 13px/1.45 Arial,sans-serif;text-align:center;background:rgba(0,0,0,.55);padding:8px 14px;border-radius:10px;transition:opacity .5s;text-shadow:1px 1px 0 #000}
+#hint.hidden{opacity:0;pointer-events:none}
+/* fixed stick */
+#stick{position:fixed;left:calc(18px + env(safe-area-inset-left));bottom:calc(22px + env(safe-area-inset-bottom));width:116px;height:116px;border-radius:50%;background:rgba(255,255,255,.10);border:2px solid rgba(255,255,255,.32);z-index:4;touch-action:none}
+#stick b{position:absolute;left:36px;top:36px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e8e0c8 55%,#b8a878);box-shadow:0 2px 8px rgba(0,0,0,.45);pointer-events:none}
+/* action buttons — compact, not neon demo slabs */
+.abtn{position:fixed;z-index:4;min-width:52px;min-height:52px;border-radius:14px;border:1px solid rgba(255,255,255,.22);color:#f2f2f2;font:700 12px Arial,sans-serif;letter-spacing:.3px;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;background:rgba(12,14,22,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.35);padding:6px 10px}
+.abtn:active,.abtn.down{transform:translateY(1px);background:rgba(30,34,48,.85)}
+.abtn.dim{opacity:.4;pointer-events:none}
+.abtn.hidden{display:none!important}
+#btnCar{right:calc(16px + env(safe-area-inset-right));bottom:calc(22px + env(safe-area-inset-bottom));width:78px;height:78px;border-radius:18px;border-color:rgba(120,220,140,.35);color:#d8ffe0}
+#btnBrake{right:calc(104px + env(safe-area-inset-right));bottom:calc(28px + env(safe-area-inset-bottom));width:64px;height:64px;border-radius:16px;border-color:rgba(240,120,100,.4);color:#ffd8d0}
+#btnDeal{right:calc(16px + env(safe-area-inset-right));bottom:calc(110px + env(safe-area-inset-bottom));width:auto;min-width:72px;padding:8px 12px;border-color:rgba(200,180,100,.35);color:#ffe9a8}
+#zoomBox{position:fixed;z-index:4;right:calc(16px + env(safe-area-inset-right));bottom:calc(168px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
+#zoomBox button,#btnFollow{width:44px;height:44px;border-radius:22px;border:1px solid rgba(255,255,255,.2);background:rgba(12,14,22,.7);color:#fff;font:700 20px/1 Arial,sans-serif;touch-action:none}
+#btnFollow{position:fixed;z-index:4;right:calc(16px + env(safe-area-inset-right));bottom:calc(268px + env(safe-area-inset-bottom));width:auto;min-width:64px;padding:0 12px;font-size:12px;border-radius:22px;border:1px solid rgba(255,255,255,.2);background:rgba(12,14,22,.7);color:#fff}
+#menuBtn{position:fixed;z-index:5;right:calc(12px + env(safe-area-inset-right));top:calc(8px + env(safe-area-inset-top));width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(8,10,16,.65);color:#ffd23f;font-size:22px;line-height:1}
+/* radio */
+#radio{position:fixed;z-index:4;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);display:none;align-items:center;gap:8px;background:rgba(8,10,16,.7);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:6px 8px;color:#fff;font:700 12px Arial,sans-serif;max-width:min(420px,70vw)}
+body.incar #radio{display:flex}
+#radio .nm{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#9fe7ff}
+#radio button{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:16px}
 .hidden{display:none!important}
 /* menu */
-#menu{position:fixed;inset:0;z-index:10;background:rgba(6,6,14,.88);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;-webkit-overflow-scrolling:touch;padding:16px;padding-top:max(14px,env(safe-area-inset-top));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:max(20px,env(safe-area-inset-bottom));padding-left:max(16px,env(safe-area-inset-left));color:#fff;font-family:Arial,sans-serif;-webkit-user-select:text;user-select:text}
-#menu .wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px 26px}
+#menu{position:fixed;inset:0;z-index:20;background:rgba(6,7,14,.92);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;-webkit-overflow-scrolling:touch;padding:16px;padding-top:max(14px,env(safe-area-inset-top));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:max(20px,env(safe-area-inset-bottom));padding-left:max(16px,env(safe-area-inset-left));color:#fff;-webkit-user-select:text;user-select:text}
+#menu .wrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px 26px}
 @media (orientation:landscape) and (min-width:640px){#menu .wrap{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
-#menu h1{margin:0;color:#ffd23f;font:400 44px/1 "Arial Black",Impact,sans-serif;letter-spacing:3px;text-shadow:3px 3px 0 #000,0 0 18px rgba(255,120,0,.5)}
-#menu h1 small{display:block;font:italic 700 14px Arial,sans-serif;color:#fff;letter-spacing:4px;margin-top:2px}
-#menu h2{font:700 12px Arial,sans-serif;letter-spacing:2px;color:#9fe7ff;margin:10px 0 6px;text-transform:uppercase}
-#menu .cur{font-size:14px;color:#ccc;margin-top:8px}#menu .cur b{color:#fff}
+#menu h1{margin:0;color:#ffd23f;font:700 36px/1 "Arial Black",Impact,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000}
+#menu h1 small{display:block;font:italic 700 12px Arial,sans-serif;color:#eee;letter-spacing:3px;margin-top:2px}
+#menu h2{font:700 11px Arial,sans-serif;letter-spacing:1.5px;color:#9fe7ff;margin:12px 0 6px;text-transform:uppercase}
+#menu .cur{font-size:13px;color:#bbb;margin-top:6px}#menu .cur b{color:#fff}
 #searchForm{display:flex;gap:8px}
-#searchIn{flex:1;min-width:0;height:52px;font:700 18px Arial,sans-serif;padding:0 14px;border-radius:10px;border:2px solid #ffd23f;background:#11111c;color:#fff;outline:none}
-.btn{height:52px;min-width:52px;padding:0 16px;border-radius:10px;border:2px solid rgba(255,255,255,.2);background:#1d1d2c;color:#fff;font:700 15px Arial,sans-serif}
-.btn.go{background:#ffd23f;color:#111;border-color:#ffd23f}
-.btn.on{background:#5dff6a;color:#111;border-color:#5dff6a}
+#searchIn{flex:1;min-width:0;height:48px;font:700 16px Arial,sans-serif;padding:0 12px;border-radius:10px;border:1px solid rgba(255,210,63,.55);background:#12121c;color:#fff;outline:none}
+.btn{height:48px;min-width:48px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#1a1a28;color:#fff;font:700 14px Arial,sans-serif}
+.btn.go{background:#e6bf3a;color:#15120a;border-color:#e6bf3a}
+.btn.on{background:#3d9a55;color:#fff;border-color:#3d9a55}
 .row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1}
-#searchMsg{min-height:20px;font-size:14px;color:#ffcf8a;margin:8px 0 4px}
+#searchMsg{min-height:18px;font-size:13px;color:#ffcf8a;margin:8px 0 4px}
 #resList{display:flex;flex-direction:column;gap:6px}
-.res{text-align:left;min-height:52px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:#151522;color:#fff;font:14px Arial,sans-serif}
-.res b{display:block;font-size:16px;color:#ffd23f}.res span{font-size:12px;color:#aaa}
-#playBtn{height:60px;font-size:20px;width:100%;margin-top:14px;font-family:"Arial Black",Arial,sans-serif;letter-spacing:1px}
-#menu .fine{font-size:11px;color:#888;margin-top:12px;line-height:1.5}
+.res{text-align:left;min-height:48px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#151522;color:#fff;font:13px Arial,sans-serif}
+.res b{display:block;font-size:15px;color:#ffd23f}.res span{font-size:11px;color:#999}
+#playBtn{height:56px;font-size:17px;width:100%;margin-top:12px;font-weight:800;letter-spacing:.5px}
+#menu .fine{font-size:11px;color:#777;margin-top:10px;line-height:1.45}
 #menu.start .pauseOnly{display:none}#menu:not(.start) .startOnly{display:none}
+#credits{position:fixed;inset:0;z-index:25;background:rgba(6,7,14,.94);color:#ddd;padding:24px;overflow:auto;font:14px/1.55 Arial,sans-serif;display:none}
+#credits.open{display:block}
+#credits h2{color:#ffd23f;margin:0 0 12px}
+#credits button{margin-top:18px}
 /* loading */
-#loading{position:fixed;inset:0;z-index:20;background:#0b0b14;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:Arial,sans-serif;padding:24px;text-align:center}
-#loading .lg{color:#ffd23f;font:400 40px "Arial Black",Impact,sans-serif;letter-spacing:3px;text-shadow:3px 3px 0 #000}
-#loading .sp{width:44px;height:44px;border:5px solid #333;border-top-color:#ffd23f;border-radius:50%;animation:spin 0.9s linear infinite;margin:18px}
+#loading{position:fixed;inset:0;z-index:30;background:#0b0b14;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:24px;text-align:center}
+#loading .lg{color:#ffd23f;font:700 36px "Arial Black",Impact,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000}
+#loading .sp{width:40px;height:40px;border:4px solid #333;border-top-color:#ffd23f;border-radius:50%;animation:spin .9s linear infinite;margin:16px}
 #loading.error .sp{display:none}
-#loadMsg{font-size:16px;max-width:520px;line-height:1.4}#loading.error #loadMsg{color:#ffcf8a}
-#loadBtns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+#loadMsg{font-size:15px;max-width:520px;line-height:1.4}#loading.error #loadMsg{color:#ffcf8a}
+#loadBtns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media (max-height:460px){#logo{font-size:22px}#street{font-size:20px}#menu h1{font-size:34px}}
-@media (orientation:portrait){#stickZone{top:90px;width:58%}#street{top:16%;font-size:20px}#btnBrake{right:calc(22px + env(safe-area-inset-right));bottom:calc(140px + env(safe-area-inset-bottom))}#prompt{bottom:calc(132px + env(safe-area-inset-bottom));font-size:13px}}
+@media (max-height:460px){#logo{font:700 18px/1 "Arial Black",Arial,sans-serif}#street{font-size:16px}#menu h1{font-size:28px}#prompt{bottom:calc(100px + env(safe-area-inset-bottom))}}
+@media (orientation:portrait){#stick{left:calc(14px + env(safe-area-inset-left));bottom:calc(18px + env(safe-area-inset-bottom))}#btnBrake{right:calc(16px + env(safe-area-inset-right));bottom:calc(110px + env(safe-area-inset-bottom))}#btnCar{bottom:calc(18px + env(safe-area-inset-bottom))}#btnDeal{bottom:calc(190px + env(safe-area-inset-bottom))}#zoomBox{bottom:calc(250px + env(safe-area-inset-bottom))}#btnFollow{bottom:calc(350px + env(safe-area-inset-bottom))}#radio{bottom:calc(18px + env(safe-area-inset-bottom));max-width:92vw}#prompt{bottom:calc(210px + env(safe-area-inset-bottom))}}
 body.shot #street.pop{animation:none;opacity:1}
+body.shot #hint{display:none}
 </style></head><body>
 <div id="game"></div><div class="vig"></div>
-<div id="logo" class="ui">HOOD<small>PLACE TO BE</small><span id="cityName"></span></div><div id="time" class="ui"></div>
+<div id="logo" class="ui">HOOD<small>PLACE TO BE</small><span id="cityName"></span></div>
+<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div></div>
 <div id="street" class="ui"></div><div id="prompt" class="ui"></div>
-<div id="osm" class="ui">© OpenStreetMap-Mitwirkende</div>
-<div id="hint" class="ui hidden">Links ziehen: laufen &amp; lenken<br>Grüner Knopf: ins Auto / raus</div>
-<div id="stickZone"></div><div id="stick"><div id="stickBase"></div><div id="stickKnob"></div></div>
-<button id="btnCar" class="tbtn dim">EINSTEIGEN</button>
-<button id="btnBrake" class="tbtn hidden">BREMSE</button>
-<button id="menuBtn" aria-label="Menü">☰</button>
+<div id="hint" class="ui hidden">Stick links: laufen &amp; lenken<br>Rechts: einsteigen · rauszoomen mit +/− oder Pinch</div>
+<div id="stick" aria-label="Steuerung"><b id="stickKnob"></b></div>
+<button id="btnCar" class="abtn dim" type="button">Einsteigen</button>
+<button id="btnBrake" class="abtn hidden" type="button">Handbremse</button>
+<button id="btnDeal" class="abtn hidden" type="button">Handeln</button>
+<div id="zoomBox"><button id="btnZin" type="button" aria-label="Heranzoomen">+</button><button id="btnZout" type="button" aria-label="Rauszoomen">−</button></div>
+<button id="btnFollow" class="hidden" type="button">Folgen</button>
+<div id="radio"><button id="radPrev" type="button" aria-label="Vorheriger Sender">⏮</button><span class="nm" id="radName">Radio</span><button id="radNext" type="button" aria-label="Nächster Sender">⏭</button></div>
+<button id="menuBtn" type="button" aria-label="Menü">☰</button>
 <div id="menu" class="hidden start"><div class="wrap">
  <div>
   <h1>HOOD<small>PLACE TO BE</small></h1>
   <div class="cur">Gerade: <b id="curCity">…</b></div>
-  <h2>Deine Stadt</h2>
-  <form id="searchForm" autocomplete="off"><input id="searchIn" type="search" enterkeyhint="search" placeholder="Deine Stadt" aria-label="Deine Stadt"><button class="btn go" type="submit">Suchen</button></form>
+  <h2>Stadt / Stadtteil</h2>
+  <form id="searchForm" autocomplete="off"><input id="searchIn" type="search" enterkeyhint="search" placeholder="z. B. Hombruch, Connewitz …" aria-label="Stadtteil suchen"><button class="btn go" type="submit">Suchen</button></form>
   <div class="row" style="margin-top:8px"><button id="locBtn" class="btn" type="button">📍 Mein Standort</button></div>
   <div id="searchMsg"></div><div id="resList"></div>
  </div>
  <div>
   <h2>Tageszeit</h2>
-  <div class="row"><button class="btn" data-time="afternoon">Nachmittag</button><button class="btn" data-time="dusk">Dämmerung</button><button class="btn" data-time="night">Nacht</button></div>
-  <h2>Kamera</h2>
-  <div class="row"><button class="btn" data-zoom="0.6">Nah</button><button class="btn" data-zoom="0.8">Mittel</button><button class="btn" data-zoom="1.15">Weit</button></div>
-  <button id="playBtn" class="btn go"><span class="pauseOnly">WEITER</span><span class="startOnly">LOS GEHT'S</span></button>
-  <div class="fine">Links: Stick zum Laufen und Fahren (ganz rausziehen = rennen). Rechts: Einsteigen/Aussteigen, im Auto Bremse.<br>Karte: © OpenStreetMap-Mitwirkende (ODbL), Suche: Nominatim, Gebäude: Overpass API. Alle Läden und Schilder im Spiel sind erfunden.</div>
+  <div class="row"><button class="btn" data-time="afternoon" type="button">Nachmittag</button><button class="btn" data-time="dusk" type="button">Dämmerung</button><button class="btn" data-time="night" type="button">Nacht</button></div>
+  <h2>Optionen</h2>
+  <div class="row"><button class="btn" id="muteBtn" type="button">Ton: an</button><button class="btn" id="creditsBtn" type="button">Mitwirkende u. Quellen</button></div>
+  <button id="playBtn" class="btn go" type="button"><span class="pauseOnly">WEITER</span><span class="startOnly">LOS GEHT'S</span></button>
+  <div class="fine">Tippe auf die Karte zum Hingehen. Pinch oder +/− zum Zoomen. Im Auto wechselt das Radio die Sender.</div>
  </div>
 </div></div>
+<div id="credits"><h2>Mitwirkende u. Quellen</h2>
+<p>Kartendaten © OpenStreetMap-Mitwirkende (ODbL).</p>
+<p>Ortssuche: Nominatim · Gebäudedaten: Overpass API.</p>
+<p>3D-Engine: Three.js.</p>
+<p>Radiostreams: öffentlich-rechtliche und freie Sender (WDR, Deutschlandfunk, SomaFM) — Wiedergabe abhängig vom Sender.</p>
+<p>Alle Läden, Schilder und Decknamen im Spiel sind erfunden. Keine echten Marken.</p>
+<button class="btn" id="creditsClose" type="button">Zurück</button></div>
 <div id="loading"><div class="lg">HOOD</div><div class="sp"></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
-<script>window.HOOD_V='1105h1';</script>
-<script src="hood.js?v=1105h1"></script>
+<script>window.HOOD_V='1105h3';</script>
+<script src="hood.js?v=1105h3"></script>
 </body></html>
