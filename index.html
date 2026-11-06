@@ -19,7 +19,11 @@ html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial
 #cityName{display:block;font:700 11px Arial,sans-serif;color:#9fe7ff;letter-spacing:.5px;margin-top:3px;text-shadow:1px 1px 0 #000;max-width:42vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #hudRight{right:calc(12px + env(safe-area-inset-right));top:calc(8px + env(safe-area-inset-top));text-align:right;color:#fff;font:700 12px Arial,sans-serif;text-shadow:1px 1px 0 #000;pointer-events:none}
 #time{letter-spacing:2px;opacity:.85;font-size:11px}
-#money{margin-top:4px;color:#b8f0a0;font-size:14px}
+#money{margin-top:4px;color:#b8f0a0;font-size:16px}
+#hearts{margin-top:4px;color:#ff3a4a;font-size:15px;letter-spacing:2px;text-shadow:1px 1px 0 #000}
+#stars{margin-top:2px;color:#ffd23f;font-size:17px;letter-spacing:1px;text-shadow:1px 1px 0 #000;min-height:20px}
+#jobBanner{left:50%;top:calc(10px + env(safe-area-inset-top));transform:translateX(-50%);background:#d4b02a;color:#1a1408;font:800 15px/1 "Arial Black",Arial,sans-serif;letter-spacing:2px;padding:7px 16px;border:2px solid #8a6a12;z-index:3}
+#jobBanner.hidden{display:none!important}
 #street{left:50%;top:12%;transform:translateX(-50%);color:#fff;font:700 20px "Arial Black",Arial,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000;opacity:0;white-space:nowrap}
 #street.pop{animation:pop 3s ease-out}
 @keyframes pop{0%{opacity:0;transform:translate(-50%,-8px)}10%{opacity:1;transform:translate(-50%,0)}75%{opacity:1}100%{opacity:0}}
@@ -47,27 +51,42 @@ body.incar #radio{display:flex}
 #radio .nm{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#9fe7ff}
 #radio button{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:16px}
 .hidden{display:none!important}
-/* menu */
-#menu{position:fixed;inset:0;z-index:20;background:rgba(6,7,14,.92);overflow-y:auto;overflow-x:hidden;touch-action:pan-y;-webkit-overflow-scrolling:touch;padding:16px;padding-top:max(14px,env(safe-area-inset-top));padding-right:max(16px,env(safe-area-inset-right));padding-bottom:max(20px,env(safe-area-inset-bottom));padding-left:max(16px,env(safe-area-inset-left));color:#fff;-webkit-user-select:text;user-select:text}
-#menu .wrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:14px 26px}
-@media (orientation:landscape) and (min-width:640px){#menu .wrap{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}}
-#menu h1{margin:0;color:#ffd23f;font:700 36px/1 "Arial Black",Impact,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000}
-#menu h1 small{display:block;font:italic 700 12px Arial,sans-serif;color:#eee;letter-spacing:3px;margin-top:2px}
-#menu h2{font:700 11px Arial,sans-serif;letter-spacing:1.5px;color:#9fe7ff;margin:12px 0 6px;text-transform:uppercase}
-#menu .cur{font-size:13px;color:#bbb;margin-top:6px}#menu .cur b{color:#fff}
+/* title — GTA2-style split (own Hood mark, no GTA logo) */
+#title{position:fixed;inset:0;z-index:20;display:grid;grid-template-columns:minmax(0,1.22fr) minmax(220px,0.78fr);background:transparent}
+#title.hidden{display:none}
+.titleView{position:relative;min-width:0;min-height:0}
+#crosshair{position:absolute;inset:0;pointer-events:none}
+#crosshair .ch-h,#crosshair .ch-v{position:absolute;background:#e30613;pointer-events:none}
+#crosshair .ch-h{left:0;right:0;top:50%;height:2px;margin-top:-1px}
+#crosshair .ch-v{top:0;bottom:0;left:50%;width:2px;margin-left:-1px}
+#crosshair .ch-ring{position:absolute;left:50%;top:50%;width:min(34%,220px);aspect-ratio:1/1;border:3px solid #e30613;border-radius:50%;transform:translate(-50%,-50%);box-sizing:border-box}
+.titlePanel{background:#000;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:7vh 5vw 9vh 3.5vw;min-width:0;overflow:auto;-webkit-overflow-scrolling:touch}
+.wordmark{margin:0;font:800 56px/.88 Impact,"Arial Black",Arial,sans-serif;letter-spacing:1px;color:#fff;line-height:.88;text-transform:uppercase}
+.wordmark small{display:block;margin-top:12px;font:italic 800 14px/1 Arial,sans-serif;letter-spacing:3.5px;color:#e30613}
+#titleNav{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:auto}
+#titleNav button{background:transparent;border:0;padding:0;margin:0;color:#f4f4f4;font:italic 800 28px/1.1 Impact,"Arial Black",Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;text-align:left;cursor:pointer;text-shadow:none}
+#titleNav button.on,#titleNav button:hover,#titleNav button:focus{color:#e30613;outline:none}
+#title.start .pauseOnly{display:none}#title:not(.start) .startOnly{display:none}
+#titleQuit{color:#f4f4f4;font:italic 800 22px/1.3 Impact,Arial,sans-serif}
+#titleQuit p{margin:0 0 18px}
+#menu{color:#fff;-webkit-user-select:text;user-select:text}
+#menu .wrap{display:flex;flex-direction:column;gap:10px}
+#menu h2{font:italic 800 13px Arial,sans-serif;letter-spacing:2px;color:#e30613;margin:10px 0 6px;text-transform:uppercase}
+#menu .cur{font-size:13px;color:#bbb;margin:0}#menu .cur b{color:#fff}
 #searchForm{display:flex;gap:8px}
-#searchIn{flex:1;min-width:0;height:48px;font:700 16px Arial,sans-serif;padding:0 12px;border-radius:10px;border:1px solid rgba(255,210,63,.55);background:#12121c;color:#fff;outline:none}
-.btn{height:48px;min-width:48px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:#1a1a28;color:#fff;font:700 14px Arial,sans-serif}
-.btn.go{background:#e6bf3a;color:#15120a;border-color:#e6bf3a}
-.btn.on{background:#3d9a55;color:#fff;border-color:#3d9a55}
+#searchIn{flex:1;min-width:0;height:42px;font:700 15px Arial,sans-serif;padding:0 10px;border-radius:0;border:1px solid #444;background:#111;color:#fff;outline:none}
+.btn{height:42px;min-width:42px;padding:0 12px;border-radius:0;border:1px solid #444;background:#161616;color:#fff;font:700 13px Arial,sans-serif}
+.btn.go{background:#e30613;color:#fff;border-color:#e30613}
+.btn.on{background:#e30613;color:#fff;border-color:#e30613}
 .row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1}
 #searchMsg{min-height:18px;font-size:13px;color:#ffcf8a;margin:8px 0 4px}
 #resList{display:flex;flex-direction:column;gap:6px}
-.res{text-align:left;min-height:48px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#151522;color:#fff;font:13px Arial,sans-serif}
-.res b{display:block;font-size:15px;color:#ffd23f}.res span{font-size:11px;color:#999}
-#playBtn{height:56px;font-size:17px;width:100%;margin-top:12px;font-weight:800;letter-spacing:.5px}
-#menu .fine{font-size:11px;color:#777;margin-top:10px;line-height:1.45}
-#menu.start .pauseOnly{display:none}#menu:not(.start) .startOnly{display:none}
+.res{text-align:left;min-height:44px;padding:8px 10px;border-radius:0;border:1px solid #333;background:#141414;color:#fff;font:13px Arial,sans-serif}
+.res b{display:block;font-size:15px;color:#fff}.res span{font-size:11px;color:#999}
+#menu .fine{font-size:11px;color:#777;margin-top:8px;line-height:1.45}
+#optsBack,#quitBack{margin-top:14px}
+body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #street,body.onTitle #prompt,body.onTitle #hint,body.onTitle #stick,body.onTitle .abtn,body.onTitle #zoomBox,body.onTitle #btnFollow,body.onTitle #radio,body.onTitle #menuBtn{display:none!important}
+@media (orientation:portrait){#title{grid-template-columns:1fr;grid-template-rows:minmax(38%,1fr) auto}.titlePanel{padding:24px 22px 28px}.wordmark{font-size:42px}#titleNav button{font-size:24px}#crosshair .ch-ring{width:min(42%,180px)}}
 #credits{position:fixed;inset:0;z-index:25;background:rgba(6,7,14,.94);color:#ddd;padding:24px;overflow:auto;font:14px/1.55 Arial,sans-serif;display:none}
 #credits.open{display:block}
 #credits h2{color:#ffd23f;margin:0 0 12px}
@@ -87,7 +106,8 @@ body.shot #hint{display:none}
 </style></head><body>
 <div id="game"></div><div class="vig"></div>
 <div id="logo" class="ui">HOOD<small>PLACE TO BE</small><span id="cityName"></span></div>
-<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div></div>
+<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts">♥♥♥♥♥</div><div id="stars"></div></div>
+<div id="jobBanner" class="ui hidden"></div>
 <div id="street" class="ui"></div><div id="prompt" class="ui"></div>
 <div id="hint" class="ui hidden">Stick links: laufen &amp; lenken<br>Rechts: einsteigen · rauszoomen mit +/− oder Pinch</div>
 <div id="stick" aria-label="Steuerung"><b id="stickKnob"></b></div>
@@ -98,32 +118,39 @@ body.shot #hint{display:none}
 <button id="btnFollow" class="hidden" type="button">Folgen</button>
 <div id="radio"><button id="radPrev" type="button" aria-label="Vorheriger Sender">⏮</button><span class="nm" id="radName">Radio</span><button id="radNext" type="button" aria-label="Nächster Sender">⏭</button></div>
 <button id="menuBtn" type="button" aria-label="Menü">☰</button>
-<div id="menu" class="hidden start"><div class="wrap">
- <div>
-  <h1>HOOD<small>PLACE TO BE</small></h1>
-  <div class="cur">Gerade: <b id="curCity">…</b></div>
-  <h2>Stadt / Stadtteil</h2>
-  <form id="searchForm" autocomplete="off"><input id="searchIn" type="search" enterkeyhint="search" placeholder="z. B. Hombruch, Connewitz …" aria-label="Stadtteil suchen"><button class="btn go" type="submit">Suchen</button></form>
-  <div class="row" style="margin-top:8px"><button id="locBtn" class="btn" type="button">📍 Mein Standort</button></div>
-  <div id="searchMsg"></div><div id="resList"></div>
- </div>
- <div>
-  <h2>Tageszeit</h2>
-  <div class="row"><button class="btn" data-time="afternoon" type="button">Nachmittag</button><button class="btn" data-time="dusk" type="button">Dämmerung</button><button class="btn" data-time="night" type="button">Nacht</button></div>
-  <h2>Optionen</h2>
-  <div class="row"><button class="btn" id="muteBtn" type="button">Ton: an</button><button class="btn" id="creditsBtn" type="button">Mitwirkende u. Quellen</button></div>
-  <button id="playBtn" class="btn go" type="button"><span class="pauseOnly">WEITER</span><span class="startOnly">LOS GEHT'S</span></button>
-  <div class="fine">Tippe auf die Karte zum Hingehen. Pinch oder +/− zum Zoomen. Im Auto wechselt das Radio die Sender.</div>
- </div>
-</div></div>
+<div id="title" class="hidden start">
+ <div class="titleView" aria-hidden="true"><div id="crosshair"><i class="ch-h"></i><i class="ch-v"></i><i class="ch-ring"></i></div></div>
+ <aside class="titlePanel">
+  <div class="wordmark">HOOD<small>PLACE TO BE</small></div>
+  <nav id="titleNav" aria-label="Hauptmenü">
+   <button type="button" data-act="play" class="on"><span class="pauseOnly">WEITER</span><span class="startOnly">SPIELEN</span></button>
+   <button type="button" data-act="options">OPTIONEN</button>
+   <button type="button" data-act="quit">BEENDEN</button>
+  </nav>
+  <div id="menu" class="hidden"><div class="wrap">
+   <div class="cur">Gerade: <b id="curCity">…</b></div>
+   <h2>Stadt / Stadtteil</h2>
+   <form id="searchForm" autocomplete="off"><input id="searchIn" type="search" enterkeyhint="search" placeholder="z. B. Hombruch, Connewitz …" aria-label="Stadtteil suchen"><button class="btn go" type="submit">Suchen</button></form>
+   <div class="row" style="margin-top:8px"><button id="locBtn" class="btn" type="button">Mein Standort</button></div>
+   <div id="searchMsg"></div><div id="resList"></div>
+   <h2>Tageszeit</h2>
+   <div class="row"><button class="btn" data-time="afternoon" type="button">Nachmittag</button><button class="btn" data-time="dusk" type="button">Dämmerung</button><button class="btn" data-time="night" type="button">Nacht</button></div>
+   <h2>Ton</h2>
+   <div class="row"><button class="btn" id="muteBtn" type="button">Ton: an</button><button class="btn" id="creditsBtn" type="button">Mitwirkende u. Quellen</button></div>
+   <div class="fine">Im Auto wechselt das Radio die Sender.</div>
+   <button id="optsBack" class="btn" type="button">ZURÜCK</button>
+  </div></div>
+  <div id="titleQuit" class="hidden"><p>Bis später.</p><button id="quitBack" class="btn" type="button">ZURÜCK</button></div>
+ </aside>
+</div>
 <div id="credits"><h2>Mitwirkende u. Quellen</h2>
 <p>Kartendaten © OpenStreetMap-Mitwirkende (ODbL).</p>
 <p>Ortssuche: Nominatim · Gebäudedaten: Overpass API.</p>
 <p>3D-Engine: Three.js.</p>
-<p>Radiostreams: öffentlich-rechtliche und freie Sender (WDR, Deutschlandfunk, SomaFM) — Wiedergabe abhängig vom Sender.</p>
+<p>Radiostreams: unabhängige Sender (SomaFM, Radio Paradise) — kein öffentlich-rechtliches Programm.</p>
 <p>Alle Läden, Schilder und Decknamen im Spiel sind erfunden. Keine echten Marken.</p>
 <button class="btn" id="creditsClose" type="button">Zurück</button></div>
 <div id="loading"><div class="lg">HOOD</div><div class="sp"></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
-<script>window.HOOD_V='1105h3';</script>
-<script src="hood.js?v=1105h3"></script>
+<script>window.HOOD_V='1106h6';</script>
+<script src="hood.js?v=1106h6"></script>
 </body></html>
