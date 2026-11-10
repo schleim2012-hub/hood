@@ -34658,14 +34658,32 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
     }
     __name(playerPickups, "playerPickups");
-    function cycleWeapon() {
+    function ownedWeapons() {
       const list = [null];
-      if (P.weapons.pistol > 0) list.push("pistol");
       if (P.weapons.bat) list.push("bat");
+      if (P.weapons.pistol > 0) list.push("pistol");
+      return list;
+    }
+    __name(ownedWeapons, "ownedWeapons");
+    function cycleWeapon() {
+      const list = ownedWeapons();
       const i = list.indexOf(P.weapon);
       setWeapon(list[(i + 1) % list.length]);
     }
     __name(cycleWeapon, "cycleWeapon");
+    function selectWeapon(k) {
+      if (k === "null" || k === "") k = null;
+      if (k === "bat" && !P.weapons.bat) {
+        toast("Noch kein Schl\xE4ger.", 1.2);
+        return;
+      }
+      if (k === "pistol" && !(P.weapons.pistol > 0)) {
+        toast("Keine Pistole / keine Munition.", 1.2);
+        return;
+      }
+      setWeapon(k);
+    }
+    __name(selectWeapon, "selectWeapon");
     const tracerMat = new LineBasicMaterial({ color: 16771488, transparent: true, opacity: 1, toneMapped: false });
     const tracers = [];
     function tracer(x0, z0, x1, z1) {
@@ -34773,6 +34791,19 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           }
         }
         if (any) addHeat(0.3);
+      } else {
+        P.fireCool = 0.42;
+        P.swingT = 0.28;
+        audio.step();
+        for (const pd of peds) {
+          if (pd.down > 0) continue;
+          const dx = pd.x - P.x, dz = pd.z - P.z, d = Math.hypot(dx, dz);
+          if (d < 1.45 && (dx * fx + dz * fz) / (d || 1) > 0.4) {
+            knockPed(pd);
+            addHeat(0.12);
+            break;
+          }
+        }
       }
     }
     __name(fire, "fire");
@@ -35008,12 +35039,23 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const we = document.getElementById("weapon");
       if (we && P.weapons) {
         const w = P.weapon;
-        we.textContent = w === "pistol" ? "PISTOLE \xB7 " + P.weapons.pistol : w === "bat" ? "SCHL\xC4GER" : "";
-        we.style.display = w ? "" : "none";
+        we.textContent = w === "pistol" ? "PISTOLE \xB7 " + P.weapons.pistol : w === "bat" ? "SCHL\xC4GER" : "FAUST";
+        we.style.display = "";
       }
-      state.armed = !!P.weapon;
-      state.weaponLabel = P.weapon === "pistol" ? "Schie\xDFen" : P.weapon === "bat" ? "Schlagen" : "";
-      state.hasWeapons = !!(P.weapons && (P.weapons.pistol > 0 || P.weapons.bat));
+      const bar = document.getElementById("wepBar");
+      if (bar && P.weapons) {
+        bar.querySelectorAll("[data-wep]").forEach((b) => {
+          const k = b.getAttribute("data-wep") || "";
+          const have = k === "" || k === "bat" && P.weapons.bat || k === "pistol" && P.weapons.pistol > 0;
+          b.classList.toggle("dim", !have);
+          b.classList.toggle("on", (P.weapon || "") === k);
+        });
+        const am = document.getElementById("wepAmmo");
+        if (am) am.textContent = P.weapons.pistol > 0 ? String(P.weapons.pistol) : "";
+      }
+      state.armed = true;
+      state.weaponLabel = P.weapon === "pistol" ? "Schie\xDFen" : P.weapon === "bat" ? "Schlagen" : "Schlagen";
+      state.hasWeapons = true;
       const st = document.getElementById("stars");
       if (st) {
         st.textContent = wanted ? "\u2605".repeat(wanted) + "\u2606".repeat(5 - wanted) : "";
@@ -35387,6 +35429,9 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       if (e.code === "KeyF" || e.code === "ControlLeft" || e.code === "ControlRight") fire();
       if (e.code === "KeyQ") cycleWeapon();
+      if (e.code === "Digit1" || e.code === "Numpad1") selectWeapon(null);
+      if (e.code === "Digit2" || e.code === "Numpad2") selectWeapon("bat");
+      if (e.code === "Digit3" || e.code === "Numpad3") selectWeapon("pistol");
       if (e.code === "KeyT") {
         const L = Object.keys(TIMES);
         applyTime(L[(L.indexOf(timeName) + 1) % L.length]);
@@ -36274,6 +36319,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       },
       fire,
       cycleWeapon,
+      selectWeapon,
       pickups,
       foodDoors,
       getHealth: /* @__PURE__ */ __name(() => health, "getHealth"),
@@ -36614,7 +36660,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         else if (pendingPlay) {
           pendingPlay = false;
           closeMenu();
-        }
+        } else paintStartBtn();
         markTime();
         applyMuteUi();
       }
@@ -36649,11 +36695,13 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       __name(pressStart, "pressStart");
       function runTitle(act) {
+        onGesture();
         uiBlip(act === "quit" ? "back" : "ok", muted);
         if (act === "play") {
           if (!game) {
             pendingPlay = true;
             setStatus("Gleich geht\u2019s los \u2013 die Stadt wird noch gebaut \u2026");
+            paintStartBtn();
             return;
           }
           closeMenu();
@@ -36669,6 +36717,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         }
       }
       __name(runTitle, "runTitle");
+      function paintStartBtn() {
+        const b = document.querySelector('#titleNav [data-act="play"] .startOnly');
+        if (b) b.textContent = !game && pendingPlay ? "Stadt wird gebaut \u2026" : "Spiel starten";
+      }
+      __name(paintStartBtn, "paintStartBtn");
       function openMenu(start) {
         $("title").classList.remove("hidden");
         $("title").classList.toggle("start", !!start);
@@ -36676,8 +36729,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         $("resList").innerHTML = "";
         $("searchMsg").textContent = "";
         titleIdx = 0;
-        const active = navigator.userActivation ? navigator.userActivation.hasBeenActive : false;
-        setMode(start && !active && !titleMusic.playing() ? "press" : "nav");
+        setMode("nav");
+        paintStartBtn();
         titleMusic.start();
         if (game && game.audio) game.audio.setScene("title");
         releaseStick();
@@ -36721,8 +36774,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const k = cover < 1.07 ? cover : 1;
         w *= k;
         h *= k;
-        Object.assign(el.style, { width: w + "px", height: h + "px", left: (W - w) / 2 + "px", top: (H - h) / 2 + "px" });
+        const L = (W - w) / 2, T = (H - h) / 2;
+        Object.assign(el.style, { width: w + "px", height: h + "px", left: L + "px", top: T + "px" });
         $("title").style.setProperty("--u", (h / 100).toFixed(3) + "px");
+        const box2 = $("tBox");
+        if (box2) Object.assign(box2.style, { left: L + w * 0.328 + "px", top: T + h * 0.378 + "px", width: w * 0.344 + "px", height: h * 0.24 + "px" });
       }
       __name(fitTitle, "fitTitle");
       addEventListener("resize", () => {
@@ -36983,7 +37039,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const g = $("game");
         const dist = /* @__PURE__ */ __name((a, b) => Math.hypot(a.x - b.x, a.y - b.y), "dist");
         g.addEventListener("pointerdown", (e) => {
-          if (e.target.closest("#stick,.abtn,#zoomBox,#btnFollow,#radio,#menuBtn,#weapon")) return;
+          if (e.target.closest("#stick,.abtn,#zoomBox,#btnFollow,#radio,#menuBtn,#weapon,#wepBar")) return;
           pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
           if (pts.size === 2) {
             const [a, b] = [...pts.values()];
@@ -37112,12 +37168,19 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         $("radNext").addEventListener("click", () => game && game.radioNext());
         $("menuBtn").addEventListener("click", () => openMenu(false));
         navBtns().forEach((b, i) => {
-          b.addEventListener("click", (e) => {
+          let last = 0;
+          const go = /* @__PURE__ */ __name((e) => {
+            e.preventDefault();
             e.stopPropagation();
+            const n = performance.now();
+            if (n - last < 350) return;
+            last = n;
             titleIdx = i;
             paintTitle();
             runTitle(b.dataset.act);
-          });
+          }, "go");
+          b.addEventListener("pointerup", go);
+          b.addEventListener("click", go);
           b.addEventListener("pointerenter", () => {
             if (titleIdx !== i) {
               titleIdx = i;
@@ -37126,15 +37189,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             }
           });
         });
-        $("title").addEventListener("click", (e) => {
-          if (tMode === "press" && !e.target.closest("#tMute")) {
-            pressStart();
-            e.preventDefault();
-          }
-        });
+        document.querySelectorAll("#wepBar [data-wep]").forEach((b) => b.addEventListener("click", () => {
+          if (game && game.selectWeapon) game.selectWeapon(b.getAttribute("data-wep") || null);
+        }));
         $("tMute").addEventListener("click", (e) => {
           e.stopPropagation();
-          if (tMode === "press") pressStart();
           toggleMute();
         });
         $("optsBack").addEventListener("click", () => {
