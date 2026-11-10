@@ -34947,7 +34947,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       repairs.push({ x: nr ? nr.x : 40, z: nr ? nr.z : -40 });
     }
     let health = 5, wanted = 0, heat = 0, hiding = false, hideAt = null, bustT = 0, filmT = 0, stolenCar = false;
-    const JOB_LIST = [{ title: "LIEFERUNG", pay: 85, talk: "T\xFCte mitnehmen, r\xFCberbringen, kein Theater." }, { title: "KURIER", pay: 110, talk: "Schneller Weg, klares Geld. Nicht auffallen." }, { title: "ABHOLUNG", pay: 70, talk: "Hol das P\xE4ckchen ab und komm geradewegs zur\xFCck." }];
+    const JOB_LIST = [{ title: "LIEFERUNG", pay: 85, who: "Imbiss-Chef", talk: "Nimm die T\xFCte, bring sie r\xFCber, und mach keinen Zirkus." }, { title: "KURIER", pay: 110, who: "Ute vom Grill", talk: "Schneller Weg, klares Geld. Lass dich nicht erwischen." }, { title: "ABHOLUNG", pay: 70, who: "Deniz", talk: "Hol das P\xE4ckchen ab und komm geradewegs zur\xFCck." }];
     let job = null;
     const foodPois = (D.pois || []).filter((p) => ["fast_food", "restaurant", "cafe", "bar", "pub"].includes(p.a));
     function foodDoor(poi) {
@@ -35033,14 +35033,48 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     jobRing.rotation.x = -Math.PI / 2;
     jobRing.visible = false;
     scene.add(jobRing);
+    function showTalk(who, text, voice) {
+      const box2 = document.getElementById("talk"), p = document.getElementById("talkTxt"), w = document.getElementById("talkWho");
+      if (!box2 || !p || !text) return;
+      box2.classList.remove("hidden");
+      if (w) w.textContent = who || "Imbiss";
+      let i = 0;
+      p.textContent = "";
+      clearInterval(showTalk._t);
+      clearTimeout(showTalk._h);
+      showTalk._t = setInterval(() => {
+        i++;
+        p.textContent = text.slice(0, i);
+        if (i >= text.length) {
+          clearInterval(showTalk._t);
+          showTalk._h = setTimeout(() => box2.classList.add("hidden"), 2600 + Math.min(2200, text.length * 16));
+        }
+      }, 26);
+      if (voice) {
+        try {
+          if (showTalk._a) {
+            showTalk._a.pause();
+            showTalk._a = null;
+          }
+          const a = new Audio(voice);
+          showTalk._a = a;
+          a.play().catch(() => {
+          });
+        } catch (_) {
+        }
+      }
+    }
+    __name(showTalk, "showTalk");
     function updateHoodHud() {
       const he = document.getElementById("hearts");
       if (he) he.innerHTML = "<b>" + "\u2665".repeat(health) + "</b>" + "\u2665".repeat(Math.max(0, 5 - health));
       const we = document.getElementById("weapon");
       if (we && P.weapons) {
-        const w = P.weapon;
-        we.textContent = w === "pistol" ? "PISTOLE \xB7 " + P.weapons.pistol : w === "bat" ? "SCHL\xC4GER" : "FAUST";
+        const w = P.weapon || "fist";
+        we.className = w === "pistol" ? "pistol" : w === "bat" ? "bat" : "fist";
         we.style.display = "";
+        const am = document.getElementById("wepAmmo");
+        if (am) am.textContent = w === "pistol" && P.weapons.pistol > 0 ? String(P.weapons.pistol) : "";
       }
       const bar = document.getElementById("wepBar");
       if (bar && P.weapons) {
@@ -35050,8 +35084,6 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           b.classList.toggle("dim", !have);
           b.classList.toggle("on", (P.weapon || "") === k);
         });
-        const am = document.getElementById("wepAmmo");
-        if (am) am.textContent = P.weapons.pistol > 0 ? String(P.weapons.pistol) : "";
       }
       state.armed = true;
       state.weaponLabel = P.weapon === "pistol" ? "Schie\xDFen" : P.weapon === "bat" ? "Schlagen" : "Schlagen";
@@ -35103,11 +35135,13 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const to = dests.length ? dests[Math.random() * dests.length | 0] : foodDoors[0];
       if (!to) return { ok: false, msg: "Gerade keine Auftr\xE4ge." };
       const J = JOB_LIST[Math.random() * JOB_LIST.length | 0];
-      job = { title: J.title, pay: J.pay, talk: J.talk, to, fromDoor: from.door || HUBD };
+      const voice = "assets/voice/" + J.title.toLowerCase() + ".mp3";
+      job = { title: J.title, pay: J.pay, talk: J.talk, who: J.who, voice, to, fromDoor: from.door || HUBD };
       jobRing.position.set(to.x, 0.1, to.z);
       jobRing.visible = true;
       updateHoodHud();
-      return { ok: true, msg: J.talk + " (+" + J.pay + " \u20AC)", cash: deal.state().cash };
+      showTalk(J.who, J.talk + " (+" + J.pay + " \u20AC)", voice);
+      return { ok: true, msg: J.talk + " (+" + J.pay + " \u20AC)", talk: J.talk, who: J.who, cash: deal.state().cash };
     }
     __name(acceptJob, "acceptJob");
     function finishJob() {
@@ -35801,7 +35835,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       weaponPose(dt);
     }
     __name(playerStep, "playerStep");
-    const TILT = 11 * Math.PI / 180;
+    const TILT = 8 * Math.PI / 180;
     const cam = { x: P.x, z: P.z, h: viewH };
     function camStep(dt, snap) {
       const sp = P.car ? Math.abs(P.car.speed) : 0;
@@ -36855,19 +36889,24 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           raf = 0;
         } };
       })();
-      function goFull() {
-        if (SHOT2) return;
-        const d = document.documentElement;
+      function lockPortrait() {
         try {
-          if (!document.fullscreenElement && d.requestFullscreen && matchMedia("(pointer:coarse)").matches) d.requestFullscreen({ navigationUI: "hide" }).then(() => {
-            try {
-              screen.orientation.lock("landscape").catch(() => {
-              });
-            } catch (e) {
-            }
-          }).catch(() => {
+          if (screen.orientation && screen.orientation.lock) screen.orientation.lock("portrait").catch(() => {
           });
         } catch (e) {
+        }
+      }
+      __name(lockPortrait, "lockPortrait");
+      function goFull() {
+        if (SHOT2) return;
+        lockPortrait();
+        const d = document.documentElement;
+        try {
+          if (!document.fullscreenElement && d.requestFullscreen && matchMedia("(pointer:coarse)").matches) d.requestFullscreen({ navigationUI: "hide" }).then(lockPortrait).catch(() => {
+            lockPortrait();
+          });
+        } catch (e) {
+          lockPortrait();
         }
       }
       __name(goFull, "goFull");
@@ -36963,9 +37002,15 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (el) el.textContent = Math.round(cash) + " \u20AC";
       }
       __name(updateMoney, "updateMoney");
+      var radHide = 0;
       function updateRadio(st) {
         const nm = $("radName");
         if (nm) nm.textContent = st && st.name ? st.name : "Radio";
+        const box2 = $("radio");
+        if (!box2 || !st) return;
+        box2.classList.add("flash");
+        clearTimeout(radHide);
+        radHide = setTimeout(() => box2.classList.remove("flash"), 2800);
       }
       __name(updateRadio, "updateRadio");
       var stickId = null;
@@ -37252,6 +37297,28 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         $("muteBtn").addEventListener("click", toggleMute);
         $("creditsBtn").addEventListener("click", () => $("credits").classList.add("open"));
         $("creditsClose").addEventListener("click", () => $("credits").classList.remove("open"));
+        const opt = $("optZin");
+        if (opt) opt.addEventListener("click", () => {
+          if (game) {
+            game.zoomBy(1 / 1.22);
+            LS.set("zoom", game.getZoom());
+          }
+        });
+        const opto = $("optZout");
+        if (opto) opto.addEventListener("click", () => {
+          if (game) {
+            game.zoomBy(1.22);
+            LS.set("zoom", game.getZoom());
+          }
+        });
+        const optf = $("optFollow");
+        if (optf) optf.addEventListener("click", () => {
+          if (game) game.setFollow(true);
+        });
+        const rp = $("optRadPrev");
+        if (rp) rp.addEventListener("click", () => game && game.radioPrev());
+        const rn = $("optRadNext");
+        if (rn) rn.addEventListener("click", () => game && game.radioNext());
         document.querySelectorAll("[data-time]").forEach((b) => b.addEventListener("click", () => {
           game && game.setTime(b.dataset.time);
           LS.set("time", b.dataset.time);
@@ -37268,7 +37335,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const h = $("hint");
         h.classList.remove("hidden");
         clearTimeout(hintT);
-        hintT = setTimeout(() => h.classList.add("hidden"), 5500);
+        hintT = setTimeout(() => h.classList.add("hidden"), 3500);
       }
       __name(showHint, "showHint");
       if (SHOT2) document.body.classList.add("shot");
@@ -37276,6 +37343,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       initGestures();
       initButtons();
       applyMuteUi();
+      lockPortrait();
       boot();
       window.hoodApp = { titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
     }
