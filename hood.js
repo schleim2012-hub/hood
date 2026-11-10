@@ -32343,9 +32343,9 @@ void main() {
     for (const t of treePts) occMark(t[0], t[1]);
     {
       let added = 0;
-      walkRoads(["residential", "tertiary", "unclassified", "living_street", "secondary", "primary"], 15, 2.6, (x, z) => {
-        if (added >= 320 || fr() < 0.22) return;
-        if (occ(x, z, 8.5) || !okSpot(x, z, 1.3, 1.5)) return;
+      walkRoads(["residential", "tertiary", "unclassified", "living_street", "secondary", "primary"], 10, 2.6, (x, z) => {
+        if (added >= 620 || fr() < 0.12) return;
+        if (occ(x, z, 6.8) || !okSpot(x, z, 1.3, 1.5)) return;
         treePts.push([x, z]);
         occMark(x, z);
         added++;
@@ -32537,13 +32537,13 @@ void main() {
       const bushes = [];
       for (const B of out.buildings) {
         for (const e of B.edges) {
-          if (!e.street || e.len < 5 || bushes.length > 700) continue;
+          if (!e.street || e.len < 4 || bushes.length > 1400) continue;
           const n = out.nearRoad(e.mx + e.nx * 1.2, e.mz + e.nz * 1.2);
           if (!n || n.d < 2.6) continue;
           const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
-          const k = Math.min(3, Math.floor(e.len / 5));
+          const k = Math.min(5, Math.floor(e.len / 3.6));
           for (let i = 0; i < k; i++) {
-            if (fr() < 0.35) continue;
+            if (fr() < 0.18) continue;
             const u = (i + 0.5) / k * e.len;
             const x = e.A[0] + tx2 * u + e.nx * 1.05, z = e.A[1] + tz * u + e.nz * 1.05;
             if (occ(x, z, 1.4) || inB(x, z, 0.5) || out.noTree && out.noTree(x, z)) continue;
@@ -32561,8 +32561,8 @@ void main() {
           minz = Math.min(minz, q[1]);
           maxz = Math.max(maxz, q[1]);
         }
-        const nB = Math.min(36, Math.floor(Math.abs((maxx - minx) * (maxz - minz)) / 160));
-        for (let k = 0; k < nB && bushes.length < 1e3; k++) {
+        const nB = Math.min(70, Math.floor(Math.abs((maxx - minx) * (maxz - minz)) / 90));
+        for (let k = 0; k < nB && bushes.length < 1900; k++) {
           const x = minx + fr() * (maxx - minx), z = minz + fr() * (maxz - minz);
           if (!pip2(x, z, a.p) || occ(x, z, 2.2) || !okSpot(x, z, 0.8, 0.6)) continue;
           bushes.push({ x, z, s: 0.8 + fr() * 0.7, rot: fr() * 6, y: 0, h: fr() });
@@ -32570,7 +32570,7 @@ void main() {
         }
       }
       for (const t of trees) {
-        if (fr() < 0.3 && bushes.length < 1150) {
+        if (fr() < 0.6 && bushes.length < 2200) {
           const a2 = fr() * 6.28;
           const x = t[0] + Math.cos(a2) * 1.6, z = t[1] + Math.sin(a2) * 1.6;
           if (okSpot(x, z, 0.6, 0.5)) bushes.push({ x, z, s: 0.55 + fr() * 0.3, rot: fr() * 6, y: 0, h: fr() });
@@ -32608,6 +32608,59 @@ void main() {
         scene.add(m);
       }
       out.bushes = bushes.length;
+      {
+        const tb = [];
+        const TC = [4869714, 2381480, 15254042, 6964774];
+        for (const B of out.buildings) {
+          if (tb.length >= 520) break;
+          for (const e of B.edges) {
+            if (!e.street || e.len < 5 || tb.length >= 520) continue;
+            if (fr() > 0.7) continue;
+            const n = out.nearRoad(e.mx + e.nx * 1.3, e.mz + e.nz * 1.3);
+            if (!n || n.d < 0.9) continue;
+            const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+            const u = e.len * (0.2 + fr() * 0.6);
+            const x0 = e.A[0] + tx2 * u + e.nx * 0.75, z0 = e.A[1] + tz * u + e.nz * 0.75;
+            if (occ(x0, z0, 1.6) || inB(x0, z0, 0.3) || out.noTree && out.noTree(x0, z0)) continue;
+            const cnt = 2 + (fr() * 3 | 0);
+            const rot = Math.atan2(e.nx, e.nz);
+            const grp = [];
+            for (let k = 0; k < cnt; k++) {
+              const off = (k - (cnt - 1) / 2) * 0.78;
+              grp.push({ x: x0 + tx2 * off, z: z0 + tz * off, rot, y: 0, s: 1, c: TC[k === 0 ? 0 : fr() * 4 | 0] });
+            }
+            tb.push(...grp);
+            occMark(x0, z0);
+            (out.trashBins = out.trashBins || []).push({ x: x0 + e.nx * 0.9, z: z0 + e.nz * 0.9, n: cnt });
+          }
+        }
+        if (tb.length) {
+          const body = new BoxGeometry(0.66, 1.02, 0.72);
+          const lid = new BoxGeometry(0.72, 0.1, 0.8);
+          lid.translate(0, 0.56, -0.03);
+          const wh = new CylinderGeometry(0.11, 0.11, 0.06, 8);
+          wh.rotateZ(Math.PI / 2);
+          for (const [geo, y] of [[body, 0.51], [lid, 0.51]]) {
+            const m = new InstancedMesh(geo, new MeshStandardMaterial({ color: 16777215, roughness: 0.7, metalness: 0.05 }), tb.length);
+            const o2 = new Object3D();
+            const c2 = new Color();
+            tb.forEach((it, i) => {
+              o2.position.set(it.x, y, it.z);
+              o2.rotation.set(0, it.rot, 0);
+              o2.scale.set(1, 1, 1);
+              o2.updateMatrix();
+              m.setMatrixAt(i, o2.matrix);
+              c2.setHex(it.c);
+              if (geo === lid) c2.multiplyScalar(0.72);
+              m.setColorAt(i, c2);
+            });
+            m.castShadow = true;
+            m.receiveShadow = true;
+            scene.add(m);
+          }
+          out.trashBinCount = tb.length;
+        }
+      }
       const boxes = [], bikes = [], glass = [], litfass = [], bags = [], signsA = [], signsB = [], signsC = [];
       let ci2 = 0;
       walkRoads(["residential", "tertiary", "unclassified", "living_street", "secondary", "primary"], 11, 0, (x0, z0, tx2, tz, sd2, r) => {
@@ -33159,6 +33212,7 @@ void main() {
   }
   function carGeometry(type, paint = [1, 1, 1]) {
     const T = CAR_TYPES[type];
+    if (T.tank) return tankGeometry(T, paint);
     const parts = [];
     const { L, W, hb, hr } = T;
     const y0 = 0.34, b = 0.06;
@@ -33221,6 +33275,49 @@ void main() {
     if (T.van) {
       parts.push(colorize(box(0.02, 0.5, 0.03, W / 2 + 2e-3, hb - 0.1, zC + 0.9), TRIM));
     }
+    return mergeGeometries(parts);
+  }
+  function tankGeometry(T, P) {
+    const { L, W } = T;
+    const parts = [];
+    const dark = [P[0] * 0.62, P[1] * 0.62, P[2] * 0.62], trk = [0.09, 0.09, 0.085], wheel = [0.2, 0.2, 0.19];
+    for (const sx of [-1, 1]) {
+      const x = sx * (W / 2 - 0.38);
+      parts.push(colorize(box(0.76, 0.86, L, x, 0.43, 0), trk));
+      for (let k = 0; k < 6; k++) {
+        const w = new CylinderGeometry(0.34, 0.34, 0.1, 12);
+        w.rotateZ(Math.PI / 2);
+        w.translate(sx * (W / 2 + 0.02), 0.42, -L / 2 + 0.65 + k * (L - 1.3) / 5);
+        parts.push(colorize(w, wheel));
+      }
+      for (let k = 0; k < 14; k++) parts.push(colorize(box(0.8, 0.04, 0.12, x, 0.88, -L / 2 + 0.2 + k * (L - 0.4) / 13), [0.16, 0.16, 0.15]));
+      parts.push(colorize(box(0.92, 0.1, L + 0.15, x, 0.95, 0), dark));
+    }
+    parts.push(colorize(box(W - 1.4, 0.75, L - 0.5, 0, 0.85, 0), dark));
+    parts.push(colorize(box(W - 0.1, 0.32, L - 0.9, 0, 1.16, -0.1), P));
+    {
+      const g = box(W - 0.5, 0.3, 0.9, 0, 1.05, L / 2 - 0.6);
+      g.rotateX(-0.35);
+      g.translate(0, 0.36, 0.2);
+      parts.push(colorize(g, P));
+    }
+    const tz = -0.35;
+    const lite = [Math.min(1, P[0] * 1.25), Math.min(1, P[1] * 1.25), Math.min(1, P[2] * 1.25)];
+    parts.push(colorize(box(2.05, 0.62, 2.3, 0, 1.62, tz), P), colorize(box(1.75, 0.12, 1.95, 0, 1.98, tz - 0.05), lite));
+    {
+      const h = new CylinderGeometry(0.36, 0.4, 0.18, 12);
+      h.translate(-0.45, 2.1, tz - 0.4);
+      parts.push(colorize(h, dark));
+    }
+    {
+      const b = new CylinderGeometry(0.17, 0.19, 3.6, 10);
+      b.rotateX(Math.PI / 2);
+      b.translate(0, 1.7, tz + 1.15 + 1.8);
+      parts.push(colorize(b, P));
+    }
+    parts.push(colorize(box(0.44, 0.36, 0.5, 0, 1.7, tz + 1.15 + 3.6), [0.12, 0.12, 0.11]));
+    parts.push(colorize(box(0.55, 0.4, 0.5, 0, 1.62, tz + 1.2), dark));
+    for (const sx of [-1, 1]) parts.push(colorize(box(0.5, 0.3, 0.7, sx * 0.95, 1.4, -L / 2 + 0.6), [0.24, 0.22, 0.16]));
     return mergeGeometries(parts);
   }
   function carLightsGeometry(type) {
@@ -33528,9 +33625,11 @@ void main() {
         taxi: { L: 4.5, W: 1.82, hb: 0.86, hr: 0.5, hood: 1.28, ws: 0.75, roof: 1.25, rw: 0.6, taxi: true, hp: 100 },
         coupe: { L: 4.5, W: 1.86, hb: 0.8, hr: 0.42, hood: 1.6, ws: 0.85, roof: 0.8, rw: 0.8, stripe: true, hp: 90 },
         police: { L: 4.55, W: 1.9, hb: 0.88, hr: 0.52, hood: 1.22, ws: 0.7, roof: 1.35, rw: 0.55, police: true, hp: 130 },
-        truck: { L: 6.6, W: 2.2, hb: 1.12, hr: 1.02, hood: 1.35, ws: 0.72, roof: 3.4, rw: 0.14, van: true, truck: true, hp: 180 }
+        truck: { L: 6.6, W: 2.2, hb: 1.12, hr: 1.02, hood: 1.35, ws: 0.72, roof: 3.4, rw: 0.14, van: true, truck: true, hp: 180 },
+        tank: { L: 6.4, W: 3, hb: 1.25, hr: 0.7, hood: 1.2, ws: 0.6, roof: 2.4, rw: 0.4, van: true, tank: true, hp: 950 }
       };
       __name(carGeometry, "carGeometry");
+      __name(tankGeometry, "tankGeometry");
       __name(carLightsGeometry, "carLightsGeometry");
       CAR_COLORS = [12855342, 1985192, 15253562, 3050053, 15921384, 1710622, 12864024, 6956160, 2787496, 15262940, 9054746, 3824682, 13672488, 2371680];
       carMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.62, metalness: 0.06 });
@@ -33634,39 +33733,59 @@ ${EXTRA_Q(bb)}
   async function fetchOverpass(lat, lon, onMsg) {
     const q = overpassQuery(lat, lon);
     let lastErr = null;
-    const t0 = Date.now();
-    const waits = [0, 3e3, 8e3];
-    for (let round = 0; round < waits.length; round++) {
-      if (waits[round]) {
-        for (let s = waits[round] / 1e3; s > 0; s--) {
+    const body = "data=" + encodeURIComponent(q);
+    for (let round = 0; round < 2; round++) {
+      if (round) {
+        for (let s = 6; s > 0; s--) {
           onMsg && onMsg(`Kartenserver ausgelastet \u2013 neuer Versuch in ${s} s \u2026`);
           await new Promise((r) => setTimeout(r, 1e3));
         }
       }
-      for (let i = 0; i < ENDPOINTS.length; i++) {
-        const ep = ENDPOINTS[i];
-        if (Date.now() - t0 > 16e4) break;
-        try {
-          onMsg && onMsg(round || i ? `Lade Karte \u2013 Server ${i + 1}/${ENDPOINTS.length}, Versuch ${round + 1} \u2026` : "Lade Stra\xDFen und H\xE4user aus OpenStreetMap \u2026");
-          const r = await fetchTimeout(ep, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "data=" + encodeURIComponent(q) }, i === 0 ? 5e4 : 4e4);
-          if (!r.ok) {
-            lastErr = new Error("HTTP " + r.status);
-            continue;
-          }
-          onMsg && onMsg("Karte empfangen, lese Daten \u2026");
-          const j = await r.json();
-          if (!j.elements) {
-            lastErr = new Error("leere Antwort");
-            continue;
-          }
-          if (j.remark && /timed out|runtime error/i.test(j.remark) && j.elements.length < 50) {
-            lastErr = new Error(j.remark);
-            continue;
-          }
-          return j.elements;
-        } catch (e) {
-          lastErr = e;
+      const ctrls = [];
+      let done = false, fails = 0, t0 = Date.now();
+      const tick = setInterval(() => {
+        if (!done) onMsg && onMsg(`Lade Stra\xDFen und H\xE4user aus OpenStreetMap \u2026 ${Math.round((Date.now() - t0) / 1e3)} s`);
+      }, 1e3);
+      try {
+        const res = await new Promise((resolve, reject) => {
+          ENDPOINTS.forEach((ep, i) => {
+            setTimeout(async () => {
+              if (done) return;
+              const ac = new AbortController();
+              ctrls.push(ac);
+              const to = setTimeout(() => ac.abort(), 11e4);
+              try {
+                const r = await fetch(ep, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body, signal: ac.signal });
+                if (!r.ok) throw new Error("HTTP " + r.status);
+                const j = await r.json();
+                if (!j.elements) throw new Error("leere Antwort");
+                if (j.remark && /timed out|runtime error/i.test(j.remark) && j.elements.length < 50) throw new Error(j.remark);
+                if (!done) {
+                  done = true;
+                  resolve(j.elements);
+                }
+              } catch (e) {
+                lastErr = e;
+                if (++fails >= ENDPOINTS.length && !done) {
+                  done = true;
+                  reject(e);
+                }
+              } finally {
+                clearTimeout(to);
+              }
+            }, i * 7e3);
+          });
+        });
+        clearInterval(tick);
+        onMsg && onMsg("Karte empfangen, lese Daten \u2026");
+        for (const c of ctrls) try {
+          c.abort();
+        } catch (_) {
         }
+        return res;
+      } catch (e) {
+        clearInterval(tick);
+        lastErr = e;
       }
     }
     const err = new Error("overpass");
@@ -34164,9 +34283,22 @@ ${EXTRA_Q(bb)}
   }
   async function searchPlaces(q) {
     const u = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=10&addressdetails=1&accept-language=de&q=" + encodeURIComponent(q);
-    const r = await fetchTimeout(u, { headers: { "Accept": "application/json" } }, 15e3);
-    if (!r.ok) throw new Error("HTTP " + r.status);
-    const j = await r.json();
+    let j;
+    try {
+      const r = await fetchTimeout(u, { headers: { "Accept": "application/json" } }, 15e3);
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      j = await r.json();
+    } catch (e) {
+      const r = await fetchTimeout("https://photon.komoot.io/api/?limit=10&lang=de&q=" + encodeURIComponent(q), {}, 15e3);
+      if (!r.ok) throw e;
+      const pj = await r.json();
+      return (pj.features || []).map((f) => {
+        const p = f.properties || {};
+        const c = f.geometry && f.geometry.coordinates || [0, 0];
+        const short = p.name || p.district || p.city || "Ort";
+        return { name: [p.name, p.district, p.city, p.state, p.country].filter(Boolean).join(", "), short, lat: +c[1], lon: +c[0], type: p.type, cls: p.osm_key };
+      });
+    }
     return j.map((x) => {
       const a = x.address || {};
       const short = x.name || a.suburb || a.neighbourhood || a.quarter || a.city_district || a.city || x.display_name.split(",")[0];
@@ -34188,7 +34320,7 @@ ${EXTRA_Q(bb)}
     "src/osm.js"() {
       HALF_X = 560;
       HALF_Z = 460;
-      ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "https://overpass.private.coffee/api/interpreter"];
+      ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.private.coffee/api/interpreter", "https://overpass.kumi.systems/api/interpreter", "https://maps.mail.ru/osm/tools/overpass/api/interpreter"];
       __name(hsh, "hsh");
       __name(num, "num");
       __name(area2, "area");
@@ -36694,6 +36826,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(shootRay, "shootRay");
     function fire() {
+      if (P.car && P.car.tank && !document.body.classList.contains("onTitle")) {
+        fireCannon();
+        return;
+      }
       if (P.car || P.train || document.body.classList.contains("onTitle")) return;
       if (P.fireCool > 0) return;
       const fx = Math.sin(P.rot), fz = Math.cos(P.rot);
@@ -37043,8 +37179,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (w) w.textContent = who || "Imbiss";
       const fi = document.getElementById("talkFace");
       if (fi) {
-        const src = "assets/faces/" + (face || "chef") + ".webp?v=" + (window.HOOD_V || "");
-        if (fi.getAttribute("src") !== src) fi.setAttribute("src", src);
+        fi.style.display = face === "" ? "none" : "";
+        if (face !== "") {
+          const src = "assets/faces/" + (face || "chef") + ".webp?v=" + (window.HOOD_V || "");
+          if (fi.getAttribute("src") !== src) fi.setAttribute("src", src);
+        }
       }
       let i = 0;
       p.textContent = "";
@@ -37491,13 +37630,79 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     const REG_N = 3;
     const REG_NAMES = ["Kanalblock", "Gleiseck", "Marktviertel", "Hinterhof-Kiez", "Br\xFCckenecke", "S\xFCdring", "Nordblock", "Altstadtrand", "Kreuzviertel"];
     const CREWS = [["Frittenfront", [0.1, 0.55, 0.25]], ["Grillbande", [0.85, 0.45, 0.08]], ["Pizza-Paten", [0.12, 0.12, 0.14]], ["Curry-Kommando", [0.75, 0.62, 0.1]], ["Falafel-Fraktion", [0.2, 0.45, 0.75]], ["Schnitzel-Syndikat", [0.55, 0.1, 0.45]], ["Wok-Br\xFCder", [0.7, 0.12, 0.12]], ["Kebab-Kartell", [0.35, 0.3, 0.22]]];
+    const CREW_LOOK = [
+      { hat: "cap", hc: [0.1, 0.62, 0.28], hair: [0.93, 0.86, 0.52], pants: [0.86, 0.86, 0.8] },
+      { hat: "band", hc: [1, 0.52, 0.08], hair: [0.62, 0.2, 0.06], pants: [0.16, 0.16, 0.18] },
+      { hat: "fedora", hc: [0.05, 0.05, 0.06], hair: [0.04, 0.03, 0.03], pants: [0.07, 0.07, 0.08], shirt: [0.96, 0.96, 0.94] },
+      { hat: "beanie", hc: [1, 0.82, 0.08], hair: [0.1, 0.08, 0.05], pants: [0.8, 0.66, 0.1] },
+      { hat: "capB", hc: [0.22, 0.48, 0.92], hair: [0.08, 0.06, 0.04], pants: [0.86, 0.9, 0.97] },
+      { hat: "mohawk", hc: [0.95, 0.35, 0.85], hair: [0.95, 0.35, 0.85], pants: [0.55, 0.1, 0.45] },
+      { hat: "band", hc: [0.92, 0.1, 0.1], hair: [0.03, 0.03, 0.03], pants: [0.72, 0.12, 0.12] },
+      { hat: "cap", hc: [0.38, 0.3, 0.2], hair: [0.22, 0.15, 0.08], pants: [0.3, 0.25, 0.2], beard: true }
+    ];
+    function crewLook(ci, i, base) {
+      const L = CREW_LOOK[ci] || CREW_LOOK[0];
+      const cr = CREWS[ci];
+      return { ...base, jacket: cr[1], hair: L.hair, pants: L.pants, shirt: L.shirt || base.shirt, beanie: false };
+    }
+    __name(crewLook, "crewLook");
+    function crewDress(o, ci) {
+      const L = CREW_LOOK[ci];
+      if (!L || !o || !o.g) return;
+      const inner = findPart(o.g, "Inner") || o.g.children[0];
+      if (!inner) return;
+      let top = 1.95;
+      try {
+        const b = inner.children.find((c) => c.isMesh);
+        if (b) {
+          b.geometry.computeBoundingBox();
+          top = b.geometry.boundingBox.max.y;
+        }
+      } catch (_) {
+      }
+      const m = new MeshStandardMaterial({ color: new Color(L.hc[0], L.hc[1], L.hc[2]), roughness: 0.7 });
+      const add = /* @__PURE__ */ __name((g, x, y, z) => {
+        const me = new Mesh(g, m);
+        me.position.set(x, y, z);
+        me.castShadow = true;
+        inner.add(me);
+        return me;
+      }, "add");
+      if (L.hat === "cap" || L.hat === "capB") {
+        add(new SphereGeometry(0.205, 12, 8, 0, Math.PI * 2, 0, Math.PI * 0.5), 0, top - 0.13, 0);
+        const v = add(new BoxGeometry(0.3, 0.035, 0.2), 0, top - 0.12, L.hat === "cap" ? 0.24 : -0.24);
+      } else if (L.hat === "beanie") {
+        const g = new SphereGeometry(0.21, 12, 8, 0, Math.PI * 2, 0, Math.PI * 0.55);
+        g.scale(1, 1.3, 1);
+        add(g, 0, top - 0.16, 0);
+        add(new SphereGeometry(0.06, 8, 6), 0, top + 0.1, 0);
+      } else if (L.hat === "band") {
+        const g = new TorusGeometry(0.19, 0.04, 6, 16);
+        g.rotateX(Math.PI / 2);
+        add(g, 0, top - 0.14, 0);
+        add(new BoxGeometry(0.06, 0.18, 0.05), 0.05, top - 0.22, -0.2);
+      } else if (L.hat === "fedora") {
+        add(new CylinderGeometry(0.33, 0.33, 0.03, 16), 0, top - 0.08, 0);
+        add(new CylinderGeometry(0.17, 0.2, 0.2, 14), 0, top + 0.03, 0);
+      } else if (L.hat === "mohawk") {
+        add(new BoxGeometry(0.07, 0.16, 0.36), 0, top + 0.03, -0.02);
+      }
+      if (L.beard) {
+        const bm = new MeshStandardMaterial({ color: new Color(L.hair[0], L.hair[1], L.hair[2]), roughness: 0.9 });
+        const b = new Mesh(new BoxGeometry(0.27, 0.16, 0.12), bm);
+        b.position.set(0, top - 0.36, 0.13);
+        inner.add(b);
+      }
+      o.crewI = ci;
+    }
+    __name(crewDress, "crewDress");
     const regions = [];
     {
       let k = 0;
       const w = (EG0.maxx - EG0.minx) / REG_N, h = (EG0.maxz - EG0.minz) / REG_N;
       for (let j = 0; j < REG_N; j++) for (let i = 0; i < REG_N; i++) {
         const x0 = EG0.minx + i * w, z0 = EG0.minz + j * h;
-        regions.push({ i: k, name: REG_NAMES[k], x0, x1: x0 + w, z0, z1: z0 + h, cx: x0 + w / 2, cz: z0 + h / 2, owner: "free", fixed: false, rival: null, crew: null, risk: 0, anger: 0 });
+        regions.push({ i: k, name: REG_NAMES[k], x0, x1: x0 + w, z0, z1: z0 + h, cx: x0 + w / 2, cz: z0 + h / 2, owner: "free", fixed: false, rival: null, crew: null, risk: 0, anger: 0, pts: 0 });
         k++;
       }
     }
@@ -37595,8 +37800,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       return s;
     }
     __name(makeSpot, "makeSpot");
-    const SPOTS = { bank: makeSpot("bank", 140, 420, "KREDITHAUS", "#7fe0ff", "FILIALE \xB7 GELD"), kiosk: makeSpot("kiosk", 60, 240, "KIOSK 24", "#ffd23f", "ZEITUNG \xB7 TABAK"), garage: makeSpot("garage", 110, 380, "GARAGE 9", "#ff8a3a", "ANKAUF \xB7 KEINE FRAGEN", (B) => B.h < 12) };
-    const GIVERS = { chef: { key: "chef", who: "Imbiss-Chef", face: "chef" }, ute: { key: "ute", who: "Ute vom Grill", face: "ute" }, deniz: { key: "deniz", who: "Deniz", face: "deniz" } };
+    const SPOTS = { bank: makeSpot("bank", 140, 420, "KREDITHAUS", "#7fe0ff", "FILIALE \xB7 GELD"), kiosk: makeSpot("kiosk", 60, 240, "KIOSK 24", "#ffd23f", "ZEITUNG \xB7 TABAK"), garage: makeSpot("garage", 110, 380, "GARAGE 9", "#ff8a3a", "ANKAUF \xB7 PANZER \xB7 KEINE FRAGEN", (B) => B.h < 12), zack: makeSpot("zack", 35, 200, "ZACK! AUSHILFE", "#9dff7a", "ALLTAGSJOBS \xB7 BAR AUF DIE HAND") };
+    const GIVERS = { chef: { key: "chef", who: "Imbiss-Chef", face: "chef" }, ute: { key: "ute", who: "Ute vom Grill", face: "ute" }, deniz: { key: "deniz", who: "Deniz", face: "deniz" }, zack: { key: "zack", who: "Herr Kruschke \xB7 ZACK!", face: "" } };
     const giverDoor = /* @__PURE__ */ __name((k) => k === "chef" ? HUBD : foodDoors.find((f) => f.giver === k) || HUBD, "giverDoor");
     const JOBS = [
       { id: "lieferung", title: "LIEFERUNG", g: "chef", tier: 0, pay: 85, type: "deliver", item: ["tuete0", "T\xFCte vom Imbiss", "\u{1F961}"], gain: { ans: 1 }, voice: 1, talk: "Nimm die T\xFCte, bring sie r\xFCber, und mach keinen Zirkus." },
@@ -37611,6 +37816,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       { id: "bank", title: "DIE KASSE!", g: "chef", tier: 2, pay: 260, type: "bank", item: ["beutel", "Geldbeutel", "\u{1F4B0}"], gain: { ner: 1, ges: 1 }, talk: "H\xF6r zu, Kleiner. In der Filiale um die Ecke liegt ein Beutel, der uns geh\xF6rt \u2014 die wissen das nur noch nicht. Du gehst rein, nimmst ihn, und kommst wieder. Wer schreit, hat schon verloren." },
       { id: "transporter", title: "DER GELDTRANSPORTER!", g: "deniz", tier: 2, pay: 220, type: "steal", car: { type: "van", color: 4871006, label: "Geldtransporter", heat: 1.3, hp: 260, moving: true }, gain: { ges: 1, ner: 1 }, talk: "Da rollt \u2019n dicker Kasten durch die Gegend, innen blechernes Gl\xFCck. Du bringst genau den Wagen in unsere Garage, nicht den erstbesten Lieferwagen. Und hinterher siehst du m\xF6glichst wie jemand aus, der nur einkaufen war." },
       { id: "krieg", title: "WESSEN HOOD!", g: "deniz", tier: 2, pay: 240, type: "war", gain: { str: 1, ans: 1 }, talk: "Die vom anderen Laden halten uns f\xFCr Deko. Du zeigst ihnen, wessen Hood das hier ist. Wenn sie liegen, geh\xF6rt die Ecke uns. Wenn du liegst, essen wir ohne dich." },
+      // V01: Alltagsjobs von ZACK! Aushilfe — schräger Alltag, eigene Schiene, sichern das Viertel, in dem sie stattfinden
+      { id: "prospekte", title: "PROSPEKTE!", g: "zack", tier: 0, pay: 70, type: "chore", kind: "prospekt", n: 5, unit: "Briefk\xE4sten", act: "Einwerfen", gain: { ges: 1 }, talk: "F\xFCnf Briefk\xE4sten, f\xFCnf Prospekte. Steht \u201EKeine Werbung\u201C drauf? Dann steckst du\u2019s trotzdem rein und guckst unschuldig. Die Firma zahlt pro Kasten, nicht pro Gewissen." },
+      { id: "tonnen", title: "TONNEN RAUS!", g: "zack", tier: 0, pay: 60, type: "chore", kind: "tonnen", n: 4, unit: "Tonnen", act: "Rausstellen", gain: { str: 1 }, talk: "Morgen ist Abfuhr, und die halbe Stra\xDFe pennt. Du rollst die Tonnen an den Rand. Nicht reingucken. Ich mein\u2019s ernst: nicht reingucken." },
+      { id: "zaehler", title: "Z\xC4HLER ABLESEN!", g: "zack", tier: 0, pay: 90, type: "chore", kind: "zaehler", n: 3, unit: "Z\xE4hler", act: "Ablesen", gain: { ner: 1 }, talk: "Die Stadtwerke haben keine Leute mehr, also haben sie mich. Und ich hab dich. Klingeln, Keller, Zahl aufschreiben. Wenn einer im Bademantel br\xFCllt, ist das im Preis drin." },
+      { id: "tauben", title: "TAUBEN Z\xC4HLEN!", g: "zack", tier: 0, pay: 80, type: "chore", kind: "tauben", n: 1, unit: "Platz", act: "Z\xE4hlen", gain: { ner: 1 }, talk: "Ein Institut will wissen, wie viele Tauben auf dem Platz rumsitzen. Wer bezahlt so was? Egal. Du stellst dich hin, r\xFChrst dich nicht und z\xE4hlst. Wer zappelt, f\xE4ngt von vorn an." },
+      { id: "nachbar", title: "NACHBARSPAKET!", g: "zack", tier: 0, pay: 75, type: "chore", kind: "nachbar", n: 3, unit: "T\xFCren", act: "Klingeln", gain: { cha: 1 }, talk: "Paket f\xFCr Nummer sieben, abgegeben bei Nummer drei, geh\xF6rt aber eigentlich nach Nummer zw\xF6lf. Frag nicht. Abholen, klingeln, abstellen. Wenn keiner aufmacht: vor die T\xFCr und weg." },
+      { id: "knoellchen", title: "KN\xD6LLCHEN!", g: "zack", tier: 0, pay: 95, type: "chore", kind: "knoellchen", n: 4, unit: "Falschparker", act: "Zettel dran", gain: { ans: 1 }, talk: "Das Ordnungsamt ist im Urlaub, ich hab die Zettel. Klingt illegal, ist nur unbeliebt. Vier Falschparker, Zettel hinter den Wischer \u2014 und wenn der Fahrer kommt, bist du nur der Bote." },
       { id: "schicht", title: "LETZTE SCHICHT!", g: "deniz", tier: 2, pay: 300, type: "war", final: true, gain: { ans: 1, str: 1 }, talk: "Letzte Schicht, Kleiner. Der Laden gegen\xFCber macht heute zu \u2014 f\xFCr immer, wenn du das richtig anstellst. Danach geh\xF6rt die Ecke auf der Karte uns, und ich will keine Diskussion." }
     ];
     const TIER_N = ["leicht", "mittel", "schwer"];
@@ -37716,6 +37928,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         job.reg = r;
         job.to = r.rival;
         job.line = (r.crew ? r.crew[0] : "Laden") + " \xB7 " + r.name;
+      } else if (T === "chore") {
+        if (!setupChore(J)) {
+          job = null;
+          return { ok: false, msg: "Gerade nichts zu tun. Komm sp\xE4ter wieder." };
+        }
+      }
+      if (!job.reg0 && T !== "war") {
+        const tg = T === "steal" ? job.car : T === "follow" ? job.ped && job.ped.dest : T === "sign" ? P : job.to;
+        job.reg0 = tg ? regionAt(tg.x, tg.z) : null;
+        if (!job.reg0 || job.reg0.owner === "mine") job.reg0 = regionAt(gd.x, gd.z);
       }
       updateHoodHud();
       showTalk(GIVERS[J.g].who, J.talk + "  (+" + J.pay + " \u20AC)", voice, faceOf(J.g));
@@ -37729,6 +37951,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (T === "follow") return job.stage < 2 ? job.ped ? { x: job.ped.x, z: job.ped.z } : null : job.gd;
       if (T === "sign") return job.stage === 1 ? job.gd : null;
       if (T === "war") return job.reg && job.reg.rival;
+      if (T === "chore") {
+        const q = job.pts[job.pi];
+        return q ? q.car ? { x: q.car.x, z: q.car.z } : q : null;
+      }
       if (T === "deliver") return job.to;
       return job.stage === 0 ? job.to : job.gd;
     }
@@ -37812,6 +38038,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           return { ok: true, msg: "Unterschrift " + job.n + "/" + J.need + (job.n >= J.need ? " \u2014 zur\xFCck zu Ute." : "") };
         }, "act") };
       }
+      if (T === "chore") {
+        const q = job.pts[job.pi];
+        const tq = q && (q.car ? { x: q.car.x, z: q.car.z } : q);
+        if (q && onFoot && near(tq, q.car ? 3.4 : 3) && !job.counting) {
+          const lb = q.label || J.act;
+          return { text: lb + " (" + (job.pi + 1) + "/" + job.pts.length + ")", label: lb, act: /* @__PURE__ */ __name(() => choreAct(q), "act") };
+        }
+        return null;
+      }
       if (T === "follow" && job.stage === 1 && onFoot && job.ped && near(job.ped, 2.4)) return { text: "Den falschen Kurier stellen", label: "Stellen", act: /* @__PURE__ */ __name(() => {
         confrontTraitor();
         return { ok: true, msg: "Er l\xE4sst das Notizbuch fallen und rennt." };
@@ -37823,6 +38058,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (!job) return { ok: false };
       const J = job.J;
       let pay = job.pay;
+      const infR = job.reg0, infN = J.type === "chore" ? 2 : J.tier >= 1 ? 2 : 1;
       if (job.payMul) pay = Math.round(pay * job.payMul);
       deal.setCash(deal.state().cash + pay);
       jobsDone++;
@@ -37840,6 +38076,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       cleanupJob();
       audio.jingle && audio.jingle();
       if (lines.length) setTimeout(() => audio.levelUp && audio.levelUp(), 420);
+      if (infR && J.type !== "war") setTimeout(() => addInfluence(infR, infN, J.type === "chore" ? "chore" : "mission"), J.type === "chore" ? 1200 : 900);
       if (opts.onLevel) opts.onLevel({ title: J.title, pay, lines, level: level() });
       updateHoodHud();
       if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 600);
@@ -37848,6 +38085,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(completeJob, "completeJob");
     function cleanupJob() {
       if (!job) return;
+      if (job.J.kind === "nachbar") bagDel("npaket");
+      job.counting = false;
       if (job.J.item) bagDel(job.J.item[0]);
       if (job.car && !job.delivered) {
         job.car.target = false;
@@ -37946,6 +38185,419 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
     }
     __name(stealTick, "stealTick");
+    function shuffleA(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.random() * (i + 1) | 0;
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+    __name(shuffleA, "shuffleA");
+    function walkable(x, z) {
+      tmp2.x = x;
+      tmp2.z = z;
+      ejectFromBuildings(tmp2, 0.5);
+      city.grid.resolve(tmp2, 0.4);
+      ejectFromBuildings(tmp2, 0.5);
+      return { x: tmp2.x, z: tmp2.z };
+    }
+    __name(walkable, "walkable");
+    function inReg(r, x, z) {
+      return x >= r.x0 && x < r.x1 && z >= r.z0 && z < r.z1;
+    }
+    __name(inReg, "inReg");
+    function spaced(cands, n, minD) {
+      const out = [];
+      for (const c of cands) {
+        if (out.length >= n) break;
+        if (out.some((o) => Math.hypot(o.x - c.x, o.z - c.z) < minD)) continue;
+        out.push(c);
+      }
+      return out;
+    }
+    __name(spaced, "spaced");
+    function chainSort(list, from) {
+      const out = [];
+      let cur = from;
+      const rest = list.slice();
+      while (rest.length) {
+        let bi = 0, bd = 1e9;
+        rest.forEach((q, i) => {
+          const d = Math.hypot(q.x - cur.x, q.z - cur.z);
+          if (d < bd) {
+            bd = d;
+            bi = i;
+          }
+        });
+        cur = rest.splice(bi, 1)[0];
+        out.push(cur);
+      }
+      return out;
+    }
+    __name(chainSort, "chainSort");
+    function choreFacades(r, n) {
+      const c = [];
+      for (const B of city.buildings) {
+        if (B.h < 3) continue;
+        for (const e of B.edges) {
+          if (!e.street || e.len < 4) continue;
+          if (r && !inReg(r, e.mx, e.mz)) continue;
+          if (!city.inEdge(e.mx, e.mz, 6)) continue;
+          const x = e.mx + e.nx * 1.4, z = e.mz + e.nz * 1.4;
+          if (insideAny(x, z)) continue;
+          c.push({ x, z });
+        }
+      }
+      return spaced(shuffleA(c), n, 16).map((q) => walkable(q.x, q.z));
+    }
+    __name(choreFacades, "choreFacades");
+    function choreRegion() {
+      const P0 = P.car || P;
+      const list = regions.slice().sort((a, b) => (a.owner === "mine") - (b.owner === "mine") || Math.hypot(a.cx - P0.x, a.cz - P0.z) - Math.hypot(b.cx - P0.x, b.cz - P0.z));
+      const open2 = list.filter((r) => r.owner !== "mine");
+      const L = open2.length ? open2 : list;
+      return L[Math.random() * Math.min(2, L.length) | 0];
+    }
+    __name(choreRegion, "choreRegion");
+    function setupChore(J) {
+      const r = choreRegion();
+      if (!r) return false;
+      let pts = [];
+      const K = J.kind;
+      if (K === "tonnen") {
+        const bins = (city.trashBins || []).filter((b) => inReg(r, b.x, b.z));
+        pts = spaced(shuffleA(bins.slice()), J.n, 14).map((b) => walkable(b.x, b.z));
+      } else if (K === "knoellchen") {
+        const cs = cars.filter((c) => !c.ai && !c.wrecked && c !== myCar && !c.target && !c.tank && !c.driven && city.inEdge(c.x, c.z, 6));
+        const inR = cs.filter((c) => inReg(r, c.x, c.z));
+        const pool = inR.length >= J.n ? inR : cs.sort((a, b) => Math.hypot(a.x - r.cx, a.z - r.cz) - Math.hypot(b.x - r.cx, b.z - r.cz));
+        pts = spaced(shuffleA(pool.slice(0, Math.max(J.n * 3, 8))), J.n, 12).map((c) => ({ x: c.x, z: c.z, car: c }));
+      } else if (K === "tauben") {
+        let best = null, bd = 1e9;
+        for (const rd of city.roadsDrive) {
+          if (!["pedestrian", "living_street", "residential", "footway"].includes(rd.t) && rd.t !== "pedestrian") continue;
+          for (const q of rd.p) {
+            if (!inReg(r, q[0], q[1])) continue;
+            const d = Math.hypot(q[0] - r.cx, q[1] - r.cz);
+            if (d < bd) {
+              bd = d;
+              best = q;
+            }
+          }
+        }
+        if (!best) {
+          const f = choreFacades(r, 1)[0];
+          if (f) best = [f.x, f.z];
+        }
+        if (best) pts = [walkable(best[0], best[1])];
+      }
+      if (pts.length < Math.min(J.n, 2)) pts = pts.concat(choreFacades(r, J.n - pts.length));
+      if (pts.length < 1) return false;
+      const from = P.car || P;
+      pts = chainSort(pts.slice(0, J.n), from);
+      const LB = { nachbar: ["Paket annehmen", "Klingeln", "Paket abstellen"] };
+      pts.forEach((q, i) => {
+        q.label = (LB[K] || [])[i] || J.act;
+      });
+      job.pts = pts;
+      job.pi = 0;
+      job.reg0 = r;
+      job.line = r.name + " \xB7 0/" + pts.length + " " + J.unit;
+      job.counting = false;
+      job.count = 0;
+      return true;
+    }
+    __name(setupChore, "setupChore");
+    const CHORE_MSG = {
+      prospekt: ["\u201EKeine Werbung\u201C steht drauf. Egal, rein damit.", "Der Kasten klemmt. Mit Gef\xFChl. Und mit dem Fu\xDF.", "Hinter der T\xFCr bellt was Gro\xDFes. Weiter.", "Eine Rentnerin am Fenster merkt sich dein Gesicht.", "Fertig. Die Prospekte liegen jetzt \xFCberall \u2014 nur nicht im Altpapier."],
+      tonnen: ["Tonne an den Rand. Riecht nach Montag.", "Die ist schwerer als gedacht. Nicht fragen.", "Da hat einer eine Bowlingkugel entsorgt. Warum auch immer.", "Steht. Die Stra\xDFe dankt es dir nicht."],
+      zaehler: ["Z\xE4hler eins: 004711. Klingt nach Duftwasser, ist aber Strom.", "Der Mieter im Bademantel findet das gar nicht lustig!", "Abgelesen. Die Zahl ist hoch, der Keller feucht."],
+      nachbar: ["Paket angenommen. Es tickt nicht. Wahrscheinlich.", "Geklingelt. Keiner da. Nat\xFCrlich nicht.", "Vor die T\xFCr gestellt und weg. Zugestellt ist zugestellt."],
+      knoellchen: ["Zettel sitzt. Sch\xF6nen Tag noch.", "Hinter den Wischer. Der Wagen sieht beleidigt aus.", "Drei von vier. Du bist jetzt offiziell unbeliebt.", "Letzter Zettel. Irgendwo flucht jetzt jemand."]
+    };
+    function choreAct(q) {
+      const J = job.J, K = J.kind;
+      const msgs = CHORE_MSG[K] || [];
+      let msg = msgs[Math.min(job.pi, msgs.length - 1)] || "Erledigt.";
+      if (K === "tauben") {
+        job.counting = true;
+        job.count = 0;
+        job.cAt = { x: q.x, z: q.z };
+        job.line = "Stillhalten und z\xE4hlen \u2026";
+        updateHoodHud();
+        return { ok: true, msg: "Du z\xE4hlst. Nicht bewegen." };
+      }
+      if (K === "nachbar" && job.pi === 0) bagAdd("npaket", "Nachbarspaket", "\u{1F4E6}");
+      if (K === "nachbar" && job.pi === 2) bagDel("npaket");
+      if (K === "zaehler" && job.pi === 1) {
+        spawnThugs(1, P.x, P.z, 5, "Mieter", null, null);
+      }
+      if (K === "knoellchen" && Math.random() < 0.35) {
+        spawnThugs(1, P.x, P.z, 9, "Fahrer", null, Math.random() < 0.4 ? "bat" : null);
+        msg = "Der Fahrer kommt angerannt!";
+      }
+      if (K === "prospekt" && Math.random() < 0.2) {
+        addHeat(0.25);
+      }
+      audio.type && audio.type();
+      job.pi++;
+      const n = job.pts.length;
+      job.line = job.reg0.name + " \xB7 " + job.pi + "/" + n + " " + J.unit;
+      updateHoodHud();
+      if (job.pi >= n) {
+        toast(msg, 2);
+        return completeJob();
+      }
+      return { ok: true, msg };
+    }
+    __name(choreAct, "choreAct");
+    function choreTick(dt) {
+      if (!job || job.J.type !== "chore" || !job.counting) return;
+      const sp = P.car ? 9 : Math.hypot(P.vx, P.vz);
+      const d = Math.hypot(P.x - job.cAt.x, P.z - job.cAt.z);
+      if (P.car || d > 3.2 || sp > 0.4) {
+        if (job.count > 0.6) toast("Bewegt! Die Tauben fliegen auf \u2014 nochmal von vorn.", 1.8);
+        job.counting = false;
+        job.count = 0;
+        job.line = job.reg0.name + " \xB7 Platz suchen, stillhalten";
+        updateHoodHud();
+        return;
+      }
+      job.count += dt;
+      const n = Math.floor(job.count * 3.7);
+      const ln = "Tauben gez\xE4hlt: " + n;
+      if (job.line !== ln) {
+        job.line = ln;
+        updateHoodHud();
+      }
+      if (job.count >= 12) {
+        job.counting = false;
+        job.pi = 1;
+        toast(n + " Tauben. Und eine, die dich anstarrt.", 2.2);
+        completeJob();
+      }
+    }
+    __name(choreTick, "choreTick");
+    const CLAIM = 3;
+    function addInfluence(r, n, src) {
+      if (!r || r.owner === "mine" || hoodDone) return;
+      r.pts = (r.pts || 0) + n;
+      if (r.pts >= CLAIM) claimRegion(r, src);
+      else {
+        toast("Einfluss in " + r.name + ": " + r.pts + "/" + CLAIM, 2);
+      }
+      updateHoodHud();
+    }
+    __name(addInfluence, "addInfluence");
+    function claimRegion(r, src) {
+      r.owner = "mine";
+      r.hot = false;
+      r.anger = 0;
+      r.risk = 0;
+      r.pts = 0;
+      syncLoiter();
+      const bonus = 50;
+      deal.setCash(deal.state().cash + bonus);
+      audio.levelUp && audio.levelUp();
+      const how = { graffiti: "mit deinen Tags", mission: "durch deine Auftr\xE4ge", chore: "durch deine Alltagsjobs" }[src] || "";
+      if (opts.onLevel) opts.onLevel({ title: "VIERTEL GEH\xD6RT DIR!", pay: bonus, lines: [r.name + " geh\xF6rt jetzt zu " + HOOD() + (how ? " \u2014 " + how : ""), regions.filter((q) => q.owner === "mine").length + " von " + regions.length + " Vierteln"], level: level() });
+      if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 600);
+    }
+    __name(claimRegion, "claimRegion");
+    const DAY_LEN = Q.has("daylen") ? Math.max(5, +Q.get("daylen")) : 360;
+    let clock = 0, holdT = 0, holding = false, hoodDone = false, lastDay = 1;
+    const HOOD_BONUS = 5e3;
+    function dayNow() {
+      return Math.floor(clock / DAY_LEN) + 1;
+    }
+    __name(dayNow, "dayNow");
+    function dayTick(dt) {
+      if (hoodDone) return;
+      clock += dt;
+      const d = dayNow();
+      if (d !== lastDay) {
+        lastDay = d;
+        toast("Tag " + d + (holding ? " \u2014 die ganze Hood h\xE4lt seit " + Math.floor(holdT / DAY_LEN) + " von 3 Tagen" : ""), 2.4);
+        if (opts.onAutosave) opts.onAutosave();
+      }
+      const all = regions.every((r) => r.owner === "mine");
+      if (all) {
+        if (!holding) {
+          holding = true;
+          holdT = 0;
+          audio.levelUp && audio.levelUp();
+          if (opts.onLevel) opts.onLevel({ title: "GANZE HOOD!", pay: 0, lines: ["Alle " + regions.length + " Viertel geh\xF6ren " + HOOD() + ".", "Halte sie 3 Tage \u2014 dann ist die Hood abgeschlossen."], level: level() });
+        }
+        holdT += dt;
+        if (holdT >= 3 * DAY_LEN) finishHood();
+      } else if (holding) {
+        holding = false;
+        holdT = 0;
+        toast("Ein Viertel ist weg \u2014 die 3 Tage fangen von vorn an.", 2.8);
+      }
+    }
+    __name(dayTick, "dayTick");
+    function finishHood() {
+      if (hoodDone) return;
+      hoodDone = true;
+      holding = false;
+      deal.setCash(deal.state().cash + HOOD_BONUS);
+      audio.jingle && audio.jingle();
+      setTimeout(() => audio.levelUp && audio.levelUp(), 500);
+      if (job) cleanupJob();
+      if (opts.onLevel) opts.onLevel({ title: "HOOD ABGESCHLOSSEN!", pay: HOOD_BONUS, lines: ["3 Tage lang geh\xF6rte dir die ganze Hood.", "Zeit, dir eine neue Hood zu suchen."], level: level() });
+      updateHoodHud();
+      if (opts.onAutosave) opts.onAutosave();
+      setTimeout(() => {
+        if (opts.onHoodDone) opts.onHoodDone({ bonus: HOOD_BONUS, carry: carryData() });
+      }, 4200);
+    }
+    __name(finishHood, "finishHood");
+    function carryData() {
+      const ds = deal.state();
+      return { cash: ds.cash, stats: { ...stats }, jobsDone, weapons: { ...P.weapons }, gotUnlock: { ...gotUnlock }, tank: tankOwned };
+    }
+    __name(carryData, "carryData");
+    function applyCarry(C) {
+      if (!C) return;
+      if (C.cash != null) deal.setCash(C.cash);
+      Object.assign(stats, C.stats || {});
+      jobsDone = C.jobsDone | 0;
+      Object.assign(P.weapons, C.weapons || {});
+      Object.assign(gotUnlock, C.gotUnlock || {});
+      tankOwned = !!C.tank;
+      health = MAXH();
+      updateHoodHud();
+    }
+    __name(applyCarry, "applyCarry");
+    const TANK_PRICE = 2500, TANK_FETCH = 200;
+    let tankOwned = false, tankCar = null;
+    function tankAlive() {
+      return tankCar && !tankCar.wrecked && cars.includes(tankCar);
+    }
+    __name(tankAlive, "tankAlive");
+    function spawnTank() {
+      const s = SPOTS.garage;
+      if (!s) return null;
+      const e = s.f.e;
+      const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+      const rot = Math.atan2(tx2, tz);
+      const p = { x: s.x + e.nx * 0.6, z: s.z + e.nz * 0.6 };
+      const o = addCar("tank", 9412178, p.x, p.z, rot, false);
+      o.tank = true;
+      tankCar = o;
+      for (const c of cars) {
+        if (c !== o && !c.driven && Math.hypot(c.x - o.x, c.z - o.z) < 5) {
+          c.x += (c.x - o.x) * 0.8;
+          c.z += (c.z - o.z) * 0.8;
+        }
+      }
+      return o;
+    }
+    __name(spawnTank, "spawnTank");
+    function tankDeal() {
+      const c = deal.state().cash;
+      if (!tankOwned) {
+        if (c < TANK_PRICE) return { ok: false, msg: "Panzer kostet " + TANK_PRICE + " \u20AC. Du hast " + Math.round(c) + " \u20AC." };
+        deal.setCash(c - TANK_PRICE);
+        tankOwned = true;
+        spawnTank();
+        audio.kaching && audio.kaching();
+        shake = Math.max(shake, 0.4);
+        updateHoodHud();
+        if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 500);
+        return { ok: true, msg: "Der Panzer geh\xF6rt dir. Einsteigen \u2014 Kanone feuert mit der Aktionstaste.", cash: deal.state().cash };
+      }
+      if (tankAlive()) return { ok: false, msg: "Dein Panzer steht schon drau\xDFen." };
+      if (c < TANK_FETCH) return { ok: false, msg: "Ausbeulen kostet " + TANK_FETCH + " \u20AC." };
+      deal.setCash(c - TANK_FETCH);
+      spawnTank();
+      audio.kaching && audio.kaching();
+      updateHoodHud();
+      return { ok: true, msg: "Panzer ausgebeult und vollgetankt (\u2212" + TANK_FETCH + " \u20AC).", cash: deal.state().cash };
+    }
+    __name(tankDeal, "tankDeal");
+    function groundBlast(x, z) {
+      emit("flash", x, 2.2, z, { vy: 0, s0: 3, s1: 12, max: 0.3, a: 1 });
+      for (let i = 0; i < 18; i++) {
+        const a = Math.random() * Math.PI * 2, v = 1.5 + Math.random() * 4.5;
+        emit("fire", x + Math.cos(a) * 0.4, 0.8 + Math.random(), z + Math.sin(a) * 0.4, { vx: Math.cos(a) * v, vz: Math.sin(a) * v, vy: 2 + Math.random() * 3.5, s0: 1.3 + Math.random() * 1.3, s1: 0.3, max: 0.5 + Math.random() * 0.4 });
+      }
+      for (let i = 0; i < 9; i++) {
+        const a = Math.random() * Math.PI * 2, v = 0.6 + Math.random() * 2;
+        emit("smoke", x, 1.2, z, { dark: true, vx: Math.cos(a) * v, vz: Math.sin(a) * v, vy: 1.6 + Math.random() * 1.6, s0: 1.2, s1: 5, max: 2.6 + Math.random(), a: 0.55 });
+      }
+      spawnDebris(x, z, 7);
+      const dP = Math.hypot(x - P.x, z - P.z);
+      audio.boom && audio.boom(dP);
+      audio.crash(22);
+      shake = Math.max(shake, Math.max(0.25, 1.2 - dP * 0.025));
+      for (const c of cars) {
+        if (c === P.car || c.wrecked) continue;
+        const d = Math.hypot(c.x - x, c.z - z);
+        if (d < 3.2) {
+          explodeCar(c);
+          if (c.police) policeAngry(c, 0.8);
+        } else if (d < 8) {
+          pendingBlast.push({ c, loss: 60 * (1 - d / 8) + 10, t: 0.2 });
+          if (c.police) policeAngry(c, 0.5);
+        }
+      }
+      for (const pd of peds) {
+        if (pd.down > 0) continue;
+        const d = Math.hypot(pd.x - x, pd.z - z);
+        if (d < 6) {
+          bloodHit(pd, pd.x - x, pd.z - z, "car");
+          if (!pd.hostile && !pd.special) pd.wasHit = true;
+          knockPed(pd, true);
+        }
+      }
+      panicAround(x, z, null);
+      if (!P.car && dP < 6) hurt(dP < 3 ? 2 : 1);
+      addHeat(0.55);
+      rivalNoise(x, z, 0.8);
+    }
+    __name(groundBlast, "groundBlast");
+    function fireCannon() {
+      if (P.fireCool > 0) return;
+      const c = P.car;
+      P.fireCool = 1.05;
+      const fx = Math.sin(c.rot), fz = Math.cos(c.rot);
+      const mx = c.x + fx * 4.3, mz = c.z + fz * 4.3;
+      const R0 = 46;
+      const wd = rayWall(mx, mz, fx, fz, R0);
+      let hd = wd;
+      outer: for (let t = 0; t < hd; t += 0.4) {
+        const x = mx + fx * t, z = mz + fz * t;
+        for (const o of cars) {
+          if (o === c || o.wrecked) continue;
+          if (Math.abs(o.x - x) > 5 || Math.abs(o.z - z) > 5) continue;
+          if (inCar(o, x, z, 0.2)) {
+            hd = t;
+            break outer;
+          }
+        }
+        for (const pd of peds) {
+          if (pd.down > 0) continue;
+          if (Math.hypot(pd.x - x, pd.z - z) < 0.8) {
+            hd = t;
+            break outer;
+          }
+        }
+      }
+      const ix = mx + fx * hd, iz = mz + fz * hd;
+      tracer(mx, mz, ix, iz);
+      emit("flash", mx, 1.7, mz, { vy: 0, s0: 2, s1: 5, max: 0.15, a: 1 });
+      emit("smoke", mx, 1.7, mz, { vx: fx * 3, vz: fz * 3, vy: 0.8, s0: 1, s1: 3.5, max: 1.2, a: 0.5 });
+      c.speed -= 1.2;
+      audio.shot && audio.shot(2.2);
+      groundBlast(ix, iz);
+      if (navigator.vibrate) try {
+        navigator.vibrate(40);
+      } catch (_) {
+      }
+    }
+    __name(fireCannon, "fireCannon");
     function makeSpecial(x, z, look2, scale = 1.4) {
       const g = makePed(900 + (Math.random() * 9e3 | 0), M, look2, scale);
       scene.add(g);
@@ -37967,7 +38619,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const a = Math.random() * Math.PI * 2;
         const px2 = x + Math.cos(a) * dist, pz2 = z + Math.sin(a) * dist;
         const col = crew ? crew[1] : [0.15, 0.15, 0.17];
-        const o = makeSpecial(px2, pz2, { jacket: col, shirt: [0.1, 0.1, 0.1], pants: [0.12, 0.12, 0.14], hair: [0.05, 0.04, 0.03], skin: [[0.85, 0.66, 0.5], [0.6, 0.42, 0.3], [0.42, 0.3, 0.2]][i % 3], shoes: [0.9, 0.9, 0.9], open: false, long: false, beanie: i % 3 === 0, coat: false }, 1.42);
+        const ci = crew ? CREWS.indexOf(crew) : -1;
+        let lk = { jacket: col, shirt: [0.1, 0.1, 0.1], pants: [0.12, 0.12, 0.14], hair: [0.05, 0.04, 0.03], skin: [[0.85, 0.66, 0.5], [0.6, 0.42, 0.3], [0.42, 0.3, 0.2]][i % 3], shoes: [0.9, 0.9, 0.9], open: false, long: false, beanie: i % 3 === 0, coat: false };
+        if (ci >= 0) lk = crewLook(ci, i, lk);
+        const o = makeSpecial(px2, pz2, lk, 1.42);
+        if (ci >= 0) crewDress(o, ci);
         o.hostile = kind || "gang";
         o.speed = 3.3 + Math.random() * 0.5;
         o.atkT = 0.8 + Math.random();
@@ -39015,8 +39671,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       for (const k in SPOTS) {
         const s = SPOTS[k];
-        if (s) mk.push({ x: s.x, z: s.z, k, label: s.name });
+        if (s) mk.push({ x: s.x, z: s.z, k, label: k === "garage" ? s.name + " \xB7 Panzer" : s.name });
       }
+      if (tankAlive() && P.car !== tankCar) mk.push({ x: tankCar.x, z: tankCar.z, k: "tank", label: "Panzer" });
       for (const u of ubahn) mk.push({ x: u.x, z: u.z, k: "ubahn", label: u.name });
       for (const sp of SHOPS) mk.push({ x: sp.x, z: sp.z, k: "shop", label: sp.name });
       for (const r of regions) if (r.rival) mk.push({ x: r.rival.x, z: r.rival.z, k: "rival", label: r.crew[0], mine: r.owner === "mine", hot: !!r.hot });
@@ -39028,7 +39685,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         edge: city.edge,
         roads: mapRoads,
         rails: (D.rails || []).filter((r) => !r.ug || RAILTEST).map((r) => r.p),
-        regions: regions.map((r) => ({ home: r.fixed && r === homeReg, name: r.name, x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1, owner: r.owner, fixed: r.fixed, crew: r.crew ? r.crew[0] : "", hot: !!r.hot })),
+        regions: regions.map((r) => ({ home: r.fixed && r === homeReg, name: r.name, x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1, owner: r.owner, fixed: r.fixed, crew: r.crew ? r.crew[0] : "", hot: !!r.hot, pts: r.pts | 0 })),
+        claim: CLAIM,
+        day: dayNow(),
+        holdDays: holdT / DAY_LEN,
+        holding,
+        hoodDone,
+        mineN: regions.filter((r) => r.owner === "mine").length,
+        regN: regions.length,
         markers: mk,
         avail,
         hood: hoodName,
@@ -39071,7 +39735,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         jobsDone,
         doneIds: { ...doneIds },
         gotUnlock: { ...gotUnlock },
-        regions: regions.map((r) => ({ o: r.owner, f: r.fixed, k: r.risk, h: !!r.hot })),
+        regions: regions.map((r) => ({ o: r.owner, f: r.fixed, k: r.risk, h: !!r.hot, p: r.pts | 0 })),
+        clock,
+        holdT,
+        holding,
+        hoodDone,
+        tank: tankOwned,
         time: timeName,
         hood: hoodName,
         stuff: { ...P.stuff },
@@ -39100,7 +39769,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           r.fixed = !!q.f;
           r.risk = q.k | 0;
           r.hot = !!q.h;
+          r.pts = q.p | 0;
         });
+        clock = +S.clock || 0;
+        lastDay = dayNow();
+        holdT = +S.holdT || 0;
+        holding = !!S.holding;
+        hoodDone = !!S.hoodDone;
+        tankOwned = !!S.tank;
         health = Math.min(MAXH(), Math.max(1, S.health | 0 || MAXH()));
         heat = Math.min(2, S.heat || 0);
         wanted = Math.floor(heat);
@@ -39349,7 +40025,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           const side = i === 1 ? 1 : -1;
           const off = 2.4 + i * 0.9;
           const x = door.x + tx2 * off * side + nx * (0.8 + i * 0.7), z = door.z + tz * off * side + nz * (0.8 + i * 0.7);
-          const o = makeSpecial(x, z, { jacket: r.crew[1], shirt: [0.1, 0.1, 0.1], pants: [0.12, 0.12, 0.14], hair: [0.05, 0.04, 0.03], skin: [[0.85, 0.66, 0.5], [0.6, 0.42, 0.3], [0.42, 0.3, 0.2]][(i + r.i) % 3], shoes: [0.9, 0.9, 0.9], open: i === 1, long: false, beanie: i === 2, coat: false }, 1.38);
+          const rci = CREWS.indexOf(r.crew);
+          const o = makeSpecial(x, z, crewLook(rci, i, { jacket: r.crew[1], shirt: [0.1, 0.1, 0.1], pants: [0.12, 0.12, 0.14], hair: [0.05, 0.04, 0.03], skin: [[0.85, 0.66, 0.5], [0.6, 0.42, 0.3], [0.42, 0.3, 0.2]][(i + r.i) % 3], shoes: [0.9, 0.9, 0.9], open: i === 1, long: false, beanie: i === 2, coat: false }), 1.38);
+          crewDress(o, rci);
           o.loiter = { x: o.x, z: o.z };
           o.crewR = r;
           o.tough = true;
@@ -39796,6 +40474,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         r.hot = false;
         r.anger = 0;
         r.risk = 0;
+        r.pts = 0;
         r.tagged = true;
         const lines = raiseStats({ ans: 1 });
         deal.setCash(deal.state().cash + 40);
@@ -39807,6 +40486,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       } else {
         const need = c.rival - c.mine + 1;
         toast("Tag sitzt. Noch " + need + " Tag" + (need > 1 ? "s" : "") + ", dann geh\xF6rt " + r.name + " dir.", 2.4);
+        setTimeout(() => addInfluence(r, 1, "graffiti"), 2500);
       }
       updateHoodHud();
     }
@@ -39926,7 +40606,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
       }
       const cr = CREWS[ci];
-      const o = makeSpecial(sx, sz, { jacket: cr[1], shirt: [0.12, 0.12, 0.12], pants: [0.1, 0.1, 0.12], hair: [0.05, 0.04, 0.03], skin: [0.62, 0.45, 0.32], shoes: [0.9, 0.9, 0.9], open: false, long: false, beanie: true, coat: false }, 1.4);
+      const o = makeSpecial(sx, sz, crewLook(ci, 0, { jacket: cr[1], shirt: [0.12, 0.12, 0.12], pants: [0.1, 0.1, 0.12], hair: [0.05, 0.04, 0.03], skin: [0.62, 0.45, 0.32], shoes: [0.9, 0.9, 0.9], open: false, long: false, beanie: true, coat: false }), 1.4);
+      crewDress(o, ci);
       o.special = "tagger";
       o.tag = t;
       o.crewI = ci;
@@ -40032,6 +40713,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const r = regions[t.reg];
       removeTag(t);
       addTag(seg, "rival", ci, null, "");
+      if (r && r.owner !== "mine") r.pts = Math.max(0, (r.pts || 0) - 1);
       if (r) {
         const c = regionTags(r);
         if (r.owner === "mine" && !r.fixed && c.rival >= c.mine) {
@@ -40073,6 +40755,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(initStreetLife, "initStreetLife");
     function hoodTick(dt) {
       if (document.body.classList.contains("onTitle")) return;
+      dayTick(dt);
+      choreTick(dt);
       if (job) {
         job.t += dt;
         if (job.J.type === "steal") stealTick(dt);
@@ -40297,7 +40981,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       let best = null, bd = 3.6;
       for (const c of cars) {
         if (c.wrecked) continue;
-        const d = Math.hypot(c.x - P.x, c.z - P.z);
+        let d = Math.hypot(c.x - P.x, c.z - P.z);
+        if (c.tank && inCar(c, P.x, P.z, 1.9)) d = Math.min(d, 0.5);
         if (d < bd) {
           bd = d;
           best = c;
@@ -40313,7 +40998,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         audio.door("car");
         audio.engineStart();
         radio.play();
-        if (best !== myCar) {
+        if (best.tank) {
+          toast("PANZER! Kanone feuert mit der Taste rechts.", 2.4);
+        } else if (best !== myCar) {
           best.stolen = true;
           stolenCar = true;
           addHeat(best.police ? 1.15 : 0.4);
@@ -40348,7 +41035,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (P.car) {
         const c = P.car;
         const T = CAR_TYPES[c.type];
-        const mul = c.g.userData.speedMul ?? 1;
+        const mul = (c.g.userData.speedMul ?? 1) * (c.tank ? 0.62 : 1);
         const acc = up ? 9.5 : 0, brk = dn ? c.speed > 0.5 ? 16 : 6 : 0;
         const asp0 = Math.abs(c.speed);
         const gesK = 1 + 0.03 * (stats.ges - 3);
@@ -40439,7 +41126,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             impW = Math.max(impW, -(vx0 * h.x + vz0 * h.z));
           }
         }
-        if (wall) {
+        if (wall && c.tank) {
+          c.speed *= Math.pow(0.25, dt);
+          if (impW >= 4 && c.hitCool <= 0) {
+            audio.crash(impW * 0.6);
+            shake = Math.max(shake, 0.2);
+            c.hitCool = 0.5;
+          }
+        } else if (wall) {
           if (impW > Math.max(1.5, asp * 0.55)) {
             c.speed *= -0.22;
           } else c.speed *= Math.pow(0.4, dt);
@@ -40453,11 +41147,28 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           if (Math.abs(o.x - c.x) > 9 || Math.abs(o.z - c.z) > 9) continue;
           const hit = obb2(c, o);
           if (!hit) continue;
-          const w = o.wrecked || !o.ai ? 0.82 : 0.6;
+          const w = c.tank ? 0.15 : o.wrecked || !o.ai ? 0.82 : 0.6;
           c.x += hit.nx * hit.d * w;
           c.z += hit.nz * hit.d * w;
           o.x -= hit.nx * hit.d * (1 - w);
           o.z -= hit.nz * hit.d * (1 - w);
+          if (c.tank) {
+            if (!(o.crushCool > 0) && asp > 1.2 && !o.wrecked) {
+              o.crushCool = 0.6;
+              damageCar(o, 22 + asp * 5);
+              audio.crash(8 + asp);
+              shake = Math.max(shake, 0.18);
+              if (!o.police) addHeat(0.25);
+              if (o.police) policeAngry(o, 0.9);
+              if (o.ai && !o.police) {
+                o.ai = false;
+                o.route = null;
+                o.speed = 0;
+              }
+            }
+            c.speed *= Math.pow(0.6, dt);
+            continue;
+          }
           const ovx = Math.sin(o.rot) * (o.speed || 0), ovz = Math.cos(o.rot) * (o.speed || 0);
           const imp = -((vx0 - ovx) * hit.nx + (vz0 - ovz) * hit.nz);
           if (imp > 1.5) {
@@ -40698,6 +41409,26 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         state.deal = true;
         state.dealLabel = "Einkaufen";
         state._dealAct = () => openShop(sh);
+      } else if (!P.car && !P.train && SPOTS.zack && near(SPOTS.zack, 3.4)) {
+        if (job) pr = "ZACK! \u2014 erst den laufenden Auftrag fertig machen";
+        else {
+          pr = "ZACK! Aushilfe \u2014 Alltagsjobs";
+          state.deal = true;
+          state.dealLabel = "Jobs";
+          state._dealAct = () => openBoard("zack");
+        }
+      } else if (!P.car && !P.train && SPOTS.garage && near(SPOTS.garage, 4.2) && !(job && job.J.type === "steal")) {
+        if (!tankOwned) {
+          pr = "GARAGE 9 \u2014 Panzer kaufen \xB7 " + TANK_PRICE + " \u20AC";
+          state.deal = true;
+          state.dealLabel = "Panzer";
+          state._dealAct = tankDeal;
+        } else if (!tankAlive()) {
+          pr = "GARAGE 9 \u2014 Panzer holen \xB7 " + TANK_FETCH + " \u20AC";
+          state.deal = true;
+          state.dealLabel = "Panzer";
+          state._dealAct = tankDeal;
+        }
       } else if (nf && !P.train) {
         const here = missionHere(nf);
         const g = nf.kind === "hub" ? HUBD : nf.door;
@@ -40761,6 +41492,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (hiding) pr = wanted >= 4 ? "Imbiss \u2014 die Bullen sind nah" : "Du sitzt im Lokal";
       state.inCar = !!P.car;
       state.inTrain = !!P.train;
+      state.inTank = !!(P.car && P.car.tank);
       state.follow = follow;
       {
         const ch = document.getElementById("carHp");
@@ -40794,6 +41526,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     let tAcc = 0;
     function update(dt) {
       tAcc += dt;
+      for (const c of cars) if (c.crushCool > 0) c.crushCool -= dt;
       if (city.tick) city.tick(tAcc);
       playerStep(dt);
       updateGhosts();
@@ -40961,7 +41694,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           }
         }
       }
-      if (close && !P.train) bustT += dt;
+      if (close && !P.train && !(P.car && P.car.tank)) bustT += dt;
       else bustT = Math.max(0, bustT - dt * 0.85);
       if (bustT > 2.15 * (1 + 0.07 * (stats.ner - 3)) * (boostOn("gum") ? 1.3 : 1)) {
         bustT = 0;
@@ -40969,9 +41702,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       if (P.car) {
         const spd = Math.abs(P.car.speed);
+        const tk = !!P.car.tank;
         for (const ped of peds) {
           if ((ped.down || 0) > 0) continue;
-          if (spd > 3.6 && Math.hypot(ped.x - P.car.x, ped.z - P.car.z) < 1.2) {
+          if (spd > (tk ? 1 : 3.6) && (tk ? inCar(P.car, ped.x, ped.z, 0.3) : Math.hypot(ped.x - P.car.x, ped.z - P.car.z) < 1.2)) {
             const h = ped.hostile;
             bloodHit(ped, Math.sin(P.car.rot), Math.cos(P.car.rot), "car");
             if (!h && !ped.special) ped.wasHit = true;
@@ -41272,6 +42006,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       fxState: /* @__PURE__ */ __name(() => ({ boosts: boostList(), trip: trip.enabled, u: { weed: trip.uniforms.uWeed.value, coke: trip.uniforms.uCoke.value, pill: trip.uniforms.uPill.value, drunk: trip.uniforms.uDrunk.value, turbo: trip.uniforms.uTurbo.value } }), "fxState"),
       bloodCount: /* @__PURE__ */ __name(() => blood.count(), "bloodCount"),
       fillAround,
+      applyCarry,
+      carryData,
+      isHoodDone: /* @__PURE__ */ __name(() => hoodDone, "isHoodDone"),
+      tankDeal,
+      _v01: { addInfluence, claimRegion, finishHood, setClock: /* @__PURE__ */ __name((v) => {
+        clock = v;
+        lastDay = dayNow();
+      }, "setClock"), getClock: /* @__PURE__ */ __name(() => clock, "getClock"), getHold: /* @__PURE__ */ __name(() => holdT, "getHold"), DAY_LEN, spawnTank, tankAlive, getTank: /* @__PURE__ */ __name(() => tankCar, "getTank"), fireCannon, CREW_LOOK, choreTick, getTankOwned: /* @__PURE__ */ __name(() => tankOwned, "getTankOwned") },
       setPaused: /* @__PURE__ */ __name((v) => {
         paused = !!v;
         if (paused) {
@@ -41598,6 +42340,28 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(loadScript, "loadScript");
       var keyOf2 = /* @__PURE__ */ __name((c) => c.lat.toFixed(5) + "," + c.lon.toFixed(5), "keyOf");
+      var doneHoods = /* @__PURE__ */ __name(() => LS.get("doneHoods", []) || [], "doneHoods");
+      var isDone = /* @__PURE__ */ __name((k) => doneHoods().some((d) => d.k === k), "isDone");
+      var curCity = null;
+      function exitApp() {
+        const C = window.Capacitor;
+        try {
+          if (C && C.Plugins && C.Plugins.App && C.Plugins.App.exitApp) {
+            C.Plugins.App.exitApp();
+            return true;
+          }
+        } catch (_) {
+        }
+        try {
+          if (window.HoodNative && window.HoodNative.exit) {
+            window.HoodNative.exit();
+            return true;
+          }
+        } catch (_) {
+        }
+        return false;
+      }
+      __name(exitApp, "exitApp");
       var cacheHit = false;
       var cityKey = "dortmund";
       async function pruneCities(keep) {
@@ -41670,6 +42434,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         if (!city || !isFinite(city.lat)) city = DEFAULT;
         let D;
         cityKey = city.builtin ? "dortmund" : keyOf2(city);
+        curCity = city;
         idb.get("kv", "save:" + cityKey).then((S) => {
           hasSave = !!(S && S.v === 1);
           if (S && S.hood && !LS.get("hoodName", "")) LS.set("hoodName", S.hood);
@@ -41701,7 +42466,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const zoom = zRaw == null ? matchMedia("(pointer:coarse)").matches ? 0.85 : 1 : zRaw > 5 ? zRaw / 13 : zRaw;
         game = startGame(D, { touch: TOUCH, hubNear: city.builtin ? [-146.9, -38.7] : [0, 0], time: LS.get("time", "dusk"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
           if ($("bagOv").classList.contains("open")) renderBag();
-        }, "onBag"), hoodName: LS.get("hoodName", ""), onShop: showShop, onTag: showTagWall });
+        }, "onBag"), hoodName: LS.get("hoodName", ""), onShop: showShop, onTag: showTagWall, onHoodDone });
         window.hoodGame = game;
         if (game.audio) {
           game.audio.setScene(titleUp() ? "title" : "game");
@@ -41726,6 +42491,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         idb.get("kv", "save:" + cityKey).then((S) => {
           savedGame = S && S.v === 1 ? S : null;
+          const carry = LS.get("carry", null);
+          if (carry) {
+            if (savedGame) {
+              Object.assign(savedGame, { cash: carry.cash, stats: carry.stats, jobsDone: carry.jobsDone, weapons: carry.weapons, gotUnlock: carry.gotUnlock, tank: carry.tank });
+            } else {
+              game.applyCarry(carry);
+              saveGame(true);
+            }
+            LS.del("carry");
+          }
           paintCont();
         });
       }
@@ -41746,7 +42521,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         $("titleNav").classList.toggle("hidden", m !== "nav");
         $("titleQuit").classList.toggle("hidden", m !== "quit");
         $("menu").classList.toggle("hidden", m !== "opts");
-        $("title").classList.toggle("opts", m === "opts");
+        $("hoodPick").classList.toggle("hidden", m !== "hood");
+        $("title").classList.toggle("opts", m === "opts" || m === "hood");
         if (m === "nav") paintTitle();
       }
       __name(setMode, "setMode");
@@ -41764,6 +42540,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       function runTitle(act) {
         onGesture();
         uiBlip(act === "quit" ? "back" : "ok", muted);
+        if ((act === "cont" || act === "play") && isDone(cityKey) && !SHOT2) {
+          openHoodPick("Diese Hood hast du abgeschlossen. Such dir eine neue.");
+          return;
+        }
         if (act === "cont") {
           if (game && savedGame) {
             game.restore(savedGame);
@@ -41777,6 +42557,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         if (act === "play" && !hoodAsked && !LS.get("hoodName", "") && !hasSave && !savedGame && !SHOT2) {
           hoodAsked = true;
           askHood(() => runTitle("play"));
+          return;
+        }
+        if (act === "play" && !LS.get("placeAsked", false) && !hasSave && !savedGame && !SHOT2 && !LS.get("city", null)) {
+          LS.set("placeAsked", true);
+          openHoodPick("", true);
+          return;
+        }
+        if (act === "hood") {
+          openHoodPick("");
           return;
         }
         if (act === "play") {
@@ -41794,15 +42583,62 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         } else if (act === "options") {
           setMode("opts");
         } else if (act === "quit") {
+          if (game && !$("title").classList.contains("start")) {
+            saveGame(true).then(() => {
+              savedGame = game.snapshot();
+              paintCont();
+            });
+            $("title").classList.add("start");
+            titleIdx = 0;
+            setMode("nav");
+            paintStartBtn();
+            return;
+          }
+          if (exitApp()) return;
           setMode("quit");
           titleMusic.stop(900);
           try {
             window.close();
           } catch (_) {
           }
+          clearTimeout(quitT);
+          quitT = setTimeout(() => {
+            if (tMode === "quit") {
+              setMode("press");
+            }
+          }, 1600);
         }
       }
       __name(runTitle, "runTitle");
+      var quitT = 0;
+      function openHoodPick(msg, first) {
+        $("pickMsg").textContent = msg || "";
+        $("resList").innerHTML = "";
+        $("searchMsg").textContent = "";
+        const here = $("hereBtn");
+        const nm = curCity ? curCity.name : DEFAULT.name;
+        here.classList.toggle("hidden", !first || isDone(cityKey));
+        here.textContent = "Hier spielen: " + nm;
+        const hb = $("homeBtn");
+        const dd = isDone("dortmund");
+        hb.disabled = dd;
+        hb.textContent = dd ? "Dortmund (abgeschlossen)" : "Dortmund-Innenstadt";
+        const L = doneHoods();
+        $("doneList").innerHTML = L.length ? "<b>Abgeschlossene Hoods:</b><br>" + L.slice(-8).reverse().map((d) => "\u2714 " + esc(d.name)).join("<br>") : "";
+        setMode("hood");
+      }
+      __name(openHoodPick, "openHoodPick");
+      function onHoodDone(info) {
+        const L = doneHoods();
+        if (!L.some((d) => d.k === cityKey)) L.push({ k: cityKey, name: curCity && curCity.name || "Hood", t: Date.now() });
+        LS.set("doneHoods", L);
+        if (info && info.carry) LS.set("carry", info.carry);
+        saveGame(true);
+        releaseStick();
+        openMenu(true);
+        openHoodPick("HOOD ABGESCHLOSSEN! Der Bonus von " + (info && info.bonus || 0) + " \u20AC geht mit. Such dir jetzt eine neue Hood.");
+      }
+      __name(onHoodDone, "onHoodDone");
       function paintStartBtn() {
         const b = document.querySelector('#titleNav [data-act="play"] .startOnly');
         if (b) b.textContent = !game && pendingPlay ? "Stadt wird gebaut \u2026" : "Spiel starten";
@@ -41963,11 +42799,20 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(goFull, "goFull");
       function chooseCity(c) {
-        LS.set("city", { name: c.name, lat: c.lat, lon: c.lon });
+        const k = c.builtin ? "dortmund" : keyOf2(c);
+        if (isDone(k)) {
+          $("searchMsg").textContent = "\u201E" + c.name + "\u201C hast du schon abgeschlossen. Such dir eine andere Hood.";
+          uiBlip("back", muted);
+          return;
+        }
+        if (game && !titleUp()) saveGame(true);
+        if (c.builtin) {
+          LS.del("city");
+        } else LS.set("city", { name: c.name, lat: c.lat, lon: c.lon });
         LS.set("seen", true);
         showLoading("Lade \u201E" + c.name + "\u201C \u2026");
         const u = new URL(location.href);
-        ["lat", "lon", "name"].forEach((k) => u.searchParams.delete(k));
+        ["lat", "lon", "name"].forEach((k2) => u.searchParams.delete(k2));
         location.href = u.pathname + (u.search || "") + (u.hash || "");
       }
       __name(chooseCity, "chooseCity");
@@ -41992,6 +42837,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
               li.innerHTML = "<b></b><span></span>";
               li.querySelector("b").textContent = r.short;
               li.querySelector("span").textContent = r.name;
+              const dn = isDone(keyOf2(r));
+              if (dn) {
+                li.classList.add("done");
+                li.querySelector("span").textContent = "Schon abgeschlossen \xB7 " + r.name;
+              }
               li.onclick = () => chooseCity({ name: r.short, lat: r.lat, lon: r.lon });
               $("resList").appendChild(li);
             }
@@ -42211,8 +43061,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         const bf = $("btnFire");
         if (bf) {
-          bf.classList.toggle("hidden", s.inCar || !s.armed);
-          bf.textContent = s.weaponLabel || "Angriff";
+          bf.classList.toggle("hidden", s.inCar && !s.inTank || !s.armed);
+          bf.textContent = s.inTank ? "Kanone" : s.weaponLabel || "Angriff";
         }
         const fol = $("btnFollow");
         if (fol) fol.classList.toggle("hidden", !!s.follow);
@@ -42286,10 +43136,6 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }));
         $("mapCv").addEventListener("pointerup", mapTap);
         $("saveBtn").addEventListener("click", () => saveGame(false));
-        $("charBtn").addEventListener("click", () => {
-          closeMenu();
-          openChar();
-        });
         $("musicIn").addEventListener("change", addMusic);
         $("musicDel").addEventListener("click", delMusic);
         document.querySelectorAll("#titleNav [data-act]").forEach((b) => {
@@ -42326,6 +43172,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           uiBlip("back", muted);
           showTitleNav();
         });
+        $("hoodBack").addEventListener("click", () => {
+          uiBlip("back", muted);
+          showTitleNav();
+        });
+        $("hereBtn").addEventListener("click", () => {
+          uiBlip("ok", muted);
+          showTitleNav();
+          runTitle("play");
+        });
+        $("homeBtn").addEventListener("click", () => chooseCity(DEFAULT));
         $("quitBack").addEventListener("click", (e) => {
           e.stopPropagation();
           uiBlip("back", muted);
@@ -42368,7 +43224,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             e.preventDefault();
             return;
           }
-          if (tMode === "opts" || tMode === "quit") {
+          if (tMode === "opts" || tMode === "quit" || tMode === "hood") {
             if (e.code === "Escape" || e.code === "Backspace") {
               uiBlip("back", muted);
               showTitleNav();
@@ -42556,6 +43412,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           c.fillStyle = g.owner === "mine" ? "rgba(140,240,160,.75)" : g.owner === "rival" ? "rgba(255,150,130,.7)" : "rgba(255,255,255,.28)";
           c.fillText(g.name.toUpperCase(), X((g.x0 + g.x1) / 2), Z(g.z0) + 13 * dpr);
           if (g.crew && g.owner === "rival") c.fillText(g.crew, X((g.x0 + g.x1) / 2), Z(g.z0) + 25 * dpr);
+          if (g.owner !== "mine") {
+            c.fillStyle = "rgba(255,225,77,.85)";
+            c.fillText("Einfluss " + "\u25CF".repeat(g.pts) + "\u25CB".repeat(Math.max(0, (d.claim || 3) - g.pts)), X((g.x0 + g.x1) / 2), Z(g.z0) + (g.crew && g.owner === "rival" ? 37 : 25) * dpr);
+          }
         }
         for (const tg of d.tags || []) {
           const x = X(tg.x), y = Z(tg.z), R = (d.tagR || 55) * sc;
@@ -42586,11 +43446,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           c.lineWidth = 1.5 * dpr;
           c.strokeRect(x - w / 2 - 2 * dpr, y - h / 2 - 2 * dpr, w + 4 * dpr, h + 4 * dpr);
         }
-        if (d.hood) {
+        {
           c.font = "bold " + (14 * dpr | 0) + "px Arial";
           c.textAlign = "left";
           c.fillStyle = "#ffe14d";
-          c.fillText("HOOD: " + d.hood.toUpperCase(), 8 * dpr, 18 * dpr);
+          if (d.hood) c.fillText("HOOD: " + d.hood.toUpperCase(), 8 * dpr, 18 * dpr);
+          c.font = "bold " + (11 * dpr | 0) + "px Arial";
+          c.fillStyle = "#d8ffd0";
+          const ln = d.hoodDone ? "HOOD ABGESCHLOSSEN" : d.holding ? "TAG " + d.day + " \xB7 GANZE HOOD SEIT " + d.holdDays.toFixed(1).replace(".", ",") + " / 3 TAGEN" : "TAG " + d.day + " \xB7 " + d.mineN + " / " + d.regN + " VIERTEL \u2014 ALLE 3 TAGE HALTEN = BONUS";
+          c.fillText(ln, 8 * dpr, 34 * dpr);
           c.textAlign = "center";
           c.font = (10 * dpr | 0) + "px Arial";
         }
@@ -42671,7 +43535,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             c.fillText(m.label, x, y + 15 * dpr);
             continue;
           }
-          col = { bank: "#ffd23f", kiosk: "#ffa24a", garage: "#b0b8c8" }[m.k] || "#ccc";
+          if (m.k === "tank") {
+            c.fillStyle = "#8a9a4a";
+            c.fillRect(x - 6 * dpr, y - 4 * dpr, 12 * dpr, 8 * dpr);
+            c.fillRect(x - 1 * dpr, y - 9 * dpr, 2 * dpr, 6 * dpr);
+            c.fillStyle = "rgba(220,240,160,.85)";
+            c.fillText(m.label, x, y + 16 * dpr);
+            continue;
+          }
+          col = { bank: "#ffd23f", kiosk: "#ffa24a", garage: "#b0b8c8", zack: "#9dff7a" }[m.k] || "#ccc";
           c.fillStyle = col;
           c.fillRect(x - 4 * dpr, y - 4 * dpr, 8 * dpr, 8 * dpr);
           c.fillStyle = "rgba(255,255,255,.7)";
@@ -42794,8 +43666,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(openChar, "openChar");
       function showBoard(b) {
         $("boardWho").textContent = b.who;
-        $("boardFace").src = "assets/faces/" + b.face + ".webp?v=" + (window.HOOD_V || "");
-        const lines = { chef: "Setz dich. Oder nimm was mit. Beides kostet.", ute: "Ich hab Arbeit. Du hast H\xE4nde. Passt doch.", deniz: "Du willst Geld? Dann h\xF6r zu und frag nicht." };
+        const bf = $("boardFace");
+        bf.style.display = b.face ? "" : "none";
+        if (b.face) bf.src = "assets/faces/" + b.face + ".webp?v=" + (window.HOOD_V || "");
+        const lines = { chef: "Setz dich. Oder nimm was mit. Beides kostet.", ute: "Ich hab Arbeit. Du hast H\xE4nde. Passt doch.", deniz: "Du willst Geld? Dann h\xF6r zu und frag nicht.", zack: "Ich hab Jobs, die keiner will. Du bist keiner. Passt. Jeder Job macht dich im Viertel bekannt." };
         $("boardLine").textContent = lines[b.giver] || "";
         let h = "";
         for (const j of b.list) {
@@ -43159,7 +44033,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(askHood, "askHood");
       var lvT = 0;
       function showLevel(o) {
-        $("lvlT").textContent = o.title + " +" + o.pay + " \u20AC";
+        $("lvlT").textContent = o.title + (o.pay ? " +" + o.pay + " \u20AC" : "");
         $("lvlS").innerHTML = (o.lines || []).map(esc).join("<br>") + (o.level ? "<br><small>Stufe " + o.level + "</small>" : "");
         const p = $("lvlPop");
         p.classList.add("on");
@@ -43234,7 +44108,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       applyMuteUi();
       lockPortrait();
       boot();
-      window.hoodApp = { askHood, showTagWall, tagUI, tagCrop, showShop, hasSave: /* @__PURE__ */ __name(() => hasSave, "hasSave"), openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
+      window.hoodApp = { openHoodPick, onHoodDone, isDone, doneHoods, exitApp, askHood, showTagWall, tagUI, tagCrop, showShop, hasSave: /* @__PURE__ */ __name(() => hasSave, "hasSave"), openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
     }
   });
   require_app();
