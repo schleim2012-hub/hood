@@ -7947,7 +7947,7 @@
       }
     }
   }
-  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, ConeGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, RingGeometry, SphereGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, LineDashedMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer, _matrix, Raycaster;
+  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, ConeGeometry, PolyhedronGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, IcosahedronGeometry, RingGeometry, SphereGeometry, TorusGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, LineDashedMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer, _matrix, Raycaster;
   var init_three_module = __esm({
     "node_modules/three/build/three.module.js"() {
       REVISION = "170";
@@ -22061,6 +22061,179 @@ void main() {
           return new _ConeGeometry(data.radius, data.height, data.radialSegments, data.heightSegments, data.openEnded, data.thetaStart, data.thetaLength);
         }
       };
+      PolyhedronGeometry = class _PolyhedronGeometry extends BufferGeometry {
+        static {
+          __name(this, "PolyhedronGeometry");
+        }
+        constructor(vertices = [], indices = [], radius = 1, detail = 0) {
+          super();
+          this.type = "PolyhedronGeometry";
+          this.parameters = {
+            vertices,
+            indices,
+            radius,
+            detail
+          };
+          const vertexBuffer = [];
+          const uvBuffer = [];
+          subdivide(detail);
+          applyRadius(radius);
+          generateUVs();
+          this.setAttribute("position", new Float32BufferAttribute(vertexBuffer, 3));
+          this.setAttribute("normal", new Float32BufferAttribute(vertexBuffer.slice(), 3));
+          this.setAttribute("uv", new Float32BufferAttribute(uvBuffer, 2));
+          if (detail === 0) {
+            this.computeVertexNormals();
+          } else {
+            this.normalizeNormals();
+          }
+          function subdivide(detail2) {
+            const a = new Vector3();
+            const b = new Vector3();
+            const c = new Vector3();
+            for (let i = 0; i < indices.length; i += 3) {
+              getVertexByIndex(indices[i + 0], a);
+              getVertexByIndex(indices[i + 1], b);
+              getVertexByIndex(indices[i + 2], c);
+              subdivideFace(a, b, c, detail2);
+            }
+          }
+          __name(subdivide, "subdivide");
+          function subdivideFace(a, b, c, detail2) {
+            const cols = detail2 + 1;
+            const v = [];
+            for (let i = 0; i <= cols; i++) {
+              v[i] = [];
+              const aj = a.clone().lerp(c, i / cols);
+              const bj = b.clone().lerp(c, i / cols);
+              const rows = cols - i;
+              for (let j = 0; j <= rows; j++) {
+                if (j === 0 && i === cols) {
+                  v[i][j] = aj;
+                } else {
+                  v[i][j] = aj.clone().lerp(bj, j / rows);
+                }
+              }
+            }
+            for (let i = 0; i < cols; i++) {
+              for (let j = 0; j < 2 * (cols - i) - 1; j++) {
+                const k = Math.floor(j / 2);
+                if (j % 2 === 0) {
+                  pushVertex(v[i][k + 1]);
+                  pushVertex(v[i + 1][k]);
+                  pushVertex(v[i][k]);
+                } else {
+                  pushVertex(v[i][k + 1]);
+                  pushVertex(v[i + 1][k + 1]);
+                  pushVertex(v[i + 1][k]);
+                }
+              }
+            }
+          }
+          __name(subdivideFace, "subdivideFace");
+          function applyRadius(radius2) {
+            const vertex2 = new Vector3();
+            for (let i = 0; i < vertexBuffer.length; i += 3) {
+              vertex2.x = vertexBuffer[i + 0];
+              vertex2.y = vertexBuffer[i + 1];
+              vertex2.z = vertexBuffer[i + 2];
+              vertex2.normalize().multiplyScalar(radius2);
+              vertexBuffer[i + 0] = vertex2.x;
+              vertexBuffer[i + 1] = vertex2.y;
+              vertexBuffer[i + 2] = vertex2.z;
+            }
+          }
+          __name(applyRadius, "applyRadius");
+          function generateUVs() {
+            const vertex2 = new Vector3();
+            for (let i = 0; i < vertexBuffer.length; i += 3) {
+              vertex2.x = vertexBuffer[i + 0];
+              vertex2.y = vertexBuffer[i + 1];
+              vertex2.z = vertexBuffer[i + 2];
+              const u = azimuth(vertex2) / 2 / Math.PI + 0.5;
+              const v = inclination(vertex2) / Math.PI + 0.5;
+              uvBuffer.push(u, 1 - v);
+            }
+            correctUVs();
+            correctSeam();
+          }
+          __name(generateUVs, "generateUVs");
+          function correctSeam() {
+            for (let i = 0; i < uvBuffer.length; i += 6) {
+              const x0 = uvBuffer[i + 0];
+              const x1 = uvBuffer[i + 2];
+              const x2 = uvBuffer[i + 4];
+              const max = Math.max(x0, x1, x2);
+              const min = Math.min(x0, x1, x2);
+              if (max > 0.9 && min < 0.1) {
+                if (x0 < 0.2) uvBuffer[i + 0] += 1;
+                if (x1 < 0.2) uvBuffer[i + 2] += 1;
+                if (x2 < 0.2) uvBuffer[i + 4] += 1;
+              }
+            }
+          }
+          __name(correctSeam, "correctSeam");
+          function pushVertex(vertex2) {
+            vertexBuffer.push(vertex2.x, vertex2.y, vertex2.z);
+          }
+          __name(pushVertex, "pushVertex");
+          function getVertexByIndex(index, vertex2) {
+            const stride = index * 3;
+            vertex2.x = vertices[stride + 0];
+            vertex2.y = vertices[stride + 1];
+            vertex2.z = vertices[stride + 2];
+          }
+          __name(getVertexByIndex, "getVertexByIndex");
+          function correctUVs() {
+            const a = new Vector3();
+            const b = new Vector3();
+            const c = new Vector3();
+            const centroid = new Vector3();
+            const uvA = new Vector2();
+            const uvB = new Vector2();
+            const uvC = new Vector2();
+            for (let i = 0, j = 0; i < vertexBuffer.length; i += 9, j += 6) {
+              a.set(vertexBuffer[i + 0], vertexBuffer[i + 1], vertexBuffer[i + 2]);
+              b.set(vertexBuffer[i + 3], vertexBuffer[i + 4], vertexBuffer[i + 5]);
+              c.set(vertexBuffer[i + 6], vertexBuffer[i + 7], vertexBuffer[i + 8]);
+              uvA.set(uvBuffer[j + 0], uvBuffer[j + 1]);
+              uvB.set(uvBuffer[j + 2], uvBuffer[j + 3]);
+              uvC.set(uvBuffer[j + 4], uvBuffer[j + 5]);
+              centroid.copy(a).add(b).add(c).divideScalar(3);
+              const azi = azimuth(centroid);
+              correctUV(uvA, j + 0, a, azi);
+              correctUV(uvB, j + 2, b, azi);
+              correctUV(uvC, j + 4, c, azi);
+            }
+          }
+          __name(correctUVs, "correctUVs");
+          function correctUV(uv, stride, vector, azimuth2) {
+            if (azimuth2 < 0 && uv.x === 1) {
+              uvBuffer[stride] = uv.x - 1;
+            }
+            if (vector.x === 0 && vector.z === 0) {
+              uvBuffer[stride] = azimuth2 / 2 / Math.PI + 0.5;
+            }
+          }
+          __name(correctUV, "correctUV");
+          function azimuth(vector) {
+            return Math.atan2(vector.z, -vector.x);
+          }
+          __name(azimuth, "azimuth");
+          function inclination(vector) {
+            return Math.atan2(-vector.y, Math.sqrt(vector.x * vector.x + vector.z * vector.z));
+          }
+          __name(inclination, "inclination");
+        }
+        copy(source) {
+          super.copy(source);
+          this.parameters = Object.assign({}, source.parameters);
+          return this;
+        }
+        static fromJSON(data) {
+          return new _PolyhedronGeometry(data.vertices, data.indices, data.radius, data.details);
+        }
+      };
       Shape = class extends Path {
         static {
           __name(this, "Shape");
@@ -22596,6 +22769,123 @@ void main() {
         }, "generateSideWallUV")
       };
       __name(toJSON$1, "toJSON$1");
+      IcosahedronGeometry = class _IcosahedronGeometry extends PolyhedronGeometry {
+        static {
+          __name(this, "IcosahedronGeometry");
+        }
+        constructor(radius = 1, detail = 0) {
+          const t = (1 + Math.sqrt(5)) / 2;
+          const vertices = [
+            -1,
+            t,
+            0,
+            1,
+            t,
+            0,
+            -1,
+            -t,
+            0,
+            1,
+            -t,
+            0,
+            0,
+            -1,
+            t,
+            0,
+            1,
+            t,
+            0,
+            -1,
+            -t,
+            0,
+            1,
+            -t,
+            t,
+            0,
+            -1,
+            t,
+            0,
+            1,
+            -t,
+            0,
+            -1,
+            -t,
+            0,
+            1
+          ];
+          const indices = [
+            0,
+            11,
+            5,
+            0,
+            5,
+            1,
+            0,
+            1,
+            7,
+            0,
+            7,
+            10,
+            0,
+            10,
+            11,
+            1,
+            5,
+            9,
+            5,
+            11,
+            4,
+            11,
+            10,
+            2,
+            10,
+            7,
+            6,
+            7,
+            1,
+            8,
+            3,
+            9,
+            4,
+            3,
+            4,
+            2,
+            3,
+            2,
+            6,
+            3,
+            6,
+            8,
+            3,
+            8,
+            9,
+            4,
+            9,
+            5,
+            2,
+            4,
+            11,
+            6,
+            2,
+            10,
+            8,
+            6,
+            7,
+            9,
+            8,
+            1
+          ];
+          super(vertices, indices, radius, detail);
+          this.type = "IcosahedronGeometry";
+          this.parameters = {
+            radius,
+            detail
+          };
+        }
+        static fromJSON(data) {
+          return new _IcosahedronGeometry(data.radius, data.detail);
+        }
+      };
       RingGeometry = class _RingGeometry extends BufferGeometry {
         static {
           __name(this, "RingGeometry");
@@ -22731,6 +23021,69 @@ void main() {
         }
         static fromJSON(data) {
           return new _SphereGeometry(data.radius, data.widthSegments, data.heightSegments, data.phiStart, data.phiLength, data.thetaStart, data.thetaLength);
+        }
+      };
+      TorusGeometry = class _TorusGeometry extends BufferGeometry {
+        static {
+          __name(this, "TorusGeometry");
+        }
+        constructor(radius = 1, tube = 0.4, radialSegments = 12, tubularSegments = 48, arc = Math.PI * 2) {
+          super();
+          this.type = "TorusGeometry";
+          this.parameters = {
+            radius,
+            tube,
+            radialSegments,
+            tubularSegments,
+            arc
+          };
+          radialSegments = Math.floor(radialSegments);
+          tubularSegments = Math.floor(tubularSegments);
+          const indices = [];
+          const vertices = [];
+          const normals = [];
+          const uvs = [];
+          const center = new Vector3();
+          const vertex2 = new Vector3();
+          const normal = new Vector3();
+          for (let j = 0; j <= radialSegments; j++) {
+            for (let i = 0; i <= tubularSegments; i++) {
+              const u = i / tubularSegments * arc;
+              const v = j / radialSegments * Math.PI * 2;
+              vertex2.x = (radius + tube * Math.cos(v)) * Math.cos(u);
+              vertex2.y = (radius + tube * Math.cos(v)) * Math.sin(u);
+              vertex2.z = tube * Math.sin(v);
+              vertices.push(vertex2.x, vertex2.y, vertex2.z);
+              center.x = radius * Math.cos(u);
+              center.y = radius * Math.sin(u);
+              normal.subVectors(vertex2, center).normalize();
+              normals.push(normal.x, normal.y, normal.z);
+              uvs.push(i / tubularSegments);
+              uvs.push(j / radialSegments);
+            }
+          }
+          for (let j = 1; j <= radialSegments; j++) {
+            for (let i = 1; i <= tubularSegments; i++) {
+              const a = (tubularSegments + 1) * j + i - 1;
+              const b = (tubularSegments + 1) * (j - 1) + i - 1;
+              const c = (tubularSegments + 1) * (j - 1) + i;
+              const d = (tubularSegments + 1) * j + i;
+              indices.push(a, b, d);
+              indices.push(b, c, d);
+            }
+          }
+          this.setIndex(indices);
+          this.setAttribute("position", new Float32BufferAttribute(vertices, 3));
+          this.setAttribute("normal", new Float32BufferAttribute(normals, 3));
+          this.setAttribute("uv", new Float32BufferAttribute(uvs, 2));
+        }
+        copy(source) {
+          super.copy(source);
+          this.parameters = Object.assign({}, source.parameters);
+          return this;
+        }
+        static fromJSON(data) {
+          return new _TorusGeometry(data.radius, data.tube, data.radialSegments, data.tubularSegments, data.arc);
         }
       };
       RawShaderMaterial = class extends ShaderMaterial {
@@ -30709,6 +31062,12 @@ void main() {
         box2(0.3, 0.22, 2 * hw + 0.6, q[0], 0.11, q[1], rot, rim);
         box2(0.07, 0.07, 2 * hw + 0.3, q[0], 1.05, q[1], rot, rail);
       }
+      {
+        const q = P2(hl + 0.22, 0);
+        box2(0.18, 1.25, 2 * hw + 0.6, q[0], 0.625, q[1], rot, [0.78, 0.8, 0.76]);
+        const sA = P2(hl + 0.31, -hw - 0.3), sB = P2(hl + 0.31, hw + 0.3), sc = P2(hl + 0.31, 0);
+        (out.tagSpots = out.tagSpots || []).push({ A: sA, B: sB, len: 2 * hw + 0.6, nx: tx2, nz: tz, cx: sc[0], cz: sc[1], h: 1.25, kind: "ubahn", maxW: 2.3 });
+      }
       const A = P2(-hl, -hw - 0.3), B = P2(hl + 0.3, -hw - 0.3), C = P2(hl + 0.3, hw + 0.3), Dd = P2(-hl, hw + 0.3);
       out.grid.add(A[0], A[1], B[0], B[1]);
       out.grid.add(B[0], B[1], C[0], C[1]);
@@ -31762,6 +32121,61 @@ void main() {
         if (pip2(x, z, pts)) treePts.push([x, z]);
       }
     }
+    const hashG = /* @__PURE__ */ new Map();
+    const HK = /* @__PURE__ */ __name((x, z) => Math.floor(x / 8) * 7919 + Math.floor(z / 8), "HK");
+    const occ = /* @__PURE__ */ __name((x, z, r) => {
+      const cx = Math.floor(x / 8), cz = Math.floor(z / 8);
+      for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) {
+        for (const q of hashG.get((cx + i) * 7919 + cz + j) || []) if (Math.hypot(q[0] - x, q[1] - z) < r) return true;
+      }
+      return false;
+    }, "occ");
+    const occMark = /* @__PURE__ */ __name((x, z) => {
+      const k = HK(x, z);
+      let a = hashG.get(k);
+      if (!a) hashG.set(k, a = []);
+      a.push([x, z]);
+    }, "occMark");
+    const inB = /* @__PURE__ */ __name((x, z, m) => out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 80 && Math.abs(B.b.p[0][1] - z) < 80 && (pip2(x, z, B.b.p) || m > 0 && B.edges.some((e) => segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1])[0] < m))), "inB");
+    const okSpot = /* @__PURE__ */ __name((x, z, road, m) => {
+      if (!out.inEdge(x, z, 2) || out.noTree && out.noTree(x, z)) return false;
+      const n = out.nearRoad(x, z);
+      if (n && n.d < road) return false;
+      return !inB(x, z, m);
+    }, "okSpot");
+    const walkRoads = /* @__PURE__ */ __name((types, step, off, fn) => {
+      for (const r of out.roadsDrive) {
+        if (types && !types.includes(r.t)) continue;
+        let acc = step * 0.5;
+        for (let i = 0; i < r.p.length - 1; i++) {
+          const a = r.p[i], b = r.p[i + 1];
+          const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          if (l < 1) continue;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          while (acc < l) {
+            for (const sd of [-1, 1]) {
+              const o2 = r.w / 2 + off;
+              fn(a[0] + tx2 * acc - tz * o2 * sd, a[1] + tz * acc + tx2 * o2 * sd, tx2, tz, sd, r);
+            }
+            acc += step;
+          }
+          acc -= l;
+        }
+      }
+    }, "walkRoads");
+    const fr = rng(1506);
+    for (const t of treePts) occMark(t[0], t[1]);
+    {
+      let added = 0;
+      walkRoads(["residential", "tertiary", "unclassified", "living_street", "secondary", "primary"], 15, 2.6, (x, z) => {
+        if (added >= 320 || fr() < 0.22) return;
+        if (occ(x, z, 8.5) || !okSpot(x, z, 1.3, 1.5)) return;
+        treePts.push([x, z]);
+        occMark(x, z);
+        added++;
+      });
+      out.extraTrees = added;
+    }
     const trees = treePts.filter((t) => out.inEdge(t[0], t[1], 1.5) && !(out.noTree && out.noTree(t[0], t[1])) && !out.buildings.some((B) => Math.abs(B.b.p[0][0] - t[0]) < 80 && pip2(t[0], t[1], B.b.p)));
     const tr = rng(77);
     const canGeo = new SphereGeometry(1, 28, 16);
@@ -31816,7 +32230,35 @@ void main() {
     can.receiveShadow = true;
     trunk.castShadow = true;
     scene.add(can, trunk);
-    const lamps = D.lamps.filter((l) => out.inEdge(l[0], l[1], 1.5) && !(out.noTree && out.noTree(l[0], l[1])) && !out.buildings.some((B) => Math.abs(B.b.p[0][0] - l[0]) < 80 && pip2(l[0], l[1], B.b.p)));
+    const lampPts = D.lamps.slice();
+    {
+      const lg = /* @__PURE__ */ new Map();
+      const LK = /* @__PURE__ */ __name((x, z) => Math.floor(x / 14) * 7919 + Math.floor(z / 14), "LK");
+      const lmark = /* @__PURE__ */ __name((x, z) => {
+        const k = LK(x, z);
+        let a = lg.get(k);
+        if (!a) lg.set(k, a = []);
+        a.push([x, z]);
+      }, "lmark");
+      const lnear = /* @__PURE__ */ __name((x, z, r) => {
+        const cx = Math.floor(x / 14), cz = Math.floor(z / 14);
+        for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) for (const q of lg.get((cx + i) * 7919 + cz + j) || []) if (Math.hypot(q[0] - x, q[1] - z) < r) return true;
+        return false;
+      }, "lnear");
+      for (const l of lampPts) lmark(l[0], l[1]);
+      let added = 0;
+      let flip = 0;
+      walkRoads(null, 24, 0.75, (x, z, tx2, tz, sd) => {
+        if ((flip++ & 1) === 0 || added >= 180) return;
+        if (lnear(x, z, 15) || occ(x, z, 2.5) || !okSpot(x, z, 0.3, 0.9)) return;
+        lampPts.push([x, z]);
+        lmark(x, z);
+        occMark(x, z);
+        added++;
+      });
+      out.extraLamps = added;
+    }
+    const lamps = lampPts.filter((l) => out.inEdge(l[0], l[1], 1.5) && !(out.noTree && out.noTree(l[0], l[1])) && !out.buildings.some((B) => Math.abs(B.b.p[0][0] - l[0]) < 80 && pip2(l[0], l[1], B.b.p)));
     const pole = new InstancedMesh(new CylinderGeometry(0.07, 0.1, 5.5, 6), new MeshStandardMaterial({ color: 3816770, metalness: 0.5, roughness: 0.5 }), lamps.length);
     const headM = new MeshStandardMaterial({ color: 5592405, emissive: 16767392, emissiveIntensity: 1 });
     out.lampHeadMat = headM;
@@ -31872,7 +32314,8 @@ void main() {
       const x = pr.p[0], z = pr.p[1];
       if (!out.inEdge(x, z, 1)) continue;
       if (out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 55 && pip2(x, z, B.b.p))) continue;
-      const it = { x, z, rot: pr.rot || 0, y: 0 };
+      const it = { x, z, rot: pr.rot || 0, y: 0, s: 1 };
+      occMark(x, z);
       if (pr.k === "bench") benches.push(it);
       else if (pr.k === "bin") bins.push(it);
       else if (pr.k === "hydrant") hydrants.push(it);
@@ -31912,6 +32355,240 @@ void main() {
       });
       m.castShadow = true;
       scene.add(m);
+    }
+    {
+      const bushes = [];
+      for (const B of out.buildings) {
+        for (const e of B.edges) {
+          if (!e.street || e.len < 5 || bushes.length > 700) continue;
+          const n = out.nearRoad(e.mx + e.nx * 1.2, e.mz + e.nz * 1.2);
+          if (!n || n.d < 2.6) continue;
+          const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+          const k = Math.min(3, Math.floor(e.len / 5));
+          for (let i = 0; i < k; i++) {
+            if (fr() < 0.35) continue;
+            const u = (i + 0.5) / k * e.len;
+            const x = e.A[0] + tx2 * u + e.nx * 1.05, z = e.A[1] + tz * u + e.nz * 1.05;
+            if (occ(x, z, 1.4) || inB(x, z, 0.5) || out.noTree && out.noTree(x, z)) continue;
+            bushes.push({ x, z, s: 0.75 + fr() * 0.5, rot: fr() * 6, y: 0, h: fr() });
+            occMark(x, z);
+          }
+        }
+      }
+      for (const a of D.areas || []) {
+        if (!(a.park || a.t === "grass") || !a.p || a.p.length < 3) continue;
+        let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
+        for (const q of a.p) {
+          minx = Math.min(minx, q[0]);
+          maxx = Math.max(maxx, q[0]);
+          minz = Math.min(minz, q[1]);
+          maxz = Math.max(maxz, q[1]);
+        }
+        const nB = Math.min(36, Math.floor(Math.abs((maxx - minx) * (maxz - minz)) / 160));
+        for (let k = 0; k < nB && bushes.length < 1e3; k++) {
+          const x = minx + fr() * (maxx - minx), z = minz + fr() * (maxz - minz);
+          if (!pip2(x, z, a.p) || occ(x, z, 2.2) || !okSpot(x, z, 0.8, 0.6)) continue;
+          bushes.push({ x, z, s: 0.8 + fr() * 0.7, rot: fr() * 6, y: 0, h: fr() });
+          occMark(x, z);
+        }
+      }
+      for (const t of trees) {
+        if (fr() < 0.3 && bushes.length < 1150) {
+          const a2 = fr() * 6.28;
+          const x = t[0] + Math.cos(a2) * 1.6, z = t[1] + Math.sin(a2) * 1.6;
+          if (okSpot(x, z, 0.6, 0.5)) bushes.push({ x, z, s: 0.55 + fr() * 0.3, rot: fr() * 6, y: 0, h: fr() });
+        }
+      }
+      if (bushes.length) {
+        const g = new IcosahedronGeometry(1, 1);
+        {
+          const pa = g.attributes.position;
+          const cl = [];
+          for (let i = 0; i < pa.count; i++) {
+            const x = pa.getX(i), y = pa.getY(i), z = pa.getZ(i);
+            const n = 1 + 0.12 * Math.sin(x * 6.1 + z * 3.3) * Math.cos(y * 5.3);
+            pa.setXYZ(i, x * n, y * n * 0.62, z * n);
+            const sh = 0.5 + 0.5 * Math.max(0, (y + 0.4) / 1.4);
+            cl.push(sh, sh, sh);
+          }
+          g.setAttribute("color", new Float32BufferAttribute(cl, 3));
+          g.computeVertexNormals();
+        }
+        const m = new InstancedMesh(g, new MeshStandardMaterial({ color: 16777215, map: leafTex(11), vertexColors: true, roughness: 1 }), bushes.length);
+        const o2 = new Object3D();
+        const c2 = new Color();
+        bushes.forEach((b, i) => {
+          o2.position.set(b.x, 0.42 * b.s, b.z);
+          o2.rotation.set(0, b.rot, 0);
+          o2.scale.set(b.s, b.s, b.s);
+          o2.updateMatrix();
+          m.setMatrixAt(i, o2.matrix);
+          c2.setHSL(0.24 + b.h * 0.09, 0.38 + b.h * 0.2, 0.22 + b.h * 0.08);
+          m.setColorAt(i, c2);
+        });
+        m.castShadow = true;
+        m.receiveShadow = true;
+        scene.add(m);
+      }
+      out.bushes = bushes.length;
+      const boxes = [], bikes = [], glass = [], litfass = [], bags = [], signsA = [], signsB = [], signsC = [];
+      let ci2 = 0;
+      walkRoads(["residential", "tertiary", "unclassified", "living_street", "secondary", "primary"], 11, 0, (x0, z0, tx2, tz, sd, r) => {
+        ci2++;
+        const nx = -tz * sd, nz = tx2 * sd;
+        const pick = ci2 % 17;
+        const rot = Math.atan2(-tz, tx2);
+        if (pick === 3 && boxes.length < 160) {
+          const x = x0 + nx * 2, z = z0 + nz * 2;
+          if (occ(x, z, 1.6) || !okSpot(x, z, 1.2, 0.35)) return;
+          boxes.push({ x, z, rot, y: 0, s: 1 });
+          occMark(x, z);
+          const fx = x - nx * 0.21, fz = z - nz * 0.21;
+          (out.tagSpots = out.tagSpots || []).push({ A: [fx - tx2 * 0.45, fz - tz * 0.45], B: [fx + tx2 * 0.45, fz + tz * 0.45], len: 0.9, nx: -nx, nz: -nz, cx: fx, cz: fz, h: 1.15, kind: "box", maxW: 0.84 });
+        } else if ((pick === 7 || pick === 12) && bikes.length < 220) {
+          for (let k = 0; k < 3; k++) {
+            const x = x0 + nx * 0.6 + tx2 * (k * 0.9 - 0.9), z = z0 + nz * 0.6 + tz * (k * 0.9 - 0.9);
+            if (occ(x, z, 0.7) || !okSpot(x, z, 0.1, 0.6)) continue;
+            bikes.push({ x, z, rot: rot + Math.PI / 2, y: 0, s: 1 });
+            occMark(x, z);
+          }
+        } else if (pick === 9 && ci2 % 3 === 0 && glass.length < 60) {
+          const x = x0 + nx * 1.1, z = z0 + nz * 1.1;
+          if (occ(x, z, 3) || !okSpot(x, z, 0.4, 1)) return;
+          for (let k = 0; k < 3; k++) glass.push({ x: x + tx2 * (k - 1) * 1.45, z: z + tz * (k - 1) * 1.45, rot, y: 0, s: 1, k });
+          occMark(x, z);
+        } else if (pick === 14 && ci2 % 4 === 0 && litfass.length < 40) {
+          const x = x0 + nx * 1.4, z = z0 + nz * 1.4;
+          if (occ(x, z, 3) || !okSpot(x, z, 0.5, 1.2)) return;
+          litfass.push({ x, z, rot: fr() * 6, y: 0, s: 1 });
+          occMark(x, z);
+        } else if ((pick === 5 || pick === 16) && bags.length < 260) {
+          const x = x0 + nx * 2.3, z = z0 + nz * 2.3;
+          if (occ(x, z, 1.2) || !okSpot(x, z, 1.4, 0.15)) return;
+          const n = 2 + ci2 % 3;
+          for (let k = 0; k < n; k++) bags.push({ x: x + tx2 * (k * 0.45 - 0.4) + (fr() - 0.5) * 0.2, z: z + tz * (k * 0.45 - 0.4) + (fr() - 0.5) * 0.2, rot: fr() * 6, y: 0, s: 0.8 + fr() * 0.4 });
+          occMark(x, z);
+        } else if (pick === 1 && signsA.length + signsB.length + signsC.length < 190) {
+          const x = x0 + nx * 0.45, z = z0 + nz * 0.45;
+          if (occ(x, z, 1.2) || !okSpot(x, z, 0.05, 0.8)) return;
+          const L = [signsA, signsB, signsC][ci2 % 3];
+          L.push({ x, z, rot: 0, y: 0, s: 1 });
+          occMark(x, z);
+        }
+      });
+      inst(new BoxGeometry(0.9, 1.15, 0.4), propMat(10921368, 0.75, 0.15), boxes, 0.575);
+      inst(new BoxGeometry(0.92, 0.06, 0.42), propMat(7829101, 0.6, 0.3), boxes, 1.18);
+      {
+        const g = new TorusGeometry(0.38, 0.035, 5, 12, Math.PI);
+        inst(g, propMat(10133670, 0.4, 0.7), bikes, 0.02);
+      }
+      {
+        const cols = [3107642, 7031338, 14211282];
+        for (let k = 0; k < 3; k++) {
+          const L = glass.filter((q) => q.k === k);
+          inst(new BoxGeometry(1.3, 1.5, 1.3), propMat(cols[k], 0.6, 0.3), L, 0.75);
+        }
+        inst(new CylinderGeometry(0.22, 0.22, 0.08, 10), propMat(2236962), glass, 1.53);
+      }
+      if (litfass.length) {
+        const cv2 = document.createElement("canvas");
+        cv2.width = 256;
+        cv2.height = 128;
+        const g2 = cv2.getContext("2d");
+        const pc = ["#e94e3c", "#f4c430", "#3c7be9", "#ffffff", "#2ecc71", "#ff7fbf", "#111111"];
+        for (let i = 0; i < 8; i++) {
+          g2.fillStyle = pc[i * 3 % pc.length];
+          g2.fillRect(i * 32, 0, 32, 128);
+          g2.fillStyle = pc[(i * 5 + 2) % pc.length];
+          g2.fillRect(i * 32 + 4, 20 + i % 3 * 12, 24, 18);
+          g2.fillStyle = "rgba(0,0,0,0.55)";
+          for (let l = 0; l < 4; l++) g2.fillRect(i * 32 + 5, 70 + l * 12, 18 + (l * 7 + i) % 6, 4);
+        }
+        const tex2 = new CanvasTexture(cv2);
+        tex2.colorSpace = SRGBColorSpace;
+        tex2.wrapS = RepeatWrapping;
+        inst(new CylinderGeometry(0.58, 0.58, 2.4, 16, 1, true), new MeshStandardMaterial({ map: tex2, roughness: 0.8 }), litfass, 1.25);
+        inst(new CylinderGeometry(0.72, 0.62, 0.22, 16), propMat(2902586, 0.5, 0.4), litfass, 2.55);
+        inst(new CylinderGeometry(0.64, 0.7, 0.12, 16), propMat(2902586, 0.5, 0.4), litfass, 0.06);
+      }
+      {
+        const g = new SphereGeometry(0.32, 9, 6);
+        g.scale(1, 0.78, 1);
+        inst(g, propMat(1381914, 0.35, 0.1), bags, 0.22);
+      }
+      const signTexOf = /* @__PURE__ */ __name((kind) => {
+        const cv2 = document.createElement("canvas");
+        cv2.width = cv2.height = 128;
+        const g = cv2.getContext("2d");
+        if (kind === 0) {
+          g.fillStyle = "#fff";
+          g.beginPath();
+          g.arc(64, 64, 60, 0, 7);
+          g.fill();
+          g.fillStyle = "#d01818";
+          g.beginPath();
+          g.arc(64, 64, 58, 0, 7);
+          g.fill();
+          g.fillStyle = "#1b4fa8";
+          g.beginPath();
+          g.arc(64, 64, 44, 0, 7);
+          g.fill();
+          g.strokeStyle = "#d01818";
+          g.lineWidth = 13;
+          g.beginPath();
+          g.moveTo(32, 32);
+          g.lineTo(96, 96);
+          g.moveTo(96, 32);
+          g.lineTo(32, 96);
+          g.stroke();
+        } else if (kind === 1) {
+          g.fillStyle = "#fff";
+          g.beginPath();
+          g.arc(64, 64, 60, 0, 7);
+          g.fill();
+          g.strokeStyle = "#d01818";
+          g.lineWidth = 15;
+          g.beginPath();
+          g.arc(64, 64, 51, 0, 7);
+          g.stroke();
+          g.fillStyle = "#111";
+          g.font = "bold 62px Arial";
+          g.textAlign = "center";
+          g.textBaseline = "middle";
+          g.fillText("30", 64, 68);
+        } else {
+          g.translate(64, 64);
+          g.rotate(Math.PI / 4);
+          g.fillStyle = "#fff";
+          g.fillRect(-44, -44, 88, 88);
+          g.fillStyle = "#f2c200";
+          g.fillRect(-32, -32, 64, 64);
+          g.strokeStyle = "#222";
+          g.lineWidth = 2;
+          g.strokeRect(-44, -44, 88, 88);
+        }
+        const t = new CanvasTexture(cv2);
+        t.colorSpace = SRGBColorSpace;
+        return t;
+      }, "signTexOf");
+      const poleL = [...signsA, ...signsB, ...signsC];
+      inst(new CylinderGeometry(0.045, 0.05, 2.5, 6), propMat(9080725, 0.4, 0.6), poleL, 1.25);
+      [signsA, signsB, signsC].forEach((L, k) => {
+        if (!L.length) return;
+        const g = new PlaneGeometry(0.72, 0.72);
+        const m = new InstancedMesh(g, new MeshStandardMaterial({ map: signTexOf(k), transparent: true, alphaTest: 0.4, roughness: 0.6, side: DoubleSide }), L.length);
+        const o2 = new Object3D();
+        L.forEach((it, i) => {
+          o2.position.set(it.x, 2.45, it.z + 0.04);
+          o2.rotation.set(-1.05, 0, 0);
+          o2.scale.set(1, 1, 1);
+          o2.updateMatrix();
+          m.setMatrixAt(i, o2.matrix);
+        });
+        m.castShadow = true;
+        scene.add(m);
+      });
+      out.clutter = { boxes: boxes.length, bikes: bikes.length, glass: glass.length, litfass: litfass.length, bags: bags.length, signs: poleL.length };
     }
     const facing = /* @__PURE__ */ __name((x, z, maxd) => {
       let best = null, bd = maxd;
@@ -33450,55 +34127,52 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return b;
     }
     __name(noiseBuf, "noiseBuf");
-    let stepBank = null, stepSide = 0;
-    function makeSteps() {
-      if (stepBank || !ctx) return stepBank;
-      const sr = ctx.sampleRate;
-      stepBank = [];
-      let seed = 7;
-      const rnd = /* @__PURE__ */ __name(() => {
-        seed = seed * 16807 % 2147483647;
-        return seed / 2147483647 * 2 - 1;
-      }, "rnd");
-      const mk = /* @__PURE__ */ __name((f0, click, scuff, tilt) => {
-        const n = Math.floor(sr * 0.11);
-        const b = ctx.createBuffer(1, n, sr);
-        const d = b.getChannelData(0);
-        const hpA = Math.exp(-2 * Math.PI * 1400 / sr), lpA = Math.exp(-2 * Math.PI * (5200 + tilt) / sr), lp2 = Math.exp(-2 * Math.PI * 2100 / sr);
-        let hy = 0, hx = 0, ly = 0, sy = 0, ph = 0, peak = 0;
-        for (let i = 0; i < n; i++) {
-          const t = i / sr;
-          const x = rnd();
-          hy = hpA * (hy + x - hx);
-          hx = x;
-          ly = ly * lpA + hy * (1 - lpA);
-          const clickE = Math.exp(-t / 55e-4);
-          const f = f0 * (1 + 0.6 * Math.exp(-t / 0.01));
-          ph += 2 * Math.PI * f / sr;
-          const body = Math.sin(ph) * Math.exp(-t / 0.016) * (t < 15e-4 ? t / 15e-4 : 1);
-          const ts = t - 0.026;
-          let sc = 0;
-          if (ts > 0) {
-            sy = sy * lp2 + rnd() * (1 - lp2);
-            sc = sy * Math.exp(-ts / 9e-3) * (ts < 2e-3 ? ts / 2e-3 : 1);
-          }
-          const v = ly * clickE * click * 2.2 + body * 0.55 + sc * scuff * 3.2;
-          d[i] = v;
-          peak = Math.max(peak, Math.abs(v));
-        }
-        const k = 0.9 / (peak || 1);
-        for (let i = 0; i < n; i++) d[i] *= k;
-        const fade = Math.floor(sr * 0.012);
-        for (let i = 0; i < fade; i++) d[n - 1 - i] *= i / fade;
-        return b;
-      }, "mk");
-      stepBank.push(mk(92, 1, 0.9, 0), mk(104, 0.85, 1.1, 600), mk(88, 1.05, 0.8, -400), mk(100, 0.9, 1, 300));
-      return stepBank;
+    let stepSide = 0, lastStep = -1;
+    const STEP_N = 11;
+    function synthScream(pitch) {
+      if (!live()) return;
+      const t = ctx.currentTime, dur = 0.75 + Math.random() * 0.35;
+      const f0 = (pitch > 1.05 ? 420 : 300) * pitch;
+      const o = ctx.createOscillator();
+      o.type = "sawtooth";
+      o.frequency.setValueAtTime(f0 * 0.8, t);
+      o.frequency.linearRampToValueAtTime(f0 * 1.25, t + 0.12);
+      o.frequency.linearRampToValueAtTime(f0, t + dur * 0.7);
+      o.frequency.linearRampToValueAtTime(f0 * 0.7, t + dur);
+      const vib = ctx.createOscillator();
+      vib.frequency.value = 7;
+      const vg = ctx.createGain();
+      vg.gain.value = f0 * 0.03;
+      vib.connect(vg);
+      vg.connect(o.frequency);
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(1e-4, t);
+      g.gain.exponentialRampToValueAtTime(0.16, t + 0.04);
+      g.gain.setValueAtTime(0.14, t + dur * 0.7);
+      g.gain.exponentialRampToValueAtTime(1e-4, t + dur);
+      for (const [f, q, a] of [[850, 6, 1], [1250, 8, 0.6], [2700, 10, 0.35]]) {
+        const bp = ctx.createBiquadFilter();
+        bp.type = "bandpass";
+        bp.frequency.value = f;
+        bp.Q.value = q;
+        const ga = ctx.createGain();
+        ga.gain.value = a;
+        o.connect(bp);
+        bp.connect(ga);
+        ga.connect(g);
+      }
+      g.connect(master);
+      o.start(t);
+      vib.start(t);
+      o.stop(t + dur + 0.05);
+      vib.stop(t + dur + 0.05);
     }
-    __name(makeSteps, "makeSteps");
+    __name(synthScream, "synthScream");
+    let screamT = 0, spray = null;
     function bump() {
       const v = window.HOOD_V ? "?v=" + window.HOOD_V : "";
-      const files = { shot: "assets/sfx/shot.mp3", boom: "assets/sfx/boom.mp3", crash: "assets/sfx/crash.mp3", squeal: "assets/sfx/squeal.mp3", carDoor: "assets/sfx/door.mp3", pickup: "assets/sfx/pickup.mp3", heal: "assets/sfx/heal.mp3", bat: "assets/sfx/bat.mp3", engine: "assets/sfx/engine.mp3", city: "assets/sfx/city.mp3" };
+      const files = { shot: "assets/sfx/shot.mp3", boom: "assets/sfx/boom.mp3", crash: "assets/sfx/crash.mp3", squeal: "assets/sfx/squeal.mp3", carDoor: "assets/sfx/door.mp3", pickup: "assets/sfx/pickup.mp3", heal: "assets/sfx/heal.mp3", bat: "assets/sfx/bat.mp3", engine: "assets/sfx/engine.mp3", city: "assets/sfx/city.mp3", scream: "assets/sfx/scream.mp3" };
+      for (let i = 1; i <= 11; i++) files["step" + i] = "assets/sfx/step" + String(i).padStart(2, "0") + ".mp3";
       Object.keys(files).forEach((k) => {
         fetch(files[k] + v).then((r) => r.ok ? r.arrayBuffer() : Promise.reject()).then((b) => ctx.decodeAudioData(b.slice(0))).then((buf) => {
           samples[k] = buf;
@@ -33723,20 +34397,113 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         ensure();
         if (ctx) applyBed(0.4);
       },
-      step(vol2 = 1) {
+      step(vol2 = 1, run = false) {
         if (!live()) return;
-        const bank = makeSteps();
-        if (!bank) return;
+        const have = [];
+        for (let i = 1; i <= STEP_N; i++) if (samples["step" + i]) have.push(i);
+        if (!have.length) return;
+        let k = have[Math.random() * have.length | 0];
+        if (k === lastStep && have.length > 1) k = have[(have.indexOf(k) + 1) % have.length];
+        lastStep = k;
         stepSide ^= 1;
-        const b = bank[stepSide + (Math.random() < 0.5 ? 0 : 2)];
         const s = ctx.createBufferSource();
-        s.buffer = b;
-        s.playbackRate.value = 0.96 + Math.random() * 0.08;
+        s.buffer = samples["step" + k];
+        s.playbackRate.value = (run ? 1.05 : 1) * (0.96 + Math.random() * 0.08);
         const g = ctx.createGain();
-        g.gain.value = 0.26 * vol2;
+        g.gain.value = (run ? 0.6 : 0.48) * (0.9 + Math.random() * 0.2) * vol2;
         s.connect(g);
+        if (ctx.createStereoPanner) {
+          const p = ctx.createStereoPanner();
+          p.pan.value = stepSide ? 0.08 : -0.08;
+          g.connect(p);
+          p.connect(master);
+        } else g.connect(master);
+        s.start();
+      },
+      scream(dist = 0, pitch = 1) {
+        if (!live()) return;
+        const t = ctx.currentTime;
+        if (t < screamT) return;
+        screamT = t + 0.45;
+        const gv = Math.max(0.12, 0.75 - dist * 0.018);
+        if (samples.scream) {
+          const s = ctx.createBufferSource();
+          s.buffer = samples.scream;
+          s.playbackRate.value = pitch;
+          const g = ctx.createGain();
+          g.gain.value = gv;
+          s.connect(g);
+          if (ctx.createStereoPanner) {
+            const p = ctx.createStereoPanner();
+            p.pan.value = (Math.random() - 0.5) * 0.5;
+            g.connect(p);
+            p.connect(master);
+          } else g.connect(master);
+          s.start();
+          return;
+        }
+        synthScream(pitch);
+      },
+      // spray can: hiss while the finger is down, tiny rattle when it starts
+      sprayOn() {
+        ensure();
+        if (!live() || spray) return;
+        const t = ctx.currentTime;
+        const s = ctx.createBufferSource();
+        s.buffer = noiseBuf(2, false);
+        s.loop = true;
+        const hp = ctx.createBiquadFilter();
+        hp.type = "highpass";
+        hp.frequency.value = 2200;
+        const lp = ctx.createBiquadFilter();
+        lp.type = "lowpass";
+        lp.frequency.value = 7500;
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(1e-4, t);
+        g.gain.exponentialRampToValueAtTime(0.07, t + 0.05);
+        s.connect(hp);
+        hp.connect(lp);
+        lp.connect(g);
         g.connect(master);
         s.start();
+        spray = { s, g };
+      },
+      sprayOff() {
+        if (!spray || !ctx) return;
+        const t = ctx.currentTime;
+        spray.g.gain.cancelScheduledValues(t);
+        spray.g.gain.setValueAtTime(spray.g.gain.value, t);
+        spray.g.gain.exponentialRampToValueAtTime(1e-4, t + 0.08);
+        const s = spray.s;
+        setTimeout(() => {
+          try {
+            s.stop();
+          } catch (_) {
+          }
+        }, 150);
+        spray = null;
+      },
+      rattle() {
+        if (!live()) return;
+        for (let i = 0; i < 4; i++) setTimeout(() => {
+          noiseBurst(0.025, 0.06, 1500, 5200, 1e-3);
+          beep(2400 + Math.random() * 500, 0.02, "triangle", 0.02);
+        }, i * 95);
+      },
+      kaching() {
+        if (!live()) return;
+        beep(1568, 0.09, "triangle", 0.08);
+        setTimeout(() => beep(2093, 0.2, "triangle", 0.07), 70);
+        noiseBurst(0.05, 0.05, 3e3, 8e3);
+      },
+      puff() {
+        if (!live()) return;
+        noiseBurst(0.06, 0.06, 1200, 4e3, 2e-3);
+        setTimeout(() => noiseBurst(0.9, 0.05, 300, 1600, 0.25), 180);
+      },
+      gulp() {
+        if (!live()) return;
+        [0, 160, 320].forEach((d) => setTimeout(() => beep(170 + Math.random() * 30, 0.09, "sine", 0.11, 90), d));
       },
       swing() {
         if (!live()) return;
@@ -34290,6 +35057,395 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
   });
 
+  // src/fx15.js
+  function ctex(c) {
+    const t = new CanvasTexture(c);
+    t.colorSpace = SRGBColorSpace;
+    t.anisotropy = 4;
+    t.needsUpdate = true;
+    return t;
+  }
+  function dropTex() {
+    const c = canvas(32, 32), g = c.getContext("2d");
+    const gr = g.createRadialGradient(14, 13, 1, 16, 16, 15);
+    gr.addColorStop(0, "rgba(210,40,40,1)");
+    gr.addColorStop(0.35, "rgba(150,8,14,1)");
+    gr.addColorStop(0.75, "rgba(105,0,6,0.85)");
+    gr.addColorStop(1, "rgba(80,0,4,0)");
+    g.fillStyle = gr;
+    g.beginPath();
+    g.arc(16, 16, 15, 0, 7);
+    g.fill();
+    g.fillStyle = "rgba(255,180,170,.55)";
+    g.beginPath();
+    g.arc(12, 11, 2.2, 0, 7);
+    g.fill();
+    return ctex(c);
+  }
+  function splatTex(seed, big) {
+    const R = rng(seed * 977 + 13), S = 128, c = canvas(S, S), g = c.getContext("2d");
+    const col = /* @__PURE__ */ __name((a) => `rgba(${88 + R() * 20 | 0},${R() * 6 | 0},${4 + R() * 6 | 0},${a})`, "col");
+    const core = big ? 34 : 22;
+    g.fillStyle = col(0.92);
+    g.beginPath();
+    for (let i = 0; i <= 24; i++) {
+      const a = i / 24 * Math.PI * 2, r = core * (0.78 + R() * 0.4);
+      const x = 64 + Math.cos(a) * r, y = 64 + Math.sin(a) * r;
+      i ? g.lineTo(x, y) : g.moveTo(x, y);
+    }
+    g.closePath();
+    g.fill();
+    const n = big ? 8 : 14;
+    for (let i = 0; i < n; i++) {
+      const a = R() * Math.PI * 2, d = core * (0.9 + R() * 1.1), r = 2 + R() * (big ? 7 : 6);
+      g.fillStyle = col(0.8 + R() * 0.15);
+      g.beginPath();
+      g.arc(64 + Math.cos(a) * d, 64 + Math.sin(a) * d, r, 0, 7);
+      g.fill();
+      if (!big && R() < 0.5) {
+        g.strokeStyle = col(0.7);
+        g.lineWidth = 1.5 + R() * 2;
+        g.beginPath();
+        g.moveTo(64 + Math.cos(a) * core * 0.7, 64 + Math.sin(a) * core * 0.7);
+        g.lineTo(64 + Math.cos(a) * d, 64 + Math.sin(a) * d);
+        g.stroke();
+      }
+    }
+    const gr = g.createRadialGradient(60, 58, 2, 64, 64, core * 1.1);
+    gr.addColorStop(0, "rgba(40,0,0,.45)");
+    gr.addColorStop(1, "rgba(40,0,0,0)");
+    g.globalCompositeOperation = "source-atop";
+    g.fillStyle = gr;
+    g.fillRect(0, 0, S, S);
+    g.fillStyle = "rgba(255,140,130,.16)";
+    g.beginPath();
+    g.ellipse(56, 54, core * 0.35, core * 0.18, -0.6, 0, 7);
+    g.fill();
+    return ctex(c);
+  }
+  function hitTex() {
+    const c = canvas(64, 64), g = c.getContext("2d");
+    g.translate(32, 32);
+    for (let i = 0; i < 8; i++) {
+      g.rotate(Math.PI / 4);
+      g.fillStyle = i % 2 ? "rgba(255,230,210,.95)" : "rgba(255,90,70,.9)";
+      g.beginPath();
+      g.moveTo(0, -(i % 2 ? 30 : 20));
+      g.lineTo(4, 0);
+      g.lineTo(-4, 0);
+      g.closePath();
+      g.fill();
+    }
+    const gr = g.createRadialGradient(0, 0, 0, 0, 0, 14);
+    gr.addColorStop(0, "rgba(255,255,240,1)");
+    gr.addColorStop(1, "rgba(255,255,240,0)");
+    g.fillStyle = gr;
+    g.beginPath();
+    g.arc(0, 0, 14, 0, 7);
+    g.fill();
+    return ctex(c);
+  }
+  function createBlood(scene) {
+    const dropMat = new SpriteMaterial({ map: dropTex(), transparent: true, depthWrite: false, toneMapped: false });
+    const small = [1, 2, 3, 4].map((s) => splatTex(s, false)), big = [splatTex(9, true), splatTex(10, true)];
+    const hitMat = new SpriteMaterial({ map: hitTex(), transparent: true, depthWrite: false, toneMapped: false, blending: AdditiveBlending });
+    const geo = new PlaneGeometry(1, 1);
+    geo.rotateX(-Math.PI / 2);
+    const drops = [], splats = [], hits = [];
+    let made = 0;
+    function getDrop() {
+      let d = drops.find((q) => !q.s.visible);
+      if (!d) {
+        if (drops.length >= 110) return null;
+        const s = new Sprite(dropMat);
+        s.renderOrder = 6;
+        scene.add(s);
+        d = { s };
+        drops.push(d);
+      }
+      d.s.visible = true;
+      return d;
+    }
+    __name(getDrop, "getDrop");
+    function splat(x, z, size, isBig, grow) {
+      let o;
+      if (splats.length < 70) {
+        const m = new Mesh(geo, new MeshBasicMaterial({ transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -5, polygonOffsetUnits: -5, toneMapped: false }));
+        m.renderOrder = 1;
+        scene.add(m);
+        o = { m };
+        splats.push(o);
+      } else {
+        o = splats.reduce((a, b) => a.t > b.t ? a : b);
+      }
+      o.m.material.map = isBig ? big[made++ % 2] : small[made++ % 4];
+      o.m.material.needsUpdate = true;
+      o.m.material.opacity = 0.95;
+      o.m.visible = true;
+      o.m.position.set(x, 0.055 + made % 7 * 2e-3, z);
+      o.m.rotation.y = Math.random() * 6.28;
+      o.size = size;
+      o.grow = grow || 0;
+      o.g = grow ? 0 : 1;
+      o.m.scale.setScalar(size * (grow ? 0.25 : 1));
+      o.t = 0;
+      o.max = isBig ? 26 : 20;
+    }
+    __name(splat, "splat");
+    function spray(x, y, z, dx, dz, amount = 1) {
+      const l = Math.hypot(dx, dz) || 1;
+      dx /= l;
+      dz /= l;
+      const n = Math.round(7 + amount * 7);
+      for (let i = 0; i < n; i++) {
+        const d = getDrop();
+        if (!d) break;
+        const sp = 1.2 + Math.random() * 3.2 * (0.7 + amount * 0.3), side = (Math.random() - 0.5) * 2.6;
+        d.vx = dx * sp - dz * side;
+        d.vz = dz * sp + dx * side;
+        d.vy = 1.2 + Math.random() * 3.4;
+        d.x = x + (Math.random() - 0.5) * 0.2;
+        d.y = y + (Math.random() - 0.5) * 0.25;
+        d.z = z + (Math.random() - 0.5) * 0.2;
+        d.sz = 0.08 + Math.random() * 0.14;
+        d.s.scale.setScalar(d.sz);
+        d.s.position.set(d.x, d.y, d.z);
+      }
+      let h = hits.find((q) => !q.s.visible);
+      if (!h && hits.length < 6) {
+        const s = new Sprite(hitMat);
+        s.renderOrder = 7;
+        scene.add(s);
+        h = { s };
+        hits.push(h);
+      }
+      if (h) {
+        h.s.visible = true;
+        h.t = 0;
+        h.s.position.set(x, y + 0.1, z);
+        h.s.material.rotation = Math.random() * 3;
+      }
+      splat(x + dx * (0.5 + Math.random() * 0.6), z + dz * (0.5 + Math.random() * 0.6), 0.35 + amount * 0.18, false);
+    }
+    __name(spray, "spray");
+    function pool(x, z) {
+      splat(x, z, 1.25, true, 1.4);
+    }
+    __name(pool, "pool");
+    function step(dt) {
+      for (const d of drops) {
+        if (!d.s.visible) continue;
+        d.vy -= 17 * dt;
+        d.x += d.vx * dt;
+        d.y += d.vy * dt;
+        d.z += d.vz * dt;
+        if (d.y < 0.06) {
+          d.s.visible = false;
+          if (Math.random() < 0.5) splat(d.x, d.z, 0.14 + Math.random() * 0.22, false);
+          continue;
+        }
+        d.s.position.set(d.x, d.y, d.z);
+      }
+      for (const h of hits) {
+        if (!h.s.visible) continue;
+        h.t += dt;
+        const k = h.t / 0.13;
+        if (k >= 1) {
+          h.s.visible = false;
+          continue;
+        }
+        h.s.scale.setScalar(0.5 + k * 0.9);
+        h.s.material.opacity = 1 - k;
+      }
+      for (const o of splats) {
+        if (!o.m.visible) continue;
+        o.t += dt;
+        if (o.grow && o.g < 1) {
+          o.g = Math.min(1, o.g + dt / o.grow);
+          const e = 1 - Math.pow(1 - o.g, 2);
+          o.m.scale.setScalar(o.size * (0.25 + 0.75 * e));
+        }
+        const f = o.max - o.t;
+        if (f < 5) o.m.material.opacity = 0.95 * Math.max(0, f / 5);
+        if (f <= 0) o.m.visible = false;
+      }
+    }
+    __name(step, "step");
+    return { spray, pool, step, count: /* @__PURE__ */ __name(() => ({ drops: drops.filter((d) => d.s.visible).length, splats: splats.filter((s) => s.m.visible).length }), "count") };
+  }
+  function crewTagCanvas(text, rgb, seed = 1) {
+    const R = rng(seed * 131 + 7), W = 512, H = 256, c = canvas(W, H), g = c.getContext("2d");
+    text = String(text || "CREW").toUpperCase();
+    const base = `rgb(${rgb.map((v) => Math.round(Math.min(1, v * 1.25 + 0.08) * 255)).join(",")})`, dark = `rgb(${rgb.map((v) => Math.round(v * 0.55 * 255)).join(",")})`, lite = `rgb(${rgb.map((v) => Math.round(Math.min(1, v + 0.45) * 255)).join(",")})`;
+    let fs = Math.min(150, Math.floor(W * 1.25 / Math.max(3, text.length)));
+    g.font = `900 ${fs}px "Arial Black", Impact, sans-serif`;
+    g.textBaseline = "middle";
+    g.lineJoin = "round";
+    const glyphs = [];
+    let tw = 0;
+    for (const ch of text) {
+      const w = g.measureText(ch).width * 0.86;
+      glyphs.push({ ch, w, rot: (R() - 0.5) * 0.32, dy: (R() - 0.5) * fs * 0.22, sc: 0.9 + R() * 0.25 });
+      tw += w;
+    }
+    const k = Math.min(1, (W - 60) / tw);
+    let x = (W - tw * k) / 2;
+    const y0 = H * 0.48;
+    const each = /* @__PURE__ */ __name((fn) => {
+      let xx = x;
+      for (const q of glyphs) {
+        g.save();
+        g.translate(xx + q.w * k / 2, y0 + q.dy);
+        g.rotate(q.rot);
+        g.scale(q.sc * k, q.sc * k * 1.05);
+        fn(q);
+        g.restore();
+        xx += q.w * k;
+      }
+    }, "each");
+    g.save();
+    g.filter = "blur(10px)";
+    g.globalAlpha = 0.35;
+    each((q) => {
+      g.fillStyle = base;
+      g.fillText(q.ch, -q.w / 2 / 0.86, 0);
+    });
+    g.restore();
+    each((q) => {
+      g.lineWidth = fs * 0.2;
+      g.strokeStyle = "#0b0b0c";
+      g.strokeText(q.ch, -q.w / 2 / 0.86 + fs * 0.06, fs * 0.07);
+    });
+    each((q) => {
+      g.lineWidth = fs * 0.13;
+      g.strokeStyle = "#101012";
+      g.strokeText(q.ch, -q.w / 2 / 0.86, 0);
+    });
+    each((q) => {
+      const gr = g.createLinearGradient(0, -fs * 0.45, 0, fs * 0.45);
+      gr.addColorStop(0, lite);
+      gr.addColorStop(0.45, base);
+      gr.addColorStop(1, dark);
+      g.fillStyle = gr;
+      g.fillText(q.ch, -q.w / 2 / 0.86, 0);
+    });
+    each((q) => {
+      g.save();
+      g.globalAlpha = 0.7;
+      g.lineWidth = fs * 0.035;
+      g.strokeStyle = "#fff";
+      g.beginPath();
+      g.moveTo(-q.w * 0.3, -fs * 0.28);
+      g.lineTo(-q.w * 0.05, -fs * 0.33);
+      g.stroke();
+      g.beginPath();
+      g.arc(q.w * 0.18, -fs * 0.25, fs * 0.03, 0, 7);
+      g.fillStyle = "#fff";
+      g.fill();
+      g.restore();
+    });
+    for (let i = 0; i < 5 + text.length; i++) {
+      const dx = x + R() * tw * k, dy = y0 + fs * 0.32 + R() * fs * 0.08, len = 12 + R() * 48;
+      g.fillStyle = dark;
+      g.fillRect(dx, dy, 3 + R() * 2.5, len);
+      g.beginPath();
+      g.arc(dx + 2, dy + len, 3.2, 0, 7);
+      g.fill();
+    }
+    const img = g.getImageData(0, 0, W, H), d = img.data;
+    for (let i = 0; i < 2600; i++) {
+      const px2 = R() * W | 0, py2 = R() * H | 0, o = (py2 * W + px2) * 4;
+      if (d[o + 3] > 40) continue;
+      let near = false;
+      for (const [ax, ay] of [[6, 0], [-6, 0], [0, 6], [0, -6]]) {
+        const q = (Math.min(H - 1, Math.max(0, py2 + ay)) * W + Math.min(W - 1, Math.max(0, px2 + ax))) * 4;
+        if (d[q + 3] > 200) {
+          near = true;
+          break;
+        }
+      }
+      if (!near) continue;
+      d[o] = rgb[0] * 255;
+      d[o + 1] = rgb[1] * 255;
+      d[o + 2] = rgb[2] * 255;
+      d[o + 3] = 120 + R() * 100;
+    }
+    g.putImageData(img, 0, 0);
+    return c;
+  }
+  function tagTexture(cv2) {
+    return ctex(cv2);
+  }
+  function makeTagMesh(tex2, seg, aspect2 = 2) {
+    const g = new Group();
+    const tx2 = (seg.B[0] - seg.A[0]) / seg.len, tz = (seg.B[1] - seg.A[1]) / seg.len;
+    const nx = seg.nx, nz = seg.nz;
+    const W = Math.min(seg.len - 0.25, seg.maxW || 3.8), low = (seg.h || 3) < 2, H = Math.min(2.2, W / aspect2, low ? seg.h - 0.14 : 9);
+    const mx = seg.cx, mz = seg.cz;
+    const mk = /* @__PURE__ */ __name((op) => new MeshStandardMaterial({ map: tex2, transparent: true, opacity: op, depthWrite: false, roughness: 0.85, metalness: 0, emissive: 16777215, emissiveMap: tex2, emissiveIntensity: 0.22, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6, side: DoubleSide }), "mk");
+    const mats = [mk(1), mk(1)];
+    {
+      const N = new Vector3(nx, 0, nz), U = new Vector3(0, 1, 0), Rv = new Vector3().crossVectors(U, N);
+      const m = new Mesh(new PlaneGeometry(W, H), mats[0]);
+      m.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(Rv, U, N));
+      m.position.set(mx + nx * 0.05, low ? seg.h / 2 : Math.max(0.35 + H / 2, Math.min((seg.h || 3) - H / 2 - 0.1, 1.55)), mz + nz * 0.05);
+      g.add(m);
+    }
+    {
+      const north = nz < -0.3;
+      const ux = north ? nx : -nx, uz = north ? nz : -nz;
+      const lean = north ? 0 : 0.62;
+      const U = new Vector3(ux * Math.cos(lean), Math.sin(lean), uz * Math.cos(lean));
+      const Rv = new Vector3().crossVectors(new Vector3(ux, 0, uz), new Vector3(0, 1, 0)).normalize();
+      const N = new Vector3().crossVectors(Rv, U);
+      const m = new Mesh(new PlaneGeometry(W, H), mats[1]);
+      m.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(Rv, U, N));
+      const out = north ? H / 2 + 0.12 : H * Math.cos(lean) / 2 + 0.06;
+      m.position.set(mx + nx * out, north ? 0.075 : H * Math.sin(lean) / 2 + 0.06, mz + nz * out);
+      m.renderOrder = 2;
+      g.add(m);
+    }
+    g.userData.mats = mats;
+    return g;
+  }
+  var TripShader;
+  var init_fx15 = __esm({
+    "src/fx15.js"() {
+      init_three_module();
+      init_tex();
+      __name(ctex, "ctex");
+      __name(dropTex, "dropTex");
+      __name(splatTex, "splatTex");
+      __name(hitTex, "hitTex");
+      __name(createBlood, "createBlood");
+      TripShader = {
+        uniforms: { tDiffuse: { value: null }, uTime: { value: 0 }, uWeed: { value: 0 }, uCoke: { value: 0 }, uPill: { value: 0 }, uDrunk: { value: 0 }, uTurbo: { value: 0 }, uRes: { value: new Vector2(1, 1) } },
+        vertexShader: "varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}",
+        fragmentShader: `uniform sampler2D tDiffuse;uniform float uTime,uWeed,uCoke,uPill,uDrunk,uTurbo;uniform vec2 uRes;varying vec2 vUv;
+vec3 hue(vec3 c,float a){const mat3 toY=mat3(0.299,0.596,0.211,0.587,-0.274,-0.523,0.114,-0.322,0.312);const mat3 toR=mat3(1.0,1.0,1.0,0.956,-0.272,-1.106,0.621,-0.647,1.703);vec3 y=toY*c;float h=atan(y.z,y.y)+a,ch=length(y.yz);return toR*vec3(y.x,ch*cos(h),ch*sin(h));}
+void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
+ uv+=uWeed*0.0055*vec2(sin(uv.y*11.0+uTime*1.7),cos(uv.x*9.0+uTime*1.3));
+ uv+=uPill*0.018*c*sin(r*26.0-uTime*5.5);
+ uv+=uDrunk*0.004*vec2(sin(uTime*1.1+uv.y*3.0),cos(uTime*0.8+uv.x*2.0));
+ float ca=uCoke*0.0016+uPill*0.0055+uWeed*0.0018;
+ vec3 col=texture2D(tDiffuse,uv).rgb;
+ if(ca>0.00001){col.r=texture2D(tDiffuse,uv+c*ca*2.0).r;col.b=texture2D(tDiffuse,uv-c*ca*2.0).b;}
+ if(uDrunk>0.001){vec3 g=texture2D(tDiffuse,uv+vec2(0.011*sin(uTime*1.4),0.006*cos(uTime*1.05))*uDrunk).rgb;col=mix(col,g,0.42*uDrunk);}
+ if(uCoke>0.001){vec2 px=1.0/uRes;vec3 b=(texture2D(tDiffuse,uv+vec2(px.x,0.)).rgb+texture2D(tDiffuse,uv-vec2(px.x,0.)).rgb+texture2D(tDiffuse,uv+vec2(0.,px.y)).rgb+texture2D(tDiffuse,uv-vec2(0.,px.y)).rgb)*0.25;col=max(col+(col-b)*1.4*uCoke,0.0);}
+ float sat=1.0+uWeed*0.35+uPill*0.8+uCoke*0.12+uTurbo*0.18;float l=dot(col,vec3(0.2126,0.7152,0.0722));col=mix(vec3(l),col,sat);
+ float ang=uWeed*(0.4*sin(uTime*0.45+r*2.0)+0.1)+uPill*(uTime*1.6+r*5.0);col=mix(col,max(hue(col,ang),0.0),clamp(uWeed*0.7+uPill,0.0,1.0));
+ col=(col-0.18)*(1.0+uCoke*0.16)+0.18;
+ float v=smoothstep(0.32,0.78,r);col+=uWeed*v*0.10*vec3(0.55+0.45*sin(uTime*0.7),0.25,0.75+0.25*cos(uTime*0.6));
+ col+=uPill*v*0.12*vec3(0.5+0.5*sin(uTime*3.0),0.5+0.5*sin(uTime*3.0+2.1),0.5+0.5*sin(uTime*3.0+4.2));
+ col*=1.0-uCoke*v*0.28-uTurbo*v*0.12;
+ gl_FragColor=vec4(col,1.0);}`
+      };
+      __name(crewTagCanvas, "crewTagCanvas");
+      __name(tagTexture, "tagTexture");
+      __name(makeTagMesh, "makeTagMesh");
+    }
+  });
+
   // src/main.js
   function startGame(D, opts = {}) {
     const MOBILE = opts.mobile ?? matchMedia("(pointer:coarse)").matches;
@@ -34838,12 +35994,12 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const a = p.pts[0];
       return Math.abs(a[0]) < BOX_X * 0.9 && Math.abs(a[1]) < BOX_Z * 0.9;
     });
-    for (let k = 0; k < (MOBILE ? 140 : 210); k++) {
+    for (let k = 0; k < (MOBILE ? 185 : 255); k++) {
       const pp = goodPaths[R() * goodPaths.length | 0];
       if (!pp) break;
       const g = makePed(100 + k, M);
       scene.add(g);
-      const o = { g, path: pp, k: 1, dir: 1, lat: (R() - 0.5) * 2 * pp.lat, speed: 1.1 + R() * 0.6, t: R() };
+      const o = { g, path: pp, k: 1, dir: 1, lat: (R() - 0.5) * 2 * pp.lat, speed: 1.1 + R() * 0.6, t: R(), tough: R() < 0.28, pitch: 0.82 + R() * 0.42 };
       const i = Math.floor(R() * (pp.pts.length - 1));
       o.k = i + 1;
       const a = pp.pts[i], b = pp.pts[i + 1];
@@ -34877,7 +36033,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           o.down = 0;
           o.g.rotation.x = 0;
           o.g.position.y = 0;
-          o.ret = true;
+          if (o.wasHit && !o.hostile && !o.special) {
+            o.wasHit = false;
+            startReact(o, o.crewR || o.tough && Math.random() < 0.5 ? "fight" : "flee");
+          } else if (o.loiter) o.home = true;
+          else o.ret = true;
         }
         return;
       }
@@ -34885,8 +36045,21 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         specialStep(o, dt);
         return;
       }
+      if (o.react) {
+        reactStep(o, dt);
+        return;
+      }
+      if (o.loiter) {
+        loiterStep(o, dt);
+        return;
+      }
       if (o.seek || o.ret) {
         pedSeekStep(o, dt);
+        return;
+      }
+      if (o.idleT > 0) {
+        o.idleT -= dt;
+        animPed(o.g, 0, dt);
         return;
       }
       o.scanT = (o.scanT ?? Math.random() * 1.5) - dt;
@@ -34894,6 +36067,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         o.scanT = 0.8 + Math.random() * 0.8;
         pedScan(o);
         if (o.seek) return;
+        if (Math.random() < 0.035) {
+          o.idleT = 2 + Math.random() * 5;
+          o.g.rotation.y += (Math.random() - 0.5) * 2.4;
+          return;
+        }
       }
       const pp = o.path;
       const i = o.dir > 0 ? o.k - 1 : o.k;
@@ -35119,24 +36297,48 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(pedTake, "pedTake");
     function hitPed(pd, how) {
-      if (pd.hp > 1 && how !== "car" && how !== "gun") {
-        pd.hp--;
-        pd.down = 0;
-        pd.flinch = 0.4;
-        audio.crash(2);
+      bloodHit(pd, pd.x - P.x, pd.z - P.z, how);
+      if (pd.hostile || pd.special) {
+        if (pd.hp > 1 && how !== "car" && how !== "gun") {
+          pd.hp--;
+          pd.down = 0;
+          pd.flinch = 0.4;
+          audio.crash(2);
+          return;
+        }
+        if (pd.hp > 1 && how === "gun") {
+          pd.hp--;
+          pd.flinch = 0.4;
+          return;
+        }
+        knockPed(pd);
         return;
       }
-      if (pd.hp > 1 && how === "gun") {
-        pd.hp--;
-        pd.flinch = 0.4;
+      if (pd.react === "fight" && how !== "car" && how !== "gun") {
+        pd.fhp = (pd.fhp ?? (pd.tough || pd.crewR ? 2 : 1)) - (how === "bat" ? 2 : 1);
+        if (pd.fhp > 0) {
+          pd.flinchT = 0.28;
+          audio.crash(1.5);
+          return;
+        }
+      } else if (how === "fist" && !pd.hurt1) {
+        pd.hurt1 = true;
+        audio.crash(1.5);
+        startReact(pd, chooseReact(pd));
+        pd.flinchT = 0.3;
+        panicAround(pd.x, pd.z, pd);
         return;
       }
-      knockPed(pd);
-      if (!pd.hostile && !pd.special) addHeat(how === "gun" ? 0.45 : 0);
+      pd.wasHit = true;
+      knockPed(pd, true);
+      panicAround(pd.x, pd.z, pd);
+      addHeat(how === "gun" ? 0.45 : 0);
     }
     __name(hitPed, "hitPed");
-    function knockPed(pd) {
+    function knockPed(pd, bloody) {
       pd.down = 2.6;
+      if (pd.react) endReact(pd, true);
+      if (bloody || pd.hostile || pd.special) blood.pool(pd.x + (Math.random() - 0.5) * 0.3, pd.z + (Math.random() - 0.5) * 0.3);
       if (pd.hostile || pd.special) pd.dead = true;
       if (pd.seek) {
         pd.seek.claim = null;
@@ -35365,7 +36567,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           rivalNoise(P.x, P.z, 0.4);
         }
       } else {
-        P.fireCool = 0.42;
+        P.fireCool = 0.42 * (boostOn("coke") ? 0.7 : 1);
         P.swingT = 0.28;
         audio.swing();
         const reach = 1.45 + 0.04 * (stats.str - 3);
@@ -35484,6 +36686,9 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     composer.addPass(new RenderPass(scene, camera));
     let bloom = new UnrealBloomPass(new Vector2(innerWidth, innerHeight), 0.5, 0.5, 0.82);
     composer.addPass(bloom);
+    const trip = new ShaderPass(TripShader);
+    trip.enabled = false;
+    composer.addPass(trip);
     composer.addPass(new OutputPass());
     applyTime(timeName);
     const audio = createAudio();
@@ -35803,6 +37008,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       P.vx = 0;
       P.vz = 0;
       player.position.set(P.x, 0, P.z);
+      for (const k in boosts) delete boosts[k];
+      setTimeout(() => {
+        camStep(0, true);
+        fillAround(P.x, P.z);
+      }, 0);
       updateHoodHud();
       if (opts.onMoney) opts.onMoney(cash);
       return { ok: true, msg: kind === "bust" ? "Geschnappt. 40 \u20AC weg." : "Au\xDFer Gefecht. 40 \u20AC weg.", cash };
@@ -36397,7 +37607,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       if (T === "sign" && job.stage === 0 && onFoot) {
         let best = null, bd = 1.9;
         for (const pd of peds) {
-          if (pd.signed || pd.hostile || pd.special || (pd.down || 0) > 0) continue;
+          if (pd.signed || pd.hostile || pd.special || pd.react || pd.loiter || (pd.down || 0) > 0) continue;
           const d = Math.hypot(pd.x - P.x, pd.z - P.z);
           if (d < bd) {
             bd = d;
@@ -36763,6 +37973,9 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           }
         }
         sp = o.speed;
+      } else if (o.special === "tagger") {
+        taggerStep(o, dt);
+        return;
       } else if (o.special === "flee") {
         o.fleeT -= dt;
         if (o.fleeT <= 0) {
@@ -37188,49 +38401,116 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(offScreen, "offScreen");
     let recT = 0;
+    function viewDiag() {
+      const hw = (camera.right - camera.left) / 2, hh = (camera.top - camera.bottom) / 2 / Math.cos(TILT);
+      return Math.hypot(hw, hh);
+    }
+    __name(viewDiag, "viewDiag");
+    function pedEligible(o) {
+      return !(o.hostile || o.special || o.seek || o.ret || o.react || o.loiter || (o.down || 0) > 0 || o.signed && job && job.J.type === "sign");
+    }
+    __name(pedEligible, "pedEligible");
+    function putPed(o, pp, i, lat, tt) {
+      const pos = pedPoint(pp, pp.pts[i], pp.pts[i + 1], lat, tt);
+      o.path = pp;
+      o.k = i + 1;
+      o.dir = Math.random() < 0.5 ? 1 : -1;
+      o.lat = lat;
+      o.t = o.dir > 0 ? tt : 1 - tt;
+      o.x = pos[0];
+      o.z = pos[1];
+      o.signed = false;
+      o.hurt1 = false;
+      o.fhp = void 0;
+      o.idleT = 0;
+      o.g.position.set(o.x, 0, o.z);
+      o.g.rotation.x = 0;
+      o.g.position.y = 0;
+    }
+    __name(putPed, "putPed");
+    function spotNear(ox, oz, rIn, rOut, allowOn) {
+      for (let t = 0; t < 8; t++) {
+        const a = Math.random() * Math.PI * 2, r = rIn + Math.random() * (rOut - rIn);
+        const x = ox + Math.cos(a) * r, z = oz + Math.sin(a) * r;
+        const L = pedCells.get(Math.floor(x / 40) + "," + Math.floor(z / 40));
+        if (!L) continue;
+        const [pp, i] = L[Math.random() * L.length | 0];
+        const lat = (Math.random() - 0.5) * 2 * pp.lat, tt = Math.random();
+        const pos = pedPoint(pp, pp.pts[i], pp.pts[i + 1], lat, tt);
+        if (Math.hypot(pos[0] - ox, pos[1] - oz) < rIn * 0.8) continue;
+        if (!allowOn && !offScreen(pos[0], pos[1], 2)) continue;
+        if (!city.inEdge(pos[0], pos[1], 3)) continue;
+        return [pp, i, lat, tt];
+      }
+      return null;
+    }
+    __name(spotNear, "spotNear");
+    function fillAround(ox, oz) {
+      const vd = viewDiag();
+      const far = Math.max(46, vd * 1.45 + 10);
+      let n = 0;
+      const want = Math.round(peds.length * 0.8);
+      for (const o of peds) {
+        if (n >= want) break;
+        if (!pedEligible(o)) continue;
+        const q = spotNear(ox, oz, 2.5, far - 4, true);
+        if (!q) continue;
+        putPed(o, ...q);
+        n++;
+      }
+      return n;
+    }
+    __name(fillAround, "fillAround");
     function recycle(dt) {
       recT -= dt;
       if (recT > 0) return;
-      recT = 0.35;
+      recT = 0.25;
       const ox = P.x, oz = P.z;
-      const far = Math.max(80, cam.h * 2.6), rIn = Math.max(24, cam.h * 1.25), rOut = Math.max(55, far * 0.85);
-      let n = 0;
+      const vd = viewDiag();
+      const far = Math.max(46, vd * 1.45 + 10), rIn = vd + 2.5, rOut = Math.max(rIn + 14, far - 3);
+      let n = 0, last2 = null;
       for (const o of peds) {
-        if (n >= 7) break;
-        if (o.hostile || o.special || o.seek || o.ret || (o.down || 0) > 0) continue;
+        if (n >= 14) break;
+        if (!pedEligible(o)) continue;
         const d = Math.hypot(o.x - ox, o.z - oz);
         if (d < far) continue;
-        for (let t = 0; t < 6; t++) {
-          const a = Math.random() * Math.PI * 2, r = rIn + Math.random() * (rOut - rIn);
-          const x = ox + Math.cos(a) * r, z = oz + Math.sin(a) * r;
-          const L = pedCells.get(Math.floor(x / 40) + "," + Math.floor(z / 40));
-          if (!L) continue;
-          const [pp, i] = L[Math.random() * L.length | 0];
-          const lat = (Math.random() - 0.5) * 2 * pp.lat, tt = Math.random();
-          const pos = pedPoint(pp, pp.pts[i], pp.pts[i + 1], lat, tt);
-          if (!offScreen(pos[0], pos[1]) || !city.inEdge(pos[0], pos[1], 3)) continue;
+        if (last2 && Math.random() < 0.33 && last2.path) {
+          const pp = last2.path;
           o.path = pp;
-          o.k = i + 1;
-          o.dir = 1;
-          o.lat = lat;
-          o.t = tt;
-          o.x = pos[0];
-          o.z = pos[1];
-          o.signed = false;
-          o.g.position.set(o.x, 0, o.z);
-          n++;
-          break;
+          o.k = last2.k;
+          o.dir = last2.dir;
+          o.t = Math.max(0, Math.min(0.99, last2.t + (Math.random() - 0.5) * 0.05));
+          o.lat = Math.max(-pp.lat - 0.3, Math.min(pp.lat + 0.3, last2.lat + (Math.random() < 0.5 ? -0.6 : 0.6)));
+          o.speed = last2.speed;
+          const pos = pathPos(o);
+          if (offScreen(pos[0], pos[1], 2)) {
+            o.x = pos[0];
+            o.z = pos[1];
+            o.signed = false;
+            o.hurt1 = false;
+            o.fhp = void 0;
+            o.idleT = 0;
+            o.g.position.set(o.x, 0, o.z);
+            n++;
+            last2 = null;
+            continue;
+          }
         }
+        const q = spotNear(ox, oz, rIn, rOut, false);
+        if (!q) continue;
+        putPed(o, ...q);
+        n++;
+        last2 = o;
       }
       let m = 0;
-      const cfar = Math.max(150, cam.h * 3.2);
+      const cfar = Math.max(120, vd * 3.4);
       for (const o of cars) {
         if (m >= 3) break;
         if (!o.ai || o.police || o.wrecked || o.target || o === P.car) continue;
         const d = Math.hypot(o.x - ox, o.z - oz);
         if (d < cfar) continue;
         for (let t = 0; t < 6; t++) {
-          const a = Math.random() * Math.PI * 2, r = Math.max(50, cam.h * 1.7) + Math.random() * 70;
+          const a = Math.random() * Math.PI * 2, r = Math.max(45, vd + 10) + Math.random() * 60;
           const x = ox + Math.cos(a) * r, z = oz + Math.sin(a) * r;
           const L = roadCells.get(Math.floor(x / 60) + "," + Math.floor(z / 60));
           if (!L) continue;
@@ -37542,6 +38822,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       audio.bell && audio.bell();
       camStep(0, true);
+      fillAround(P.x, P.z);
       toast("U-Bahn: " + u.name + (wanted > 0 ? " \u2014 deine Spur verliert sich." : ""), 2);
       return true;
     }
@@ -37559,6 +38840,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (s) mk.push({ x: s.x, z: s.z, k, label: s.name });
       }
       for (const u of ubahn) mk.push({ x: u.x, z: u.z, k: "ubahn", label: u.name });
+      for (const sp of SHOPS) mk.push({ x: sp.x, z: sp.z, k: "shop", label: sp.name });
       for (const r of regions) if (r.rival) mk.push({ x: r.rival.x, z: r.rival.z, k: "rival", label: r.crew[0], mine: r.owner === "mine", hot: !!r.hot });
       const tg = jobTarget();
       if (tg) mk.push({ x: tg.x, z: tg.z, k: "target", label: job.title });
@@ -37568,9 +38850,12 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         edge: city.edge,
         roads: mapRoads,
         rails: (D.rails || []).filter((r) => !r.ug || RAILTEST).map((r) => r.p),
-        regions: regions.map((r) => ({ name: r.name, x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1, owner: r.owner, fixed: r.fixed, crew: r.crew ? r.crew[0] : "", hot: !!r.hot })),
+        regions: regions.map((r) => ({ home: r.fixed && r === homeReg, name: r.name, x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1, owner: r.owner, fixed: r.fixed, crew: r.crew ? r.crew[0] : "", hot: !!r.hot })),
         markers: mk,
         avail,
+        hood: hoodName,
+        tagR: TAG_R,
+        tags: tags.map((t) => ({ id: t.id, x: t.seg.cx, z: t.seg.cz, o: t.owner, col: t.owner === "mine" ? "#5fc04a" : rgbHex(CREWS[t.crew][1]), img: t.owner === "mine" ? t.img : crewImg(t.crew), spray: !!t.spraying })),
         player: { x: P.car ? P.car.x : P.x, z: P.car ? P.car.z : P.z, rot: P.car ? P.car.rot : P.rot },
         trains: trains.map((t) => ({ x: t.meshes[0].position.x, z: t.meshes[0].position.z })),
         route: AP ? AP.pts.slice(AP.i).map((q) => [q.x, q.z]) : null,
@@ -37584,7 +38869,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const w = [{ k: null, name: "Faust", have: true }];
       if (P.weapons.bat) w.push({ k: "bat", name: "Baseballschl\xE4ger", have: true });
       for (const [k, n] of [["pistol", "Pistole"], ["smg", "Maschinenpistole"], ["shotgun", "Schrotflinte"]]) if (P.weapons[k] > 0 || gotUnlock[k]) w.push({ k, name: n, ammo: P.weapons[k] || 0, have: P.weapons[k] > 0 });
-      return { cash: ds.cash, weapon: P.weapon, weapons: w, goods: ds.items.map((it) => ({ id: it.id, name: it.name, icon: it.icon, n: it.have, note: it.note })), items: bag.map((b) => ({ ...b })), health, maxh: MAXH(), stats: statData() };
+      return { cash: ds.cash, weapon: P.weapon, weapons: w, goods: ds.items.map((it) => ({ id: it.id, name: it.name, icon: it.icon, n: it.have, note: it.note, use: USE_GOODS[it.id] })), stuff: SHOP_ITEMS.map((q) => ({ id: q.id, name: q.name, icon: q.icon, note: q.note, n: P.stuff[q.id] | 0, use: q.use })).filter((q) => q.n > 0), boosts: boostList(), items: bag.map((b) => ({ ...b })), health, maxh: MAXH(), stats: statData() };
     }
     __name(bagData, "bagData");
     function statData() {
@@ -37609,7 +38894,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         doneIds: { ...doneIds },
         gotUnlock: { ...gotUnlock },
         regions: regions.map((r) => ({ o: r.owner, f: r.fixed, k: r.risk, h: !!r.hot })),
-        time: timeName
+        time: timeName,
+        hood: hoodName,
+        stuff: { ...P.stuff },
+        tags: tags.map((t) => ({ s: { A: t.seg.A, B: t.seg.B, len: t.seg.len, nx: t.seg.nx, nz: t.seg.nz, cx: t.seg.cx, cz: t.seg.cz, h: t.seg.h, kind: t.seg.kind, maxW: t.seg.maxW }, o: t.owner, c: t.crew, img: t.owner === "mine" ? t.img : null }))
       };
     }
     __name(snapshot, "snapshot");
@@ -37651,7 +38939,12 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           player.position.set(P.x, 0, P.z);
         }
         if (S.time && TIMES[S.time]) applyTime(S.time);
+        if (S.hood) setHoodName(S.hood);
+        Object.assign(P.stuff, S.stuff || {});
+        if (Array.isArray(S.tags)) restoreTags(S.tags);
+        syncLoiter();
         camStep(0, true);
+        fillAround(P.x, P.z);
         updateHoodHud();
         return true;
       } catch (e) {
@@ -37660,6 +38953,946 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
     }
     __name(restore, "restore");
+    const blood = createBlood(scene);
+    function bloodHit(pd, dx, dz, how) {
+      const amt = { fist: 0.55, bat: 1.15, gun: 1, car: 1.6 }[how] ?? 0.8;
+      blood.spray(pd.x, 1.25, pd.z, dx, dz, amt);
+    }
+    __name(bloodHit, "bloodHit");
+    function chooseReact(pd) {
+      if (pd.crewR) return "fight";
+      const armed = P.weapon === "pistol" || P.weapon === "smg" || P.weapon === "shotgun";
+      if (armed) return "flee";
+      if (pd.tough) return Math.random() < 0.75 ? "fight" : "flee";
+      return Math.random() < 0.1 ? "fight" : "flee";
+    }
+    __name(chooseReact, "chooseReact");
+    function startReact(o, kind, quiet) {
+      if (o.seek) {
+        o.seek.claim = null;
+        o.seek = null;
+      }
+      o.ret = false;
+      o.idleT = 0;
+      o.react = kind;
+      o.stuckT = 0;
+      o.fleeOff = 0;
+      const d = Math.hypot(o.x - P.x, o.z - P.z);
+      if (kind === "flee") {
+        o.reactT = 5.5 + Math.random() * 2.5;
+        if (!quiet) {
+          audio.scream && audio.scream(d, o.pitch || 1);
+          o.screamAgain = Math.random() < 0.45 ? 1.5 + Math.random() : 0;
+        } else o.screamAgain = Math.random() < 0.25 ? 0.3 + Math.random() * 1.2 : 0;
+        if (o.fRing) o.fRing.visible = false;
+      } else {
+        o.reactT = 11;
+        o.atkT = 0.55 + Math.random() * 0.4;
+        o.fhp = o.fhp ?? (o.tough || o.crewR ? 2 : 1);
+        if (!o.fRing) {
+          const r = new Mesh(ringGeo, hostRing);
+          r.rotation.x = -Math.PI / 2;
+          r.position.y = 0.06;
+          o.g.add(r);
+          o.fRing = r;
+        }
+        o.fRing.visible = true;
+        audio.gibber && audio.gibber();
+        if (d < 30) toast(o.crewR ? "Die " + o.crewR.crew[0] + " schlagen zur\xFCck!" : ["\u201EBist du bescheuert?!\u201C", "\u201ENa warte, Freundchen!\u201C", "\u201EKomm her, du!\u201C", "\u201EHast du sie noch alle?\u201C"][Math.random() * 4 | 0], 1.5);
+        if (o.crewR) rivalNoise(o.x, o.z, 0.35);
+      }
+    }
+    __name(startReact, "startReact");
+    function endReact(o, keep) {
+      o.react = null;
+      o.screamAgain = 0;
+      if (o.fRing) o.fRing.visible = false;
+      const u = o.g.userData;
+      if (u && u.arms) for (const a of u.arms) {
+        a.rotation.x = 0;
+        a.rotation.z = 0;
+      }
+      if (keep) return;
+      if (o.loiter) {
+        o.home = true;
+        return;
+      }
+      repath(o);
+    }
+    __name(endReact, "endReact");
+    function repath(o) {
+      let best = null, bd = 1e9;
+      const cx = Math.floor(o.x / 40), cz = Math.floor(o.z / 40);
+      for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) {
+        for (const [pp, k] of pedCells.get(cx + i + "," + (cz + j)) || []) {
+          const q = pedPoint(pp, pp.pts[k], pp.pts[k + 1], 0, 0.5);
+          const d = Math.hypot(q[0] - o.x, q[1] - o.z);
+          if (d < bd) {
+            bd = d;
+            best = [pp, k];
+          }
+        }
+      }
+      if (best) {
+        o.path = best[0];
+        o.k = best[1] + 1;
+        o.dir = 1;
+        o.t = 0.5;
+        o.lat = 0;
+      }
+      o.ret = true;
+      o.seekT = 0;
+    }
+    __name(repath, "repath");
+    function panicAround(x, z, src) {
+      let n = 0;
+      for (const o of peds) {
+        if (o === src || o.hostile || o.special || o.react || o.loiter || (o.down || 0) > 0) continue;
+        const d = Math.hypot(o.x - x, o.z - z);
+        if (d > 10) continue;
+        if (Math.random() < 0.6) {
+          startReact(o, "flee", true);
+          o.reactT = 3.5 + Math.random() * 2.5;
+          if (++n >= 6) break;
+        }
+      }
+    }
+    __name(panicAround, "panicAround");
+    function reactStep(o, dt) {
+      o.reactT -= dt;
+      if (o.flinchT > 0) {
+        o.flinchT -= dt;
+        animPed(o.g, 0, dt);
+        return;
+      }
+      const tg = P.car || P;
+      const dx = o.x - tg.x, dz = o.z - tg.z, d = Math.hypot(dx, dz) || 1;
+      const u = o.g.userData;
+      if (o.react === "fight" && (P.car || P.train)) {
+        o.react = "flee";
+        o.reactT = 3 + Math.random() * 2;
+        if (o.fRing) o.fRing.visible = false;
+      }
+      if (o.react === "flee") {
+        if (o.screamAgain > 0) {
+          o.screamAgain -= dt;
+          if (o.screamAgain <= 0 && d < 40) audio.scream && audio.scream(d, (o.pitch || 1) * 1.04);
+        }
+        if (o.reactT <= 0 || d > 50) {
+          endReact(o);
+          return;
+        }
+        const a = Math.atan2(dx, dz) + (o.fleeOff || 0) + Math.sin(tAcc * 2.3 + (o.pitch || 1) * 9) * 0.18;
+        const sp = 4.8 + (o.pitch || 1) * 0.45;
+        const st = sp * dt;
+        const np = { x: o.x + Math.sin(a) * st, z: o.z + Math.cos(a) * st };
+        city.grid.resolve(np, 0.35);
+        ejectFromBuildings(np, 0.4);
+        const mv = Math.hypot(np.x - o.x, np.z - o.z);
+        if (mv < st * 0.4) {
+          o.stuckT = (o.stuckT || 0) + dt;
+          if (o.stuckT > 0.2) {
+            o.fleeOff = (o.fleeOff || 0) + (((o.pitch || 1) * 100 | 0) % 2 ? 1.1 : -1.1);
+            o.stuckT = 0;
+          }
+        } else {
+          o.stuckT = 0;
+          o.fleeOff = (o.fleeOff || 0) * Math.pow(0.6, dt);
+        }
+        if (mv > 1e-3) o.g.rotation.y = Math.atan2(np.x - o.x, np.z - o.z);
+        o.x = np.x;
+        o.z = np.z;
+        o.g.position.set(o.x, 0, o.z);
+        if (!offScreen(o.x, o.z, 4)) {
+          animPed(o.g, sp, dt);
+          if (u && u.arms) {
+            u.arms[0].rotation.x = -2.6 + Math.sin(tAcc * 17 + o.x) * 0.4;
+            u.arms[1].rotation.x = -2.6 + Math.cos(tAcc * 15 + o.z) * 0.4;
+          }
+        }
+        return;
+      }
+      if (o.reactT <= 0 || d > 26) {
+        endReact(o);
+        return;
+      }
+      if (d > 1.2) {
+        const sp = 3.7;
+        const st = Math.min(d - 1, sp * dt);
+        const np = { x: o.x - dx / d * st, z: o.z - dz / d * st };
+        city.grid.resolve(np, 0.35);
+        ejectFromBuildings(np, 0.4);
+        o.g.rotation.y = Math.atan2(-dx, -dz);
+        o.x = np.x;
+        o.z = np.z;
+        o.g.position.set(o.x, 0, o.z);
+        animPed(o.g, sp, dt);
+        o.atkT = Math.max(o.atkT, 0.35);
+        if (u && u.arms) {
+          u.arms[0].rotation.x = -0.9;
+          u.arms[1].rotation.x = -0.9;
+        }
+        return;
+      }
+      o.g.rotation.y = Math.atan2(-dx, -dz);
+      animPed(o.g, 0, dt);
+      o.atkT -= dt;
+      if (u && u.arms) {
+        const k = Math.max(0, o.atkT);
+        u.arms[1].rotation.x = k < 0.25 ? -0.9 - 1.2 * Math.sin((0.25 - k) / 0.25 * Math.PI) : -0.9;
+        u.arms[0].rotation.x = -1;
+      }
+      if (o.atkT <= 0) {
+        o.atkT = 1.05 + Math.random() * 0.45;
+        audio.swing();
+        if (Math.random() < 0.5) {
+          hurt(1);
+          shake = Math.max(shake, 0.22);
+          audio.crash(1.2);
+          blood.spray(P.x, 1.3, P.z, P.x - o.x, P.z - o.z, 0.35);
+        }
+      }
+    }
+    __name(reactStep, "reactStep");
+    function spawnLoiterers() {
+      for (const r of regions) {
+        if (!r.rival || !r.crew || r.owner === "mine") continue;
+        const door = r.rival;
+        const f = city.facing(door.x, door.z, 16);
+        let tx2 = 1, tz = 0, nx = 0, nz = 1;
+        if (f) {
+          tx2 = (f.e.B[0] - f.e.A[0]) / f.e.len;
+          tz = (f.e.B[1] - f.e.A[1]) / f.e.len;
+          nx = f.e.nx;
+          nz = f.e.nz;
+        }
+        r.loiter = [];
+        for (let i = 0; i < 3; i++) {
+          const side = i === 1 ? 1 : -1;
+          const off = 2.4 + i * 0.9;
+          const x = door.x + tx2 * off * side + nx * (0.8 + i * 0.7), z = door.z + tz * off * side + nz * (0.8 + i * 0.7);
+          const o = makeSpecial(x, z, { jacket: r.crew[1], shirt: [0.1, 0.1, 0.1], pants: [0.12, 0.12, 0.14], hair: [0.05, 0.04, 0.03], skin: [[0.85, 0.66, 0.5], [0.6, 0.42, 0.3], [0.42, 0.3, 0.2]][(i + r.i) % 3], shoes: [0.9, 0.9, 0.9], open: i === 1, long: false, beanie: i === 2, coat: false }, 1.38);
+          o.loiter = { x: o.x, z: o.z };
+          o.crewR = r;
+          o.tough = true;
+          o.pitch = 0.8 + Math.random() * 0.25;
+          o.g.rotation.y = Math.atan2(door.x - o.x, door.z - o.z) + (i - 1) * 0.9;
+          r.loiter.push(o);
+        }
+      }
+    }
+    __name(spawnLoiterers, "spawnLoiterers");
+    function syncLoiter() {
+      for (const r of regions) {
+        if (!r.loiter) continue;
+        if (r.owner !== "mine") continue;
+        for (const o of r.loiter) {
+          if (o.loiter && !o.react && !(o.down > 0)) {
+            o.loiter = null;
+            o.crewR = null;
+            o.tough = Math.random() < 0.4;
+            repath(o);
+          }
+        }
+        r.loiter = null;
+      }
+    }
+    __name(syncLoiter, "syncLoiter");
+    function loiterStep(o, dt) {
+      const L = o.loiter;
+      const dx = L.x - o.x, dz = L.z - o.z, d = Math.hypot(dx, dz);
+      if (d > 0.4) {
+        const st = Math.min(d, 1.6 * dt);
+        o.x += dx / d * st;
+        o.z += dz / d * st;
+        o.g.rotation.y = Math.atan2(dx, dz);
+        o.g.position.set(o.x, 0, o.z);
+        animPed(o.g, 1.6, dt);
+        return;
+      }
+      const pd = Math.hypot(P.x - o.x, P.z - o.z);
+      if (pd < 7 && !P.car) {
+        const want = Math.atan2(P.x - o.x, P.z - o.z);
+        let df = want - o.g.rotation.y;
+        while (df > Math.PI) df -= 2 * Math.PI;
+        while (df < -Math.PI) df += 2 * Math.PI;
+        o.g.rotation.y += df * Math.min(1, dt * 3);
+      }
+      animPed(o.g, 0, dt);
+      const u = o.g.userData;
+      if (u && u.body) u.body.position.y = Math.abs(Math.sin(tAcc * 2.2 + o.x)) * 0.012;
+    }
+    __name(loiterStep, "loiterStep");
+    const boosts = {};
+    const BOOST = { weed: { n: "Pott", i: "\u{1F33F}" }, coke: { n: "Coke", i: "\u2744\uFE0F" }, pill: { n: "Party Pillen", i: "\u{1F48A}" }, drunk: { n: "Kurzer Klarer", i: "\u{1F943}" }, turbo: { n: "Dosen-Turbo", i: "\u{1F96B}" }, gum: { n: "Nervenkaugummi", i: "\u{1F36C}" } };
+    const BOOST_END = { weed: "Der Pott ist durch \u2014 alles wieder normal.", coke: "Das Coke l\xE4sst nach.", pill: "Die Farben h\xF6ren auf zu tanzen.", drunk: "Wieder n\xFCchtern.", turbo: "Die Dose ist leer.", gum: "Kaugummi ausgelutscht." };
+    function boost(k, sec) {
+      const b = boosts[k];
+      if (b && b.t > 0) {
+        b.t = Math.max(b.t, sec);
+        b.max = Math.max(b.max, b.t);
+      } else boosts[k] = { t: sec, max: sec, age: 0 };
+    }
+    __name(boost, "boost");
+    function boostOn(k) {
+      return !!(boosts[k] && boosts[k].t > 0);
+    }
+    __name(boostOn, "boostOn");
+    function boostAmt(k) {
+      const b = boosts[k];
+      if (!b || b.t <= 0) return 0;
+      return Math.max(0, Math.min(1, b.age / 1.2, b.t / 2.2));
+    }
+    __name(boostAmt, "boostAmt");
+    function boostStep(dt) {
+      for (const k in boosts) {
+        const b = boosts[k];
+        b.t -= dt;
+        b.age += dt;
+        if (b.t <= 0) {
+          delete boosts[k];
+          toast(BOOST_END[k], 1.6);
+        }
+      }
+    }
+    __name(boostStep, "boostStep");
+    function moveMul() {
+      return 1 + (boostOn("turbo") ? 0.38 : 0) + (boostOn("coke") ? 0.28 : 0) + (boostOn("pill") ? 0.1 : 0) - (boostOn("drunk") ? 0.08 : 0);
+    }
+    __name(moveMul, "moveMul");
+    function boostList() {
+      return Object.keys(boosts).map((k) => ({ k, name: BOOST[k].n, icon: BOOST[k].i, t: Math.max(0, Math.ceil(boosts[k].t)) }));
+    }
+    __name(boostList, "boostList");
+    function tripStep() {
+      const U = trip.uniforms;
+      U.uTime.value = tAcc;
+      U.uWeed.value = boostAmt("weed");
+      U.uCoke.value = boostAmt("coke");
+      U.uPill.value = boostAmt("pill");
+      U.uDrunk.value = boostAmt("drunk");
+      U.uTurbo.value = boostAmt("turbo") * 0.6;
+      U.uRes.value.set(innerWidth, innerHeight);
+      return U.uWeed.value + U.uCoke.value + U.uPill.value + U.uDrunk.value + U.uTurbo.value > 1e-3;
+    }
+    __name(tripStep, "tripStep");
+    function fxChip() {
+      const el = document.getElementById("fxChip");
+      if (!el) return;
+      const h = boostList().map((b) => `<span>${b.icon}<b>${b.t}</b></span>`).join("");
+      if (el._h !== h) {
+        el._h = h;
+        el.innerHTML = h;
+      }
+    }
+    __name(fxChip, "fxChip");
+    const USE_GOODS = { brokkoli: "Rauchen", backpulver: "Ziehen", zuckerwatte: "Einwerfen" };
+    const SHOP_ITEMS = [
+      { id: "dose", name: "Dosen-Turbo", icon: "\u{1F96B}", price: 8, note: "Energy aus der Dose: 25 s schneller rennen", use: "Trinken" },
+      { id: "klarer", name: "Kurzer Klarer", icon: "\u{1F943}", price: 6, note: "+1 \u2665, daf\xFCr schwankt 15 s die Stra\xDFe", use: "Kippen" },
+      { id: "pflaster", name: "Pflaster-Pack", icon: "\u{1FA79}", price: 15, note: "+2 \u2665 sofort", use: "Kleben" },
+      { id: "kaugummi", name: "Nervenkaugummi", icon: "\u{1F36C}", price: 12, note: "40 s k\xFChlt die Fahndung doppelt so schnell ab", use: "Kauen" }
+    ];
+    P.stuff = { dose: 0, klarer: 0, pflaster: 0, kaugummi: 0 };
+    function useStuff(id) {
+      if (USE_GOODS[id]) {
+        const inv = deal.state().inv;
+        if (!(inv[id] > 0)) {
+          toast("Hast du nicht dabei.", 1.2);
+          return false;
+        }
+        deal.drop(id);
+        if (id === "brokkoli") {
+          boost("weed", 20);
+          audio.puff && audio.puff();
+          toast("Tief durchziehen \u2026 die Hood wird bunt.", 2);
+        } else if (id === "backpulver") {
+          boost("coke", 22);
+          audio.puff && audio.puff();
+          toast("Hellwach. Alles scharf, alles schnell.", 2);
+        } else {
+          boost("pill", 12);
+          boost("turbo", 8);
+          audio.gulp && audio.gulp();
+          toast("Party! Die Stadt f\xE4ngt an zu tanzen.", 2);
+        }
+        updateHoodHud();
+        if (opts.onBag) opts.onBag();
+        return true;
+      }
+      const it = SHOP_ITEMS.find((q) => q.id === id);
+      if (!it || !(P.stuff[id] > 0)) {
+        toast("Hast du nicht dabei.", 1.2);
+        return false;
+      }
+      P.stuff[id]--;
+      if (id === "dose") {
+        boost("turbo", 25);
+        audio.gulp && audio.gulp();
+        toast("Zisch. Die Beine laufen von allein.", 1.8);
+      } else if (id === "klarer") {
+        boost("drunk", 15);
+        health = Math.min(MAXH(), health + 1);
+        audio.gulp && audio.gulp();
+        toast("Hui. +1 \u2665 \u2014 und die Stra\xDFe schwankt.", 1.8);
+      } else if (id === "pflaster") {
+        health = Math.min(MAXH(), health + 2);
+        audio.heal && audio.heal();
+        toast("Pflaster drauf: +2 \u2665", 1.6);
+      } else if (id === "kaugummi") {
+        boost("gum", 40);
+        audio.pickup && audio.pickup();
+        toast("Kauen, cool bleiben: Die Fahndung k\xFChlt schneller ab.", 2);
+      }
+      updateHoodHud();
+      if (opts.onBag) opts.onBag();
+      return true;
+    }
+    __name(useStuff, "useStuff");
+    const SHOPS = [];
+    function shopIcon(col) {
+      const g = new Group();
+      const m = new MeshBasicMaterial({ color: col, toneMapped: false });
+      const w = new MeshBasicMaterial({ color: 16777215, toneMapped: false });
+      const body = new Mesh(new BoxGeometry(0.8, 0.85, 0.34), m);
+      body.position.y = 0.42;
+      g.add(body);
+      const band = new Mesh(new BoxGeometry(0.82, 0.12, 0.36), w);
+      band.position.y = 0.62;
+      g.add(band);
+      const h = new Mesh(new TorusGeometry(0.2, 0.045, 6, 14, Math.PI), m);
+      h.position.y = 0.86;
+      g.add(h);
+      g.rotation.x = 0.5;
+      return g;
+    }
+    __name(shopIcon, "shopIcon");
+    function addShop(s, name, sub, col, sells) {
+      const c = new Color(col);
+      const ic = shopIcon(c.getHex());
+      ic.position.set(s.x, 2.4, s.z);
+      scene.add(ic);
+      const pool = new Mesh(blobGeo, new MeshBasicMaterial({ map: radialTex(`rgba(${c.r * 255 | 0},${c.g * 255 | 0},${c.b * 255 | 0},1)`), transparent: true, blending: AdditiveBlending, depthWrite: false, opacity: 0.4 }));
+      pool.scale.set(3.6, 1, 3.6);
+      pool.position.set(s.x, 0.08, s.z);
+      scene.add(pool);
+      SHOPS.push({ x: s.x, z: s.z, name, sub, sells, ic, pool, col });
+    }
+    __name(addShop, "addShop");
+    if (SPOTS.kiosk) addShop(SPOTS.kiosk, "KIOSK 24", "ZEITUNG \xB7 TABAK", "#ffd23f", ["dose", "klarer", "pflaster", "kaugummi"]);
+    for (const [nm, sub, col, sells] of [["TRINKHALLE EMMA", "B\xDCDCHEN \xB7 KALT & BILLIG", "#7dffb0", ["dose", "klarer", "kaugummi"]], ["SP\xC4TI SONNE", "OFFEN BIS SP\xC4T", "#ff8fd0", ["dose", "klarer", "kaugummi", "pflaster"]], ["DROGERIE FUCHS", "PFLASTER \xB7 KAUGUMMI \xB7 DOSEN", "#8fd0ff", ["pflaster", "kaugummi", "dose"]]]) {
+      const s = makeSpot("shop", 45, 330, nm, col, sub);
+      if (s) addShop(s, nm, sub, col, sells);
+    }
+    function nearShop() {
+      for (const s of SHOPS) if (Math.hypot(s.x - P.x, s.z - P.z) < 3.2) return s;
+      return null;
+    }
+    __name(nearShop, "nearShop");
+    function shopPrice(it) {
+      return Math.max(1, Math.round(it.price * (1 - 0.035 * (stats.cha - 3))));
+    }
+    __name(shopPrice, "shopPrice");
+    function openShop(s) {
+      const list = s.sells.map((id) => {
+        const it = SHOP_ITEMS.find((q) => q.id === id);
+        return { ...it, price: shopPrice(it), have: P.stuff[id] | 0 };
+      });
+      if (opts.onShop) opts.onShop({ i: SHOPS.indexOf(s), name: s.name, sub: s.sub, col: s.col, cash: deal.state().cash, list });
+      audio.door && audio.door();
+      return { ok: true };
+    }
+    __name(openShop, "openShop");
+    function shopBuy(si, id) {
+      const s = SHOPS[si];
+      if (!s || !s.sells.includes(id)) return { ok: false, msg: "Gibt\u2019s hier nicht." };
+      const it = SHOP_ITEMS.find((q) => q.id === id);
+      const p = shopPrice(it);
+      const c = deal.state().cash;
+      if (c < p) return { ok: false, msg: "Zu wenig Geld." };
+      deal.setCash(c - p);
+      P.stuff[id] = (P.stuff[id] | 0) + 1;
+      audio.kaching && audio.kaching();
+      updateHoodHud();
+      if (opts.onBag) opts.onBag();
+      return { ok: true, msg: it.name + " gekauft (\u2212" + p + " \u20AC). Liegt in der Tasche.", cash: deal.state().cash, have: P.stuff[id] };
+    }
+    __name(shopBuy, "shopBuy");
+    function shopTick(dt) {
+      for (const s of SHOPS) {
+        if (Math.abs(s.x - P.x) > 80 || Math.abs(s.z - P.z) > 80) continue;
+        s.ic.rotation.y = tAcc * 1.4;
+        s.ic.position.y = 2.3 + Math.sin(tAcc * 2.6 + s.x) * 0.18;
+        s.pool.material.opacity = 0.3 + 0.15 * Math.sin(tAcc * 3 + s.z);
+      }
+    }
+    __name(shopTick, "shopTick");
+    let hoodName = "";
+    const homeReg = regions.find((r) => r.fixed && r.owner === "mine") || null;
+    if (homeReg) homeReg.baseName = homeReg.name;
+    function setHoodName(n) {
+      n = String(n || "").replace(/\s+/g, " ").trim().slice(0, 20);
+      if (!n) return;
+      hoodName = n;
+      if (homeReg) homeReg.name = n;
+    }
+    __name(setHoodName, "setHoodName");
+    setHoodName(opts.hoodName || "");
+    const HOOD = /* @__PURE__ */ __name(() => hoodName || "deiner Hood", "HOOD");
+    const TAG_R = 55;
+    const tags = [];
+    let tagSeq = 0, pendingTag = null;
+    const CREW_TAGS = ["FRITTE", "GRILL", "PATEN", "CURRY", "FALAFEL", "SCHNITZ", "WOK", "KARTELL"];
+    const rgbHex = /* @__PURE__ */ __name((c) => "#" + c.map((v) => Math.round(Math.max(0, Math.min(1, v)) * 255).toString(16).padStart(2, "0")).join(""), "rgbHex");
+    const crewTex = {}, crewImgs = {};
+    function crewCanvas(ci) {
+      if (!crewTex[ci]) {
+        const cr = CREWS[ci];
+        const cv2 = crewTagCanvas(CREW_TAGS[ci] || cr[0], cr[1], ci + 3);
+        crewTex[ci] = { cv: cv2, tex: tagTexture(cv2) };
+      }
+      return crewTex[ci];
+    }
+    __name(crewCanvas, "crewCanvas");
+    function crewImg(ci) {
+      if (crewImgs[ci] == null) {
+        try {
+          const c = crewCanvas(ci).cv;
+          const s = document.createElement("canvas");
+          s.width = 128;
+          s.height = 64;
+          s.getContext("2d").drawImage(c, 0, 0, 128, 64);
+          crewImgs[ci] = s.toDataURL();
+        } catch (_) {
+          crewImgs[ci] = "";
+        }
+      }
+      return crewImgs[ci];
+    }
+    __name(crewImg, "crewImg");
+    function insideAny(x, z) {
+      for (const B of city.buildings) {
+        const q = B.b.p[0];
+        if (Math.abs(q[0] - x) > 90 || Math.abs(q[1] - z) > 90) continue;
+        if (pip2(x, z, B.b.p)) return true;
+      }
+      return false;
+    }
+    __name(insideAny, "insideAny");
+    function segFromEdge(B, e, px2, pz2, maxW = 3.8) {
+      const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+      const W = Math.min(e.len - 0.25, maxW);
+      let t = (px2 - e.A[0]) * tx2 + (pz2 - e.A[1]) * tz;
+      t = Math.max(W / 2 + 0.1, Math.min(e.len - W / 2 - 0.1, t));
+      if (e.len < W + 0.2) t = e.len / 2;
+      return { A: e.A, B: e.B, len: e.len, nx: e.nx, nz: e.nz, cx: e.A[0] + tx2 * t, cz: e.A[1] + tz * t, h: B.h, kind: "wall", maxW };
+    }
+    __name(segFromEdge, "segFromEdge");
+    function wallNear(x, z, maxD, outsideOnly) {
+      let best = null, bd = maxD;
+      for (const B of city.buildings) {
+        if (B.h < 2.2) continue;
+        const q = B.b.p[0];
+        if (Math.abs(q[0] - x) > 110 || Math.abs(q[1] - z) > 110) continue;
+        for (const e of B.edges) {
+          if (e.len < 2.4) continue;
+          const r = segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1]);
+          if (r[0] >= bd) continue;
+          if (outsideOnly && (x - r[1]) * e.nx + (z - r[2]) * e.nz < -0.05) continue;
+          if (insideAny(r[1] + e.nx * 0.7, r[2] + e.nz * 0.7)) continue;
+          bd = r[0];
+          best = { B, e };
+        }
+      }
+      return best ? segFromEdge(best.B, best.e, x, z) : null;
+    }
+    __name(wallNear, "wallNear");
+    function tagSegAt(x, z, maxD, outsideOnly) {
+      let best = null, bd = maxD;
+      for (const sp of city.tagSpots || []) {
+        const r = segDist(x, z, sp.A[0], sp.A[1], sp.B[0], sp.B[1]);
+        if (r[0] < bd + 0.8) {
+          bd = Math.max(0, r[0] - 0.8);
+          best = { ...sp };
+        }
+      }
+      const w = wallNear(x, z, Math.max(0.01, bd), outsideOnly);
+      return w || best;
+    }
+    __name(tagSegAt, "tagSegAt");
+    function wallFacing() {
+      if (P.car || P.train) return null;
+      const s = tagSegAt(P.x, P.z, 1.45, true);
+      if (!s) return null;
+      const fx = Math.sin(P.rot), fz = Math.cos(P.rot);
+      if (-(fx * s.nx + fz * s.nz) < 0.2) return null;
+      return s;
+    }
+    __name(wallFacing, "wallFacing");
+    function tagAt(seg) {
+      return tags.find((t) => Math.hypot(t.seg.cx - seg.cx, t.seg.cz - seg.cz) < 2.6 && t.seg.nx * seg.nx + t.seg.nz * seg.nz > 0.7) || null;
+    }
+    __name(tagAt, "tagAt");
+    function addTag(seg, owner, crew, cv2, img, tex0, ar0) {
+      const ex = tagAt(seg);
+      if (ex) removeTag(ex);
+      const own = owner === "mine";
+      const tex2 = tex0 || (own ? tagTexture(cv2) : crewCanvas(crew).tex);
+      const ar = ar0 || (cv2 ? cv2.width / cv2.height : 2);
+      const mesh = makeTagMesh(tex2, seg, ar);
+      scene.add(mesh);
+      const r = regionAt(seg.cx, seg.cz);
+      const t = { id: ++tagSeq, seg, owner, crew, img: img || "", ar, tex: own ? tex2 : null, mesh, reg: r ? r.i : -1, age: 0 };
+      tags.push(t);
+      return t;
+    }
+    __name(addTag, "addTag");
+    function removeTag(t) {
+      scene.remove(t.mesh);
+      t.mesh.traverse((o) => {
+        if (o.geometry) o.geometry.dispose();
+      });
+      for (const m of t.mesh.userData.mats) m.dispose();
+      if (t.tex) t.tex.dispose();
+      const i = tags.indexOf(t);
+      if (i >= 0) tags.splice(i, 1);
+    }
+    __name(removeTag, "removeTag");
+    function regionTags(r) {
+      let mine = 0, rival = 0;
+      for (const t of tags) {
+        if (t.reg !== r.i) continue;
+        if (t.owner === "mine") mine++;
+        else rival++;
+      }
+      return { mine, rival };
+    }
+    __name(regionTags, "regionTags");
+    function openTag(seg) {
+      if (!seg || P.car || P.train) return { ok: false };
+      pendingTag = seg;
+      const ex = tagAt(seg);
+      const r = regionAt(seg.cx, seg.cz);
+      const info = { region: r ? r.name : "", owner: r ? r.owner : "free", crew: r && r.crew ? r.crew[0] : "", over: ex ? ex.owner === "mine" ? "mine" : CREWS[ex.crew][0] : "", hood: hoodName, wall: seg.kind === "ubahn" ? "tile" : seg.kind === "box" ? "concrete" : seg.h > 16 ? "concrete" : "brick", seed: Math.abs(seg.cx * 7 + seg.cz * 13 | 0) };
+      audio.rattle && audio.rattle();
+      if (opts.onTag) opts.onTag(info);
+      return { ok: true, info };
+    }
+    __name(openTag, "openTag");
+    function cancelTag() {
+      pendingTag = null;
+    }
+    __name(cancelTag, "cancelTag");
+    function finishTag(cv2) {
+      if (!pendingTag || !cv2) return { ok: false };
+      const seg = pendingTag;
+      pendingTag = null;
+      let url = "";
+      try {
+        url = cv2.toDataURL("image/webp", 0.85);
+        if (!/^data:image\/webp/.test(url)) url = cv2.toDataURL("image/png");
+      } catch (_) {
+      }
+      const t = addTag(seg, "mine", -1, cv2, url);
+      afterTag(t);
+      return { ok: true, id: t.id };
+    }
+    __name(finishTag, "finishTag");
+    function afterTag(t) {
+      const r = regions[t.reg];
+      for (const c2 of cars) {
+        if (c2.police && !c2.wrecked && Math.hypot(c2.x - P.x, c2.z - P.z) < 22) {
+          addHeat(0.5);
+          setTimeout(() => toast("Die Bullen haben dich sprayen sehen!", 1.8), 2300);
+          break;
+        }
+      }
+      if (!r) {
+        toast("Tag sitzt.", 1.6);
+        return;
+      }
+      const c = regionTags(r);
+      if (r.owner === "mine") toast("Tag sitzt \u2014 " + r.name + " bleibt " + HOOD() + ".", 2);
+      else if (c.mine > c.rival) {
+        r.owner = "mine";
+        r.hot = false;
+        r.anger = 0;
+        r.risk = 0;
+        r.tagged = true;
+        const lines = raiseStats({ ans: 1 });
+        deal.setCash(deal.state().cash + 40);
+        syncLoiter();
+        audio.levelUp && audio.levelUp();
+        if (opts.onLevel) opts.onLevel({ title: "REVIER MARKIERT!", pay: 40, lines: [r.name + " geh\xF6rt jetzt zu " + HOOD(), ...lines], level: level() });
+        rivalTagT = Math.min(rivalTagT, 60);
+        if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 600);
+      } else {
+        const need = c.rival - c.mine + 1;
+        toast("Tag sitzt. Noch " + need + " Tag" + (need > 1 ? "s" : "") + ", dann geh\xF6rt " + r.name + " dir.", 2.4);
+      }
+      updateHoodHud();
+    }
+    __name(afterTag, "afterTag");
+    function seedRivalTags() {
+      for (const r of regions) {
+        if (!r.crew || !r.rival) continue;
+        const ci = CREWS.indexOf(r.crew);
+        const door = r.rival;
+        const cand = [];
+        for (const B of city.buildings) {
+          if (B.h < 3) continue;
+          const q = B.b.p[0];
+          if (Math.abs(q[0] - door.x) > 100 || Math.abs(q[1] - door.z) > 100) continue;
+          for (const e of B.edges) {
+            if (!e.street || e.len < 4.5) continue;
+            const d = Math.hypot(e.mx - door.x, e.mz - door.z);
+            if (d < 7 || d > 75) continue;
+            if (!(e.mx >= r.x0 && e.mx < r.x1 && e.mz >= r.z0 && e.mz < r.z1)) continue;
+            if (insideAny(e.mx + e.nx * 0.7, e.mz + e.nz * 0.7)) continue;
+            cand.push({ B, e, d });
+          }
+        }
+        cand.sort((a, b) => a.d - b.d);
+        let placed = 0;
+        for (const c of cand) {
+          if (placed >= 2) break;
+          const seg = segFromEdge(c.B, c.e, c.e.mx, c.e.mz);
+          if (tags.some((t) => Math.hypot(t.seg.cx - seg.cx, t.seg.cz - seg.cz) < 14)) continue;
+          addTag(seg, "rival", ci, null, "");
+          placed++;
+        }
+      }
+    }
+    __name(seedRivalTags, "seedRivalTags");
+    function restoreTags(list) {
+      for (const t of tags.slice()) removeTag(t);
+      for (const q of list) {
+        if (!q || !q.s) continue;
+        const seg = q.s;
+        if (q.o === "mine" && q.img) {
+          const img = new Image();
+          const tex2 = new Texture(img);
+          tex2.colorSpace = SRGBColorSpace;
+          img.onload = () => {
+            tex2.needsUpdate = true;
+          };
+          img.src = q.img;
+          const t = addTag(seg, "mine", -1, null, q.img, tex2, q.ar || 2);
+          t.ar = q.ar || 2;
+        } else if (q.o === "rival" && CREWS[q.c]) addTag(seg, "rival", q.c, null, "");
+      }
+    }
+    __name(restoreTags, "restoreTags");
+    let rivalTagT = 80, syncT = 0;
+    const taggers = [];
+    function crewFor(r) {
+      if (r && r.crew) return CREWS.indexOf(r.crew);
+      let best = -1, bd = 1e9;
+      for (const q of regions) {
+        if (!q.crew || q.owner === "mine") continue;
+        const d = Math.hypot(q.cx - r.cx, q.cz - r.cz);
+        if (d < bd) {
+          bd = d;
+          best = CREWS.indexOf(q.crew);
+        }
+      }
+      if (best < 0) {
+        for (const q of regions) if (q.crew) {
+          best = CREWS.indexOf(q.crew);
+          break;
+        }
+      }
+      return best;
+    }
+    __name(crewFor, "crewFor");
+    function rivalTagTick(dt) {
+      for (const t of tags) t.age += dt;
+      syncT -= dt;
+      if (syncT <= 0) {
+        syncT = 1;
+        syncLoiter();
+      }
+      for (const o of taggers.slice()) {
+        if (o.dead || (o.down || 0) > 0 || !peds.includes(o)) {
+          taggerDone(o, false);
+          toast("Sprayer erwischt \u2014 dein Tag bleibt.", 1.8);
+        }
+      }
+      rivalTagT -= dt;
+      if (rivalTagT > 0 || taggers.length) return;
+      rivalTagT = 55 + Math.random() * 55;
+      const cand = tags.filter((t) => t.owner === "mine" && t.age > 50 && regions[t.reg] && !regions[t.reg].fixed && crewFor(regions[t.reg]) >= 0);
+      if (!cand.length) return;
+      cand.sort((a, b) => Math.hypot(a.seg.cx - P.x, a.seg.cz - P.z) - Math.hypot(b.seg.cx - P.x, b.seg.cz - P.z));
+      startRivalTagger(Math.random() < 0.75 ? cand[0] : cand[Math.random() * cand.length | 0]);
+    }
+    __name(rivalTagTick, "rivalTagTick");
+    function startRivalTagger(t, forceNear) {
+      const r = regions[t.reg];
+      const ci = crewFor(r);
+      if (ci < 0) return null;
+      const d = Math.hypot(t.seg.cx - P.x, t.seg.cz - P.z);
+      if (d > 150 && !forceNear) {
+        overpaint(t, ci, true);
+        return null;
+      }
+      const fx = t.seg.cx + t.seg.nx * 1.1, fz = t.seg.cz + t.seg.nz * 1.1;
+      let sx = fx + t.seg.nx * 20, sz = fz + t.seg.nz * 20;
+      for (let k = 0; k < 12; k++) {
+        const a = Math.random() * 6.28, rr = 20 + Math.random() * 10;
+        const x = fx + Math.cos(a) * rr, z = fz + Math.sin(a) * rr;
+        if (offScreen(x, z, 3) && !insideAny(x, z) && city.inEdge(x, z, 3)) {
+          sx = x;
+          sz = z;
+          break;
+        }
+      }
+      const cr = CREWS[ci];
+      const o = makeSpecial(sx, sz, { jacket: cr[1], shirt: [0.12, 0.12, 0.12], pants: [0.1, 0.1, 0.12], hair: [0.05, 0.04, 0.03], skin: [0.62, 0.45, 0.32], shoes: [0.9, 0.9, 0.9], open: false, long: false, beanie: true, coat: false }, 1.4);
+      o.special = "tagger";
+      o.tag = t;
+      o.crewI = ci;
+      o.speed = 3.3;
+      o.dest = { x: fx, z: fz };
+      o.ttl = 50;
+      o.beacon = beacon();
+      o.beacon.scale.setScalar(0.55);
+      o.g.add(o.beacon);
+      taggers.push(o);
+      t.spraying = true;
+      if (d < 120) toast("Ein Sprayer der " + cr[0] + " will dein Tag in " + (r ? r.name : "der Gegend") + " \xFCbermalen!", 2.6);
+      return o;
+    }
+    __name(startRivalTagger, "startRivalTagger");
+    function taggerStep(o, dt) {
+      const t = o.tag;
+      o.ttl -= dt;
+      if (!t || !tags.includes(t) || o.ttl <= 0) {
+        taggerDone(o, false);
+        return;
+      }
+      if (o.beacon) {
+        o.beacon.position.y = Math.sin(tAcc * 5) * 0.15;
+        o.beacon.rotation.y = tAcc * 2;
+      }
+      const dx = o.dest.x - o.x, dz = o.dest.z - o.z, d = Math.hypot(dx, dz);
+      if (d > 0.6 && !o.spraying) {
+        const st = Math.min(d, o.speed * dt);
+        const np = { x: o.x + dx / d * st, z: o.z + dz / d * st };
+        city.grid.resolve(np, 0.35);
+        ejectFromBuildings(np, 0.4);
+        const mv = Math.hypot(np.x - o.x, np.z - o.z);
+        o.stT = mv < st * 0.3 ? (o.stT || 0) + dt : 0;
+        if (o.stT > 1.5 && offScreen(o.x, o.z, 2)) {
+          np.x = o.dest.x;
+          np.z = o.dest.z;
+        }
+        o.g.rotation.y = Math.atan2(dx, dz);
+        o.x = np.x;
+        o.z = np.z;
+        o.g.position.set(o.x, 0, o.z);
+        animPed(o.g, o.speed, dt);
+        return;
+      }
+      if (!o.spraying) {
+        o.spraying = true;
+        o.sprayT = 7;
+        const ov = makeTagMesh(crewCanvas(o.crewI).tex, t.seg, 2);
+        for (const m of ov.userData.mats) m.opacity = 0;
+        scene.add(ov);
+        o.overlay = ov;
+        audio.rattle && audio.rattle();
+      }
+      o.g.rotation.y = Math.atan2(-t.seg.nx, -t.seg.nz);
+      animPed(o.g, 0, dt);
+      const u = o.g.userData;
+      if (u && u.arms) {
+        u.arms[1].rotation.x = -1.9 + Math.sin(tAcc * 9) * 0.25;
+        u.arms[1].rotation.z = Math.sin(tAcc * 4) * 0.3;
+      }
+      o.sprayT -= dt;
+      const k = 1 - o.sprayT / 7;
+      for (const m of o.overlay.userData.mats) m.opacity = Math.min(1, k * 1.15);
+      for (const m of t.mesh.userData.mats) m.opacity = Math.max(0, 1 - k * 1.1);
+      if (Math.random() < dt * 12 && !offScreen(o.x, o.z, 4)) {
+        const col = CREWS[o.crewI][1];
+        const n0 = FX.length;
+        emit("smoke", t.seg.cx + t.seg.nx * 0.5 + (Math.random() - 0.5) * 1.4, 0.9 + Math.random() * 0.9, t.seg.cz + t.seg.nz * 0.5 + (Math.random() - 0.5) * 1.4, { vy: 0.25, s0: 0.3, s1: 1.2, max: 0.9, a: 0.32 });
+        if (FX.length > n0) FX[FX.length - 1].s.material.color.setRGB(Math.min(1, col[0] * 1.3 + 0.15), Math.min(1, col[1] * 1.3 + 0.15), Math.min(1, col[2] * 1.3 + 0.15));
+      }
+      if (o.sprayT <= 0) taggerDone(o, true);
+    }
+    __name(taggerStep, "taggerStep");
+    function taggerDone(o, ok) {
+      const i = taggers.indexOf(o);
+      if (i >= 0) taggers.splice(i, 1);
+      const t = o.tag;
+      o.tag = null;
+      if (o.overlay) {
+        scene.remove(o.overlay);
+        for (const m of o.overlay.userData.mats) m.dispose();
+        o.overlay = null;
+      }
+      if (o.beacon) {
+        o.g.remove(o.beacon);
+        o.beacon = null;
+      }
+      if (t) {
+        t.spraying = false;
+        if (tags.includes(t)) for (const m of t.mesh.userData.mats) m.opacity = 1;
+      }
+      if (ok && t && tags.includes(t)) overpaint(t, o.crewI, false);
+      if (!o.dead && o.special === "tagger") {
+        o.special = "flee";
+        o.fleeT = 6;
+        o.speed = 4.2;
+      }
+    }
+    __name(taggerDone, "taggerDone");
+    function overpaint(t, ci, far) {
+      const seg = t.seg;
+      const r = regions[t.reg];
+      removeTag(t);
+      addTag(seg, "rival", ci, null, "");
+      if (r) {
+        const c = regionTags(r);
+        if (r.owner === "mine" && !r.fixed && c.rival >= c.mine) {
+          r.owner = r.rival ? "rival" : "free";
+          r.hot = false;
+          r.anger = 0;
+          audio.gibber && audio.gibber();
+          toast("Die " + CREWS[ci][0] + " haben " + r.name + " zur\xFCckerobert!", 2.8);
+        } else toast((far ? "\xDCber Funk: " : "") + "Die " + CREWS[ci][0] + " haben dein Tag in " + r.name + " \xFCbermalt.", 2.4);
+      }
+      updateHoodHud();
+    }
+    __name(overpaint, "overpaint");
+    function tapTag(cx, cy) {
+      if (P.car || P.train) return { ok: false };
+      const g = groundAt(cx, cy);
+      if (!g) return { ok: false };
+      const seg = tagSegAt(g.x, g.z, 2.6, false);
+      if (!seg) return { ok: false, none: true };
+      if (Math.hypot(seg.cx - P.x, seg.cz - P.z) > 16) {
+        toast("Zu weit weg \u2014 geh n\xE4her an die Wand.", 1.5);
+        return { ok: false };
+      }
+      return openTag(seg);
+    }
+    __name(tapTag, "tapTag");
+    function initStreetLife() {
+      try {
+        seedRivalTags();
+      } catch (e) {
+        console.warn("rival tags", e);
+      }
+      try {
+        spawnLoiterers();
+      } catch (e) {
+        console.warn("loiter", e);
+      }
+    }
+    __name(initStreetLife, "initStreetLife");
     function hoodTick(dt) {
       if (document.body.classList.contains("onTitle")) return;
       if (job) {
@@ -38108,7 +40341,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (L > 1e-3) {
           wx /= L;
           wz /= L;
-          wish = ta ? TOUCH.mag > 0.85 ? 7.2 : 2.6 + TOUCH.mag * 3 : keys.ShiftLeft ? 7.2 : 4.4;
+          wish = (ta ? TOUCH.mag > 0.85 ? 7.2 : 2.6 + TOUCH.mag * 3 : keys.ShiftLeft ? 7.2 : 4.4) * moveMul();
         } else wish = 0;
       }
       if (wish > 0.1) {
@@ -38174,8 +40407,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       animPed(player, spd, dt);
       weaponPose(dt);
       {
-        const k = Math.floor((player.userData.phase || 0) / Math.PI);
-        if (spd > 0.6 && k !== P.stepK) audio.step(Math.min(1, 0.6 + spd * 0.07));
+        const k = Math.floor(((player.userData.phase || 0) - Math.PI / 2) / Math.PI);
+        if (spd > 0.6 && k !== P.stepK) audio.step(Math.min(1, 0.55 + spd * 0.06), spd > 5.6);
         P.stepK = k;
       }
     }
@@ -38217,7 +40450,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const prefer = MOBILE ? 11 : 13;
       const foot = portrait ? 10.4 : 11;
       const drive = portrait ? 14.5 + sp * 0.95 : 13.5 + sp * 0.7;
-      const auto = P.train ? portrait ? 26 : 22 : inCar2 ? drive : foot;
+      const auto = (P.train ? portrait ? 26 : 22 : inCar2 ? drive : foot) * (1 - 0.08 * boostAmt("coke"));
       const th = !wide && follow ? clampView(auto + (viewH - prefer) * 0.45) : viewH;
       const k = snap ? 1 : Math.min(1, dt * (inCar2 ? 2.4 : 3.4));
       cam.x += (tx2 - cam.x) * k;
@@ -38232,9 +40465,20 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         sz = (Math.random() - 0.5) * shake * 1.8;
         shake *= Math.pow(0.05, dt);
       } else shake = 0;
+      {
+        const dk = boostAmt("drunk");
+        if (dk > 0) {
+          sx += Math.sin(tAcc * 1.3) * 0.9 * dk;
+          sz += Math.cos(tAcc * 1.05) * 0.6 * dk;
+        }
+      }
       setFrustum(cam.h);
       camera.position.set(cam.x + sx, CAM_DIST * Math.cos(TILT), cam.z + CAM_DIST * Math.sin(TILT) + sz);
       camera.lookAt(cam.x + sx, 0, cam.z + sz);
+      {
+        const dk = boostAmt("drunk");
+        if (dk > 0) camera.rotateZ(Math.sin(tAcc * 0.9) * 0.07 * dk);
+      }
       const tex2 = 2 * SH / sun.shadow.mapSize.x;
       const cx = Math.round(cam.x / tex2) * tex2, cz = Math.round(cam.z / tex2) * tex2;
       sun.target.position.set(cx, 0, cz);
@@ -38260,7 +40504,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       state._dealAct = null;
       const nf = nearFood(P.x, P.z, 3.4);
       const ja = job ? jobAction() : null;
-      let ub = null;
+      let ub = null, sh = null;
       if (ja) {
         pr = ja.text;
         state.deal = true;
@@ -38271,6 +40515,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         state.deal = true;
         state.dealLabel = "U-Bahn";
         state._dealAct = openUbahn;
+      } else if (!P.car && !P.train && (sh = nearShop())) {
+        pr = sh.name + " \u2014 einkaufen";
+        state.deal = true;
+        state.dealLabel = "Einkaufen";
+        state._dealAct = () => openShop(sh);
       } else if (nf && !P.train) {
         const here = missionHere(nf);
         const g = nf.kind === "hub" ? HUBD : nf.door;
@@ -38313,6 +40562,16 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             state._dealAct = dp.action;
           }
         }
+        if (!state._dealAct && (!pr || pr === "Auto in der N\xE4he")) {
+          const w = wallFacing();
+          if (w) {
+            const ex = tagAt(w);
+            pr = ex ? ex.owner === "mine" ? "Dein Tag \u2014 neu spr\xFChen" : "Tag der " + CREWS[ex.crew][0] + " \u2014 \xFCbermalen" : "Wand \u2014 dein Tag spr\xFChen";
+            state.deal = true;
+            state.dealLabel = "Spr\xFChen";
+            state._dealAct = () => openTag(w);
+          }
+        }
       } else {
         state.nearCar = false;
         const dmg = P.car.g.userData.damage || 0;
@@ -38349,6 +40608,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       } else document.body.classList.add("incar");
       promptEl.textContent = pr;
       promptEl.style.opacity = pr ? 1 : 0;
+      fxChip();
       if (opts.onState) opts.onState(state);
     }
     __name(hud, "hud");
@@ -38385,6 +40645,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       blastStep(dt);
       fxStep(dt);
+      blood.step(dt);
+      boostStep(dt);
+      if (!document.body.classList.contains("onTitle")) rivalTagTick(dt);
+      shopTick(dt);
       for (const t of tracers) if (t.life > 0) {
         t.life -= dt;
         t.l.material.opacity = Math.max(0, t.life / 0.09);
@@ -38431,6 +40695,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       for (const p of peds) {
         const d = Math.hypot(p.x - P.x, p.z - P.z);
         if (d < Math.max(120, cam.h * 1.2)) pedStep(p, dt);
+        p.g.visible = !offScreen(p.x, p.z, 6);
       }
       if (hub) {
         hub.arrow.position.y = 5.5 + Math.sin(tAcc * 3) * 0.6;
@@ -38501,7 +40766,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           hiding = false;
           hideAt = null;
         } else heat = Math.max(0, heat - dt * (wanted >= 4 ? 0.12 : 1.2));
-      } else if (!seen) heat = Math.max(0, heat - dt * 0.16 * (1 + 0.1 * (stats.ner - 3)));
+      } else if (!seen) heat = Math.max(0, heat - dt * 0.16 * (1 + 0.1 * (stats.ner - 3)) * (boostOn("gum") ? 2.2 : 1) * (boostOn("weed") ? 1.3 : 1));
       {
         const n = Math.floor(heat + 1e-6);
         if (n !== wanted) {
@@ -38520,7 +40785,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       if (close && !P.train) bustT += dt;
       else bustT = Math.max(0, bustT - dt * 0.85);
-      if (bustT > 2.15 * (1 + 0.07 * (stats.ner - 3))) {
+      if (bustT > 2.15 * (1 + 0.07 * (stats.ner - 3)) * (boostOn("gum") ? 1.3 : 1)) {
         bustT = 0;
         wasted("bust");
       }
@@ -38530,7 +40795,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           if ((ped.down || 0) > 0) continue;
           if (spd > 3.6 && Math.hypot(ped.x - P.car.x, ped.z - P.car.z) < 1.2) {
             const h = ped.hostile;
-            knockPed(ped);
+            bloodHit(ped, Math.sin(P.car.rot), Math.cos(P.car.rot), "car");
+            if (!h && !ped.special) ped.wasHit = true;
+            knockPed(ped, true);
+            panicAround(ped.x, ped.z, ped);
             if (!h) addHeat(0.48);
             rivalNoise(ped.x, ped.z, 0.5);
             shake = Math.max(shake, 0.28);
@@ -38541,12 +40809,17 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(update, "update");
     function render() {
-      if (bloomOn && cam.h < 90) composer.render();
+      const tv = tripStep();
+      trip.enabled = tv;
+      bloom.enabled = bloomOn && cam.h < 90;
+      if (bloom.enabled || tv) composer.render();
       else renderer.render(scene, camera);
     }
     __name(render, "render");
     mark("rest");
     camStep(0, true);
+    initStreetLife();
+    fillAround(P.x, P.z);
     let last = performance.now();
     let paused = false;
     function frame(now2) {
@@ -38775,6 +41048,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       ubahn,
       stats,
       useItem(kind, id) {
+        if (kind === "use") return useStuff(id);
         if (kind === "weapon") {
           selectWeapon(id);
           return true;
@@ -38806,7 +41080,20 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         wanted = Math.floor(v);
         updateHoodHud();
       }, "setHeat"),
-      _dbg: { findPath, RG, jobAction, knockPed, hitPed, getWar: /* @__PURE__ */ __name(() => war, "getWar"), jobTarget, SPOTS, regions },
+      _dbg: { failJob, findPath, RG, jobAction, knockPed, hitPed, getWar: /* @__PURE__ */ __name(() => war, "getWar"), jobTarget, SPOTS, regions, wallNear, openTag, startRivalTagger, overpaint, regionTags, crewFor, taggers, blood, boosts, tagSegAt },
+      tags,
+      SHOPS,
+      SHOP_ITEMS,
+      shopBuy,
+      openShop,
+      finishTag,
+      tapTag,
+      cancelTag,
+      setHoodName,
+      getHoodName: /* @__PURE__ */ __name(() => hoodName, "getHoodName"),
+      fxState: /* @__PURE__ */ __name(() => ({ boosts: boostList(), trip: trip.enabled, u: { weed: trip.uniforms.uWeed.value, coke: trip.uniforms.uCoke.value, pill: trip.uniforms.uPill.value, drunk: trip.uniforms.uDrunk.value, turbo: trip.uniforms.uTurbo.value } }), "fxState"),
+      bloodCount: /* @__PURE__ */ __name(() => blood.count(), "bloodCount"),
+      fillAround,
       setPaused: /* @__PURE__ */ __name((v) => {
         paused = !!v;
         if (paused) {
@@ -38861,6 +41148,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       init_audio();
       init_radio();
       init_deal();
+      init_ShaderPass();
+      init_fx15();
       Q = new URLSearchParams(location.search);
       SHOT = Q.has("shot");
       PROF = Q.has("prof");
@@ -39089,6 +41378,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       function setStatus(m) {
         const e = $("tStatus");
         if (e) e.textContent = m || "";
+        const tl = $("tLoad");
+        if (tl) tl.classList.toggle("hidden", !m);
         const l = $("loadMsg");
         if (l) l.textContent = m || "";
       }
@@ -39201,6 +41492,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (!city || !isFinite(city.lat)) city = DEFAULT;
         let D;
         cityKey = city.builtin ? "dortmund" : keyOf2(city);
+        idb.get("kv", "save:" + cityKey).then((S) => {
+          hasSave = !!(S && S.v === 1);
+          if (S && S.hood && !LS.get("hoodName", "")) LS.set("hoodName", S.hood);
+        }).catch(() => {
+        });
         try {
           D = await getCityData(city);
         } catch (e) {
@@ -39227,7 +41523,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const zoom = zRaw == null ? matchMedia("(pointer:coarse)").matches ? 0.85 : 1 : zRaw > 5 ? zRaw / 13 : zRaw;
         game = startGame(D, { touch: TOUCH, hubNear: city.builtin ? [-146.9, -38.7] : [0, 0], time: LS.get("time", "dusk"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
           if ($("bagOv").classList.contains("open")) renderBag();
-        }, "onBag") });
+        }, "onBag"), hoodName: LS.get("hoodName", ""), onShop: showShop, onTag: showTagWall });
         window.hoodGame = game;
         if (game.audio) {
           game.audio.setScene(titleUp() ? "title" : "game");
@@ -39259,6 +41555,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       var titleIdx = 0;
       var tMode = "press";
       var pendingPlay = false;
+      var hasSave = false;
+      var hoodAsked = false;
       var navBtns = /* @__PURE__ */ __name(() => [...document.querySelectorAll("#titleNav [data-act]")].filter((b) => !b.classList.contains("hidden")), "navBtns");
       function paintTitle() {
         navBtns().forEach((b, i) => b.classList.toggle("on", i === titleIdx));
@@ -39296,6 +41594,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             closeMenu();
             toast2("Spielstand geladen.");
           }
+          return;
+        }
+        if (act === "play" && !hoodAsked && !LS.get("hoodName", "") && !hasSave && !savedGame && !SHOT2) {
+          hoodAsked = true;
+          askHood(() => runTitle("play"));
           return;
         }
         if (act === "play") {
@@ -39707,6 +42010,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             } else if (dt < 280 && moved < 14 && game && game.isFollow() && game.state.inCar) {
               const r = game.tapDrive(e.clientX, e.clientY);
               if (r && !r.ok && r.msg) toast2(r.msg);
+            } else if (dt < 280 && moved < 14 && game && game.isFollow() && !game.state.inCar && !game.state.inTrain && game.tapTag) {
+              game.tapTag(e.clientX, e.clientY);
             }
             panId = null;
           }
@@ -40074,6 +42379,43 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           c.fillText(g.name.toUpperCase(), X((g.x0 + g.x1) / 2), Z(g.z0) + 13 * dpr);
           if (g.crew && g.owner === "rival") c.fillText(g.crew, X((g.x0 + g.x1) / 2), Z(g.z0) + 25 * dpr);
         }
+        for (const tg of d.tags || []) {
+          const x = X(tg.x), y = Z(tg.z), R = (d.tagR || 55) * sc;
+          const g2 = c.createRadialGradient(x, y, R * 0.15, x, y, R);
+          const col = tg.col;
+          g2.addColorStop(0, col + "55");
+          g2.addColorStop(1, col + "00");
+          c.fillStyle = g2;
+          c.beginPath();
+          c.arc(x, y, R, 0, 7);
+          c.fill();
+          c.strokeStyle = col + (tg.spray ? "ff" : "99");
+          c.lineWidth = (tg.spray ? 2.2 : 1.2) * dpr;
+          c.setLineDash([3 * dpr, 3 * dpr]);
+          c.beginPath();
+          c.arc(x, y, R, 0, 7);
+          c.stroke();
+          c.setLineDash([]);
+        }
+        for (const tg of d.tags || []) {
+          const x = X(tg.x), y = Z(tg.z);
+          const im = tagImg(tg);
+          const w = 34 * dpr, h = 17 * dpr;
+          c.fillStyle = "rgba(0,0,0,.55)";
+          c.fillRect(x - w / 2 - 2 * dpr, y - h / 2 - 2 * dpr, w + 4 * dpr, h + 4 * dpr);
+          if (im && im.complete && im.naturalWidth) c.drawImage(im, x - w / 2, y - h / 2, w, h);
+          c.strokeStyle = tg.col;
+          c.lineWidth = 1.5 * dpr;
+          c.strokeRect(x - w / 2 - 2 * dpr, y - h / 2 - 2 * dpr, w + 4 * dpr, h + 4 * dpr);
+        }
+        if (d.hood) {
+          c.font = "bold " + (14 * dpr | 0) + "px Arial";
+          c.textAlign = "left";
+          c.fillStyle = "#ffe14d";
+          c.fillText("HOOD: " + d.hood.toUpperCase(), 8 * dpr, 18 * dpr);
+          c.textAlign = "center";
+          c.font = (10 * dpr | 0) + "px Arial";
+        }
         if (d.route && d.route.length) {
           c.strokeStyle = "#ff3df0";
           c.lineWidth = 3 * dpr;
@@ -40139,6 +42481,18 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             c.fill();
             continue;
           }
+          if (m.k === "shop") {
+            c.fillStyle = "#ff8fd0";
+            c.fillRect(x - 5 * dpr, y - 3 * dpr, 10 * dpr, 8 * dpr);
+            c.strokeStyle = "#ff8fd0";
+            c.lineWidth = 1.5 * dpr;
+            c.beginPath();
+            c.arc(x, y - 3 * dpr, 3 * dpr, Math.PI, 0);
+            c.stroke();
+            c.fillStyle = "rgba(255,200,235,.8)";
+            c.fillText(m.label, x, y + 15 * dpr);
+            continue;
+          }
           col = { bank: "#ffd23f", kiosk: "#ffa24a", garage: "#b0b8c8" }[m.k] || "#ccc";
           c.fillStyle = col;
           c.fillRect(x - 4 * dpr, y - 4 * dpr, 8 * dpr, 8 * dpr);
@@ -40167,6 +42521,19 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         c.restore();
       }
       __name(drawMap, "drawMap");
+      var tagImgs = /* @__PURE__ */ new Map();
+      function tagImg(tg) {
+        if (!tg.img) return null;
+        let im = tagImgs.get(tg.img);
+        if (!im) {
+          im = new Image();
+          im.src = tg.img;
+          tagImgs.set(tg.img, im);
+          if (tagImgs.size > 80) tagImgs.delete(tagImgs.keys().next().value);
+        }
+        return im;
+      }
+      __name(tagImg, "tagImg");
       function mapTap(e) {
         if (!game || !mapView) return;
         const d = game.mapData();
@@ -40202,7 +42569,14 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         h += '<div class="sec">Ware</div>';
         const goods = b.goods.filter((g) => g.n > 0);
         if (!goods.length) h += '<div class="empty">Nichts dabei. Ware gibt\u2019s bei den H\xE4ndlern an den Ecken.</div>';
-        for (const g of goods) h += `<div class="slot"><span class="em">${g.icon}</span><span class="nm"><b>${esc(g.name)}</b><span>${esc(g.note || "")}</span></span><span class="q">\xD7${g.n}</span><button type="button" data-drop="${g.id}">Wegwerfen</button></div>`;
+        for (const g of goods) h += `<div class="slot"><span class="em">${g.icon}</span><span class="nm"><b>${esc(g.name)}</b><span>${esc(g.note || "")}</span></span><span class="q">\xD7${g.n}</span>${g.use ? `<button type="button" data-use="${g.id}">${esc(g.use)}</button>` : ""}<button type="button" data-drop="${g.id}">Weg</button></div>`;
+        h += '<div class="sec">Zeug</div>';
+        if (!b.stuff || !b.stuff.length) h += '<div class="empty">Leer. Dosen, Kurze, Pflaster und Kaugummi gibt\u2019s im KIOSK 24 und den L\xE4den an der Ecke (Tasche-Symbol auf der Karte).</div>';
+        for (const q of b.stuff || []) h += `<div class="slot"><span class="em">${q.icon}</span><span class="nm"><b>${esc(q.name)}</b><span>${esc(q.note || "")}</span></span><span class="q">\xD7${q.n}</span><button type="button" data-use="${q.id}">${esc(q.use || "Benutzen")}</button></div>`;
+        if (b.boosts && b.boosts.length) {
+          h += '<div class="sec">Wirkt gerade</div>';
+          for (const q of b.boosts) h += `<div class="slot"><span class="em">${q.icon}</span><span class="nm"><b>${esc(q.name)}</b><span>noch ${q.t} s</span></span></div>`;
+        }
         h += '<div class="sec">Auftrag</div>';
         if (!b.items.length) h += '<div class="empty">Keine Auftragssachen.</div>';
         for (const it of b.items) h += `<div class="slot"><span class="em">${it.icon || "\u{1F4E6}"}</span><span class="nm"><b>${esc(it.name)}</b><span>${esc(it.note || "Geh\xF6rt zum Auftrag")}</span></span><span class="q">${it.n > 1 ? "\xD7" + it.n : ""}</span></div>`;
@@ -40216,6 +42590,12 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         el.querySelectorAll("[data-drop]").forEach((x) => x.onclick = () => {
           game.useItem("drop", x.dataset.drop);
           renderBag();
+        });
+        el.querySelectorAll("[data-use]").forEach((x) => x.onclick = () => {
+          const ok = game.useItem("use", x.dataset.use);
+          uiBlip(ok ? "ok" : "back", muted);
+          if (ok) closeOv("bagOv");
+          else renderBag();
         });
         const ch = el.querySelector("[data-char]");
         if (ch) ch.onclick = () => openChar();
@@ -40272,6 +42652,333 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         openOv("ubOv");
       }
       __name(showUbahn, "showUbahn");
+      var shopCur = null;
+      function showShop(o) {
+        shopCur = o;
+        $("shopName").textContent = o.name;
+        $("shopSub").textContent = o.sub + " \xB7 " + Math.round(o.cash) + " \u20AC dabei";
+        $("shopMsg").textContent = "";
+        paintShop();
+        openOv("shopOv");
+      }
+      __name(showShop, "showShop");
+      function paintShop() {
+        const o = shopCur;
+        if (!o) return;
+        let h = "";
+        for (const it of o.list) h += `<div class="slot"><span class="em">${it.icon}</span><span class="nm"><b>${esc(it.name)}</b><span>${esc(it.note)}${it.have ? " \xB7 " + it.have + " dabei" : ""}</span></span><span class="pr">${it.price} \u20AC</span><button type="button" data-buy="${it.id}">Kaufen</button></div>`;
+        h += '<div class="empty">Gekauftes landet in der Tasche. Charisma dr\xFCckt die Preise.</div>';
+        $("shopBody").innerHTML = h;
+        $("shopBody").querySelectorAll("[data-buy]").forEach((x) => x.onclick = () => {
+          const r = game.shopBuy(o.i, x.dataset.buy);
+          $("shopMsg").textContent = r.msg || "";
+          uiBlip(r.ok ? "ok" : "back", muted);
+          if (r.ok) {
+            const it = o.list.find((q) => q.id === x.dataset.buy);
+            if (it) it.have = r.have;
+            o.cash = r.cash;
+            $("shopSub").textContent = o.sub + " \xB7 " + Math.round(r.cash) + " \u20AC dabei";
+            updateMoney && updateMoney(r.cash);
+            paintShop();
+          }
+        });
+      }
+      __name(paintShop, "paintShop");
+      var TAG_COLS = ["#ffe14d", "#ff3d9a", "#3df0ff", "#7dff5a", "#ff7a1a", "#ffffff", "#111111", "#b04dff"];
+      var tagUI = { col: TAG_COLS[0], sz: 1, ink: null, bb: null, drawing: false, last: null, info: null, still: 0, spraying: false };
+      function wallBg(kind, W, H, seed) {
+        const c = document.createElement("canvas");
+        c.width = W;
+        c.height = H;
+        const g = c.getContext("2d");
+        let r = seed || 7;
+        const R = /* @__PURE__ */ __name(() => (r = r * 16807 % 2147483647) / 2147483647, "R");
+        if (kind === "tile") {
+          g.fillStyle = "#d6d9d2";
+          g.fillRect(0, 0, W, H);
+          const s = Math.round(W / 18);
+          for (let y = 0; y < H; y += s / 2) for (let x = 0; x < W; x += s) {
+            const v = 205 + R() * 35 | 0;
+            g.fillStyle = `rgb(${v},${v + 3},${v - 5})`;
+            g.fillRect(x + 2, y + 2, s - 4, s / 2 - 4);
+          }
+          g.fillStyle = "#1d58a8";
+          g.fillRect(0, H * 0.7, W, s * 0.7);
+          g.fillStyle = "#e4b400";
+          g.fillRect(0, H * 0.7 + s * 0.7, W, s * 0.15);
+        } else if (kind === "concrete") {
+          g.fillStyle = "#8c8a83";
+          g.fillRect(0, 0, W, H);
+          for (let i = 0; i < 4e3; i++) {
+            const v = R() < 0.5 ? 40 : 230;
+            g.fillStyle = `rgba(${v},${v},${v},${0.03 + R() * 0.05})`;
+            g.fillRect(R() * W, R() * H, 1 + R() * 3, 1 + R() * 3);
+          }
+          g.strokeStyle = "rgba(0,0,0,.25)";
+          g.lineWidth = 2;
+          for (let x = W / 3; x < W; x += W / 3) {
+            g.beginPath();
+            g.moveTo(x, 0);
+            g.lineTo(x, H);
+            g.stroke();
+          }
+        } else {
+          g.fillStyle = "#5d3328";
+          g.fillRect(0, 0, W, H);
+          const bh = Math.round(H / 14), bw = bh * 2.2;
+          for (let y = 0, row = 0; y < H; y += bh, row++) for (let x = -(row % 2) * bw / 2; x < W; x += bw) {
+            const v = R();
+            g.fillStyle = `rgb(${120 + v * 50 | 0},${55 + v * 25 | 0},${42 + v * 18 | 0})`;
+            g.fillRect(x + 2, y + 2, bw - 4, bh - 4);
+          }
+        }
+        const vg = g.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, W * 0.7);
+        vg.addColorStop(0, "rgba(0,0,0,0)");
+        vg.addColorStop(1, "rgba(0,0,0,.35)");
+        g.fillStyle = vg;
+        g.fillRect(0, 0, W, H);
+        return c;
+      }
+      __name(wallBg, "wallBg");
+      function showTagWall(info) {
+        tagUI.info = info;
+        const cv2 = $("tagCv");
+        const W = 1024, H = 512;
+        cv2.width = W;
+        cv2.height = H;
+        tagUI.bg = wallBg(info.wall, W, H, info.seed || 7);
+        tagUI.ink = document.createElement("canvas");
+        tagUI.ink.width = W;
+        tagUI.ink.height = H;
+        tagUI.bb = null;
+        let t = info.region ? "Viertel: " + info.region + " \xB7 " : "";
+        t += info.over ? info.over === "mine" ? "Hier h\xE4ngt schon dein Tag \u2014 spr\xFCh ihn neu." : "Hier h\xE4ngt ein Tag der " + info.over + " \u2014 \xFCbermal ihn!" : info.owner === "mine" ? "Dein Revier \u2014 markier es." : "Spr\xFCh deinen Tag, um das Viertel zu holen.";
+        $("tagInfo").textContent = t;
+        const cols = $("tagCols");
+        cols.innerHTML = TAG_COLS.map((c) => `<button type="button" data-c="${c}" style="background:${c}" class="${c === tagUI.col ? "on" : ""}"></button>`).join("");
+        cols.querySelectorAll("[data-c]").forEach((b) => b.onclick = () => {
+          tagUI.col = b.dataset.c;
+          cols.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+        });
+        paintTag();
+        openOv("tagOv");
+      }
+      __name(showTagWall, "showTagWall");
+      function paintTag() {
+        const cv2 = $("tagCv");
+        const g = cv2.getContext("2d");
+        g.globalAlpha = 1;
+        g.drawImage(tagUI.bg, 0, 0);
+        const nm = tagUI.info && tagUI.info.hood || "";
+        if (nm && !tagUI.bb) {
+          g.save();
+          g.font = "900 " + Math.min(190, Math.floor(1700 / Math.max(4, nm.length))) + "px Arial Black,Impact,sans-serif";
+          g.textAlign = "center";
+          g.textBaseline = "middle";
+          g.setLineDash([10, 10]);
+          g.lineWidth = 3;
+          g.strokeStyle = "rgba(255,255,255,.28)";
+          g.strokeText(nm.toUpperCase(), cv2.width / 2, cv2.height / 2);
+          g.restore();
+        }
+        g.drawImage(tagUI.ink, 0, 0);
+      }
+      __name(paintTag, "paintTag");
+      function sprayDot(x, y, col, sz) {
+        const g = tagUI.ink.getContext("2d");
+        const r = 20 * sz;
+        const gr = g.createRadialGradient(x, y, 0, x, y, r);
+        gr.addColorStop(0, col);
+        gr.addColorStop(0.55, col + "cc");
+        gr.addColorStop(1, col + "00");
+        g.fillStyle = gr;
+        g.beginPath();
+        g.arc(x, y, r, 0, 7);
+        g.fill();
+        g.fillStyle = col;
+        for (let i = 0; i < 10 * sz; i++) {
+          const a = Math.random() * 6.28, d = r * (0.9 + Math.random() * 0.9);
+          g.globalAlpha = 0.5 + Math.random() * 0.5;
+          g.fillRect(x + Math.cos(a) * d, y + Math.sin(a) * d, 1.6, 1.6);
+        }
+        g.globalAlpha = 1;
+        const bb = tagUI.bb || (tagUI.bb = { x0: 1e9, y0: 1e9, x1: -1e9, y1: -1e9 });
+        bb.x0 = Math.min(bb.x0, x - r * 1.8);
+        bb.y0 = Math.min(bb.y0, y - r * 1.8);
+        bb.x1 = Math.max(bb.x1, x + r * 1.8);
+        bb.y1 = Math.max(bb.y1, y + r * 1.8);
+      }
+      __name(sprayDot, "sprayDot");
+      function drip(x, y, col, sz) {
+        const g = tagUI.ink.getContext("2d");
+        const len = 30 + Math.random() * 70 * sz;
+        g.strokeStyle = col;
+        g.lineCap = "round";
+        g.lineWidth = 3.5 * sz;
+        g.globalAlpha = 0.85;
+        g.beginPath();
+        g.moveTo(x, y);
+        g.lineTo(x + (Math.random() - 0.5) * 2, y + len);
+        g.stroke();
+        g.beginPath();
+        g.fillStyle = col;
+        g.arc(x, y + len, 2.6 * sz, 0, 7);
+        g.fill();
+        g.globalAlpha = 1;
+        if (tagUI.bb) tagUI.bb.y1 = Math.max(tagUI.bb.y1, y + len + 4);
+      }
+      __name(drip, "drip");
+      function initTagWall() {
+        const cv2 = $("tagCv");
+        const pos = /* @__PURE__ */ __name((e) => {
+          const r = cv2.getBoundingClientRect();
+          return { x: (e.clientX - r.left) / r.width * cv2.width, y: (e.clientY - r.top) / r.height * cv2.height };
+        }, "pos");
+        let raf = 0;
+        const loop = /* @__PURE__ */ __name(() => {
+          raf = 0;
+          if (tagUI.drawing && tagUI.last) {
+            tagUI.still += 1;
+            if (tagUI.still > 14 && Math.random() < 0.08) {
+              drip(tagUI.last.x + (Math.random() - 0.5) * 14, tagUI.last.y + 10, tagUI.col, tagUI.sz);
+              tagUI.still = 6;
+            }
+            sprayDot(tagUI.last.x + (Math.random() - 0.5) * 4, tagUI.last.y + (Math.random() - 0.5) * 4, tagUI.col, tagUI.sz * 0.8);
+            paintTag();
+            raf = requestAnimationFrame(loop);
+          }
+        }, "loop");
+        cv2.addEventListener("pointerdown", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          try {
+            cv2.setPointerCapture(e.pointerId);
+          } catch (_) {
+          }
+          tagUI.drawing = true;
+          tagUI.still = 0;
+          const p = pos(e);
+          tagUI.last = p;
+          sprayDot(p.x, p.y, tagUI.col, tagUI.sz);
+          paintTag();
+          if (game && game.audio && game.audio.sprayOn) game.audio.sprayOn();
+          if (!raf) raf = requestAnimationFrame(loop);
+        });
+        cv2.addEventListener("pointermove", (e) => {
+          if (!tagUI.drawing) return;
+          e.preventDefault();
+          const p = pos(e);
+          const l = tagUI.last;
+          const d = Math.hypot(p.x - l.x, p.y - l.y);
+          const st = Math.max(3, 6 * tagUI.sz);
+          const n = Math.ceil(d / st);
+          for (let i = 1; i <= n; i++) sprayDot(l.x + (p.x - l.x) * i / n, l.y + (p.y - l.y) * i / n, tagUI.col, tagUI.sz);
+          if (d > 2) tagUI.still = 0;
+          tagUI.last = p;
+          paintTag();
+        });
+        const up = /* @__PURE__ */ __name(() => {
+          if (!tagUI.drawing) return;
+          tagUI.drawing = false;
+          if (Math.random() < 0.35 && tagUI.last) drip(tagUI.last.x, tagUI.last.y + 8, tagUI.col, tagUI.sz);
+          paintTag();
+          if (game && game.audio && game.audio.sprayOff) game.audio.sprayOff();
+        }, "up");
+        for (const ev of ["pointerup", "pointercancel", "lostpointercapture"]) cv2.addEventListener(ev, up);
+        document.querySelectorAll("#tagSizes [data-sz]").forEach((b) => b.addEventListener("click", () => {
+          tagUI.sz = +b.dataset.sz;
+          document.querySelectorAll("#tagSizes button").forEach((x) => x.classList.toggle("on", x === b));
+        }));
+        $("tagNew").addEventListener("click", () => {
+          tagUI.ink.getContext("2d").clearRect(0, 0, tagUI.ink.width, tagUI.ink.height);
+          tagUI.bb = null;
+          paintTag();
+          uiBlip("back", muted);
+        });
+        $("tagX").addEventListener("click", () => {
+          if (game) game.cancelTag();
+          if (game && game.audio && game.audio.sprayOff) game.audio.sprayOff();
+          closeOv("tagOv");
+        });
+        $("tagDone").addEventListener("click", () => {
+          const cv22 = tagCrop();
+          if (!cv22) {
+            $("tagInfo").textContent = "Erst was spr\xFChen \u2014 mit dem Finger auf die Wand.";
+            uiBlip("back", muted);
+            return;
+          }
+          if (game && game.audio && game.audio.sprayOff) game.audio.sprayOff();
+          closeOv("tagOv");
+          const r = game.finishTag(cv22);
+          if (r && r.ok) {
+            uiBlip("ok", muted);
+            if (navigator.vibrate) try {
+              navigator.vibrate(25);
+            } catch (_) {
+            }
+          }
+        });
+      }
+      __name(initTagWall, "initTagWall");
+      function tagCrop() {
+        const bb = tagUI.bb;
+        if (!bb) return null;
+        const W = tagUI.ink.width, H = tagUI.ink.height;
+        let x0 = Math.max(0, bb.x0 | 0), y0 = Math.max(0, bb.y0 | 0), x1 = Math.min(W, bb.x1 | 0), y1 = Math.min(H, bb.y1 | 0);
+        let w = x1 - x0, h = y1 - y0;
+        if (w < 20 || h < 20) return null;
+        if (w / h > 4) {
+          const nh = w / 4;
+          y0 = Math.max(0, y0 - (nh - h) / 2);
+          h = Math.min(H - y0, nh);
+        }
+        if (w / h < 1) {
+          const nw = h;
+          x0 = Math.max(0, x0 - (nw - w) / 2);
+          w = Math.min(W - x0, nw);
+        }
+        const sc = Math.min(1, 512 / w);
+        const c = document.createElement("canvas");
+        c.width = Math.max(16, Math.round(w * sc));
+        c.height = Math.max(16, Math.round(h * sc));
+        c.getContext("2d").drawImage(tagUI.ink, x0, y0, w, h, 0, 0, c.width, c.height);
+        return c;
+      }
+      __name(tagCrop, "tagCrop");
+      function askHood(done) {
+        const ov = $("hoodOv"), inp = $("hoodIn");
+        inp.value = LS.get("hoodName", "") || "";
+        $("hoodMsg").textContent = "";
+        ov.classList.add("open");
+        setTimeout(() => {
+          try {
+            inp.focus();
+          } catch (_) {
+          }
+        }, 80);
+        const ok = /* @__PURE__ */ __name(() => {
+          const n = inp.value.replace(/\s+/g, " ").trim().slice(0, 20);
+          if (n.length < 2) {
+            $("hoodMsg").textContent = "Mindestens 2 Zeichen.";
+            uiBlip("back", muted);
+            return;
+          }
+          LS.set("hoodName", n);
+          if (game && game.setHoodName) game.setHoodName(n);
+          ov.classList.remove("open");
+          try {
+            inp.blur();
+          } catch (_) {
+          }
+          uiBlip("ok", muted);
+          if (done) done();
+        }, "ok");
+        $("hoodForm").onsubmit = (e) => {
+          e.preventDefault();
+          ok();
+        };
+      }
+      __name(askHood, "askHood");
       var lvT = 0;
       function showLevel(o) {
         $("lvlT").textContent = o.title + " +" + o.pay + " \u20AC";
@@ -40285,6 +42992,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       async function saveGame(auto) {
         if (!game) return;
         const S = game.snapshot();
+        if (S.hood) LS.set("hoodName", S.hood);
         S.city = cityKey;
         const ok = await idb.set("kv", "save:" + cityKey, S);
         if (!auto) {
@@ -40344,10 +43052,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       initStick();
       initGestures();
       initButtons();
+      initTagWall();
       applyMuteUi();
       lockPortrait();
       boot();
-      window.hoodApp = { openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
+      window.hoodApp = { askHood, showTagWall, tagUI, tagCrop, showShop, hasSave: /* @__PURE__ */ __name(() => hasSave, "hasSave"), openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
     }
   });
   require_app();

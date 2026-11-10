@@ -152,6 +152,32 @@ body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #
 #credits.open{display:block}
 #credits h2{color:#ffd23f;margin:0 0 12px}
 #credits button{margin-top:18px}
+
+/* 1106h15: spray-can loader, boosts chip, shop, tag wall, hood name */
+.sprayLoad{position:relative;width:46px;height:84px;margin:14px auto}
+.sprayLoad .can{width:46px;height:84px;display:block;transform-origin:50% 85%;animation:canShake .42s ease-in-out infinite}
+.sprayLoad .mist{position:absolute;left:34px;top:4px;width:8px;height:8px;border-radius:50%;background:rgba(255,90,170,.55);filter:blur(1px);opacity:0;animation:mist 1.26s ease-out infinite}
+.sprayLoad .m2{animation-delay:.42s;background:rgba(255,225,77,.5)}.sprayLoad .m3{animation-delay:.84s}
+@keyframes canShake{0%,100%{transform:rotate(-9deg) translateY(0)}25%{transform:rotate(3deg) translateY(-4px)}50%{transform:rotate(9deg) translateY(0)}75%{transform:rotate(-3deg) translateY(-4px)}}
+@keyframes mist{0%{opacity:0;transform:translate(0,0) scale(.4)}15%{opacity:.9}100%{opacity:0;transform:translate(26px,-10px) scale(2.4)}}
+#loading.error .sprayLoad{display:none}
+#tLoad{display:flex;justify-content:center;pointer-events:none}#tLoad.hidden{display:none}#tLoad .sprayLoad{width:calc(var(--u)*6);height:calc(var(--u)*11);margin:calc(var(--u)*.6) auto 0}#tLoad .can{width:100%;height:100%}#tLoad .mist{left:72%}
+#fxChip{display:flex;gap:4px;justify-content:flex-end;margin-top:3px}#fxChip span{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:1px 6px;font:700 11px Arial,sans-serif}#fxChip b{margin-left:3px;color:#ffe14d}
+#shopSub{width:min(560px,100%);color:#bbb;font-size:12px;margin:-4px 0 8px}#shopMsg{width:min(560px,100%);min-height:1.4em;color:#ffe14d;font-weight:700;margin-top:6px}
+.slot .pr{font:700 13px Arial,sans-serif;color:#ffe14d;min-width:44px;text-align:right}
+#tagOv{background:rgba(4,5,9,.94)}#tagInfo{width:min(720px,100%);color:#ccc;font-size:12px;margin:-4px 0 6px;min-height:1.3em}
+#tagWrap{width:min(720px,100%);flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+#tagCv{width:100%;max-height:100%;aspect-ratio:2/1;border:2px solid rgba(255,255,255,.15);touch-action:none;background:#555;display:block}
+#tagTools{width:min(720px,100%);display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+#tagCols{display:flex;gap:6px;flex-wrap:wrap}#tagCols button{width:32px;height:32px;border-radius:50%;border:3px solid rgba(255,255,255,.25);padding:0}#tagCols button.on{border-color:#fff;transform:scale(1.12)}
+#tagSizes{display:flex;gap:4px}#tagSizes button{min-height:32px;padding:0 10px;background:#1a1a22;color:#fff;border:2px solid rgba(255,255,255,.2);font:700 12px Arial,sans-serif}#tagSizes button.on{border-color:#ffe14d;color:#ffe14d}
+#tagBtns{width:min(720px,100%);display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.btn.hot{background:#ffe14d;color:#111;border-color:#ffe14d}
+#hoodOv{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:rgba(4,5,9,.88);padding:20px}#hoodOv.open{display:flex}
+#hoodForm{width:min(420px,100%);background:#111116;border:2px solid #ffe14d;padding:18px;text-align:center;color:#eee;font:14px/1.4 Arial,sans-serif;box-shadow:0 0 30px rgba(255,210,60,.25)}
+#hoodForm .hh{font:600 22px/1.1 'HoodPix','Courier New',monospace;color:#ffe14d;text-shadow:2px 2px 0 #000;margin-bottom:8px}
+#hoodIn{width:100%;font:700 20px Arial,sans-serif;padding:10px;margin:10px 0 4px;background:#000;color:#fff;border:2px solid rgba(255,255,255,.3);text-align:center;text-transform:uppercase}
+#hoodMsg{min-height:1.3em;color:#ffb08a;font-size:12px;margin-bottom:6px}
 /* loading */
 #loading{position:fixed;inset:0;z-index:30;background:#0b0b14;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:24px;text-align:center}
 #loading .lg{color:#ffd23f;font:700 36px "Arial Black",Impact,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000}
@@ -219,9 +245,9 @@ body.shot #hint{display:none}
 <div id="game"></div><div class="vig"></div><div id="hurt"></div>
 <div id="logo" class="ui">HOOD<small>PLACE TO BE</small><span id="cityName"></span></div>
 <div id="wepBar" class="ui hidden" aria-hidden="true"><button type="button" data-wep="" class="on"><b>1</b><span>Faust</span></button><button type="button" data-wep="bat" class="dim"><b>2</b><span>Schläger</span></button><button type="button" data-wep="pistol" class="dim"><b>3</b><span>Pistole</span></button></div>
-<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts" aria-label="Leben"><b>♥♥♥♥♥</b></div><div id="carHp" style="display:none"><i></i></div><div id="weapon" class="fist" type="button"><span class="ic" aria-hidden="true"></span><i id="wepAmmo"></i></div><div id="stars"></div></div>
+<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts" aria-label="Leben"><b>♥♥♥♥♥</b></div><div id="carHp" style="display:none"><i></i></div><div id="weapon" class="fist" type="button"><span class="ic" aria-hidden="true"></span><i id="wepAmmo"></i></div><div id="stars"></div><div id="fxChip"></div></div>
 <div id="jobBanner" class="ui hidden"></div>
-<div id="talk" class="ui hidden"><img class="face" id="talkFace" src="assets/faces/chef.webp?v=1106h14" alt="" aria-hidden="true"><div class="tx"><b id="talkWho"></b><p id="talkTxt"></p></div></div>
+<div id="talk" class="ui hidden"><img class="face" id="talkFace" src="assets/faces/chef.webp?v=1106h15" alt="" aria-hidden="true"><div class="tx"><b id="talkWho"></b><p id="talkTxt"></p></div></div>
 <div id="street" class="ui"></div><div id="prompt" class="ui"></div><div id="toast" class="ui"></div>
 <div id="hint" class="ui hidden">Links: Stick zum Laufen. Rechts: Angriff, Einsteigen, Aktion.<br>Im Auto: Straße antippen und er fährt hin. Am Imbiss: Aufträge.</div>
 <div id="stick" aria-label="Steuerung"><b id="stickKnob"></b></div>
@@ -234,10 +260,10 @@ body.shot #hint{display:none}
 <div id="radio"><button id="radPrev" type="button" aria-label="Vorheriger Sender">⏮</button><span class="nm" id="radName">Radio</span><button id="radNext" type="button" aria-label="Nächster Sender">⏭</button></div>
 <button id="menuBtn" type="button" aria-label="Menü">☰</button>
 <div id="topBtns"><button id="mapBtn" type="button" aria-label="Karte"><svg viewBox="0 0 22 22"><path fill="none" stroke="#ffd23f" stroke-width="2" d="M2 5l6-2 6 2 6-2v14l-6 2-6-2-6 2zM8 3v14M14 5v14"/></svg></button><button id="bagBtn" type="button" aria-label="Tasche"><svg viewBox="0 0 22 22"><path fill="none" stroke="#ffd23f" stroke-width="2" d="M4 8h14l-1 11H5zM8 8V6a3 3 0 0 1 6 0v2"/></svg></button></div>
-<div id="mapOv" class="ovl"><div class="oh"><b>Karte</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><canvas id="mapCv"></canvas><div id="mapHint"></div><div id="mapLeg"><span><i style="background:#ffe14d"></i>Du</span><span><i style="background:#5fc04a"></i>Auftraggeber</span><span><i style="background:#ff3df0"></i>Ziel</span><span><i style="background:rgba(80,200,120,.55)"></i>Dein Revier</span><span><i style="background:rgba(230,70,60,.5)"></i>Fremdes Revier</span><span><i style="background:#3aa0ff"></i>U-Bahn</span></div></div>
+<div id="mapOv" class="ovl"><div class="oh"><b>Karte</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><canvas id="mapCv"></canvas><div id="mapHint"></div><div id="mapLeg"><span><i style="background:#ffe14d"></i>Du</span><span><i style="background:#5fc04a"></i>Auftraggeber</span><span><i style="background:#ff3df0"></i>Ziel</span><span><i style="background:rgba(80,200,120,.55)"></i>Dein Revier</span><span><i style="background:rgba(230,70,60,.5)"></i>Fremdes Revier</span><span><i style="background:#3aa0ff"></i>U-Bahn</span><span><i style="background:#ff8fd0"></i>Laden</span><span><i style="background:transparent;border:1px dashed #5fc04a"></i>Dein Tag (Radius)</span><span><i style="background:transparent;border:1px dashed #e0442e"></i>Fremdes Tag</span></div></div>
 <div id="bagOv" class="ovl"><div class="oh"><b>Tasche</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div class="body" id="bagBody"></div></div>
 <div id="charOv" class="ovl"><div class="oh"><b>Charakter</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div class="body" id="charBody"></div></div>
-<div id="boardOv" class="ovl"><div class="oh"><b id="boardWho">Aufträge</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div id="boardHead"><img id="boardFace" src="assets/faces/chef.webp?v=1106h14" alt=""><p id="boardLine"></p></div><div class="body" id="boardBody"></div></div>
+<div id="boardOv" class="ovl"><div class="oh"><b id="boardWho">Aufträge</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div id="boardHead"><img id="boardFace" src="assets/faces/chef.webp?v=1106h15" alt=""><p id="boardLine"></p></div><div class="body" id="boardBody"></div></div>
 <div id="ubOv" class="ovl"><div class="oh"><b>U-Bahn</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div class="body" id="ubBody"></div></div>
 <div id="ubFx"><span id="ubFxT">U-Bahn</span></div>
 <div id="lvlPop"><b id="lvlT">Stufe 2</b><span id="lvlS"></span></div>
@@ -267,7 +293,7 @@ body.shot #hint{display:none}
     <button type="button" data-act="quit"><svg class="ar" viewBox="0 0 14 10" aria-hidden="true"><path fill="#ffe14d" d="M0 0h2v1h1v1h1v1h1v1h1v2H5v1H4v1H3v1H2v1H0zM7 0h2v1h1v1h1v1h1v1h1v2h-1v1h-1v1h-1v1H9v1H7z"/></svg>Beenden</button>
    </nav>
    <div id="titleQuit" class="hidden"><p>Bis später.</p><button id="quitBack" class="pxBtn" type="button">Zurück</button></div>
-   <div id="tStatus"></div>
+   <div id="tLoad" class="hidden"><div class="sprayLoad" aria-hidden="true"><svg class="can" viewBox="0 0 60 110"><defs><linearGradient id="cg2" x1="0" x2="1"><stop offset="0" stop-color="#9a1f5c"/><stop offset=".45" stop-color="#ff3d9a"/><stop offset="1" stop-color="#7a1448"/></linearGradient><linearGradient id="kg2" x1="0" x2="1"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#eee"/><stop offset="1" stop-color="#666"/></linearGradient></defs><rect x="25" y="4" width="10" height="9" rx="2" fill="#222"/><rect x="34" y="6" width="5" height="4" fill="#111"/><path d="M14 30 Q14 16 30 14 Q46 16 46 30Z" fill="url(#kg2)"/><rect x="12" y="29" width="36" height="74" rx="5" fill="url(#cg2)"/><rect x="12" y="46" width="36" height="22" fill="#ffe14d"/><text x="30" y="62" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="12" fill="#111">HOOD</text><rect x="12" y="96" width="36" height="7" rx="3" fill="#5a0e34"/><rect x="17" y="32" width="4" height="66" rx="2" fill="rgba(255,255,255,.35)"/></svg><i class="mist m1"></i><i class="mist m2"></i><i class="mist m3"></i></div></div><div id="tStatus"></div>
   </div>
  <button id="tMute" class="pxBtn" type="button" aria-label="Ton an/aus">♪ Ton an</button>
  <div id="menu" class="hidden"><div class="wrap">
@@ -303,7 +329,10 @@ body.shot #hint{display:none}
 <p>Radiostreams: unabhängige Sender (SomaFM, Radio Paradise) — kein öffentlich-rechtliches Programm.</p>
 <p>Alle Läden, Schilder und Decknamen im Spiel sind erfunden. Keine echten Marken.</p>
 <button class="btn" id="creditsClose" type="button">Zurück</button></div>
-<div id="loading"><div class="lg">HOOD</div><div class="sp"></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
-<script>window.HOOD_V='1106h14';</script>
-<script src="hood.js?v=1106h14"></script>
+<div id="shopOv" class="ovl"><div class="oh"><b id="shopName">Laden</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div id="shopSub"></div><div class="body" id="shopBody"></div><div id="shopMsg"></div></div>
+<div id="tagOv" class="ovl"><div class="oh"><b>Dein Tag</b><button class="x" type="button" id="tagX" aria-label="Abbrechen">✕</button></div><div id="tagInfo"></div><div id="tagWrap"><canvas id="tagCv"></canvas></div><div id="tagTools"><div id="tagCols"></div><div id="tagSizes"><button type="button" data-sz="0.6">fein</button><button type="button" data-sz="1" class="on">mittel</button><button type="button" data-sz="1.7">fett</button></div></div><div id="tagBtns"><button type="button" class="btn" id="tagNew">Neu</button><button type="button" class="btn hot" id="tagDone">Fertig — an die Wand</button></div></div>
+<div id="hoodOv"><form id="hoodForm" autocomplete="off"><div class="hh">WIE HEISST DEINE HOOD?</div><p>Dein Viertel bekommt deinen Namen — auf der Karte, an den Wänden, überall.</p><input id="hoodIn" maxlength="20" placeholder="z.B. Nordstadt-Ost" enterkeyhint="done" autocapitalize="characters"><div id="hoodMsg"></div><button type="submit" class="btn hot" id="hoodOk">Los geht’s</button></form></div>
+<div id="loading"><div class="lg">HOOD</div><div class="sprayLoad" aria-hidden="true"><svg class="can" viewBox="0 0 60 110"><defs><linearGradient id="cg" x1="0" x2="1"><stop offset="0" stop-color="#9a1f5c"/><stop offset=".45" stop-color="#ff3d9a"/><stop offset="1" stop-color="#7a1448"/></linearGradient><linearGradient id="kg" x1="0" x2="1"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#eee"/><stop offset="1" stop-color="#666"/></linearGradient></defs><rect x="25" y="4" width="10" height="9" rx="2" fill="#222"/><rect x="34" y="6" width="5" height="4" fill="#111"/><path d="M14 30 Q14 16 30 14 Q46 16 46 30Z" fill="url(#kg)"/><rect x="12" y="29" width="36" height="74" rx="5" fill="url(#cg)"/><rect x="12" y="46" width="36" height="22" fill="#ffe14d"/><text x="30" y="62" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="12" fill="#111">HOOD</text><rect x="12" y="96" width="36" height="7" rx="3" fill="#5a0e34"/><rect x="17" y="32" width="4" height="66" rx="2" fill="rgba(255,255,255,.35)"/></svg><i class="mist m1"></i><i class="mist m2"></i><i class="mist m3"></i></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
+<script>window.HOOD_V='1106h15';</script>
+<script src="hood.js?v=1106h15"></script>
 </body></html>
