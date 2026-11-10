@@ -260,13 +260,13 @@
     return p;
   }
   function checkIntersection$1(object, material, raycaster, ray, pA, pB, pC, point) {
-    let intersect;
+    let intersect2;
     if (material.side === BackSide) {
-      intersect = ray.intersectTriangle(pC, pB, pA, true, point);
+      intersect2 = ray.intersectTriangle(pC, pB, pA, true, point);
     } else {
-      intersect = ray.intersectTriangle(pA, pB, pC, material.side === FrontSide, point);
+      intersect2 = ray.intersectTriangle(pA, pB, pC, material.side === FrontSide, point);
     }
-    if (intersect === null) return null;
+    if (intersect2 === null) return null;
     _intersectionPointWorld.copy(point);
     _intersectionPointWorld.applyMatrix4(object.matrixWorld);
     const distance = raycaster.ray.origin.distanceTo(_intersectionPointWorld);
@@ -7931,7 +7931,23 @@
   function now() {
     return performance.now();
   }
-  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, ConeGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, RingGeometry, SphereGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer;
+  function ascSort(a, b) {
+    return a.distance - b.distance;
+  }
+  function intersect(object, raycaster, intersects2, recursive) {
+    let propagate = true;
+    if (object.layers.test(raycaster.layers)) {
+      const result = object.raycast(raycaster, intersects2);
+      if (result === false) propagate = false;
+    }
+    if (propagate === true && recursive === true) {
+      const children = object.children;
+      for (let i = 0, l = children.length; i < l; i++) {
+        intersect(children[i], raycaster, intersects2, true);
+      }
+    }
+  }
+  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, ConeGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, RingGeometry, SphereGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, LineDashedMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer, _matrix, Raycaster;
   var init_three_module = __esm({
     "node_modules/three/build/three.module.js"() {
       REVISION = "170";
@@ -8630,13 +8646,13 @@
           r[8] = m[8];
           return this;
         }
-        setUvTransform(tx, ty, sx, sy, rotation, cx, cy) {
+        setUvTransform(tx2, ty, sx, sy, rotation, cx, cy) {
           const c = Math.cos(rotation);
           const s = Math.sin(rotation);
           this.set(
             sx * c,
             sx * s,
-            -sx * (c * cx + s * cy) + cx + tx,
+            -sx * (c * cx + s * cy) + cx + tx2,
             -sy * s,
             sy * c,
             -sy * (-s * cx + c * cy) + cy + ty,
@@ -8655,8 +8671,8 @@
           this.premultiply(_m3.makeRotation(-theta));
           return this;
         }
-        translate(tx, ty) {
-          this.premultiply(_m3.makeTranslation(tx, ty));
+        translate(tx2, ty) {
+          this.premultiply(_m3.makeTranslation(tx2, ty));
           return this;
         }
         // for 2D Transforms
@@ -10266,12 +10282,12 @@
         applyQuaternion(q) {
           const vx = this.x, vy = this.y, vz = this.z;
           const qx = q.x, qy = q.y, qz = q.z, qw = q.w;
-          const tx = 2 * (qy * vz - qz * vy);
+          const tx2 = 2 * (qy * vz - qz * vy);
           const ty = 2 * (qz * vx - qx * vz);
           const tz = 2 * (qx * vy - qy * vx);
-          this.x = vx + qw * tx + qy * tz - qz * ty;
-          this.y = vy + qw * ty + qz * tx - qx * tz;
-          this.z = vz + qw * tz + qx * ty - qy * tx;
+          this.x = vx + qw * tx2 + qy * tz - qz * ty;
+          this.y = vy + qw * ty + qz * tx2 - qx * tz;
+          this.z = vz + qw * tz + qx * ty - qy * tx2;
           return this;
         }
         project(camera) {
@@ -11727,17 +11743,17 @@
           const s = Math.sin(angle);
           const t = 1 - c;
           const x = axis.x, y = axis.y, z = axis.z;
-          const tx = t * x, ty = t * y;
+          const tx2 = t * x, ty = t * y;
           this.set(
-            tx * x + c,
-            tx * y - s * z,
-            tx * z + s * y,
+            tx2 * x + c,
+            tx2 * y - s * z,
+            tx2 * z + s * y,
             0,
-            tx * y + s * z,
+            tx2 * y + s * z,
             ty * y + c,
             ty * z - s * x,
             0,
-            tx * z - s * y,
+            tx2 * z - s * y,
             ty * z + s * x,
             t * z * z + c,
             0,
@@ -19928,12 +19944,12 @@ void main() {
           _uvA.set(0, 0);
           _uvB.set(1, 0);
           _uvC.set(1, 1);
-          let intersect = raycaster.ray.intersectTriangle(_vA, _vB, _vC, false, _intersectPoint);
-          if (intersect === null) {
+          let intersect2 = raycaster.ray.intersectTriangle(_vA, _vB, _vC, false, _intersectPoint);
+          if (intersect2 === null) {
             transformVertex(_vB.set(-0.5, 0.5, 0), _mvPosition, center, _worldScale, sin, cos);
             _uvB.set(0, 1);
-            intersect = raycaster.ray.intersectTriangle(_vA, _vC, _vB, false, _intersectPoint);
-            if (intersect === null) {
+            intersect2 = raycaster.ray.intersectTriangle(_vA, _vC, _vB, false, _intersectPoint);
+            if (intersect2 === null) {
               return;
             }
           }
@@ -20369,10 +20385,10 @@ void main() {
             _mesh$1.matrixWorld = _instanceWorldMatrix;
             _mesh$1.raycast(raycaster, _instanceIntersects);
             for (let i = 0, l = _instanceIntersects.length; i < l; i++) {
-              const intersect = _instanceIntersects[i];
-              intersect.instanceId = instanceId;
-              intersect.object = this;
-              intersects2.push(intersect);
+              const intersect2 = _instanceIntersects[i];
+              intersect2.instanceId = instanceId;
+              intersect2.object = this;
+              intersects2.push(intersect2);
             }
             _instanceIntersects.length = 0;
           }
@@ -20508,32 +20524,32 @@ void main() {
             for (let i = start, l = end - 1; i < l; i += step) {
               const a = index.getX(i);
               const b = index.getX(i + 1);
-              const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, a, b);
-              if (intersect) {
-                intersects2.push(intersect);
+              const intersect2 = checkIntersection(this, raycaster, _ray$1, localThresholdSq, a, b);
+              if (intersect2) {
+                intersects2.push(intersect2);
               }
             }
             if (this.isLineLoop) {
               const a = index.getX(end - 1);
               const b = index.getX(start);
-              const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, a, b);
-              if (intersect) {
-                intersects2.push(intersect);
+              const intersect2 = checkIntersection(this, raycaster, _ray$1, localThresholdSq, a, b);
+              if (intersect2) {
+                intersects2.push(intersect2);
               }
             }
           } else {
             const start = Math.max(0, drawRange.start);
             const end = Math.min(positionAttribute.count, drawRange.start + drawRange.count);
             for (let i = start, l = end - 1; i < l; i += step) {
-              const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, i, i + 1);
-              if (intersect) {
-                intersects2.push(intersect);
+              const intersect2 = checkIntersection(this, raycaster, _ray$1, localThresholdSq, i, i + 1);
+              if (intersect2) {
+                intersects2.push(intersect2);
               }
             }
             if (this.isLineLoop) {
-              const intersect = checkIntersection(this, raycaster, _ray$1, localThresholdSq, end - 1, start);
-              if (intersect) {
-                intersects2.push(intersect);
+              const intersect2 = checkIntersection(this, raycaster, _ray$1, localThresholdSq, end - 1, start);
+              if (intersect2) {
+                intersects2.push(intersect2);
               }
             }
           }
@@ -20843,11 +20859,11 @@ void main() {
           normals[0] = new Vector3();
           binormals[0] = new Vector3();
           let min = Number.MAX_VALUE;
-          const tx = Math.abs(tangents[0].x);
+          const tx2 = Math.abs(tangents[0].x);
           const ty = Math.abs(tangents[0].y);
           const tz = Math.abs(tangents[0].z);
-          if (tx <= min) {
-            min = tx;
+          if (tx2 <= min) {
+            min = tx2;
             normal.set(1, 0, 0);
           }
           if (ty <= min) {
@@ -20956,10 +20972,10 @@ void main() {
           if (this.aRotation !== 0) {
             const cos = Math.cos(this.aRotation);
             const sin = Math.sin(this.aRotation);
-            const tx = x - this.aX;
+            const tx2 = x - this.aX;
             const ty = y - this.aY;
-            x = tx * cos - ty * sin + this.aX;
-            y = tx * sin + ty * cos + this.aY;
+            x = tx2 * cos - ty * sin + this.aX;
+            y = tx2 * sin + ty * cos + this.aY;
           }
           return point.set(x, y);
         }
@@ -22959,6 +22975,29 @@ void main() {
           return this;
         }
       };
+      LineDashedMaterial = class extends LineBasicMaterial {
+        static {
+          __name(this, "LineDashedMaterial");
+        }
+        static get type() {
+          return "LineDashedMaterial";
+        }
+        constructor(parameters) {
+          super();
+          this.isLineDashedMaterial = true;
+          this.scale = 1;
+          this.dashSize = 3;
+          this.gapSize = 1;
+          this.setValues(parameters);
+        }
+        copy(source) {
+          super.copy(source);
+          this.scale = source.scale;
+          this.dashSize = source.dashSize;
+          this.gapSize = source.gapSize;
+          return this;
+        }
+      };
       __name(convertArray, "convertArray");
       __name(isTypedArray, "isTypedArray");
       __name(getKeyframeOrder, "getKeyframeOrder");
@@ -24920,6 +24959,62 @@ void main() {
         ]
       ];
       _controlInterpolantsResultBuffer = new Float32Array(1);
+      _matrix = /* @__PURE__ */ new Matrix4();
+      Raycaster = class {
+        static {
+          __name(this, "Raycaster");
+        }
+        constructor(origin, direction, near = 0, far = Infinity) {
+          this.ray = new Ray(origin, direction);
+          this.near = near;
+          this.far = far;
+          this.camera = null;
+          this.layers = new Layers();
+          this.params = {
+            Mesh: {},
+            Line: { threshold: 1 },
+            LOD: {},
+            Points: { threshold: 1 },
+            Sprite: {}
+          };
+        }
+        set(origin, direction) {
+          this.ray.set(origin, direction);
+        }
+        setFromCamera(coords, camera) {
+          if (camera.isPerspectiveCamera) {
+            this.ray.origin.setFromMatrixPosition(camera.matrixWorld);
+            this.ray.direction.set(coords.x, coords.y, 0.5).unproject(camera).sub(this.ray.origin).normalize();
+            this.camera = camera;
+          } else if (camera.isOrthographicCamera) {
+            this.ray.origin.set(coords.x, coords.y, (camera.near + camera.far) / (camera.near - camera.far)).unproject(camera);
+            this.ray.direction.set(0, 0, -1).transformDirection(camera.matrixWorld);
+            this.camera = camera;
+          } else {
+            console.error("THREE.Raycaster: Unsupported camera type: " + camera.type);
+          }
+        }
+        setFromXRController(controller) {
+          _matrix.identity().extractRotation(controller.matrixWorld);
+          this.ray.origin.setFromMatrixPosition(controller.matrixWorld);
+          this.ray.direction.set(0, 0, -1).applyMatrix4(_matrix);
+          return this;
+        }
+        intersectObject(object, recursive = true, intersects2 = []) {
+          intersect(object, this, intersects2, recursive);
+          intersects2.sort(ascSort);
+          return intersects2;
+        }
+        intersectObjects(objects, recursive = true, intersects2 = []) {
+          for (let i = 0, l = objects.length; i < l; i++) {
+            intersect(objects[i], this, intersects2, recursive);
+          }
+          intersects2.sort(ascSort);
+          return intersects2;
+        }
+      };
+      __name(ascSort, "ascSort");
+      __name(intersect, "intersect");
       if (typeof __THREE_DEVTOOLS__ !== "undefined") {
         __THREE_DEVTOOLS__.dispatchEvent(new CustomEvent("register", { detail: {
           revision: REVISION
@@ -28664,14 +28759,19 @@ void main() {
           const col = new Float32Array(n * 3), key = new Float32Array(n);
           const c = mt && mt.color ? mt.color : new Color(1, 1, 1);
           const ki = kIndex(keyOf(mt));
+          const pbr = new Float32Array(n * 2);
+          const rg = mt && mt.roughness != null ? mt.roughness : 0.7, mtl = mt && mt.metalness != null ? mt.metalness : 0;
           for (let i = 0; i < n; i++) {
             col[i * 3] = c.r;
             col[i * 3 + 1] = c.g;
             col[i * 3 + 2] = c.b;
             key[i] = ki;
+            pbr[i * 2] = rg;
+            pbr[i * 2 + 1] = mtl;
           }
           g.setAttribute("color", new BufferAttribute(col, 3));
           g.setAttribute("mkey", new BufferAttribute(key, 1));
+          g.setAttribute("pbr", new BufferAttribute(pbr, 2));
           const b = bucket(mt);
           (out[b] = out[b] || []).push(g);
         }
@@ -28793,7 +28893,7 @@ void main() {
   function getPropTemplate(k) {
     return cache.props[k] || null;
   }
-  function clonePed(tpl, tint) {
+  function clonePed(tpl, tint, hero) {
     const c = tpl.clone(true);
     const lin = new Color();
     const map = {};
@@ -28821,7 +28921,7 @@ void main() {
       }
       g.setAttribute("color", new BufferAttribute(col, 3));
       o.geometry = g;
-      o.material = pedMat;
+      o.material = hero ? heroMat : pedMat;
       o.castShadow = true;
       o.receiveShadow = false;
     });
@@ -28842,7 +28942,7 @@ void main() {
     }
     return out;
   }
-  var loader, CAR_FILES, PROP_FILES, cache, PIVOTS, keyOf, isGlow, findNode, KEYS, kIndex, restMat, glowMat, pedMat;
+  var loader, CAR_FILES, PROP_FILES, cache, PIVOTS, keyOf, isGlow, findNode, KEYS, kIndex, restMat, glowMat, pedMat, heroMat;
   var init_sets = __esm({
     "src/sets.js"() {
       init_three_module();
@@ -28885,6 +28985,12 @@ void main() {
       __name(getCarTemplate, "getCarTemplate");
       __name(getPropTemplate, "getPropTemplate");
       pedMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.72, metalness: 0.02 });
+      heroMat = new MeshStandardMaterial({ vertexColors: true, roughness: 1, metalness: 1, envMapIntensity: 1 });
+      heroMat.onBeforeCompile = (sh) => {
+        sh.vertexShader = sh.vertexShader.replace("#include <common>", "#include <common>\nattribute vec2 pbr;varying vec2 vPbr;").replace("#include <begin_vertex>", "#include <begin_vertex>\nvPbr=pbr;");
+        sh.fragmentShader = sh.fragmentShader.replace("#include <common>", "#include <common>\nvarying vec2 vPbr;").replace("#include <roughnessmap_fragment>", "float roughnessFactor=clamp(vPbr.x*0.92,0.18,1.0);").replace("#include <metalnessmap_fragment>", "float metalnessFactor=vPbr.y;").replace("#include <emissivemap_fragment>", "#include <emissivemap_fragment>\n{float rim=pow(1.0-clamp(abs(normal.z),0.0,1.0),2.2);totalEmissiveRadiance+=vec3(1.0,0.86,0.68)*rim*0.22*diffuseColor.rgb+vec3(0.05,0.045,0.04)*rim;}");
+      };
+      heroMat.customProgramCacheKey = () => "hoodHero1";
       __name(clonePed, "clonePed");
       __name(instanceProp, "instanceProp");
     }
@@ -28918,6 +29024,37 @@ void main() {
     return t;
   }
   function speckle(g, w, h, n, amp, R, dark = true) {
+    W0: {
+      w = Math.round(w);
+      h = Math.round(h);
+      let img;
+      try {
+        img = g.getImageData(0, 0, w, h);
+      } catch (_) {
+        break W0;
+      }
+      const d = img.data;
+      for (let i = 0; i < n; i++) {
+        const v = R();
+        const blk = R() < 0.5;
+        const a = blk ? amp * v : amp * v * 0.6;
+        const s = 1 + R() * 2.5;
+        const x0 = R() * w, y0 = R() * h;
+        const tv = blk ? 0 : 255;
+        const xa = Math.max(0, Math.round(x0)), xb = Math.min(w, Math.round(x0 + s)), ya = Math.max(0, Math.round(y0)), yb = Math.min(h, Math.round(y0 + s));
+        for (let y = ya; y < yb; y++) {
+          let o = (y * w + xa) * 4;
+          for (let x = xa; x < xb; x++, o += 4) {
+            d[o] += (tv - d[o]) * a;
+            d[o + 1] += (tv - d[o + 1]) * a;
+            d[o + 2] += (tv - d[o + 2]) * a;
+            if (d[o + 3] < 255) d[o + 3] += (255 - d[o + 3]) * a;
+          }
+        }
+      }
+      g.putImageData(img, 0, 0);
+      return;
+    }
     for (let i = 0; i < n; i++) {
       const v = R();
       g.fillStyle = R() < 0.5 ? `rgba(0,0,0,${amp * v})` : `rgba(255,255,255,${amp * v * 0.6})`;
@@ -29650,11 +29787,11 @@ void main() {
     const n = pts.length, out = [];
     for (let i = 0; i < n; i++) {
       const a = pts[closed ? (i - 1 + n) % n : Math.max(0, i - 1)], b = pts[closed ? (i + 1) % n : Math.min(n - 1, i + 1)];
-      let tx = b[0] - a[0], tz = b[1] - a[1];
-      const l = Math.hypot(tx, tz) || 1;
-      tx /= l;
+      let tx2 = b[0] - a[0], tz = b[1] - a[1];
+      const l = Math.hypot(tx2, tz) || 1;
+      tx2 /= l;
       tz /= l;
-      let nx = -tz, nz = tx, m = 1;
+      let nx = -tz, nz = tx2, m = 1;
       if (closed || i > 0 && i < n - 1) {
         const p0 = pts[closed ? (i - 1 + n) % n : i - 1], sx = pts[i][0] - p0[0], sz = pts[i][1] - p0[1], sl = Math.hypot(sx, sz) || 1;
         const d = Math.abs(nx * (-sz / sl) + nz * (sx / sl));
@@ -30160,11 +30297,11 @@ void main() {
       const n = nearSeg(x, z);
       if (!n) return { x, z, tx: 1, tz: 0 };
       const a = n.s[0], b = n.s[1];
-      let tx = b[0] - a[0], tz = b[1] - a[1];
-      const l = Math.hypot(tx, tz) || 1;
-      tx /= l;
+      let tx2 = b[0] - a[0], tz = b[1] - a[1];
+      const l = Math.hypot(tx2, tz) || 1;
+      tx2 /= l;
       tz /= l;
-      let nx = -tz, nz = tx;
+      let nx = -tz, nz = tx2;
       if ((x - n.cx) * nx + (z - n.cz) * nz < 0) {
         nx = -nx;
         nz = -nz;
@@ -30174,7 +30311,7 @@ void main() {
         x = n.cx + nx * off;
         z = n.cz + nz * off;
       }
-      return { x, z, tx, tz, nx, nz };
+      return { x, z, tx: tx2, tz, nx, nz };
     }
     __name(curbside, "curbside");
     const noTreePolys = [], noTreeLines = [];
@@ -30443,11 +30580,11 @@ void main() {
           if (acc < 42) continue;
           acc = 0;
           if (emb[i]) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
           const sd = masts.length % 2 ? 1 : -1;
-          const mx = a[0] - tz * (bw / 2 + 0.7) * sd, mz = a[1] + tx * (bw / 2 + 0.7) * sd;
+          const mx = a[0] - tz * (bw / 2 + 0.7) * sd, mz = a[1] + tx2 * (bw / 2 + 0.7) * sd;
           if (inBuilding(mx, mz) || inRoad(mx, mz, -0.5)) continue;
-          masts.push({ x: mx, z: mz, ax: a[0], az: a[1], rot: Math.atan2(-tz, tx) });
+          masts.push({ x: mx, z: mz, ax: a[0], az: a[1], rot: Math.atan2(-tz, tx2) });
         }
       }
       noTreeLines.push([r.p, bw / 2 + 1.2]);
@@ -30543,10 +30680,10 @@ void main() {
       const c = curbside(e.p[0], e.p[1], 2.6);
       if (inBuilding(c.x, c.z) || usedE.some((q) => Math.hypot(q[0] - c.x, q[1] - c.z) < 6)) continue;
       usedE.push([c.x, c.z]);
-      const tx = c.tx, tz = c.tz, nx = -tz, nz = tx;
+      const tx2 = c.tx, tz = c.tz, nx = -tz, nz = tx2;
       const hl = 1.9, hw = 1.05;
-      const P2 = /* @__PURE__ */ __name((u, v) => [c.x + tx * u + nx * v, c.z + tz * u + nz * v], "P2");
-      const rot = Math.atan2(-tz, tx);
+      const P2 = /* @__PURE__ */ __name((u, v) => [c.x + tx2 * u + nx * v, c.z + tz * u + nz * v], "P2");
+      const rot = Math.atan2(-tz, tx2);
       const N = 9;
       const V3 = /* @__PURE__ */ __name((q, y) => [q[0], y, q[1]], "V3");
       for (let k = 0; k < N; k++) {
@@ -30963,7 +31100,7 @@ void main() {
           best = s;
         }
       }
-      return best ? { d: bd, road: best[5], w: best[4] } : null;
+      return best ? { d: bd, road: best[5], w: best[4], s: best } : null;
     };
     const poiByB = /* @__PURE__ */ new Map();
     const roofPaint = [], solarL = [], skyRows = [];
@@ -31424,11 +31561,11 @@ void main() {
       const L = [], Rr = [];
       for (let i = 0; i < n; i++) {
         const a = pts[Math.max(0, i - 1)], b = pts[Math.min(n - 1, i + 1)];
-        let tx = b[0] - a[0], tz = b[1] - a[1];
-        const l = Math.hypot(tx, tz) || 1;
-        tx /= l;
+        let tx2 = b[0] - a[0], tz = b[1] - a[1];
+        const l = Math.hypot(tx2, tz) || 1;
+        tx2 /= l;
         tz /= l;
-        let nx = -tz, nz = tx;
+        let nx = -tz, nz = tx2;
         let m = 1;
         if (i > 0 && i < n - 1) {
           const sx = pts[i][0] - pts[i - 1][0], sz = pts[i][1] - pts[i - 1][1], sl = Math.hypot(sx, sz) || 1;
@@ -31500,14 +31637,14 @@ void main() {
             const a = r.p[i], b = r.p[i + 1];
             const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
             if (l < 0.1) continue;
-            const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
+            const tx2 = dx / l, tz = dz / l, nx = -tz, nz = tx2;
             for (let s = 0; s < l; s += 0.5) {
               const g = (acc + s) % 6;
               if (g < 3 && g + 0.5 <= 3) {
-                const x = a[0] + tx * s + nx * off, z = a[1] + tz * s + nz * off;
+                const x = a[0] + tx2 * s + nx * off, z = a[1] + tz * s + nz * off;
                 if (nearJ(x, z, r.t === "primary" ? 11 : 8)) continue;
                 const hw = 0.12;
-                const P0 = [x + nx * hw, 0.05, z + nz * hw], P1 = [x - nx * hw, 0.05, z - nz * hw], P2 = [x - nx * hw + tx * 0.85, 0.05, z - nz * hw + tz * 0.85], P3 = [x + nx * hw + tx * 0.85, 0.05, z + nz * hw + tz * 0.85];
+                const P0 = [x + nx * hw, 0.05, z + nz * hw], P1 = [x - nx * hw, 0.05, z - nz * hw], P2 = [x - nx * hw + tx2 * 0.85, 0.05, z - nz * hw + tz * 0.85], P3 = [x + nx * hw + tx2 * 0.85, 0.05, z + nz * hw + tz * 0.85];
                 markG.quad(P0, P3, P2, P1, [0, 1, 0], [0, 0], [0, 0], [0, 0], [0, 0]);
               }
             }
@@ -31524,15 +31661,15 @@ void main() {
           const a = r.p[i], b = r.p[i + 1];
           const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
           if (l < 0.1) continue;
-          const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
+          const tx2 = dx / l, tz = dz / l, nx = -tz, nz = tx2;
           for (let s = 0; s < l; s += 0.5) {
             if ((accA + s) % 26 > 0.45) continue;
-            const x0 = a[0] + tx * s, z0 = a[1] + tz * s;
+            const x0 = a[0] + tx2 * s, z0 = a[1] + tz * s;
             if (nearJ(x0, z0, 11)) continue;
             for (const off of laneOffs) {
               const x = x0 + nx * off, z = z0 + nz * off;
               const hl = 1.2, ah = 0.45;
-              markG.tri([x + tx * hl, 0.052, z + tz * hl], [x - tx * hl + nx * ah, 0.052, z - tz * hl + nz * ah], [x - tx * hl - nx * ah, 0.052, z - tz * hl - nz * ah], [0, 1, 0], [0, 0], [0, 0], [0, 0]);
+              markG.tri([x + tx2 * hl, 0.052, z + tz * hl], [x - tx2 * hl + nx * ah, 0.052, z - tz * hl + nz * ah], [x - tx2 * hl - nx * ah, 0.052, z - tz * hl - nz * ah], [0, 1, 0], [0, 0], [0, 0], [0, 0]);
             }
           }
           accA += l;
@@ -31547,12 +31684,12 @@ void main() {
           const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
           const D0 = r.t === "primary" ? 9 : 6.5;
           if (l < D0 + 4) continue;
-          const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
-          const cx = a[0] + tx * D0, cz = a[1] + tz * D0;
+          const tx2 = dx / l, tz = dz / l, nx = -tz, nz = tx2;
+          const cx = a[0] + tx2 * D0, cz = a[1] + tz * D0;
           for (let k = -w / 2 + 0.6; k < w / 2 - 0.5; k += 1) {
             const x = cx + nx * k, z = cz + nz * k;
             const hw = 0.25, hl = 1.4;
-            const P0 = [x + nx * hw - tx * hl, 0.05, z + nz * hw - tz * hl], P1 = [x - nx * hw - tx * hl, 0.05, z - nz * hw - tz * hl], P2 = [x - nx * hw + tx * hl, 0.05, z - nz * hw + tz * hl], P3 = [x + nx * hw + tx * hl, 0.05, z + nz * hw + tz * hl];
+            const P0 = [x + nx * hw - tx2 * hl, 0.05, z + nz * hw - tz * hl], P1 = [x - nx * hw - tx2 * hl, 0.05, z - nz * hw - tz * hl], P2 = [x - nx * hw + tx2 * hl, 0.05, z - nz * hw + tz * hl], P3 = [x + nx * hw + tx2 * hl, 0.05, z + nz * hw + tz * hl];
             markG.quad(P0, P3, P2, P1, [0, 1, 0], [0, 0], [0, 0], [0, 0], [0, 0]);
           }
         }
@@ -31594,11 +31731,11 @@ void main() {
           const a = r.p[i], b = r.p[i + 1];
           const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
           if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
           while (acc < l) {
             for (const s of [-1, 1]) {
               if ((treePts.length + s & 1) === 0) continue;
-              const x = a[0] + tx * acc - tz * (r.w / 2 + 2.5) * s, z = a[1] + tz * acc + tx * (r.w / 2 + 2.5) * s;
+              const x = a[0] + tx2 * acc - tz * (r.w / 2 + 2.5) * s, z = a[1] + tz * acc + tx2 * (r.w / 2 + 2.5) * s;
               treePts.push([x, z]);
             }
             acc += 16 + treePts.length * 5 % 7;
@@ -31716,13 +31853,13 @@ void main() {
           const a = r.p[i], b = r.p[i + 1];
           const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
           if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
           while (acc < l) {
             const side = propsList.length % 2 ? 1 : -1;
-            const x = a[0] + tx * acc - tz * (r.w / 2 + 1.55) * side, z = a[1] + tz * acc + tx * (r.w / 2 + 1.55) * side;
+            const x = a[0] + tx2 * acc - tz * (r.w / 2 + 1.55) * side, z = a[1] + tz * acc + tx2 * (r.w / 2 + 1.55) * side;
             if (!out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 70 && pip2(x, z, B.b.p))) {
               const kinds = ["bollard", "bin", "planter", "bench", "hydrant"];
-              propsList.push({ p: [x, z], k: kinds[propsList.length % kinds.length], rot: Math.atan2(tx, tz) });
+              propsList.push({ p: [x, z], k: kinds[propsList.length % kinds.length], rot: Math.atan2(tx2, tz) });
             }
             acc += 12 + propsList.length * 3 % 6;
           }
@@ -31798,9 +31935,9 @@ void main() {
       const k = Math.round(f.cx * 2) + "_" + Math.round(f.cz * 2);
       if (used.has(e)) return null;
       used.add(e);
-      let tx = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
-      if (tx < -0.3 || Math.abs(tx) <= 0.3 && tz > 0) {
-        tx = -tx;
+      let tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+      if (tx2 < -0.3 || Math.abs(tx2) <= 0.3 && tz > 0) {
+        tx2 = -tx2;
         tz = -tz;
       }
       const W = Math.min(opt.w || 5.5, e.len - 0.6), Hh = W / 4;
@@ -31809,7 +31946,7 @@ void main() {
       out.neonMats.push(mat);
       const g = new PlaneGeometry(W, Hh);
       const m = new Mesh(g, mat);
-      const right = new Vector3(tx, 0, tz), upv = new Vector3(tz, 0, -tx);
+      const right = new Vector3(tx2, 0, tz), upv = new Vector3(tz, 0, -tx2);
       const nrm = new Vector3().crossVectors(right, upv);
       const tilt = 0.42;
       const up2 = upv.clone().multiplyScalar(Math.cos(tilt)).add(new Vector3(0, 1, 0).multiplyScalar(Math.sin(tilt)));
@@ -31859,13 +31996,13 @@ void main() {
       out.neonMats.push(mat);
       const W = Math.min(9, e.len * 0.8), H = W * 0.375;
       const m = new Mesh(new PlaneGeometry(W, H), mat);
-      let tx = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
-      if (tx < 0) {
-        tx = -tx;
+      let tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+      if (tx2 < 0) {
+        tx2 = -tx2;
         tz = -tz;
       }
-      const right = new Vector3(tx, 0, tz);
-      const upv = new Vector3(tz, 0, -tx);
+      const right = new Vector3(tx2, 0, tz);
+      const upv = new Vector3(tz, 0, -tx2);
       const up2 = upv.clone().multiplyScalar(Math.cos(0.9)).add(new Vector3(0, Math.sin(0.9), 0));
       m.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(right, up2, new Vector3().crossVectors(right, up2)));
       const c = [e.mx - e.nx * 2.2, e.mz - e.nz * 2.2];
@@ -31873,7 +32010,7 @@ void main() {
       scene.add(m);
       for (const s of [-0.4, 0.4]) {
         const leg = new Mesh(new BoxGeometry(0.15, 1.6 + H * 0.6, 0.15), propMat(2763306));
-        leg.position.set(c[0] + tx * W * s, B.h + 0.45 + (1.6 + H * 0.6) / 2, c[1] + tz * W * s);
+        leg.position.set(c[0] + tx2 * W * s, B.h + 0.45 + (1.6 + H * 0.6) / 2, c[1] + tz * W * s);
         leg.castShadow = true;
         scene.add(leg);
       }
@@ -31954,14 +32091,14 @@ void main() {
       for (let i = 0; i < 4; i++) {
         const a = C[i], b = C[(i + 1) % 4];
         const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
-        const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+        const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
         const n = Math.max(1, Math.round(l / 4));
         for (let k = 0; k < n; k++) {
           const t0 = k / n, t1 = (k + 1) / n;
           out.grid.add(a[0] + (b[0] - a[0]) * t0, a[1] + (b[1] - a[1]) * t0, a[0] + (b[0] - a[0]) * t1, a[1] + (b[1] - a[1]) * t1);
           const t = (k + 0.5) / n;
           pv.set(a[0] + (b[0] - a[0]) * t, 0, a[1] + (b[1] - a[1]) * t);
-          q.setFromAxisAngle(Y, Math.atan2(-tz, tx));
+          q.setFromAxisAngle(Y, Math.atan2(-tz, tx2));
           sv.set(l / n / 4, 1, 1);
           mats.push(m4.compose(pv, q, sv).clone());
         }
@@ -32436,7 +32573,7 @@ void main() {
     const c = look(seed, custom);
     const tpl = getPedTemplate(!!custom?.hero);
     if (tpl) {
-      const cloned = clonePed(tpl, { Jacket: c.jacket, Shirt: c.shirt, Pants: c.pants, Skin: c.skin, Hair: c.hair, Shoes: c.shoes });
+      const cloned = clonePed(tpl, { Jacket: c.jacket, Shirt: c.shirt, Pants: c.pants, Skin: c.skin, Hair: c.hair, Shoes: c.shoes }, !!custom?.hero);
       const inner2 = findPart(cloned, "Inner") || cloned;
       inner2.scale.setScalar(scale);
       g.add(cloned);
@@ -32877,10 +33014,10 @@ ${EXTRA_Q(bb)}
           const a = r.p[i], b = r.p[i + 1];
           const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
           if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
           while (acc < l) {
             const s = out.lamps.length % 2 ? 1 : -1;
-            const x = a[0] + tx * acc - tz * (r.w / 2 + 1.2) * s, z = a[1] + tz * acc + tx * (r.w / 2 + 1.2) * s;
+            const x = a[0] + tx2 * acc - tz * (r.w / 2 + 1.2) * s, z = a[1] + tz * acc + tx2 * (r.w / 2 + 1.2) * s;
             if (inside([x, z])) out.lamps.push([Math.round(x * 100) / 100, Math.round(z * 100) / 100]);
             acc += 26;
           }
@@ -32896,11 +33033,11 @@ ${EXTRA_Q(bb)}
           const a = r.p[i], b = r.p[i + 1];
           const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
           if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
           while (acc < l) {
             for (const s of [-1, 1]) {
               if (out.trees.length + s & 1) continue;
-              const x = a[0] + tx * acc - tz * (r.w / 2 + 2.4) * s, z = a[1] + tz * acc + tx * (r.w / 2 + 2.4) * s;
+              const x = a[0] + tx2 * acc - tz * (r.w / 2 + 2.4) * s, z = a[1] + tz * acc + tx2 * (r.w / 2 + 2.4) * s;
               if (inside([x, z])) out.trees.push([Math.round(x * 100) / 100, Math.round(z * 100) / 100]);
             }
             acc += 18 + out.trees.length * 3 % 5;
@@ -33313,9 +33450,55 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return b;
     }
     __name(noiseBuf, "noiseBuf");
+    let stepBank = null, stepSide = 0;
+    function makeSteps() {
+      if (stepBank || !ctx) return stepBank;
+      const sr = ctx.sampleRate;
+      stepBank = [];
+      let seed = 7;
+      const rnd = /* @__PURE__ */ __name(() => {
+        seed = seed * 16807 % 2147483647;
+        return seed / 2147483647 * 2 - 1;
+      }, "rnd");
+      const mk = /* @__PURE__ */ __name((f0, click, scuff, tilt) => {
+        const n = Math.floor(sr * 0.11);
+        const b = ctx.createBuffer(1, n, sr);
+        const d = b.getChannelData(0);
+        const hpA = Math.exp(-2 * Math.PI * 1400 / sr), lpA = Math.exp(-2 * Math.PI * (5200 + tilt) / sr), lp2 = Math.exp(-2 * Math.PI * 2100 / sr);
+        let hy = 0, hx = 0, ly = 0, sy = 0, ph = 0, peak = 0;
+        for (let i = 0; i < n; i++) {
+          const t = i / sr;
+          const x = rnd();
+          hy = hpA * (hy + x - hx);
+          hx = x;
+          ly = ly * lpA + hy * (1 - lpA);
+          const clickE = Math.exp(-t / 55e-4);
+          const f = f0 * (1 + 0.6 * Math.exp(-t / 0.01));
+          ph += 2 * Math.PI * f / sr;
+          const body = Math.sin(ph) * Math.exp(-t / 0.016) * (t < 15e-4 ? t / 15e-4 : 1);
+          const ts = t - 0.026;
+          let sc = 0;
+          if (ts > 0) {
+            sy = sy * lp2 + rnd() * (1 - lp2);
+            sc = sy * Math.exp(-ts / 9e-3) * (ts < 2e-3 ? ts / 2e-3 : 1);
+          }
+          const v = ly * clickE * click * 2.2 + body * 0.55 + sc * scuff * 3.2;
+          d[i] = v;
+          peak = Math.max(peak, Math.abs(v));
+        }
+        const k = 0.9 / (peak || 1);
+        for (let i = 0; i < n; i++) d[i] *= k;
+        const fade = Math.floor(sr * 0.012);
+        for (let i = 0; i < fade; i++) d[n - 1 - i] *= i / fade;
+        return b;
+      }, "mk");
+      stepBank.push(mk(92, 1, 0.9, 0), mk(104, 0.85, 1.1, 600), mk(88, 1.05, 0.8, -400), mk(100, 0.9, 1, 300));
+      return stepBank;
+    }
+    __name(makeSteps, "makeSteps");
     function bump() {
       const v = window.HOOD_V ? "?v=" + window.HOOD_V : "";
-      const files = { shot: "assets/sfx/shot.mp3", boom: "assets/sfx/boom.mp3", crash: "assets/sfx/crash.mp3", squeal: "assets/sfx/squeal.mp3", carDoor: "assets/sfx/door.mp3", step: "assets/sfx/step.mp3", pickup: "assets/sfx/pickup.mp3", heal: "assets/sfx/heal.mp3", bat: "assets/sfx/bat.mp3", engine: "assets/sfx/engine.mp3", city: "assets/sfx/city.mp3" };
+      const files = { shot: "assets/sfx/shot.mp3", boom: "assets/sfx/boom.mp3", crash: "assets/sfx/crash.mp3", squeal: "assets/sfx/squeal.mp3", carDoor: "assets/sfx/door.mp3", pickup: "assets/sfx/pickup.mp3", heal: "assets/sfx/heal.mp3", bat: "assets/sfx/bat.mp3", engine: "assets/sfx/engine.mp3", city: "assets/sfx/city.mp3" };
       Object.keys(files).forEach((k) => {
         fetch(files[k] + v).then((r) => r.ok ? r.arrayBuffer() : Promise.reject()).then((b) => ctx.decodeAudioData(b.slice(0))).then((buf) => {
           samples[k] = buf;
@@ -33540,11 +33723,59 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         ensure();
         if (ctx) applyBed(0.4);
       },
-      step() {
-        if (playSamp("step", 0.55, 0.9 + Math.random() * 0.2)) return;
+      step(vol2 = 1) {
         if (!live()) return;
-        noiseBurst(0.06, 0.16, 350, 2600);
-        beep(80 + Math.random() * 30, 0.06, "triangle", 0.07);
+        const bank = makeSteps();
+        if (!bank) return;
+        stepSide ^= 1;
+        const b = bank[stepSide + (Math.random() < 0.5 ? 0 : 2)];
+        const s = ctx.createBufferSource();
+        s.buffer = b;
+        s.playbackRate.value = 0.96 + Math.random() * 0.08;
+        const g = ctx.createGain();
+        g.gain.value = 0.26 * vol2;
+        s.connect(g);
+        g.connect(master);
+        s.start();
+      },
+      swing() {
+        if (!live()) return;
+        noiseBurst(0.13, 0.1, 900, 3800, 0.02);
+      },
+      siren() {
+        if (!live()) return;
+        const t = ctx.currentTime;
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = "square";
+        o.frequency.setValueAtTime(620, t);
+        o.frequency.linearRampToValueAtTime(980, t + 0.22);
+        o.frequency.linearRampToValueAtTime(620, t + 0.44);
+        o.frequency.linearRampToValueAtTime(980, t + 0.66);
+        const lp = ctx.createBiquadFilter();
+        lp.type = "lowpass";
+        lp.frequency.value = 2200;
+        g.gain.setValueAtTime(1e-4, t);
+        g.gain.exponentialRampToValueAtTime(0.07, t + 0.03);
+        g.gain.setValueAtTime(0.07, t + 0.6);
+        g.gain.exponentialRampToValueAtTime(1e-4, t + 0.8);
+        o.connect(lp);
+        lp.connect(g);
+        g.connect(master);
+        o.start(t);
+        o.stop(t + 0.85);
+      },
+      bell() {
+        if (!live()) return;
+        beep(1320, 0.5, "sine", 0.09);
+        setTimeout(() => beep(1320, 0.6, "sine", 0.08), 260);
+      },
+      jingle() {
+        if (!live()) return;
+        [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, 0.14, "square", 0.07), i * 85));
+      },
+      levelUp() {
+        if (!live()) return;
+        [392, 523, 659, 784, 988].forEach((f, i) => setTimeout(() => beep(f, 0.12, "triangle", 0.11), i * 70));
       },
       pickup() {
         if (playSamp("pickup", 0.7)) return;
@@ -33749,20 +33980,38 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
 
   // src/radio.js
   function createRadio(opts = {}) {
-    let i = Math.max(0, STATIONS.findIndex((s) => s.id === (opts.station || "")));
-    if (i < 0) i = 0;
+    let tracks = [];
+    let ti = 0;
+    const list = /* @__PURE__ */ __name(() => tracks.length ? STATIONS.concat([CUSTOM]) : STATIONS, "list");
+    let i = Math.max(0, list().findIndex((s) => s.id === (opts.station || "")));
     let on = false, vol = opts.vol ?? 0.45, muted = !!opts.muted, audio = null, fadeT = null, fail = 0;
+    const cur = /* @__PURE__ */ __name(() => list()[Math.min(i, list().length - 1)], "cur");
     const el = /* @__PURE__ */ __name(() => {
       if (audio) return audio;
       audio = new Audio();
-      audio.crossOrigin = "anonymous";
       audio.preload = "none";
+      audio.setAttribute("playsinline", "");
       audio.addEventListener("error", () => {
+        if (!on) return;
+        const st = cur();
+        if (st.custom && tracks.length > 1 && fail < tracks.length) {
+          fail++;
+          ti = (ti + 1) % tracks.length;
+          play(true);
+          return;
+        }
         fail++;
-        if (fail < STATIONS.length) {
-          i = (i + 1) % STATIONS.length;
+        if (fail < list().length) {
+          i = (i + 1) % list().length;
           if (on) play(true);
         } else stop(true);
+      });
+      audio.addEventListener("ended", () => {
+        const st = cur();
+        if (st.custom && on && tracks.length) {
+          ti = (ti + 1) % tracks.length;
+          play(true);
+        }
       });
       audio.addEventListener("playing", () => {
         fail = 0;
@@ -33774,23 +34023,38 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       audio.volume = muted ? 0 : vol;
     }
     __name(applyVol, "applyVol");
+    function srcOf(st) {
+      if (st.custom) {
+        const t = tracks[ti % tracks.length];
+        return t ? t.url : "";
+      }
+      return st.url;
+    }
+    __name(srcOf, "srcOf");
     function play(force) {
       on = true;
       const a = el();
-      const st = STATIONS[i];
-      if (force || a.src !== st.url) {
+      const st = cur();
+      const src = srcOf(st);
+      if (!src) {
+        next();
+        return;
+      }
+      if (st.custom) a.removeAttribute("crossorigin");
+      else a.crossOrigin = "anonymous";
+      if (force || a.src !== src) {
         try {
           a.pause();
         } catch (_) {
         }
-        a.src = st.url;
+        a.src = src;
         a.load();
       }
       applyVol();
       a.play().catch(() => {
         fail++;
-        if (fail < STATIONS.length) {
-          i = (i + 1) % STATIONS.length;
+        if (fail < list().length && !st.custom) {
+          i = (i + 1) % list().length;
           play(true);
         }
       });
@@ -33826,24 +34090,63 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(fadeOut, "fadeOut");
     function next() {
-      i = (i + 1) % STATIONS.length;
+      const L = list();
+      if (cur().custom && tracks.length > 1 && opts.skipTracks) {
+        ti = (ti + 1) % tracks.length;
+      } else i = (i + 1) % L.length;
       fail = 0;
       if (on) play(true);
       else if (opts.onChange) opts.onChange(getState());
     }
     __name(next, "next");
     function prev() {
-      i = (i - 1 + STATIONS.length) % STATIONS.length;
+      const L = list();
+      i = (i - 1 + L.length) % L.length;
       fail = 0;
       if (on) play(true);
       else if (opts.onChange) opts.onChange(getState());
     }
     __name(prev, "prev");
+    function nextTrack() {
+      if (!tracks.length) return;
+      ti = (ti + 1) % tracks.length;
+      if (on && cur().custom) play(true);
+      else if (opts.onChange) opts.onChange(getState());
+    }
+    __name(nextTrack, "nextTrack");
+    function setCustom(list2) {
+      const wasCustom = cur() && cur().custom;
+      const old = tracks;
+      tracks = (list2 || []).filter((t) => t && t.url);
+      ti = 0;
+      for (const t of old) if (!tracks.includes(t) && t.url && t.url.startsWith("blob:") && !tracks.some((q) => q.url === t.url)) try {
+        URL.revokeObjectURL(t.url);
+      } catch (_) {
+      }
+      if (i >= list().length) i = 0;
+      if (wasCustom && !tracks.length) {
+        i = 0;
+      }
+      if (on && wasCustom) play(true);
+      else if (opts.onChange) opts.onChange(getState());
+    }
+    __name(setCustom, "setCustom");
+    function select(id) {
+      const k = list().findIndex((s) => s.id === id);
+      if (k >= 0) {
+        i = k;
+        if (on) play(true);
+        else if (opts.onChange) opts.onChange(getState());
+      }
+    }
+    __name(select, "select");
     function getState() {
-      return { on, i, name: STATIONS[i].name, vol, muted, stations: STATIONS.map((s) => s.name) };
+      const st = cur();
+      const t = st.custom ? tracks[ti % Math.max(1, tracks.length)] : null;
+      return { on, i, id: st.id, custom: !!st.custom, name: st.custom ? "Eigene Musik" + (t ? " \xB7 " + t.name : "") : st.name, vol, muted, stations: list().map((s) => s.name), tracks: tracks.length };
     }
     __name(getState, "getState");
-    return { play, stop, fadeOut, next, prev, setVol(v) {
+    return { play, stop, fadeOut, next, prev, nextTrack, select, setCustom, setVol(v) {
       vol = Math.max(0, Math.min(1, v));
       applyVol();
     }, setMute(m) {
@@ -33851,7 +34154,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       applyVol();
     }, getState, stations: STATIONS };
   }
-  var STATIONS;
+  var STATIONS, CUSTOM;
   var init_radio = __esm({
     "src/radio.js"() {
       STATIONS = [
@@ -33863,6 +34166,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         { id: "soma-drone", name: "SomaFM Drone Zone", url: "https://ice1.somafm.com/dronezone-128-mp3" },
         { id: "paradise", name: "Radio Paradise", url: "https://stream.radioparadise.com/mp3-128" }
       ];
+      CUSTOM = { id: "own", name: "Eigene Musik", custom: true };
       __name(createRadio, "createRadio");
     }
   });
@@ -33870,6 +34174,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
   // src/deal.js
   function createDeal(opts = {}) {
     let cash = opts.cash ?? 120, inv = { brokkoli: 0, backpulver: 0, zuckerwatte: 0 };
+    const mulB = /* @__PURE__ */ __name(() => typeof opts.buyMul === "function" ? opts.buyMul() : 1, "mulB"), mulS = /* @__PURE__ */ __name(() => typeof opts.sellMul === "function" ? opts.sellMul() : 1, "mulS");
     const spots = [];
     function placeSpots(pois, rng2, streetOf) {
       spots.length = 0;
@@ -33920,47 +34225,66 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return ITEMS.find((it) => it.id === id);
     }
     __name(item, "item");
+    const priceB = /* @__PURE__ */ __name((it) => Math.max(1, Math.round(it.buy * mulB())), "priceB"), priceS = /* @__PURE__ */ __name((it) => Math.max(1, Math.round(it.sell * mulS())), "priceS");
     function buy(id) {
       const it = item(id);
-      if (!it || cash < it.buy) return { ok: false, msg: cash < it.buy ? "Zu wenig Geld." : "Geht nicht." };
-      cash -= it.buy;
+      if (!it) return { ok: false, msg: "Geht nicht." };
+      const p = priceB(it);
+      if (cash < p) return { ok: false, msg: "Zu wenig Geld." };
+      cash -= p;
       inv[id] = (inv[id] | 0) + 1;
-      return { ok: true, msg: it.name + " gekauft (\u2212" + it.buy + " \u20AC).", cash, inv: { ...inv } };
+      if (opts.onChange) opts.onChange();
+      return { ok: true, msg: it.name + " gekauft (\u2212" + p + " \u20AC).", cash, inv: { ...inv } };
     }
     __name(buy, "buy");
     function sell(id) {
       const it = item(id);
       if (!it || !(inv[id] > 0)) return { ok: false, msg: "Du hast nichts davon dabei." };
+      const p = priceS(it);
       inv[id]--;
-      cash += it.sell;
-      return { ok: true, msg: it.name + " verkauft (+" + it.sell + " \u20AC).", cash, inv: { ...inv } };
+      cash += p;
+      if (opts.onChange) opts.onChange();
+      return { ok: true, msg: it.name + " verkauft (+" + p + " \u20AC).", cash, inv: { ...inv } };
     }
     __name(sell, "sell");
     function prompt(x, z) {
       const s = near(x, z);
       if (!s) return null;
       const it = item(s.item);
-      if (s.role === "buy") return { spot: s, text: it.name + " kaufen \xB7 " + it.buy + " \u20AC", action: /* @__PURE__ */ __name(() => buy(s.item), "action") };
-      return { spot: s, text: it.name + " verkaufen \xB7 " + it.sell + " \u20AC", action: /* @__PURE__ */ __name(() => sell(s.item), "action") };
+      if (s.role === "buy") return { spot: s, text: it.name + " kaufen \xB7 " + priceB(it) + " \u20AC", action: /* @__PURE__ */ __name(() => buy(s.item), "action") };
+      return { spot: s, text: it.name + " verkaufen \xB7 " + priceS(it) + " \u20AC", action: /* @__PURE__ */ __name(() => sell(s.item), "action") };
     }
     __name(prompt, "prompt");
     function state() {
-      return { cash, inv: { ...inv }, items: ITEMS.map((it) => ({ ...it, have: inv[it.id] | 0 })), spots };
+      return { cash, inv: { ...inv }, items: ITEMS.map((it) => ({ ...it, have: inv[it.id] | 0, buyP: priceB(it), sellP: priceS(it) })), spots };
     }
     __name(state, "state");
     function setCash(v) {
       cash = v;
     }
     __name(setCash, "setCash");
-    return { placeSpots, near, prompt, buy, sell, state, setCash, ITEMS };
+    function setInv(o) {
+      for (const k in inv) inv[k] = Math.max(0, (o && o[k]) | 0);
+    }
+    __name(setInv, "setInv");
+    function drop(id, n = 1) {
+      if (inv[id] > 0) {
+        inv[id] = Math.max(0, inv[id] - n);
+        if (opts.onChange) opts.onChange();
+        return true;
+      }
+      return false;
+    }
+    __name(drop, "drop");
+    return { placeSpots, near, prompt, buy, sell, state, setCash, setInv, drop, item, ITEMS };
   }
   var ITEMS;
   var init_deal = __esm({
     "src/deal.js"() {
       ITEMS = [
-        { id: "brokkoli", name: "Brokkoli", buy: 40, sell: 75, icon: "\u{1F966}" },
-        { id: "backpulver", name: "Backpulver", buy: 90, sell: 160, icon: "\u{1F9C2}" },
-        { id: "zuckerwatte", name: "Zuckerwatte", buy: 25, sell: 48, icon: "\u{1F36D}" }
+        { id: "brokkoli", name: "Pott", buy: 40, sell: 75, icon: "\u{1F33F}", note: "Gr\xFCnes aus dem Hinterhof" },
+        { id: "backpulver", name: "Coke", buy: 90, sell: 160, icon: "\u2744\uFE0F", note: "Wei\xDFes, sehr teuer" },
+        { id: "zuckerwatte", name: "Party Pillen", buy: 25, sell: 48, icon: "\u{1F48A}", note: "Bunt, f\xFCrs Wochenende" }
       ];
       __name(createDeal, "createDeal");
     }
@@ -34007,7 +34331,29 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     sun.shadow.normalBias = 0.04;
     scene.add(sun, sun.target);
     const HUB_NEAR = opts.hubNear || [0, 0];
+    (/* @__PURE__ */ __name(function synthUbahn() {
+      const st = D.stops = D.stops || [];
+      if (D._synU) return;
+      D._synU = true;
+      const bx = (D.bbox?.x || HALF_X) * 0.82, bz = (D.bbox?.z || HALF_Z) * 0.82;
+      const have = /* @__PURE__ */ __name(() => st.filter((s) => s.k === "entrance").map((s) => s.p), "have");
+      for (const r of D.rails || []) {
+        if (!r.ug || r.sv === "yard" || !["subway", "light_rail", "tram", "rail"].includes(r.t)) continue;
+        let acc = 1e9;
+        for (let i = 1; i < r.p.length; i++) {
+          const a = r.p[i - 1], b = r.p[i];
+          acc += Math.hypot(b[0] - a[0], b[1] - a[1]);
+          if (Math.abs(b[0]) > bx || Math.abs(b[1]) > bz) continue;
+          if (acc < 240) continue;
+          if (have().some((q) => Math.hypot(q[0] - b[0], q[1] - b[1]) < 230)) continue;
+          st.push({ p: [b[0], b[1]], k: "entrance", n: "", m: "u", syn: 2 });
+          acc = 0;
+        }
+      }
+    }, "synthUbahn"))();
+    mark("pre");
     const city = buildCity(scene, D, { hubNear: HUB_NEAR });
+    mark("buildCity");
     const BOX_X = D.bbox?.x || HALF_X, BOX_Z = D.bbox?.z || HALF_Z;
     (/* @__PURE__ */ __name(function chunkInstanced() {
       const CELL = 120;
@@ -34053,6 +34399,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         par.remove(im);
       }
     }, "chunkInstanced"))();
+    mark("chunk");
     const blobGeo = new PlaneGeometry(1, 1);
     blobGeo.rotateX(-Math.PI / 2);
     const coneGeo = new PlaneGeometry(6, 14);
@@ -34133,24 +34480,24 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const parasolMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.8, side: DoubleSide });
         const tm = city.propMat(14606046, 0.5, 0.3), um = new MeshStandardMaterial({ color: 13115434, roughness: 0.7 });
         for (const k of [-1, 1]) {
-          const tx = f.cx + e.nx * 4.8 + (e.B[0] - e.A[0]) / e.len * k * 3.2, tz = f.cz + e.nz * 4.8 + (e.B[1] - e.A[1]) / e.len * k * 3.2;
+          const tx2 = f.cx + e.nx * 4.8 + (e.B[0] - e.A[0]) / e.len * k * 3.2, tz = f.cz + e.nz * 4.8 + (e.B[1] - e.A[1]) / e.len * k * 3.2;
           const t = new Mesh(new CylinderGeometry(0.4, 0.4, 0.75, 10), tm);
-          t.position.set(tx, 0.37, tz);
+          t.position.set(tx2, 0.37, tz);
           t.castShadow = true;
           scene.add(t);
           const u = new Mesh(parasolGeo, parasolMat);
-          u.position.set(tx, 2.3, tz);
+          u.position.set(tx2, 2.3, tz);
           u.rotation.y = k * 0.2;
           u.castShadow = true;
           u.receiveShadow = true;
           scene.add(u);
           const pl = new Mesh(new CylinderGeometry(0.035, 0.035, 2.35, 6), tm);
-          pl.position.set(tx, 1.17, tz);
+          pl.position.set(tx2, 1.17, tz);
           pl.castShadow = true;
           scene.add(pl);
           for (const a of [0, 2.1, 4.2]) {
             const ch = new Mesh(new CylinderGeometry(0.22, 0.22, 0.06, 12), city.propMat(3815998, 0.6, 0.3));
-            ch.position.set(tx + Math.cos(a) * 0.85, 0.45, tz + Math.sin(a) * 0.85);
+            ch.position.set(tx2 + Math.cos(a) * 0.85, 0.45, tz + Math.sin(a) * 0.85);
             ch.castShadow = true;
             scene.add(ch);
           }
@@ -34297,16 +34644,16 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           const a = r.p[i], b = r.p[i + 1];
           const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
           if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx2;
           for (let s = 3; s < l - 3; s += 5.6) {
             if (R() < 0.4) continue;
             const off = r.w / 2 - 1;
-            const x = a[0] + tx * s + nx * off * side, z = a[1] + tz * s + nz * off * side;
+            const x = a[0] + tx2 * s + nx * off * side, z = a[1] + tz * s + nz * off * side;
             if (nearJ(x, z, 12)) continue;
             if (!city.inEdge(x, z, 6)) continue;
             if (!freeSpot(x, z, 1.6)) continue;
             if (parked.some((p) => Math.hypot(p.x - x, p.z - z) < 4.8)) continue;
-            parked.push({ x, z, rot: Math.atan2(tx, tz) + (side > 0 ? 0 : Math.PI) + (R() - 0.5) * 0.06 });
+            parked.push({ x, z, rot: Math.atan2(tx2, tz) + (side > 0 ? 0 : Math.PI) + (R() - 0.5) * 0.06 });
           }
         }
       }
@@ -34315,6 +34662,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const t = ["sedan", "hatch", "kombi", "sedan", "van", "coupe", "taxi", "hatch", "kombi", "truck", "van", "coupe"][R() * 12 | 0];
       addCar(t, t === "taxi" ? 15909376 : CAR_COLORS[R() * CAR_COLORS.length | 0], p.x, p.z, p.rot, false);
     }
+    mark("parked");
     let myCar = null;
     {
       let best = null, bd = 1e9;
@@ -34352,7 +34700,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(startRoute, "startRoute");
     const aiRoads = city.roadsDrive.map((r, i) => i).filter((i) => ["primary", "residential", "unclassified", "secondary", "tertiary", "living_street"].includes(city.roadsDrive[i].t) && city.roadsDrive[i].p.length >= 2 && city.inEdge(city.roadsDrive[i].p[0][0], city.roadsDrive[i].p[0][1], 12));
-    for (let k = 0; k < (MOBILE ? 16 : 26) && aiRoads.length; k++) {
+    for (let k = 0; k < (MOBILE ? 24 : 36) && aiRoads.length; k++) {
       const ri = aiRoads[R() * aiRoads.length | 0];
       const r = city.roadsDrive[ri];
       const rev = !r.ow && R() < 0.5;
@@ -34431,8 +34779,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const l = Math.hypot(dx, dz) || 1;
       const nx = dz / l, nz = -dx / l;
       const off = laneOff(o);
-      const tx = tgt[0] + nx * off, tz = tgt[1] + nz * off;
-      const ddx = tx - o.x, ddz = tz - o.z;
+      const tx2 = tgt[0] + nx * off, tz = tgt[1] + nz * off;
+      const ddx = tx2 - o.x, ddz = tz - o.z;
       const dist = Math.hypot(ddx, ddz);
       if (dist < 2.5) {
         r.k++;
@@ -34477,6 +34825,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       o.z += Math.cos(o.rot) * o.speed * dt;
     }
     __name(aiStep, "aiStep");
+    mark("traffic");
     const peds = [];
     const pedPaths = [];
     for (const r of D.roads) {
@@ -34489,7 +34838,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const a = p.pts[0];
       return Math.abs(a[0]) < BOX_X * 0.9 && Math.abs(a[1]) < BOX_Z * 0.9;
     });
-    for (let k = 0; k < (MOBILE ? 50 : 90); k++) {
+    for (let k = 0; k < (MOBILE ? 140 : 210); k++) {
       const pp = goodPaths[R() * goodPaths.length | 0];
       if (!pp) break;
       const g = makePed(100 + k, M);
@@ -34520,11 +34869,20 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         o.g.rotation.x = Math.min(1.25, (2.6 - o.down) * 0.55);
         o.g.position.y = Math.min(1.25, (2.6 - o.down) * 0.55) * 0.12;
         if (o.down <= 0) {
+          if (o.dead) {
+            o.gone = true;
+            o.down = 1e-3;
+            return;
+          }
           o.down = 0;
           o.g.rotation.x = 0;
           o.g.position.y = 0;
           o.ret = true;
         }
+        return;
+      }
+      if (o.hostile || o.special) {
+        specialStep(o, dt);
         return;
       }
       if (o.seek || o.ret) {
@@ -34560,7 +34918,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       o.x = np.x;
       o.z = np.z;
       o.g.position.set(o.x, 0, o.z);
-      animPed(o.g, o.speed, dt);
+      if (!offScreen(o.x, o.z, 4)) animPed(o.g, o.speed, dt);
     }
     __name(pedStep, "pedStep");
     function pathPos(o) {
@@ -34571,21 +34929,21 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(pathPos, "pathPos");
     function pedSeekStep(o, dt) {
-      let tx, tz;
+      let tx2, tz;
       if (o.seek) {
         if (o.seek.taken) {
           o.seek = null;
           o.ret = true;
           return;
         }
-        tx = o.seek.x;
+        tx2 = o.seek.x;
         tz = o.seek.z;
       } else {
         const p = pathPos(o);
-        tx = p[0];
+        tx2 = p[0];
         tz = p[1];
       }
-      const dx = tx - o.x, dz = tz - o.z, d = Math.hypot(dx, dz);
+      const dx = tx2 - o.x, dz = tz - o.z, d = Math.hypot(dx, dz);
       const sp = o.seek ? 1.9 : 1.4;
       if (o.seek && d < 0.9) {
         pedTake(o, o.seek);
@@ -34618,6 +34976,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
     }
     __name(pedSeekStep, "pedSeekStep");
+    mark("peds");
     const pickups = [];
     const PK = { crate: "rgba(255,205,60,1)", pistol: "rgba(255,70,60,1)", bat: "rgba(255,120,50,1)" };
     const pkGlowMats = {};
@@ -34650,7 +35009,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return g;
     }
     __name(pickupVisual, "pickupVisual");
-    function spotOnSidewalk(near, minD, maxD) {
+    function spotOnSidewalk(near2, minD, maxD) {
       for (let tries = 0; tries < 60; tries++) {
         const pp = goodPaths[Math.random() * goodPaths.length | 0];
         if (!pp || pp.pts.length < 2) continue;
@@ -34658,8 +35017,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const pt = pedPoint(pp, pp.pts[i], pp.pts[i + 1], (Math.random() - 0.5) * 0.8, Math.random());
         const x = pt[0], z = pt[1];
         if (!city.inEdge(x, z, 4)) continue;
-        if (near) {
-          const d = Math.hypot(x - near.x, z - near.z);
+        if (near2) {
+          const d = Math.hypot(x - near2.x, z - near2.z);
           if (d < minD || d > maxD) continue;
         }
         if (!freeSpot(x, z, 0.8)) continue;
@@ -34747,20 +35106,38 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     __name(attachWeapon, "attachWeapon");
     function pedTake(o, pk) {
       if (pk.taken) return;
-      const near = Math.hypot(o.x - P.x, o.z - P.z) < 28;
+      const near2 = Math.hypot(o.x - P.x, o.z - P.z) < 28;
       if (pk.kind === "crate") {
         o.loot = (o.loot || 0) + pk.cash;
-        if (near) toast("Ein Passant schnappt sich die Kiste.", 1.8);
+        if (near2) toast("Ein Passant schnappt sich die Kiste.", 1.8);
       } else {
         o.armed = pk.kind;
         attachWeapon(o.g, pk.kind);
-        if (near) toast(pk.kind === "pistol" ? "Ein Passant hat eine Pistole gefunden!" : "Ein Passant hat einen Schl\xE4ger gefunden.", 2);
+        if (near2) toast(pk.kind === "pistol" ? "Ein Passant hat eine Pistole gefunden!" : "Ein Passant hat einen Schl\xE4ger gefunden.", 2);
       }
       takePickup(pk);
     }
     __name(pedTake, "pedTake");
+    function hitPed(pd, how) {
+      if (pd.hp > 1 && how !== "car" && how !== "gun") {
+        pd.hp--;
+        pd.down = 0;
+        pd.flinch = 0.4;
+        audio.crash(2);
+        return;
+      }
+      if (pd.hp > 1 && how === "gun") {
+        pd.hp--;
+        pd.flinch = 0.4;
+        return;
+      }
+      knockPed(pd);
+      if (!pd.hostile && !pd.special) addHeat(how === "gun" ? 0.45 : 0);
+    }
+    __name(hitPed, "hitPed");
     function knockPed(pd) {
       pd.down = 2.6;
+      if (pd.hostile || pd.special) pd.dead = true;
       if (pd.seek) {
         pd.seek.claim = null;
         pd.seek = null;
@@ -34776,14 +35153,23 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
     }
     __name(knockPed, "knockPed");
-    P.weapons = { pistol: 0, bat: false };
+    P.weapons = { pistol: 0, smg: 0, shotgun: 0, bat: false };
     P.weapon = null;
     P.fireCool = 0;
     P.aimT = 0;
     P.swingT = 0;
     function setWeapon(k) {
       P.weapon = k;
-      attachWeapon(player, k);
+      attachWeapon(player, k === "smg" || k === "shotgun" ? "pistol" : k);
+      const w = findPart(player, "ArmR");
+      if (w && w.userData.weapon) {
+        const ww = w.userData.weapon;
+        if (k === "smg") {
+          ww.scale.set(1.5, 1.5, 2.3);
+        } else if (k === "shotgun") {
+          ww.scale.set(1.6, 1.6, 3.4);
+        }
+      }
       updateHoodHud();
     }
     __name(setWeapon, "setWeapon");
@@ -34797,11 +35183,22 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           toast("Kiste geknackt: +" + pk.cash + " \u20AC");
           audio.door();
         } else if (pk.kind === "pistol") {
-          if (P.weapons.pistol >= 60) continue;
-          P.weapons.pistol = Math.min(60, P.weapons.pistol + 12);
-          toast("Pistole: +12 Schuss");
-          audio.pickup && audio.pickup();
-          if (P.weapon !== "pistol") setWeapon("pistol");
+          if (gotUnlock.smg && Math.random() < 0.45 && P.weapons.smg < 120) {
+            P.weapons.smg = Math.min(120, P.weapons.smg + 30);
+            toast("MP-Munition: +30");
+            audio.pickup && audio.pickup();
+            if (!P.weapon || P.weapon === "bat") setWeapon("smg");
+          } else if (gotUnlock.shotgun && Math.random() < 0.25 && P.weapons.shotgun < 40) {
+            P.weapons.shotgun = Math.min(40, P.weapons.shotgun + 6);
+            toast("Schrot: +6");
+            audio.pickup && audio.pickup();
+          } else {
+            if (P.weapons.pistol >= 60) continue;
+            P.weapons.pistol = Math.min(60, P.weapons.pistol + 12);
+            toast("Pistole: +12 Schuss");
+            audio.pickup && audio.pickup();
+            if (!P.weapon || P.weapon === "bat") setWeapon("pistol");
+          }
         } else if (pk.kind === "bat") {
           if (P.weapons.bat && P.weapon === "bat") continue;
           P.weapons.bat = true;
@@ -34821,7 +35218,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     function ownedWeapons() {
       const list = [null];
       if (P.weapons.bat) list.push("bat");
-      if (P.weapons.pistol > 0) list.push("pistol");
+      for (const k of ["pistol", "smg", "shotgun"]) if (P.weapons[k] > 0) list.push(k);
       return list;
     }
     __name(ownedWeapons, "ownedWeapons");
@@ -34837,8 +35234,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         toast("Noch kein Schl\xE4ger.", 1.2);
         return;
       }
-      if (k === "pistol" && !(P.weapons.pistol > 0)) {
-        toast("Keine Pistole / keine Munition.", 1.2);
+      if ((k === "pistol" || k === "smg" || k === "shotgun") && !(P.weapons[k] > 0)) {
+        toast("Keine Munition daf\xFCr.", 1.2);
         return;
       }
       setWeapon(k);
@@ -34887,80 +35284,98 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return Math.abs(lx) < T.W / 2 + pad && Math.abs(lz) < T.L / 2 + pad;
     }
     __name(inCar, "inCar");
+    const GUN = { pistol: { cool: 0.3, range: 24, rays: 1, spread: 0, heat: 0.18 }, smg: { cool: 0.09, range: 20, rays: 1, spread: 0.07, heat: 0.1 }, shotgun: { cool: 0.85, range: 13, rays: 5, spread: 0.13, heat: 0.35 } };
+    function shootRay(fx, fz, R0) {
+      const wd = rayWall(P.x, P.z, fx, fz, R0);
+      let hit = null, hd = wd;
+      const nearPeds = peds.filter((pd) => !(pd.down > 0) && Math.abs(pd.x - P.x) < R0 && Math.abs(pd.z - P.z) < R0), nearCars = cars.filter((c) => Math.abs(c.x - P.x) < R0 + 4 && Math.abs(c.z - P.z) < R0 + 4);
+      for (let t = 0.8; t < hd; t += 0.35) {
+        const x = P.x + fx * t, z = P.z + fz * t;
+        for (const pd of nearPeds) if (Math.hypot(pd.x - x, pd.z - z) < 0.65) {
+          hit = { pd };
+          hd = t;
+          break;
+        }
+        if (hit) break;
+        for (const c of nearCars) if (c !== P.car && inCar(c, x, z)) {
+          hit = { c };
+          hd = t;
+          break;
+        }
+        if (hit) break;
+      }
+      tracer(P.x + fx * 0.9, P.z + fz * 0.9, P.x + fx * hd, P.z + fz * hd);
+      if (hit && hit.pd) {
+        hitPed(hit.pd, "gun");
+      } else if (hit && hit.c) {
+        damageCar(hit.c, 9);
+        if (hit.c.police) policeAngry(hit.c, 0.6);
+      }
+    }
+    __name(shootRay, "shootRay");
     function fire() {
-      if (P.car || document.body.classList.contains("onTitle")) return;
+      if (P.car || P.train || document.body.classList.contains("onTitle")) return;
       if (P.fireCool > 0) return;
       const fx = Math.sin(P.rot), fz = Math.cos(P.rot);
-      if (P.weapon === "pistol" && P.weapons.pistol > 0) {
-        P.weapons.pistol--;
-        P.fireCool = 0.3;
+      const G = GUN[P.weapon];
+      if (G && P.weapons[P.weapon] > 0) {
+        const k = P.weapon;
+        P.weapons[k]--;
+        P.fireCool = G.cool * (1 - 0.025 * (stats.ges - 3));
         P.aimT = 0.6;
-        audio.shot && audio.shot();
-        const R0 = 24;
-        const wd = rayWall(P.x, P.z, fx, fz, R0);
-        let hit = null, hd = wd;
-        const nearPeds = peds.filter((pd) => !(pd.down > 0) && Math.abs(pd.x - P.x) < R0 && Math.abs(pd.z - P.z) < R0), nearCars = cars.filter((c) => Math.abs(c.x - P.x) < R0 + 4 && Math.abs(c.z - P.z) < R0 + 4);
-        for (let t = 0.8; t < hd; t += 0.35) {
-          const x = P.x + fx * t, z = P.z + fz * t;
-          for (const pd of nearPeds) if (Math.hypot(pd.x - x, pd.z - z) < 0.65) {
-            hit = { pd };
-            hd = t;
-            break;
-          }
-          if (hit) break;
-          for (const c of nearCars) if (inCar(c, x, z)) {
-            hit = { c };
-            hd = t;
-            break;
-          }
-          if (hit) break;
+        audio.shot && audio.shot(k === "shotgun" ? 1.15 : k === "smg" ? 0.7 : 1);
+        const sp = G.spread * (1 - 0.06 * (stats.ges - 3));
+        for (let r = 0; r < G.rays; r++) {
+          const a = P.rot + (G.rays > 1 ? (r - (G.rays - 1) / 2) * sp : (Math.random() - 0.5) * sp * 2);
+          shootRay(Math.sin(a), Math.cos(a), G.range);
         }
-        tracer(P.x + fx * 0.9, P.z + fz * 0.9, P.x + fx * hd, P.z + fz * hd);
-        addHeat(0.18);
-        if (hit && hit.pd) {
-          knockPed(hit.pd);
-          addHeat(0.45);
-        } else if (hit && hit.c) {
-          damageCar(hit.c, 9);
-          if (hit.c.police) addHeat(0.6);
-        }
-        if (P.weapons.pistol <= 0) {
+        addHeat(G.heat);
+        rivalNoise(P.x, P.z, 0.5);
+        if (P.weapons[k] <= 0) {
           toast("Keine Munition mehr.", 1.4);
-          setWeapon(P.weapons.bat ? "bat" : null);
+          const L = ownedWeapons();
+          setWeapon(L[L.length - 1]);
         }
         updateHoodHud();
       } else if (P.weapon === "bat") {
         P.fireCool = 0.55;
         P.swingT = 0.35;
-        audio.bat ? audio.bat() : audio.step();
+        audio.bat ? audio.bat() : audio.swing();
         let any = false;
+        const reach = 2.1 + 0.05 * (stats.str - 3);
         for (const pd of peds) {
           if (pd.down > 0) continue;
           const dx = pd.x - P.x, dz = pd.z - P.z, d = Math.hypot(dx, dz);
-          if (d < 2.1 && (dx * fx + dz * fz) / (d || 1) > 0.35) {
-            knockPed(pd);
+          if (d < reach && (dx * fx + dz * fz) / (d || 1) > 0.35) {
+            hitPed(pd, "bat");
             any = true;
           }
         }
         for (const c of cars) {
+          if (c === P.car) continue;
           if (inCar(c, P.x + fx * 1.4, P.z + fz * 1.4, 0.2)) {
-            damageCar(c, 4);
+            damageCar(c, 4 + 0.6 * (stats.str - 3));
             audio.crash(4);
             any = true;
-            if (c.police) addHeat(0.4);
+            if (c.police) policeAngry(c, 0.4);
           }
         }
-        if (any) addHeat(0.3);
+        if (any) {
+          addHeat(0.3);
+          rivalNoise(P.x, P.z, 0.4);
+        }
       } else {
         P.fireCool = 0.42;
         P.swingT = 0.28;
-        audio.step();
+        audio.swing();
+        const reach = 1.45 + 0.04 * (stats.str - 3);
         for (const pd of peds) {
           if (pd.down > 0) continue;
           const dx = pd.x - P.x, dz = pd.z - P.z, d = Math.hypot(dx, dz);
-          if (d < 1.45 && (dx * fx + dz * fz) / (d || 1) > 0.4) {
-            knockPed(pd);
+          if (d < reach && (dx * fx + dz * fz) / (d || 1) > 0.4) {
+            hitPed(pd, "fist");
             addHeat(0.12);
+            rivalNoise(P.x, P.z, 0.3);
             break;
           }
         }
@@ -35018,6 +35433,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
     }
     __name(enemyFire, "enemyFire");
+    mark("pickups");
     let toastT = 0;
     function toast(msg, sec = 2) {
       const el = document.getElementById("toast");
@@ -35077,7 +35493,14 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const el = document.getElementById("radName");
       if (el) el.textContent = st.name;
     }, "onChange") });
-    const deal = createDeal({ cash: 120 });
+    const STAT_DEF = [["str", "St\xE4rke", "Nahkampf, Reichweite, ab 6 ein Herz mehr"], ["cha", "Charisma", "bessere Preise beim Dealen"], ["pot", "Potenz", "Ausstrahlung: Leute machen Platz, ab 7 ein Herz mehr"], ["ner", "Nerven", "Fahndung k\xFChlt schneller ab, Bullen brauchen l\xE4nger"], ["ges", "Geschick", "pr\xE4ziser lenken, schneller schie\xDFen"], ["ans", "Ansehen", "schwerere Jobs, bessere Waffen"]];
+    let stats = { str: 3, cha: 3, pot: 3, ner: 3, ges: 3, ans: 3 };
+    let jobsDone = 0;
+    const doneIds = {};
+    const gotUnlock = {};
+    const deal = createDeal({ cash: 120, buyMul: /* @__PURE__ */ __name(() => 1 - 0.035 * (stats.cha - 3), "buyMul"), sellMul: /* @__PURE__ */ __name(() => 1 + 0.045 * (stats.cha - 3), "sellMul"), onChange: /* @__PURE__ */ __name(() => {
+      if (opts.onBag) opts.onBag();
+    }, "onChange") });
     const streetOf = /* @__PURE__ */ __name((x, z) => {
       const f = city.facing(x, z, 28);
       if (f) {
@@ -35107,8 +35530,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       repairs.push({ x: nr ? nr.x : 40, z: nr ? nr.z : -40 });
     }
     let health = 5, wanted = 0, heat = 0, hiding = false, hideAt = null, bustT = 0, filmT = 0, stolenCar = false;
-    const JOB_LIST = [{ title: "LIEFERUNG", pay: 85, who: "Imbiss-Chef", talk: "Nimm die T\xFCte, bring sie r\xFCber, und mach keinen Zirkus." }, { title: "KURIER", pay: 110, who: "Ute vom Grill", talk: "Schneller Weg, klares Geld. Lass dich nicht erwischen." }, { title: "ABHOLUNG", pay: 70, who: "Deniz", talk: "Hol das P\xE4ckchen ab und komm geradewegs zur\xFCck." }];
-    let job = null;
+    const JOB_LIST = [{ title: "LIEFERUNG" }, { title: "KURIER" }, { title: "ABHOLUNG" }];
     const foodPois = (D.pois || []).filter((p) => ["fast_food", "restaurant", "cafe", "bar", "pub"].includes(p.a));
     function foodDoor(poi) {
       const f = city.facing(poi.p[0], poi.p[1], 16);
@@ -35125,14 +35547,29 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const R2 = rng(99);
       const order = foodDoors.slice().sort(() => R2() - 0.5);
       let n = 0;
+      const GV = ["ute", "deniz"];
       for (const f of order) {
-        if (n < 3 && (!hub || Math.hypot(f.x - hub.door.x, f.z - hub.door.z) > 60)) {
+        if (n < 2 && (!hub || Math.hypot(f.x - hub.door.x, f.z - hub.door.z) > 60) && (!hub || Math.hypot(f.x - hub.door.x, f.z - hub.door.z) < 420)) {
           f.role = "job";
+          f.giver = GV[n];
           n++;
         } else f.role = "heal";
       }
     }
+    HUBD.giver = "chef";
+    HUBD.x = hub ? hub.door.x : 0;
+    HUBD.z = hub ? hub.door.z : 0;
     const healTpl = getPropTemplate("heal");
+    for (const f of foodDoors) {
+      const q = { x: f.x, z: f.z };
+      ejectFromBuildings(q, 0.5);
+      city.grid.resolve(q, 0.35);
+      ejectFromBuildings(q, 0.5);
+      if (Math.hypot(q.x - f.x, q.z - f.z) > 0.2) {
+        f.x = q.x;
+        f.z = q.z;
+      }
+    }
     for (const f of foodDoors) {
       if (f.role === "job") {
         const r = new Mesh(new RingGeometry(1, 1.35, 32), new MeshBasicMaterial({ color: 16765503, transparent: true, opacity: 0.8, toneMapped: false, side: DoubleSide, depthWrite: false }));
@@ -35165,21 +35602,20 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     function missionHere(nf) {
       if (!nf) return false;
-      const giver = nf.kind === "hub" || nf.door.role === "job";
-      if (!job) return giver;
-      return nf.door === job.to || nf.door === job.fromDoor;
+      const g = nf.kind === "hub" ? HUBD : nf.door;
+      return !!(g && g.giver);
     }
     __name(missionHere, "missionHere");
     function healAt() {
       const cash = deal.state().cash;
       let msg;
-      if (health >= 5) return { ok: false, msg: "Du bist satt." };
+      if (health >= MAXH()) return { ok: false, msg: "Du bist satt." };
       if (cash >= 10) {
         deal.setCash(cash - 10);
-        health = 5;
+        health = MAXH();
         msg = "Lecker. Voll geheilt (\u221210 \u20AC).";
       } else {
-        health = Math.min(5, health + 1);
+        health = Math.min(MAXH(), health + 1);
         msg = "Pommes aufs Haus: +1 \u2665";
       }
       audio.heal && audio.heal();
@@ -35217,11 +35653,16 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(preloadJobVoices, "preloadJobVoices");
     preloadJobVoices();
-    function showTalk(who, text, voice) {
+    function showTalk(who, text, voice, face) {
       const box2 = document.getElementById("talk"), p = document.getElementById("talkTxt"), w = document.getElementById("talkWho");
       if (!box2 || !p || !text) return;
       box2.classList.remove("hidden");
       if (w) w.textContent = who || "Imbiss";
+      const fi = document.getElementById("talkFace");
+      if (fi) {
+        const src = "assets/faces/" + (face || "chef") + ".webp?v=" + (window.HOOD_V || "");
+        if (fi.getAttribute("src") !== src) fi.setAttribute("src", src);
+      }
       let i = 0;
       p.textContent = "";
       clearInterval(showTalk._t);
@@ -35234,9 +35675,9 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (audio && audio.type && text[i - 1] && text[i - 1] !== " ") audio.type();
         if (i >= text.length) {
           clearInterval(showTalk._t);
-          showTalk._h = setTimeout(() => box2.classList.add("hidden"), 2600 + Math.min(2200, text.length * 16));
+          showTalk._h = setTimeout(() => box2.classList.add("hidden"), 3200 + Math.min(4200, text.length * 30));
         }
-      }, 26);
+      }, 24);
       if (hasV) {
         try {
           if (showTalk._a) {
@@ -35255,14 +35696,14 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     __name(showTalk, "showTalk");
     function updateHoodHud() {
       const he = document.getElementById("hearts");
-      if (he) he.innerHTML = "<b>" + "\u2665".repeat(health) + "</b>" + "\u2665".repeat(Math.max(0, 5 - health));
+      if (he) he.innerHTML = "<b>" + "\u2665".repeat(Math.max(0, health)) + "</b>" + "\u2665".repeat(Math.max(0, MAXH() - health));
       const we = document.getElementById("weapon");
       if (we && P.weapons) {
         const w = P.weapon || "fist";
-        we.className = w === "pistol" ? "pistol" : w === "bat" ? "bat" : "fist";
+        we.className = w;
         we.style.display = "";
         const am = document.getElementById("wepAmmo");
-        if (am) am.textContent = w === "pistol" && P.weapons.pistol > 0 ? String(P.weapons.pistol) : "";
+        if (am) am.textContent = (w === "pistol" || w === "smg" || w === "shotgun") && P.weapons[w] > 0 ? String(P.weapons[w]) : "";
       }
       const bar = document.getElementById("wepBar");
       if (bar && P.weapons) {
@@ -35274,7 +35715,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         });
       }
       state.armed = true;
-      state.weaponLabel = P.weapon === "pistol" ? "Schie\xDFen" : P.weapon === "bat" ? "Schlagen" : "Schlagen";
+      state.weaponLabel = P.weapon === "pistol" || P.weapon === "smg" || P.weapon === "shotgun" ? "Schie\xDFen" : "Schlagen";
       state.hasWeapons = true;
       const st = document.getElementById("stars");
       if (st) {
@@ -35284,9 +35725,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const bn = document.getElementById("jobBanner");
       if (bn) {
         if (job) {
-          bn.textContent = job.title;
-          bn.classList.remove("hidden");
+          bn.textContent = job.title + (job.line ? " \xB7 " + job.line : "");
+          bn.className = "ui tier" + (job.tier || 0);
         } else bn.classList.add("hidden");
+        document.body.classList.toggle("hasjob", !!job);
       }
       if (opts.onMoney) opts.onMoney(deal.state().cash);
     }
@@ -35317,32 +35759,6 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return best;
     }
     __name(nearFood, "nearFood");
-    function acceptJob() {
-      const from = nearFood(P.x, P.z, 4) || (hub ? { x: hub.door.x, z: hub.door.z } : { x: P.x, z: P.z });
-      const dests = foodDoors.filter((f) => f !== from.door && Math.hypot(f.x - from.x, f.z - from.z) > 28);
-      const to = dests.length ? dests[Math.random() * dests.length | 0] : foodDoors[0];
-      if (!to) return { ok: false, msg: "Gerade keine Auftr\xE4ge." };
-      const J = JOB_LIST[Math.random() * JOB_LIST.length | 0];
-      const voice = "assets/voice/" + J.title.toLowerCase() + ".mp3";
-      job = { title: J.title, pay: J.pay, talk: J.talk, who: J.who, voice, to, fromDoor: from.door || HUBD };
-      jobRing.position.set(to.x, 0.1, to.z);
-      jobRing.visible = true;
-      updateHoodHud();
-      showTalk(J.who, J.talk + " (+" + J.pay + " \u20AC)", voice);
-      return { ok: true, msg: J.talk + " (+" + J.pay + " \u20AC)", talk: J.talk, who: J.who, cash: deal.state().cash };
-    }
-    __name(acceptJob, "acceptJob");
-    function finishJob() {
-      if (!job) return { ok: false };
-      const pay = job.pay;
-      deal.setCash(deal.state().cash + pay);
-      job = null;
-      jobRing.visible = false;
-      jobNav.visible = false;
-      updateHoodHud();
-      return { ok: true, msg: "Auftrag erledigt. +" + pay + " \u20AC", cash: deal.state().cash };
-    }
-    __name(finishJob, "finishJob");
     function startHide() {
       const nf = nearFood(P.x, P.z, 4);
       if (!nf) return { ok: false };
@@ -35352,7 +35768,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(startHide, "startHide");
     function wasted(kind) {
-      health = 5;
+      if (job) failJob(kind === "bust" ? "Geschnappt \u2014 der Auftrag ist geplatzt." : "Au\xDFer Gefecht \u2014 der Auftrag ist geplatzt.");
+      if (P.train) leaveTrain(true);
+      autoStop();
+      health = MAXH();
       heat = 0;
       wanted = 0;
       bustT = 0;
@@ -35361,6 +35780,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       stolenCar = false;
       if (P.weapons) {
         P.weapons.pistol = 0;
+        P.weapons.smg = 0;
+        P.weapons.shotgun = 0;
         P.weapons.bat = false;
         setWeapon(null);
       }
@@ -35388,6 +35809,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     }
     __name(wasted, "wasted");
     function hurt(n = 1) {
+      if (P.train) return;
       health = Math.max(0, health - n);
       hurtFlash = 0.5;
       updateHoodHud();
@@ -35633,6 +36055,1673 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
     }
     __name(blastStep, "blastStep");
+    function MAXH() {
+      return 5 + (stats.str >= 6 ? 1 : 0) + (stats.pot >= 7 ? 1 : 0) + (stats.str >= 9 ? 1 : 0);
+    }
+    __name(MAXH, "MAXH");
+    function level() {
+      let s = 0;
+      for (const k in stats) s += stats[k];
+      return Math.max(1, s - 17);
+    }
+    __name(level, "level");
+    const UNLOCKS = [{ k: "smg", name: "Maschinenpistole", need: { ans: 5 }, ammo: 60 }, { k: "shotgun", name: "Schrotflinte", need: { str: 5, ans: 6 }, ammo: 16 }];
+    const unlocked = /* @__PURE__ */ __name((u) => Object.entries(u.need).every(([k, v]) => stats[k] >= v), "unlocked");
+    function raiseStats(gain) {
+      const out = [];
+      for (const k in gain) {
+        const old = stats[k];
+        stats[k] = Math.min(10, stats[k] + gain[k]);
+        if (stats[k] > old) out.push(STAT_DEF.find((d) => d[0] === k)[1] + " +" + (stats[k] - old));
+      }
+      for (const u of UNLOCKS) {
+        if (!gotUnlock[u.k] && unlocked(u)) {
+          gotUnlock[u.k] = true;
+          P.weapons[u.k] = (P.weapons[u.k] || 0) + u.ammo;
+          out.push(u.name + " freigeschaltet");
+        }
+      }
+      return out;
+    }
+    __name(raiseStats, "raiseStats");
+    const bag = [];
+    function bagAdd(id, name, icon, n = 1) {
+      const it = bag.find((b) => b.id === id);
+      if (it) it.n += n;
+      else bag.push({ id, name, icon, n, job: true });
+      audio.pickup && audio.pickup();
+      if (opts.onBag) opts.onBag();
+    }
+    __name(bagAdd, "bagAdd");
+    function bagDel(id) {
+      const i = bag.findIndex((b) => b.id === id);
+      if (i >= 0) bag.splice(i, 1);
+      if (opts.onBag) opts.onBag();
+    }
+    __name(bagDel, "bagDel");
+    const EG0 = city.edge;
+    const REG_N = 3;
+    const REG_NAMES = ["Kanalblock", "Gleiseck", "Marktviertel", "Hinterhof-Kiez", "Br\xFCckenecke", "S\xFCdring", "Nordblock", "Altstadtrand", "Kreuzviertel"];
+    const CREWS = [["Frittenfront", [0.1, 0.55, 0.25]], ["Grillbande", [0.85, 0.45, 0.08]], ["Pizza-Paten", [0.12, 0.12, 0.14]], ["Curry-Kommando", [0.75, 0.62, 0.1]], ["Falafel-Fraktion", [0.2, 0.45, 0.75]], ["Schnitzel-Syndikat", [0.55, 0.1, 0.45]], ["Wok-Br\xFCder", [0.7, 0.12, 0.12]], ["Kebab-Kartell", [0.35, 0.3, 0.22]]];
+    const regions = [];
+    {
+      let k = 0;
+      const w = (EG0.maxx - EG0.minx) / REG_N, h = (EG0.maxz - EG0.minz) / REG_N;
+      for (let j = 0; j < REG_N; j++) for (let i = 0; i < REG_N; i++) {
+        const x0 = EG0.minx + i * w, z0 = EG0.minz + j * h;
+        regions.push({ i: k, name: REG_NAMES[k], x0, x1: x0 + w, z0, z1: z0 + h, cx: x0 + w / 2, cz: z0 + h / 2, owner: "free", fixed: false, rival: null, crew: null, risk: 0, anger: 0 });
+        k++;
+      }
+    }
+    const regionAt = /* @__PURE__ */ __name((x, z) => regions.find((r) => x >= r.x0 && x < r.x1 && z >= r.z0 && z < r.z1) || null, "regionAt");
+    {
+      const hr = hub ? regionAt(hub.door.x, hub.door.z) : regions[4];
+      if (hr) {
+        hr.owner = "mine";
+        hr.fixed = true;
+      }
+      let ci = 0;
+      for (const r of regions) {
+        if (r.owner === "mine") continue;
+        let best = null, bd = 1e9;
+        for (const f of foodDoors) {
+          if (f.role !== "heal" || f.rivalOf) continue;
+          if (f.x < r.x0 || f.x >= r.x1 || f.z < r.z0 || f.z >= r.z1) continue;
+          const d = Math.hypot(f.x - r.cx, f.z - r.cz);
+          if (d < bd) {
+            bd = d;
+            best = f;
+          }
+        }
+        if (best) {
+          r.rival = best;
+          best.rivalOf = r;
+          r.owner = "rival";
+          r.crew = CREWS[ci % CREWS.length];
+          ci++;
+        }
+      }
+    }
+    const warRing = new Mesh(new RingGeometry(1.6, 2.3, 36), new MeshBasicMaterial({ color: 16722474, transparent: true, opacity: 0.8, toneMapped: false, side: DoubleSide, depthWrite: false }));
+    warRing.rotation.x = -Math.PI / 2;
+    warRing.visible = false;
+    scene.add(warRing);
+    const SPOTR = rng(5150);
+    const usedSpot = [];
+    function pickFacade(minD, maxD, filt) {
+      const c0 = hub ? hub.door : { x: 0, z: 0 };
+      const cand = [];
+      for (const B of city.buildings) {
+        if (B.h < 3.5) continue;
+        for (const e of B.edges) {
+          if (e.len < 7) continue;
+          const mx = (e.A[0] + e.B[0]) / 2, mz = (e.A[1] + e.B[1]) / 2;
+          const d = Math.hypot(mx - c0.x, mz - c0.z);
+          if (d < minD || d > maxD) continue;
+          if (!city.inEdge(mx, mz, 20)) continue;
+          const nr = city.nearRoad(mx + e.nx * 4.5, mz + e.nz * 4.5);
+          if (!nr || nr.d > 1.5) continue;
+          if (foodDoors.some((f) => Math.hypot(f.x - mx, f.z - mz) < 16)) continue;
+          if (usedSpot.some((u) => Math.hypot(u.x - mx, u.z - mz) < 40)) continue;
+          if (filt && !filt(B, e)) continue;
+          cand.push({ B, e, cx: mx, cz: mz });
+        }
+      }
+      for (let t = 0; t < cand.length && t < 40; t++) {
+        const f = cand[SPOTR() * cand.length | 0];
+        if (!f) break;
+        return f;
+      }
+      return null;
+    }
+    __name(pickFacade, "pickFacade");
+    function makeSpot(kind, minD, maxD, sign2, col, sub, filt) {
+      let f = pickFacade(minD, maxD, filt) || pickFacade(40, 700, filt) || pickFacade(20, 900);
+      if (!f) return null;
+      usedSpot.push({ x: f.cx, z: f.cz });
+      city.placeSign(f, sign2, col, { w: 6, sub });
+      const e = f.e;
+      const s = { kind, name: sign2, x: f.cx + e.nx * 2.6, z: f.cz + e.nz * 2.6, f };
+      if (kind === "garage") {
+        const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+        const W = Math.min(5.2, e.len - 1.2);
+        const sh = new Mesh(new BoxGeometry(W, 3, 0.18), new MeshStandardMaterial({ color: 7238520, roughness: 0.55, metalness: 0.4 }));
+        sh.position.set(f.cx + e.nx * 0.12, 1.5, f.cz + e.nz * 0.12);
+        sh.rotation.y = Math.atan2(tx2, tz) + Math.PI / 2;
+        sh.castShadow = true;
+        scene.add(sh);
+        for (let k = 0; k < 6; k++) {
+          const ln = new Mesh(new BoxGeometry(W, 0.05, 0.22), new MeshStandardMaterial({ color: 3817026 }));
+          ln.position.set(sh.position.x, 0.3 + k * 0.48, sh.position.z);
+          ln.rotation.y = sh.rotation.y;
+          scene.add(ln);
+        }
+        s.x = f.cx + e.nx * 5.2;
+        s.z = f.cz + e.nz * 5.2;
+        const pad = new Mesh(new RingGeometry(2.6, 3.1, 4, 1), new MeshBasicMaterial({ color: 16765503, transparent: true, opacity: 0.55, toneMapped: false, side: DoubleSide, depthWrite: false }));
+        pad.rotation.set(-Math.PI / 2, 0, Math.atan2(tx2, tz) + Math.PI / 4);
+        pad.position.set(s.x, 0.09, s.z);
+        scene.add(pad);
+        s.pad = pad;
+      }
+      return s;
+    }
+    __name(makeSpot, "makeSpot");
+    const SPOTS = { bank: makeSpot("bank", 140, 420, "KREDITHAUS", "#7fe0ff", "FILIALE \xB7 GELD"), kiosk: makeSpot("kiosk", 60, 240, "KIOSK 24", "#ffd23f", "ZEITUNG \xB7 TABAK"), garage: makeSpot("garage", 110, 380, "GARAGE 9", "#ff8a3a", "ANKAUF \xB7 KEINE FRAGEN", (B) => B.h < 12) };
+    const GIVERS = { chef: { key: "chef", who: "Imbiss-Chef", face: "chef" }, ute: { key: "ute", who: "Ute vom Grill", face: "ute" }, deniz: { key: "deniz", who: "Deniz", face: "deniz" } };
+    const giverDoor = /* @__PURE__ */ __name((k) => k === "chef" ? HUBD : foodDoors.find((f) => f.giver === k) || HUBD, "giverDoor");
+    const JOBS = [
+      { id: "lieferung", title: "LIEFERUNG", g: "chef", tier: 0, pay: 85, type: "deliver", item: ["tuete0", "T\xFCte vom Imbiss", "\u{1F961}"], gain: { ans: 1 }, voice: 1, talk: "Nimm die T\xFCte, bring sie r\xFCber, und mach keinen Zirkus." },
+      { id: "kurier", title: "KURIER", g: "ute", tier: 0, pay: 110, type: "deliver", item: ["paket", "Kurier-Paket", "\u{1F4E6}"], gain: { ges: 1 }, voice: 1, talk: "Schneller Weg, klares Geld. Lass dich nicht erwischen." },
+      { id: "abholung", title: "ABHOLUNG", g: "deniz", tier: 0, pay: 70, type: "fetch", item: ["paeckchen", "P\xE4ckchen", "\u{1F4E6}"], gain: { ner: 1 }, voice: 1, talk: "Hol das P\xE4ckchen ab und komm geradewegs zur\xFCck." },
+      { id: "umschlag", title: "DER UMSCHLAG!", g: "chef", tier: 0, pay: 120, type: "umschlag", item: ["umschlag", "Umschlag (zu!)", "\u2709\uFE0F"], gain: { ans: 1, ner: 1 }, talk: "Kleiner, in dem Kiosk liegt unser Wochenanteil. Du holst den Umschlag, l\xE4ufst sch\xF6n unauff\xE4llig zur\xFCck und machst das Ding nicht auf. Wenn dir jemand folgt, hast du ihn nicht gesehen." },
+      { id: "tuete", title: "DIE T\xDCTE!", g: "chef", tier: 0, pay: 95, type: "deliver", twist: true, item: ["tuete", "Stinkende T\xFCte", "\u{1F6CD}\uFE0F"], gain: { ner: 1, pot: 1 }, talk: "Jemand hat uns \u2019ne T\xFCte untergeschoben. Die stinkt nach \xC4rger. Bring sie zu dem, der sie bestellt hat, und frag nicht, was drin ist." },
+      { id: "unterschrift", title: "UNTERSCHREIBEN!", g: "ute", tier: 0, pay: 90, type: "sign", need: 4, item: ["liste", "Unterschriftenliste", "\u{1F4CB}"], gain: { cha: 1 }, talk: "Du gehst raus, l\xE4chelst wie ein Mensch und holst ein paar Unterschriften. Ist \u2019ne Umfrage, offiziell. Inoffiziell will ich Namen. Wer nicht will, den l\xE4sst du stehen \u2014 wir sind nicht die Stadtb\xFCcherei." },
+      { id: "karre", title: "DIE GELBE KARRE!", g: "ute", tier: 1, pay: 170, type: "steal", car: { type: "coupe", color: 16764928, label: "gelbe Karre", heat: 0.5 }, gain: { ges: 1, ans: 1 }, talk: "Da steht \u2019ne Karre, die will ich nicht im Schaufenster sehen, sondern in unserer Garage. Nicht irgendeinen Schrott \u2014 genau die. Motor an, keine Kratzer extra, abliefern, kassieren." },
+      { id: "streife", title: "DIE STREIFE!", g: "chef", tier: 1, pay: 180, type: "steal", car: { type: "police", color: 1981066, label: "Streife", heat: 2.2 }, gain: { ges: 1 }, talk: "Die Herren in Gr\xFCn parken ihre Karre immer an derselben Ecke, als geh\xF6rte ihnen der Asphalt. Ich will genau die Streife in der Garage sehen. Danach ist uns das Schild auf dem Dach egal." },
+      { id: "verraeter", title: "DER FALSCHE KURIER!", g: "ute", tier: 1, pay: 160, type: "follow", item: ["notiz", "Notizbuch vom Kurier", "\u{1F4D3}"], gain: { ner: 1, ans: 1 }, talk: "Einer von uns l\xE4uft seit heute wie einer von denen. Du folgst ihm, ohne dass er dich zum Kaffee einl\xE4dt. Wenn er am falschen Laden h\xE4lt, ist das Gespr\xE4ch zu Ende \u2014 und du kommst zu mir zur\xFCck." },
+      { id: "bank", title: "DIE KASSE!", g: "chef", tier: 2, pay: 260, type: "bank", item: ["beutel", "Geldbeutel", "\u{1F4B0}"], gain: { ner: 1, ges: 1 }, talk: "H\xF6r zu, Kleiner. In der Filiale um die Ecke liegt ein Beutel, der uns geh\xF6rt \u2014 die wissen das nur noch nicht. Du gehst rein, nimmst ihn, und kommst wieder. Wer schreit, hat schon verloren." },
+      { id: "transporter", title: "DER GELDTRANSPORTER!", g: "deniz", tier: 2, pay: 220, type: "steal", car: { type: "van", color: 4871006, label: "Geldtransporter", heat: 1.3, hp: 260, moving: true }, gain: { ges: 1, ner: 1 }, talk: "Da rollt \u2019n dicker Kasten durch die Gegend, innen blechernes Gl\xFCck. Du bringst genau den Wagen in unsere Garage, nicht den erstbesten Lieferwagen. Und hinterher siehst du m\xF6glichst wie jemand aus, der nur einkaufen war." },
+      { id: "krieg", title: "WESSEN HOOD!", g: "deniz", tier: 2, pay: 240, type: "war", gain: { str: 1, ans: 1 }, talk: "Die vom anderen Laden halten uns f\xFCr Deko. Du zeigst ihnen, wessen Hood das hier ist. Wenn sie liegen, geh\xF6rt die Ecke uns. Wenn du liegst, essen wir ohne dich." },
+      { id: "schicht", title: "LETZTE SCHICHT!", g: "deniz", tier: 2, pay: 300, type: "war", final: true, gain: { ans: 1, str: 1 }, talk: "Letzte Schicht, Kleiner. Der Laden gegen\xFCber macht heute zu \u2014 f\xFCr immer, wenn du das richtig anstellst. Danach geh\xF6rt die Ecke auf der Karte uns, und ich will keine Diskussion." }
+    ];
+    const TIER_N = ["leicht", "mittel", "schwer"];
+    function tierOpen(t) {
+      return t === 0 || t === 1 && (jobsDone >= 2 || stats.ans >= 4) || t === 2 && (jobsDone >= 4 || stats.ans >= 5);
+    }
+    __name(tierOpen, "tierOpen");
+    function jobLock(J) {
+      if (!tierOpen(J.tier)) return J.tier === 1 ? "Erst 2 Jobs oder Ansehen 4" : "Erst 4 Jobs oder Ansehen 5";
+      if (J.type === "steal" && !SPOTS.garage) return "Keine Garage in der Gegend";
+      if (J.type === "bank" && !SPOTS.bank) return "Keine Filiale in der Gegend";
+      if (J.type === "umschlag" && !SPOTS.kiosk) return "Kein Kiosk in der Gegend";
+      if (J.id === "krieg" && !warTarget(false)) return "Kein Laden mehr \xFCbrig";
+      if (J.id === "schicht" && !warTarget(true)) return "Erst ein Viertel einnehmen (WESSEN HOOD!)";
+      return "";
+    }
+    __name(jobLock, "jobLock");
+    function warTarget(final) {
+      const c = hub ? hub.door : { x: P.x, z: P.z };
+      let best = null, bd = 1e9;
+      for (const r of regions) {
+        if (!r.rival) continue;
+        if (final ? r.owner !== "mine" || r.fixed : r.owner === "mine") continue;
+        const d = Math.hypot(r.rival.x - c.x, r.rival.z - c.z);
+        if (d < bd) {
+          bd = d;
+          best = r;
+        }
+      }
+      return best;
+    }
+    __name(warTarget, "warTarget");
+    function jobBoard(gk) {
+      const G = GIVERS[gk];
+      return { giver: gk, who: G.who, face: G.face, list: JOBS.filter((J) => J.g === gk).map((J) => ({ id: J.id, title: J.title, tier: J.tier, tierName: TIER_N[J.tier], pay: J.pay, lock: jobLock(J), done: doneIds[J.id] || 0 })) };
+    }
+    __name(jobBoard, "jobBoard");
+    function openBoard(gk) {
+      const b = jobBoard(gk);
+      if (opts.onJobs) opts.onJobs(b);
+      else startJob(b.list.find((j) => !j.lock).id);
+      return { ok: true };
+    }
+    __name(openBoard, "openBoard");
+    let job = null;
+    const faceOf = /* @__PURE__ */ __name((gk) => GIVERS[gk] ? GIVERS[gk].face : "chef", "faceOf");
+    function startJob(id) {
+      const J = JOBS.find((j) => j.id === id);
+      if (!J || job) return { ok: false };
+      const lk = jobLock(J);
+      if (lk) {
+        toast(lk, 1.8);
+        return { ok: false, msg: lk };
+      }
+      const gd = giverDoor(J.g);
+      job = { J, id: J.id, title: J.title, tier: J.tier, pay: J.pay, giver: J.g, gd, stage: 0, line: "", t: 0 };
+      const voice = J.voice ? "assets/voice/" + J.id + ".mp3" : null;
+      const T = J.type;
+      if (T === "deliver" || T === "fetch") {
+        const dests = foodDoors.filter((f) => f !== gd && Math.hypot(f.x - gd.x, f.z - gd.z) > 40 && Math.hypot(f.x - gd.x, f.z - gd.z) < 420);
+        const to = dests.length ? dests[Math.random() * dests.length | 0] : foodDoors.find((f) => f !== gd);
+        if (!to) {
+          job = null;
+          return { ok: false, msg: "Gerade keine Auftr\xE4ge." };
+        }
+        job.to = to;
+        if (T === "deliver") {
+          bagAdd(J.item[0], J.item[1], J.item[2]);
+          job.line = "Abgeben";
+        } else job.line = "Abholen";
+      } else if (T === "bank") {
+        job.to = SPOTS.bank;
+        job.line = "Filiale";
+      } else if (T === "umschlag") {
+        job.to = SPOTS.kiosk;
+        job.line = "Kiosk";
+      } else if (T === "sign") {
+        job.n = 0;
+        job.line = "0/" + J.need + " Unterschriften";
+        bagAdd(J.item[0], J.item[1], J.item[2]);
+      } else if (T === "steal") {
+        const c = spawnTargetCar(J.car, gd);
+        if (!c) {
+          job = null;
+          return { ok: false, msg: "Die Karre ist gerade nicht da." };
+        }
+        job.car = c;
+        job.line = J.car.label + " holen";
+      } else if (T === "follow") {
+        const t = spawnTraitor(gd);
+        if (!t) {
+          job = null;
+          return { ok: false, msg: "Der Typ ist heute nicht da." };
+        }
+        job.ped = t;
+        job.line = "Folgen, Abstand halten";
+      } else if (T === "war") {
+        const r = warTarget(!!J.final);
+        if (!r) {
+          job = null;
+          return { ok: false };
+        }
+        job.reg = r;
+        job.to = r.rival;
+        job.line = (r.crew ? r.crew[0] : "Laden") + " \xB7 " + r.name;
+      }
+      updateHoodHud();
+      showTalk(GIVERS[J.g].who, J.talk + "  (+" + J.pay + " \u20AC)", voice, faceOf(J.g));
+      return { ok: true };
+    }
+    __name(startJob, "startJob");
+    function jobTarget() {
+      if (!job) return null;
+      const T = job.J.type;
+      if (T === "steal") return job.stage === 0 ? job.car.wrecked ? null : { x: job.car.x, z: job.car.z } : SPOTS.garage;
+      if (T === "follow") return job.stage < 2 ? job.ped ? { x: job.ped.x, z: job.ped.z } : null : job.gd;
+      if (T === "sign") return job.stage === 1 ? job.gd : null;
+      if (T === "war") return job.reg && job.reg.rival;
+      if (T === "deliver") return job.to;
+      return job.stage === 0 ? job.to : job.gd;
+    }
+    __name(jobTarget, "jobTarget");
+    function near(t, r) {
+      return t && Math.hypot(t.x - P.x, t.z - P.z) < r;
+    }
+    __name(near, "near");
+    function jobAction() {
+      if (!job) return null;
+      const J = job.J, T = J.type;
+      const onFoot = !P.car && !P.train;
+      if (T === "deliver" && near(job.to, 4)) return { text: J.item[1] + " abgeben", label: "Abgeben", act: /* @__PURE__ */ __name(() => {
+        bagDel(J.item[0]);
+        if (J.twist) {
+          addHeat(Math.max(0, 1.3 - heat));
+          audio.siren();
+          toast("Die Bullen haben die T\xFCte gerochen!", 2.2);
+        }
+        return completeJob();
+      }, "act") };
+      if (T === "fetch" && job.stage === 0 && near(job.to, 4)) return { text: J.item[1] + " abholen", label: "Abholen", act: /* @__PURE__ */ __name(() => {
+        bagAdd(J.item[0], J.item[1], J.item[2]);
+        job.stage = 1;
+        job.line = "Zur\xFCck zu " + GIVERS[J.g].who;
+        updateHoodHud();
+        return { ok: true, msg: "P\xE4ckchen eingesteckt. Ab zur\xFCck." };
+      }, "act") };
+      if ((T === "fetch" || T === "bank" || T === "umschlag" || T === "follow" || T === "sign") && job.stage === (T === "follow" ? 2 : 1) && near(job.gd, 4.2)) return { text: "Bei " + GIVERS[J.g].who + " abliefern", label: "Abliefern", act: /* @__PURE__ */ __name(() => {
+        if (J.item) bagDel(J.item[0]);
+        return completeJob();
+      }, "act") };
+      if (T === "bank" && job.stage === 0 && onFoot && near(job.to, 4)) return { text: "Filiale \u2014 Beutel schnappen", label: "Beutel", act: /* @__PURE__ */ __name(() => {
+        bagAdd(J.item[0], J.item[1], J.item[2]);
+        job.stage = 1;
+        job.line = "Zur\xFCck zum Imbiss";
+        addHeat(Math.max(0, 2.4 - heat));
+        audio.siren();
+        shake = Math.max(shake, 0.3);
+        toast("Alarm! Die Bullen kommen.", 2);
+        updateHoodHud();
+        return { ok: true, msg: "Beutel im Sack. Lauf!" };
+      }, "act") };
+      if (T === "umschlag" && job.stage === 0 && onFoot && near(job.to, 4)) return { text: "Kiosk \u2014 Umschlag holen", label: "Umschlag", act: /* @__PURE__ */ __name(() => {
+        bagAdd(J.item[0], J.item[1], J.item[2]);
+        job.stage = 1;
+        job.line = "Unauff\xE4llig zur\xFCck";
+        addHeat(0.5);
+        spawnThugs(2, P.x, P.z, 16, "St\xF6rer");
+        toast("Da folgt dir einer \u2026", 2);
+        updateHoodHud();
+        return { ok: true, msg: "Umschlag eingesteckt. Nicht aufmachen." };
+      }, "act") };
+      if (T === "sign" && job.stage === 0 && onFoot) {
+        let best = null, bd = 1.9;
+        for (const pd of peds) {
+          if (pd.signed || pd.hostile || pd.special || (pd.down || 0) > 0) continue;
+          const d = Math.hypot(pd.x - P.x, pd.z - P.z);
+          if (d < bd) {
+            bd = d;
+            best = pd;
+          }
+        }
+        if (best) return { text: "Passant ansprechen (" + job.n + "/" + J.need + ")", label: "Ansprechen", act: /* @__PURE__ */ __name(() => {
+          best.signed = true;
+          best.g.rotation.y = Math.atan2(P.x - best.x, P.z - best.z);
+          best.pause = 1.6;
+          const no = Math.random() < Math.max(0.06, 0.34 - 0.045 * (stats.cha - 3));
+          if (no) {
+            audio.gibber && audio.gibber();
+            return { ok: true, msg: ["\u201EKein Interesse.\u201C", "\u201EIch unterschreib nix.\u201C", "\u201EBin nicht von hier.\u201C"][Math.random() * 3 | 0] };
+          }
+          job.n++;
+          audio.type && audio.type();
+          job.line = job.n + "/" + J.need + " Unterschriften";
+          if (job.n >= J.need) {
+            job.stage = 1;
+            job.line = "Liste zu " + GIVERS[J.g].who;
+          }
+          updateHoodHud();
+          return { ok: true, msg: "Unterschrift " + job.n + "/" + J.need + (job.n >= J.need ? " \u2014 zur\xFCck zu Ute." : "") };
+        }, "act") };
+      }
+      if (T === "follow" && job.stage === 1 && onFoot && job.ped && near(job.ped, 2.4)) return { text: "Den falschen Kurier stellen", label: "Stellen", act: /* @__PURE__ */ __name(() => {
+        confrontTraitor();
+        return { ok: true, msg: "Er l\xE4sst das Notizbuch fallen und rennt." };
+      }, "act") };
+      return null;
+    }
+    __name(jobAction, "jobAction");
+    function completeJob() {
+      if (!job) return { ok: false };
+      const J = job.J;
+      let pay = job.pay;
+      if (job.payMul) pay = Math.round(pay * job.payMul);
+      deal.setCash(deal.state().cash + pay);
+      jobsDone++;
+      doneIds[J.id] = (doneIds[J.id] || 0) + 1;
+      const lines = raiseStats(J.gain || {});
+      const rv = regions.filter((r) => r.rival && r.owner === "rival");
+      if (rv.length) {
+        const r = rv[Math.random() * rv.length | 0];
+        r.risk += 1 + J.tier;
+        if (r.risk >= 4 && !r.hot) {
+          r.hot = true;
+          lines.push("Die " + r.crew[0] + " (" + r.name + ") sind sauer");
+        }
+      }
+      cleanupJob();
+      audio.jingle && audio.jingle();
+      if (lines.length) setTimeout(() => audio.levelUp && audio.levelUp(), 420);
+      if (opts.onLevel) opts.onLevel({ title: J.title, pay, lines, level: level() });
+      updateHoodHud();
+      if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 600);
+      return { ok: true, msg: "Auftrag erledigt. +" + pay + " \u20AC", cash: deal.state().cash };
+    }
+    __name(completeJob, "completeJob");
+    function cleanupJob() {
+      if (!job) return;
+      if (job.J.item) bagDel(job.J.item[0]);
+      if (job.car && !job.delivered) {
+        job.car.target = false;
+        if (job.car.beacon) {
+          job.car.g.remove(job.car.beacon);
+          job.car.beacon = null;
+        }
+      }
+      if (job.ped) {
+        job.ped.special = null;
+        job.ped.dead = true;
+        job.ped.down = 0.01;
+      }
+      job = null;
+      jobRing.visible = false;
+      jobNav.visible = false;
+    }
+    __name(cleanupJob, "cleanupJob");
+    function failJob(msg) {
+      if (!job) return;
+      if (war && war.job) endWar(false);
+      cleanupJob();
+      toast(msg || "Auftrag vermasselt.", 2.4);
+      updateHoodHud();
+    }
+    __name(failJob, "failJob");
+    const beaconMat = new MeshBasicMaterial({ color: 16727477, toneMapped: false });
+    function beacon() {
+      const g = new Group();
+      const c = new Mesh(new ConeGeometry(0.55, 1.2, 4), beaconMat);
+      c.rotation.x = Math.PI;
+      c.position.y = 4.2;
+      g.add(c);
+      return g;
+    }
+    __name(beacon, "beacon");
+    function spawnTargetCar(def, gd) {
+      const cand = parked.filter((p) => {
+        const d = Math.hypot(p.x - gd.x, p.z - gd.z);
+        return d > 90 && d < 340 && !cars.some((c) => Math.hypot(c.x - p.x, c.z - p.z) < 3.2);
+      });
+      let o;
+      if (def.moving && aiRoads.length) {
+        o = addCar(def.type, def.color, 0, 0, 0, true);
+        for (let t = 0; t < 12; t++) {
+          spawnTraffic(o);
+          const d = Math.hypot(o.x - gd.x, o.z - gd.z);
+          if (d > 90 && d < 380) break;
+        }
+        o.max = 6.5;
+        o.speed = 4;
+      } else {
+        const p = cand.length ? cand[Math.random() * cand.length | 0] : parked[Math.random() * parked.length | 0];
+        if (!p) return null;
+        o = addCar(def.type, def.color, p.x, p.z, p.rot, false);
+      }
+      if (def.hp) {
+        o.hp = o.maxHp = def.hp;
+      }
+      o.target = true;
+      o.targetDef = def;
+      o.beacon = beacon();
+      o.g.add(o.beacon);
+      return o;
+    }
+    __name(spawnTargetCar, "spawnTargetCar");
+    function stealTick(dt) {
+      const c = job.car;
+      if (c.wrecked) {
+        failJob("Die Karre ist Schrott. Auftrag geplatzt.");
+        return;
+      }
+      if (job.stage === 0 && P.car === c) {
+        job.stage = 1;
+        job.line = "Ab in die Garage";
+        if (c.targetDef.heat) addHeat(c.targetDef.heat);
+        if (c.police) audio.siren();
+        toast("Genau die. Jetzt ab in die Garage!", 2);
+        updateHoodHud();
+      }
+      if (job.stage === 1 && P.car !== c) {
+        job.stage = 0;
+        job.line = c.targetDef.label + " holen";
+        updateHoodHud();
+      }
+      if (job.stage === 1 && P.car === c && SPOTS.garage && Math.hypot(c.x - SPOTS.garage.x, c.z - SPOTS.garage.z) < 4.2 && Math.abs(c.speed) < 2.5) {
+        exitCar(false);
+        job.delivered = true;
+        job.payMul = 0.6 + 0.4 * Math.max(0, c.hp / c.maxHp);
+        const i = cars.indexOf(c);
+        if (i >= 0) cars.splice(i, 1);
+        scene.remove(c.g);
+        heat = Math.max(0, heat - 1.2);
+        toast("Garage: Karre verkauft" + (job.payMul < 0.95 ? " (mit Abzug f\xFCr Kratzer)" : "") + ".", 2.2);
+        completeJob();
+      }
+    }
+    __name(stealTick, "stealTick");
+    function makeSpecial(x, z, look2, scale = 1.4) {
+      const g = makePed(900 + (Math.random() * 9e3 | 0), M, look2, scale);
+      scene.add(g);
+      tmp2.x = x;
+      tmp2.z = z;
+      ejectFromBuildings(tmp2, 0.5);
+      city.grid.resolve(tmp2, 0.4);
+      const o = { g, x: tmp2.x, z: tmp2.z, path: goodPaths[0], k: 1, dir: 1, lat: 0, speed: 1.4, t: 0, special: null, hostile: false, hp: 1 };
+      g.position.set(o.x, 0, o.z);
+      peds.push(o);
+      return o;
+    }
+    __name(makeSpecial, "makeSpecial");
+    const ringGeo = new RingGeometry(0.55, 0.75, 20);
+    const hostRing = new MeshBasicMaterial({ color: 16722474, transparent: true, opacity: 0.75, toneMapped: false, side: DoubleSide, depthWrite: false });
+    function spawnThugs(n, x, z, dist, kind, crew, arm) {
+      const out = [];
+      for (let i = 0; i < n; i++) {
+        const a = Math.random() * Math.PI * 2;
+        const px2 = x + Math.cos(a) * dist, pz2 = z + Math.sin(a) * dist;
+        const col = crew ? crew[1] : [0.15, 0.15, 0.17];
+        const o = makeSpecial(px2, pz2, { jacket: col, shirt: [0.1, 0.1, 0.1], pants: [0.12, 0.12, 0.14], hair: [0.05, 0.04, 0.03], skin: [[0.85, 0.66, 0.5], [0.6, 0.42, 0.3], [0.42, 0.3, 0.2]][i % 3], shoes: [0.9, 0.9, 0.9], open: false, long: false, beanie: i % 3 === 0, coat: false }, 1.42);
+        o.hostile = kind || "gang";
+        o.speed = 3.3 + Math.random() * 0.5;
+        o.atkT = 0.8 + Math.random();
+        const r = new Mesh(ringGeo, hostRing);
+        r.rotation.x = -Math.PI / 2;
+        r.position.y = 0.06;
+        o.g.add(r);
+        const w = arm || (Math.random() < 0.5 ? "bat" : null);
+        if (w) {
+          o.armed = w;
+          attachWeapon(o.g, w);
+        }
+        out.push(o);
+      }
+      return out;
+    }
+    __name(spawnThugs, "spawnThugs");
+    function spawnTraitor(gd) {
+      const o = makeSpecial(gd.x + 3, gd.z + 3, { jacket: [0.85, 0.78, 0.2], shirt: [0.2, 0.2, 0.2], pants: [0.3, 0.25, 0.2], hair: [0.3, 0.2, 0.1], skin: [0.86, 0.68, 0.52], shoes: [0.3, 0.2, 0.1], open: true, long: false, beanie: true, coat: true }, 1.42);
+      const dests = foodDoors.filter((f) => f.role === "heal" && Math.hypot(f.x - gd.x, f.z - gd.z) > 110 && Math.hypot(f.x - gd.x, f.z - gd.z) < 330);
+      const to = dests.find((f) => f.rivalOf) || dests[Math.random() * dests.length | 0];
+      if (!to) {
+        scene.remove(o.g);
+        peds.splice(peds.indexOf(o), 1);
+        return null;
+      }
+      const path = findPath(o.x, o.z, to.x, to.z, true);
+      o.route = path ? sidewalkPath(path) : [{ x: to.x, z: to.z }];
+      o.route.push({ x: to.x, z: to.z });
+      o.ri = 0;
+      o.special = "traitor";
+      o.speed = 1.75;
+      o.dest = to;
+      o.far = 0;
+      o.close = 0;
+      o.beacon = beacon();
+      o.beacon.scale.setScalar(0.6);
+      o.g.add(o.beacon);
+      return o;
+    }
+    __name(spawnTraitor, "spawnTraitor");
+    function confrontTraitor() {
+      const o = job.ped;
+      bagAdd(job.J.item[0], job.J.item[1], job.J.item[2]);
+      job.stage = 2;
+      job.line = "Zur\xFCck zu Ute";
+      if (o.beacon) {
+        o.g.remove(o.beacon);
+      }
+      o.special = "flee";
+      o.speed = 4.2;
+      o.fleeT = 5;
+      job.ped = null;
+      updateHoodHud();
+    }
+    __name(confrontTraitor, "confrontTraitor");
+    function sidewalkPath(pts) {
+      const out = [];
+      for (let i = 0; i < pts.length; i++) {
+        const a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)];
+        const dx = b.x - a.x, dz = b.z - a.z, l = Math.hypot(dx, dz) || 1;
+        const off = (pts[i].w || 7) / 2 + 1.3;
+        out.push({ x: pts[i].x + dz / l * off, z: pts[i].z - dx / l * off });
+      }
+      return out;
+    }
+    __name(sidewalkPath, "sidewalkPath");
+    function specialStep(o, dt) {
+      if (o.flinch > 0) {
+        o.flinch -= dt;
+        animPed(o.g, 0, dt);
+        return;
+      }
+      if (o.pause > 0) {
+        o.pause -= dt;
+        animPed(o.g, 0, dt);
+        return;
+      }
+      let tx2, tz, sp = o.speed;
+      if (o.hostile) {
+        const tg = P.car || P;
+        tx2 = tg.x;
+        tz = tg.z;
+        const d2 = Math.hypot(tx2 - o.x, tz - o.z);
+        if (d2 > 70 && !war) {
+          o.dead = true;
+          o.gone = true;
+          o.goneT = 99;
+          return;
+        }
+        if (o.armed === "pistol" && d2 < 11) {
+          o.g.rotation.y = Math.atan2(tx2 - o.x, tz - o.z);
+          animPed(o.g, 0, dt);
+          const u = o.g.userData;
+          if (u.arms) u.arms[1].rotation.x = -1.4;
+          o.shootT = (o.shootT ?? 1) - dt;
+          if (o.shootT <= 0) {
+            o.shootT = 1.4 + Math.random();
+            const dx2 = P.x - o.x, dz2 = P.z - o.z, dd = Math.hypot(dx2, dz2) || 1;
+            if (rayWall(o.x, o.z, dx2 / dd, dz2 / dd, dd) >= dd - 0.5) {
+              const hit = Math.random() < 0.3;
+              tracer(o.x + dx2 / dd * 0.8, o.z + dz2 / dd * 0.8, P.x + (hit ? 0 : (Math.random() - 0.5) * 3), P.z + (hit ? 0 : (Math.random() - 0.5) * 3));
+              audio.shot && audio.shot(0.6);
+              if (hit) {
+                if (P.car) damageCar(P.car, 5);
+                else {
+                  hurt(1);
+                  toast("Getroffen!", 1.1);
+                }
+              }
+            }
+          }
+          return;
+        }
+        if (d2 < (P.car ? 2.6 : 1.25)) {
+          o.g.rotation.y = Math.atan2(tx2 - o.x, tz - o.z);
+          animPed(o.g, 0, dt);
+          o.atkT -= dt;
+          const u = o.g.userData;
+          if (u.arms) {
+            u.arms[1].rotation.x = -1.2 - Math.sin(Math.max(0, o.atkT) * 8) * 0.8;
+          }
+          if (o.atkT <= 0) {
+            o.atkT = 1.15;
+            if (o.armed === "bat") audio.bat ? audio.bat() : audio.swing();
+            else audio.swing();
+            if (P.car) damageCar(P.car, 3);
+            else if (!P.train) {
+              hurt(1);
+              shake = Math.max(shake, 0.25);
+            }
+          }
+          return;
+        }
+      } else if (o.special === "traitor") {
+        const pd = Math.hypot(P.x - o.x, P.z - o.z);
+        if (pd < 3.4) {
+          o.close += dt;
+          if (o.close > 1.6 && !o.spooked) {
+            o.spooked = true;
+            o.speed = 3.4;
+            toast("Er hat dich bemerkt \u2014 schnapp ihn dir!", 2);
+          }
+        } else o.close = Math.max(0, o.close - dt);
+        if (pd > 48) {
+          o.far += dt;
+          if (o.far > 7 && job && job.ped === o) {
+            failJob("Den falschen Kurier hast du verloren.");
+            return;
+          }
+        } else o.far = 0;
+        const w = o.route[o.ri];
+        if (!w) {
+          animPed(o.g, 0, dt);
+          if (job && job.ped === o && job.stage === 0) {
+            job.stage = 1;
+            job.line = "Stell ihn am Laden";
+            updateHoodHud();
+            toast("Er h\xE4lt am falschen Laden. Stell ihn!", 2);
+          }
+          return;
+        }
+        tx2 = w.x;
+        tz = w.z;
+        const wd = Math.hypot(tx2 - o.x, tz - o.z);
+        if (wd < 1.2) {
+          o.ri++;
+          o.stT = 0;
+          return;
+        }
+        if (wd > (o.lastWd ?? 1e9) - 0.02 * dt * 60) o.stT = (o.stT || 0) + dt;
+        else o.stT = 0;
+        o.lastWd = wd;
+        if (o.stT > 2.2) {
+          o.stT = 0;
+          o.lastWd = 1e9;
+          if (o.ri < o.route.length - 1) o.ri++;
+          else {
+            o.x = tx2;
+            o.z = tz;
+          }
+        }
+        sp = o.speed;
+      } else if (o.special === "flee") {
+        o.fleeT -= dt;
+        if (o.fleeT <= 0) {
+          o.dead = true;
+          o.gone = true;
+          o.goneT = 99;
+          return;
+        }
+        const a = Math.atan2(o.x - P.x, o.z - P.z);
+        tx2 = o.x + Math.sin(a) * 5;
+        tz = o.z + Math.cos(a) * 5;
+      } else return;
+      const dx = tx2 - o.x, dz = tz - o.z, d = Math.hypot(dx, dz) || 1;
+      const st = Math.min(d, sp * dt);
+      const np = { x: o.x + dx / d * st, z: o.z + dz / d * st };
+      city.grid.resolve(np, 0.35);
+      ejectFromBuildings(np, 0.4);
+      o.g.rotation.y = Math.atan2(dx, dz);
+      o.x = np.x;
+      o.z = np.z;
+      o.g.position.set(o.x, 0, o.z);
+      animPed(o.g, sp, dt);
+    }
+    __name(specialStep, "specialStep");
+    let war = null;
+    function startWar(reg, fromJob, final) {
+      if (war) return;
+      war = { reg, wave: 0, waves: final ? 3 : 2, alive: [], job: !!fromJob, final: !!final, t: 0, next: 0.5 };
+      warRing.position.set(reg.rival.x, 0.1, reg.rival.z);
+      warRing.visible = true;
+      toast(fromJob ? "Die " + reg.crew[0] + " warten schon." : "Du hast dich mit den " + reg.crew[0] + " angelegt!", 2.4);
+      audio.siren && audio.siren();
+    }
+    __name(startWar, "startWar");
+    function warTick(dt) {
+      war.t += dt;
+      const reg = war.reg, door = reg.rival;
+      war.alive = war.alive.filter((o) => !o.dead && peds.includes(o));
+      const dd = Math.hypot(P.x - door.x, P.z - door.z);
+      if (dd > 170) {
+        endWar(false);
+        if (job && job.J.type === "war") failJob("Abgehauen \u2014 die " + reg.crew[0] + " lachen \xFCber dich.");
+        else toast("Du bist abgehauen. Der Krieg ist vertagt.", 2);
+        return;
+      }
+      if (!war.alive.length) {
+        if (war.wave >= war.waves) {
+          winWar();
+          return;
+        }
+        war.next -= dt;
+        if (war.next <= 0) {
+          war.wave++;
+          const last2 = war.wave === war.waves;
+          const n = 3 + war.wave + (war.final ? 1 : 0);
+          const arr = spawnThugs(n, door.x, door.z, 5, "gang", reg.crew, null);
+          for (const o of arr) if (war.wave >= 2 && Math.random() < 0.35) {
+            o.armed = "pistol";
+            attachWeapon(o.g, "pistol");
+          }
+          if (last2 && war.final) {
+            const boss = spawnThugs(1, door.x, door.z, 2.5, "gang", [[0.08, 0.08, 0.09]], "pistol")[0];
+            boss.hp = 3;
+            boss.g.scale.setScalar(1.18);
+            arr.push(boss);
+            toast("Der Chef vom Laden kommt raus!", 2);
+          }
+          war.alive = arr;
+          war.next = 2.2;
+          if (war.wave > 1) toast("Welle " + war.wave + "/" + war.waves + " \u2014 die holen Verst\xE4rkung!", 1.8);
+        }
+      }
+      warRing.material.opacity = 0.5 + 0.3 * Math.sin(tAcc * 6);
+    }
+    __name(warTick, "warTick");
+    function winWar() {
+      const reg = war.reg;
+      const wasJob = war.job, final = war.final;
+      warRing.visible = false;
+      war = null;
+      reg.owner = "mine";
+      reg.hot = false;
+      reg.risk = 0;
+      reg.anger = 0;
+      if (final) reg.fixed = true;
+      toast(final ? reg.name + " geh\xF6rt fest zu deiner Hood!" : reg.name + " geh\xF6rt jetzt deiner Hood!", 2.8);
+      audio.levelUp && audio.levelUp();
+      if (wasJob && job && job.J.type === "war") completeJob();
+      else {
+        const lines = raiseStats({ str: 1, ans: 1 });
+        deal.setCash(deal.state().cash + 120);
+        if (opts.onLevel) opts.onLevel({ title: "BANDENKRIEG GEWONNEN!", pay: 120, lines, level: level() });
+        if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 600);
+      }
+      updateHoodHud();
+    }
+    __name(winWar, "winWar");
+    function endWar() {
+      if (!war) return;
+      for (const o of war.alive) {
+        o.dead = true;
+        o.gone = true;
+        o.goneT = 99;
+      }
+      warRing.visible = false;
+      war = null;
+    }
+    __name(endWar, "endWar");
+    function rivalNoise(x, z, amt) {
+      for (const r of regions) {
+        if (!r.rival || r.owner === "mine") continue;
+        if (Math.hypot(r.rival.x - x, r.rival.z - z) < 18) {
+          r.anger += amt;
+          if (r.anger >= 1 && !war && !(job && job.J.type === "war")) startWar(r, false, false);
+        }
+      }
+    }
+    __name(rivalNoise, "rivalNoise");
+    function policeAngry(c, amt) {
+      addHeat(amt);
+      if (heat < 1.05) addHeat(1.05 - heat);
+      c.angry = 10;
+      if (!c.ai && !c.wrecked && c !== P.car && !c.target) {
+        c.ai = true;
+        c.max = 15;
+      }
+      if (audio.siren && !(c.sirenT > 0)) {
+        audio.siren();
+        c.sirenT = 3;
+      }
+    }
+    __name(policeAngry, "policeAngry");
+    const RG = /* @__PURE__ */ new Map();
+    const RGgrid = /* @__PURE__ */ new Map();
+    const RGC = 40;
+    const RGROADS = (D.roads || []).filter((r) => r.p && r.p.length > 1);
+    const RCOST = { service: 1.35, pedestrian: 1.2, foot: 1.5, living_street: 1.1, primary: 0.85, secondary: 0.85 };
+    RGROADS.forEach((r, ri) => {
+      const nd = r.nd && r.nd.length === r.p.length ? r.nd.map((id, i) => id != null ? "n" + id : "q" + Math.round(r.p[i][0] * 4) + "," + Math.round(r.p[i][1] * 4)) : r.p.map((q) => "q" + Math.round(q[0] * 4) + "," + Math.round(q[1] * 4));
+      for (let i = 0; i < r.p.length; i++) {
+        const id = nd[i];
+        let n = RG.get(id);
+        if (!n) {
+          n = { id, x: r.p[i][0], z: r.p[i][1], adj: [], w: r.w };
+          RG.set(id, n);
+          const k = Math.floor(n.x / RGC) + "," + Math.floor(n.z / RGC);
+          if (!RGgrid.has(k)) RGgrid.set(k, []);
+          RGgrid.get(k).push(n);
+        }
+        if (i > 0) {
+          const a = RG.get(nd[i - 1]);
+          const l = Math.hypot(n.x - a.x, n.z - a.z);
+          const cost = l * (RCOST[r.t] || 1);
+          const f = r.t === "foot";
+          a.adj.push({ n, c: cost, f });
+          n.adj.push({ n: a, c: cost, f });
+        }
+      }
+    });
+    {
+      const segs = [];
+      RGROADS.forEach((r, ri) => {
+        const nd = r.nd && r.nd.length === r.p.length ? r.nd.map((id, i) => id != null ? "n" + id : "q" + Math.round(r.p[i][0] * 4) + "," + Math.round(r.p[i][1] * 4)) : r.p.map((q) => "q" + Math.round(q[0] * 4) + "," + Math.round(q[1] * 4));
+        for (let i = 1; i < r.p.length; i++) segs.push({ a: RG.get(nd[i - 1]), b: RG.get(nd[i]), ri, f: r.t === "foot" });
+      });
+      const SG = /* @__PURE__ */ new Map(), C = 30;
+      const cells = /* @__PURE__ */ __name((x0, z0, x1, z1, f) => {
+        for (let i = Math.floor(Math.min(x0, x1) / C); i <= Math.floor(Math.max(x0, x1) / C); i++) for (let j = Math.floor(Math.min(z0, z1) / C); j <= Math.floor(Math.max(z0, z1) / C); j++) f(i + "," + j);
+      }, "cells");
+      segs.forEach((sg, k) => cells(sg.a.x - 4, sg.a.z - 4, sg.b.x + 4, sg.b.z + 4, (key) => {
+        let L = SG.get(key);
+        if (!L) SG.set(key, L = []);
+        L.push(k);
+      }));
+      const link = /* @__PURE__ */ __name((a, b, c, f) => {
+        if (a === b || a.adj.some((e) => e.n === b)) return;
+        a.adj.push({ n: b, c, f });
+        b.adj.push({ n: a, c, f });
+      }, "link");
+      const seen = /* @__PURE__ */ new Set();
+      let nj = 0;
+      for (const L of SG.values()) for (let u = 0; u < L.length; u++) for (let v = u + 1; v < L.length; v++) {
+        const s1 = segs[L[u]], s2 = segs[L[v]];
+        if (s1.ri === s2.ri) continue;
+        const kk = L[u] < L[v] ? L[u] + "_" + L[v] : L[v] + "_" + L[u];
+        if (seen.has(kk)) continue;
+        seen.add(kk);
+        const p = s1.a, q = s1.b, r = s2.a, t = s2.b;
+        const d1x = q.x - p.x, d1z = q.z - p.z, d2x = t.x - r.x, d2z = t.z - r.z;
+        const den = d1x * d2z - d1z * d2x;
+        if (Math.abs(den) > 1e-6) {
+          const ta = ((r.x - p.x) * d2z - (r.z - p.z) * d2x) / den, tb = ((r.x - p.x) * d1z - (r.z - p.z) * d1x) / den;
+          const l1 = Math.hypot(d1x, d1z) || 1, l2 = Math.hypot(d2x, d2z) || 1;
+          const m1 = 4 / l1, m2 = 4 / l2;
+          if (ta > -m1 && ta < 1 + m1 && tb > -m2 && tb < 1 + m2) {
+            const x = p.x + d1x * Math.max(0, Math.min(1, ta)), z = p.z + d1z * Math.max(0, Math.min(1, ta));
+            const id = "x" + Math.round(x * 2) + "," + Math.round(z * 2);
+            let n = RG.get(id);
+            if (!n) {
+              n = { id, x, z, adj: [], w: Math.max(p.w, r.w) };
+              RG.set(id, n);
+              const gk = Math.floor(x / RGC) + "," + Math.floor(z / RGC);
+              if (!RGgrid.has(gk)) RGgrid.set(gk, []);
+              RGgrid.get(gk).push(n);
+            }
+            for (const [e, ff] of [[p, s1.f], [q, s1.f], [r, s2.f], [t, s2.f]]) link(n, e, Math.hypot(e.x - x, e.z - z) + 0.01, ff);
+            nj++;
+            continue;
+          }
+        }
+        for (const a of [p, q]) for (const b of [r, t]) if (Math.hypot(a.x - b.x, a.z - b.z) < 3) {
+          link(a, b, Math.hypot(a.x - b.x, a.z - b.z) + 0.01, s1.f || s2.f);
+          nj++;
+        }
+      }
+      if (Q.has("prof")) console.log("PROF road graph junctions", nj);
+    }
+    function nearestNode(x, z, maxR = 90, walk) {
+      let best = null, bd = maxR;
+      const cx = Math.floor(x / RGC), cz = Math.floor(z / RGC);
+      for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) {
+        for (const n of RGgrid.get(cx + i + "," + (cz + j)) || []) {
+          if (!n.adj.length || !walk && !n.adj.some((e) => !e.f)) continue;
+          const d = Math.hypot(n.x - x, n.z - z);
+          if (d < bd) {
+            bd = d;
+            best = n;
+          }
+        }
+      }
+      return best;
+    }
+    __name(nearestNode, "nearestNode");
+    function findPath(sx, sz, tx2, tz, walk) {
+      const A = nearestNode(sx, sz, 90, walk), B = nearestNode(tx2, tz, 90, walk);
+      if (!A || !B) return null;
+      if (A === B) return [{ x: A.x, z: A.z, w: A.w }];
+      const g = /* @__PURE__ */ new Map([[A, 0]]), came = /* @__PURE__ */ new Map(), open2 = [[Math.hypot(A.x - B.x, A.z - B.z), A]], closed = /* @__PURE__ */ new Set();
+      let it = 0;
+      while (open2.length && it++ < 2e4) {
+        let bi = 0;
+        for (let i = 1; i < open2.length; i++) if (open2[i][0] < open2[bi][0]) bi = i;
+        const cur = open2.splice(bi, 1)[0][1];
+        if (cur === B) break;
+        if (closed.has(cur)) continue;
+        closed.add(cur);
+        for (const e of cur.adj) {
+          if (e.f && !walk) continue;
+          const ng = g.get(cur) + e.c;
+          if (ng < (g.get(e.n) ?? 1e18)) {
+            g.set(e.n, ng);
+            came.set(e.n, cur);
+            open2.push([ng + Math.hypot(e.n.x - B.x, e.n.z - B.z), e.n]);
+          }
+        }
+      }
+      if (!came.has(B)) return null;
+      const out = [];
+      let c = B;
+      while (c) {
+        out.push({ x: c.x, z: c.z, w: c.w });
+        c = came.get(c);
+      }
+      out.reverse();
+      return out;
+    }
+    __name(findPath, "findPath");
+    let AP = null;
+    const apMat = new MeshBasicMaterial({ color: 16727477, transparent: true, opacity: 0.85, toneMapped: false, side: DoubleSide, depthWrite: false });
+    const apRing = new Mesh(new RingGeometry(1.3, 1.9, 32), apMat);
+    apRing.rotation.x = -Math.PI / 2;
+    apRing.visible = false;
+    scene.add(apRing);
+    const apLine = new Line(new BufferGeometry(), new LineDashedMaterial({ color: 16727477, dashSize: 1.6, gapSize: 1.2, transparent: true, opacity: 0.8, toneMapped: false }));
+    apLine.frustumCulled = false;
+    apLine.visible = false;
+    scene.add(apLine);
+    function driveTo(x, z) {
+      if (!P.car) return { ok: false, msg: "Erst einsteigen." };
+      const nr = city.nearRoad(x, z);
+      if (!nr || nr.d > 7 || !nr.s) {
+        toast("Tipp auf eine Stra\xDFe.", 1.3);
+        return { ok: false };
+      }
+      const s = nr.s;
+      const sd = segDist(x, z, s[0], s[1], s[2], s[3]);
+      const gx = sd[1], gz = sd[2];
+      const path = findPath(P.car.x, P.car.z, gx, gz);
+      if (!path) {
+        toast("Da f\xFChrt keine Stra\xDFe hin.", 1.4);
+        return { ok: false };
+      }
+      const pts = [];
+      for (let i = 0; i < path.length; i++) {
+        const a = path[Math.max(0, i - 1)], b = path[Math.min(path.length - 1, i + 1)];
+        const dx = b.x - a.x, dz = b.z - a.z, l = Math.hypot(dx, dz) || 1;
+        const off = (path[i].w || 7) >= 7 ? Math.min(1.7, (path[i].w || 7) / 4) : 0;
+        pts.push({ x: path[i].x + dz / l * off, z: path[i].z - dx / l * off });
+      }
+      pts.push({ x: gx, z: gz });
+      while (pts.length > 2 && Math.hypot(pts[0].x - P.car.x, pts[0].z - P.car.z) < 7 && Math.hypot(pts[1].x - P.car.x, pts[1].z - P.car.z) < Math.hypot(pts[1].x - pts[0].x, pts[1].z - pts[0].z) + 3) pts.shift();
+      AP = { pts, i: 0, x: gx, z: gz, stuck: 0, rev: 0 };
+      apRing.position.set(gx, 0.12, gz);
+      apRing.visible = true;
+      const arr = new Float32Array(pts.length * 3 + 3);
+      arr[0] = P.car.x;
+      arr[1] = 0.15;
+      arr[2] = P.car.z;
+      pts.forEach((p, i) => {
+        arr[i * 3 + 3] = p.x;
+        arr[i * 3 + 4] = 0.15;
+        arr[i * 3 + 5] = p.z;
+      });
+      apLine.geometry.dispose();
+      apLine.geometry = new BufferGeometry();
+      apLine.geometry.setAttribute("position", new BufferAttribute(arr, 3));
+      apLine.computeLineDistances();
+      apLine.visible = true;
+      toast("Autopilot \u2014 Lenken bricht ab.", 1.6);
+      audio.pickup && audio.pickup();
+      return { ok: true };
+    }
+    __name(driveTo, "driveTo");
+    function autoStop() {
+      AP = null;
+      apRing.visible = false;
+      apLine.visible = false;
+    }
+    __name(autoStop, "autoStop");
+    function apStep(c, dt) {
+      const A = AP;
+      const pts = A.pts;
+      while (A.i < pts.length - 1 && Math.hypot(pts[A.i].x - c.x, pts[A.i].z - c.z) < 5) A.i++;
+      const end = pts[pts.length - 1];
+      const dEnd = Math.hypot(end.x - c.x, end.z - c.z);
+      if (A.i >= pts.length - 1 && dEnd < 3.5) {
+        autoStop();
+        toast("Angekommen.", 1.2);
+        return { ang: c.rot, v: 0 };
+      }
+      const asp = Math.abs(c.speed);
+      let look2 = 4 + asp * 0.45, px2 = pts[A.i].x, pz2 = pts[A.i].z, acc = Math.hypot(px2 - c.x, pz2 - c.z);
+      for (let k = A.i; k < pts.length - 1 && acc < look2; k++) {
+        const a = pts[k], b = pts[k + 1];
+        const l = Math.hypot(b.x - a.x, b.z - a.z);
+        if (acc + l >= look2) {
+          const t = (look2 - acc) / (l || 1);
+          px2 = a.x + (b.x - a.x) * t;
+          pz2 = a.z + (b.z - a.z) * t;
+          acc = look2;
+          break;
+        }
+        acc += l;
+        px2 = b.x;
+        pz2 = b.z;
+      }
+      const ang = Math.atan2(px2 - c.x, pz2 - c.z);
+      let v = 17;
+      let turn = 0, dist = 0;
+      for (let k = A.i; k < pts.length - 2 && dist < 28; k++) {
+        const a = pts[k], b = pts[k + 1], e = pts[k + 2];
+        dist += Math.hypot(b.x - a.x, b.z - a.z);
+        turn = Math.max(turn, Math.abs(wrapA(Math.atan2(e.x - b.x, e.z - b.z) - Math.atan2(b.x - a.x, b.z - a.z))) * (1 - dist / 40));
+      }
+      v = Math.min(v, turn > 1.1 ? 6 : turn > 0.6 ? 8.5 : turn > 0.3 ? 12 : 17);
+      const dErr = Math.abs(wrapA(ang - c.rot));
+      if (dErr > 0.9) v = Math.min(v, 5);
+      v = Math.min(v, 2.5 + dEnd * 0.75);
+      const fx = Math.sin(c.rot), fz = Math.cos(c.rot);
+      for (const o of cars) {
+        if (o === c || Math.abs(o.x - c.x) > 10 || Math.abs(o.z - c.z) > 10) continue;
+        const vx = o.x - c.x, vz = o.z - c.z;
+        const ah = vx * fx + vz * fz, lat = Math.abs(vx * fz - vz * fx);
+        if (ah > 0 && ah < 7.5 && lat < 1.7) {
+          v = Math.min(v, Math.max(0, (ah - 4) * 1.5));
+        }
+      }
+      if (A.rev > 0) {
+        A.rev -= dt;
+        return { ang, rev: true };
+      }
+      if (v > 2.5 && asp < 0.7) {
+        A.stuck += dt;
+        if (A.stuck > 1.8) {
+          A.stuck = 0;
+          A.rev = 1.1;
+        }
+      } else A.stuck = Math.max(0, A.stuck - dt);
+      return { ang, v };
+    }
+    __name(apStep, "apStep");
+    const _rc = new Raycaster(), _v2 = new Vector2(), _pl = new Plane(new Vector3(0, 1, 0), 0), _hit = new Vector3();
+    function groundAt(cx, cy) {
+      _v2.set(cx / innerWidth * 2 - 1, -(cy / innerHeight) * 2 + 1);
+      _rc.setFromCamera(_v2, camera);
+      if (_rc.ray.intersectPlane(_pl, _hit)) return { x: _hit.x, z: _hit.z };
+      return null;
+    }
+    __name(groundAt, "groundAt");
+    const pedCells = /* @__PURE__ */ new Map();
+    for (const pp of goodPaths) {
+      for (let i = 0; i < pp.pts.length - 1; i++) {
+        const a = pp.pts[i], b = pp.pts[i + 1];
+        const k = Math.floor((a[0] + b[0]) / 2 / 40) + "," + Math.floor((a[1] + b[1]) / 2 / 40);
+        if (!pedCells.has(k)) pedCells.set(k, []);
+        pedCells.get(k).push([pp, i]);
+      }
+    }
+    const roadCells = /* @__PURE__ */ new Map();
+    for (const ri of aiRoads) {
+      const r = city.roadsDrive[ri];
+      for (let i = 0; i < r.p.length - 1; i++) {
+        const a = r.p[i], b = r.p[i + 1];
+        if (Math.hypot(b[0] - a[0], b[1] - a[1]) < 8) continue;
+        const k = Math.floor((a[0] + b[0]) / 2 / 60) + "," + Math.floor((a[1] + b[1]) / 2 / 60);
+        if (!roadCells.has(k)) roadCells.set(k, []);
+        roadCells.get(k).push([ri, i]);
+      }
+    }
+    function offScreen(x, z, m = 3) {
+      const hw = (camera.right - camera.left) / 2, hh = (camera.top - camera.bottom) / 2 / Math.cos(TILT);
+      return Math.abs(x - cam.x) > hw + m || Math.abs(z - cam.z) > hh + m;
+    }
+    __name(offScreen, "offScreen");
+    let recT = 0;
+    function recycle(dt) {
+      recT -= dt;
+      if (recT > 0) return;
+      recT = 0.35;
+      const ox = P.x, oz = P.z;
+      const far = Math.max(80, cam.h * 2.6), rIn = Math.max(24, cam.h * 1.25), rOut = Math.max(55, far * 0.85);
+      let n = 0;
+      for (const o of peds) {
+        if (n >= 7) break;
+        if (o.hostile || o.special || o.seek || o.ret || (o.down || 0) > 0) continue;
+        const d = Math.hypot(o.x - ox, o.z - oz);
+        if (d < far) continue;
+        for (let t = 0; t < 6; t++) {
+          const a = Math.random() * Math.PI * 2, r = rIn + Math.random() * (rOut - rIn);
+          const x = ox + Math.cos(a) * r, z = oz + Math.sin(a) * r;
+          const L = pedCells.get(Math.floor(x / 40) + "," + Math.floor(z / 40));
+          if (!L) continue;
+          const [pp, i] = L[Math.random() * L.length | 0];
+          const lat = (Math.random() - 0.5) * 2 * pp.lat, tt = Math.random();
+          const pos = pedPoint(pp, pp.pts[i], pp.pts[i + 1], lat, tt);
+          if (!offScreen(pos[0], pos[1]) || !city.inEdge(pos[0], pos[1], 3)) continue;
+          o.path = pp;
+          o.k = i + 1;
+          o.dir = 1;
+          o.lat = lat;
+          o.t = tt;
+          o.x = pos[0];
+          o.z = pos[1];
+          o.signed = false;
+          o.g.position.set(o.x, 0, o.z);
+          n++;
+          break;
+        }
+      }
+      let m = 0;
+      const cfar = Math.max(150, cam.h * 3.2);
+      for (const o of cars) {
+        if (m >= 3) break;
+        if (!o.ai || o.police || o.wrecked || o.target || o === P.car) continue;
+        const d = Math.hypot(o.x - ox, o.z - oz);
+        if (d < cfar) continue;
+        for (let t = 0; t < 6; t++) {
+          const a = Math.random() * Math.PI * 2, r = Math.max(50, cam.h * 1.7) + Math.random() * 70;
+          const x = ox + Math.cos(a) * r, z = oz + Math.sin(a) * r;
+          const L = roadCells.get(Math.floor(x / 60) + "," + Math.floor(z / 60));
+          if (!L) continue;
+          const [ri, i] = L[Math.random() * L.length | 0];
+          const rd = city.roadsDrive[ri];
+          const rev = !rd.ow && Math.random() < 0.5;
+          startRoute(o, ri, rev);
+          const k = rev ? rd.p.length - 1 - i : i + 1;
+          o.route.k = Math.max(1, Math.min(o.route.pts.length - 1, k));
+          const A = o.route.pts[o.route.k - 1], B = o.route.pts[o.route.k];
+          const tt = 0.2 + Math.random() * 0.6;
+          const px2 = A[0] + (B[0] - A[0]) * tt, pz2 = A[1] + (B[1] - A[1]) * tt;
+          if (!offScreen(px2, pz2, 6) || cars.some((c) => c !== o && Math.abs(c.x - px2) < 6 && Math.abs(c.z - pz2) < 6)) {
+            continue;
+          }
+          o.x = px2;
+          o.z = pz2;
+          o.rot = Math.atan2(B[0] - A[0], B[1] - A[1]);
+          o.speed = 5;
+          o.turnT = 0;
+          m++;
+          break;
+        }
+      }
+    }
+    __name(recycle, "recycle");
+    const trains = [];
+    const RAILTEST = Q.has("railtest");
+    const trainMats = { body: new MeshStandardMaterial({ vertexColors: true, roughness: 0.5, metalness: 0.15 }) };
+    function trainCarGeo(col, len) {
+      const parts = [];
+      const b = /* @__PURE__ */ __name((w, h, l, x, y, z, c) => {
+        const g = new BoxGeometry(w, h, l);
+        g.translate(x, y, z);
+        const n = g.attributes.position.count;
+        const a = new Float32Array(n * 3);
+        for (let i = 0; i < n; i++) {
+          a[i * 3] = c[0];
+          a[i * 3 + 1] = c[1];
+          a[i * 3 + 2] = c[2];
+        }
+        g.setAttribute("color", new BufferAttribute(a, 3));
+        g.deleteAttribute("uv");
+        parts.push(g);
+      }, "b");
+      b(2.5, 2.3, len, 0, 1.55, 0, col);
+      b(2.52, 0.75, len - 0.4, 0, 2.05, 0, [0.08, 0.1, 0.13]);
+      b(2.3, 0.25, len - 0.8, 0, 2.82, 0, [0.82, 0.82, 0.8]);
+      b(2.54, 0.18, len, 0, 0.6, 0, [0.15, 0.15, 0.16]);
+      b(0.9, 0.15, 1.4, 0, 3.02, 0, [0.25, 0.25, 0.27]);
+      b(1.9, 0.5, 0.06, 0, 2.1, len / 2 + 0.01, [0.9, 0.9, 0.7]);
+      for (const z of [-len / 2 + 1.4, len / 2 - 1.4]) b(2.3, 0.6, 1.6, 0, 0.35, z, [0.1, 0.1, 0.1]);
+      return mergeGeometries(parts);
+    }
+    __name(trainCarGeo, "trainCarGeo");
+    {
+      const stopsP = (D.stops || []).filter((s) => s.k !== "entrance" && !s.ug).map((s) => ({ x: s.p[0], z: s.p[1], n: s.n })).concat((D.platforms || []).map((pl) => {
+        let x = 0, z = 0;
+        for (const q of pl.p) {
+          x += q[0];
+          z += q[1];
+        }
+        return { x: x / pl.p.length, z: z / pl.p.length, n: pl.n };
+      }));
+      const cols = [[0.92, 0.86, 0.2], [0.85, 0.15, 0.15], [0.9, 0.9, 0.88], [0.2, 0.45, 0.8]];
+      for (const r of D.rails || []) {
+        if (trains.length >= 6) break;
+        if (r.ug && !RAILTEST || r.sv === "yard" || r.sv === "siding" || !["tram", "light_rail", "rail", "narrow_gauge"].includes(r.t)) continue;
+        const pts = r.p;
+        const cum = [0];
+        for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+        const L = cum[cum.length - 1];
+        if (L < 150) continue;
+        const inside = pts.filter((q) => city.inEdge(q[0], q[1], 0)).length;
+        if (inside < pts.length * 0.4) continue;
+        const sts = [];
+        for (const s of stopsP) {
+          let best = 1e9, bs = 0;
+          for (let i = 0; i < pts.length - 1; i++) {
+            const sd = segDist(s.x, s.z, pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1]);
+            if (sd[0] < best) {
+              best = sd[0];
+              bs = cum[i] + sd[3] * (cum[i + 1] - cum[i]);
+            }
+          }
+          if (best < 30 && !sts.some((q) => Math.abs(q.s - bs) < 50)) sts.push({ s: bs, n: s.n });
+        }
+        sts.sort((a, b) => a.s - b.s);
+        const nc = r.t === "rail" ? 3 : 2, cl = r.t === "rail" ? 13 : 9.5;
+        const half = (nc * cl + (nc - 1) * 0.6) / 2;
+        if (L < half * 2 + 20) continue;
+        const col = cols[trains.length % cols.length];
+        const geo = trainCarGeo(col, cl);
+        const meshes = [];
+        for (let k = 0; k < nc; k++) {
+          const m = new Mesh(geo, trainMats.body);
+          m.castShadow = true;
+          m.receiveShadow = true;
+          scene.add(m);
+          meshes.push(m);
+        }
+        if (!sts.length) sts.push({ s: L * 0.5, n: "" });
+        trains.push({ r, pts, cum, L, half, s: Math.max(half, Math.min(L - half, sts[0].s)), dir: 1, v: 0, vmax: r.t === "rail" ? 15 : 10, halt: 5, sts, meshes, cl, nc, name: r.n || r.ref || "Bahn" });
+      }
+    }
+    function railAt(t, s) {
+      s = Math.max(0, Math.min(t.L, s));
+      let i = 1;
+      while (i < t.cum.length - 1 && t.cum[i] < s) i++;
+      const a = t.pts[i - 1], b = t.pts[i];
+      const k = (s - t.cum[i - 1]) / (t.cum[i] - t.cum[i - 1] || 1);
+      return { x: a[0] + (b[0] - a[0]) * k, z: a[1] + (b[1] - a[1]) * k, ang: Math.atan2(b[0] - a[0], b[1] - a[1]) };
+    }
+    __name(railAt, "railAt");
+    function trainStep(dt) {
+      for (const t of trains) {
+        if (t.halt > 0) {
+          t.halt -= dt;
+          t.v = 0;
+          if (t.halt <= 0 && P.train === t && t.exitReq) leaveTrain();
+        } else {
+          let nxt = null;
+          for (const st of t.sts) {
+            const ds = (st.s - t.s) * t.dir;
+            if (ds > 0.5 && (!nxt || ds < nxt.d)) nxt = { d: ds, st };
+          }
+          const endD = t.dir > 0 ? t.L - t.half - t.s : t.s - t.half;
+          const stopD = nxt ? Math.min(nxt.d, endD) : endD;
+          const brake = Math.sqrt(Math.max(0, 2 * 1.4 * Math.max(0, stopD - 0.3)));
+          const want = Math.min(t.vmax, brake);
+          t.v += Math.max(-3 * dt, Math.min(1.3 * dt, want - t.v));
+          t.s += t.v * t.dir * dt;
+          if (stopD < 0.6 && t.v < 0.8) {
+            t.v = 0;
+            t.halt = 6;
+            if (endD < 1) {
+              t.dir *= -1;
+            }
+            if (Math.hypot(t.meshes[0].position.x - P.x, t.meshes[0].position.z - P.z) < 60) audio.bell && audio.bell();
+            if (P.train === t) {
+              toast(nxt && nxt.st.n ? "Halt: " + nxt.st.n : "Halt", 1.4);
+              if (t.exitReq) leaveTrain();
+            }
+          }
+        }
+        for (let k = 0; k < t.nc; k++) {
+          const off = (k - (t.nc - 1) / 2) * (t.cl + 0.6);
+          const q = railAt(t, t.s + off), q2 = railAt(t, t.s + off + 0.5);
+          const m = t.meshes[k];
+          m.position.set(q.x, 0, q.z);
+          m.rotation.y = Math.atan2(q2.x - q.x, q2.z - q.z);
+          if (t.v > 1) {
+            const ca = Math.cos(m.rotation.y), sa = Math.sin(m.rotation.y);
+            const inT = /* @__PURE__ */ __name((x, z, pad) => {
+              const rx = x - q.x, rz = z - q.z;
+              const lz = rx * sa + rz * ca, lx = rx * ca - rz * sa;
+              return Math.abs(lx) < 1.3 + pad && Math.abs(lz) < t.cl / 2 + pad ? lx : null;
+            }, "inT");
+            for (const c of cars) {
+              if (c === P.car && false) continue;
+              if (Math.abs(c.x - q.x) > 12 || Math.abs(c.z - q.z) > 12) continue;
+              const lx = inT(c.x, c.z, 0.9);
+              if (lx == null) continue;
+              const sgn = lx >= 0 ? 1 : -1;
+              c.x += ca * sgn * 1.2 * dt * 8;
+              c.z += -sa * sgn * 1.2 * dt * 8;
+              if (!(c.trainCool > 0)) {
+                c.trainCool = 0.6;
+                damageCar(c, 4 + t.v * 1.2);
+                audio.crash(t.v);
+                if (c === P.car) shake = Math.max(shake, 0.6);
+              }
+            }
+            for (const pd of peds) {
+              if ((pd.down || 0) > 0 || Math.abs(pd.x - q.x) > 8 || Math.abs(pd.z - q.z) > 8) continue;
+              if (inT(pd.x, pd.z, 0.3) != null) knockPed(pd);
+            }
+            if (!P.car && !P.train && inT(P.x, P.z, 0.3) != null && !(P.hitCool > 0)) {
+              P.hitCool = 1.6;
+              hurt(2);
+              toast("Von der Bahn erwischt!", 1.6);
+              const sgn = inT(P.x, P.z, 0.3) >= 0 ? 1 : -1;
+              P.x += ca * sgn * 2.6;
+              P.z += -sa * sgn * 2.6;
+            }
+          }
+        }
+        if (P.train === t) {
+          P.x = t.meshes[0].position.x;
+          P.z = t.meshes[0].position.z;
+        }
+      }
+      for (const c of cars) if (c.trainCool > 0) c.trainCool -= dt;
+    }
+    __name(trainStep, "trainStep");
+    function nearTrain() {
+      if (P.car || P.train) return null;
+      for (const t of trains) {
+        if (t.halt <= 0.4) continue;
+        for (const m of t.meshes) if (Math.hypot(m.position.x - P.x, m.position.z - P.z) < 6.5) return t;
+      }
+      return null;
+    }
+    __name(nearTrain, "nearTrain");
+    function boardTrain(t) {
+      P.train = t;
+      player.visible = false;
+      P.vx = P.vz = 0;
+      audio.door();
+      audio.bell && audio.bell();
+      toast("Eingestiegen \u2014 " + t.name + ". Aussteigen an der n\xE4chsten Haltestelle.", 2.2);
+      state.inTrain = true;
+      hud();
+    }
+    __name(boardTrain, "boardTrain");
+    function leaveTrain(force) {
+      const t = P.train;
+      if (!t) return;
+      if (!force && t.halt <= 0) {
+        t.exitReq = true;
+        toast("Du steigst an der n\xE4chsten Haltestelle aus.", 1.6);
+        return;
+      }
+      t.exitReq = false;
+      const m = t.meshes[0];
+      const a = m.rotation.y;
+      P.x = m.position.x + Math.cos(a) * 3.2;
+      P.z = m.position.z - Math.sin(a) * 3.2;
+      tmp2.x = P.x;
+      tmp2.z = P.z;
+      ejectFromBuildings(tmp2, 0.5);
+      city.grid.resolve(tmp2, 0.35);
+      P.x = tmp2.x;
+      P.z = tmp2.z;
+      P.train = null;
+      state.inTrain = false;
+      player.visible = true;
+      player.position.set(P.x, 0, P.z);
+      audio.door();
+      if (wanted > 0) heat = Math.max(0, heat - 0.8);
+    }
+    __name(leaveTrain, "leaveTrain");
+    const ubahn = [];
+    {
+      const ents = (D.stops || []).filter((s) => s.k === "entrance");
+      for (const e of ents) {
+        const x = e.p[0], z = e.p[1];
+        if (!city.inEdge(x, z, 2)) continue;
+        let st = ubahn.find((u) => Math.hypot(u.x - x, u.z - z) < 150);
+        const nm = (e.n || "").replace(/\s*-\s*Lift.*$/i, "").replace(/^Ausgang\s+(Richtung\s+)?/i, "").trim();
+        if (!st) {
+          st = { x, z, ents: [], name: nm };
+          ubahn.push(st);
+        }
+        st.ents.push({ x, z });
+        if (!st.name && nm) st.name = nm;
+      }
+      for (const u of ubahn) {
+        if (!u.name) {
+          const nr = city.nearRoad(u.x, u.z);
+          u.name = nr && nr.road.n ? nr.road.n : "Station " + (ubahn.indexOf(u) + 1);
+        }
+      }
+      for (let a = 0; a < ubahn.length; a++) for (let b = ubahn.length - 1; b > a; b--) {
+        const A = ubahn[a], B = ubahn[b];
+        if (A.name === B.name && Math.hypot(A.x - B.x, A.z - B.z) < 700) {
+          A.ents.push(...B.ents);
+          ubahn.splice(b, 1);
+        }
+      }
+      for (const u of ubahn) {
+        let x = 0, z = 0;
+        for (const e of u.ents) {
+          x += e.x;
+          z += e.z;
+        }
+        u.x = x / u.ents.length;
+        u.z = z / u.ents.length;
+      }
+    }
+    function nearUbahn() {
+      if (P.car || P.train || ubahn.length < 2) return null;
+      for (const u of ubahn) for (const e of u.ents) if (Math.hypot(e.x - P.x, e.z - P.z) < 4.2) return u;
+      return null;
+    }
+    __name(nearUbahn, "nearUbahn");
+    function openUbahn() {
+      const u = nearUbahn();
+      if (!u) return { ok: false };
+      const list = ubahn.filter((q) => q !== u).map((q) => ({ i: ubahn.indexOf(q), name: q.name, d: Math.round(Math.hypot(q.x - u.x, q.z - u.z)) }));
+      if (opts.onUbahn) opts.onUbahn({ from: u.name, list });
+      return { ok: true };
+    }
+    __name(openUbahn, "openUbahn");
+    function ubahnTo(i) {
+      const u = ubahn[i];
+      if (!u || P.car || P.train) return false;
+      const e = u.ents[Math.random() * u.ents.length | 0];
+      tmp2.x = e.x + 2.2;
+      tmp2.z = e.z + 2.2;
+      ejectFromBuildings(tmp2, 0.5);
+      city.grid.resolve(tmp2, 0.35);
+      P.x = tmp2.x;
+      P.z = tmp2.z;
+      P.vx = P.vz = 0;
+      player.position.set(P.x, 0, P.z);
+      if (heat > 0) {
+        heat = Math.max(0, heat - 1.2);
+      }
+      audio.bell && audio.bell();
+      camStep(0, true);
+      toast("U-Bahn: " + u.name + (wanted > 0 ? " \u2014 deine Spur verliert sich." : ""), 2);
+      return true;
+    }
+    __name(ubahnTo, "ubahnTo");
+    let mapRoads = null;
+    function mapData() {
+      if (!mapRoads) mapRoads = RGROADS.filter((r) => r.t !== "foot").map((r) => ({ p: r.p, w: r.t === "pedestrian" ? 6 : r.t === "service" ? 3 : r.w, ped: r.t === "pedestrian", big: ["primary", "secondary", "tertiary"].includes(r.t) }));
+      const mk = [];
+      if (hub) mk.push({ x: hub.door.x, z: hub.door.z, k: "giver", g: "chef", label: "Imbiss-Chef" });
+      for (const f of foodDoors) {
+        if (f.giver) mk.push({ x: f.x, z: f.z, k: "giver", g: f.giver, label: GIVERS[f.giver].who });
+      }
+      for (const k in SPOTS) {
+        const s = SPOTS[k];
+        if (s) mk.push({ x: s.x, z: s.z, k, label: s.name });
+      }
+      for (const u of ubahn) mk.push({ x: u.x, z: u.z, k: "ubahn", label: u.name });
+      for (const r of regions) if (r.rival) mk.push({ x: r.rival.x, z: r.rival.z, k: "rival", label: r.crew[0], mine: r.owner === "mine", hot: !!r.hot });
+      const tg = jobTarget();
+      if (tg) mk.push({ x: tg.x, z: tg.z, k: "target", label: job.title });
+      const avail = {};
+      for (const gk in GIVERS) avail[gk] = JOBS.filter((J) => J.g === gk && !jobLock(J)).map((J) => J.tier);
+      return {
+        edge: city.edge,
+        roads: mapRoads,
+        rails: (D.rails || []).filter((r) => !r.ug || RAILTEST).map((r) => r.p),
+        regions: regions.map((r) => ({ name: r.name, x0: r.x0, x1: r.x1, z0: r.z0, z1: r.z1, owner: r.owner, fixed: r.fixed, crew: r.crew ? r.crew[0] : "", hot: !!r.hot })),
+        markers: mk,
+        avail,
+        player: { x: P.car ? P.car.x : P.x, z: P.car ? P.car.z : P.z, rot: P.car ? P.car.rot : P.rot },
+        trains: trains.map((t) => ({ x: t.meshes[0].position.x, z: t.meshes[0].position.z })),
+        route: AP ? AP.pts.slice(AP.i).map((q) => [q.x, q.z]) : null,
+        inCar: !!P.car,
+        job: job ? { title: job.title, line: job.line } : null
+      };
+    }
+    __name(mapData, "mapData");
+    function bagData() {
+      const ds = deal.state();
+      const w = [{ k: null, name: "Faust", have: true }];
+      if (P.weapons.bat) w.push({ k: "bat", name: "Baseballschl\xE4ger", have: true });
+      for (const [k, n] of [["pistol", "Pistole"], ["smg", "Maschinenpistole"], ["shotgun", "Schrotflinte"]]) if (P.weapons[k] > 0 || gotUnlock[k]) w.push({ k, name: n, ammo: P.weapons[k] || 0, have: P.weapons[k] > 0 });
+      return { cash: ds.cash, weapon: P.weapon, weapons: w, goods: ds.items.map((it) => ({ id: it.id, name: it.name, icon: it.icon, n: it.have, note: it.note })), items: bag.map((b) => ({ ...b })), health, maxh: MAXH(), stats: statData() };
+    }
+    __name(bagData, "bagData");
+    function statData() {
+      return { level: level(), jobs: jobsDone, list: STAT_DEF.map(([k, n, d]) => ({ k, name: n, desc: d, v: stats[k] })), unlocks: UNLOCKS.map((u) => ({ name: u.name, need: Object.entries(u.need).map(([k, v]) => STAT_DEF.find((d) => d[0] === k)[1] + " " + v).join(" + "), ok: !!gotUnlock[u.k] })), regions: regions.filter((r) => r.owner === "mine").length, regionsTotal: regions.filter((r) => r.rival || r.owner === "mine").length };
+    }
+    __name(statData, "statData");
+    function snapshot() {
+      const ds = deal.state();
+      const pos = P.car || P;
+      return {
+        v: 1,
+        t: Date.now(),
+        P: { x: pos.x, z: pos.z, rot: P.car ? P.car.rot : P.rot },
+        cash: ds.cash,
+        inv: ds.inv,
+        health,
+        weapons: { ...P.weapons },
+        weapon: P.weapon,
+        heat,
+        stats: { ...stats },
+        jobsDone,
+        doneIds: { ...doneIds },
+        gotUnlock: { ...gotUnlock },
+        regions: regions.map((r) => ({ o: r.owner, f: r.fixed, k: r.risk, h: !!r.hot })),
+        time: timeName
+      };
+    }
+    __name(snapshot, "snapshot");
+    function restore(S) {
+      if (!S || S.v !== 1) return false;
+      try {
+        if (P.car) exitCar(false);
+        if (P.train) leaveTrain(true);
+        if (job) cleanupJob();
+        Object.assign(stats, S.stats || {});
+        jobsDone = S.jobsDone | 0;
+        Object.assign(doneIds, S.doneIds || {});
+        Object.assign(gotUnlock, S.gotUnlock || {});
+        deal.setCash(S.cash ?? 120);
+        deal.setInv(S.inv || {});
+        Object.assign(P.weapons, S.weapons || {});
+        setWeapon(S.weapon && (S.weapon === "bat" ? P.weapons.bat : P.weapons[S.weapon] > 0) ? S.weapon : null);
+        (S.regions || []).forEach((q, i) => {
+          const r = regions[i];
+          if (!r) return;
+          if (q.o === "mine" || q.o === "rival" && r.rival || q.o === "free") r.owner = q.o;
+          r.fixed = !!q.f;
+          r.risk = q.k | 0;
+          r.hot = !!q.h;
+        });
+        health = Math.min(MAXH(), Math.max(1, S.health | 0 || MAXH()));
+        heat = Math.min(2, S.heat || 0);
+        wanted = Math.floor(heat);
+        if (S.P && isFinite(S.P.x)) {
+          P.x = S.P.x;
+          P.z = S.P.z;
+          P.rot = S.P.rot || 0;
+          tmp2.x = P.x;
+          tmp2.z = P.z;
+          ejectFromBuildings(tmp2, 0.5);
+          city.grid.resolve(tmp2, 0.35);
+          P.x = tmp2.x;
+          P.z = tmp2.z;
+          player.position.set(P.x, 0, P.z);
+        }
+        if (S.time && TIMES[S.time]) applyTime(S.time);
+        camStep(0, true);
+        updateHoodHud();
+        return true;
+      } catch (e) {
+        console.warn("restore failed", e);
+        return false;
+      }
+    }
+    __name(restore, "restore");
+    function hoodTick(dt) {
+      if (document.body.classList.contains("onTitle")) return;
+      if (job) {
+        job.t += dt;
+        if (job.J.type === "steal") stealTick(dt);
+        else if (job.J.type === "war" && !war && job.reg && Math.hypot(P.x - job.reg.rival.x, P.z - job.reg.rival.z) < 26) startWar(job.reg, true, !!job.J.final);
+      }
+      if (war) warTick(dt);
+      else {
+        for (const r of regions) {
+          if (r.hot && r.rival && r.owner !== "mine" && Math.hypot(P.x - r.rival.x, P.z - r.rival.z) < 20 && !(job && job.J.type === "war")) {
+            startWar(r, false, false);
+            break;
+          }
+        }
+      }
+      trainStep(dt);
+      recycle(dt);
+      for (let i = peds.length - 1; i >= 0; i--) {
+        const o = peds[i];
+        if (o.gone) {
+          o.goneT = (o.goneT || 0) + dt;
+          if (o.goneT > 4) {
+            scene.remove(o.g);
+            peds.splice(i, 1);
+          }
+        }
+      }
+      for (const c of cars) {
+        if (c.ramCool > 0) c.ramCool -= dt;
+        if (c.sirenT > 0) c.sirenT -= dt;
+        if (c.beacon) {
+          c.beacon.position.y = Math.sin(tAcc * 5) * 0.25;
+          c.beacon.rotation.y = tAcc * 2;
+        }
+      }
+      if (job && job.ped && job.ped.beacon) {
+        job.ped.beacon.position.y = Math.sin(tAcc * 5) * 0.15;
+        job.ped.beacon.rotation.y = tAcc * 2;
+      }
+      if (AP) {
+        apRing.material.opacity = 0.55 + 0.35 * Math.sin(tAcc * 5);
+        apRing.scale.setScalar(1 + 0.08 * Math.sin(tAcc * 5));
+      }
+      if (!P.car && !P.train) {
+        const rr = 0.9 + 0.09 * stats.pot;
+        for (const o of peds) {
+          if (o.hostile || o.special || (o.down || 0) > 0) continue;
+          const dx = o.x - P.x, dz = o.z - P.z;
+          if (Math.abs(dx) > rr || Math.abs(dz) > rr) continue;
+          const d = Math.hypot(dx, dz) || 1;
+          if (d < rr) {
+            const k = (rr - d) * Math.min(1, dt * (2 + 0.4 * stats.pot));
+            o.x += dx / d * k;
+            o.z += dz / d * k;
+            o.g.position.set(o.x, 0, o.z);
+          }
+        }
+      }
+    }
+    __name(hoodTick, "hoodTick");
+    mark("systems");
     updateHoodHud();
     const keys = {};
     addEventListener("keydown", (e) => {
@@ -35666,7 +37755,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       keys[e.code] = false;
     });
     let viewH = opts.zoom != null ? opts.zoom < 5 ? 13 * opts.zoom : opts.zoom : MOBILE ? 11 : 13;
-    const VIEW_MIN = 7.5;
+    const VIEW_MIN = 9;
     let contentBox = null;
     function contentBounds() {
       if (contentBox) return contentBox;
@@ -35778,9 +37867,21 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     __name(exitCar, "exitCar");
     function toggleCar() {
       audio.resume();
+      if (P.train) {
+        leaveTrain(false);
+        return;
+      }
       if (P.car) {
+        autoStop();
         exitCar(false);
         return;
+      }
+      {
+        const t = nearTrain();
+        if (t) {
+          boardTrain(t);
+          return;
+        }
       }
       let best = null, bd = 3.6;
       for (const c of cars) {
@@ -35815,6 +37916,11 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return a;
     }, "wrapA");
     function playerStep(dt) {
+      if (P.train) {
+        P.vx = P.vz = 0;
+        player.position.set(P.x, 0, P.z);
+        return;
+      }
       if (document.body.classList.contains("onTitle")) {
         if (P.car) P.car.speed = 0;
         else {
@@ -35832,20 +37938,54 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const c = P.car;
         const T = CAR_TYPES[c.type];
         const mul = c.g.userData.speedMul ?? 1;
-        const acc = up ? 9 : 0, brk = dn ? c.speed > 0.5 ? 16 : 6 : 0;
-        let st = (lf ? 1 : 0) - (rt ? 1 : 0);
-        if (ta) {
-          const want = Math.atan2(TOUCH.x, TOUCH.y);
+        const acc = up ? 9.5 : 0, brk = dn ? c.speed > 0.5 ? 16 : 6 : 0;
+        const asp0 = Math.abs(c.speed);
+        const gesK = 1 + 0.03 * (stats.ges - 3);
+        const yawCap = Math.min(0.32 + asp0 * 0.36, 2.45) * (1 - 0.2 * Math.min(1, asp0 / 24)) * gesK;
+        const clampY = /* @__PURE__ */ __name((v) => Math.max(-yawCap, Math.min(yawCap, v)), "clampY");
+        if (AP && (ta || up || dn || lf || rt || keys.Space || TOUCH.hbrake)) {
+          autoStop();
+          toast("Autopilot aus.", 1.1);
+        }
+        let yawCmd = 0;
+        if (AP) {
+          const a = apStep(c, dt);
+          if (a) {
+            const d = wrapA(a.ang - c.rot);
+            if (a.rev) {
+              if (c.speed > 0.5) c.speed -= 16 * dt;
+              else c.speed = Math.max(-4, c.speed - 6 * dt);
+              yawCmd = -clampY(wrapA(a.ang - (c.rot + Math.PI)) * 4.5);
+            } else {
+              const v = a.v * mul;
+              if (c.speed < v) c.speed += Math.min(9, (v - c.speed) * 3) * dt;
+              else c.speed -= Math.min(14, (c.speed - v) * 3) * dt;
+              yawCmd = clampY(d * 4.8);
+            }
+          }
+        } else if (ta) {
+          let want = Math.atan2(TOUCH.x, TOUCH.y);
+          if (c.wantA == null) c.wantA = want;
+          c.wantA += wrapA(want - c.wantA) * Math.min(1, dt * 16);
+          want = c.wantA;
+          const onRoad = city.nearRoad(c.x, c.z);
+          const on = onRoad && onRoad.d < onRoad.w / 2 + 1.2;
+          if (on && onRoad.s && asp0 > 3) {
+            const sg = onRoad.s;
+            let ra = Math.atan2(sg[2] - sg[0], sg[3] - sg[1]);
+            if (Math.abs(wrapA(want - ra)) > Math.PI / 2) ra += Math.PI;
+            const dd = wrapA(want - ra);
+            if (Math.abs(dd) < 0.3) want = ra + dd * Math.max(0, (Math.abs(dd) - 0.12) / 0.18);
+          }
           const d = wrapA(want - c.rot);
           const back = Math.abs(d) > 2.25;
           if (!back) {
-            const onRoad = city.nearRoad(c.x, c.z);
-            const roadMul = onRoad && onRoad.d < onRoad.w / 2 + 1.2 ? 1 : 0.55;
-            const vmax = 24 * mul * roadMul * Math.min(1, TOUCH.mag) * (Math.abs(d) > 1.1 ? 0.55 : 1);
-            if (c.speed < vmax) c.speed += 9 * Math.min(1, TOUCH.mag + 0.2) * dt;
-            else c.speed *= Math.pow(0.6, dt);
+            const roadMul = on ? 1 : 0.6;
+            const vmax = 24 * mul * roadMul * Math.min(1, TOUCH.mag) * (Math.abs(d) > 1.1 ? 0.5 : Math.abs(d) > 0.6 ? 0.75 : 1);
+            if (c.speed < vmax) c.speed += 9.5 * Math.min(1, TOUCH.mag + 0.2) * dt;
+            else c.speed -= Math.min(c.speed - vmax, 10 * dt);
             if (c.speed < -0.3) c.speed += 16 * dt;
-            st = Math.max(-1, Math.min(1, d * 1.5));
+            yawCmd = clampY(d * 5.2);
           } else {
             if (c.speed > 0.5) {
               c.speed -= 16 * dt;
@@ -35854,22 +37994,23 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
               c.backT = (c.backT || 0) + dt;
               if (c.backT > 0.4 || c.speed < -0.5) {
                 c.speed -= 6 * dt;
-                st = -Math.max(-1, Math.min(1, wrapA(want - (c.rot + Math.PI)) * 1.5));
+                yawCmd = -clampY(wrapA(want - (c.rot + Math.PI)) * 4.5);
               } else c.speed *= Math.pow(0.1, dt);
             }
           }
           if (!back) c.backT = 0;
         } else {
+          c.wantA = null;
           if (up) c.speed += acc * dt;
           if (dn) c.speed -= brk * dt;
           if (!up && !dn) c.speed *= Math.pow(0.55, dt);
+          yawCmd = ((lf ? 1 : 0) - (rt ? 1 : 0)) * yawCap;
         }
         c.speed = Math.max(-6, Math.min(24 * mul, c.speed));
         if (keys.Space || TOUCH.hbrake) c.speed *= Math.pow(0.05, dt);
-        c.steer += (st - c.steer) * Math.min(1, dt * 5);
+        c.steer += (yawCmd - c.steer) * Math.min(1, dt * 13);
         const asp = Math.abs(c.speed);
-        const yawMax = Math.min(asp * 0.19, 1.75) * (1 - 0.2 * Math.min(1, asp / 24));
-        c.rot += c.steer * yawMax * Math.sign(c.speed) * dt;
+        c.rot += c.steer * (c.speed < -0.05 ? -1 : 1) * Math.min(1, asp / 1.2) * dt;
         c.x += Math.sin(c.rot) * c.speed * dt;
         c.z += Math.cos(c.rot) * c.speed * dt;
         c.hitCool = Math.max(0, (c.hitCool || 0) - dt);
@@ -35911,12 +38052,22 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           if (imp > 1.5) {
             c.speed *= -0.2;
             o.speed = (o.speed || 0) * 0.4;
+            if (o.target && o.ai) {
+              o.ai = false;
+              o.route = null;
+              o.speed = 0;
+              toast("Der Fahrer springt raus und rennt!", 1.8);
+            }
           } else c.speed *= Math.pow(0.5, dt);
           if (imp >= 2.5 && c.hitCool <= 0) {
             carImpact(c, imp);
             damageCar(o, carLoss(imp) * 0.8);
             c.hitCool = 0.4;
-            if (o.police && imp > 5) addHeat(0.25);
+          }
+          if (o.police && !o.wrecked && imp > 1.4 && !(o.ramCool > 0)) {
+            o.ramCool = 1.2;
+            policeAngry(o, imp > 7 ? 1.25 : imp > 3.5 ? 0.95 : 0.75);
+            toast(imp > 7 ? "Volle Breitseite gegen die Bullen!" : "Du hast die Bullen gerammt!", 1.6);
           }
         }
         for (const rp of repairs) {
@@ -35927,7 +38078,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         }
         if (P.car !== c) return;
         audio.engineTick(c.speed, c.speed < -0.4);
-        if (audio.squeal && asp > 8 && (Math.abs(c.steer) > 0.55 || keys.Space || TOUCH.hbrake)) audio.squeal(Math.min(1, asp / 18));
+        if (audio.squeal && asp > 8 && (Math.abs(c.steer) > 1.55 || keys.Space || TOUCH.hbrake)) audio.squeal(Math.min(1, asp / 18));
         const EG = city.edge;
         c.x = Math.max(EG.minx + 1.5, Math.min(EG.maxx - 1.5, c.x));
         c.z = Math.max(EG.minz + 1.5, Math.min(EG.maxz - 1.5, c.z));
@@ -35971,7 +38122,6 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const snap = Math.min(1, dt * (align > 0.78 ? 20 : 26));
         P.vx += (fx * fwd - P.vx) * snap;
         P.vz += (fz * fwd - P.vz) * snap;
-        if (Math.random() < dt * wish * 1.6) audio.step();
       } else {
         P.vx *= Math.pow(4e-3, dt);
         P.vz *= Math.pow(4e-3, dt);
@@ -36023,13 +38173,18 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       player.rotation.y = P.rot;
       animPed(player, spd, dt);
       weaponPose(dt);
+      {
+        const k = Math.floor((player.userData.phase || 0) / Math.PI);
+        if (spd > 0.6 && k !== P.stepK) audio.step(Math.min(1, 0.6 + spd * 0.07));
+        P.stepK = k;
+      }
     }
     __name(playerStep, "playerStep");
     const TILT = 8 * Math.PI / 180;
     const cam = { x: P.x, z: P.z, h: viewH };
     function camStep(dt, snap) {
       const inCar2 = !!P.car;
-      const sp = inCar2 ? Math.abs(P.car.speed) : Math.hypot(P.vx, P.vz);
+      const sp = inCar2 ? Math.abs(P.car.speed) : P.train ? P.train.v : Math.hypot(P.vx, P.vz);
       const portrait = innerWidth < innerHeight;
       const look2 = { x: 0, z: 0 };
       if (inCar2) {
@@ -36044,28 +38199,28 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       const vmax = viewMax();
       const wide = viewH > vmax * 0.58;
       const cb = wide ? contentBounds() : null;
-      let tx, tz;
+      let tx2, tz;
       if (wide) {
-        tx = cb.cx;
+        tx2 = cb.cx;
         tz = cb.cz;
-        panX = tx;
+        panX = tx2;
         panZ = tz;
       } else if (follow) {
-        tx = P.x + look2.x;
+        tx2 = P.x + look2.x;
         tz = P.z + look2.z;
-        panX = tx;
+        panX = tx2;
         panZ = tz;
       } else {
-        tx = panX;
+        tx2 = panX;
         tz = panZ;
       }
       const prefer = MOBILE ? 11 : 13;
-      const foot = portrait ? 8.4 : 9.4;
+      const foot = portrait ? 10.4 : 11;
       const drive = portrait ? 14.5 + sp * 0.95 : 13.5 + sp * 0.7;
-      const auto = inCar2 ? drive : foot;
+      const auto = P.train ? portrait ? 26 : 22 : inCar2 ? drive : foot;
       const th = !wide && follow ? clampView(auto + (viewH - prefer) * 0.45) : viewH;
       const k = snap ? 1 : Math.min(1, dt * (inCar2 ? 2.4 : 3.4));
-      cam.x += (tx - cam.x) * k;
+      cam.x += (tx2 - cam.x) * k;
       cam.z += (tz - cam.z) * k;
       cam.h += (th - cam.h) * (snap ? 1 : Math.min(1, dt * 1.7));
       const far = cam.h > 90;
@@ -36104,19 +38259,27 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       state.dealLabel = "";
       state._dealAct = null;
       const nf = nearFood(P.x, P.z, 3.4);
-      if (job && Math.hypot(job.to.x - P.x, job.to.z - P.z) < 4) {
-        pr = "Lieferung abgeben";
+      const ja = job ? jobAction() : null;
+      let ub = null;
+      if (ja) {
+        pr = ja.text;
         state.deal = true;
-        state.dealLabel = "Abgeben";
-        state._dealAct = finishJob;
-      } else if (nf) {
+        state.dealLabel = ja.label;
+        state._dealAct = ja.act;
+      } else if (!P.car && !P.train && (ub = nearUbahn())) {
+        pr = "U-Bahn " + ub.name + " \u2014 einsteigen und wegfahren";
+        state.deal = true;
+        state.dealLabel = "U-Bahn";
+        state._dealAct = openUbahn;
+      } else if (nf && !P.train) {
         const here = missionHere(nf);
+        const g = nf.kind === "hub" ? HUBD : nf.door;
         if (!job && here) {
-          pr = "Imbiss \u2014 Auftrag annehmen";
+          pr = GIVERS[g.giver].who + " \u2014 Auftr\xE4ge";
           state.deal = true;
-          state.dealLabel = "Auftrag";
-          state._dealAct = acceptJob;
-        } else if (!here && health < 5) {
+          state.dealLabel = "Auftr\xE4ge";
+          state._dealAct = () => openBoard(g.giver);
+        } else if (!here && health < MAXH()) {
           pr = deal.state().cash >= 10 ? "Imbiss \u2014 essen & heilen \xB7 10 \u20AC" : "Imbiss \u2014 Pommes aufs Haus (+1 \u2665)";
           state.deal = true;
           state.dealLabel = "Essen";
@@ -36127,12 +38290,20 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           state.dealLabel = "Untertauchen";
           state._dealAct = startHide;
         } else if (here && job) pr = "Auftrag l\xE4uft: " + job.title;
+        else if (nf.door && nf.door.rivalOf && nf.door.rivalOf.owner !== "mine") pr = "Laden der " + nf.door.rivalOf.crew[0] + " \u2014 \xC4rger hier hei\xDFt Krieg";
         else pr = "Imbiss \u2014 du bist satt";
       }
-      if (!P.car) {
-        let near = cars.some((c) => !c.wrecked && Math.hypot(c.x - P.x, c.z - P.z) < 3.6);
-        state.nearCar = near;
-        if (!pr && near) pr = "Auto in der N\xE4he";
+      if (P.train) {
+        pr = P.train.halt > 0 ? "Bahn h\xE4lt \u2014 Aussteigen m\xF6glich" : "Unterwegs mit " + P.train.name;
+      }
+      if (P.train) {
+        state.nearCar = true;
+      } else if (!P.car) {
+        const nt = nearTrain();
+        let near2 = !!nt || cars.some((c) => !c.wrecked && Math.hypot(c.x - P.x, c.z - P.z) < 3.6);
+        state.nearCar = near2;
+        if (!pr && nt) pr = "Bahn h\xE4lt \u2014 einsteigen";
+        else if (!pr && near2) pr = "Auto in der N\xE4he";
         if (!state._dealAct) {
           const dp = deal.prompt(P.x, P.z);
           if (dp) {
@@ -36152,6 +38323,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       if (hiding) pr = wanted >= 4 ? "Imbiss \u2014 die Bullen sind nah" : "Du sitzt im Lokal";
       state.inCar = !!P.car;
+      state.inTrain = !!P.train;
       state.follow = follow;
       {
         const ch = document.getElementById("carHp");
@@ -36219,9 +38391,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (t.life <= 0) t.l.visible = false;
       }
       if (!document.body.classList.contains("onTitle")) {
-        playerPickups();
+        if (!P.train) playerPickups();
         enemyFire(dt);
       }
+      hoodTick(dt);
       for (const pk of pickups) {
         pk.t += dt;
         const u = pk.g.userData;
@@ -36265,18 +38438,22 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         hub.ring.material.opacity = 0.55 + 0.35 * Math.sin(tAcc * 4);
         hub.ring.scale.setScalar(1 + 0.08 * Math.sin(tAcc * 4));
       }
-      if (job) {
+      const jt = jobTarget();
+      if (job && jt) {
         jobRing.visible = true;
-        jobRing.position.y = 0.1;
+        jobRing.position.set(jt.x, 0.1, jt.z);
         jobRing.material.opacity = 0.55 + 0.35 * Math.sin(tAcc * 4);
         jobRing.scale.setScalar(1 + 0.1 * Math.sin(tAcc * 4));
         const jx = P.car ? P.car.x : P.x, jz = P.car ? P.car.z : P.z;
-        const ang = Math.atan2(job.to.x - jx, job.to.z - jz);
+        const ang = Math.atan2(jt.x - jx, jt.z - jz);
         jobNav.visible = true;
         jobNav.position.set(jx, 2.7 + Math.sin(tAcc * 5) * 0.12, jz);
         jobNav.rotation.set(0, ang, 0);
         jobNav.scale.setScalar(1 + 0.06 * Math.sin(tAcc * 6));
-      } else if (jobNav) jobNav.visible = false;
+      } else {
+        jobNav.visible = false;
+        jobRing.visible = false;
+      }
       let seen = false;
       const px2 = P.x, pz2 = P.z;
       for (const cam2 of city.cams || []) {
@@ -36324,7 +38501,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           hiding = false;
           hideAt = null;
         } else heat = Math.max(0, heat - dt * (wanted >= 4 ? 0.12 : 1.2));
-      } else if (!seen) heat = Math.max(0, heat - dt * 0.16);
+      } else if (!seen) heat = Math.max(0, heat - dt * 0.16 * (1 + 0.1 * (stats.ner - 3)));
       {
         const n = Math.floor(heat + 1e-6);
         if (n !== wanted) {
@@ -36341,9 +38518,9 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           }
         }
       }
-      if (close) bustT += dt;
+      if (close && !P.train) bustT += dt;
       else bustT = Math.max(0, bustT - dt * 0.85);
-      if (bustT > 2.15) {
+      if (bustT > 2.15 * (1 + 0.07 * (stats.ner - 3))) {
         bustT = 0;
         wasted("bust");
       }
@@ -36352,8 +38529,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         for (const ped of peds) {
           if ((ped.down || 0) > 0) continue;
           if (spd > 3.6 && Math.hypot(ped.x - P.car.x, ped.z - P.car.z) < 1.2) {
+            const h = ped.hostile;
             knockPed(ped);
-            addHeat(0.48);
+            if (!h) addHeat(0.48);
+            rivalNoise(ped.x, ped.z, 0.5);
             shake = Math.max(shake, 0.28);
           }
         }
@@ -36366,13 +38545,17 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       else renderer.render(scene, camera);
     }
     __name(render, "render");
+    mark("rest");
     camStep(0, true);
     let last = performance.now();
+    let paused = false;
     function frame(now2) {
       const dt = Math.min(0.05, (now2 - last) / 1e3);
       last = now2;
-      update(dt);
-      hud();
+      if (!paused) {
+        update(dt);
+        hud();
+      }
       render();
       requestAnimationFrame(frame);
     }
@@ -36387,12 +38570,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     addEventListener("resize", onResize);
     addEventListener("orientationchange", () => setTimeout(onResize, 250));
     function screenToGround(cx, cy) {
-      const ndcX = cx / innerWidth * 2 - 1, ndcY = -(cy / innerHeight) * 2 + 1;
-      const hw = (camera.right - camera.left) / 2, hh = (camera.top - camera.bottom) / 2;
-      const lx = ndcX * hw, ly = ndcY * hh;
-      const worldX = cam.x + lx;
-      const worldZ = cam.z - ly / Math.cos(TILT) * 0.85;
-      return { x: worldX, z: worldZ };
+      return groundAt(cx, cy) || { x: cam.x, z: cam.z };
     }
     __name(screenToGround, "screenToGround");
     window.hood = {
@@ -36575,6 +38753,67 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       edge: city.edge,
       toast,
       getMyCar: /* @__PURE__ */ __name(() => myCar, "getMyCar"),
+      tapDrive: /* @__PURE__ */ __name((cx, cy) => {
+        const g = groundAt(cx, cy);
+        if (g) return driveTo(g.x, g.z);
+      }, "tapDrive"),
+      driveTo,
+      autoStop,
+      isAuto: /* @__PURE__ */ __name(() => !!AP, "isAuto"),
+      mapData,
+      bagData,
+      statData,
+      startJob,
+      jobBoard,
+      ubahnTo,
+      snapshot,
+      restore,
+      getJob: /* @__PURE__ */ __name(() => job, "getJob"),
+      regions,
+      SPOTS,
+      trains,
+      ubahn,
+      stats,
+      useItem(kind, id) {
+        if (kind === "weapon") {
+          selectWeapon(id);
+          return true;
+        }
+        if (kind === "drop") {
+          const ok = deal.drop(id);
+          if (ok) toast((deal.item(id) || {}).name + " weggeworfen.", 1.3);
+          return ok;
+        }
+        return false;
+      },
+      debugGive() {
+        P.weapons.pistol = 30;
+        P.weapons.bat = true;
+        deal.setCash(2e3);
+        updateHoodHud();
+      },
+      setStats(o) {
+        Object.assign(stats, o);
+        updateHoodHud();
+      },
+      setJobsDone(n) {
+        jobsDone = n;
+      },
+      getHeat: /* @__PURE__ */ __name(() => heat, "getHeat"),
+      getWanted: /* @__PURE__ */ __name(() => wanted, "getWanted"),
+      setHeat: /* @__PURE__ */ __name((v) => {
+        heat = v;
+        wanted = Math.floor(v);
+        updateHoodHud();
+      }, "setHeat"),
+      _dbg: { findPath, RG, jobAction, knockPed, hitPed, getWar: /* @__PURE__ */ __name(() => war, "getWar"), jobTarget, SPOTS, regions },
+      setPaused: /* @__PURE__ */ __name((v) => {
+        paused = !!v;
+        if (paused) {
+          audio.engineIdle && audio.engineIdle();
+        }
+      }, "setPaused"),
+      isPaused: /* @__PURE__ */ __name(() => paused, "isPaused"),
       step(sec, n = 1) {
         const dt = sec / n;
         for (let i = 0; i < n; i++) update(dt);
@@ -36605,7 +38844,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     };
     return window.hood;
   }
-  var Q, SHOT;
+  var Q, SHOT, PROF, _pt, mark;
   var init_main = __esm({
     "src/main.js"() {
       init_three_module();
@@ -36624,7 +38863,79 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       init_deal();
       Q = new URLSearchParams(location.search);
       SHOT = Q.has("shot");
+      PROF = Q.has("prof");
+      _pt = performance.now();
+      mark = /* @__PURE__ */ __name((n) => {
+        if (PROF) {
+          const t = performance.now();
+          console.log("PROF " + n + " " + (t - _pt).toFixed(0) + " @" + t.toFixed(0));
+          _pt = t;
+        }
+      }, "mark");
       __name(startGame, "startGame");
+    }
+  });
+
+  // src/store.js
+  function open() {
+    if (dbP) return dbP;
+    dbP = new Promise((res, rej) => {
+      let r;
+      try {
+        r = indexedDB.open(DB, VER);
+      } catch (e) {
+        rej(e);
+        return;
+      }
+      r.onupgradeneeded = () => {
+        const d = r.result;
+        for (const s of ["kv", "city", "music"]) if (!d.objectStoreNames.contains(s)) d.createObjectStore(s);
+      };
+      r.onsuccess = () => res(r.result);
+      r.onerror = () => rej(r.error);
+      r.onblocked = () => rej(new Error("blocked"));
+    }).catch((e) => {
+      console.warn("IndexedDB nicht verf\xFCgbar", e);
+      return null;
+    });
+    return dbP;
+  }
+  function tx(store, mode, fn) {
+    return open().then((d) => {
+      if (!d) return void 0;
+      return new Promise((res, rej) => {
+        const t = d.transaction(store, mode);
+        const os = t.objectStore(store);
+        let out;
+        const q = fn(os);
+        if (q) q.onsuccess = () => {
+          out = q.result;
+        };
+        t.oncomplete = () => res(out);
+        t.onerror = () => rej(t.error);
+        t.onabort = () => rej(t.error);
+      });
+    }).catch((e) => {
+      console.warn("IDB", store, e);
+      return void 0;
+    });
+  }
+  var DB, VER, dbP, idb;
+  var init_store = __esm({
+    "src/store.js"() {
+      DB = "hood";
+      VER = 1;
+      dbP = null;
+      __name(open, "open");
+      __name(tx, "tx");
+      idb = {
+        get: /* @__PURE__ */ __name((store, k) => tx(store, "readonly", (os) => os.get(k)), "get"),
+        set: /* @__PURE__ */ __name((store, k, v) => tx(store, "readwrite", (os) => os.put(v, k)).then(() => true, () => false), "set"),
+        del: /* @__PURE__ */ __name((store, k) => tx(store, "readwrite", (os) => os.delete(k)), "del"),
+        keys: /* @__PURE__ */ __name((store) => tx(store, "readonly", (os) => os.getAllKeys()), "keys"),
+        all: /* @__PURE__ */ __name((store) => tx(store, "readonly", (os) => os.getAll()), "all"),
+        clear: /* @__PURE__ */ __name((store) => tx(store, "readwrite", (os) => os.clear()), "clear")
+      };
     }
   });
 
@@ -36635,6 +38946,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       init_sets();
       init_osm();
       init_audio();
+      init_store();
       var $ = /* @__PURE__ */ __name((id) => document.getElementById(id), "$");
       var Q2 = new URLSearchParams(location.search);
       var SHOT2 = Q2.has("shot");
@@ -36817,6 +39129,19 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       __name(loadScript, "loadScript");
       var keyOf2 = /* @__PURE__ */ __name((c) => c.lat.toFixed(5) + "," + c.lon.toFixed(5), "keyOf");
+      var cacheHit = false;
+      var cityKey = "dortmund";
+      async function pruneCities(keep) {
+        try {
+          const ks = await idb.keys("city");
+          if (!ks || ks.length <= 6) return;
+          const all = await idb.all("city");
+          const arr = ks.map((k, i) => ({ k, t: all[i] && all[i].t || 0 })).sort((a, b) => b.t - a.t);
+          for (const q of arr.slice(6)) if (q.k !== keep) await idb.del("city", q.k);
+        } catch (e) {
+        }
+      }
+      __name(pruneCities, "pruneCities");
       async function getCityData(c) {
         if (c.builtin) {
           if (!window.HOOD_DATA) {
@@ -36839,8 +39164,17 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           return D2;
         }
         LS.del("cache");
-        const cache2 = LS.get("cache2", null);
-        if (cache2 && cache2.key === keyOf2(c) && cache2.ver === OSM_VER && cache2.data) return cache2.data;
+        LS.del("cache2");
+        const ck = keyOf2(c) + "|" + OSM_VER;
+        try {
+          const hit = await idb.get("city", ck);
+          if (hit && hit.data && hit.data.buildings) {
+            if (Q2.has("prof")) console.log("PROF city cache hit");
+            cacheHit = true;
+            return hit.data;
+          }
+        } catch (e) {
+        }
         showLoading("Lade \u201E" + c.name + "\u201C aus OpenStreetMap \u2026");
         const els = await fetchOverpass(c.lat, c.lon, (m) => loadMsg(m));
         loadMsg("Rechne Grundrisse, Stra\xDFen, Bahnen und Pl\xE4tze um \u2026");
@@ -36851,9 +39185,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           e.empty = true;
           throw e;
         }
-        if (!LS.set("cache2", { key: keyOf2(c), ver: OSM_VER, data: D })) {
-          LS.del("cache2");
-        }
+        idb.set("city", ck, { t: Date.now(), name: c.name, data: D }).then(() => pruneCities(ck));
         return D;
       }
       __name(getCityData, "getCityData");
@@ -36868,6 +39200,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (ql && qo) city = { name: Q2.get("name") || "Ort", lat: +ql, lon: +qo };
         if (!city || !isFinite(city.lat)) city = DEFAULT;
         let D;
+        cityKey = city.builtin ? "dortmund" : keyOf2(city);
         try {
           D = await getCityData(city);
         } catch (e) {
@@ -36884,13 +39217,18 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           }]]);
           return;
         }
+        const _b0 = performance.now();
         showLoading("Lade Modelle \u2026");
         await loadHoodSets();
+        if (Q2.has("prof")) console.log("PROF sets " + (performance.now() - _b0).toFixed(0) + " data " + (_b0 - performance.timeOrigin * 0).toFixed(0));
         showLoading("Baue " + city.name + " (" + D.buildings.length + " H\xE4user) \u2026");
         await frame();
         const zRaw = LS.get("zoom", null);
         const zoom = zRaw == null ? matchMedia("(pointer:coarse)").matches ? 0.85 : 1 : zRaw > 5 ? zRaw / 13 : zRaw;
-        game = startGame(D, { touch: TOUCH, hubNear: city.builtin ? [-146.9, -38.7] : [0, 0], time: LS.get("time", "dusk"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio });
+        game = startGame(D, { touch: TOUCH, hubNear: city.builtin ? [-146.9, -38.7] : [0, 0], time: LS.get("time", "dusk"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
+          if ($("bagOv").classList.contains("open")) renderBag();
+        }, "onBag") });
+        window.hoodGame = game;
         if (game.audio) {
           game.audio.setScene(titleUp() ? "title" : "game");
           if (getCtx() && getCtx().state === "running") game.audio.resume();
@@ -36907,12 +39245,21 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         } else paintStartBtn();
         markTime();
         applyMuteUi();
+        loadMusic();
+        {
+          const st = LS.get("station", null);
+          if (st && game.radio) game.radio.select(st);
+        }
+        idb.get("kv", "save:" + cityKey).then((S) => {
+          savedGame = S && S.v === 1 ? S : null;
+          paintCont();
+        });
       }
       __name(boot, "boot");
       var titleIdx = 0;
       var tMode = "press";
       var pendingPlay = false;
-      var navBtns = /* @__PURE__ */ __name(() => [...document.querySelectorAll("#titleNav [data-act]")], "navBtns");
+      var navBtns = /* @__PURE__ */ __name(() => [...document.querySelectorAll("#titleNav [data-act]")].filter((b) => !b.classList.contains("hidden")), "navBtns");
       function paintTitle() {
         navBtns().forEach((b, i) => b.classList.toggle("on", i === titleIdx));
       }
@@ -36941,7 +39288,21 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       function runTitle(act) {
         onGesture();
         uiBlip(act === "quit" ? "back" : "ok", muted);
+        if (act === "cont") {
+          if (game && savedGame) {
+            game.restore(savedGame);
+            savedGame = null;
+            paintCont();
+            closeMenu();
+            toast2("Spielstand geladen.");
+          }
+          return;
+        }
         if (act === "play") {
+          if (game && savedGame && $("title").classList.contains("start")) {
+            savedGame = null;
+            paintCont();
+          }
           if (!game) {
             pendingPlay = true;
             setStatus("Gleich geht\u2019s los \u2013 die Stadt wird noch gebaut \u2026");
@@ -37213,14 +39574,18 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       __name(updateMoney, "updateMoney");
       var radHide = 0;
+      var bootT = performance.now();
       function updateRadio(st) {
         const nm = $("radName");
         if (nm) nm.textContent = st && st.name ? st.name : "Radio";
         const box2 = $("radio");
         if (!box2 || !st) return;
-        box2.classList.add("flash");
-        clearTimeout(radHide);
-        radHide = setTimeout(() => box2.classList.remove("flash"), 2800);
+        if (st.id) LS.set("station", st.id);
+        if (!document.body.classList.contains("incar") && performance.now() - bootT > 1500 && game) {
+          box2.classList.add("flash");
+          clearTimeout(radHide);
+          radHide = setTimeout(() => box2.classList.remove("flash"), 2800);
+        }
       }
       __name(updateRadio, "updateRadio");
       var stickId = null;
@@ -37295,6 +39660,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const dist = /* @__PURE__ */ __name((a, b) => Math.hypot(a.x - b.x, a.y - b.y), "dist");
         g.addEventListener("pointerdown", (e) => {
           if (e.target.closest("#stick,.abtn,#zoomBox,#btnFollow,#radio,#menuBtn,#weapon,#wepBar")) return;
+          if (e.target.closest("#topBtns,.ovl")) return;
           pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
           if (pts.size === 2) {
             const [a, b] = [...pts.values()];
@@ -37338,8 +39704,9 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             const dt = performance.now() - tapT;
             const moved = Math.hypot(e.clientX - tapX, e.clientY - tapY);
             if (dt < 280 && moved < 12 && game && !game.isFollow()) {
-            } else if (dt < 280 && moved < 14 && game && game.isFollow() && !game.state.inCar) {
-              game.tapWalk(e.clientX, e.clientY);
+            } else if (dt < 280 && moved < 14 && game && game.isFollow() && game.state.inCar) {
+              const r = game.tapDrive(e.clientX, e.clientY);
+              if (r && !r.ok && r.msg) toast2(r.msg);
             }
             panId = null;
           }
@@ -37349,8 +39716,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       __name(initGestures, "initGestures");
       function updateButtons(s) {
         const car = $("btnCar");
-        car.textContent = s.inCar ? "Aussteigen" : "Einsteigen";
-        car.classList.toggle("dim", !s.inCar && !s.nearCar);
+        car.textContent = s.inCar || s.inTrain ? "Aussteigen" : "Einsteigen";
+        car.classList.toggle("dim", !s.inCar && !s.nearCar && !s.inTrain);
         $("btnBrake").classList.toggle("hidden", !s.inCar);
         document.body.classList.toggle("incar", s.inCar);
         const deal = $("btnDeal");
@@ -37422,23 +39789,44 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         $("radPrev").addEventListener("click", () => game && game.radioPrev());
         $("radNext").addEventListener("click", () => game && game.radioNext());
         $("menuBtn").addEventListener("click", () => openMenu(false));
-        navBtns().forEach((b, i) => {
+        $("mapBtn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          openMap();
+        });
+        $("bagBtn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          openBag();
+        });
+        document.querySelectorAll(".ovl [data-close]").forEach((b) => b.addEventListener("click", (e) => {
+          e.stopPropagation();
+          closeOv(b.closest(".ovl").id);
+        }));
+        $("mapCv").addEventListener("pointerup", mapTap);
+        $("saveBtn").addEventListener("click", () => saveGame(false));
+        $("charBtn").addEventListener("click", () => {
+          closeMenu();
+          openChar();
+        });
+        $("musicIn").addEventListener("change", addMusic);
+        $("musicDel").addEventListener("click", delMusic);
+        document.querySelectorAll("#titleNav [data-act]").forEach((b) => {
           let last = 0;
+          const idx = /* @__PURE__ */ __name(() => navBtns().indexOf(b), "idx");
           const go = /* @__PURE__ */ __name((e) => {
             e.preventDefault();
             e.stopPropagation();
             const n = performance.now();
             if (n - last < 350) return;
             last = n;
-            titleIdx = i;
+            titleIdx = idx();
             paintTitle();
             runTitle(b.dataset.act);
           }, "go");
           b.addEventListener("pointerup", go);
           b.addEventListener("click", go);
           b.addEventListener("pointerenter", () => {
-            if (titleIdx !== i) {
-              titleIdx = i;
+            if (titleIdx !== idx()) {
+              titleIdx = idx();
               paintTitle();
               uiBlip("move", muted);
             }
@@ -37463,6 +39851,28 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         });
         addEventListener("keydown", (e) => {
           if ($("title").classList.contains("hidden")) {
+            const ov = document.querySelector(".ovl.open");
+            if (ov && (e.code === "Escape" || e.code === "KeyM" && ov.id === "mapOv" || e.code === "KeyI" && ov.id === "bagOv" || e.code === "KeyC" && ov.id === "charOv")) {
+              closeOv(ov.id);
+              e.preventDefault();
+              return;
+            }
+            if (ov) return;
+            if (game && e.code === "KeyM") {
+              openMap();
+              e.preventDefault();
+              return;
+            }
+            if (game && e.code === "KeyI") {
+              openBag();
+              e.preventDefault();
+              return;
+            }
+            if (game && e.code === "KeyC") {
+              openChar();
+              e.preventDefault();
+              return;
+            }
             if ((e.code === "Escape" || e.code === "KeyP") && game && !$("credits").classList.contains("open")) {
               openMenu(false);
               e.preventDefault();
@@ -37484,18 +39894,20 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
             }
             return;
           }
+          const NB = navBtns();
           if (e.code === "ArrowDown" || e.code === "KeyS") {
-            titleIdx = (titleIdx + 1) % 3;
+            titleIdx = (titleIdx + 1) % NB.length;
             paintTitle();
             uiBlip("move", muted);
             e.preventDefault();
           } else if (e.code === "ArrowUp" || e.code === "KeyW") {
-            titleIdx = (titleIdx + 2) % 3;
+            titleIdx = (titleIdx + NB.length - 1) % NB.length;
             paintTitle();
             uiBlip("move", muted);
             e.preventDefault();
           } else if (e.code === "Enter" || e.code === "Space") {
-            runTitle(["play", "options", "quit"][titleIdx]);
+            const b = NB[titleIdx];
+            if (b) runTitle(b.dataset.act);
             e.preventDefault();
           } else if (e.code === "Escape" && !$("title").classList.contains("start") && game) {
             closeMenu();
@@ -37549,13 +39961,393 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       }
       __name(showHint, "showHint");
       if (SHOT2) document.body.classList.add("shot");
+      var savedGame = null;
+      function paintCont() {
+        const b = document.querySelector('#titleNav [data-act="cont"]');
+        if (b) b.classList.toggle("hidden", !savedGame);
+        if (tMode === "nav") paintTitle();
+      }
+      __name(paintCont, "paintCont");
+      var t2 = 0;
+      function toast2(m) {
+        const t = $("toast");
+        if (!t) return;
+        t.textContent = m;
+        t.classList.add("on");
+        clearTimeout(t2);
+        t2 = setTimeout(() => t.classList.remove("on"), 1800);
+      }
+      __name(toast2, "toast2");
+      function esc(x) {
+        return String(x == null ? "" : x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      }
+      __name(esc, "esc");
+      var ovPaused = false;
+      function openOv(id) {
+        document.querySelectorAll(".ovl.open").forEach((o) => {
+          if (o.id !== id) o.classList.remove("open");
+        });
+        $(id).classList.add("open");
+        releaseStick();
+        TOUCH.hbrake = false;
+        if (game && game.setPaused) {
+          game.setPaused(true);
+          ovPaused = true;
+        }
+      }
+      __name(openOv, "openOv");
+      function closeOv(id) {
+        $(id).classList.remove("open");
+        if (id === "mapOv") cancelAnimationFrame(mapRaf);
+        if (!document.querySelector(".ovl.open") && ovPaused && game && game.setPaused) {
+          game.setPaused(false);
+          ovPaused = false;
+        }
+        uiBlip("back", muted);
+      }
+      __name(closeOv, "closeOv");
+      var mapRaf = 0;
+      var mapView = null;
+      function openMap() {
+        if (!game) return;
+        openOv("mapOv");
+        const d = game.mapData();
+        $("mapHint").textContent = d.inCar ? "Stra\xDFe antippen: Er f\xE4hrt dich hin." : d.job ? "Auftrag: " + d.job.title + " \u2014 " + (d.job.line || "") : "Gr\xFCn = Auftraggeber. Magenta = Ziel.";
+        const loop = /* @__PURE__ */ __name(() => {
+          drawMap();
+          mapRaf = requestAnimationFrame(loop);
+        }, "loop");
+        cancelAnimationFrame(mapRaf);
+        mapRaf = requestAnimationFrame(loop);
+      }
+      __name(openMap, "openMap");
+      function drawMap() {
+        const cv2 = $("mapCv");
+        if (!cv2 || !game) return;
+        const d = game.mapData();
+        const r = cv2.getBoundingClientRect();
+        const dpr = Math.min(2, devicePixelRatio || 1);
+        const W = Math.max(10, r.width * dpr | 0), H = Math.max(10, r.height * dpr | 0);
+        if (cv2.width !== W || cv2.height !== H) {
+          cv2.width = W;
+          cv2.height = H;
+        }
+        const c = cv2.getContext("2d");
+        const E = d.edge;
+        const ew = E.maxx - E.minx, eh = E.maxz - E.minz;
+        const sc = Math.min(W / ew, H / eh) * 0.96;
+        const ox = (W - ew * sc) / 2 - E.minx * sc, oz = (H - eh * sc) / 2 - E.minz * sc;
+        mapView = { sc, ox, oz, dpr };
+        const X = /* @__PURE__ */ __name((x) => ox + x * sc, "X"), Z = /* @__PURE__ */ __name((z) => oz + z * sc, "Z");
+        c.fillStyle = "#0c0d12";
+        c.fillRect(0, 0, W, H);
+        for (const g of d.regions) {
+          const own = g.owner === "mine", riv = g.owner === "rival";
+          c.fillStyle = own ? "rgba(80,200,120,.16)" : riv ? g.hot ? "rgba(255,60,40,.26)" : "rgba(230,70,60,.13)" : "rgba(255,255,255,.03)";
+          c.fillRect(X(g.x0), Z(g.z0), (g.x1 - g.x0) * sc, (g.z1 - g.z0) * sc);
+          c.strokeStyle = "rgba(255,255,255,.08)";
+          c.lineWidth = 1 * dpr;
+          c.strokeRect(X(g.x0), Z(g.z0), (g.x1 - g.x0) * sc, (g.z1 - g.z0) * sc);
+        }
+        c.lineCap = "round";
+        c.lineJoin = "round";
+        for (const rd of d.roads) {
+          c.strokeStyle = rd.big ? "#5c5f6c" : rd.ped ? "#33303a" : "#3a3c46";
+          c.lineWidth = Math.max(1.2 * dpr, rd.w * sc * 0.8);
+          c.beginPath();
+          rd.p.forEach((q, i) => i ? c.lineTo(X(q[0]), Z(q[1])) : c.moveTo(X(q[0]), Z(q[1])));
+          c.stroke();
+        }
+        c.setLineDash([4 * dpr, 3 * dpr]);
+        c.strokeStyle = "rgba(58,160,255,.7)";
+        c.lineWidth = 1.6 * dpr;
+        for (const p2 of d.rails) {
+          c.beginPath();
+          p2.forEach((q, i) => i ? c.lineTo(X(q[0]), Z(q[1])) : c.moveTo(X(q[0]), Z(q[1])));
+          c.stroke();
+        }
+        c.setLineDash([]);
+        c.font = (600 * 0 + 10 * dpr | 0) + "px Arial";
+        c.textAlign = "center";
+        for (const g of d.regions) {
+          c.fillStyle = g.owner === "mine" ? "rgba(140,240,160,.75)" : g.owner === "rival" ? "rgba(255,150,130,.7)" : "rgba(255,255,255,.28)";
+          c.fillText(g.name.toUpperCase(), X((g.x0 + g.x1) / 2), Z(g.z0) + 13 * dpr);
+          if (g.crew && g.owner === "rival") c.fillText(g.crew, X((g.x0 + g.x1) / 2), Z(g.z0) + 25 * dpr);
+        }
+        if (d.route && d.route.length) {
+          c.strokeStyle = "#ff3df0";
+          c.lineWidth = 3 * dpr;
+          c.setLineDash([6 * dpr, 4 * dpr]);
+          c.beginPath();
+          c.moveTo(X(d.player.x), Z(d.player.z));
+          for (const q of d.route) c.lineTo(X(q[0]), Z(q[1]));
+          c.stroke();
+          c.setLineDash([]);
+        }
+        const t = performance.now() / 1e3;
+        for (const m of d.markers) {
+          const x = X(m.x), y = Z(m.z);
+          let col = "#fff", rad = 4;
+          if (m.k === "giver") {
+            col = "#5fc04a";
+            rad = 6;
+            const av = d.avail[m.g] || [];
+            c.fillStyle = col;
+            c.beginPath();
+            c.arc(x, y, rad * dpr, 0, 7);
+            c.fill();
+            c.strokeStyle = "#071";
+            c.lineWidth = 2 * dpr;
+            c.stroke();
+            av.slice(0, 3).forEach((tr, i) => {
+              c.fillStyle = ["#5fc04a", "#e8c22a", "#e0442e"][tr];
+              c.fillRect(x + (-6 + i * 5) * dpr, y - 14 * dpr, 4 * dpr, 5 * dpr);
+            });
+            c.fillStyle = "#d8ffd0";
+            c.fillText(m.label, x, y + 17 * dpr);
+            continue;
+          }
+          if (m.k === "target") {
+            const k = 1 + 0.25 * Math.sin(t * 5);
+            c.strokeStyle = "#ff3df0";
+            c.lineWidth = 3 * dpr;
+            c.beginPath();
+            c.arc(x, y, 9 * dpr * k, 0, 7);
+            c.stroke();
+            c.fillStyle = "#ff3df0";
+            c.beginPath();
+            c.arc(x, y, 3 * dpr, 0, 7);
+            c.fill();
+            continue;
+          }
+          if (m.k === "ubahn") {
+            c.fillStyle = "#3aa0ff";
+            c.fillRect(x - 5 * dpr, y - 5 * dpr, 10 * dpr, 10 * dpr);
+            c.fillStyle = "#fff";
+            c.font = (9 * dpr | 0) + "px Arial";
+            c.fillText("U", x, y + 3 * dpr);
+            c.font = (10 * dpr | 0) + "px Arial";
+            continue;
+          }
+          if (m.k === "rival") {
+            c.fillStyle = m.mine ? "#5fc04a" : m.hot ? "#ff3a2a" : "#c8463a";
+            c.beginPath();
+            c.moveTo(x, y - 6 * dpr);
+            c.lineTo(x + 6 * dpr, y + 5 * dpr);
+            c.lineTo(x - 6 * dpr, y + 5 * dpr);
+            c.closePath();
+            c.fill();
+            continue;
+          }
+          col = { bank: "#ffd23f", kiosk: "#ffa24a", garage: "#b0b8c8" }[m.k] || "#ccc";
+          c.fillStyle = col;
+          c.fillRect(x - 4 * dpr, y - 4 * dpr, 8 * dpr, 8 * dpr);
+          c.fillStyle = "rgba(255,255,255,.7)";
+          c.fillText(m.label, x, y + 15 * dpr);
+        }
+        for (const tr of d.trains) {
+          c.fillStyle = "#9fd4ff";
+          c.fillRect(X(tr.x) - 3 * dpr, Z(tr.z) - 3 * dpr, 6 * dpr, 6 * dpr);
+        }
+        const p = d.player;
+        c.save();
+        c.translate(X(p.x), Z(p.z));
+        c.rotate(-p.rot + Math.PI / 2);
+        c.fillStyle = "#ffe14d";
+        c.strokeStyle = "#000";
+        c.lineWidth = 1.5 * dpr;
+        c.beginPath();
+        c.moveTo(9 * dpr, 0);
+        c.lineTo(-6 * dpr, 6 * dpr);
+        c.lineTo(-3 * dpr, 0);
+        c.lineTo(-6 * dpr, -6 * dpr);
+        c.closePath();
+        c.fill();
+        c.stroke();
+        c.restore();
+      }
+      __name(drawMap, "drawMap");
+      function mapTap(e) {
+        if (!game || !mapView) return;
+        const d = game.mapData();
+        if (!d.inCar) {
+          $("mapHint").textContent = "Ziel per Karte nur im Auto \u2014 steig erst ein.";
+          return;
+        }
+        const r = $("mapCv").getBoundingClientRect();
+        const px2 = (e.clientX - r.left) * mapView.dpr, pz2 = (e.clientY - r.top) * mapView.dpr;
+        const x = (px2 - mapView.ox) / mapView.sc, z = (pz2 - mapView.oz) / mapView.sc;
+        const res = game.driveTo(x, z);
+        if (res && res.ok) {
+          $("mapHint").textContent = "Route steht. Stick, Handbremse oder Aussteigen bricht ab.";
+          uiBlip("ok", muted);
+          setTimeout(() => closeOv("mapOv"), 650);
+        } else $("mapHint").textContent = res && res.msg || "Da f\xFChrt keine Stra\xDFe hin.";
+      }
+      __name(mapTap, "mapTap");
+      function openBag() {
+        if (!game) return;
+        renderBag();
+        openOv("bagOv");
+      }
+      __name(openBag, "openBag");
+      function renderBag() {
+        const b = game.bagData();
+        const el = $("bagBody");
+        let h = '<div class="sec">Waffen</div>';
+        for (const w of b.weapons) {
+          const on = (w.k || null) === (b.weapon || null);
+          h += `<div class="slot${w.have ? "" : " lock"}"><span class="em">${{ bat: "\u{1F3CF}", pistol: "\u{1F52B}", smg: "\u{1F52B}", shotgun: "\u{1F52B}" }[w.k] || "\u270A"}</span><span class="nm"><b>${esc(w.name)}</b><span>${w.k && w.k !== "bat" ? (w.ammo | 0) + " Schuss" : w.k === "bat" ? "Nahkampf" : "Immer dabei"}</span></span>${w.have ? `<button type="button" data-wep="${w.k || ""}" class="${on ? "on" : ""}">${on ? "In der Hand" : "Nehmen"}</button>` : '<span class="q">leer</span>'}</div>`;
+        }
+        h += '<div class="sec">Ware</div>';
+        const goods = b.goods.filter((g) => g.n > 0);
+        if (!goods.length) h += '<div class="empty">Nichts dabei. Ware gibt\u2019s bei den H\xE4ndlern an den Ecken.</div>';
+        for (const g of goods) h += `<div class="slot"><span class="em">${g.icon}</span><span class="nm"><b>${esc(g.name)}</b><span>${esc(g.note || "")}</span></span><span class="q">\xD7${g.n}</span><button type="button" data-drop="${g.id}">Wegwerfen</button></div>`;
+        h += '<div class="sec">Auftrag</div>';
+        if (!b.items.length) h += '<div class="empty">Keine Auftragssachen.</div>';
+        for (const it of b.items) h += `<div class="slot"><span class="em">${it.icon || "\u{1F4E6}"}</span><span class="nm"><b>${esc(it.name)}</b><span>${esc(it.note || "Geh\xF6rt zum Auftrag")}</span></span><span class="q">${it.n > 1 ? "\xD7" + it.n : ""}</span></div>`;
+        h += `<div class="sec">Du</div><div class="slot"><span class="em">\u2665</span><span class="nm"><b>${b.health} / ${b.maxh} Leben</b><span>${Math.round(b.cash)} \u20AC in der Tasche</span></span><button type="button" data-char>Charakter</button></div>`;
+        el.innerHTML = h;
+        el.querySelectorAll("[data-wep]").forEach((x) => x.onclick = () => {
+          game.useItem("weapon", x.dataset.wep || null);
+          uiBlip("ok", muted);
+          renderBag();
+        });
+        el.querySelectorAll("[data-drop]").forEach((x) => x.onclick = () => {
+          game.useItem("drop", x.dataset.drop);
+          renderBag();
+        });
+        const ch = el.querySelector("[data-char]");
+        if (ch) ch.onclick = () => openChar();
+      }
+      __name(renderBag, "renderBag");
+      function openChar() {
+        if (!game) return;
+        const s = game.statData();
+        let h = `<div class="slot"><span class="em">\u2605</span><span class="nm"><b>Stufe ${s.level}</b><span>${s.jobs} Auftr\xE4ge erledigt \xB7 ${s.regions} von ${s.regionsTotal} Vierteln geh\xF6ren dir</span></span></div><div class="sec">Werte</div>`;
+        for (const q of s.list) {
+          h += `<div class="stat"><b>${esc(q.name)}</b><span class="bar">${Array.from({ length: 10 }, (_, i) => `<i class="${i < q.v ? "on" : ""}"></i>`).join("")}</span><em>${q.v}</em><small>${esc(q.desc)}</small></div>`;
+        }
+        h += '<div class="sec">Freischalten</div>';
+        for (const u of s.unlocks) h += `<div class="slot${u.ok ? "" : " lock"}"><span class="em">${u.ok ? "\u2714" : "\u{1F512}"}</span><span class="nm"><b>${esc(u.name)}</b><span>${u.ok ? "Freigeschaltet" : "Braucht " + esc(u.need)}</span></span></div>`;
+        $("charBody").innerHTML = h;
+        openOv("charOv");
+      }
+      __name(openChar, "openChar");
+      function showBoard(b) {
+        $("boardWho").textContent = b.who;
+        $("boardFace").src = "assets/faces/" + b.face + ".webp?v=" + (window.HOOD_V || "");
+        const lines = { chef: "Setz dich. Oder nimm was mit. Beides kostet.", ute: "Ich hab Arbeit. Du hast H\xE4nde. Passt doch.", deniz: "Du willst Geld? Dann h\xF6r zu und frag nicht." };
+        $("boardLine").textContent = lines[b.giver] || "";
+        let h = "";
+        for (const j of b.list) {
+          h += `<button type="button" class="job t${j.tier}${j.lock ? " lock" : ""}" data-job="${j.id}"><span class="tg"></span><span class="jx"><b>${esc(j.title)}</b><span>${esc(j.tierName)}${j.done ? " \xB7 schon " + j.done + "\xD7 erledigt" : ""}</span></span><span class="pay">${j.lock ? esc(j.lock) : j.pay + " \u20AC"}</span></button>`;
+        }
+        $("boardBody").innerHTML = h;
+        $("boardBody").querySelectorAll("[data-job]").forEach((x) => x.onclick = () => {
+          if (x.classList.contains("lock")) {
+            uiBlip("back", muted);
+            return;
+          }
+          closeOv("boardOv");
+          game.startJob(x.dataset.job);
+        });
+        openOv("boardOv");
+      }
+      __name(showBoard, "showBoard");
+      function showUbahn(u) {
+        let h = `<div class="empty">Station ${esc(u.from)} \u2014 wohin?</div>`;
+        for (const q of u.list) h += `<button type="button" class="job t0" data-ub="${q.i}"><span class="tg" style="background:#3aa0ff"></span><span class="jx"><b>${esc(q.name)}</b><span>${q.d} m Luftlinie</span></span><span class="pay">Fahrt</span></button>`;
+        $("ubBody").innerHTML = h;
+        $("ubBody").querySelectorAll("[data-ub]").forEach((x) => x.onclick = () => {
+          closeOv("ubOv");
+          const fx = $("ubFx");
+          $("ubFxT").textContent = "N\xE4chster Halt: " + x.querySelector("b").textContent;
+          fx.classList.add("on");
+          setTimeout(() => {
+            game.ubahnTo(+x.dataset.ub);
+            setTimeout(() => fx.classList.remove("on"), 350);
+          }, 1300);
+        });
+        openOv("ubOv");
+      }
+      __name(showUbahn, "showUbahn");
+      var lvT = 0;
+      function showLevel(o) {
+        $("lvlT").textContent = o.title + " +" + o.pay + " \u20AC";
+        $("lvlS").innerHTML = (o.lines || []).map(esc).join("<br>") + (o.level ? "<br><small>Stufe " + o.level + "</small>" : "");
+        const p = $("lvlPop");
+        p.classList.add("on");
+        clearTimeout(lvT);
+        lvT = setTimeout(() => p.classList.remove("on"), 3600);
+      }
+      __name(showLevel, "showLevel");
+      async function saveGame(auto) {
+        if (!game) return;
+        const S = game.snapshot();
+        S.city = cityKey;
+        const ok = await idb.set("kv", "save:" + cityKey, S);
+        if (!auto) {
+          $("saveMsg").textContent = ok ? "Gespeichert \u2014 " + (/* @__PURE__ */ new Date()).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) + " Uhr." : "Speichern ging nicht (Speicher voll oder privat?).";
+          uiBlip(ok ? "ok" : "back", muted);
+        }
+      }
+      __name(saveGame, "saveGame");
+      addEventListener("pagehide", () => {
+        if (game && !titleUp()) saveGame(true);
+      });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden && game && !titleUp()) saveGame(true);
+      });
+      var musicUrls = [];
+      async function loadMusic() {
+        const all = await idb.all("music") || [];
+        musicUrls.forEach((u) => URL.revokeObjectURL(u));
+        musicUrls = [];
+        const tr = [];
+        for (const m of all) {
+          if (!m || !m.blob) continue;
+          const u = URL.createObjectURL(m.blob);
+          musicUrls.push(u);
+          tr.push({ name: m.name, url: u });
+        }
+        tr.sort((a, b) => a.name.localeCompare(b.name, "de"));
+        if (game && game.radio) game.radio.setCustom(tr);
+        $("trackList").innerHTML = tr.length ? tr.length + (tr.length === 1 ? " eigener Titel" : " eigene Titel") + " im Sender \u201EEigene Musik\u201C:<br>" + tr.slice(0, 12).map((t) => "\xB7 " + esc(t.name)).join("<br>") + (tr.length > 12 ? "<br>\u2026" : "") : "Noch keine eigenen Titel. Sie laufen im Auto als Sender \u201EEigene Musik\u201C.";
+      }
+      __name(loadMusic, "loadMusic");
+      async function addMusic(e) {
+        const fs = [...e.target.files || []].filter((f) => /^audio\//.test(f.type) || /\.(mp3|m4a|aac|ogg|oga|opus|wav|flac)$/i.test(f.name));
+        if (!fs.length) {
+          $("trackList").textContent = "Das waren keine Audiodateien.";
+          return;
+        }
+        $("trackList").textContent = "Speichere " + fs.length + " Titel \u2026";
+        let n = 0;
+        for (const f of fs) {
+          const id = f.name + "|" + f.size;
+          const ok = await idb.set("music", id, { name: f.name.replace(/\.[^.]+$/, ""), blob: f, t: Date.now() });
+          if (ok) n++;
+        }
+        e.target.value = "";
+        await loadMusic();
+        if (n < fs.length) $("trackList").insertAdjacentHTML("afterbegin", "Nicht alles passte in den Speicher.<br>");
+        uiBlip("ok", muted);
+      }
+      __name(addMusic, "addMusic");
+      async function delMusic() {
+        await idb.clear("music");
+        await loadMusic();
+        uiBlip("back", muted);
+      }
+      __name(delMusic, "delMusic");
       initStick();
       initGestures();
       initButtons();
       applyMuteUi();
       lockPortrait();
       boot();
-      window.hoodApp = { titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
+      window.hoodApp = { openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
     }
   });
   require_app();
