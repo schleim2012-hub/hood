@@ -7,13 +7,14 @@
 <meta name="apple-mobile-web-app-title" content="Hood">
 <meta name="description" content="Hood — Place to Be. Top-Down-Stadtspiel in deiner echten Stadt (OpenStreetMap).">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/title/title.webp" as="image">
 <link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--fr:9px}
+:root{--fr:0px}
 html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial,Helvetica,sans-serif;touch-action:none;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;position:fixed;inset:0}
 #game,#game canvas{display:block;position:fixed;inset:0}
-.vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 58%,rgba(0,0,0,.38) 100%)}
+.vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 62%,rgba(0,0,0,.30) 100%)}
 .ui{position:fixed;pointer-events:none;z-index:2}
 #logo{left:calc(12px + env(safe-area-inset-left) + var(--fr));top:calc(8px + env(safe-area-inset-top) + var(--fr));color:#ffd23f;font:700 22px/1 "Arial Black",Impact,Arial,sans-serif;letter-spacing:1.5px;text-shadow:2px 2px 0 #000,0 0 10px rgba(255,120,0,.35)}
 #logo small{display:block;font:italic 700 10px Arial,sans-serif;color:#eee;letter-spacing:2px;text-shadow:1px 1px 0 #000;margin-top:2px}
@@ -26,11 +27,6 @@ html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial
 #weapon{margin-top:5px;color:#ffd23f;font:800 12px Arial,sans-serif;letter-spacing:1px;pointer-events:auto;cursor:pointer}
 #toast{left:50%;top:calc(19% + var(--fr));transform:translateX(-50%) translateY(-6px);color:#fff;font:800 15px 'Arial Black',Arial,sans-serif;letter-spacing:1px;text-shadow:2px 2px 0 #000;background:rgba(8,10,16,.72);border-left:4px solid #e30613;padding:8px 14px;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;max-width:88vw;overflow:hidden;text-overflow:ellipsis;z-index:3}#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 #hurt{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:0;background:radial-gradient(ellipse at center,rgba(255,0,0,0) 45%,rgba(200,0,0,.55) 100%)}
-/* play-field frame: black bezel + red keyline + corner ticks (Hood title colours) */
-#frame{position:fixed;inset:0;pointer-events:none;z-index:3;border-style:solid;border-color:#040406;border-width:calc(var(--fr) + env(safe-area-inset-top)) calc(var(--fr) + env(safe-area-inset-right)) calc(var(--fr) + env(safe-area-inset-bottom)) calc(var(--fr) + env(safe-area-inset-left));box-shadow:inset 0 0 22px 4px rgba(0,0,0,.55)}
-#frame::before{content:'';position:absolute;inset:0;border:2px solid #e30613;box-shadow:inset 0 0 0 1px rgba(0,0,0,.6)}
-#frame::after{content:'';position:absolute;inset:5px;background:linear-gradient(#f4f4f4,#f4f4f4) left top/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) left top/3px 22px,linear-gradient(#f4f4f4,#f4f4f4) right top/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) right top/3px 22px,linear-gradient(#f4f4f4,#f4f4f4) left bottom/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) left bottom/3px 22px,linear-gradient(#f4f4f4,#f4f4f4) right bottom/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) right bottom/3px 22px;background-repeat:no-repeat;opacity:.9}
-#frame .tag{position:absolute;left:50%;bottom:-2px;transform:translate(-50%,50%);background:#040406;color:#e30613;font:italic 800 10px/1 Impact,'Arial Black',Arial,sans-serif;letter-spacing:3px;padding:2px 10px}
 #stars{margin-top:2px;color:#ffd23f;font-size:17px;letter-spacing:1px;text-shadow:1px 1px 0 #000;min-height:20px}
 #jobBanner{left:50%;top:calc(10px + env(safe-area-inset-top) + var(--fr));transform:translateX(-50%);background:#d4b02a;color:#1a1408;font:800 15px/1 "Arial Black",Arial,sans-serif;letter-spacing:2px;padding:7px 16px;border:2px solid #8a6a12;z-index:3}
 #jobBanner.hidden{display:none!important}
@@ -62,42 +58,86 @@ body.incar #radio{display:flex}
 #radio .nm{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#9fe7ff}
 #radio button{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:16px}
 .hidden{display:none!important}
-/* title — GTA2-style split (own Hood mark, no GTA logo) */
-#title{position:fixed;inset:0;z-index:20;display:grid;grid-template-columns:minmax(0,1.22fr) minmax(220px,0.78fr);background:transparent}
+/* title — Pete's street-scene art (HOOD / Place to Be) as a living CRT title screen */
+@font-face{font-family:'HoodPix';src:url(assets/fonts/pixelify-latin.woff2) format('woff2');font-weight:400 700;font-display:block}
+#title{position:fixed;inset:0;z-index:20;background:#050507;overflow:hidden;--u:7.2px}
 #title.hidden{display:none}
-.titleView{position:relative;min-width:0;min-height:0}
-#crosshair{position:absolute;inset:0;pointer-events:none}
-#crosshair .ch-h,#crosshair .ch-v{position:absolute;background:#e30613;pointer-events:none}
-#crosshair .ch-h{left:0;right:0;top:50%;height:2px;margin-top:-1px}
-#crosshair .ch-v{top:0;bottom:0;left:50%;width:2px;margin-left:-1px}
-#crosshair .ch-ring{position:absolute;left:50%;top:50%;width:min(34%,220px);aspect-ratio:1/1;border:3px solid #e30613;border-radius:50%;transform:translate(-50%,-50%);box-sizing:border-box}
-.titlePanel{background:#000;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:7vh 5vw 9vh 3.5vw;min-width:0;overflow:auto;-webkit-overflow-scrolling:touch}
-.wordmark{margin:0;font:800 56px/.88 Impact,"Arial Black",Arial,sans-serif;letter-spacing:1px;color:#fff;line-height:.88;text-transform:uppercase}
-.wordmark small{display:block;margin-top:12px;font:italic 800 14px/1 Arial,sans-serif;letter-spacing:3.5px;color:#e30613}
-#titleNav{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:auto}
-#titleNav button{background:transparent;border:0;padding:0;margin:0;color:#f4f4f4;font:italic 800 28px/1.1 Impact,"Arial Black",Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;text-align:left;cursor:pointer;text-shadow:none}
-#titleNav button.on,#titleNav button:hover,#titleNav button:focus{color:#e30613;outline:none}
+.tAmb{position:absolute;inset:-6%;background:#050507 url(assets/title/title.webp) center/cover no-repeat;filter:blur(28px) brightness(.32) saturate(1.25);transform:scale(1.08)}
+.tArt{position:absolute;left:0;top:0;transform-origin:50% 46%;animation:kb 26s ease-in-out infinite alternate;will-change:transform}
+.tArt img,.tArt .lay{position:absolute;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.tBase{left:0;top:0;width:100%;height:100%;animation:crt 7s steps(1) infinite}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.022) translate(-.35%,.25%)}}
+@keyframes crt{0%,100%{filter:none}31%{filter:brightness(1.035)}31.6%{filter:none}72%{filter:brightness(.97)}72.4%{filter:none}}
+/* palms: cut-outs of the fronds, swaying a hair around the trunk tops */
+.palmA{left:78.125%;top:9.77%;width:21.354%;height:26.169%;transform-origin:49.3% 62.9%;animation:sway 6.2s ease-in-out infinite}
+.palmB{left:77.604%;top:36.288%;width:22.135%;height:28.96%;transform-origin:52.2% 51.6%;animation:sway 7.4s ease-in-out -2.6s infinite}
+@keyframes sway{0%,100%{transform:rotate(-.55deg) skewX(-.3deg)}50%{transform:rotate(.6deg) skewX(.35deg)}}
+/* neon script: soft pink glow that breathes and stutters now and then */
+.neon{left:30.729%;top:21.633%;width:38.542%;height:11.863%;filter:brightness(1.18) saturate(1.15) drop-shadow(0 0 calc(var(--u)*.9) rgba(255,60,170,.85));opacity:.0;animation:neon 9s linear infinite}
+@keyframes neon{0%{opacity:.55}8%{opacity:.85}30%{opacity:.6}52%{opacity:.9}53%{opacity:.1}53.6%{opacity:.85}54.4%{opacity:.15}55%{opacity:.9}78%{opacity:.65}100%{opacity:.55}}
+/* boombox: speaker cones pump with the song, LED display, sound lines pop on the beat */
+.spk{width:4.1667%;height:6.42%;transform-origin:50% 50%;will-change:transform}
+.spkL{left:17.8125%;top:72.435%}.spkR{left:23.333%;top:68.458%;height:6.56%}
+.tLed{left:21.4%;top:69.2%;width:2.6%;height:1.7%;border-radius:30%;background:radial-gradient(closest-side,rgba(255,180,60,.95),rgba(255,120,20,.0));mix-blend-mode:screen;opacity:.4}
+.tWaves{left:9%;top:56%;width:26%;height:30%;overflow:visible}
+.tWaves g{transform-box:fill-box;transform-origin:center;opacity:0}
+.tWaves g.pop{animation:wpop .5s ease-out}
+@keyframes wpop{0%{opacity:1;transform:scale(.86)}100%{opacity:0;transform:scale(1.22)}}
+/* the lowrider: idle headlight glow + a lacquer glint sliding over the paint */
+.tHl{width:3.2%;height:3.2%;margin:-1.6% 0 0 -1.6%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,246,210,.95),rgba(255,230,160,.35) 45%,rgba(255,220,140,0));mix-blend-mode:screen;animation:hl 8s ease-in-out infinite}
+.tHl.a{left:43.6%;top:76.3%}.tHl.b{left:50.2%;top:82%}
+@keyframes hl{0%,100%{opacity:.35}46%{opacity:.4}48%{opacity:1}50%{opacity:.4}52%{opacity:1}56%{opacity:.4}}
+.tGloss{left:40.625%;top:55.788%;width:34.375%;height:34.868%;-webkit-mask:url(assets/title/carmask.png) center/100% 100% no-repeat;mask:url(assets/title/carmask.png) center/100% 100% no-repeat;
+ background:linear-gradient(115deg,rgba(255,255,255,0) 40%,rgba(255,240,240,.55) 48%,rgba(255,255,255,0) 56%) no-repeat;background-size:300% 100%;background-position:120% 0;mix-blend-mode:screen;animation:gloss 7.5s ease-in-out infinite}
+@keyframes gloss{0%,55%{background-position:130% 0}85%,100%{background-position:-30% 0}}
+/* the menu sits inside the dark panel of the artwork */
+.tBox{position:absolute;left:33.83%;top:40.29%;width:32.42%;height:16.96%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'HoodPix','Courier New',monospace;font-weight:600;color:#f4f0e6}
+#titleNav{display:flex;flex-direction:column;align-items:center;gap:calc(var(--u)*.7)}
+#titleNav button{position:relative;background:none;border:0;margin:0;padding:0;font:inherit;font-size:calc(var(--u)*5.1);line-height:1.08;letter-spacing:.02em;color:#f4f0e6;text-align:left;cursor:pointer;text-shadow:0 0 calc(var(--u)*.35) rgba(255,255,255,.25),calc(var(--u)*.22) calc(var(--u)*.22) 0 rgba(0,0,0,.7);outline:none;white-space:nowrap}
+#titleNav button .ar{position:absolute;right:100%;margin-right:calc(var(--u)*1.3);top:50%;width:calc(var(--u)*5.2);height:calc(var(--u)*3.7);margin-top:calc(var(--u)*-1.85);opacity:0}
+#titleNav button.on{color:#ffe14d;text-shadow:0 0 calc(var(--u)*.9) rgba(255,200,40,.75),calc(var(--u)*.22) calc(var(--u)*.22) 0 rgba(0,0,0,.7)}
+#titleNav button.on .ar{opacity:1;animation:nudge .9s steps(2) infinite}
+@keyframes nudge{50%{transform:translateX(calc(var(--u)*.55))}}
 #title.start .pauseOnly{display:none}#title:not(.start) .startOnly{display:none}
-#titleQuit{color:#f4f4f4;font:italic 800 22px/1.3 Impact,Arial,sans-serif}
-#titleQuit p{margin:0 0 18px}
-#menu{color:#fff;-webkit-user-select:text;user-select:text}
-#menu .wrap{display:flex;flex-direction:column;gap:10px}
-#menu h2{font:italic 800 13px Arial,sans-serif;letter-spacing:2px;color:#e30613;margin:10px 0 6px;text-transform:uppercase}
+#tPress{font-size:calc(var(--u)*3.6);color:#ffe14d;text-shadow:0 0 calc(var(--u)*.9) rgba(255,200,40,.75),calc(var(--u)*.22) calc(var(--u)*.22) 0 #000;animation:blink 1.1s steps(1) infinite;text-align:center;line-height:1.25}
+#tPress small{display:block;font-size:.5em;color:#f4f0e6;opacity:.75;margin-top:.5em;animation:none}
+@keyframes blink{55%{opacity:.15}}
+#tStatus{position:absolute;left:0;right:0;bottom:calc(var(--u)*-3.6);text-align:center;font-size:calc(var(--u)*1.7);color:#f4f0e6;opacity:.8;text-shadow:1px 1px 0 #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#titleQuit{text-align:center;font-size:calc(var(--u)*3.4);line-height:1.3}
+#titleQuit p{margin:0 0 calc(var(--u)*1.4)}
+.pxBtn{font-family:'HoodPix','Courier New',monospace;font-weight:600;background:rgba(10,10,14,.6);border:2px solid rgba(244,240,230,.35);color:#f4f0e6;padding:.35em .9em;font-size:16px;cursor:pointer;letter-spacing:.03em}
+.pxBtn:hover,.pxBtn:focus,.pxBtn.on{color:#ffe14d;border-color:#ffe14d;outline:none}
+#titleQuit .pxBtn{font-size:calc(var(--u)*2.4)}
+/* CRT finish: grain, scanlines, vignette */
+#tGrain{position:absolute;inset:0;width:100%;height:100%;opacity:.085;mix-blend-mode:overlay;pointer-events:none;image-rendering:pixelated}
+.tScan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,rgba(0,0,0,0) 1px 3px);mix-blend-mode:multiply;opacity:.55}
+.tVig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,rgba(0,0,0,0) 60%,rgba(0,0,0,.42) 100%)}
+#tMute{position:absolute;right:calc(14px + env(safe-area-inset-right));top:calc(12px + env(safe-area-inset-top));z-index:3;font-size:14px;padding:.4em .7em;background:rgba(6,6,10,.55)}
+/* options: same pixel/arcade language, over the dimmed art */
+#title.opts .tArt{filter:brightness(.42) blur(2px)}#title.opts .tBox{visibility:hidden}
+#menu{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:min(600px,92vw);max-height:88%;overflow:auto;-webkit-overflow-scrolling:touch;background:rgba(8,8,12,.92);border:2px solid rgba(244,240,230,.18);box-shadow:0 0 0 4px rgba(0,0,0,.6),0 18px 60px rgba(0,0,0,.6);padding:18px 20px 20px;color:#f4f0e6;-webkit-user-select:text;user-select:text;font:14px/1.4 Arial,Helvetica,sans-serif}
+#menu::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,rgba(0,0,0,0) 1px 3px)}
+#menu .wrap{display:flex;flex-direction:column;gap:8px;position:relative}
+#menu .mh{font:600 26px/1 'HoodPix',monospace;color:#ffe14d;text-shadow:0 0 10px rgba(255,200,40,.5),2px 2px 0 #000;margin:0 0 4px}
+#menu h2{font:600 15px 'HoodPix',monospace;letter-spacing:.06em;color:#ff4fb0;margin:10px 0 2px;text-shadow:0 0 8px rgba(255,60,170,.45)}
 #menu .cur{font-size:13px;color:#bbb;margin:0}#menu .cur b{color:#fff}
 #searchForm{display:flex;gap:8px}
-#searchIn{flex:1;min-width:0;height:42px;font:700 15px Arial,sans-serif;padding:0 10px;border-radius:0;border:1px solid #444;background:#111;color:#fff;outline:none}
-.btn{height:42px;min-width:42px;padding:0 12px;border-radius:0;border:1px solid #444;background:#161616;color:#fff;font:700 13px Arial,sans-serif}
-.btn.go{background:#e30613;color:#fff;border-color:#e30613}
-.btn.on{background:#e30613;color:#fff;border-color:#e30613}
+#searchIn{flex:1;min-width:0;height:42px;font:700 15px Arial,sans-serif;padding:0 10px;border-radius:0;border:2px solid rgba(244,240,230,.25);background:#0c0c10;color:#fff;outline:none}
+#searchIn:focus{border-color:#ffe14d}
+.btn{height:42px;min-width:42px;padding:0 12px;border-radius:0;border:2px solid rgba(244,240,230,.28);background:rgba(18,18,24,.9);color:#f4f0e6;font:600 15px 'HoodPix',monospace;letter-spacing:.03em;cursor:pointer}
+.btn:hover,.btn:focus{border-color:#ffe14d;outline:none}
+.btn.go{background:#ffe14d;color:#141008;border-color:#ffe14d}
+.btn.on{color:#ffe14d;border-color:#ffe14d;box-shadow:inset 0 0 0 1px rgba(255,225,77,.35)}
 .row{display:flex;gap:8px;flex-wrap:wrap}.row .btn{flex:1}
-#searchMsg{min-height:18px;font-size:13px;color:#ffcf8a;margin:8px 0 4px}
+#searchMsg{min-height:18px;font-size:13px;color:#ffcf8a;margin:6px 0 2px}
 #resList{display:flex;flex-direction:column;gap:6px}
-.res{text-align:left;min-height:44px;padding:8px 10px;border-radius:0;border:1px solid #333;background:#141414;color:#fff;font:13px Arial,sans-serif}
+.res{text-align:left;min-height:44px;padding:8px 10px;border-radius:0;border:2px solid rgba(244,240,230,.14);background:#111116;color:#fff;font:13px Arial,sans-serif;cursor:pointer}
+.res:hover,.res:focus{border-color:#ffe14d;outline:none}
 .res b{display:block;font-size:15px;color:#fff}.res span{font-size:11px;color:#999}
-#menu .fine{font-size:11px;color:#777;margin-top:8px;line-height:1.45}
-#optsBack,#quitBack{margin-top:14px}
-body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #street,body.onTitle #prompt,body.onTitle #hint,body.onTitle #stick,body.onTitle .abtn,body.onTitle #zoomBox,body.onTitle #btnFollow,body.onTitle #radio,body.onTitle #menuBtn,body.onTitle #frame,body.onTitle #toast,body.onTitle #hurt{display:none!important}
-@media (orientation:portrait){#title{grid-template-columns:1fr;grid-template-rows:minmax(38%,1fr) auto}.titlePanel{padding:24px 22px 28px}.wordmark{font-size:42px}#titleNav button{font-size:24px}#crosshair .ch-ring{width:min(42%,180px)}}
+#menu .fine{font-size:11px;color:#8a8a8a;margin-top:6px;line-height:1.45}
+#optsBack{margin-top:12px}
+@media (prefers-reduced-motion:reduce){.tArt,.tBase,.palmA,.palmB,.neon,.tHl,.tGloss,#tPress{animation:none!important}.neon{opacity:.6}}
+body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #street,body.onTitle #prompt,body.onTitle #hint,body.onTitle #stick,body.onTitle .abtn,body.onTitle #zoomBox,body.onTitle #btnFollow,body.onTitle #radio,body.onTitle #menuBtn,body.onTitle #toast,body.onTitle #hurt{display:none!important}
 #credits{position:fixed;inset:0;z-index:25;background:rgba(6,7,14,.94);color:#ddd;padding:24px;overflow:auto;font:14px/1.55 Arial,sans-serif;display:none}
 #credits.open{display:block}
 #credits h2{color:#ffd23f;margin:0 0 12px}
@@ -110,12 +150,12 @@ body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #
 #loadMsg{font-size:15px;max-width:520px;line-height:1.4}#loading.error #loadMsg{color:#ffcf8a}
 #loadBtns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media (max-height:460px){:root{--fr:6px}#hearts{font-size:16px}#logo{font:700 18px/1 "Arial Black",Arial,sans-serif}#street{font-size:16px}#menu h1{font-size:28px}#prompt{bottom:calc(100px + env(safe-area-inset-bottom) + var(--fr))}}
+@media (max-height:460px){#hearts{font-size:16px}#logo{font:700 18px/1 "Arial Black",Arial,sans-serif}#street{font-size:16px}#menu h1{font-size:28px}#prompt{bottom:calc(100px + env(safe-area-inset-bottom) + var(--fr))}}
 @media (orientation:portrait){#stick{left:calc(14px + env(safe-area-inset-left) + var(--fr));bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr))}#btnBrake{right:calc(16px + env(safe-area-inset-right) + var(--fr));bottom:calc(110px + env(safe-area-inset-bottom) + var(--fr))}#btnCar{bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr))}#btnDeal{bottom:calc(190px + env(safe-area-inset-bottom) + var(--fr))}#zoomBox{bottom:calc(250px + env(safe-area-inset-bottom) + var(--fr))}#btnFollow{bottom:calc(350px + env(safe-area-inset-bottom) + var(--fr))}#btnFire{bottom:calc(22px + env(safe-area-inset-bottom) + var(--fr))}#hudRight{min-width:0}#cityName{max-width:30vw}#radio{bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr));max-width:92vw}#prompt{bottom:calc(210px + env(safe-area-inset-bottom) + var(--fr))}}
 body.shot #street.pop{animation:none;opacity:1}
 body.shot #hint{display:none}
 </style></head><body>
-<div id="game"></div><div class="vig"></div><div id="hurt"></div><div id="frame"><span class="tag">HOOD</span></div>
+<div id="game"></div><div class="vig"></div><div id="hurt"></div>
 <div id="logo" class="ui">HOOD<small>PLACE TO BE</small><span id="cityName"></span></div>
 <div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts" aria-label="Leben"><b>♥♥♥♥♥</b></div><div id="carHp" style="display:none"><i></i></div><div id="weapon" style="display:none"></div><div id="stars"></div></div>
 <div id="jobBanner" class="ui hidden"></div>
@@ -131,38 +171,57 @@ body.shot #hint{display:none}
 <div id="radio"><button id="radPrev" type="button" aria-label="Vorheriger Sender">⏮</button><span class="nm" id="radName">Radio</span><button id="radNext" type="button" aria-label="Nächster Sender">⏭</button></div>
 <button id="menuBtn" type="button" aria-label="Menü">☰</button>
 <div id="title" class="hidden start">
- <div class="titleView" aria-hidden="true"><div id="crosshair"><i class="ch-h"></i><i class="ch-v"></i><i class="ch-ring"></i></div></div>
- <aside class="titlePanel">
-  <div class="wordmark">HOOD<small>PLACE TO BE</small></div>
-  <nav id="titleNav" aria-label="Hauptmenü">
-   <button type="button" data-act="play" class="on"><span class="pauseOnly">WEITER</span><span class="startOnly">SPIELEN</span></button>
-   <button type="button" data-act="options">OPTIONEN</button>
-   <button type="button" data-act="quit">BEENDEN</button>
-  </nav>
-  <div id="menu" class="hidden"><div class="wrap">
-   <div class="cur">Gerade: <b id="curCity">…</b></div>
-   <h2>Stadt / Stadtteil</h2>
-   <form id="searchForm" autocomplete="off"><input id="searchIn" type="search" enterkeyhint="search" placeholder="z. B. Hombruch, Connewitz …" aria-label="Stadtteil suchen"><button class="btn go" type="submit">Suchen</button></form>
-   <div class="row" style="margin-top:8px"><button id="locBtn" class="btn" type="button">Mein Standort</button></div>
-   <div id="searchMsg"></div><div id="resList"></div>
-   <h2>Tageszeit</h2>
-   <div class="row"><button class="btn" data-time="afternoon" type="button">Nachmittag</button><button class="btn" data-time="dusk" type="button">Dämmerung</button><button class="btn" data-time="night" type="button">Nacht</button></div>
-   <h2>Ton</h2>
-   <div class="row"><button class="btn" id="muteBtn" type="button">Ton: an</button><button class="btn" id="creditsBtn" type="button">Mitwirkende u. Quellen</button></div>
-   <div class="fine">Im Auto wechselt das Radio die Sender.</div>
-   <button id="optsBack" class="btn" type="button">ZURÜCK</button>
-  </div></div>
-  <div id="titleQuit" class="hidden"><p>Bis später.</p><button id="quitBack" class="btn" type="button">ZURÜCK</button></div>
- </aside>
+ <div class="tAmb" aria-hidden="true"></div>
+ <div class="tArt" id="tArt" aria-hidden="false">
+  <img class="tBase" src="assets/title/title.webp" alt="HOOD – Place to Be" draggable="false">
+  <img class="lay palmA" src="assets/title/palmA.webp" alt="" draggable="false">
+  <img class="lay palmB" src="assets/title/palmB.webp" alt="" draggable="false">
+  <img class="lay neon" src="assets/title/neon.webp" alt="" draggable="false">
+  <div class="lay tGloss"></div><i class="lay tHl a"></i><i class="lay tHl b"></i>
+  <img class="lay spk spkL" id="spkL" src="assets/title/spkL.webp" alt="" draggable="false">
+  <img class="lay spk spkR" id="spkR" src="assets/title/spkR.webp" alt="" draggable="false">
+  <i class="lay tLed" id="tLed"></i>
+  <svg class="lay tWaves" id="tWaves" viewBox="0 0 260 215" aria-hidden="true">
+   <g id="wvL" fill="none" stroke="#f3ecd2" stroke-width="5.5" stroke-linecap="square"><path d="M60 92l-22-7M58 112l-26 1M60 132l-22 9M70 72l-14-16M72 152l-14 15"/></g>
+   <g id="wvR" fill="none" stroke="#f3ecd2" stroke-width="5.5" stroke-linecap="square"><path d="M168 46l14-20M186 62l24-10M190 84l26 2M176 30l4-24M196 104l22 10"/></g>
+  </svg>
+  <div class="tBox" id="tBox">
+   <div id="tPress">Tippen zum Starten<small>oder eine Taste drücken</small></div>
+   <nav id="titleNav" class="hidden" aria-label="Hauptmenü">
+    <button type="button" data-act="play" class="on"><svg class="ar" viewBox="0 0 14 10" aria-hidden="true"><path fill="#ffe14d" d="M0 0h2v1h1v1h1v1h1v1h1v2H5v1H4v1H3v1H2v1H0zM7 0h2v1h1v1h1v1h1v1h1v2h-1v1h-1v1h-1v1H9v1H7z"/></svg><span class="startOnly">Spiel starten</span><span class="pauseOnly">Weiter</span></button>
+    <button type="button" data-act="options"><svg class="ar" viewBox="0 0 14 10" aria-hidden="true"><path fill="#ffe14d" d="M0 0h2v1h1v1h1v1h1v1h1v2H5v1H4v1H3v1H2v1H0zM7 0h2v1h1v1h1v1h1v1h1v2h-1v1h-1v1h-1v1H9v1H7z"/></svg>Optionen</button>
+    <button type="button" data-act="quit"><svg class="ar" viewBox="0 0 14 10" aria-hidden="true"><path fill="#ffe14d" d="M0 0h2v1h1v1h1v1h1v1h1v2H5v1H4v1H3v1H2v1H0zM7 0h2v1h1v1h1v1h1v1h1v2h-1v1h-1v1h-1v1H9v1H7z"/></svg>Beenden</button>
+   </nav>
+   <div id="titleQuit" class="hidden"><p>Bis später.</p><button id="quitBack" class="pxBtn" type="button">Zurück</button></div>
+   <div id="tStatus"></div>
+  </div>
+ </div>
+ <canvas id="tGrain" width="192" height="108" aria-hidden="true"></canvas><div class="tScan" aria-hidden="true"></div><div class="tVig" aria-hidden="true"></div>
+ <button id="tMute" class="pxBtn" type="button" aria-label="Ton an/aus">♪ Ton an</button>
+ <div id="menu" class="hidden"><div class="wrap">
+  <div class="mh">Optionen</div>
+  <div class="cur">Gerade: <b id="curCity">…</b></div>
+  <h2>Stadt / Stadtteil</h2>
+  <form id="searchForm" autocomplete="off"><input id="searchIn" type="search" enterkeyhint="search" placeholder="z. B. Hombruch, Connewitz …" aria-label="Stadtteil suchen"><button class="btn go" type="submit">Suchen</button></form>
+  <div class="row" style="margin-top:6px"><button id="locBtn" class="btn" type="button">Mein Standort</button></div>
+  <div id="searchMsg"></div><div id="resList"></div>
+  <h2>Tageszeit</h2>
+  <div class="row"><button class="btn" data-time="afternoon" type="button">Nachmittag</button><button class="btn" data-time="dusk" type="button">Dämmerung</button><button class="btn" data-time="night" type="button">Nacht</button></div>
+  <h2>Ton</h2>
+  <div class="row"><button class="btn" id="muteBtn" type="button">Ton: an</button><button class="btn" id="creditsBtn" type="button">Mitwirkende u. Quellen</button></div>
+  <div class="fine">Titelsong im Menü · Straßengeräusche, Motor und Radio im Spiel. Im Auto wechselt das Radio die Sender.</div>
+  <button id="optsBack" class="btn" type="button">Zurück</button>
+ </div></div>
 </div>
 <div id="credits"><h2>Mitwirkende u. Quellen</h2>
 <p>Kartendaten © OpenStreetMap-Mitwirkende (ODbL).</p>
 <p>Ortssuche: Nominatim · Gebäudedaten: Overpass API.</p>
 <p>3D-Engine: Three.js.</p>
+<p>Titelmusik: eigener Track. Menüschrift: Pixelify Sans (SIL Open Font License).</p>
 <p>Radiostreams: unabhängige Sender (SomaFM, Radio Paradise) — kein öffentlich-rechtliches Programm.</p>
 <p>Alle Läden, Schilder und Decknamen im Spiel sind erfunden. Keine echten Marken.</p>
 <button class="btn" id="creditsClose" type="button">Zurück</button></div>
 <div id="loading"><div class="lg">HOOD</div><div class="sp"></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
-<script>window.HOOD_V='1106h8';</script>
-<script src="hood.js?v=1106h8"></script>
+<script>window.HOOD_V='1106h9';</script>
+<script src="hood.js?v=1106h9"></script>
 </body></html>
