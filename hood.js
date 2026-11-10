@@ -7306,6 +7306,19 @@
       dispose
     };
   }
+  function transformVertex(vertexPosition, mvPosition, center, scale, sin, cos) {
+    _alignedPosition.subVectors(vertexPosition, center).addScalar(0.5).multiply(scale);
+    if (sin !== void 0) {
+      _rotatedPosition.x = cos * _alignedPosition.x - sin * _alignedPosition.y;
+      _rotatedPosition.y = sin * _alignedPosition.x + cos * _alignedPosition.y;
+    } else {
+      _rotatedPosition.copy(_alignedPosition);
+    }
+    vertexPosition.copy(mvPosition);
+    vertexPosition.x += _rotatedPosition.x;
+    vertexPosition.y += _rotatedPosition.y;
+    vertexPosition.applyMatrix4(_viewWorldMatrix);
+  }
   function checkIntersection(object, raycaster, ray, thresholdSq, a, b) {
     const positionAttribute = object.geometry.attributes.position;
     _vStart.fromBufferAttribute(positionAttribute, a);
@@ -7918,7 +7931,7 @@
   function now() {
     return performance.now();
   }
-  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, RingGeometry, SphereGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer;
+  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, RingGeometry, SphereGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer;
   var init_three_module = __esm({
     "node_modules/three/build/three.module.js"() {
       REVISION = "170";
@@ -19808,6 +19821,140 @@ void main() {
           }
         }
       };
+      SpriteMaterial = class extends Material {
+        static {
+          __name(this, "SpriteMaterial");
+        }
+        static get type() {
+          return "SpriteMaterial";
+        }
+        constructor(parameters) {
+          super();
+          this.isSpriteMaterial = true;
+          this.color = new Color(16777215);
+          this.map = null;
+          this.alphaMap = null;
+          this.rotation = 0;
+          this.sizeAttenuation = true;
+          this.transparent = true;
+          this.fog = true;
+          this.setValues(parameters);
+        }
+        copy(source) {
+          super.copy(source);
+          this.color.copy(source.color);
+          this.map = source.map;
+          this.alphaMap = source.alphaMap;
+          this.rotation = source.rotation;
+          this.sizeAttenuation = source.sizeAttenuation;
+          this.fog = source.fog;
+          return this;
+        }
+      };
+      _intersectPoint = /* @__PURE__ */ new Vector3();
+      _worldScale = /* @__PURE__ */ new Vector3();
+      _mvPosition = /* @__PURE__ */ new Vector3();
+      _alignedPosition = /* @__PURE__ */ new Vector2();
+      _rotatedPosition = /* @__PURE__ */ new Vector2();
+      _viewWorldMatrix = /* @__PURE__ */ new Matrix4();
+      _vA = /* @__PURE__ */ new Vector3();
+      _vB = /* @__PURE__ */ new Vector3();
+      _vC = /* @__PURE__ */ new Vector3();
+      _uvA = /* @__PURE__ */ new Vector2();
+      _uvB = /* @__PURE__ */ new Vector2();
+      _uvC = /* @__PURE__ */ new Vector2();
+      Sprite = class extends Object3D {
+        static {
+          __name(this, "Sprite");
+        }
+        constructor(material = new SpriteMaterial()) {
+          super();
+          this.isSprite = true;
+          this.type = "Sprite";
+          if (_geometry === void 0) {
+            _geometry = new BufferGeometry();
+            const float32Array = new Float32Array([
+              -0.5,
+              -0.5,
+              0,
+              0,
+              0,
+              0.5,
+              -0.5,
+              0,
+              1,
+              0,
+              0.5,
+              0.5,
+              0,
+              1,
+              1,
+              -0.5,
+              0.5,
+              0,
+              0,
+              1
+            ]);
+            const interleavedBuffer = new InterleavedBuffer(float32Array, 5);
+            _geometry.setIndex([0, 1, 2, 0, 2, 3]);
+            _geometry.setAttribute("position", new InterleavedBufferAttribute(interleavedBuffer, 3, 0, false));
+            _geometry.setAttribute("uv", new InterleavedBufferAttribute(interleavedBuffer, 2, 3, false));
+          }
+          this.geometry = _geometry;
+          this.material = material;
+          this.center = new Vector2(0.5, 0.5);
+        }
+        raycast(raycaster, intersects2) {
+          if (raycaster.camera === null) {
+            console.error('THREE.Sprite: "Raycaster.camera" needs to be set in order to raycast against sprites.');
+          }
+          _worldScale.setFromMatrixScale(this.matrixWorld);
+          _viewWorldMatrix.copy(raycaster.camera.matrixWorld);
+          this.modelViewMatrix.multiplyMatrices(raycaster.camera.matrixWorldInverse, this.matrixWorld);
+          _mvPosition.setFromMatrixPosition(this.modelViewMatrix);
+          if (raycaster.camera.isPerspectiveCamera && this.material.sizeAttenuation === false) {
+            _worldScale.multiplyScalar(-_mvPosition.z);
+          }
+          const rotation = this.material.rotation;
+          let sin, cos;
+          if (rotation !== 0) {
+            cos = Math.cos(rotation);
+            sin = Math.sin(rotation);
+          }
+          const center = this.center;
+          transformVertex(_vA.set(-0.5, -0.5, 0), _mvPosition, center, _worldScale, sin, cos);
+          transformVertex(_vB.set(0.5, -0.5, 0), _mvPosition, center, _worldScale, sin, cos);
+          transformVertex(_vC.set(0.5, 0.5, 0), _mvPosition, center, _worldScale, sin, cos);
+          _uvA.set(0, 0);
+          _uvB.set(1, 0);
+          _uvC.set(1, 1);
+          let intersect = raycaster.ray.intersectTriangle(_vA, _vB, _vC, false, _intersectPoint);
+          if (intersect === null) {
+            transformVertex(_vB.set(-0.5, 0.5, 0), _mvPosition, center, _worldScale, sin, cos);
+            _uvB.set(0, 1);
+            intersect = raycaster.ray.intersectTriangle(_vA, _vC, _vB, false, _intersectPoint);
+            if (intersect === null) {
+              return;
+            }
+          }
+          const distance = raycaster.ray.origin.distanceTo(_intersectPoint);
+          if (distance < raycaster.near || distance > raycaster.far) return;
+          intersects2.push({
+            distance,
+            point: _intersectPoint.clone(),
+            uv: Triangle.getInterpolation(_intersectPoint, _vA, _vB, _vC, _uvA, _uvB, _uvC, new Vector2()),
+            face: null,
+            object: this
+          });
+        }
+        copy(source, recursive) {
+          super.copy(source, recursive);
+          if (source.center !== void 0) this.center.copy(source.center);
+          this.material = source.material;
+          return this;
+        }
+      };
+      __name(transformVertex, "transformVertex");
       _basePosition = /* @__PURE__ */ new Vector3();
       _skinIndex = /* @__PURE__ */ new Vector4();
       _skinWeight = /* @__PURE__ */ new Vector4();
@@ -24813,7 +24960,7 @@ void main() {
   });
 
   // node_modules/three/examples/jsm/postprocessing/Pass.js
-  var Pass, _camera, FullscreenTriangleGeometry, _geometry, FullScreenQuad;
+  var Pass, _camera, FullscreenTriangleGeometry, _geometry2, FullScreenQuad;
   var init_Pass = __esm({
     "node_modules/three/examples/jsm/postprocessing/Pass.js"() {
       init_three_module();
@@ -24847,13 +24994,13 @@ void main() {
           this.setAttribute("uv", new Float32BufferAttribute([0, 2, 0, 0, 2, 0], 2));
         }
       };
-      _geometry = new FullscreenTriangleGeometry();
+      _geometry2 = new FullscreenTriangleGeometry();
       FullScreenQuad = class {
         static {
           __name(this, "FullScreenQuad");
         }
         constructor(material) {
-          this._mesh = new Mesh(_geometry, material);
+          this._mesh = new Mesh(_geometry2, material);
         }
         dispose() {
           this._mesh.geometry.dispose();
@@ -25657,1899 +25804,6 @@ void main() {
           this.fsQuad.dispose();
         }
       };
-    }
-  });
-
-  // src/tex.js
-  function rng(seed) {
-    let a = seed >>> 0;
-    return function() {
-      a |= 0;
-      a = a + 1831565813 | 0;
-      let t = Math.imul(a ^ a >>> 15, 1 | a);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-  }
-  function canvas(w, h) {
-    const c = document.createElement("canvas");
-    c.width = w;
-    c.height = h;
-    return c;
-  }
-  function tex(c, srgb = true, rep = true) {
-    const t = new CanvasTexture(c);
-    if (srgb) t.colorSpace = SRGBColorSpace;
-    if (rep) {
-      t.wrapS = t.wrapT = RepeatWrapping;
-    }
-    t.anisotropy = 8;
-    t.needsUpdate = true;
-    return t;
-  }
-  function speckle(g, w, h, n, amp, R, dark = true) {
-    for (let i = 0; i < n; i++) {
-      const v = R();
-      g.fillStyle = R() < 0.5 ? `rgba(0,0,0,${amp * v})` : `rgba(255,255,255,${amp * v * 0.6})`;
-      const s = 1 + R() * 2.5;
-      g.fillRect(R() * w, R() * h, s, s);
-    }
-  }
-  function blotch(g, w, h, n, R, col = "0,0,0", a = 0.08, rmax = 60) {
-    for (let i = 0; i < n; i++) {
-      const x = R() * w, y = R() * h, r = 10 + R() * rmax;
-      const gr = g.createRadialGradient(x, y, 0, x, y, r);
-      gr.addColorStop(0, `rgba(${col},${a * R()})`);
-      gr.addColorStop(1, `rgba(${col},0)`);
-      g.fillStyle = gr;
-      g.fillRect(x - r, y - r, 2 * r, 2 * r);
-    }
-  }
-  function wrapDraw(g, w, h, fn) {
-    for (const dx of [-w, 0, w]) for (const dy of [-h, 0, h]) {
-      g.save();
-      g.translate(dx, dy);
-      fn();
-      g.restore();
-    }
-  }
-  function makeFacade(st, seed) {
-    const R = rng(seed), S = 512, c = canvas(S, S), g = c.getContext("2d"), e = canvas(S, S), ge = e.getContext("2d");
-    ge.fillStyle = "#000";
-    ge.fillRect(0, 0, S, S);
-    g.fillStyle = st.wall;
-    g.fillRect(0, 0, S, S);
-    if (st.pat === "brick") {
-      for (let y = 0; y < S; y += 8) {
-        const off = y / 8 % 2 ? 0 : 10;
-        for (let x = -20; x < S; x += 20) {
-          g.fillStyle = `rgba(${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 200},0,${0.05 + R() * 0.07})`;
-          g.fillRect(x + off, y, 18, 6);
-        }
-        g.fillStyle = st.mortar;
-        g.globalAlpha = 0.55;
-        g.fillRect(0, y + 6, S, 2);
-        g.globalAlpha = 1;
-      }
-    }
-    if (st.pat === "panel") {
-      g.strokeStyle = "rgba(0,0,0,.25)";
-      g.lineWidth = 2;
-      for (let y = 0; y < S; y += 64) {
-        g.beginPath();
-        g.moveTo(0, y + 0.5);
-        g.lineTo(S, y + 0.5);
-        g.stroke();
-      }
-      for (let x = 0; x < S; x += 128) {
-        g.beginPath();
-        g.moveTo(x + 1, 0);
-        g.lineTo(x + 1, S);
-        g.stroke();
-      }
-    }
-    speckle(g, S, S, 5e3, 0.18, R);
-    blotch(g, S, S, 30, R, "40,30,20", 0.12);
-    if (st.pat === "glass") {
-      for (let f = 0; f < 4; f++) {
-        const y0 = f * 128;
-        g.fillStyle = "#3b4a4e";
-        g.fillRect(0, y0 + 100, S, 28);
-        const CW = st.col || 32, GC = st.gcols || ["#2f5866", "#4f8090", "#1c3a44"];
-        for (let x = 0; x < S; x += CW) {
-          const gr = g.createLinearGradient(x, y0, x + CW, y0 + 100);
-          gr.addColorStop(0, GC[0]);
-          gr.addColorStop(0.5 + R() * 0.3, GC[1]);
-          gr.addColorStop(1, GC[2]);
-          g.fillStyle = gr;
-          g.fillRect(x, y0 + 4, CW, 96);
-        }
-        g.fillStyle = st.frame;
-        for (let x = 0; x <= S; x += CW) g.fillRect(x - 1.5, y0, 3, 128);
-        g.fillRect(0, y0 + 100, S, 3);
-        g.fillRect(0, y0, S, 4);
-        if (R() < 0.45) {
-          ge.fillStyle = R() < 0.5 ? "#d9e6ff" : "#fff0d0";
-          for (let x = 0; x < S; x += CW) {
-            if (R() < 0.8) {
-              ge.globalAlpha = 0.5 + R() * 0.5;
-              ge.fillRect(x + 2, y0 + 6, CW - 4, 92);
-            }
-          }
-          ge.globalAlpha = 1;
-        }
-      }
-      return { map: tex(c), emi: tex(e) };
-    }
-    for (let f = 0; f < 4; f++) {
-      const y0 = f * 128;
-      if (st.band) {
-        g.fillStyle = st.band;
-        g.fillRect(0, y0 + 120, S, 8);
-        g.fillStyle = "rgba(255,255,255,.12)";
-        g.fillRect(0, y0 + 120, S, 2);
-      }
-      if (st.ribbon) {
-        const wy = y0 + st.wy, wh = st.wh;
-        g.fillStyle = st.frame;
-        g.fillRect(0, wy - 4, S, wh + 8);
-        for (let x = 0; x < S; x += 64) {
-          const gr = g.createLinearGradient(x, wy, x + 64, wy + wh);
-          gr.addColorStop(0, "#3f5868");
-          gr.addColorStop(1, st.glass);
-          g.fillStyle = gr;
-          g.fillRect(x + 3, wy, 58, wh);
-          if (R() < 0.4) {
-            ge.fillStyle = LITC[R() * LITC.length | 0];
-            ge.globalAlpha = 0.6 + R() * 0.4;
-            ge.fillRect(x + 3, wy, 58, wh);
-            ge.globalAlpha = 1;
-            ge.fillStyle = "rgba(0,0,0,.5)";
-            ge.fillRect(x + 3 + R() * 40, wy, 6, wh);
-          }
-        }
-        g.fillStyle = "rgba(0,0,0,.18)";
-        g.fillRect(0, wy + wh + 4, S, 10);
-        continue;
-      }
-      const NB = st.bays || 4, BW = S / NB;
-      for (let b = 0; b < NB; b++) {
-        const wy = y0 + st.wy, wh = st.wh;
-        const bww = st.pair ? st.ww * 1.5 : st.ww;
-        const bx = b * BW + (BW - bww) / 2;
-        if (st.balc && (f + b) % 2 === 0) {
-          g.fillStyle = "rgba(0,0,0,.28)";
-          g.fillRect(bx - 14, wy + wh * 0.55, bww + 28, wh * 0.45 + 12);
-          g.fillStyle = st.balc;
-          g.fillRect(bx - 16, wy + wh * 0.55, bww + 32, 6);
-          for (let k = bx - 14; k < bx + bww + 16; k += 6) g.fillRect(k, wy + wh * 0.55, 2, wh * 0.45 + 8);
-          g.fillRect(bx - 16, wy + wh + 6, bww + 32, 6);
-        }
-        const wins = st.pair ? [[bx, bww / 2 - 5], [bx + bww / 2 + 5, bww / 2 - 5]] : [[bx, bww]];
-        const lit = R() < 0.36, litCol = LITC[R() * LITC.length | 0], curtain = R() < 0.4;
-        for (const [wx, ww] of wins) {
-          if (st.orn) {
-            g.fillStyle = "rgba(255,250,235,.55)";
-            g.fillRect(wx - 10, wy - 16, ww + 20, 8);
-            g.fillStyle = "rgba(0,0,0,.15)";
-            g.fillRect(wx - 10, wy - 8, ww + 20, 3);
-          }
-          if (st.shutter) {
-            g.fillStyle = st.shutter;
-            g.fillRect(wx - 16, wy, 12, wh);
-            g.fillRect(wx + ww + 4, wy, 12, wh);
-            g.fillStyle = "rgba(0,0,0,.25)";
-            for (let k = 0; k < wh; k += 5) {
-              g.fillRect(wx - 16, wy + k, 12, 1);
-              g.fillRect(wx + ww + 4, wy + k, 12, 1);
-            }
-          }
-          g.fillStyle = st.frame;
-          g.fillRect(wx - 4, wy - 4, ww + 8, wh + 8);
-          const gr = g.createLinearGradient(wx, wy, wx + ww, wy + wh);
-          gr.addColorStop(0, "#5a7488");
-          gr.addColorStop(0.35, st.glass);
-          gr.addColorStop(0.6, "#3d5263");
-          gr.addColorStop(1, "#141c24");
-          g.fillStyle = gr;
-          g.fillRect(wx, wy, ww, wh);
-          if (curtain) {
-            g.fillStyle = st.curtain || "rgba(230,225,210,.55)";
-            g.fillRect(wx, wy, ww * 0.3, wh);
-          }
-          g.fillStyle = st.frame;
-          if (ww > 34) g.fillRect(wx + ww / 2 - 1.5, wy, 3, wh);
-          g.fillRect(wx, wy + wh * 0.32, ww, 3);
-          g.fillStyle = "rgba(255,255,255,.35)";
-          g.fillRect(wx - 6, wy + wh + 4, ww + 12, 5);
-          const dg = g.createLinearGradient(0, wy + wh + 9, 0, wy + wh + 50);
-          dg.addColorStop(0, "rgba(0,0,0,.22)");
-          dg.addColorStop(1, "rgba(0,0,0,0)");
-          g.fillStyle = dg;
-          g.fillRect(wx - 2, wy + wh + 9, ww + 4, 41);
-          if (lit) {
-            ge.globalAlpha = 0.75 + R() * 0.25;
-            ge.fillStyle = litCol;
-            ge.fillRect(wx, wy, ww, wh);
-            ge.globalAlpha = 1;
-            ge.fillStyle = "rgba(0,0,0,.6)";
-            if (ww > 34) ge.fillRect(wx + ww / 2 - 1.5, wy, 3, wh);
-            ge.fillRect(wx, wy + wh * 0.32, ww, 3);
-            if (curtain) {
-              ge.fillStyle = "rgba(60,30,10,.7)";
-              ge.fillRect(wx, wy, ww * 0.3, wh);
-            }
-          }
-        }
-      }
-    }
-    for (let i = 0; i < 14; i++) {
-      const x = R() * S, w = 4 + R() * 14;
-      const sg = g.createLinearGradient(0, 0, 0, S);
-      sg.addColorStop(0, "rgba(0,0,0,0)");
-      sg.addColorStop(1, "rgba(20,15,10,.12)");
-      g.fillStyle = sg;
-      g.fillRect(x, 0, w, S);
-    }
-    return { map: tex(c), emi: tex(e) };
-  }
-  function graffiti(g, R, x0, y0, w, h) {
-    g.lineCap = "round";
-    for (let k = 0; k < 2 + R() * 3; k++) {
-      g.strokeStyle = GRAFFITI[R() * GRAFFITI.length | 0];
-      g.lineWidth = 3 + R() * 4;
-      g.beginPath();
-      let x = x0 + R() * w * 0.3, y = y0 + h * 0.3 + R() * h * 0.5;
-      g.moveTo(x, y);
-      for (let i = 0; i < 6; i++) {
-        x += 8 + R() * 16;
-        y += (R() - 0.5) * 26;
-        g.quadraticCurveTo(x - 6, y - 20 * R(), x, y);
-      }
-      g.stroke();
-    }
-  }
-  function makeShopfront(seed, kind) {
-    const R = rng(seed), W = 512, H = 160, c = canvas(W, H), g = c.getContext("2d"), e = canvas(W, H), ge = e.getContext("2d");
-    ge.fillStyle = "#000";
-    ge.fillRect(0, 0, W, H);
-    if (kind === "res") {
-      g.fillStyle = ["#8a7d6a", "#7a6e62", "#958575", "#6f6a63", "#a89880"][R() * 5 | 0];
-      g.fillRect(0, 0, W, H);
-      speckle(g, W, H, 3e3, 0.2, R);
-      g.fillStyle = "rgba(0,0,0,.25)";
-      g.fillRect(0, H - 36, W, 36);
-      for (let b = 0; b < 4; b++) {
-        const x = b * 128;
-        if (b === 1) {
-          g.fillStyle = "#3a2a1e";
-          g.fillRect(x + 40, 40, 48, H - 40);
-          g.fillStyle = "#5a4230";
-          g.fillRect(x + 44, 44, 40, H - 48);
-          g.fillStyle = "#e0c060";
-          g.fillRect(x + 76, 100, 4, 4);
-          ge.fillStyle = "#ffd080";
-          ge.fillRect(x + 60, 30, 8, 6);
-        } else {
-          g.fillStyle = "#e8e0d0";
-          g.fillRect(x + 36, 40, 56, 62);
-          g.fillStyle = "#1a242e";
-          g.fillRect(x + 40, 44, 48, 54);
-          g.strokeStyle = "rgba(230,235,240,.35)";
-          g.lineWidth = 1;
-          g.beginPath();
-          g.moveTo(x + 42, 46);
-          g.lineTo(x + 58, 70);
-          g.stroke();
-          if (R() < 0.35) {
-            ge.fillStyle = "#ffc070";
-            ge.fillRect(x + 40, 44, 48, 54);
-          }
-          if (R() < 0.5) {
-            g.fillStyle = "#6a6a6a";
-            g.fillRect(x + 36, 40, 56, 62);
-            g.fillStyle = "rgba(0,0,0,.3)";
-            for (let k = 40; k < 102; k += 4) g.fillRect(x + 36, k, 56, 1);
-          }
-        }
-      }
-      if (R() < 0.55) graffiti(g, R, R() * 200, 50, 300, 100);
-      blotch(g, W, H, 20, R, "30,25,20", 0.18, 40);
-      return { map: tex(c), emi: tex(e) };
-    }
-    g.fillStyle = "#2c2e32";
-    g.fillRect(0, 0, W, H);
-    const fc = FASCIA[R() * FASCIA.length | 0];
-    g.fillStyle = fc;
-    g.fillRect(0, 0, W, 34);
-    g.fillStyle = "rgba(255,255,255,.18)";
-    g.fillRect(0, 0, W, 4);
-    g.fillStyle = "rgba(0,0,0,.35)";
-    g.fillRect(0, 30, W, 4);
-    g.fillStyle = "rgba(255,255,255,.55)";
-    for (let i = 0; i < 5 + (R() * 4 | 0); i++) {
-      g.fillRect(18 + i * 18 + R() * 4, 10, 10 + R() * 8, 12);
-    }
-    const door = R() * 4 | 0, awning = R() < 0.55, shutter = R() < 0.18;
-    if (awning) {
-      const ac = ["#b3202a", "#1d6b3a", "#1f4f9a", "#c9a040", "#222"][R() * 5 | 0];
-      g.fillStyle = ac;
-      g.fillRect(0, 34, W, 14);
-      g.fillStyle = "rgba(0,0,0,.25)";
-      for (let x = 0; x < W; x += 16) g.fillRect(x, 34, 8, 14);
-    }
-    for (let b = 0; b < 4; b++) {
-      const x = b * 128;
-      g.fillStyle = "#3a3c40";
-      g.fillRect(x, awning ? 48 : 34, 128, H - (awning ? 48 : 34));
-      const gx = x + 10, gy = awning ? 56 : 42, gw = 108, gh = H - (awning ? 64 : 50);
-      if (b === door) {
-        g.fillStyle = "#1a1614";
-        g.fillRect(x + 38, gy, 52, H - gy);
-        g.fillStyle = "#4a6a78";
-        g.fillRect(x + 42, gy + 4, 44, H - gy - 8);
-        g.fillStyle = "#c8c0b0";
-        g.fillRect(x + 78, gy + H * 0.35, 4, 4);
-        ge.fillStyle = "#fff2d0";
-        ge.globalAlpha = 0.7;
-        ge.fillRect(x + 42, gy + 4, 44, H - gy - 8);
-        ge.globalAlpha = 1;
-        continue;
-      }
-      const gr = g.createLinearGradient(gx, gy, gx + gw, gy + gh);
-      gr.addColorStop(0, "#6a8496");
-      gr.addColorStop(0.35, "#2a3a48");
-      gr.addColorStop(0.7, "#1a242c");
-      gr.addColorStop(1, "#0e1418");
-      g.fillStyle = gr;
-      g.fillRect(gx, gy, gw, gh);
-      g.strokeStyle = "rgba(210,220,230,.55)";
-      g.lineWidth = 3;
-      g.strokeRect(gx + 1, gy + 1, gw - 2, gh - 2);
-      g.fillStyle = "rgba(220,230,240,.35)";
-      g.fillRect(gx + gw / 2 - 1.5, gy, 3, gh);
-      g.fillRect(gx, gy + gh * 0.45, gw, 3);
-      g.fillStyle = "rgba(255,255,255,.18)";
-      g.beginPath();
-      g.moveTo(gx + 8, gy + 4);
-      g.lineTo(gx + 28, gy + 4);
-      g.lineTo(gx + 14, gy + gh - 6);
-      g.lineTo(gx - 2, gy + gh - 6);
-      g.fill();
-      g.fillStyle = "rgba(0,0,0,.35)";
-      for (let k = 0; k < 3; k++) g.fillRect(gx + 8 + k * 30, gy + gh - 28 - k * 8, 22, 10);
-      ge.fillStyle = R() < 0.5 ? "#ffe9b8" : "#e8f0ff";
-      ge.globalAlpha = 0.55 + R() * 0.3;
-      ge.fillRect(gx, gy, gw, gh);
-      ge.globalAlpha = 1;
-      ge.fillStyle = "rgba(0,0,0,.45)";
-      ge.fillRect(gx + gw / 2 - 1.5, gy, 3, gh);
-      ge.fillRect(gx, gy + gh * 0.45, gw, 3);
-      if (shutter && b !== door) {
-        g.fillStyle = "#8a8c90";
-        g.fillRect(gx, gy, gw, gh * 0.55);
-        g.fillStyle = "rgba(0,0,0,.25)";
-        for (let k = gy; k < gy + gh * 0.55; k += 5) g.fillRect(gx, k, gw, 1.5);
-        ge.fillStyle = "#000";
-        ge.fillRect(gx, gy, gw, gh * 0.55);
-      }
-    }
-    blotch(g, W, H, 10, R, "20,20,20", 0.2, 30);
-    return { map: tex(c), emi: tex(e) };
-  }
-  function noiseTex(base, amp, n, size, seed, extra) {
-    const R = rng(seed), c = canvas(size, size), g = c.getContext("2d");
-    g.fillStyle = base;
-    g.fillRect(0, 0, size, size);
-    speckle(g, size, size, n, amp, R);
-    if (extra) extra(g, R, size);
-    return tex(c);
-  }
-  function roofTex(seed, kind = 0) {
-    const R = rng(seed), S = 512, c = canvas(S, S), g = c.getContext("2d");
-    if (kind === 4) {
-      g.fillStyle = "#8a3a28";
-      g.fillRect(0, 0, S, S);
-      for (let y = 0; y < S; y += 14) {
-        const off = y / 14 % 2 ? 0 : 10;
-        for (let x = -20; x < S; x += 20) {
-          const v = (R() - 0.5) * 28;
-          g.fillStyle = `rgb(${140 + v},${55 + v * 0.4},${38 + v * 0.3})`;
-          g.beginPath();
-          g.moveTo(x + off, y + 14);
-          g.quadraticCurveTo(x + off + 10, y + 2, x + off + 20, y + 14);
-          g.fill();
-        }
-        g.fillStyle = "rgba(0,0,0,.25)";
-        g.fillRect(0, y + 12, S, 2);
-      }
-      speckle(g, S, S, 8e3, 0.2, R);
-      return tex(c);
-    }
-    if (kind === 5) {
-      for (let y = 0; y < S; y++) {
-        const t = y / S;
-        const r = 40 + t * 30, gg = 90 + t * 50, b = 70 + t * 40;
-        g.fillStyle = `rgb(${r | 0},${gg | 0},${b | 0})`;
-        g.fillRect(0, y, S, 1);
-      }
-      for (let x = 0; x < S; x += 48) {
-        g.fillStyle = "rgba(255,255,255,.12)";
-        g.fillRect(x, 0, 2, S);
-        g.fillStyle = "rgba(0,0,0,.18)";
-        g.fillRect(x + 24, 0, 2, S);
-      }
-      blotch(g, S, S, 20, R, "20,60,40", 0.2, 80);
-      return tex(c);
-    }
-    g.fillStyle = "#c4c4c4";
-    g.fillRect(0, 0, S, S);
-    if (kind === 0) {
-      speckle(g, S, S, 26e3, 0.42, R);
-      wrapDraw(g, S, S, () => {
-        blotch(g, S, S, 10, R, "0,0,0", 0.1, 120);
-        blotch(g, S, S, 6, R, "255,255,255", 0.08, 90);
-      });
-      g.fillStyle = "rgba(0,0,0,.22)";
-      for (let y = 0; y < S; y += 128) g.fillRect(0, y, S, 3);
-    } else if (kind === 1) {
-      for (let x = 0; x < S; x += 64) {
-        const v = (R() - 0.5) * 30;
-        g.fillStyle = `rgb(${196 + v},${196 + v},${196 + v})`;
-        g.fillRect(x, 0, 64, S);
-        g.fillStyle = "rgba(0,0,0,.35)";
-        g.fillRect(x, 0, 3, S);
-        g.fillStyle = "rgba(255,255,255,.18)";
-        g.fillRect(x + 3, 0, 2, S);
-      }
-      speckle(g, S, S, 9e3, 0.25, R);
-      wrapDraw(g, S, S, () => blotch(g, S, S, 8, R, "0,0,0", 0.14, 100));
-      for (let i = 0; i < 6; i++) {
-        g.fillStyle = "rgba(0,0,0,.2)";
-        g.fillRect(R() * S, R() * S, 20 + R() * 50, 14 + R() * 30);
-      }
-    } else if (kind === 2) {
-      const t = 64;
-      for (let y = 0; y < S; y += t) for (let x = 0; x < S; x += t) {
-        const v = (R() - 0.5) * 34;
-        g.fillStyle = `rgb(${200 + v},${198 + v},${192 + v})`;
-        g.fillRect(x, y, t, t);
-      }
-      speckle(g, S, S, 12e3, 0.25, R);
-      g.fillStyle = "rgba(30,30,30,.45)";
-      for (let y = 0; y < S; y += t) g.fillRect(0, y, S, 2.5);
-      for (let x = 0; x < S; x += t) g.fillRect(x, 0, 2.5, S);
-      wrapDraw(g, S, S, () => blotch(g, S, S, 8, R, "40,50,30", 0.18, 90));
-    } else {
-      for (let x = 0; x < S; x += 16) {
-        const gr = g.createLinearGradient(x, 0, x + 16, 0);
-        gr.addColorStop(0, "#9a9a9a");
-        gr.addColorStop(0.5, "#e2e2e2");
-        gr.addColorStop(1, "#8a8a8a");
-        g.fillStyle = gr;
-        g.fillRect(x, 0, 16, S);
-      }
-      g.fillStyle = "rgba(0,0,0,.3)";
-      for (let y = 0; y < S; y += 170) g.fillRect(0, y, S, 2);
-      wrapDraw(g, S, S, () => blotch(g, S, S, 12, R, "90,50,20", 0.2, 70));
-    }
-    return tex(c);
-  }
-  function asphaltTex(seed) {
-    return noiseTex("#2f4a46", 0.28, 22e3, 512, seed, (g, R, s) => {
-      wrapDraw(g, s, s, () => {
-        blotch(g, s, s, 30, R, "10,18,14", 0.22, 80);
-        blotch(g, s, s, 12, R, "90,100,95", 0.12, 60);
-      });
-      g.strokeStyle = "rgba(20,20,20,.45)";
-      g.lineWidth = 1.2;
-      for (let i = 0; i < 10; i++) {
-        g.beginPath();
-        let x = R() * s, y = R() * s;
-        g.moveTo(x, y);
-        for (let k = 0; k < 8; k++) {
-          x += (R() - 0.5) * 30;
-          y += (R() - 0.5) * 30;
-          g.lineTo(x, y);
-        }
-        g.stroke();
-      }
-      for (let i = 0; i < 5; i++) {
-        {
-          const v = R() < 0.5 ? 30 : 85;
-          g.fillStyle = `rgba(${v},${v},${v + 3},.35)`;
-        }
-        g.fillRect(R() * s, R() * s, 30 + R() * 80, 20 + R() * 50);
-      }
-    });
-  }
-  function paveTex(seed, base = "#c4b496", tile = 32, joint = "rgba(40,35,30,.45)") {
-    return noiseTex(base, 0.18, 9e3, 512, seed, (g, R, s) => {
-      for (let y = 0; y < s; y += tile) for (let x = 0; x < s; x += tile) {
-        const v = (R() - 0.5) * 18;
-        g.fillStyle = `rgba(${v > 0 ? 255 : 0},${v > 0 ? 255 : 0},${v > 0 ? 255 : 0},${Math.abs(v) / 120})`;
-        g.fillRect(x, y, tile, tile);
-      }
-      g.fillStyle = joint;
-      for (let y = 0; y < s; y += tile) g.fillRect(0, y, s, 1.5);
-      for (let x = 0; x < s; x += tile) g.fillRect(x, 0, 1.5, s);
-      wrapDraw(g, s, s, () => blotch(g, s, s, 14, R, "30,25,20", 0.22, 70));
-      for (let i = 0; i < 40; i++) {
-        g.fillStyle = "rgba(30,30,30,.35)";
-        const r = 1 + R() * 2;
-        g.beginPath();
-        g.arc(R() * s, R() * s, r, 0, 7);
-        g.fill();
-      }
-    });
-  }
-  function plazaTex(seed) {
-    return noiseTex("#a8927a", 0.18, 9e3, 512, seed, (g, R, s) => {
-      for (let y = 0; y < s; y += 16) {
-        const off = y / 16 % 2 ? 0 : 16;
-        for (let x = -32; x < s; x += 32) {
-          const v = R();
-          g.fillStyle = v < 0.33 ? "rgba(140,90,70,.35)" : v < 0.66 ? "rgba(200,180,150,.25)" : "rgba(90,80,75,.2)";
-          g.fillRect(x + off, y, 31, 15);
-        }
-      }
-      g.fillStyle = "rgba(50,40,30,.35)";
-      for (let y = 0; y < s; y += 16) g.fillRect(0, y, s, 1);
-      wrapDraw(g, s, s, () => blotch(g, s, s, 12, R, "40,30,20", 0.2, 70));
-    });
-  }
-  function grassTex(seed) {
-    return noiseTex("#4f7a32", 0.4, 26e3, 256, seed, (g, R, s) => {
-      wrapDraw(g, s, s, () => {
-        blotch(g, s, s, 20, R, "30,50,10", 0.35, 40);
-        blotch(g, s, s, 10, R, "140,150,60", 0.25, 30);
-      });
-    });
-  }
-  function radialTex(inner = "rgba(255,210,140,1)") {
-    const c = canvas(128, 128), g = c.getContext("2d");
-    const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
-    gr.addColorStop(0, inner);
-    gr.addColorStop(0.35, inner.replace(/[\d.]+\)$/, "0.45)"));
-    gr.addColorStop(1, "rgba(0,0,0,0)");
-    g.fillStyle = gr;
-    g.fillRect(0, 0, 128, 128);
-    return tex(c, true, false);
-  }
-  function blobTex() {
-    const c = canvas(64, 64), g = c.getContext("2d");
-    const gr = g.createRadialGradient(32, 32, 4, 32, 32, 32);
-    gr.addColorStop(0, "rgba(0,0,0,.75)");
-    gr.addColorStop(1, "rgba(0,0,0,0)");
-    g.fillStyle = gr;
-    g.fillRect(0, 0, 64, 64);
-    return tex(c, false, false);
-  }
-  function coneTex() {
-    const c = canvas(64, 128), g = c.getContext("2d");
-    const gr = g.createLinearGradient(0, 128, 0, 0);
-    gr.addColorStop(0, "rgba(255,240,200,.9)");
-    gr.addColorStop(1, "rgba(255,240,200,0)");
-    g.fillStyle = gr;
-    g.beginPath();
-    g.moveTo(26, 128);
-    g.lineTo(38, 128);
-    g.lineTo(64, 0);
-    g.lineTo(0, 0);
-    g.fill();
-    return tex(c, true, false);
-  }
-  function signTex(text, opt = {}) {
-    const W = opt.w || 512, H = opt.h || 128, c = canvas(W, H), g = c.getContext("2d");
-    const bg = opt.bg || "#140d18", fg = opt.fg || "#ff3fa4", font = opt.font || '900 76px "Arial Black", Impact, sans-serif';
-    g.fillStyle = bg;
-    g.fillRect(0, 0, W, H);
-    g.strokeStyle = opt.border || fg;
-    g.lineWidth = 6;
-    g.strokeRect(5, 5, W - 10, H - 10);
-    g.font = font;
-    g.textAlign = "center";
-    g.textBaseline = "middle";
-    let sz = parseInt(font.match(/(\d+)px/)[1]);
-    while (g.measureText(text).width > W - 40 && sz > 20) {
-      sz -= 4;
-      g.font = font.replace(/\d+px/, sz + "px");
-    }
-    g.shadowColor = fg;
-    g.shadowBlur = opt.blur ?? 18;
-    g.fillStyle = opt.core || "#fff";
-    g.fillText(text, W / 2, H / 2 + 4);
-    g.shadowBlur = 0;
-    g.lineWidth = 2;
-    g.strokeStyle = fg;
-    g.strokeText(text, W / 2, H / 2 + 4);
-    if (opt.sub) {
-      g.font = "bold 22px Arial, sans-serif";
-      g.fillStyle = fg;
-      g.fillText(opt.sub, W / 2, H - 22);
-    }
-    return tex(c, true, false);
-  }
-  function roofPaintTex(text, fg, bg, seed, opt = {}) {
-    const R = rng(seed), W = 1024, H = opt.square ? 1024 : 288, c = canvas(W, H), g = c.getContext("2d");
-    g.fillStyle = bg;
-    g.fillRect(0, 0, W, H);
-    if (opt.stripes) {
-      g.fillStyle = opt.stripes;
-      for (let x = -H; x < W; x += 90) {
-        g.beginPath();
-        g.moveTo(x, 0);
-        g.lineTo(x + 45, 0);
-        g.lineTo(x + 45 + H, H);
-        g.lineTo(x + H, H);
-        g.fill();
-      }
-      g.fillStyle = bg;
-      g.fillRect(40, 40, W - 80, H - 80);
-    }
-    g.strokeStyle = fg;
-    g.lineWidth = 14;
-    g.strokeRect(22, 22, W - 44, H - 44);
-    let sz = opt.square ? 620 : 190;
-    const font = /* @__PURE__ */ __name((s) => `900 ${s}px "Arial Black", Impact, sans-serif`, "font");
-    g.font = font(sz);
-    while (g.measureText(text).width > W - 120 && sz > 40) {
-      sz -= 6;
-      g.font = font(sz);
-    }
-    g.textAlign = "center";
-    g.textBaseline = "middle";
-    g.fillStyle = "rgba(0,0,0,.25)";
-    g.fillText(text, W / 2 + 8, H / 2 + 14);
-    g.fillStyle = fg;
-    g.fillText(text, W / 2, H / 2 + 6);
-    if (opt.sub) {
-      g.font = "bold 40px Arial, sans-serif";
-      g.fillStyle = fg;
-      g.fillText(opt.sub, W / 2, H - 58);
-    }
-    speckle(g, W, H, 3e4, 0.35, R);
-    blotch(g, W, H, 40, R, "0,0,0", 0.25, 140);
-    blotch(g, W, H, 20, R, "255,255,255", 0.12, 120);
-    for (let i = 0; i < 60; i++) {
-      g.fillStyle = `rgba(${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 255},.12)`;
-      g.fillRect(R() * W, R() * H, 20 + R() * 120, 2 + R() * 4);
-    }
-    return tex(c, true, false);
-  }
-  function solarTex() {
-    const c = canvas(64, 128), g = c.getContext("2d");
-    g.fillStyle = "#16213a";
-    g.fillRect(0, 0, 64, 128);
-    g.fillStyle = "#2a3d66";
-    for (let y = 0; y < 128; y += 16) for (let x = 0; x < 64; x += 16) g.fillRect(x + 1.5, y + 1.5, 13, 13);
-    g.strokeStyle = "#b8c0c8";
-    g.lineWidth = 3;
-    g.strokeRect(1.5, 1.5, 61, 125);
-    return tex(c, true, false);
-  }
-  function leafTex(seed) {
-    const R = rng(seed), S = 256, c = canvas(S, S), g = c.getContext("2d");
-    g.fillStyle = "#d4d4d4";
-    g.fillRect(0, 0, S, S);
-    wrapDraw(g, S, S, () => {
-      for (let i = 0; i < 900; i++) {
-        const x = R() * S, y = R() * S, r = 3 + R() * 9;
-        const v = R();
-        g.fillStyle = v < 0.4 ? "rgba(40,40,40,.18)" : v < 0.8 ? "rgba(255,255,255,.14)" : "rgba(0,0,0,.22)";
-        g.beginPath();
-        g.arc(x, y, r, 0, 7);
-        g.fill();
-      }
-    });
-    const c2 = canvas(S, S), g2 = c2.getContext("2d");
-    g2.filter = "blur(1.5px)";
-    for (const dx of [-S, 0, S]) for (const dy of [-S, 0, S]) g2.drawImage(c, dx, dy);
-    return tex(c2, true, true);
-  }
-  function hazardTex() {
-    const c = canvas(32, 256), g = c.getContext("2d");
-    for (let y = 0; y < 256; y += 28) {
-      g.fillStyle = Math.floor(y / 28) % 2 ? "#f0cc22" : "#16140e";
-      g.fillRect(0, y, 32, 28);
-    }
-    return tex(c);
-  }
-  var FACADE_STYLES, LITC, FASCIA, GRAFFITI;
-  var init_tex = __esm({
-    "src/tex.js"() {
-      init_three_module();
-      __name(rng, "rng");
-      __name(canvas, "canvas");
-      __name(tex, "tex");
-      __name(speckle, "speckle");
-      __name(blotch, "blotch");
-      __name(wrapDraw, "wrapDraw");
-      FACADE_STYLES = [
-        { id: "altbau_cream", wall: "#d8c49a", pat: "plaster", frame: "#f3ead6", glass: "#2c3b4c", ww: 44, wh: 66, wy: 30, band: "#c4ad80", orn: true },
-        { id: "brick_red", wall: "#9a4a35", pat: "brick", mortar: "#7a3a2a", frame: "#e8e2d6", glass: "#26323f", ww: 42, wh: 62, wy: 32, band: "#7c3a2a" },
-        { id: "concrete70", wall: "#a7a397", pat: "panel", frame: "#3a3a3a", glass: "#22303a", ribbon: true, wy: 42, wh: 44, band: "#8d897e" },
-        { id: "office_glass", wall: "#24424c", pat: "glass", frame: "#90a4a8", glass: "#1d3a46" },
-        { id: "ochre", wall: "#c98d45", pat: "plaster", frame: "#efe4cc", glass: "#28343f", ww: 46, wh: 60, wy: 34, band: "#b07a38", shutter: "#6e4a2a" },
-        { id: "pastel_rose", wall: "#c7928a", pat: "plaster", frame: "#f1ebe4", glass: "#2a3540", ww: 40, wh: 64, wy: 30, band: "#b07c74" },
-        { id: "brick_dark", wall: "#5d3b30", pat: "brick", mortar: "#46302a", frame: "#cfc6b4", glass: "#1f2a33", ww: 48, wh: 58, wy: 36, band: "#4a2e26" },
-        { id: "mint_panel", wall: "#86a093", pat: "panel", frame: "#e6eee8", glass: "#24333b", ww: 56, wh: 52, wy: 40, band: "#6f887b" },
-        { id: "blue_plaster", wall: "#7f97ad", pat: "plaster", frame: "#eef0f2", glass: "#26313b", ww: 44, wh: 60, wy: 34, band: "#6a8398" },
-        { id: "yellow_brick", wall: "#c9b06a", pat: "brick", mortar: "#a8925a", frame: "#3b3b3b", glass: "#25313b", ww: 50, wh: 56, wy: 38, band: "#a68e52" }
-      ];
-      LITC = ["#ffcf7a", "#ffb862", "#ffe3a6", "#ffd28c", "#a9c8ff", "#ffc06e", "#fff0c8"];
-      __name(makeFacade, "makeFacade");
-      FASCIA = ["#b3202a", "#1d6b3a", "#1f4f9a", "#e0b020", "#efefe8", "#6a2a8a", "#d0601a", "#202020"];
-      GRAFFITI = ["#e83a8a", "#33c4e8", "#f4e23a", "#7ee05a", "#ffffff", "#ff7a2a"];
-      __name(graffiti, "graffiti");
-      __name(makeShopfront, "makeShopfront");
-      __name(noiseTex, "noiseTex");
-      __name(roofTex, "roofTex");
-      __name(asphaltTex, "asphaltTex");
-      __name(paveTex, "paveTex");
-      __name(plazaTex, "plazaTex");
-      __name(grassTex, "grassTex");
-      __name(radialTex, "radialTex");
-      __name(blobTex, "blobTex");
-      __name(coneTex, "coneTex");
-      __name(signTex, "signTex");
-      __name(roofPaintTex, "roofPaintTex");
-      __name(solarTex, "solarTex");
-      __name(leafTex, "leafTex");
-      __name(hazardTex, "hazardTex");
-    }
-  });
-
-  // src/city.js
-  function pip(x, z, p) {
-    let ins = false;
-    for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
-      const xi = p[i][0], zi = p[i][1], xj = p[j][0], zj = p[j][1];
-      if (zi > z !== zj > z && x < (xj - xi) * (z - zi) / (zj - zi) + xi) ins = !ins;
-    }
-    return ins;
-  }
-  function segDist(px2, pz2, ax, az, bx, bz) {
-    const dx = bx - ax, dz = bz - az, l = dx * dx + dz * dz;
-    let t = l ? ((px2 - ax) * dx + (pz2 - az) * dz) / l : 0;
-    t = Math.max(0, Math.min(1, t));
-    const cx = ax + t * dx, cz = az + t * dz;
-    return [Math.hypot(px2 - cx, pz2 - cz), cx, cz, t];
-  }
-  function buildCity(scene, D, opts) {
-    const R = rng(1234), out = { grid: new EdgeGrid(), buildings: [], neonMats: [], emiMats: [], shopMats: [], pools: null, roadsDrive: [], junctions: [], signs: [] };
-    const shadeHex = /* @__PURE__ */ __name((h, f, hue = 0) => {
-      const c = new Color(h);
-      const hsl = {};
-      c.getHSL(hsl);
-      c.setHSL((hsl.h + hue + 1) % 1, hsl.s, Math.max(0, Math.min(1, hsl.l * f)));
-      return "#" + c.getHexString();
-    }, "shadeHex");
-    const NV = 3, VR = rng(77);
-    const facVar = [];
-    FACADE_STYLES.forEach((st, i) => {
-      for (let v = 0; v < NV; v++) {
-        let s2 = st;
-        if (v > 0) {
-          const R2 = VR;
-          s2 = { ...st, wall: shadeHex(st.wall, 0.8 + R2() * 0.4, (R2() - 0.5) * 0.06) };
-          if (st.pat === "glass") {
-            s2.col = [24, 32, 48][R2() * 3 | 0];
-            s2.gcols = [["#2f5866", "#4f8090", "#1c3a44"], ["#3a4a5a", "#7a8c9c", "#1e2630"], ["#2a4a3a", "#5a8a70", "#16302a"], ["#4a3e30", "#9a8060", "#2a2018"]][R2() * 4 | 0];
-            s2.frame = ["#90a4a8", "#c8c8c0", "#3a3a3a"][R2() * 3 | 0];
-          } else if (!st.ribbon) {
-            s2.ww = Math.round(st.ww * (0.75 + R2() * 0.45));
-            s2.wh = Math.round(Math.min(78, st.wh * (0.85 + R2() * 0.3)));
-            s2.bays = R2() < 0.35 ? 3 : R2() < 0.2 ? 5 : 4;
-            if (s2.bays === 5) s2.ww = Math.min(s2.ww, 40);
-            s2.pair = s2.bays === 3 && R2() < 0.6;
-            s2.balc = R2() < 0.3 ? ["#d8d8d0", "#3a3a3a", "#8a5a3a"][R2() * 3 | 0] : null;
-            if (R2() < 0.3) s2.band = null;
-            if (R2() < 0.4) s2.frame = ["#f3ead6", "#3b3b3b", "#e8e2d6", "#6a4a30", "#2a4a6a"][R2() * 5 | 0];
-          } else {
-            s2.frame = ["#3a3a3a", "#d0d0c8", "#6a2a2a"][R2() * 3 | 0];
-            s2.wh = Math.round(st.wh * (0.8 + R2() * 0.5));
-          }
-        }
-        facVar.push({ style: i, st: s2, seed: 100 + i * 7 + v });
-      }
-    });
-    const facMats = facVar.map(({ st, seed }) => {
-      const t = makeFacade(st, seed);
-      const m = new MeshStandardMaterial({ map: t.map, emissiveMap: t.emi, emissive: 16777215, emissiveIntensity: 0.5, roughness: st.pat === "glass" ? 0.35 : 0.9, metalness: st.pat === "glass" ? 0.25 : 0 });
-      out.emiMats.push(m);
-      return m;
-    });
-    const shopMats = [0, 1, 2, 3, 4, 5].map((i) => {
-      const t = makeShopfront(500 + i, "shop");
-      const m = new MeshStandardMaterial({ map: t.map, emissiveMap: t.emi, emissive: 16777215, emissiveIntensity: 0.6, roughness: 0.6 });
-      out.shopMats.push(m);
-      return m;
-    });
-    const resMats = [0, 1, 2].map((i) => {
-      const t = makeShopfront(700 + i, "res");
-      const m = new MeshStandardMaterial({ map: t.map, emissiveMap: t.emi, emissive: 16777215, emissiveIntensity: 0.5, roughness: 0.95 });
-      out.emiMats.push(m);
-      return m;
-    });
-    const trimMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: DoubleSide });
-    const roofMats = [0, 1, 2, 3, 4, 5].map((k) => new MeshStandardMaterial({ map: roofTex(9 + k, k), vertexColors: true, roughness: k === 3 || k === 5 ? 0.55 : 0.95, metalness: k === 3 || k === 5 ? 0.35 : 0 }));
-    const facG = facMats.map(() => new Geo());
-    const facOf = /* @__PURE__ */ __name((style, r) => style * NV + (r() * NV | 0), "facOf"), shopG = shopMats.map(() => new Geo()), resG = resMats.map(() => new Geo()), trimG = new Geo(), roofGs = [0, 1, 2, 3, 4, 5].map(() => new Geo());
-    const drive = /* @__PURE__ */ new Set(["primary", "primary_link", "secondary", "tertiary", "residential", "unclassified", "living_street", "service"]);
-    const roadSegs = [];
-    for (const r of D.roads) if (r.t !== "foot") for (let i = 0; i < r.p.length - 1; i++) roadSegs.push([r.p[i][0], r.p[i][1], r.p[i + 1][0], r.p[i + 1][1], r.w, r]);
-    const segGrid = /* @__PURE__ */ new Map();
-    const SC = 30;
-    for (const s of roadSegs) {
-      const x0 = Math.floor(Math.min(s[0], s[2]) / SC) - 1, x1 = Math.floor(Math.max(s[0], s[2]) / SC) + 1, z0 = Math.floor(Math.min(s[1], s[3]) / SC) - 1, z1 = Math.floor(Math.max(s[1], s[3]) / SC) + 1;
-      for (let i = x0; i <= x1; i++) for (let j = z0; j <= z1; j++) {
-        const k = i * 1009 + j;
-        if (!segGrid.has(k)) segGrid.set(k, []);
-        segGrid.get(k).push(s);
-      }
-    }
-    out.nearRoad = (x, z) => {
-      let best = null, bd = 1e9;
-      for (const s of segGrid.get(Math.floor(x / SC) * 1009 + Math.floor(z / SC)) || []) {
-        const [d] = segDist(x, z, s[0], s[1], s[2], s[3]);
-        const dd = d - s[4] / 2;
-        if (dd < bd) {
-          bd = dd;
-          best = s;
-        }
-      }
-      return best ? { d: bd, road: best[5], w: best[4] } : null;
-    };
-    const poiByB = /* @__PURE__ */ new Map();
-    const roofPaint = [], solarL = [], skyRows = [];
-    let paintN = 0;
-    const FIELD_COLS = [[0.34, 0.5, 0.32], [0.64, 0.27, 0.21], [0.8, 0.8, 0.76], [0.32, 0.42, 0.58], [0.74, 0.63, 0.42], [0.22, 0.22, 0.25], [0.55, 0.58, 0.36], [0.7, 0.45, 0.25]];
-    for (const b of D.buildings) {
-      const p = b.p, n = p.length, h = b.h, r = rng(b.r);
-      const big = h > 19;
-      let style;
-      if (b.k === "church") style = 1;
-      else if (b.k === "industrial") style = [2, 7, 6][r() * 3 | 0];
-      else if (b.k === "school") style = [2, 0, 8][r() * 3 | 0];
-      else if (b.k === "station") style = [3, 2, 7][r() * 3 | 0];
-      else if (b.k === "greenhouse") style = 3;
-      else if (big) style = [2, 3, 2, 7, 6, 3][r() * 6 | 0];
-      else style = [0, 0, 1, 4, 5, 6, 8, 9, 0, 4][r() * 10 | 0];
-      let roofCol = ROOF_COLS[r() * ROOF_COLS.length | 0];
-      if (b.roofCol) {
-        const c = new Color(b.roofCol);
-        roofCol = [c.r, c.g, c.b];
-      } else if (b.k === "church") roofCol = [0.28, 0.42, 0.38];
-      else if (b.k === "industrial") roofCol = [0.55, 0.56, 0.58];
-      else if (b.k === "garage") roofCol = [0.45, 0.45, 0.48];
-      if (b.col) {
-      }
-      const fvi = facOf(style, r), uo = (r() * 4 | 0) / 4;
-      const wallHex = new Color(facVar[fvi].st.wall);
-      const trim = [wallHex.r * 0.75, wallHex.g * 0.75, wallHex.b * 0.75];
-      const capC = [Math.min(1, wallHex.r * 1.1 + 0.08), Math.min(1, wallHex.g * 1.1 + 0.08), Math.min(1, wallHex.b * 1.1 + 0.08)];
-      const shopish = b.k === "shop" || r() < 0.55;
-      const gH = Math.min(h - 0.8, shopish ? 4.2 : 3.6);
-      const top = h - 0.6;
-      const para = 0.45;
-      const nf = Math.max(1, Math.round((top - gH) / LEVEL_H));
-      const shopIdx = r() * shopMats.length | 0, resIdx = r() * resMats.length | 0;
-      const edges = [];
-      const borderQ = [];
-      for (let i = 0; i < n; i++) {
-        const a = p[i], c = p[(i + 1) % n];
-        const dx = c[0] - a[0], dz = c[1] - a[1], len = Math.hypot(dx, dz);
-        if (len < 0.05) continue;
-        let nx = dz / len, nz = -dx / len;
-        const mx = (a[0] + c[0]) / 2, mz = (a[1] + c[1]) / 2;
-        if (pip(mx + nx * 0.2, mz + nz * 0.2, p)) {
-          nx = -nx;
-          nz = -nz;
-        }
-        const rx = nz, rz = -nx;
-        let A = a, B = c;
-        if (dx * rx + dz * rz < 0) {
-          A = c;
-          B = a;
-        }
-        out.grid.add(a[0], a[1], c[0], c[1]);
-        const nb = Math.max(1, Math.round(len / 3.5)), U = nb / 4;
-        const N = [nx, 0, nz];
-        const P = /* @__PURE__ */ __name((q, y) => [q[0], y, q[1]], "P");
-        const nr = out.nearRoad(mx + nx * 3, mz + nz * 3);
-        const street = nr && nr.d < 10;
-        const gGeo = street && shopish ? shopG[shopIdx] : resG[resIdx];
-        gGeo.quad(P(A, 0), P(B, 0), P(B, gH), P(A, gH), N, [0, 0], [U, 0], [U, 1], [0, 1]);
-        if (top > gH + 0.5) facG[fvi].quad(P(A, gH), P(B, gH), P(B, top), P(A, top), N, [uo, 0], [uo + U, 0], [uo + U, nf / 4], [uo, nf / 4]);
-        trimG.quad(P(A, Math.max(gH, top)), P(B, Math.max(gH, top)), P(B, h + para), P(A, h + para), N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
-        if (top > gH + 0.5) {
-          const o2 = 0.12;
-          trimG.quad([A[0] + nx * o2, gH + 0.25, A[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [B[0], gH + 0.25, B[1]], [A[0], gH + 0.25, A[1]], [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
-          trimG.quad([A[0] + nx * o2, gH, A[1] + nz * o2], [B[0] + nx * o2, gH, B[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [A[0] + nx * o2, gH + 0.25, A[1] + nz * o2], N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
-        }
-        const w = 0.35;
-        const Ai = [A[0] - nx * w, A[1] - nz * w], Bi = [B[0] - nx * w, B[1] - nz * w];
-        trimG.quad(P(A, h + para), P(B, h + para), P(Bi, h + para), P(Ai, h + para), [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
-        trimG.quad(P(Bi, h), P(Ai, h), P(Ai, h + para), P(Bi, h + para), [-nx, 0, -nz], [0, 0], [1, 0], [1, 1], [0, 1], [roofCol[0] * 0.8, roofCol[1] * 0.8, roofCol[2] * 0.8]);
-        {
-          const bw = 1.1;
-          const rc = [roofCol[0] * 0.72, roofCol[1] * 0.72, roofCol[2] * 0.74];
-          borderQ.push([[A[0], h + 0.03, A[1]], [B[0], h + 0.03, B[1]], [B[0] - nx * bw, h + 0.03, B[1] - nz * bw], [A[0] - nx * bw, h + 0.03, A[1] - nz * bw], rc]);
-        }
-        edges.push({ A, B, nx, nz, len, street, mx, mz });
-      }
-      const v2 = p.map((q) => new Vector2(q[0], q[1]));
-      let tris = [];
-      try {
-        tris = ShapeUtils.triangulateShape(v2, []);
-      } catch (e) {
-      }
-      let le = edges[0] || { A: [0, 0], B: [1, 0], len: 1 };
-      for (const e of edges) if (e.len > le.len) le = e;
-      const ux = (le.B[0] - le.A[0]) / le.len, uz = (le.B[1] - le.A[1]) / le.len;
-      let rk = b.k === "garage" ? 3 : b.k === "church" ? 5 : b.k === "industrial" ? 3 : h > 19 ? [0, 2, 1, 0][r() * 4 | 0] : [4, 4, 1, 0, 4][r() * 5 | 0];
-      if (b.roof === "gabled" || b.roof === "hipped" || b.roof === "gambrel") rk = 4;
-      if (b.roof === "flat" || b.roof === "skillion") rk = 0;
-      if (b.roof === "metal" || b.roof === "corrugated") rk = 3;
-      if (b.roof === "dome" || b.roof === "onion") rk = 5;
-      const roofG = roofGs[rk];
-      const RS = rk === 3 || rk === 5 ? 8 : 11;
-      const ruv = /* @__PURE__ */ __name((q) => [(q[0] * ux + q[1] * uz) / RS, (-q[0] * uz + q[1] * ux) / RS], "ruv");
-      const roofTri = /* @__PURE__ */ __name((a, bq, c, y, col2) => {
-        const cr = (bq[0] - a[0]) * (c[1] - a[1]) - (bq[1] - a[1]) * (c[0] - a[0]);
-        const [x, yy, z] = cr < 0 ? [a, bq, c] : [a, c, bq];
-        roofG.tri([x[0], y, x[1]], [yy[0], y, yy[1]], [z[0], y, z[1]], [0, 1, 0], ruv(x), ruv(yy), ruv(z), col2);
-      }, "roofTri");
-      for (const t of tris) roofTri(p[t[0]], p[t[1]], p[t[2]], h, roofCol);
-      for (const q of borderQ) {
-        roofTri([q[0][0], q[0][2]], [q[1][0], q[1][2]], [q[2][0], q[2][2]], h + 0.03, q[4]);
-        roofTri([q[0][0], q[0][2]], [q[2][0], q[2][2]], [q[3][0], q[3][2]], h + 0.03, q[4]);
-      }
-      const annex = [];
-      let area3 = 0;
-      for (let i = 0; i < n; i++) {
-        const a = p[i], c = p[(i + 1) % n];
-        area3 += a[0] * c[1] - c[0] * a[1];
-      }
-      area3 = Math.abs(area3) / 2;
-      if (area3 > 350 && b.k !== "church") {
-        const na = area3 > 3e3 ? 6 : area3 > 1500 ? 4 : area3 > 700 ? 2 : 1;
-        let cx = 0, cz = 0;
-        for (const q of p) {
-          cx += q[0];
-          cz += q[1];
-        }
-        cx /= n;
-        cz /= n;
-        for (let k = 0, tries = 0; k < na && tries < 120; tries++) {
-          const w = 5 + r() * Math.min(10, Math.sqrt(area3) * 0.25), d = 4 + r() * Math.min(8, Math.sqrt(area3) * 0.2), ah = 2.4 + r() * 1.6;
-          const ox = cx + (r() - 0.5) * Math.sqrt(area3) * 0.7, oz = cz + (r() - 0.5) * Math.sqrt(area3) * 0.7;
-          const C = [[-w / 2, -d / 2], [w / 2, -d / 2], [w / 2, d / 2], [-w / 2, d / 2]].map(([a2, b2]) => [ox + a2 * ux - b2 * uz, oz + a2 * uz + b2 * ux]);
-          if (!C.every((q) => pip(q[0], q[1], p))) continue;
-          if (C.some((q) => edges.some((e) => segDist(q[0], q[1], e.A[0], e.A[1], e.B[0], e.B[1])[0] < 1.5))) continue;
-          if (annex.some((A) => Math.hypot(A.x - ox, A.z - oz) < A.r + Math.hypot(w, d) / 2)) continue;
-          annex.push({ x: ox, z: oz, r: Math.hypot(w, d) / 2, C, h: h + ah });
-          k++;
-          const wc = [wallHex.r * 0.9, wallHex.g * 0.9, wallHex.b * 0.9];
-          for (let i = 0; i < 4; i++) {
-            const A = C[i], B2 = C[(i + 1) % 4];
-            const ex = B2[0] - A[0], ez = B2[1] - A[1], el = Math.hypot(ex, ez);
-            const N2 = [ez / el, 0, -ex / el];
-            const nn = pip((A[0] + B2[0]) / 2 + N2[0] * 0.1, (A[1] + B2[1]) / 2 + N2[2] * 0.1, C) ? [-N2[0], 0, -N2[2]] : N2;
-            trimG.quad([A[0], h, A[1]], [B2[0], h, B2[1]], [B2[0], h + ah, B2[1]], [A[0], h + ah, A[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], wc);
-            trimG.quad([A[0], h + ah, A[1]], [B2[0], h + ah, B2[1]], [B2[0], h + ah + 0.3, B2[1]], [A[0], h + ah + 0.3, A[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], capC);
-          }
-          const rc2 = [roofCol[0] * 0.85, roofCol[1] * 0.85, roofCol[2] * 0.85];
-          roofTri(C[0], C[1], C[2], h + ah + 0.3, rc2);
-          roofTri(C[0], C[2], C[3], h + ah + 0.3, rc2);
-        }
-      }
-      const clear = [];
-      if (area3 > 260 && b.k !== "church") {
-        const vx = -uz, vz = ux;
-        let s0 = 1e9, s1 = -1e9, t0 = 1e9, t1 = -1e9;
-        for (const q of p) {
-          const ss = q[0] * ux + q[1] * uz, tt = q[0] * vx + q[1] * vz;
-          s0 = Math.min(s0, ss);
-          s1 = Math.max(s1, ss);
-          t0 = Math.min(t0, tt);
-          t1 = Math.max(t1, tt);
-        }
-        const SR = s1 - s0, TR = t1 - t0;
-        const boxes = annex.map((A) => {
-          const ss = A.x * ux + A.z * uz, tt = A.x * vx + A.z * vz;
-          return [ss - A.r, ss + A.r, tt - A.r, tt + A.r];
-        });
-        const W2 = /* @__PURE__ */ __name((ss, tt) => [ss * ux + tt * vx, ss * uz + tt * vz], "W2");
-        const fits = /* @__PURE__ */ __name((sc, tc, hw, hd, m, avoid) => {
-          const C = [[sc - hw, tc - hd], [sc + hw, tc - hd], [sc + hw, tc + hd], [sc - hw, tc + hd]];
-          const pts = [];
-          for (let i = 0; i < 4; i++) {
-            const a = C[i], c2 = C[(i + 1) % 4];
-            for (let k = 0; k < 4; k++) {
-              const f = k / 4;
-              pts.push(W2(a[0] + (c2[0] - a[0]) * f, a[1] + (c2[1] - a[1]) * f));
-            }
-          }
-          if (!pts.every((q) => pip(q[0], q[1], p))) return null;
-          if (pts.some((q) => edges.some((e) => segDist(q[0], q[1], e.A[0], e.A[1], e.B[0], e.B[1])[0] < m))) return null;
-          if (avoid && avoid.some((B2) => sc + hw > B2[0] && sc - hw < B2[1] && tc + hd > B2[2] && tc - hd < B2[3])) return null;
-          return C.map((q) => W2(q[0], q[1]));
-        }, "fits");
-        const quadRoof = /* @__PURE__ */ __name((G, C, y, col2, RS2) => {
-          const uv = /* @__PURE__ */ __name((q) => [(q[0] * ux + q[1] * uz) / RS2, (q[0] * vx + q[1] * vz) / RS2], "uv");
-          const t3 = /* @__PURE__ */ __name((a, bq, c) => {
-            const cr = (bq[0] - a[0]) * (c[1] - a[1]) - (bq[1] - a[1]) * (c[0] - a[0]);
-            const [x, yy, z] = cr < 0 ? [a, bq, c] : [a, c, bq];
-            G.tri([x[0], y, x[1]], [yy[0], y, yy[1]], [z[0], y, z[1]], [0, 1, 0], uv(x), uv(yy), uv(z), col2);
-          }, "t3");
-          t3(C[0], C[1], C[2]);
-          t3(C[0], C[2], C[3]);
-        }, "quadRoof");
-        const sides = /* @__PURE__ */ __name((C, y0, y1, col2) => {
-          for (let i = 0; i < 4; i++) {
-            const A = C[i], B2 = C[(i + 1) % 4];
-            const ex = B2[0] - A[0], ez = B2[1] - A[1], el = Math.hypot(ex, ez) || 1;
-            let N2 = [ez / el, 0, -ex / el];
-            if (pip((A[0] + B2[0]) / 2 + N2[0] * 0.05, (A[1] + B2[1]) / 2 + N2[2] * 0.05, C)) N2 = [-N2[0], 0, -N2[2]];
-            trimG.quad([A[0], y0, A[1]], [B2[0], y0, B2[1]], [B2[0], y1, B2[1]], [A[0], y1, A[1]], N2, [0, 0], [1, 0], [1, 1], [0, 1], col2);
-          }
-        }, "sides");
-        const nfld = area3 > 2500 ? 3 : area3 > 900 ? 2 : r() < 0.6 ? 1 : 0;
-        let used2 = [];
-        for (let k = 0, tries = 0; k < nfld && tries < 40; tries++) {
-          const hw = SR * (0.15 + r() * 0.25), hd = TR * (0.15 + r() * 0.25);
-          if (hw < 2.5 || hd < 2.5) continue;
-          const sc = s0 + hw + 1.3 + r() * Math.max(0, SR - 2 * hw - 2.6), tc = t0 + hd + 1.3 + r() * Math.max(0, TR - 2 * hd - 2.6);
-          const C = fits(sc, tc, hw, hd, 1.2, boxes.concat(used2));
-          if (!C) continue;
-          used2.push([sc - hw, sc + hw, tc - hd, tc + hd]);
-          k++;
-          const fc = FIELD_COLS[r() * FIELD_COLS.length | 0];
-          const k2 = (rk + 1 + (r() * 2 | 0)) % 3;
-          const yy = h + 0.09;
-          quadRoof(roofGs[k2], C, yy, fc, k2 === 2 ? 6 : 9);
-          sides(C, h, yy, [fc[0] * 0.6, fc[1] * 0.6, fc[2] * 0.6]);
-        }
-        if (area3 > 800 && r() < 0.6) {
-          for (let tries = 0; tries < 12; tries++) {
-            const tc = t0 + 3 + r() * (TR - 6);
-            let a2 = s0 + 2, b2 = s1 - 2;
-            const C = fits((a2 + b2) / 2, tc, (b2 - a2) / 2 * 0.8, 0.7, 1, boxes);
-            if (!C) continue;
-            quadRoof(roofGs[2], C, h + 0.12, [0.86, 0.84, 0.8], 3);
-            break;
-          }
-        }
-        const big2 = area3 > 1100 || b.k === "garage" && area3 > 500;
-        if (big2 && paintN < 18 && r() < 0.85) {
-          const PAINTS = [["KAUFHAUS LINDE", "#f4efe0", "#2a5a3a"], ["KOLA ROT", "#ffffff", "#b0141c"], ["POTT FM 99,1", "#14102a", "#3fd8e8"], ["ELEKTRO BLITZ", "#1a1a1a", "#f2c200"], ["ZECHE SIEBEN", "#f2c200", "#1c1c22"], ["SCHAUM", "#7a1010", "#ffe03f"], ["LINDENKAUF", "#ffffff", "#1f4f9a"], ["NACHTEXPRESS", "#f2c200", "#111111"], ["BACKSTUBE 11", "#5a2a10", "#f0dcb0"]];
-          const isP = b.k === "garage";
-          const A = isP ? ["P", "#ffffff", "#1f4f9a"] : PAINTS[(b.r + paintN) % PAINTS.length];
-          const dirs = [[ux, uz], [-ux, -uz], [vx, vz], [-vx, -vz]];
-          let up = dirs[0];
-          for (const d of dirs) if (d[1] < up[1]) up = d;
-          const rt = [-up[1], up[0]];
-          const alongS = Math.abs(rt[0] * ux + rt[1] * uz) > 0.5;
-          const RL = alongS ? SR : TR, RD = alongS ? TR : SR;
-          for (let tries = 0; tries < 25; tries++) {
-            let wl = Math.min(isP ? 14 : 30, RL * (0.45 + r() * 0.25));
-            let dl = isP ? wl : wl * 0.28;
-            if (dl > RD * 0.6) {
-              dl = RD * 0.6;
-              wl = isP ? dl : dl / 0.28;
-            }
-            if (wl < 7) break;
-            const hs = (alongS ? wl : dl) / 2, ht = (alongS ? dl : wl) / 2;
-            const sc = s0 + hs + 1.5 + r() * Math.max(0, SR - 2 * hs - 3), tc = t0 + ht + 1.5 + r() * Math.max(0, TR - 2 * ht - 3);
-            if (!fits(sc, tc, hs, ht, 1.3, boxes)) continue;
-            const cw = W2(sc, tc);
-            roofPaint.push({ x: cw[0], z: cw[1], y: h + 0.15, w: wl, d: dl, ang: Math.atan2(-up[0], -up[1]), A, seed: b.r, sq: isP });
-            clear.push(fits(sc, tc, hs + 0.6, ht + 0.6, 0, null) || []);
-            boxes.push([sc - hs, sc + hs, tc - ht, tc + ht]);
-            paintN++;
-            break;
-          }
-        }
-        if (area3 > 700 && r() < 0.5) {
-          const n2 = 4 + (r() * 6 | 0), len = n2 * 3.4;
-          for (let tries = 0; tries < 15; tries++) {
-            const sc = s0 + len / 2 + 2 + r() * Math.max(0, SR - len - 4), tc = t0 + 3 + r() * Math.max(0, TR - 6);
-            if (!fits(sc, tc, len / 2, 1.6, 1.5, boxes)) continue;
-            boxes.push([sc - len / 2, sc + len / 2, tc - 1.6, tc + 1.6]);
-            clear.push(fits(sc, tc, len / 2 + 0.8, 2.2, 0, null) || []);
-            for (let k = 0; k < n2; k++) {
-              const c2 = W2(sc - len / 2 + 1.7 + k * 3.4, tc);
-              skyRows.push({ x: c2[0], z: c2[1], y: h, rot: Math.atan2(vx, vz), s: 1 });
-            }
-            break;
-          }
-        }
-        if (area3 > 300 && area3 < 4e3 && r() < 0.35) {
-          const cols = 3 + (r() * 6 | 0), rows = 1 + (r() * 3 | 0);
-          const hs = cols * 0.6 + 0.2, ht = rows * 1.1 + 0.2;
-          for (let tries = 0; tries < 15; tries++) {
-            const sc = s0 + hs + 2 + r() * Math.max(0, SR - 2 * hs - 4), tc = t0 + ht + 2 + r() * Math.max(0, TR - 2 * ht - 4);
-            if (!fits(sc, tc, hs, ht, 1.6, boxes)) continue;
-            boxes.push([sc - hs, sc + hs, tc - ht, tc + ht]);
-            clear.push(fits(sc, tc, hs + 0.6, ht + 0.6, 0, null) || []);
-            const south = vz > 0 ? 1 : -1;
-            for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
-              const c2 = W2(sc - hs + 0.8 + i * 1.2, tc - ht + 1.3 + j * 2.2);
-              solarL.push({ x: c2[0], z: c2[1], y: h + 0.55, ang: Math.atan2(ux, uz), tilt: 0.45 * south });
-            }
-            break;
-          }
-        }
-      }
-      out.buildings.push({ b, edges, h, style, roofCol, shopish, annex, area: area3, clear });
-    }
-    const add = /* @__PURE__ */ __name((geo, mat, cast = true) => {
-      if (!geo.p.length) return null;
-      const m = new Mesh(geo.build(), mat);
-      m.castShadow = cast;
-      m.receiveShadow = true;
-      scene.add(m);
-      return m;
-    }, "add");
-    facG.forEach((g, i) => add(g, facMats[i]));
-    shopG.forEach((g, i) => add(g, shopMats[i]));
-    resG.forEach((g, i) => add(g, resMats[i]));
-    add(trimG, trimMat);
-    roofGs.forEach((g, i) => add(g, roofMats[i]));
-    const props = { ac: [], vent: [], sky: [], hut: [], tank: [], ant: [], dish: [] };
-    for (const B of out.buildings) {
-      const b = B.b, p = b.p, r = rng(b.r + 7);
-      let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
-      for (const q of p) {
-        minx = Math.min(minx, q[0]);
-        maxx = Math.max(maxx, q[0]);
-        minz = Math.min(minz, q[1]);
-        maxz = Math.max(maxz, q[1]);
-      }
-      const area3 = (maxx - minx) * (maxz - minz);
-      let cnt = Math.min(45, Math.floor(area3 / 55));
-      let placed = [];
-      for (let k = 0; k < cnt * 4 && placed.length < cnt; k++) {
-        const x = minx + r() * (maxx - minx), z = minz + r() * (maxz - minz);
-        if (!pip(x, z, p)) continue;
-        let ok = true;
-        for (const e of B.edges) {
-          if (segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1])[0] < 1.8) {
-            ok = false;
-            break;
-          }
-        }
-        if (!ok) continue;
-        if (placed.some((q) => Math.hypot(q[0] - x, q[1] - z) < 2.6)) continue;
-        if (B.annex.some((A) => pip(x, z, A.C) || Math.hypot(A.x - x, A.z - z) < A.r + 0.8)) continue;
-        if (B.clear.some((C) => C.length && pip(x, z, C))) continue;
-        placed.push([x, z]);
-        const v = r();
-        const rot = Math.atan2(B.edges[0]?.nz || 0, B.edges[0]?.nx || 1);
-        const it = { x, z, y: B.h, rot, s: 0.8 + r() * 0.5 };
-        if (v < 0.38) props.ac.push(it);
-        else if (v < 0.55) props.vent.push(it);
-        else if (v < 0.68) props.sky.push(it);
-        else if (v < 0.76 && area3 > 200) props.hut.push(it);
-        else if (v < 0.84) props.tank.push(it);
-        else if (v < 0.92) props.dish.push(it);
-        else props.ant.push(it);
-      }
-    }
-    const propMat = /* @__PURE__ */ __name((c, rough = 0.8, metal = 0.1) => new MeshStandardMaterial({ color: c, roughness: rough, metalness: metal }), "propMat");
-    const inst = /* @__PURE__ */ __name((geo, mat, list, yoff, scaleFn) => {
-      if (!list.length) return;
-      const m = new InstancedMesh(geo, mat, list.length);
-      const o2 = new Object3D();
-      list.forEach((it, i) => {
-        o2.position.set(it.x, it.y + yoff * (it.s || 1), it.z);
-        o2.rotation.set(0, it.rot, 0);
-        const s = scaleFn ? scaleFn(it) : [it.s, it.s, it.s];
-        o2.scale.set(...s);
-        o2.updateMatrix();
-        m.setMatrixAt(i, o2.matrix);
-      });
-      m.castShadow = true;
-      m.receiveShadow = true;
-      scene.add(m);
-      return m;
-    }, "inst");
-    const acGeo = new BoxGeometry(1.4, 0.9, 1);
-    inst(acGeo, propMat(12106944, 0.6, 0.3), props.ac, 0.45);
-    const fanGeo = new CylinderGeometry(0.35, 0.35, 0.06, 12);
-    inst(fanGeo, propMat(2763824), props.ac.map((a) => ({ ...a, x: a.x + Math.cos(a.rot) * 0.25 * a.s, z: a.z - Math.sin(a.rot) * 0.25 * a.s })), 0.93);
-    inst(new CylinderGeometry(0.3, 0.3, 1, 10), propMat(9080208, 0.5, 0.5), props.vent, 0.5);
-    inst(new CylinderGeometry(0.42, 0.3, 0.25, 10), propMat(6974832, 0.5, 0.5), props.vent, 1.1);
-    inst(new BoxGeometry(1.6, 0.35, 2.4), propMat(7311264, 0.2, 0.4), props.sky, 0.17);
-    {
-      const sg = new BoxGeometry(2, 0.5, 2.6);
-      inst(sg, propMat(9087160, 0.15, 0.5), skyRows, 0.25);
-      const fg = new BoxGeometry(2.3, 0.2, 2.9);
-      inst(fg, propMat(5922402, 0.6, 0.3), skyRows, 0.1);
-    }
-    if (solarL.length) {
-      const m = new InstancedMesh(new BoxGeometry(1.1, 0.06, 2), new MeshStandardMaterial({ map: solarTex(), roughness: 0.25, metalness: 0.5 }), solarL.length);
-      const o2 = new Object3D();
-      solarL.forEach((it, i) => {
-        o2.position.set(it.x, it.y, it.z);
-        o2.rotation.set(it.tilt, it.ang, 0, "YXZ");
-        o2.updateMatrix();
-        m.setMatrixAt(i, o2.matrix);
-      });
-      m.castShadow = true;
-      m.receiveShadow = true;
-      scene.add(m);
-    }
-    for (const P2 of roofPaint) {
-      const mat = new MeshStandardMaterial({ map: roofPaintTex(P2.A[0], P2.A[1], P2.A[2], P2.seed, { square: P2.sq, stripes: P2.sq ? null : P2.seed % 3 === 0 ? "#e8e0c8" : null }), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
-      const g = new PlaneGeometry(P2.w, P2.d);
-      g.rotateX(-Math.PI / 2);
-      const m = new Mesh(g, mat);
-      m.rotation.y = P2.ang;
-      m.position.set(P2.x, P2.y, P2.z);
-      m.receiveShadow = true;
-      scene.add(m);
-    }
-    inst(new BoxGeometry(2.6, 2.4, 2.8), propMat(10130054), props.hut, 1.2);
-    inst(new CylinderGeometry(0.9, 0.9, 1.8, 14), propMat(8018496), props.tank, 0.9);
-    inst(new CylinderGeometry(1, 0.9, 0.15, 14), propMat(4864560), props.tank, 1.85);
-    inst(new CylinderGeometry(0.04, 0.04, 4, 5), propMat(3355443), props.ant, 2);
-    const dishGeo = new SphereGeometry(0.5, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2.6);
-    dishGeo.rotateX(-1);
-    inst(dishGeo, propMat(14211280, 0.6, 0.1), props.dish, 0.6);
-    const ground = new Mesh(new PlaneGeometry(2400, 2400), new MeshStandardMaterial({ map: paveTex(3), roughness: 0.95 }));
-    ground.rotation.x = -Math.PI / 2;
-    ground.material.map.repeat.set(2400 / 8, 2400 / 8);
-    ground.receiveShadow = true;
-    scene.add(ground);
-    const areaG = { grass: new Geo(), plaza: new Geo(), parking: new Geo() };
-    for (const a of D.areas) {
-      const v2 = a.p.map((q) => new Vector2(q[0], q[1]));
-      let tris = [];
-      try {
-        tris = ShapeUtils.triangulateShape(v2, []);
-      } catch (e) {
-        continue;
-      }
-      const y = { grass: 0.02, plaza: 0.012, parking: 0.03 }[a.t];
-      const s = { grass: 6, plaza: 8, parking: 10 }[a.t];
-      for (const t of tris) {
-        const q = [a.p[t[0]], a.p[t[1]], a.p[t[2]]];
-        const cr = (q[1][0] - q[0][0]) * (q[2][1] - q[0][1]) - (q[1][1] - q[0][1]) * (q[2][0] - q[0][0]);
-        const o2 = cr < 0 ? [0, 1, 2] : [0, 2, 1];
-        areaG[a.t].tri(...o2.map((i) => [q[i][0], y, q[i][1]]), [0, 1, 0], ...o2.map((i) => [q[i][0] / s, q[i][1] / s]));
-      }
-    }
-    const asph = asphaltTex(5), plaz = plazaTex(6), grs = grassTex(7);
-    const asphMat = new MeshStandardMaterial({ map: asph, roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
-    const plazaMat = new MeshStandardMaterial({ map: plaz, roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
-    const add2 = /* @__PURE__ */ __name((g, m) => {
-      if (!g.p.length) return;
-      const me = new Mesh(g.build(), m);
-      me.receiveShadow = true;
-      scene.add(me);
-    }, "add2");
-    add2(areaG.grass, new MeshStandardMaterial({ map: grs, roughness: 1, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
-    add2(areaG.plaza, plazaMat);
-    add2(areaG.parking, asphMat);
-    const roadG = new Geo(), curbG = new Geo(), pedG = new Geo(), footG = new Geo(), markG = new Geo();
-    function ribbon(geo, pts, w, y, s, col2) {
-      const n = pts.length;
-      if (n < 2) return;
-      const L = [], Rr = [];
-      for (let i = 0; i < n; i++) {
-        const a = pts[Math.max(0, i - 1)], b = pts[Math.min(n - 1, i + 1)];
-        let tx = b[0] - a[0], tz = b[1] - a[1];
-        const l = Math.hypot(tx, tz) || 1;
-        tx /= l;
-        tz /= l;
-        let nx = -tz, nz = tx;
-        let m = 1;
-        if (i > 0 && i < n - 1) {
-          const sx = pts[i][0] - pts[i - 1][0], sz = pts[i][1] - pts[i - 1][1], sl = Math.hypot(sx, sz) || 1;
-          const d = Math.abs(nx * (-sz / sl) + nz * (sx / sl));
-          m = 1 / Math.max(0.6, d);
-        }
-        L.push([pts[i][0] + nx * w / 2 * m, pts[i][1] + nz * w / 2 * m]);
-        Rr.push([pts[i][0] - nx * w / 2 * m, pts[i][1] - nz * w / 2 * m]);
-      }
-      for (let i = 0; i < n - 1; i++) {
-        const q = [L[i], Rr[i], Rr[i + 1], L[i + 1]];
-        const ys = q.map((v) => [v[0], y, v[1]]);
-        const us = q.map((v) => [v[0] / s, v[1] / s]);
-        const cr = (q[1][0] - q[0][0]) * (q[2][1] - q[0][1]) - (q[1][1] - q[0][1]) * (q[2][0] - q[0][0]);
-        if (cr < 0) geo.quad(ys[0], ys[1], ys[2], ys[3], [0, 1, 0], us[0], us[1], us[2], us[3], col2);
-        else geo.quad(ys[0], ys[3], ys[2], ys[1], [0, 1, 0], us[0], us[3], us[2], us[1], col2);
-      }
-    }
-    __name(ribbon, "ribbon");
-    function disc(geo, c, r, y, s, col2) {
-      const N = 14;
-      for (let i = 0; i < N; i++) {
-        const a0 = i / N * Math.PI * 2, a1 = (i + 1) / N * Math.PI * 2;
-        const p0 = [c[0], y, c[1]], p1 = [c[0] + Math.cos(a1) * r, y, c[1] + Math.sin(a1) * r], p2 = [c[0] + Math.cos(a0) * r, y, c[1] + Math.sin(a0) * r];
-        geo.tri(p0, p1, p2, [0, 1, 0], [p0[0] / s, p0[2] / s], [p1[0] / s, p1[2] / s], [p2[0] / s, p2[2] / s], col2);
-      }
-    }
-    __name(disc, "disc");
-    const nodeUse = /* @__PURE__ */ new Map();
-    for (const r of D.roads) if (drive.has(r.t) || r.t === "pedestrian") {
-      r.nd.forEach((id, i) => {
-        if (!nodeUse.has(id)) nodeUse.set(id, { c: 0, p: r.p[i] });
-        nodeUse.get(id).c++;
-      });
-    }
-    const junc = [];
-    for (const [id, v] of nodeUse) if (v.c >= 2) junc.push(v.p);
-    out.junctions = junc;
-    const nearJ = /* @__PURE__ */ __name((x, z, d) => junc.some((j) => Math.abs(j[0] - x) < d && Math.abs(j[1] - z) < d && Math.hypot(j[0] - x, j[1] - z) < d), "nearJ");
-    const curbC = [0.78, 0.77, 0.74];
-    for (const r of D.roads) {
-      if (r.t === "foot") {
-        ribbon(footG, r.p, 2.4, 0.025, 8);
-        continue;
-      }
-      if (r.t === "pedestrian") {
-        ribbon(pedG, r.p, 12, 0.014, 8);
-        disc(pedG, r.p[0], 6, 0.014, 8);
-        disc(pedG, r.p[r.p.length - 1], 6, 0.014, 8);
-        continue;
-      }
-      const w = r.w;
-      ribbon(roadG, r.p, w, 0.04, 10);
-      ribbon(curbG, r.p, w + 0.7, 0.035, 1, curbC);
-      disc(roadG, r.p[0], w / 2, 0.04, 10);
-      disc(roadG, r.p[r.p.length - 1], w / 2, 0.04, 10);
-      disc(curbG, r.p[0], w / 2 + 0.35, 0.035, 1, curbC);
-      disc(curbG, r.p[r.p.length - 1], w / 2 + 0.35, 0.035, 1, curbC);
-      if (r.t !== "service") out.roadsDrive.push(r);
-      if (w >= 6 && r.t !== "service" && r.t !== "living_street") {
-        const lanes = r.ow ? Math.max(1, Math.round(w / 3.3)) : 2;
-        const offs = [];
-        if (r.ow) {
-          for (let k = 1; k < lanes; k++) offs.push(-w / 2 + k * w / lanes);
-        } else offs.push(0);
-        for (const off of offs) {
-          let acc = 0;
-          for (let i = 0; i < r.p.length - 1; i++) {
-            const a = r.p[i], b = r.p[i + 1];
-            const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
-            if (l < 0.1) continue;
-            const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
-            for (let s = 0; s < l; s += 0.5) {
-              const g = (acc + s) % 6;
-              if (g < 3 && g + 0.5 <= 3) {
-                const x = a[0] + tx * s + nx * off, z = a[1] + tz * s + nz * off;
-                if (nearJ(x, z, r.t === "primary" ? 11 : 8)) continue;
-                const hw = 0.12;
-                const P0 = [x + nx * hw, 0.05, z + nz * hw], P1 = [x - nx * hw, 0.05, z - nz * hw], P2 = [x - nx * hw + tx * 0.85, 0.05, z - nz * hw + tz * 0.85], P3 = [x + nx * hw + tx * 0.85, 0.05, z + nz * hw + tz * 0.85];
-                markG.quad(P0, P3, P2, P1, [0, 1, 0], [0, 0], [0, 0], [0, 0], [0, 0]);
-              }
-            }
-            acc += l;
-          }
-        }
-      }
-      if (w >= 7 && r.t !== "service" && r.t !== "living_street") {
-        const lanesA = r.ow ? Math.max(1, Math.round(w / 3.3)) : 2;
-        const laneOffs = r.ow ? Array.from({ length: lanesA }, (_, k) => -w / 2 + (k + 0.5) * w / lanesA) : [-w / 4, w / 4];
-        let accA = 0;
-        for (let i = 0; i < r.p.length - 1; i++) {
-          const a = r.p[i], b = r.p[i + 1];
-          const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
-          if (l < 0.1) continue;
-          const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
-          for (let s = 0; s < l; s += 0.5) {
-            if ((accA + s) % 26 > 0.45) continue;
-            const x0 = a[0] + tx * s, z0 = a[1] + tz * s;
-            if (nearJ(x0, z0, 11)) continue;
-            for (const off of laneOffs) {
-              const x = x0 + nx * off, z = z0 + nz * off;
-              const hl = 1.2, ah = 0.45;
-              markG.tri([x + tx * hl, 0.052, z + tz * hl], [x - tx * hl + nx * ah, 0.052, z - tz * hl + nz * ah], [x - tx * hl - nx * ah, 0.052, z - tz * hl - nz * ah], [0, 1, 0], [0, 0], [0, 0], [0, 0]);
-            }
-          }
-          accA += l;
-        }
-      }
-      if (["primary", "secondary", "tertiary", "residential", "unclassified"].includes(r.t) && w >= 6) {
-        for (const end of [0, 1]) {
-          const nd = end ? r.nd[r.nd.length - 1] : r.nd[0];
-          if ((nodeUse.get(nd)?.c || 0) < 3) continue;
-          const pts = end ? [...r.p].reverse() : r.p;
-          const a = pts[0], b = pts[1];
-          const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
-          const D0 = r.t === "primary" ? 9 : 6.5;
-          if (l < D0 + 4) continue;
-          const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
-          const cx = a[0] + tx * D0, cz = a[1] + tz * D0;
-          for (let k = -w / 2 + 0.6; k < w / 2 - 0.5; k += 1) {
-            const x = cx + nx * k, z = cz + nz * k;
-            const hw = 0.25, hl = 1.4;
-            const P0 = [x + nx * hw - tx * hl, 0.05, z + nz * hw - tz * hl], P1 = [x - nx * hw - tx * hl, 0.05, z - nz * hw - tz * hl], P2 = [x - nx * hw + tx * hl, 0.05, z - nz * hw + tz * hl], P3 = [x + nx * hw + tx * hl, 0.05, z + nz * hw + tz * hl];
-            markG.quad(P0, P3, P2, P1, [0, 1, 0], [0, 0], [0, 0], [0, 0], [0, 0]);
-          }
-        }
-      }
-    }
-    add2(curbG, new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -1.5, polygonOffsetUnits: -1.5 }));
-    add2(footG, new MeshStandardMaterial({ map: paveTex(11, "#c4b496", 64), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -1.2, polygonOffsetUnits: -1.2 }));
-    add2(pedG, plazaMat);
-    add2(roadG, asphMat);
-    add2(markG, new MeshStandardMaterial({ color: 16777215, roughness: 0.55, side: DoubleSide, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }));
-    const mh = [];
-    for (const r of out.roadsDrive) {
-      let acc = 0;
-      for (let i = 0; i < r.p.length - 1; i++) {
-        const a = r.p[i], b = r.p[i + 1];
-        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
-        for (let s = (17 - acc % 17 + 17) % 17; s < l; s += 23) {
-          const t = s / l;
-          mh.push({ x: a[0] + (b[0] - a[0]) * t + (mh.length % 3 - 1) * 1.2, z: a[1] + (b[1] - a[1]) * t, y: 0.055, rot: 0 });
-        }
-        acc += l;
-      }
-    }
-    const mhm = new MeshStandardMaterial({ color: 2763306, roughness: 0.6, metalness: 0.4, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 });
-    const mg = new CircleGeometry(0.35, 12);
-    mg.rotateX(-Math.PI / 2);
-    inst(mg, mhm, mh, 0).castShadow = false;
-    let treePts = (D.trees || []).slice();
-    if (treePts.length < 120) {
-      for (const r of out.roadsDrive) {
-        if (!["residential", "tertiary", "unclassified", "living_street", "secondary"].includes(r.t)) continue;
-        let acc = 10;
-        for (let i = 0; i < r.p.length - 1; i++) {
-          const a = r.p[i], b = r.p[i + 1];
-          const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
-          if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
-          while (acc < l) {
-            for (const s of [-1, 1]) {
-              if ((treePts.length + s & 1) === 0) continue;
-              const x = a[0] + tx * acc - tz * (r.w / 2 + 2.5) * s, z = a[1] + tz * acc + tx * (r.w / 2 + 2.5) * s;
-              treePts.push([x, z]);
-            }
-            acc += 16 + treePts.length * 5 % 7;
-          }
-          acc -= l;
-        }
-      }
-    }
-    for (const a of D.areas || []) {
-      if (!(a.park || a.t === "grass")) continue;
-      const pts = a.p;
-      if (!pts || pts.length < 3) continue;
-      let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
-      for (const q of pts) {
-        minx = Math.min(minx, q[0]);
-        maxx = Math.max(maxx, q[0]);
-        minz = Math.min(minz, q[1]);
-        maxz = Math.max(maxz, q[1]);
-      }
-      const A = Math.abs((maxx - minx) * (maxz - minz));
-      const nT = Math.min(40, Math.floor(A / 220));
-      for (let k = 0; k < nT; k++) {
-        const x = minx + k * 57 % 100 / 100 * (maxx - minx), z = minz + k * 91 % 100 / 100 * (maxz - minz);
-        if (pip(x, z, pts)) treePts.push([x, z]);
-      }
-    }
-    const trees = treePts.filter((t) => !out.buildings.some((B) => Math.abs(B.b.p[0][0] - t[0]) < 80 && pip(t[0], t[1], B.b.p)));
-    const tr = rng(77);
-    const canGeo = new SphereGeometry(1, 28, 16);
-    canGeo.rotateX(Math.PI / 2);
-    {
-      const pa = canGeo.attributes.position;
-      const cl = [];
-      for (let i = 0; i < pa.count; i++) {
-        const x = pa.getX(i), y = pa.getY(i), z = pa.getZ(i);
-        const n = 1 + 0.07 * Math.sin(x * 5.1 + z * 2.3) * Math.cos(z * 4.7 - y * 3.1) + 0.05 * Math.sin(y * 7 + x * 3);
-        pa.setXYZ(i, x * n, y * n * 0.62, z * n);
-        const sh = 0.55 + 0.45 * Math.max(0, (y + 0.3) / 1.3);
-        cl.push(sh, sh, sh);
-      }
-      canGeo.setAttribute("color", new Float32BufferAttribute(cl, 3));
-      canGeo.computeVertexNormals();
-    }
-    const canMat = new MeshStandardMaterial({ color: 16777215, map: leafTex(5), vertexColors: true, roughness: 0.95 });
-    canMat.map.repeat.set(3, 2);
-    const can = new InstancedMesh(canGeo, canMat, trees.length * 3);
-    const trunk = new InstancedMesh(new CylinderGeometry(0.16, 0.26, 4.2, 8), new MeshStandardMaterial({ color: 3811870, roughness: 0.9 }), trees.length);
-    const o = new Object3D();
-    const col = new Color();
-    trees.forEach((t, i) => {
-      const s = 1.7 + tr() * 1;
-      o.position.set(t[0], 2.1, t[1]);
-      o.rotation.set(0, 0, 0);
-      o.scale.set(1, 1, 1);
-      o.updateMatrix();
-      trunk.setMatrixAt(i, o.matrix);
-      const hue = 0.22 + tr() * 0.08, sat = 0.42 + tr() * 0.18, li = 0.3 + tr() * 0.08;
-      o.position.set(t[0], 4.4 + s * 0.25, t[1]);
-      o.rotation.set(0, tr() * 6, 0);
-      o.scale.set(s, s, s);
-      o.updateMatrix();
-      can.setMatrixAt(i * 3, o.matrix);
-      col.setHSL(hue, sat, li);
-      can.setColorAt(i * 3, col);
-      for (let k = 1; k < 3; k++) {
-        const a2 = tr() * 6.28, d = s * 0.45;
-        const s2 = s * (0.55 + tr() * 0.15);
-        o.position.set(t[0] + Math.cos(a2) * d, 4.6 + s * 0.3 + tr() * 0.4, t[1] + Math.sin(a2) * d);
-        o.scale.set(s2, s2, s2);
-        o.rotation.set(0, tr() * 6, 0);
-        o.updateMatrix();
-        can.setMatrixAt(i * 3 + k, o.matrix);
-        col.setHSL(hue + 0.01 * k, sat, li + 0.03 * k);
-        can.setColorAt(i * 3 + k, col);
-      }
-    });
-    can.castShadow = true;
-    can.receiveShadow = true;
-    trunk.castShadow = true;
-    scene.add(can, trunk);
-    const lamps = D.lamps.filter((l) => !out.buildings.some((B) => Math.abs(B.b.p[0][0] - l[0]) < 80 && pip(l[0], l[1], B.b.p)));
-    const pole = new InstancedMesh(new CylinderGeometry(0.07, 0.1, 5.5, 6), new MeshStandardMaterial({ color: 3816770, metalness: 0.5, roughness: 0.5 }), lamps.length);
-    const headM = new MeshStandardMaterial({ color: 5592405, emissive: 16767392, emissiveIntensity: 1 });
-    out.lampHeadMat = headM;
-    const head = new InstancedMesh(new BoxGeometry(0.5, 0.18, 0.5), headM, lamps.length);
-    const poolM = new MeshBasicMaterial({ map: radialTex("rgba(255,200,120,1)"), transparent: true, blending: AdditiveBlending, depthWrite: false, opacity: 0.5, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6 });
-    const poolGeo = new PlaneGeometry(1, 1);
-    poolGeo.rotateX(-Math.PI / 2);
-    const nPools = lamps.length;
-    const pools = new InstancedMesh(poolGeo, poolM, nPools);
-    lamps.forEach((l, i) => {
-      o.rotation.set(0, 0, 0);
-      o.scale.set(1, 1, 1);
-      o.position.set(l[0], 2.75, l[1]);
-      o.updateMatrix();
-      pole.setMatrixAt(i, o.matrix);
-      o.position.set(l[0], 5.5, l[1]);
-      o.updateMatrix();
-      head.setMatrixAt(i, o.matrix);
-      o.position.set(l[0], 0.07, l[1]);
-      o.scale.set(13, 1, 13);
-      o.updateMatrix();
-      pools.setMatrixAt(i, o.matrix);
-    });
-    pole.castShadow = true;
-    scene.add(pole, head, pools);
-    out.poolMat = poolM;
-    out.lamps = lamps;
-    const propsList = (D.props || []).slice();
-    if (propsList.length < 50) {
-      for (const r of out.roadsDrive) {
-        if (!["residential", "living_street", "tertiary", "unclassified"].includes(r.t)) continue;
-        let acc = 14;
-        for (let i = 0; i < r.p.length - 1; i++) {
-          const a = r.p[i], b = r.p[i + 1];
-          const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
-          if (l < 1) continue;
-          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
-          while (acc < l) {
-            const side = propsList.length % 2 ? 1 : -1;
-            const x = a[0] + tx * acc - tz * (r.w / 2 + 1.55) * side, z = a[1] + tz * acc + tx * (r.w / 2 + 1.55) * side;
-            if (!out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 70 && pip(x, z, B.b.p))) {
-              const kinds = ["bollard", "bin", "planter", "bench", "hydrant"];
-              propsList.push({ p: [x, z], k: kinds[propsList.length % kinds.length], rot: Math.atan2(tx, tz) });
-            }
-            acc += 12 + propsList.length * 3 % 6;
-          }
-          acc -= l;
-        }
-      }
-    }
-    const benches = [], bins = [], hydrants = [], bollards = [], planters = [];
-    for (const pr of propsList) {
-      const x = pr.p[0], z = pr.p[1];
-      if (out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 55 && pip(x, z, B.b.p))) continue;
-      const it = { x, z, rot: pr.rot || 0, y: 0 };
-      if (pr.k === "bench") benches.push(it);
-      else if (pr.k === "bin") bins.push(it);
-      else if (pr.k === "hydrant") hydrants.push(it);
-      else if (pr.k === "planter") planters.push(it);
-      else bollards.push(it);
-    }
-    inst(new BoxGeometry(1.15, 0.08, 0.38), propMat(5914672), benches, 0.42);
-    {
-      const m = new InstancedMesh(new BoxGeometry(1.15, 0.32, 0.06), propMat(4863016), Math.max(1, benches.length));
-      const o2 = new Object3D();
-      benches.forEach((it, i) => {
-        const bx = Math.sin(it.rot || 0), bz = Math.cos(it.rot || 0);
-        o2.position.set(it.x + bx * 0.16, 0.62, it.z + bz * 0.16);
-        o2.rotation.set(0, it.rot || 0, 0);
-        o2.scale.set(1, 1, 1);
-        o2.updateMatrix();
-        m.setMatrixAt(i, o2.matrix);
-      });
-      if (benches.length) {
-        m.castShadow = true;
-        scene.add(m);
-      }
-    }
-    inst(new CylinderGeometry(0.18, 0.2, 0.55, 8), propMat(2764338, 0.6, 0.3), bins, 0.28);
-    inst(new CylinderGeometry(0.12, 0.14, 0.55, 8), propMat(11538456, 0.5, 0.4), hydrants, 0.28);
-    inst(new CylinderGeometry(0.08, 0.09, 0.7, 6), propMat(13157560, 0.5, 0.2), bollards, 0.35);
-    inst(new CylinderGeometry(0.35, 0.4, 0.45, 10), propMat(6967360), planters, 0.22);
-    if (planters.length) {
-      const m = new InstancedMesh(new CylinderGeometry(0.32, 0.32, 0.18, 10), new MeshStandardMaterial({ color: 3828264, roughness: 1 }), planters.length);
-      const o2 = new Object3D();
-      planters.forEach((it, i) => {
-        o2.position.set(it.x, 0.55, it.z);
-        o2.rotation.set(0, 0, 0);
-        o2.scale.set(1, 1, 1);
-        o2.updateMatrix();
-        m.setMatrixAt(i, o2.matrix);
-      });
-      m.castShadow = true;
-      scene.add(m);
-    }
-    const facing = /* @__PURE__ */ __name((x, z, maxd) => {
-      let best = null, bd = maxd;
-      for (const B of out.buildings) {
-        if (Math.abs(B.b.p[0][0] - x) > 90 || Math.abs(B.b.p[0][1] - z) > 90) continue;
-        for (const e of B.edges) {
-          const [d, cx, cz] = segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1]);
-          if (d < bd && e.len > 4) {
-            bd = d;
-            best = { B, e, cx, cz };
-          }
-        }
-      }
-      return best;
-    }, "facing");
-    out.facing = facing;
-    const used = /* @__PURE__ */ new Set();
-    let nameI = {};
-    const placeSign = /* @__PURE__ */ __name((f, text, fg, opt = {}) => {
-      const e = f.e;
-      const k = Math.round(f.cx * 2) + "_" + Math.round(f.cz * 2);
-      if (used.has(e)) return null;
-      used.add(e);
-      let tx = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
-      if (tx < -0.3 || Math.abs(tx) <= 0.3 && tz > 0) {
-        tx = -tx;
-        tz = -tz;
-      }
-      const W = Math.min(opt.w || 5.5, e.len - 0.6), Hh = W / 4;
-      const gH = Math.min(f.B.h - 0.8, f.B.shopish ? 4.2 : 3.6);
-      const mat = new MeshBasicMaterial({ map: signTex(text, { fg, sub: opt.sub }), toneMapped: false });
-      out.neonMats.push(mat);
-      const g = new PlaneGeometry(W, Hh);
-      const m = new Mesh(g, mat);
-      const right = new Vector3(tx, 0, tz), upv = new Vector3(tz, 0, -tx);
-      const nrm = new Vector3().crossVectors(right, upv);
-      const tilt = 0.42;
-      const up2 = upv.clone().multiplyScalar(Math.cos(tilt)).add(new Vector3(0, 1, 0).multiplyScalar(Math.sin(tilt)));
-      const n2 = new Vector3().crossVectors(right, up2);
-      const M = new Matrix4().makeBasis(right, up2, n2);
-      m.quaternion.setFromRotationMatrix(M);
-      const outD = Hh / 2 + 0.25;
-      const dot = upv.x * e.nx + upv.z * e.nz;
-      m.position.set(f.cx + e.nx * outD, gH + 0.15 + (dot < 0 ? Hh * 0.5 * Math.sin(tilt) : 0), f.cz + e.nz * outD);
-      scene.add(m);
-      const br = new Mesh(new BoxGeometry(W, 0.08, Hh * 0.9), new MeshStandardMaterial({ color: 2236962 }));
-      br.quaternion.copy(m.quaternion);
-      br.rotateX(-Math.PI / 2);
-      br.position.copy(m.position).add(new Vector3(0, -0.06, 0));
-      br.castShadow = true;
-      scene.add(br);
-      out.signs.push(m);
-      return m;
-    }, "placeSign");
-    const hn = opts.hubNear || [0, 0];
-    const hubPick = D.pois.filter((p) => ["fast_food", "restaurant"].includes(p.a) && Math.abs(p.p[0]) < 450 && Math.abs(p.p[1]) < 380).map((p) => ({ p, d: Math.hypot(p.p[0] - hn[0], p.p[1] - hn[1]) + (p.a === "fast_food" ? 0 : 60) + (p.fallback ? 40 : 0) - (p.n ? 30 : 0) })).sort((a, b) => a.d - b.d).find((c) => facing(c.p.p[0], c.p.p[1], 20));
-    for (const poi of D.pois) {
-      if (poi === hubPick?.p) continue;
-      if (!["fast_food", "restaurant", "cafe", "bar", "pub"].includes(poi.a)) continue;
-      const f = facing(poi.p[0], poi.p[1], 14);
-      if (!f) continue;
-      const list = SHOP_NAMES[poi.a] || SHOP_NAMES.fast_food;
-      nameI[poi.a] = (nameI[poi.a] || 0) + 1;
-      const nm = list[nameI[poi.a] % list.length];
-      placeSign(f, nm, NEON[R() * NEON.length | 0]);
-    }
-    for (const B of out.buildings) {
-      if (!B.shopish) continue;
-      for (const e of B.edges) {
-        if (e.street && e.len > 7 && R() < 0.22 && !used.has(e)) {
-          placeSign({ B, e, cx: e.mx, cz: e.mz }, EXTRA_SIGNS[R() * EXTRA_SIGNS.length | 0], NEON[R() * NEON.length | 0], { w: 4.5 });
-        }
-      }
-    }
-    const ADS = [["SCHAUM", "das Feierabendbier", "#ffe03f", "#7a1010"], ["KOLA ROT", "eiskalt seit 1987", "#ffffff", "#b0101a"], ["NACHTEXPRESS", "Taxi rund um die Uhr", "#111111", "#f2c200"], ["ZAHNARZT DR. KNIRSCH", "tut kaum weh", "#1a3a6a", "#e8f0f8"], ["POTT FM 99,1", "Radio f\xFCr die Hood", "#3ff0ff", "#14102a"], ["GOLDENE KRONE", "Spielothek", "#ffd04f", "#3a0a3a"]];
-    let ad = 0;
-    for (const B of out.buildings.filter((B2) => B2.h > 15).sort((a, b) => a.b.r % 97 - b.b.r % 97).slice(0, 10)) {
-      const e = B.edges.filter((e2) => e2.len > 9).sort((a, b) => b.nz - a.nz)[0];
-      if (!e) continue;
-      const A = ADS[ad++ % ADS.length];
-      const mat = new MeshBasicMaterial({ map: signTex(A[0], { fg: A[2], bg: A[3], core: A[2], border: A[2], blur: 8, sub: A[1], w: 512, h: 192, font: '900 80px "Arial Black", Impact, sans-serif' }), toneMapped: false });
-      out.neonMats.push(mat);
-      const W = Math.min(9, e.len * 0.8), H = W * 0.375;
-      const m = new Mesh(new PlaneGeometry(W, H), mat);
-      let tx = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
-      if (tx < 0) {
-        tx = -tx;
-        tz = -tz;
-      }
-      const right = new Vector3(tx, 0, tz);
-      const upv = new Vector3(tz, 0, -tx);
-      const up2 = upv.clone().multiplyScalar(Math.cos(0.9)).add(new Vector3(0, Math.sin(0.9), 0));
-      m.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(right, up2, new Vector3().crossVectors(right, up2)));
-      const c = [e.mx - e.nx * 2.2, e.mz - e.nz * 2.2];
-      m.position.set(c[0], B.h + 0.45 + 1.2 + H / 2 * Math.sin(0.9), c[1]);
-      scene.add(m);
-      for (const s of [-0.4, 0.4]) {
-        const leg = new Mesh(new BoxGeometry(0.15, 1.6 + H * 0.6, 0.15), propMat(2763306));
-        leg.position.set(c[0] + tx * W * s, B.h + 0.45 + (1.6 + H * 0.6) / 2, c[1] + tz * W * s);
-        leg.castShadow = true;
-        scene.add(leg);
-      }
-      const back = new Mesh(new PlaneGeometry(W, H), propMat(3158064));
-      back.quaternion.copy(m.quaternion);
-      back.rotateY(Math.PI);
-      back.position.copy(m.position);
-      back.castShadow = true;
-      scene.add(back);
-    }
-    const hzTex = hazardTex();
-    const hzMat = new MeshStandardMaterial({ map: hzTex, roughness: 0.72, metalness: 0.04 });
-    const hzGeo = new BoxGeometry(0.42, 8, 0.42);
-    hzGeo.translate(0, 4, 0);
-    const hzList = [];
-    for (const B of out.buildings) {
-      if (!(B.b.k === "industrial" || B.h > 18)) continue;
-      for (const e of B.edges) {
-        if (!e.street || e.len < 8) continue;
-        for (let s = 2; s < e.len - 2; s += 4.6) hzList.push({ x: e.A[0] + (e.B[0] - e.A[0]) / e.len * s + e.nx * 0.22, z: e.A[1] + (e.B[1] - e.A[1]) / e.len * s + e.nz * 0.22, h: Math.min(B.h, 10) });
-      }
-    }
-    if (hzList.length) {
-      const im = new InstancedMesh(hzGeo, hzMat, Math.min(hzList.length, 80));
-      const m4 = new Matrix4(), p = new Vector3(), q = new Quaternion(), sc = new Vector3();
-      hzList.slice(0, 80).forEach((h, i) => {
-        p.set(h.x, 0, h.z);
-        sc.set(1, h.h / 8, 1);
-        m4.compose(p, q, sc);
-        im.setMatrixAt(i, m4);
-      });
-      im.castShadow = true;
-      im.receiveShadow = true;
-      scene.add(im);
-    }
-    out.cams = [];
-    const camMat = new MeshStandardMaterial({ color: 2236968, roughness: 0.4 });
-    const coneMat = new MeshBasicMaterial({ color: 4770047, transparent: true, opacity: 0.2, depthWrite: false, side: DoubleSide, toneMapped: false });
-    let ci = 0;
-    for (const B of out.buildings) {
-      for (const e of B.edges) {
-        if (!e.street || e.len < 9 || R() > 0.16) continue;
-        const x = e.mx + e.nx * 0.35, z = e.mz + e.nz * 0.35, y = Math.min(B.h * 0.5, 7.2);
-        const box2 = new Mesh(new BoxGeometry(0.28, 0.18, 0.42), camMat);
-        box2.position.set(x, y, z);
-        box2.lookAt(x + e.nx, y, z + e.nz);
-        scene.add(box2);
-        const tip = [x, 0.07, z], left = [x + e.nx * 13 + e.nz * 5.2, 0.07, z + e.nz * 13 - e.nx * 5.2], right = [x + e.nx * 13 - e.nz * 5.2, 0.07, z + e.nz * 13 + e.nx * 5.2];
-        const cg = new BufferGeometry();
-        cg.setAttribute("position", new Float32BufferAttribute([...tip, ...left, ...right], 3));
-        cg.computeVertexNormals();
-        const cone = new Mesh(cg, coneMat.clone());
-        scene.add(cone);
-        out.cams.push({ x, z, dx: e.nx, dz: e.nz, range: 14, cos: Math.cos(0.52), cone });
-        if (++ci >= 16) break;
-      }
-      if (ci >= 16) break;
-    }
-    out.blitz = [];
-    let bi = 0;
-    for (const j of out.junctions || []) {
-      if (R() > 0.38) continue;
-      const pole2 = new Mesh(new CylinderGeometry(0.07, 0.08, 3.4, 8), propMat(3355448));
-      pole2.position.set(j[0], 1.7, j[1]);
-      pole2.castShadow = true;
-      scene.add(pole2);
-      const head2 = new Mesh(new BoxGeometry(0.38, 0.3, 0.3), new MeshStandardMaterial({ color: 13213728, roughness: 0.45, emissive: 0, emissiveIntensity: 0 }));
-      head2.position.set(j[0], 3.35, j[1]);
-      scene.add(head2);
-      out.blitz.push({ x: j[0], z: j[1], cool: 0, head: head2 });
-      if (++bi >= 10) break;
-    }
-    out.hubPoi = hubPick?.p;
-    out.placeSign = placeSign;
-    out.propMat = propMat;
-    return out;
-  }
-  var LEVEL_H, Geo, EdgeGrid, ROOF_COLS, SHOP_NAMES, EXTRA_SIGNS, NEON;
-  var init_city = __esm({
-    "src/city.js"() {
-      init_three_module();
-      init_tex();
-      LEVEL_H = 3.3;
-      __name(pip, "pip");
-      __name(segDist, "segDist");
-      Geo = class {
-        static {
-          __name(this, "Geo");
-        }
-        constructor() {
-          this.p = [];
-          this.n = [];
-          this.u = [];
-          this.c = [];
-        }
-        tri(a, b, c, n, ua, ub, uc, col) {
-          this.p.push(...a, ...b, ...c);
-          for (let i = 0; i < 3; i++) this.n.push(...n);
-          this.u.push(...ua, ...ub, ...uc);
-          if (col) for (let i = 0; i < 3; i++) this.c.push(...col);
-        }
-        quad(a, b, c, d, n, ua, ub, uc, ud, col) {
-          this.tri(a, b, c, n, ua, ub, uc, col);
-          this.tri(a, c, d, n, ua, uc, ud, col);
-        }
-        build() {
-          const g = new BufferGeometry();
-          g.setAttribute("position", new Float32BufferAttribute(this.p, 3));
-          g.setAttribute("normal", new Float32BufferAttribute(this.n, 3));
-          g.setAttribute("uv", new Float32BufferAttribute(this.u, 2));
-          if (this.c.length) g.setAttribute("color", new Float32BufferAttribute(this.c, 3));
-          g.computeBoundingSphere();
-          return g;
-        }
-      };
-      EdgeGrid = class {
-        static {
-          __name(this, "EdgeGrid");
-        }
-        constructor(cell = 16) {
-          this.cell = cell;
-          this.m = /* @__PURE__ */ new Map();
-        }
-        key(i, j) {
-          return i * 10007 + j;
-        }
-        add(ax, az, bx, bz) {
-          const c = this.cell;
-          const x0 = Math.floor(Math.min(ax, bx) / c) - 1, x1 = Math.floor(Math.max(ax, bx) / c) + 1, z0 = Math.floor(Math.min(az, bz) / c) - 1, z1 = Math.floor(Math.max(az, bz) / c) + 1;
-          for (let i = x0; i <= x1; i++) for (let j = z0; j <= z1; j++) {
-            const k = this.key(i, j);
-            if (!this.m.has(k)) this.m.set(k, []);
-            this.m.get(k).push([ax, az, bx, bz]);
-          }
-        }
-        near(x, z) {
-          return this.m.get(this.key(Math.floor(x / this.cell), Math.floor(z / this.cell))) || [];
-        }
-        // push circle out of edges; returns hit normal or null
-        resolve(pos, r) {
-          let hit = null;
-          for (let it = 0; it < 3; it++) {
-            let any = false;
-            for (const s of this.near(pos.x, pos.z)) {
-              const [d, cx, cz] = segDist(pos.x, pos.z, s[0], s[1], s[2], s[3]);
-              if (d < r) {
-                let nx = pos.x - cx, nz = pos.z - cz;
-                const l = Math.hypot(nx, nz) || 1;
-                nx /= l;
-                nz /= l;
-                pos.x = cx + nx * r;
-                pos.z = cz + nz * r;
-                hit = { x: nx, z: nz };
-                any = true;
-              }
-            }
-            if (!any) break;
-          }
-          return hit;
-        }
-      };
-      ROOF_COLS = [[0.46, 0.44, 0.4], [0.58, 0.3, 0.22], [0.3, 0.42, 0.34], [0.7, 0.62, 0.46], [0.26, 0.27, 0.31], [0.52, 0.44, 0.54], [0.32, 0.44, 0.56], [0.74, 0.4, 0.26], [0.62, 0.62, 0.58], [0.34, 0.26, 0.22], [0.24, 0.48, 0.5], [0.6, 0.56, 0.3]];
-      SHOP_NAMES = { fast_food: ["PIZZA NOTTE", "BURGER BUDE", "CURRY ECK", "FALAFEL HOUSE", "IMBISS ROSI", "H\xC4HNCHEN HEINZ", "WOK STATION 9", "KUMPIR K\xD6NIG", "B\xD6REK BOX", "POMMES POTT"], restaurant: ["TRATTORIA LUNA", "TAVERNA DELFI", "ASIA GARDEN", "STEAKHAUS RUHR", "LA CANTINA", "BALKAN GRILL", "SUSHI KAZE", "PHO SAIGON", "GASTHAUS KRONE"], cafe: ["CAF\xC9 KORN", "KAFFEEKLATSCH", "BACKSTUBE 11", "ESPRESSO 44", "CAF\xC9 ZUCKER"], bar: ["BAR NOIR", "LUCKY 13", "BLAUE STUNDE", "EXIT BAR", "COCKTAIL CLUB"], pub: ["ZUM HENKEL", "KNEIPE 7", "ZUR ECKE", "PILS-STUBE", "SCHICHT-ENDE"] };
-      EXTRA_SIGNS = ["KIOSK", "SPIELHALLE", "WETTB\xDCRO", "HANDY DOC", "SHISHA LOUNGE", "SALON SCHNITT", "ORIENT MARKT", "PFANDHAUS", "TATTOO INK", "SP\xC4TI 24", "GOLD ANKAUF", "NAGEL STUDIO", "REISEB\xDCRO SONNE", "APOTHEKE AM ECK"];
-      NEON = ["#ff3fa4", "#3ff0ff", "#ffe03f", "#7dff5a", "#ff6a2a", "#b46bff", "#ff2a3a"];
-      __name(buildCity, "buildCity");
     }
   });
 
@@ -30350,38 +28604,162 @@ void main() {
 
   // src/sets.js
   function loadOne(url) {
-    return loader.loadAsync(url).then((gltf) => {
-      const root = gltf.scene || gltf.scenes[0];
+    return loader.loadAsync(url).then((g) => {
+      const root = g.scene || g.scenes[0];
       root.position.set(0, 0, 0);
       root.rotation.set(0, 0, 0);
       root.scale.set(1, 1, 1);
-      root.traverse((o) => {
-        if (o.isMesh) {
-          o.castShadow = true;
-          o.receiveShadow = true;
-        }
-      });
+      root.updateMatrixWorld(true);
       return root;
     });
   }
+  function collect(node, rel, skip, bucket) {
+    const out = {};
+    const inv = new Matrix4().copy(rel).invert();
+    const m4 = new Matrix4();
+    const walk = /* @__PURE__ */ __name((o) => {
+      if (skip.has(o)) return;
+      if (o.isMesh) {
+        const mats = [].concat(o.material);
+        const g0 = o.geometry;
+        const groups = g0.groups.length ? g0.groups : [{ start: 0, count: g0.index ? g0.index.count : g0.attributes.position.count, materialIndex: 0 }];
+        for (const gr of groups) {
+          const mt = mats[gr.materialIndex] || mats[0];
+          let g = g0.index ? g0.toNonIndexed() : g0.clone();
+          if (g0.groups.length) {
+            const s = gr.start, c2 = gr.count;
+            const sub = new BufferGeometry();
+            for (const a of ["position", "normal"]) {
+              const at = g.attributes[a];
+              if (at) sub.setAttribute(a, new BufferAttribute(at.array.slice(s * 3, (s + c2) * 3), 3));
+            }
+            g = sub;
+          }
+          for (const k of Object.keys(g.attributes)) if (k !== "position" && k !== "normal") g.deleteAttribute(k);
+          if (!g.attributes.normal) g.computeVertexNormals();
+          m4.multiplyMatrices(inv, o.matrixWorld);
+          g.applyMatrix4(m4);
+          const n = g.attributes.position.count;
+          const col = new Float32Array(n * 3), key = new Float32Array(n);
+          const c = mt && mt.color ? mt.color : new Color(1, 1, 1);
+          const ki = kIndex(keyOf(mt));
+          for (let i = 0; i < n; i++) {
+            col[i * 3] = c.r;
+            col[i * 3 + 1] = c.g;
+            col[i * 3 + 2] = c.b;
+            key[i] = ki;
+          }
+          g.setAttribute("color", new BufferAttribute(col, 3));
+          g.setAttribute("mkey", new BufferAttribute(key, 1));
+          const b = bucket(mt);
+          (out[b] = out[b] || []).push(g);
+        }
+      }
+      for (const ch of o.children) walk(ch);
+    }, "walk");
+    walk(node);
+    const res = {};
+    for (const b in out) res[b] = mergeGeometries(out[b]);
+    return res;
+  }
+  function meshOf(g, mat) {
+    const m = new Mesh(g, mat);
+    m.castShadow = true;
+    m.receiveShadow = true;
+    return m;
+  }
+  function compileCar(root) {
+    const r = collect(root, root.matrixWorld, /* @__PURE__ */ new Set(), (mt) => isGlow(mt) ? "glow" : keyOf(mt) === "Paint" ? "paint" : "rest");
+    const g = new Group();
+    g.name = "CarSet";
+    if (r.paint) {
+      const pm = new MeshStandardMaterial({ color: 16777215, roughness: 0.38, metalness: 0.18 });
+      const m = meshOf(r.paint, pm);
+      m.name = "Paint";
+      g.add(m);
+    }
+    if (r.rest) {
+      const m = meshOf(r.rest, restMat);
+      m.name = "Rest";
+      g.add(m);
+    }
+    if (r.glow) {
+      const m = meshOf(r.glow, glowMat);
+      m.name = "Glow";
+      m.castShadow = false;
+      g.add(m);
+    }
+    return g;
+  }
+  function compilePed(root) {
+    const inner = findNode(root, "Inner") || root;
+    const piv = PIVOTS.map((n) => findNode(root, n));
+    if (piv.some((p) => !p)) return null;
+    const skip = new Set(piv);
+    const g = new Group();
+    g.name = "PedSet";
+    const In = new Group();
+    In.name = "Inner";
+    g.add(In);
+    const body = collect(inner, inner.matrixWorld, skip, () => "all").all;
+    const bm = meshOf(body, null);
+    bm.name = "Body";
+    In.add(bm);
+    const invI = new Matrix4().copy(inner.matrixWorld).invert();
+    piv.forEach((p, i) => {
+      const pg = new Group();
+      pg.name = PIVOTS[i];
+      const m4 = new Matrix4().multiplyMatrices(invI, p.matrixWorld);
+      m4.decompose(pg.position, pg.quaternion, pg.scale);
+      const lg = collect(p, p.matrixWorld, /* @__PURE__ */ new Set(), () => "all").all;
+      if (lg) {
+        const lm = meshOf(lg, null);
+        lm.name = PIVOTS[i] + "Mesh";
+        pg.add(lm);
+      }
+      In.add(pg);
+    });
+    return g;
+  }
+  function compileProp(root) {
+    const r = collect(root, root.matrixWorld, /* @__PURE__ */ new Set(), (mt) => isGlow(mt) ? "glow" : "rest");
+    const g = new Group();
+    g.name = "PropSet";
+    if (r.rest) {
+      const m = meshOf(r.rest, restMat);
+      m.name = "Rest";
+      g.add(m);
+    }
+    if (r.glow) {
+      const m = meshOf(r.glow, glowMat);
+      m.name = "Glow";
+      m.castShadow = false;
+      g.add(m);
+    }
+    g.userData.geos = r;
+    return g;
+  }
   async function loadHoodSets() {
-    const jobs = [
-      loadOne("assets/glb/player.glb").then((s) => {
-        cache.player = s;
-      }).catch(() => {
+    const one = /* @__PURE__ */ __name((k, fn) => loadOne("assets/glb/" + k + ".glb?v=" + (window.HOOD_V || "")).then((r) => {
+      fn(r);
+      cache.loaded.push(k);
+    }).catch((e) => {
+      console.warn("Hood set failed \u2014 procedural fallback", k, e);
+    }), "one");
+    await Promise.all([
+      one("player", (r) => {
+        cache.player = compilePed(r);
       }),
-      loadOne("assets/glb/ped.glb").then((s) => {
-        cache.ped = s;
-      }).catch(() => {
+      one("ped", (r) => {
+        cache.ped = compilePed(r);
       }),
-      ...CAR_FILES.map(
-        (k) => loadOne("assets/glb/" + k + ".glb").then((s) => {
-          cache.cars[k] = s;
-        }).catch(() => {
-        })
-      )
-    ];
-    await Promise.all(jobs);
+      ...CAR_FILES.map((k) => one(k, (r) => {
+        cache.cars[k] = compileCar(r);
+      })),
+      ...PROP_FILES.map((k) => one(k, (r) => {
+        cache.props[k] = compileProp(r);
+      }))
+    ]);
     return cache;
   }
   function getPedTemplate(hero) {
@@ -30389,19 +28767,2095 @@ void main() {
     return cache.ped || cache.player;
   }
   function getCarTemplate(type) {
-    return cache.cars[type] || cache.cars.sedan || null;
+    return cache.cars[type] || null;
   }
-  var loader, cache, CAR_FILES;
+  function getPropTemplate(k) {
+    return cache.props[k] || null;
+  }
+  function clonePed(tpl, tint) {
+    const c = tpl.clone(true);
+    const lin = new Color();
+    const map = {};
+    for (const k in tint) {
+      const v = tint[k];
+      if (v == null) continue;
+      if (Array.isArray(v)) map[kIndex(k)] = [v[0], v[1], v[2]];
+      else {
+        lin.set(v);
+        map[kIndex(k)] = [lin.r, lin.g, lin.b];
+      }
+    }
+    c.traverse((o) => {
+      if (!o.isMesh) return;
+      const g = o.geometry.clone();
+      const col = g.attributes.color.array.slice();
+      const key = g.attributes.mkey.array;
+      for (let i = 0; i < key.length; i++) {
+        const t = map[key[i]];
+        if (t) {
+          col[i * 3] = t[0];
+          col[i * 3 + 1] = t[1];
+          col[i * 3 + 2] = t[2];
+        }
+      }
+      g.setAttribute("color", new BufferAttribute(col, 3));
+      o.geometry = g;
+      o.material = pedMat;
+      o.castShadow = true;
+      o.receiveShadow = false;
+    });
+    return c;
+  }
+  function instanceProp(k, matrices, scene) {
+    const tpl = cache.props[k];
+    if (!tpl || !matrices.length) return null;
+    const out = [];
+    for (const [b, geo] of Object.entries(tpl.userData.geos)) {
+      const im = new InstancedMesh(geo, b === "glow" ? glowMat : restMat, matrices.length);
+      matrices.forEach((m, i) => im.setMatrixAt(i, m));
+      im.castShadow = b !== "glow";
+      im.receiveShadow = true;
+      im.computeBoundingSphere();
+      scene.add(im);
+      out.push(im);
+    }
+    return out;
+  }
+  var loader, CAR_FILES, PROP_FILES, cache, PIVOTS, keyOf, isGlow, findNode, KEYS, kIndex, restMat, glowMat, pedMat;
   var init_sets = __esm({
     "src/sets.js"() {
+      init_three_module();
       init_GLTFLoader();
+      init_BufferGeometryUtils();
       loader = new GLTFLoader();
-      cache = { player: null, ped: null, cars: {} };
       CAR_FILES = ["sedan", "hatch", "kombi", "van", "taxi", "coupe", "police", "truck"];
+      PROP_FILES = ["crate", "pistol", "bat", "barrier", "heal"];
+      cache = { player: null, ped: null, cars: {}, props: {}, loaded: [] };
+      PIVOTS = ["LegL", "LegR", "ArmL", "ArmR"];
+      keyOf = /* @__PURE__ */ __name((m) => (m && m.name || "").split(".")[0], "keyOf");
+      isGlow = /* @__PURE__ */ __name((m) => m && !["Headlamp", "Taillamp"].includes(keyOf(m)) && m.emissive && (m.emissive.r + m.emissive.g + m.emissive.b) * (m.emissiveIntensity ?? 1) > 0.25, "isGlow");
       __name(loadOne, "loadOne");
+      findNode = /* @__PURE__ */ __name((root, name) => {
+        const re = new RegExp("^" + name + "(\\.?\\d{3})?$");
+        let f = null;
+        root.traverse((o) => {
+          if (!f && re.test(o.name)) f = o;
+        });
+        return f;
+      }, "findNode");
+      KEYS = [];
+      kIndex = /* @__PURE__ */ __name((k) => {
+        let i = KEYS.indexOf(k);
+        if (i < 0) {
+          KEYS.push(k);
+          i = KEYS.length - 1;
+        }
+        return i;
+      }, "kIndex");
+      __name(collect, "collect");
+      restMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.6, metalness: 0.08 });
+      glowMat = new MeshBasicMaterial({ vertexColors: true, toneMapped: false });
+      __name(meshOf, "meshOf");
+      __name(compileCar, "compileCar");
+      __name(compilePed, "compilePed");
+      __name(compileProp, "compileProp");
       __name(loadHoodSets, "loadHoodSets");
       __name(getPedTemplate, "getPedTemplate");
       __name(getCarTemplate, "getCarTemplate");
+      __name(getPropTemplate, "getPropTemplate");
+      pedMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.72, metalness: 0.02 });
+      __name(clonePed, "clonePed");
+      __name(instanceProp, "instanceProp");
+    }
+  });
+
+  // src/tex.js
+  function rng(seed) {
+    let a = seed >>> 0;
+    return function() {
+      a |= 0;
+      a = a + 1831565813 | 0;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function canvas(w, h) {
+    const c = document.createElement("canvas");
+    c.width = w;
+    c.height = h;
+    return c;
+  }
+  function tex(c, srgb = true, rep = true) {
+    const t = new CanvasTexture(c);
+    if (srgb) t.colorSpace = SRGBColorSpace;
+    if (rep) {
+      t.wrapS = t.wrapT = RepeatWrapping;
+    }
+    t.anisotropy = 8;
+    t.needsUpdate = true;
+    return t;
+  }
+  function speckle(g, w, h, n, amp, R, dark = true) {
+    for (let i = 0; i < n; i++) {
+      const v = R();
+      g.fillStyle = R() < 0.5 ? `rgba(0,0,0,${amp * v})` : `rgba(255,255,255,${amp * v * 0.6})`;
+      const s = 1 + R() * 2.5;
+      g.fillRect(R() * w, R() * h, s, s);
+    }
+  }
+  function blotch(g, w, h, n, R, col = "0,0,0", a = 0.08, rmax = 60) {
+    for (let i = 0; i < n; i++) {
+      const x = R() * w, y = R() * h, r = 10 + R() * rmax;
+      const gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, `rgba(${col},${a * R()})`);
+      gr.addColorStop(1, `rgba(${col},0)`);
+      g.fillStyle = gr;
+      g.fillRect(x - r, y - r, 2 * r, 2 * r);
+    }
+  }
+  function wrapDraw(g, w, h, fn) {
+    for (const dx of [-w, 0, w]) for (const dy of [-h, 0, h]) {
+      g.save();
+      g.translate(dx, dy);
+      fn();
+      g.restore();
+    }
+  }
+  function makeFacade(st, seed) {
+    const R = rng(seed), S = 512, c = canvas(S, S), g = c.getContext("2d"), e = canvas(S, S), ge = e.getContext("2d");
+    ge.fillStyle = "#000";
+    ge.fillRect(0, 0, S, S);
+    g.fillStyle = st.wall;
+    g.fillRect(0, 0, S, S);
+    if (st.pat === "brick") {
+      for (let y = 0; y < S; y += 8) {
+        const off = y / 8 % 2 ? 0 : 10;
+        for (let x = -20; x < S; x += 20) {
+          g.fillStyle = `rgba(${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 200},0,${0.05 + R() * 0.07})`;
+          g.fillRect(x + off, y, 18, 6);
+        }
+        g.fillStyle = st.mortar;
+        g.globalAlpha = 0.55;
+        g.fillRect(0, y + 6, S, 2);
+        g.globalAlpha = 1;
+      }
+    }
+    if (st.pat === "panel") {
+      g.strokeStyle = "rgba(0,0,0,.25)";
+      g.lineWidth = 2;
+      for (let y = 0; y < S; y += 64) {
+        g.beginPath();
+        g.moveTo(0, y + 0.5);
+        g.lineTo(S, y + 0.5);
+        g.stroke();
+      }
+      for (let x = 0; x < S; x += 128) {
+        g.beginPath();
+        g.moveTo(x + 1, 0);
+        g.lineTo(x + 1, S);
+        g.stroke();
+      }
+    }
+    speckle(g, S, S, 5e3, 0.18, R);
+    blotch(g, S, S, 30, R, "40,30,20", 0.12);
+    if (st.pat === "glass") {
+      for (let f = 0; f < 4; f++) {
+        const y0 = f * 128;
+        g.fillStyle = "#3b4a4e";
+        g.fillRect(0, y0 + 100, S, 28);
+        const CW = st.col || 32, GC = st.gcols || ["#2f5866", "#4f8090", "#1c3a44"];
+        for (let x = 0; x < S; x += CW) {
+          const gr = g.createLinearGradient(x, y0, x + CW, y0 + 100);
+          gr.addColorStop(0, GC[0]);
+          gr.addColorStop(0.5 + R() * 0.3, GC[1]);
+          gr.addColorStop(1, GC[2]);
+          g.fillStyle = gr;
+          g.fillRect(x, y0 + 4, CW, 96);
+        }
+        g.fillStyle = st.frame;
+        for (let x = 0; x <= S; x += CW) g.fillRect(x - 1.5, y0, 3, 128);
+        g.fillRect(0, y0 + 100, S, 3);
+        g.fillRect(0, y0, S, 4);
+        if (R() < 0.45) {
+          ge.fillStyle = R() < 0.5 ? "#d9e6ff" : "#fff0d0";
+          for (let x = 0; x < S; x += CW) {
+            if (R() < 0.8) {
+              ge.globalAlpha = 0.5 + R() * 0.5;
+              ge.fillRect(x + 2, y0 + 6, CW - 4, 92);
+            }
+          }
+          ge.globalAlpha = 1;
+        }
+      }
+      return { map: tex(c), emi: tex(e) };
+    }
+    for (let f = 0; f < 4; f++) {
+      const y0 = f * 128;
+      if (st.band) {
+        g.fillStyle = st.band;
+        g.fillRect(0, y0 + 120, S, 8);
+        g.fillStyle = "rgba(255,255,255,.12)";
+        g.fillRect(0, y0 + 120, S, 2);
+      }
+      if (st.ribbon) {
+        const wy = y0 + st.wy, wh = st.wh;
+        g.fillStyle = st.frame;
+        g.fillRect(0, wy - 4, S, wh + 8);
+        for (let x = 0; x < S; x += 64) {
+          const gr = g.createLinearGradient(x, wy, x + 64, wy + wh);
+          gr.addColorStop(0, "#3f5868");
+          gr.addColorStop(1, st.glass);
+          g.fillStyle = gr;
+          g.fillRect(x + 3, wy, 58, wh);
+          if (R() < 0.4) {
+            ge.fillStyle = LITC[R() * LITC.length | 0];
+            ge.globalAlpha = 0.6 + R() * 0.4;
+            ge.fillRect(x + 3, wy, 58, wh);
+            ge.globalAlpha = 1;
+            ge.fillStyle = "rgba(0,0,0,.5)";
+            ge.fillRect(x + 3 + R() * 40, wy, 6, wh);
+          }
+        }
+        g.fillStyle = "rgba(0,0,0,.18)";
+        g.fillRect(0, wy + wh + 4, S, 10);
+        continue;
+      }
+      const NB = st.bays || 4, BW = S / NB;
+      for (let b = 0; b < NB; b++) {
+        const wy = y0 + st.wy, wh = st.wh;
+        const bww = st.pair ? st.ww * 1.5 : st.ww;
+        const bx = b * BW + (BW - bww) / 2;
+        if (st.balc && (f + b) % 2 === 0) {
+          g.fillStyle = "rgba(0,0,0,.28)";
+          g.fillRect(bx - 14, wy + wh * 0.55, bww + 28, wh * 0.45 + 12);
+          g.fillStyle = st.balc;
+          g.fillRect(bx - 16, wy + wh * 0.55, bww + 32, 6);
+          for (let k = bx - 14; k < bx + bww + 16; k += 6) g.fillRect(k, wy + wh * 0.55, 2, wh * 0.45 + 8);
+          g.fillRect(bx - 16, wy + wh + 6, bww + 32, 6);
+        }
+        const wins = st.pair ? [[bx, bww / 2 - 5], [bx + bww / 2 + 5, bww / 2 - 5]] : [[bx, bww]];
+        const lit = R() < 0.36, litCol = LITC[R() * LITC.length | 0], curtain = R() < 0.4;
+        for (const [wx, ww] of wins) {
+          if (st.orn) {
+            g.fillStyle = "rgba(255,250,235,.55)";
+            g.fillRect(wx - 10, wy - 16, ww + 20, 8);
+            g.fillStyle = "rgba(0,0,0,.15)";
+            g.fillRect(wx - 10, wy - 8, ww + 20, 3);
+          }
+          if (st.shutter) {
+            g.fillStyle = st.shutter;
+            g.fillRect(wx - 16, wy, 12, wh);
+            g.fillRect(wx + ww + 4, wy, 12, wh);
+            g.fillStyle = "rgba(0,0,0,.25)";
+            for (let k = 0; k < wh; k += 5) {
+              g.fillRect(wx - 16, wy + k, 12, 1);
+              g.fillRect(wx + ww + 4, wy + k, 12, 1);
+            }
+          }
+          g.fillStyle = st.frame;
+          g.fillRect(wx - 4, wy - 4, ww + 8, wh + 8);
+          const gr = g.createLinearGradient(wx, wy, wx + ww, wy + wh);
+          gr.addColorStop(0, "#5a7488");
+          gr.addColorStop(0.35, st.glass);
+          gr.addColorStop(0.6, "#3d5263");
+          gr.addColorStop(1, "#141c24");
+          g.fillStyle = gr;
+          g.fillRect(wx, wy, ww, wh);
+          if (curtain) {
+            g.fillStyle = st.curtain || "rgba(230,225,210,.55)";
+            g.fillRect(wx, wy, ww * 0.3, wh);
+          }
+          g.fillStyle = st.frame;
+          if (ww > 34) g.fillRect(wx + ww / 2 - 1.5, wy, 3, wh);
+          g.fillRect(wx, wy + wh * 0.32, ww, 3);
+          g.fillStyle = "rgba(255,255,255,.35)";
+          g.fillRect(wx - 6, wy + wh + 4, ww + 12, 5);
+          const dg = g.createLinearGradient(0, wy + wh + 9, 0, wy + wh + 50);
+          dg.addColorStop(0, "rgba(0,0,0,.22)");
+          dg.addColorStop(1, "rgba(0,0,0,0)");
+          g.fillStyle = dg;
+          g.fillRect(wx - 2, wy + wh + 9, ww + 4, 41);
+          if (lit) {
+            ge.globalAlpha = 0.75 + R() * 0.25;
+            ge.fillStyle = litCol;
+            ge.fillRect(wx, wy, ww, wh);
+            ge.globalAlpha = 1;
+            ge.fillStyle = "rgba(0,0,0,.6)";
+            if (ww > 34) ge.fillRect(wx + ww / 2 - 1.5, wy, 3, wh);
+            ge.fillRect(wx, wy + wh * 0.32, ww, 3);
+            if (curtain) {
+              ge.fillStyle = "rgba(60,30,10,.7)";
+              ge.fillRect(wx, wy, ww * 0.3, wh);
+            }
+          }
+        }
+      }
+    }
+    for (let i = 0; i < 14; i++) {
+      const x = R() * S, w = 4 + R() * 14;
+      const sg = g.createLinearGradient(0, 0, 0, S);
+      sg.addColorStop(0, "rgba(0,0,0,0)");
+      sg.addColorStop(1, "rgba(20,15,10,.12)");
+      g.fillStyle = sg;
+      g.fillRect(x, 0, w, S);
+    }
+    return { map: tex(c), emi: tex(e) };
+  }
+  function graffiti(g, R, x0, y0, w, h) {
+    g.lineCap = "round";
+    for (let k = 0; k < 2 + R() * 3; k++) {
+      g.strokeStyle = GRAFFITI[R() * GRAFFITI.length | 0];
+      g.lineWidth = 3 + R() * 4;
+      g.beginPath();
+      let x = x0 + R() * w * 0.3, y = y0 + h * 0.3 + R() * h * 0.5;
+      g.moveTo(x, y);
+      for (let i = 0; i < 6; i++) {
+        x += 8 + R() * 16;
+        y += (R() - 0.5) * 26;
+        g.quadraticCurveTo(x - 6, y - 20 * R(), x, y);
+      }
+      g.stroke();
+    }
+  }
+  function makeShopfront(seed, kind) {
+    const R = rng(seed), W = 512, H = 160, c = canvas(W, H), g = c.getContext("2d"), e = canvas(W, H), ge = e.getContext("2d");
+    ge.fillStyle = "#000";
+    ge.fillRect(0, 0, W, H);
+    if (kind === "res") {
+      g.fillStyle = ["#8a7d6a", "#7a6e62", "#958575", "#6f6a63", "#a89880"][R() * 5 | 0];
+      g.fillRect(0, 0, W, H);
+      speckle(g, W, H, 3e3, 0.2, R);
+      g.fillStyle = "rgba(0,0,0,.25)";
+      g.fillRect(0, H - 36, W, 36);
+      for (let b = 0; b < 4; b++) {
+        const x = b * 128;
+        if (b === 1) {
+          g.fillStyle = "#3a2a1e";
+          g.fillRect(x + 40, 40, 48, H - 40);
+          g.fillStyle = "#5a4230";
+          g.fillRect(x + 44, 44, 40, H - 48);
+          g.fillStyle = "#e0c060";
+          g.fillRect(x + 76, 100, 4, 4);
+          ge.fillStyle = "#ffd080";
+          ge.fillRect(x + 60, 30, 8, 6);
+        } else {
+          g.fillStyle = "#e8e0d0";
+          g.fillRect(x + 36, 40, 56, 62);
+          g.fillStyle = "#1a242e";
+          g.fillRect(x + 40, 44, 48, 54);
+          g.strokeStyle = "rgba(230,235,240,.35)";
+          g.lineWidth = 1;
+          g.beginPath();
+          g.moveTo(x + 42, 46);
+          g.lineTo(x + 58, 70);
+          g.stroke();
+          if (R() < 0.35) {
+            ge.fillStyle = "#ffc070";
+            ge.fillRect(x + 40, 44, 48, 54);
+          }
+          if (R() < 0.5) {
+            g.fillStyle = "#6a6a6a";
+            g.fillRect(x + 36, 40, 56, 62);
+            g.fillStyle = "rgba(0,0,0,.3)";
+            for (let k = 40; k < 102; k += 4) g.fillRect(x + 36, k, 56, 1);
+          }
+        }
+      }
+      if (R() < 0.55) graffiti(g, R, R() * 200, 50, 300, 100);
+      blotch(g, W, H, 20, R, "30,25,20", 0.18, 40);
+      return { map: tex(c), emi: tex(e) };
+    }
+    g.fillStyle = "#2c2e32";
+    g.fillRect(0, 0, W, H);
+    const fc = FASCIA[R() * FASCIA.length | 0];
+    g.fillStyle = fc;
+    g.fillRect(0, 0, W, 34);
+    g.fillStyle = "rgba(255,255,255,.18)";
+    g.fillRect(0, 0, W, 4);
+    g.fillStyle = "rgba(0,0,0,.35)";
+    g.fillRect(0, 30, W, 4);
+    g.fillStyle = "rgba(255,255,255,.55)";
+    for (let i = 0; i < 5 + (R() * 4 | 0); i++) {
+      g.fillRect(18 + i * 18 + R() * 4, 10, 10 + R() * 8, 12);
+    }
+    const door = R() * 4 | 0, awning = R() < 0.55, shutter = R() < 0.18;
+    if (awning) {
+      const ac = ["#b3202a", "#1d6b3a", "#1f4f9a", "#c9a040", "#222"][R() * 5 | 0];
+      g.fillStyle = ac;
+      g.fillRect(0, 34, W, 14);
+      g.fillStyle = "rgba(0,0,0,.25)";
+      for (let x = 0; x < W; x += 16) g.fillRect(x, 34, 8, 14);
+    }
+    for (let b = 0; b < 4; b++) {
+      const x = b * 128;
+      g.fillStyle = "#3a3c40";
+      g.fillRect(x, awning ? 48 : 34, 128, H - (awning ? 48 : 34));
+      const gx = x + 10, gy = awning ? 56 : 42, gw = 108, gh = H - (awning ? 64 : 50);
+      if (b === door) {
+        g.fillStyle = "#1a1614";
+        g.fillRect(x + 38, gy, 52, H - gy);
+        g.fillStyle = "#4a6a78";
+        g.fillRect(x + 42, gy + 4, 44, H - gy - 8);
+        g.fillStyle = "#c8c0b0";
+        g.fillRect(x + 78, gy + H * 0.35, 4, 4);
+        ge.fillStyle = "#fff2d0";
+        ge.globalAlpha = 0.7;
+        ge.fillRect(x + 42, gy + 4, 44, H - gy - 8);
+        ge.globalAlpha = 1;
+        continue;
+      }
+      const gr = g.createLinearGradient(gx, gy, gx + gw, gy + gh);
+      gr.addColorStop(0, "#6a8496");
+      gr.addColorStop(0.35, "#2a3a48");
+      gr.addColorStop(0.7, "#1a242c");
+      gr.addColorStop(1, "#0e1418");
+      g.fillStyle = gr;
+      g.fillRect(gx, gy, gw, gh);
+      g.strokeStyle = "rgba(210,220,230,.55)";
+      g.lineWidth = 3;
+      g.strokeRect(gx + 1, gy + 1, gw - 2, gh - 2);
+      g.fillStyle = "rgba(220,230,240,.35)";
+      g.fillRect(gx + gw / 2 - 1.5, gy, 3, gh);
+      g.fillRect(gx, gy + gh * 0.45, gw, 3);
+      g.fillStyle = "rgba(255,255,255,.18)";
+      g.beginPath();
+      g.moveTo(gx + 8, gy + 4);
+      g.lineTo(gx + 28, gy + 4);
+      g.lineTo(gx + 14, gy + gh - 6);
+      g.lineTo(gx - 2, gy + gh - 6);
+      g.fill();
+      g.fillStyle = "rgba(0,0,0,.35)";
+      for (let k = 0; k < 3; k++) g.fillRect(gx + 8 + k * 30, gy + gh - 28 - k * 8, 22, 10);
+      ge.fillStyle = R() < 0.5 ? "#ffe9b8" : "#e8f0ff";
+      ge.globalAlpha = 0.55 + R() * 0.3;
+      ge.fillRect(gx, gy, gw, gh);
+      ge.globalAlpha = 1;
+      ge.fillStyle = "rgba(0,0,0,.45)";
+      ge.fillRect(gx + gw / 2 - 1.5, gy, 3, gh);
+      ge.fillRect(gx, gy + gh * 0.45, gw, 3);
+      if (shutter && b !== door) {
+        g.fillStyle = "#8a8c90";
+        g.fillRect(gx, gy, gw, gh * 0.55);
+        g.fillStyle = "rgba(0,0,0,.25)";
+        for (let k = gy; k < gy + gh * 0.55; k += 5) g.fillRect(gx, k, gw, 1.5);
+        ge.fillStyle = "#000";
+        ge.fillRect(gx, gy, gw, gh * 0.55);
+      }
+    }
+    blotch(g, W, H, 10, R, "20,20,20", 0.2, 30);
+    return { map: tex(c), emi: tex(e) };
+  }
+  function noiseTex(base, amp, n, size, seed, extra) {
+    const R = rng(seed), c = canvas(size, size), g = c.getContext("2d");
+    g.fillStyle = base;
+    g.fillRect(0, 0, size, size);
+    speckle(g, size, size, n, amp, R);
+    if (extra) extra(g, R, size);
+    return tex(c);
+  }
+  function roofTex(seed, kind = 0) {
+    const R = rng(seed), S = 512, c = canvas(S, S), g = c.getContext("2d");
+    if (kind === 4) {
+      g.fillStyle = "#8a3a28";
+      g.fillRect(0, 0, S, S);
+      for (let y = 0; y < S; y += 14) {
+        const off = y / 14 % 2 ? 0 : 10;
+        for (let x = -20; x < S; x += 20) {
+          const v = (R() - 0.5) * 28;
+          g.fillStyle = `rgb(${140 + v},${55 + v * 0.4},${38 + v * 0.3})`;
+          g.beginPath();
+          g.moveTo(x + off, y + 14);
+          g.quadraticCurveTo(x + off + 10, y + 2, x + off + 20, y + 14);
+          g.fill();
+        }
+        g.fillStyle = "rgba(0,0,0,.25)";
+        g.fillRect(0, y + 12, S, 2);
+      }
+      speckle(g, S, S, 8e3, 0.2, R);
+      return tex(c);
+    }
+    if (kind === 5) {
+      for (let y = 0; y < S; y++) {
+        const t = y / S;
+        const r = 40 + t * 30, gg = 90 + t * 50, b = 70 + t * 40;
+        g.fillStyle = `rgb(${r | 0},${gg | 0},${b | 0})`;
+        g.fillRect(0, y, S, 1);
+      }
+      for (let x = 0; x < S; x += 48) {
+        g.fillStyle = "rgba(255,255,255,.12)";
+        g.fillRect(x, 0, 2, S);
+        g.fillStyle = "rgba(0,0,0,.18)";
+        g.fillRect(x + 24, 0, 2, S);
+      }
+      blotch(g, S, S, 20, R, "20,60,40", 0.2, 80);
+      return tex(c);
+    }
+    g.fillStyle = "#c4c4c4";
+    g.fillRect(0, 0, S, S);
+    if (kind === 0) {
+      speckle(g, S, S, 26e3, 0.42, R);
+      wrapDraw(g, S, S, () => {
+        blotch(g, S, S, 10, R, "0,0,0", 0.1, 120);
+        blotch(g, S, S, 6, R, "255,255,255", 0.08, 90);
+      });
+      g.fillStyle = "rgba(0,0,0,.22)";
+      for (let y = 0; y < S; y += 128) g.fillRect(0, y, S, 3);
+    } else if (kind === 1) {
+      for (let x = 0; x < S; x += 64) {
+        const v = (R() - 0.5) * 30;
+        g.fillStyle = `rgb(${196 + v},${196 + v},${196 + v})`;
+        g.fillRect(x, 0, 64, S);
+        g.fillStyle = "rgba(0,0,0,.35)";
+        g.fillRect(x, 0, 3, S);
+        g.fillStyle = "rgba(255,255,255,.18)";
+        g.fillRect(x + 3, 0, 2, S);
+      }
+      speckle(g, S, S, 9e3, 0.25, R);
+      wrapDraw(g, S, S, () => blotch(g, S, S, 8, R, "0,0,0", 0.14, 100));
+      for (let i = 0; i < 6; i++) {
+        g.fillStyle = "rgba(0,0,0,.2)";
+        g.fillRect(R() * S, R() * S, 20 + R() * 50, 14 + R() * 30);
+      }
+    } else if (kind === 2) {
+      const t = 64;
+      for (let y = 0; y < S; y += t) for (let x = 0; x < S; x += t) {
+        const v = (R() - 0.5) * 34;
+        g.fillStyle = `rgb(${200 + v},${198 + v},${192 + v})`;
+        g.fillRect(x, y, t, t);
+      }
+      speckle(g, S, S, 12e3, 0.25, R);
+      g.fillStyle = "rgba(30,30,30,.45)";
+      for (let y = 0; y < S; y += t) g.fillRect(0, y, S, 2.5);
+      for (let x = 0; x < S; x += t) g.fillRect(x, 0, 2.5, S);
+      wrapDraw(g, S, S, () => blotch(g, S, S, 8, R, "40,50,30", 0.18, 90));
+    } else {
+      for (let x = 0; x < S; x += 16) {
+        const gr = g.createLinearGradient(x, 0, x + 16, 0);
+        gr.addColorStop(0, "#9a9a9a");
+        gr.addColorStop(0.5, "#e2e2e2");
+        gr.addColorStop(1, "#8a8a8a");
+        g.fillStyle = gr;
+        g.fillRect(x, 0, 16, S);
+      }
+      g.fillStyle = "rgba(0,0,0,.3)";
+      for (let y = 0; y < S; y += 170) g.fillRect(0, y, S, 2);
+      wrapDraw(g, S, S, () => blotch(g, S, S, 12, R, "90,50,20", 0.2, 70));
+    }
+    return tex(c);
+  }
+  function asphaltTex(seed) {
+    return noiseTex("#2f4a46", 0.28, 22e3, 512, seed, (g, R, s) => {
+      wrapDraw(g, s, s, () => {
+        blotch(g, s, s, 30, R, "10,18,14", 0.22, 80);
+        blotch(g, s, s, 12, R, "90,100,95", 0.12, 60);
+      });
+      g.strokeStyle = "rgba(20,20,20,.45)";
+      g.lineWidth = 1.2;
+      for (let i = 0; i < 10; i++) {
+        g.beginPath();
+        let x = R() * s, y = R() * s;
+        g.moveTo(x, y);
+        for (let k = 0; k < 8; k++) {
+          x += (R() - 0.5) * 30;
+          y += (R() - 0.5) * 30;
+          g.lineTo(x, y);
+        }
+        g.stroke();
+      }
+      for (let i = 0; i < 5; i++) {
+        {
+          const v = R() < 0.5 ? 30 : 85;
+          g.fillStyle = `rgba(${v},${v},${v + 3},.35)`;
+        }
+        g.fillRect(R() * s, R() * s, 30 + R() * 80, 20 + R() * 50);
+      }
+    });
+  }
+  function paveTex(seed, base = "#c4b496", tile = 32, joint = "rgba(40,35,30,.45)") {
+    return noiseTex(base, 0.18, 9e3, 512, seed, (g, R, s) => {
+      for (let y = 0; y < s; y += tile) for (let x = 0; x < s; x += tile) {
+        const v = (R() - 0.5) * 18;
+        g.fillStyle = `rgba(${v > 0 ? 255 : 0},${v > 0 ? 255 : 0},${v > 0 ? 255 : 0},${Math.abs(v) / 120})`;
+        g.fillRect(x, y, tile, tile);
+      }
+      g.fillStyle = joint;
+      for (let y = 0; y < s; y += tile) g.fillRect(0, y, s, 1.5);
+      for (let x = 0; x < s; x += tile) g.fillRect(x, 0, 1.5, s);
+      wrapDraw(g, s, s, () => blotch(g, s, s, 14, R, "30,25,20", 0.22, 70));
+      for (let i = 0; i < 40; i++) {
+        g.fillStyle = "rgba(30,30,30,.35)";
+        const r = 1 + R() * 2;
+        g.beginPath();
+        g.arc(R() * s, R() * s, r, 0, 7);
+        g.fill();
+      }
+    });
+  }
+  function plazaTex(seed) {
+    return noiseTex("#a8927a", 0.18, 9e3, 512, seed, (g, R, s) => {
+      for (let y = 0; y < s; y += 16) {
+        const off = y / 16 % 2 ? 0 : 16;
+        for (let x = -32; x < s; x += 32) {
+          const v = R();
+          g.fillStyle = v < 0.33 ? "rgba(140,90,70,.35)" : v < 0.66 ? "rgba(200,180,150,.25)" : "rgba(90,80,75,.2)";
+          g.fillRect(x + off, y, 31, 15);
+        }
+      }
+      g.fillStyle = "rgba(50,40,30,.35)";
+      for (let y = 0; y < s; y += 16) g.fillRect(0, y, s, 1);
+      wrapDraw(g, s, s, () => blotch(g, s, s, 12, R, "40,30,20", 0.2, 70));
+    });
+  }
+  function grassTex(seed) {
+    return noiseTex("#4f7a32", 0.4, 26e3, 256, seed, (g, R, s) => {
+      wrapDraw(g, s, s, () => {
+        blotch(g, s, s, 20, R, "30,50,10", 0.35, 40);
+        blotch(g, s, s, 10, R, "140,150,60", 0.25, 30);
+      });
+    });
+  }
+  function radialTex(inner = "rgba(255,210,140,1)") {
+    const c = canvas(128, 128), g = c.getContext("2d");
+    const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64);
+    gr.addColorStop(0, inner);
+    gr.addColorStop(0.35, inner.replace(/[\d.]+\)$/, "0.45)"));
+    gr.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = gr;
+    g.fillRect(0, 0, 128, 128);
+    return tex(c, true, false);
+  }
+  function blobTex() {
+    const c = canvas(64, 64), g = c.getContext("2d");
+    const gr = g.createRadialGradient(32, 32, 4, 32, 32, 32);
+    gr.addColorStop(0, "rgba(0,0,0,.75)");
+    gr.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = gr;
+    g.fillRect(0, 0, 64, 64);
+    return tex(c, false, false);
+  }
+  function coneTex() {
+    const c = canvas(64, 128), g = c.getContext("2d");
+    const gr = g.createLinearGradient(0, 128, 0, 0);
+    gr.addColorStop(0, "rgba(255,240,200,.9)");
+    gr.addColorStop(1, "rgba(255,240,200,0)");
+    g.fillStyle = gr;
+    g.beginPath();
+    g.moveTo(26, 128);
+    g.lineTo(38, 128);
+    g.lineTo(64, 0);
+    g.lineTo(0, 0);
+    g.fill();
+    return tex(c, true, false);
+  }
+  function signTex(text, opt = {}) {
+    const W = opt.w || 512, H = opt.h || 128, c = canvas(W, H), g = c.getContext("2d");
+    const bg = opt.bg || "#140d18", fg = opt.fg || "#ff3fa4", font = opt.font || '900 76px "Arial Black", Impact, sans-serif';
+    g.fillStyle = bg;
+    g.fillRect(0, 0, W, H);
+    g.strokeStyle = opt.border || fg;
+    g.lineWidth = 6;
+    g.strokeRect(5, 5, W - 10, H - 10);
+    g.font = font;
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    let sz = parseInt(font.match(/(\d+)px/)[1]);
+    while (g.measureText(text).width > W - 40 && sz > 20) {
+      sz -= 4;
+      g.font = font.replace(/\d+px/, sz + "px");
+    }
+    g.shadowColor = fg;
+    g.shadowBlur = opt.blur ?? 18;
+    g.fillStyle = opt.core || "#fff";
+    g.fillText(text, W / 2, H / 2 + 4);
+    g.shadowBlur = 0;
+    g.lineWidth = 2;
+    g.strokeStyle = fg;
+    g.strokeText(text, W / 2, H / 2 + 4);
+    if (opt.sub) {
+      g.font = "bold 22px Arial, sans-serif";
+      g.fillStyle = fg;
+      g.fillText(opt.sub, W / 2, H - 22);
+    }
+    return tex(c, true, false);
+  }
+  function roofPaintTex(text, fg, bg, seed, opt = {}) {
+    const R = rng(seed), W = 1024, H = opt.square ? 1024 : 288, c = canvas(W, H), g = c.getContext("2d");
+    g.fillStyle = bg;
+    g.fillRect(0, 0, W, H);
+    if (opt.stripes) {
+      g.fillStyle = opt.stripes;
+      for (let x = -H; x < W; x += 90) {
+        g.beginPath();
+        g.moveTo(x, 0);
+        g.lineTo(x + 45, 0);
+        g.lineTo(x + 45 + H, H);
+        g.lineTo(x + H, H);
+        g.fill();
+      }
+      g.fillStyle = bg;
+      g.fillRect(40, 40, W - 80, H - 80);
+    }
+    g.strokeStyle = fg;
+    g.lineWidth = 14;
+    g.strokeRect(22, 22, W - 44, H - 44);
+    let sz = opt.square ? 620 : 190;
+    const font = /* @__PURE__ */ __name((s) => `900 ${s}px "Arial Black", Impact, sans-serif`, "font");
+    g.font = font(sz);
+    while (g.measureText(text).width > W - 120 && sz > 40) {
+      sz -= 6;
+      g.font = font(sz);
+    }
+    g.textAlign = "center";
+    g.textBaseline = "middle";
+    g.fillStyle = "rgba(0,0,0,.25)";
+    g.fillText(text, W / 2 + 8, H / 2 + 14);
+    g.fillStyle = fg;
+    g.fillText(text, W / 2, H / 2 + 6);
+    if (opt.sub) {
+      g.font = "bold 40px Arial, sans-serif";
+      g.fillStyle = fg;
+      g.fillText(opt.sub, W / 2, H - 58);
+    }
+    speckle(g, W, H, 3e4, 0.35, R);
+    blotch(g, W, H, 40, R, "0,0,0", 0.25, 140);
+    blotch(g, W, H, 20, R, "255,255,255", 0.12, 120);
+    for (let i = 0; i < 60; i++) {
+      g.fillStyle = `rgba(${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 255},.12)`;
+      g.fillRect(R() * W, R() * H, 20 + R() * 120, 2 + R() * 4);
+    }
+    return tex(c, true, false);
+  }
+  function solarTex() {
+    const c = canvas(64, 128), g = c.getContext("2d");
+    g.fillStyle = "#16213a";
+    g.fillRect(0, 0, 64, 128);
+    g.fillStyle = "#2a3d66";
+    for (let y = 0; y < 128; y += 16) for (let x = 0; x < 64; x += 16) g.fillRect(x + 1.5, y + 1.5, 13, 13);
+    g.strokeStyle = "#b8c0c8";
+    g.lineWidth = 3;
+    g.strokeRect(1.5, 1.5, 61, 125);
+    return tex(c, true, false);
+  }
+  function leafTex(seed) {
+    const R = rng(seed), S = 256, c = canvas(S, S), g = c.getContext("2d");
+    g.fillStyle = "#d4d4d4";
+    g.fillRect(0, 0, S, S);
+    wrapDraw(g, S, S, () => {
+      for (let i = 0; i < 900; i++) {
+        const x = R() * S, y = R() * S, r = 3 + R() * 9;
+        const v = R();
+        g.fillStyle = v < 0.4 ? "rgba(40,40,40,.18)" : v < 0.8 ? "rgba(255,255,255,.14)" : "rgba(0,0,0,.22)";
+        g.beginPath();
+        g.arc(x, y, r, 0, 7);
+        g.fill();
+      }
+    });
+    const c2 = canvas(S, S), g2 = c2.getContext("2d");
+    g2.filter = "blur(1.5px)";
+    for (const dx of [-S, 0, S]) for (const dy of [-S, 0, S]) g2.drawImage(c, dx, dy);
+    return tex(c2, true, true);
+  }
+  function hazardTex() {
+    const c = canvas(32, 256), g = c.getContext("2d");
+    for (let y = 0; y < 256; y += 28) {
+      g.fillStyle = Math.floor(y / 28) % 2 ? "#f0cc22" : "#16140e";
+      g.fillRect(0, y, 32, 28);
+    }
+    return tex(c);
+  }
+  var FACADE_STYLES, LITC, FASCIA, GRAFFITI;
+  var init_tex = __esm({
+    "src/tex.js"() {
+      init_three_module();
+      __name(rng, "rng");
+      __name(canvas, "canvas");
+      __name(tex, "tex");
+      __name(speckle, "speckle");
+      __name(blotch, "blotch");
+      __name(wrapDraw, "wrapDraw");
+      FACADE_STYLES = [
+        { id: "altbau_cream", wall: "#d8c49a", pat: "plaster", frame: "#f3ead6", glass: "#2c3b4c", ww: 44, wh: 66, wy: 30, band: "#c4ad80", orn: true },
+        { id: "brick_red", wall: "#9a4a35", pat: "brick", mortar: "#7a3a2a", frame: "#e8e2d6", glass: "#26323f", ww: 42, wh: 62, wy: 32, band: "#7c3a2a" },
+        { id: "concrete70", wall: "#a7a397", pat: "panel", frame: "#3a3a3a", glass: "#22303a", ribbon: true, wy: 42, wh: 44, band: "#8d897e" },
+        { id: "office_glass", wall: "#24424c", pat: "glass", frame: "#90a4a8", glass: "#1d3a46" },
+        { id: "ochre", wall: "#c98d45", pat: "plaster", frame: "#efe4cc", glass: "#28343f", ww: 46, wh: 60, wy: 34, band: "#b07a38", shutter: "#6e4a2a" },
+        { id: "pastel_rose", wall: "#c7928a", pat: "plaster", frame: "#f1ebe4", glass: "#2a3540", ww: 40, wh: 64, wy: 30, band: "#b07c74" },
+        { id: "brick_dark", wall: "#5d3b30", pat: "brick", mortar: "#46302a", frame: "#cfc6b4", glass: "#1f2a33", ww: 48, wh: 58, wy: 36, band: "#4a2e26" },
+        { id: "mint_panel", wall: "#86a093", pat: "panel", frame: "#e6eee8", glass: "#24333b", ww: 56, wh: 52, wy: 40, band: "#6f887b" },
+        { id: "blue_plaster", wall: "#7f97ad", pat: "plaster", frame: "#eef0f2", glass: "#26313b", ww: 44, wh: 60, wy: 34, band: "#6a8398" },
+        { id: "yellow_brick", wall: "#c9b06a", pat: "brick", mortar: "#a8925a", frame: "#3b3b3b", glass: "#25313b", ww: 50, wh: 56, wy: 38, band: "#a68e52" }
+      ];
+      LITC = ["#ffcf7a", "#ffb862", "#ffe3a6", "#ffd28c", "#a9c8ff", "#ffc06e", "#fff0c8"];
+      __name(makeFacade, "makeFacade");
+      FASCIA = ["#b3202a", "#1d6b3a", "#1f4f9a", "#e0b020", "#efefe8", "#6a2a8a", "#d0601a", "#202020"];
+      GRAFFITI = ["#e83a8a", "#33c4e8", "#f4e23a", "#7ee05a", "#ffffff", "#ff7a2a"];
+      __name(graffiti, "graffiti");
+      __name(makeShopfront, "makeShopfront");
+      __name(noiseTex, "noiseTex");
+      __name(roofTex, "roofTex");
+      __name(asphaltTex, "asphaltTex");
+      __name(paveTex, "paveTex");
+      __name(plazaTex, "plazaTex");
+      __name(grassTex, "grassTex");
+      __name(radialTex, "radialTex");
+      __name(blobTex, "blobTex");
+      __name(coneTex, "coneTex");
+      __name(signTex, "signTex");
+      __name(roofPaintTex, "roofPaintTex");
+      __name(solarTex, "solarTex");
+      __name(leafTex, "leafTex");
+      __name(hazardTex, "hazardTex");
+    }
+  });
+
+  // src/city.js
+  function laneOffset(r) {
+    return r.ow ? 0 : Math.max(1.35, Math.min(r.w / 4, r.w / 2 - 3.1));
+  }
+  function pip(x, z, p) {
+    let ins = false;
+    for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
+      const xi = p[i][0], zi = p[i][1], xj = p[j][0], zj = p[j][1];
+      if (zi > z !== zj > z && x < (xj - xi) * (z - zi) / (zj - zi) + xi) ins = !ins;
+    }
+    return ins;
+  }
+  function segDist(px2, pz2, ax, az, bx, bz) {
+    const dx = bx - ax, dz = bz - az, l = dx * dx + dz * dz;
+    let t = l ? ((px2 - ax) * dx + (pz2 - az) * dz) / l : 0;
+    t = Math.max(0, Math.min(1, t));
+    const cx = ax + t * dx, cz = az + t * dz;
+    return [Math.hypot(px2 - cx, pz2 - cz), cx, cz, t];
+  }
+  function buildCity(scene, D, opts) {
+    const R = rng(1234), out = { grid: new EdgeGrid(), buildings: [], neonMats: [], emiMats: [], shopMats: [], pools: null, roadsDrive: [], junctions: [], signs: [] };
+    const shadeHex = /* @__PURE__ */ __name((h, f, hue = 0) => {
+      const c = new Color(h);
+      const hsl = {};
+      c.getHSL(hsl);
+      c.setHSL((hsl.h + hue + 1) % 1, hsl.s, Math.max(0, Math.min(1, hsl.l * f)));
+      return "#" + c.getHexString();
+    }, "shadeHex");
+    const NV = 3, VR = rng(77);
+    const facVar = [];
+    FACADE_STYLES.forEach((st, i) => {
+      for (let v = 0; v < NV; v++) {
+        let s2 = st;
+        if (v > 0) {
+          const R2 = VR;
+          s2 = { ...st, wall: shadeHex(st.wall, 0.8 + R2() * 0.4, (R2() - 0.5) * 0.06) };
+          if (st.pat === "glass") {
+            s2.col = [24, 32, 48][R2() * 3 | 0];
+            s2.gcols = [["#2f5866", "#4f8090", "#1c3a44"], ["#3a4a5a", "#7a8c9c", "#1e2630"], ["#2a4a3a", "#5a8a70", "#16302a"], ["#4a3e30", "#9a8060", "#2a2018"]][R2() * 4 | 0];
+            s2.frame = ["#90a4a8", "#c8c8c0", "#3a3a3a"][R2() * 3 | 0];
+          } else if (!st.ribbon) {
+            s2.ww = Math.round(st.ww * (0.75 + R2() * 0.45));
+            s2.wh = Math.round(Math.min(78, st.wh * (0.85 + R2() * 0.3)));
+            s2.bays = R2() < 0.35 ? 3 : R2() < 0.2 ? 5 : 4;
+            if (s2.bays === 5) s2.ww = Math.min(s2.ww, 40);
+            s2.pair = s2.bays === 3 && R2() < 0.6;
+            s2.balc = R2() < 0.3 ? ["#d8d8d0", "#3a3a3a", "#8a5a3a"][R2() * 3 | 0] : null;
+            if (R2() < 0.3) s2.band = null;
+            if (R2() < 0.4) s2.frame = ["#f3ead6", "#3b3b3b", "#e8e2d6", "#6a4a30", "#2a4a6a"][R2() * 5 | 0];
+          } else {
+            s2.frame = ["#3a3a3a", "#d0d0c8", "#6a2a2a"][R2() * 3 | 0];
+            s2.wh = Math.round(st.wh * (0.8 + R2() * 0.5));
+          }
+        }
+        facVar.push({ style: i, st: s2, seed: 100 + i * 7 + v });
+      }
+    });
+    const facMats = facVar.map(({ st, seed }) => {
+      const t = makeFacade(st, seed);
+      const m = new MeshStandardMaterial({ map: t.map, emissiveMap: t.emi, emissive: 16777215, emissiveIntensity: 0.5, roughness: st.pat === "glass" ? 0.35 : 0.9, metalness: st.pat === "glass" ? 0.25 : 0 });
+      out.emiMats.push(m);
+      return m;
+    });
+    const shopMats = [0, 1, 2, 3, 4, 5].map((i) => {
+      const t = makeShopfront(500 + i, "shop");
+      const m = new MeshStandardMaterial({ map: t.map, emissiveMap: t.emi, emissive: 16777215, emissiveIntensity: 0.6, roughness: 0.6 });
+      out.shopMats.push(m);
+      return m;
+    });
+    const resMats = [0, 1, 2].map((i) => {
+      const t = makeShopfront(700 + i, "res");
+      const m = new MeshStandardMaterial({ map: t.map, emissiveMap: t.emi, emissive: 16777215, emissiveIntensity: 0.5, roughness: 0.95 });
+      out.emiMats.push(m);
+      return m;
+    });
+    const trimMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: DoubleSide });
+    const roofMats = [0, 1, 2, 3, 4, 5].map((k) => new MeshStandardMaterial({ map: roofTex(9 + k, k), vertexColors: true, roughness: k === 3 || k === 5 ? 0.55 : 0.95, metalness: k === 3 || k === 5 ? 0.35 : 0 }));
+    const facG = facMats.map(() => new Geo());
+    const facOf = /* @__PURE__ */ __name((style, r) => style * NV + (r() * NV | 0), "facOf"), shopG = shopMats.map(() => new Geo()), resG = resMats.map(() => new Geo()), trimG = new Geo(), roofGs = [0, 1, 2, 3, 4, 5].map(() => new Geo());
+    const drive = /* @__PURE__ */ new Set(["primary", "primary_link", "secondary", "tertiary", "residential", "unclassified", "living_street", "service"]);
+    if (!D._widened) {
+      for (const r of D.roads) if (drive.has(r.t) && r.t !== "service") r.w = DRIVE_WIDEN(r);
+      D._widened = true;
+    }
+    const roadSegs = [];
+    for (const r of D.roads) if (r.t !== "foot") for (let i = 0; i < r.p.length - 1; i++) roadSegs.push([r.p[i][0], r.p[i][1], r.p[i + 1][0], r.p[i + 1][1], r.w, r]);
+    const segGrid = /* @__PURE__ */ new Map();
+    const SC = 30;
+    for (const s of roadSegs) {
+      const x0 = Math.floor(Math.min(s[0], s[2]) / SC) - 1, x1 = Math.floor(Math.max(s[0], s[2]) / SC) + 1, z0 = Math.floor(Math.min(s[1], s[3]) / SC) - 1, z1 = Math.floor(Math.max(s[1], s[3]) / SC) + 1;
+      for (let i = x0; i <= x1; i++) for (let j = z0; j <= z1; j++) {
+        const k = i * 1009 + j;
+        if (!segGrid.has(k)) segGrid.set(k, []);
+        segGrid.get(k).push(s);
+      }
+    }
+    out.nearRoad = (x, z) => {
+      let best = null, bd = 1e9;
+      for (const s of segGrid.get(Math.floor(x / SC) * 1009 + Math.floor(z / SC)) || []) {
+        const [d] = segDist(x, z, s[0], s[1], s[2], s[3]);
+        const dd = d - s[4] / 2;
+        if (dd < bd) {
+          bd = dd;
+          best = s;
+        }
+      }
+      return best ? { d: bd, road: best[5], w: best[4] } : null;
+    };
+    const poiByB = /* @__PURE__ */ new Map();
+    const roofPaint = [], solarL = [], skyRows = [];
+    let paintN = 0;
+    const FIELD_COLS = [[0.34, 0.5, 0.32], [0.64, 0.27, 0.21], [0.8, 0.8, 0.76], [0.32, 0.42, 0.58], [0.74, 0.63, 0.42], [0.22, 0.22, 0.25], [0.55, 0.58, 0.36], [0.7, 0.45, 0.25]];
+    for (const b of D.buildings) {
+      const p = b.p, n = p.length, h = b.h, r = rng(b.r);
+      const big = h > 19;
+      let style;
+      if (b.k === "church") style = 1;
+      else if (b.k === "industrial") style = [2, 7, 6][r() * 3 | 0];
+      else if (b.k === "school") style = [2, 0, 8][r() * 3 | 0];
+      else if (b.k === "station") style = [3, 2, 7][r() * 3 | 0];
+      else if (b.k === "greenhouse") style = 3;
+      else if (big) style = [2, 3, 2, 7, 6, 3][r() * 6 | 0];
+      else style = [0, 0, 1, 4, 5, 6, 8, 9, 0, 4][r() * 10 | 0];
+      let roofCol = ROOF_COLS[r() * ROOF_COLS.length | 0];
+      if (b.roofCol) {
+        const c = new Color(b.roofCol);
+        roofCol = [c.r, c.g, c.b];
+      } else if (b.k === "church") roofCol = [0.28, 0.42, 0.38];
+      else if (b.k === "industrial") roofCol = [0.55, 0.56, 0.58];
+      else if (b.k === "garage") roofCol = [0.45, 0.45, 0.48];
+      if (b.col) {
+      }
+      const fvi = facOf(style, r), uo = (r() * 4 | 0) / 4;
+      const wallHex = new Color(facVar[fvi].st.wall);
+      const trim = [wallHex.r * 0.75, wallHex.g * 0.75, wallHex.b * 0.75];
+      const capC = [Math.min(1, wallHex.r * 1.1 + 0.08), Math.min(1, wallHex.g * 1.1 + 0.08), Math.min(1, wallHex.b * 1.1 + 0.08)];
+      const shopish = b.k === "shop" || r() < 0.55;
+      const gH = Math.min(h - 0.8, shopish ? 4.2 : 3.6);
+      const top = h - 0.6;
+      const para = 0.45;
+      const nf = Math.max(1, Math.round((top - gH) / LEVEL_H));
+      const shopIdx = r() * shopMats.length | 0, resIdx = r() * resMats.length | 0;
+      const edges = [];
+      const borderQ = [];
+      for (let i = 0; i < n; i++) {
+        const a = p[i], c = p[(i + 1) % n];
+        const dx = c[0] - a[0], dz = c[1] - a[1], len = Math.hypot(dx, dz);
+        if (len < 0.05) continue;
+        let nx = dz / len, nz = -dx / len;
+        const mx = (a[0] + c[0]) / 2, mz = (a[1] + c[1]) / 2;
+        if (pip(mx + nx * 0.2, mz + nz * 0.2, p)) {
+          nx = -nx;
+          nz = -nz;
+        }
+        const rx = nz, rz = -nx;
+        let A = a, B = c;
+        if (dx * rx + dz * rz < 0) {
+          A = c;
+          B = a;
+        }
+        out.grid.add(a[0], a[1], c[0], c[1]);
+        const nb = Math.max(1, Math.round(len / 3.5)), U = nb / 4;
+        const N = [nx, 0, nz];
+        const P = /* @__PURE__ */ __name((q, y) => [q[0], y, q[1]], "P");
+        const nr = out.nearRoad(mx + nx * 3, mz + nz * 3);
+        const street = nr && nr.d < 10;
+        const gGeo = street && shopish ? shopG[shopIdx] : resG[resIdx];
+        gGeo.quad(P(A, 0), P(B, 0), P(B, gH), P(A, gH), N, [0, 0], [U, 0], [U, 1], [0, 1]);
+        if (top > gH + 0.5) facG[fvi].quad(P(A, gH), P(B, gH), P(B, top), P(A, top), N, [uo, 0], [uo + U, 0], [uo + U, nf / 4], [uo, nf / 4]);
+        trimG.quad(P(A, Math.max(gH, top)), P(B, Math.max(gH, top)), P(B, h + para), P(A, h + para), N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
+        if (top > gH + 0.5) {
+          const o2 = 0.12;
+          trimG.quad([A[0] + nx * o2, gH + 0.25, A[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [B[0], gH + 0.25, B[1]], [A[0], gH + 0.25, A[1]], [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
+          trimG.quad([A[0] + nx * o2, gH, A[1] + nz * o2], [B[0] + nx * o2, gH, B[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [A[0] + nx * o2, gH + 0.25, A[1] + nz * o2], N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
+        }
+        const w = 0.35;
+        const Ai = [A[0] - nx * w, A[1] - nz * w], Bi = [B[0] - nx * w, B[1] - nz * w];
+        trimG.quad(P(A, h + para), P(B, h + para), P(Bi, h + para), P(Ai, h + para), [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
+        trimG.quad(P(Bi, h), P(Ai, h), P(Ai, h + para), P(Bi, h + para), [-nx, 0, -nz], [0, 0], [1, 0], [1, 1], [0, 1], [roofCol[0] * 0.8, roofCol[1] * 0.8, roofCol[2] * 0.8]);
+        {
+          const bw = 1.1;
+          const rc = [roofCol[0] * 0.72, roofCol[1] * 0.72, roofCol[2] * 0.74];
+          borderQ.push([[A[0], h + 0.03, A[1]], [B[0], h + 0.03, B[1]], [B[0] - nx * bw, h + 0.03, B[1] - nz * bw], [A[0] - nx * bw, h + 0.03, A[1] - nz * bw], rc]);
+        }
+        edges.push({ A, B, nx, nz, len, street, mx, mz });
+      }
+      const v2 = p.map((q) => new Vector2(q[0], q[1]));
+      let tris = [];
+      try {
+        tris = ShapeUtils.triangulateShape(v2, []);
+      } catch (e) {
+      }
+      let le = edges[0] || { A: [0, 0], B: [1, 0], len: 1 };
+      for (const e of edges) if (e.len > le.len) le = e;
+      const ux = (le.B[0] - le.A[0]) / le.len, uz = (le.B[1] - le.A[1]) / le.len;
+      let rk = b.k === "garage" ? 3 : b.k === "church" ? 5 : b.k === "industrial" ? 3 : h > 19 ? [0, 2, 1, 0][r() * 4 | 0] : [4, 4, 1, 0, 4][r() * 5 | 0];
+      if (b.roof === "gabled" || b.roof === "hipped" || b.roof === "gambrel") rk = 4;
+      if (b.roof === "flat" || b.roof === "skillion") rk = 0;
+      if (b.roof === "metal" || b.roof === "corrugated") rk = 3;
+      if (b.roof === "dome" || b.roof === "onion") rk = 5;
+      const roofG = roofGs[rk];
+      const RS = rk === 3 || rk === 5 ? 8 : 11;
+      const ruv = /* @__PURE__ */ __name((q) => [(q[0] * ux + q[1] * uz) / RS, (-q[0] * uz + q[1] * ux) / RS], "ruv");
+      const roofTri = /* @__PURE__ */ __name((a, bq, c, y, col2) => {
+        const cr = (bq[0] - a[0]) * (c[1] - a[1]) - (bq[1] - a[1]) * (c[0] - a[0]);
+        const [x, yy, z] = cr < 0 ? [a, bq, c] : [a, c, bq];
+        roofG.tri([x[0], y, x[1]], [yy[0], y, yy[1]], [z[0], y, z[1]], [0, 1, 0], ruv(x), ruv(yy), ruv(z), col2);
+      }, "roofTri");
+      for (const t of tris) roofTri(p[t[0]], p[t[1]], p[t[2]], h, roofCol);
+      for (const q of borderQ) {
+        roofTri([q[0][0], q[0][2]], [q[1][0], q[1][2]], [q[2][0], q[2][2]], h + 0.03, q[4]);
+        roofTri([q[0][0], q[0][2]], [q[2][0], q[2][2]], [q[3][0], q[3][2]], h + 0.03, q[4]);
+      }
+      const annex = [];
+      let area3 = 0;
+      for (let i = 0; i < n; i++) {
+        const a = p[i], c = p[(i + 1) % n];
+        area3 += a[0] * c[1] - c[0] * a[1];
+      }
+      area3 = Math.abs(area3) / 2;
+      if (area3 > 350 && b.k !== "church") {
+        const na = area3 > 3e3 ? 6 : area3 > 1500 ? 4 : area3 > 700 ? 2 : 1;
+        let cx = 0, cz = 0;
+        for (const q of p) {
+          cx += q[0];
+          cz += q[1];
+        }
+        cx /= n;
+        cz /= n;
+        for (let k = 0, tries = 0; k < na && tries < 120; tries++) {
+          const w = 5 + r() * Math.min(10, Math.sqrt(area3) * 0.25), d = 4 + r() * Math.min(8, Math.sqrt(area3) * 0.2), ah = 2.4 + r() * 1.6;
+          const ox = cx + (r() - 0.5) * Math.sqrt(area3) * 0.7, oz = cz + (r() - 0.5) * Math.sqrt(area3) * 0.7;
+          const C = [[-w / 2, -d / 2], [w / 2, -d / 2], [w / 2, d / 2], [-w / 2, d / 2]].map(([a2, b2]) => [ox + a2 * ux - b2 * uz, oz + a2 * uz + b2 * ux]);
+          if (!C.every((q) => pip(q[0], q[1], p))) continue;
+          if (C.some((q) => edges.some((e) => segDist(q[0], q[1], e.A[0], e.A[1], e.B[0], e.B[1])[0] < 1.5))) continue;
+          if (annex.some((A) => Math.hypot(A.x - ox, A.z - oz) < A.r + Math.hypot(w, d) / 2)) continue;
+          annex.push({ x: ox, z: oz, r: Math.hypot(w, d) / 2, C, h: h + ah });
+          k++;
+          const wc = [wallHex.r * 0.9, wallHex.g * 0.9, wallHex.b * 0.9];
+          for (let i = 0; i < 4; i++) {
+            const A = C[i], B2 = C[(i + 1) % 4];
+            const ex = B2[0] - A[0], ez = B2[1] - A[1], el = Math.hypot(ex, ez);
+            const N2 = [ez / el, 0, -ex / el];
+            const nn = pip((A[0] + B2[0]) / 2 + N2[0] * 0.1, (A[1] + B2[1]) / 2 + N2[2] * 0.1, C) ? [-N2[0], 0, -N2[2]] : N2;
+            trimG.quad([A[0], h, A[1]], [B2[0], h, B2[1]], [B2[0], h + ah, B2[1]], [A[0], h + ah, A[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], wc);
+            trimG.quad([A[0], h + ah, A[1]], [B2[0], h + ah, B2[1]], [B2[0], h + ah + 0.3, B2[1]], [A[0], h + ah + 0.3, A[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], capC);
+          }
+          const rc2 = [roofCol[0] * 0.85, roofCol[1] * 0.85, roofCol[2] * 0.85];
+          roofTri(C[0], C[1], C[2], h + ah + 0.3, rc2);
+          roofTri(C[0], C[2], C[3], h + ah + 0.3, rc2);
+        }
+      }
+      const clear = [];
+      if (area3 > 260 && b.k !== "church") {
+        const vx = -uz, vz = ux;
+        let s0 = 1e9, s1 = -1e9, t0 = 1e9, t1 = -1e9;
+        for (const q of p) {
+          const ss = q[0] * ux + q[1] * uz, tt = q[0] * vx + q[1] * vz;
+          s0 = Math.min(s0, ss);
+          s1 = Math.max(s1, ss);
+          t0 = Math.min(t0, tt);
+          t1 = Math.max(t1, tt);
+        }
+        const SR = s1 - s0, TR = t1 - t0;
+        const boxes = annex.map((A) => {
+          const ss = A.x * ux + A.z * uz, tt = A.x * vx + A.z * vz;
+          return [ss - A.r, ss + A.r, tt - A.r, tt + A.r];
+        });
+        const W2 = /* @__PURE__ */ __name((ss, tt) => [ss * ux + tt * vx, ss * uz + tt * vz], "W2");
+        const fits = /* @__PURE__ */ __name((sc, tc, hw, hd, m, avoid) => {
+          const C = [[sc - hw, tc - hd], [sc + hw, tc - hd], [sc + hw, tc + hd], [sc - hw, tc + hd]];
+          const pts = [];
+          for (let i = 0; i < 4; i++) {
+            const a = C[i], c2 = C[(i + 1) % 4];
+            for (let k = 0; k < 4; k++) {
+              const f = k / 4;
+              pts.push(W2(a[0] + (c2[0] - a[0]) * f, a[1] + (c2[1] - a[1]) * f));
+            }
+          }
+          if (!pts.every((q) => pip(q[0], q[1], p))) return null;
+          if (pts.some((q) => edges.some((e) => segDist(q[0], q[1], e.A[0], e.A[1], e.B[0], e.B[1])[0] < m))) return null;
+          if (avoid && avoid.some((B2) => sc + hw > B2[0] && sc - hw < B2[1] && tc + hd > B2[2] && tc - hd < B2[3])) return null;
+          return C.map((q) => W2(q[0], q[1]));
+        }, "fits");
+        const quadRoof = /* @__PURE__ */ __name((G, C, y, col2, RS2) => {
+          const uv = /* @__PURE__ */ __name((q) => [(q[0] * ux + q[1] * uz) / RS2, (q[0] * vx + q[1] * vz) / RS2], "uv");
+          const t3 = /* @__PURE__ */ __name((a, bq, c) => {
+            const cr = (bq[0] - a[0]) * (c[1] - a[1]) - (bq[1] - a[1]) * (c[0] - a[0]);
+            const [x, yy, z] = cr < 0 ? [a, bq, c] : [a, c, bq];
+            G.tri([x[0], y, x[1]], [yy[0], y, yy[1]], [z[0], y, z[1]], [0, 1, 0], uv(x), uv(yy), uv(z), col2);
+          }, "t3");
+          t3(C[0], C[1], C[2]);
+          t3(C[0], C[2], C[3]);
+        }, "quadRoof");
+        const sides = /* @__PURE__ */ __name((C, y0, y1, col2) => {
+          for (let i = 0; i < 4; i++) {
+            const A = C[i], B2 = C[(i + 1) % 4];
+            const ex = B2[0] - A[0], ez = B2[1] - A[1], el = Math.hypot(ex, ez) || 1;
+            let N2 = [ez / el, 0, -ex / el];
+            if (pip((A[0] + B2[0]) / 2 + N2[0] * 0.05, (A[1] + B2[1]) / 2 + N2[2] * 0.05, C)) N2 = [-N2[0], 0, -N2[2]];
+            trimG.quad([A[0], y0, A[1]], [B2[0], y0, B2[1]], [B2[0], y1, B2[1]], [A[0], y1, A[1]], N2, [0, 0], [1, 0], [1, 1], [0, 1], col2);
+          }
+        }, "sides");
+        const nfld = area3 > 2500 ? 3 : area3 > 900 ? 2 : r() < 0.6 ? 1 : 0;
+        let used2 = [];
+        for (let k = 0, tries = 0; k < nfld && tries < 40; tries++) {
+          const hw = SR * (0.15 + r() * 0.25), hd = TR * (0.15 + r() * 0.25);
+          if (hw < 2.5 || hd < 2.5) continue;
+          const sc = s0 + hw + 1.3 + r() * Math.max(0, SR - 2 * hw - 2.6), tc = t0 + hd + 1.3 + r() * Math.max(0, TR - 2 * hd - 2.6);
+          const C = fits(sc, tc, hw, hd, 1.2, boxes.concat(used2));
+          if (!C) continue;
+          used2.push([sc - hw, sc + hw, tc - hd, tc + hd]);
+          k++;
+          const fc = FIELD_COLS[r() * FIELD_COLS.length | 0];
+          const k2 = (rk + 1 + (r() * 2 | 0)) % 3;
+          const yy = h + 0.09;
+          quadRoof(roofGs[k2], C, yy, fc, k2 === 2 ? 6 : 9);
+          sides(C, h, yy, [fc[0] * 0.6, fc[1] * 0.6, fc[2] * 0.6]);
+        }
+        if (area3 > 800 && r() < 0.6) {
+          for (let tries = 0; tries < 12; tries++) {
+            const tc = t0 + 3 + r() * (TR - 6);
+            let a2 = s0 + 2, b2 = s1 - 2;
+            const C = fits((a2 + b2) / 2, tc, (b2 - a2) / 2 * 0.8, 0.7, 1, boxes);
+            if (!C) continue;
+            quadRoof(roofGs[2], C, h + 0.12, [0.86, 0.84, 0.8], 3);
+            break;
+          }
+        }
+        const big2 = area3 > 1100 || b.k === "garage" && area3 > 500;
+        if (big2 && paintN < 18 && r() < 0.85) {
+          const PAINTS = [["KAUFHAUS LINDE", "#f4efe0", "#2a5a3a"], ["KOLA ROT", "#ffffff", "#b0141c"], ["POTT FM 99,1", "#14102a", "#3fd8e8"], ["ELEKTRO BLITZ", "#1a1a1a", "#f2c200"], ["ZECHE SIEBEN", "#f2c200", "#1c1c22"], ["SCHAUM", "#7a1010", "#ffe03f"], ["LINDENKAUF", "#ffffff", "#1f4f9a"], ["NACHTEXPRESS", "#f2c200", "#111111"], ["BACKSTUBE 11", "#5a2a10", "#f0dcb0"]];
+          const isP = b.k === "garage";
+          const A = isP ? ["P", "#ffffff", "#1f4f9a"] : PAINTS[(b.r + paintN) % PAINTS.length];
+          const dirs = [[ux, uz], [-ux, -uz], [vx, vz], [-vx, -vz]];
+          let up = dirs[0];
+          for (const d of dirs) if (d[1] < up[1]) up = d;
+          const rt = [-up[1], up[0]];
+          const alongS = Math.abs(rt[0] * ux + rt[1] * uz) > 0.5;
+          const RL = alongS ? SR : TR, RD = alongS ? TR : SR;
+          for (let tries = 0; tries < 25; tries++) {
+            let wl = Math.min(isP ? 14 : 30, RL * (0.45 + r() * 0.25));
+            let dl = isP ? wl : wl * 0.28;
+            if (dl > RD * 0.6) {
+              dl = RD * 0.6;
+              wl = isP ? dl : dl / 0.28;
+            }
+            if (wl < 7) break;
+            const hs = (alongS ? wl : dl) / 2, ht = (alongS ? dl : wl) / 2;
+            const sc = s0 + hs + 1.5 + r() * Math.max(0, SR - 2 * hs - 3), tc = t0 + ht + 1.5 + r() * Math.max(0, TR - 2 * ht - 3);
+            if (!fits(sc, tc, hs, ht, 1.3, boxes)) continue;
+            const cw = W2(sc, tc);
+            roofPaint.push({ x: cw[0], z: cw[1], y: h + 0.15, w: wl, d: dl, ang: Math.atan2(-up[0], -up[1]), A, seed: b.r, sq: isP });
+            clear.push(fits(sc, tc, hs + 0.6, ht + 0.6, 0, null) || []);
+            boxes.push([sc - hs, sc + hs, tc - ht, tc + ht]);
+            paintN++;
+            break;
+          }
+        }
+        if (area3 > 700 && r() < 0.5) {
+          const n2 = 4 + (r() * 6 | 0), len = n2 * 3.4;
+          for (let tries = 0; tries < 15; tries++) {
+            const sc = s0 + len / 2 + 2 + r() * Math.max(0, SR - len - 4), tc = t0 + 3 + r() * Math.max(0, TR - 6);
+            if (!fits(sc, tc, len / 2, 1.6, 1.5, boxes)) continue;
+            boxes.push([sc - len / 2, sc + len / 2, tc - 1.6, tc + 1.6]);
+            clear.push(fits(sc, tc, len / 2 + 0.8, 2.2, 0, null) || []);
+            for (let k = 0; k < n2; k++) {
+              const c2 = W2(sc - len / 2 + 1.7 + k * 3.4, tc);
+              skyRows.push({ x: c2[0], z: c2[1], y: h, rot: Math.atan2(vx, vz), s: 1 });
+            }
+            break;
+          }
+        }
+        if (area3 > 300 && area3 < 4e3 && r() < 0.35) {
+          const cols = 3 + (r() * 6 | 0), rows = 1 + (r() * 3 | 0);
+          const hs = cols * 0.6 + 0.2, ht = rows * 1.1 + 0.2;
+          for (let tries = 0; tries < 15; tries++) {
+            const sc = s0 + hs + 2 + r() * Math.max(0, SR - 2 * hs - 4), tc = t0 + ht + 2 + r() * Math.max(0, TR - 2 * ht - 4);
+            if (!fits(sc, tc, hs, ht, 1.6, boxes)) continue;
+            boxes.push([sc - hs, sc + hs, tc - ht, tc + ht]);
+            clear.push(fits(sc, tc, hs + 0.6, ht + 0.6, 0, null) || []);
+            const south = vz > 0 ? 1 : -1;
+            for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) {
+              const c2 = W2(sc - hs + 0.8 + i * 1.2, tc - ht + 1.3 + j * 2.2);
+              solarL.push({ x: c2[0], z: c2[1], y: h + 0.55, ang: Math.atan2(ux, uz), tilt: 0.45 * south });
+            }
+            break;
+          }
+        }
+      }
+      out.buildings.push({ b, edges, h, style, roofCol, shopish, annex, area: area3, clear });
+    }
+    {
+      const bx = D.bbox?.x || 560, bz = D.bbox?.z || 460;
+      let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
+      const src = out.buildings.length >= 8 ? out.buildings.map((B) => B.b.p).flat() : D.roads.map((r) => r.p).flat();
+      for (const q of src) {
+        minx = Math.min(minx, q[0]);
+        maxx = Math.max(maxx, q[0]);
+        minz = Math.min(minz, q[1]);
+        maxz = Math.max(maxz, q[1]);
+      }
+      const M = 40;
+      out.edge = { minx: Math.max(-bx + 6, minx - M), maxx: Math.min(bx - 6, maxx + M), minz: Math.max(-bz + 6, minz - M), maxz: Math.min(bz - 6, maxz + M) };
+      if (!(out.edge.maxx > out.edge.minx + 60 && out.edge.maxz > out.edge.minz + 60)) out.edge = { minx: -bx + 6, maxx: bx - 6, minz: -bz + 6, maxz: bz - 6 };
+    }
+    const E = out.edge;
+    out.inEdge = (x, z, m = 0) => x > E.minx + m && x < E.maxx - m && z > E.minz + m && z < E.maxz - m;
+    const add = /* @__PURE__ */ __name((geo, mat, cast = true) => {
+      if (!geo.p.length) return null;
+      const m = new Mesh(geo.build(), mat);
+      m.castShadow = cast;
+      m.receiveShadow = true;
+      scene.add(m);
+      return m;
+    }, "add");
+    facG.forEach((g, i) => add(g, facMats[i]));
+    shopG.forEach((g, i) => add(g, shopMats[i]));
+    resG.forEach((g, i) => add(g, resMats[i]));
+    add(trimG, trimMat);
+    roofGs.forEach((g, i) => add(g, roofMats[i]));
+    const props = { ac: [], vent: [], sky: [], hut: [], tank: [], ant: [], dish: [] };
+    for (const B of out.buildings) {
+      const b = B.b, p = b.p, r = rng(b.r + 7);
+      let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
+      for (const q of p) {
+        minx = Math.min(minx, q[0]);
+        maxx = Math.max(maxx, q[0]);
+        minz = Math.min(minz, q[1]);
+        maxz = Math.max(maxz, q[1]);
+      }
+      const area3 = (maxx - minx) * (maxz - minz);
+      let cnt = Math.min(45, Math.floor(area3 / 55));
+      let placed = [];
+      for (let k = 0; k < cnt * 4 && placed.length < cnt; k++) {
+        const x = minx + r() * (maxx - minx), z = minz + r() * (maxz - minz);
+        if (!pip(x, z, p)) continue;
+        let ok = true;
+        for (const e of B.edges) {
+          if (segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1])[0] < 1.8) {
+            ok = false;
+            break;
+          }
+        }
+        if (!ok) continue;
+        if (placed.some((q) => Math.hypot(q[0] - x, q[1] - z) < 2.6)) continue;
+        if (B.annex.some((A) => pip(x, z, A.C) || Math.hypot(A.x - x, A.z - z) < A.r + 0.8)) continue;
+        if (B.clear.some((C) => C.length && pip(x, z, C))) continue;
+        placed.push([x, z]);
+        const v = r();
+        const rot = Math.atan2(B.edges[0]?.nz || 0, B.edges[0]?.nx || 1);
+        const it = { x, z, y: B.h, rot, s: 0.8 + r() * 0.5 };
+        if (v < 0.38) props.ac.push(it);
+        else if (v < 0.55) props.vent.push(it);
+        else if (v < 0.68) props.sky.push(it);
+        else if (v < 0.76 && area3 > 200) props.hut.push(it);
+        else if (v < 0.84) props.tank.push(it);
+        else if (v < 0.92) props.dish.push(it);
+        else props.ant.push(it);
+      }
+    }
+    const propMat = /* @__PURE__ */ __name((c, rough = 0.8, metal = 0.1) => new MeshStandardMaterial({ color: c, roughness: rough, metalness: metal }), "propMat");
+    const inst = /* @__PURE__ */ __name((geo, mat, list, yoff, scaleFn) => {
+      if (!list.length) return;
+      const m = new InstancedMesh(geo, mat, list.length);
+      const o2 = new Object3D();
+      list.forEach((it, i) => {
+        o2.position.set(it.x, it.y + yoff * (it.s || 1), it.z);
+        o2.rotation.set(0, it.rot, 0);
+        const s = scaleFn ? scaleFn(it) : [it.s, it.s, it.s];
+        o2.scale.set(...s);
+        o2.updateMatrix();
+        m.setMatrixAt(i, o2.matrix);
+      });
+      m.castShadow = true;
+      m.receiveShadow = true;
+      scene.add(m);
+      return m;
+    }, "inst");
+    const acGeo = new BoxGeometry(1.4, 0.9, 1);
+    inst(acGeo, propMat(12106944, 0.6, 0.3), props.ac, 0.45);
+    const fanGeo = new CylinderGeometry(0.35, 0.35, 0.06, 12);
+    inst(fanGeo, propMat(2763824), props.ac.map((a) => ({ ...a, x: a.x + Math.cos(a.rot) * 0.25 * a.s, z: a.z - Math.sin(a.rot) * 0.25 * a.s })), 0.93);
+    inst(new CylinderGeometry(0.3, 0.3, 1, 10), propMat(9080208, 0.5, 0.5), props.vent, 0.5);
+    inst(new CylinderGeometry(0.42, 0.3, 0.25, 10), propMat(6974832, 0.5, 0.5), props.vent, 1.1);
+    inst(new BoxGeometry(1.6, 0.35, 2.4), propMat(7311264, 0.2, 0.4), props.sky, 0.17);
+    {
+      const sg = new BoxGeometry(2, 0.5, 2.6);
+      inst(sg, propMat(9087160, 0.15, 0.5), skyRows, 0.25);
+      const fg = new BoxGeometry(2.3, 0.2, 2.9);
+      inst(fg, propMat(5922402, 0.6, 0.3), skyRows, 0.1);
+    }
+    if (solarL.length) {
+      const m = new InstancedMesh(new BoxGeometry(1.1, 0.06, 2), new MeshStandardMaterial({ map: solarTex(), roughness: 0.25, metalness: 0.5 }), solarL.length);
+      const o2 = new Object3D();
+      solarL.forEach((it, i) => {
+        o2.position.set(it.x, it.y, it.z);
+        o2.rotation.set(it.tilt, it.ang, 0, "YXZ");
+        o2.updateMatrix();
+        m.setMatrixAt(i, o2.matrix);
+      });
+      m.castShadow = true;
+      m.receiveShadow = true;
+      scene.add(m);
+    }
+    for (const P2 of roofPaint) {
+      const mat = new MeshStandardMaterial({ map: roofPaintTex(P2.A[0], P2.A[1], P2.A[2], P2.seed, { square: P2.sq, stripes: P2.sq ? null : P2.seed % 3 === 0 ? "#e8e0c8" : null }), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+      const g = new PlaneGeometry(P2.w, P2.d);
+      g.rotateX(-Math.PI / 2);
+      const m = new Mesh(g, mat);
+      m.rotation.y = P2.ang;
+      m.position.set(P2.x, P2.y, P2.z);
+      m.receiveShadow = true;
+      scene.add(m);
+    }
+    inst(new BoxGeometry(2.6, 2.4, 2.8), propMat(10130054), props.hut, 1.2);
+    inst(new CylinderGeometry(0.9, 0.9, 1.8, 14), propMat(8018496), props.tank, 0.9);
+    inst(new CylinderGeometry(1, 0.9, 0.15, 14), propMat(4864560), props.tank, 1.85);
+    inst(new CylinderGeometry(0.04, 0.04, 4, 5), propMat(3355443), props.ant, 2);
+    const dishGeo = new SphereGeometry(0.5, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2.6);
+    dishGeo.rotateX(-1);
+    inst(dishGeo, propMat(14211280, 0.6, 0.1), props.dish, 0.6);
+    const ground = new Mesh(new PlaneGeometry(2400, 2400), new MeshStandardMaterial({ map: paveTex(3), roughness: 0.95 }));
+    ground.rotation.x = -Math.PI / 2;
+    ground.material.map.repeat.set(2400 / 8, 2400 / 8);
+    ground.receiveShadow = true;
+    scene.add(ground);
+    const areaG = { grass: new Geo(), plaza: new Geo(), parking: new Geo() };
+    for (const a of D.areas) {
+      const v2 = a.p.map((q) => new Vector2(q[0], q[1]));
+      let tris = [];
+      try {
+        tris = ShapeUtils.triangulateShape(v2, []);
+      } catch (e) {
+        continue;
+      }
+      const y = { grass: 0.02, plaza: 0.012, parking: 0.03 }[a.t];
+      const s = { grass: 6, plaza: 8, parking: 10 }[a.t];
+      for (const t of tris) {
+        const q = [a.p[t[0]], a.p[t[1]], a.p[t[2]]];
+        const cr = (q[1][0] - q[0][0]) * (q[2][1] - q[0][1]) - (q[1][1] - q[0][1]) * (q[2][0] - q[0][0]);
+        const o2 = cr < 0 ? [0, 1, 2] : [0, 2, 1];
+        areaG[a.t].tri(...o2.map((i) => [q[i][0], y, q[i][1]]), [0, 1, 0], ...o2.map((i) => [q[i][0] / s, q[i][1] / s]));
+      }
+    }
+    const asph = asphaltTex(5), plaz = plazaTex(6), grs = grassTex(7);
+    const asphMat = new MeshStandardMaterial({ map: asph, roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+    const plazaMat = new MeshStandardMaterial({ map: plaz, roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
+    const add2 = /* @__PURE__ */ __name((g, m) => {
+      if (!g.p.length) return;
+      const me = new Mesh(g.build(), m);
+      me.receiveShadow = true;
+      scene.add(me);
+    }, "add2");
+    add2(areaG.grass, new MeshStandardMaterial({ map: grs, roughness: 1, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
+    add2(areaG.plaza, plazaMat);
+    add2(areaG.parking, asphMat);
+    const roadG = new Geo(), curbG = new Geo(), pedG = new Geo(), footG = new Geo(), markG = new Geo();
+    function ribbon(geo, pts, w, y, s, col2) {
+      const n = pts.length;
+      if (n < 2) return;
+      const L = [], Rr = [];
+      for (let i = 0; i < n; i++) {
+        const a = pts[Math.max(0, i - 1)], b = pts[Math.min(n - 1, i + 1)];
+        let tx = b[0] - a[0], tz = b[1] - a[1];
+        const l = Math.hypot(tx, tz) || 1;
+        tx /= l;
+        tz /= l;
+        let nx = -tz, nz = tx;
+        let m = 1;
+        if (i > 0 && i < n - 1) {
+          const sx = pts[i][0] - pts[i - 1][0], sz = pts[i][1] - pts[i - 1][1], sl = Math.hypot(sx, sz) || 1;
+          const d = Math.abs(nx * (-sz / sl) + nz * (sx / sl));
+          m = 1 / Math.max(0.6, d);
+        }
+        L.push([pts[i][0] + nx * w / 2 * m, pts[i][1] + nz * w / 2 * m]);
+        Rr.push([pts[i][0] - nx * w / 2 * m, pts[i][1] - nz * w / 2 * m]);
+      }
+      for (let i = 0; i < n - 1; i++) {
+        const q = [L[i], Rr[i], Rr[i + 1], L[i + 1]];
+        const ys = q.map((v) => [v[0], y, v[1]]);
+        const us = q.map((v) => [v[0] / s, v[1] / s]);
+        const cr = (q[1][0] - q[0][0]) * (q[2][1] - q[0][1]) - (q[1][1] - q[0][1]) * (q[2][0] - q[0][0]);
+        if (cr < 0) geo.quad(ys[0], ys[1], ys[2], ys[3], [0, 1, 0], us[0], us[1], us[2], us[3], col2);
+        else geo.quad(ys[0], ys[3], ys[2], ys[1], [0, 1, 0], us[0], us[3], us[2], us[1], col2);
+      }
+    }
+    __name(ribbon, "ribbon");
+    function disc(geo, c, r, y, s, col2) {
+      const N = 14;
+      for (let i = 0; i < N; i++) {
+        const a0 = i / N * Math.PI * 2, a1 = (i + 1) / N * Math.PI * 2;
+        const p0 = [c[0], y, c[1]], p1 = [c[0] + Math.cos(a1) * r, y, c[1] + Math.sin(a1) * r], p2 = [c[0] + Math.cos(a0) * r, y, c[1] + Math.sin(a0) * r];
+        geo.tri(p0, p1, p2, [0, 1, 0], [p0[0] / s, p0[2] / s], [p1[0] / s, p1[2] / s], [p2[0] / s, p2[2] / s], col2);
+      }
+    }
+    __name(disc, "disc");
+    const nodeUse = /* @__PURE__ */ new Map();
+    for (const r of D.roads) if (drive.has(r.t) || r.t === "pedestrian") {
+      r.nd.forEach((id, i) => {
+        if (!nodeUse.has(id)) nodeUse.set(id, { c: 0, p: r.p[i] });
+        nodeUse.get(id).c++;
+      });
+    }
+    const junc = [];
+    for (const [id, v] of nodeUse) if (v.c >= 2) junc.push(v.p);
+    out.junctions = junc;
+    const nearJ = /* @__PURE__ */ __name((x, z, d) => junc.some((j) => Math.abs(j[0] - x) < d && Math.abs(j[1] - z) < d && Math.hypot(j[0] - x, j[1] - z) < d), "nearJ");
+    const curbC = [0.78, 0.77, 0.74];
+    for (const r of D.roads) {
+      if (r.t === "foot") {
+        ribbon(footG, r.p, 2.4, 0.025, 8);
+        continue;
+      }
+      if (r.t === "pedestrian") {
+        ribbon(pedG, r.p, 12, 0.014, 8);
+        disc(pedG, r.p[0], 6, 0.014, 8);
+        disc(pedG, r.p[r.p.length - 1], 6, 0.014, 8);
+        continue;
+      }
+      const w = r.w;
+      ribbon(roadG, r.p, w, 0.04, 10);
+      ribbon(curbG, r.p, w + 0.7, 0.035, 1, curbC);
+      disc(roadG, r.p[0], w / 2, 0.04, 10);
+      disc(roadG, r.p[r.p.length - 1], w / 2, 0.04, 10);
+      disc(curbG, r.p[0], w / 2 + 0.35, 0.035, 1, curbC);
+      disc(curbG, r.p[r.p.length - 1], w / 2 + 0.35, 0.035, 1, curbC);
+      if (r.t !== "service") out.roadsDrive.push(r);
+      if (w >= 6 && r.t !== "service" && r.t !== "living_street") {
+        const lanes = r.ow ? Math.max(1, Math.round(w / 3.3)) : 2;
+        const offs = [];
+        if (r.ow) {
+          for (let k = 1; k < lanes; k++) offs.push(-w / 2 + k * w / lanes);
+        } else offs.push(0);
+        for (const off of offs) {
+          let acc = 0;
+          for (let i = 0; i < r.p.length - 1; i++) {
+            const a = r.p[i], b = r.p[i + 1];
+            const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
+            if (l < 0.1) continue;
+            const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
+            for (let s = 0; s < l; s += 0.5) {
+              const g = (acc + s) % 6;
+              if (g < 3 && g + 0.5 <= 3) {
+                const x = a[0] + tx * s + nx * off, z = a[1] + tz * s + nz * off;
+                if (nearJ(x, z, r.t === "primary" ? 11 : 8)) continue;
+                const hw = 0.12;
+                const P0 = [x + nx * hw, 0.05, z + nz * hw], P1 = [x - nx * hw, 0.05, z - nz * hw], P2 = [x - nx * hw + tx * 0.85, 0.05, z - nz * hw + tz * 0.85], P3 = [x + nx * hw + tx * 0.85, 0.05, z + nz * hw + tz * 0.85];
+                markG.quad(P0, P3, P2, P1, [0, 1, 0], [0, 0], [0, 0], [0, 0], [0, 0]);
+              }
+            }
+            acc += l;
+          }
+        }
+      }
+      if (w >= 7 && r.t !== "service" && r.t !== "living_street") {
+        const lanesA = r.ow ? Math.max(1, Math.round(w / 3.3)) : 2;
+        const lo = laneOffset(r);
+        const laneOffs = r.ow ? Array.from({ length: lanesA }, (_, k) => -w / 2 + (k + 0.5) * w / lanesA) : [-lo, lo];
+        let accA = 0;
+        for (let i = 0; i < r.p.length - 1; i++) {
+          const a = r.p[i], b = r.p[i + 1];
+          const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
+          if (l < 0.1) continue;
+          const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
+          for (let s = 0; s < l; s += 0.5) {
+            if ((accA + s) % 26 > 0.45) continue;
+            const x0 = a[0] + tx * s, z0 = a[1] + tz * s;
+            if (nearJ(x0, z0, 11)) continue;
+            for (const off of laneOffs) {
+              const x = x0 + nx * off, z = z0 + nz * off;
+              const hl = 1.2, ah = 0.45;
+              markG.tri([x + tx * hl, 0.052, z + tz * hl], [x - tx * hl + nx * ah, 0.052, z - tz * hl + nz * ah], [x - tx * hl - nx * ah, 0.052, z - tz * hl - nz * ah], [0, 1, 0], [0, 0], [0, 0], [0, 0]);
+            }
+          }
+          accA += l;
+        }
+      }
+      if (["primary", "secondary", "tertiary", "residential", "unclassified"].includes(r.t) && w >= 6) {
+        for (const end of [0, 1]) {
+          const nd = end ? r.nd[r.nd.length - 1] : r.nd[0];
+          if ((nodeUse.get(nd)?.c || 0) < 3) continue;
+          const pts = end ? [...r.p].reverse() : r.p;
+          const a = pts[0], b = pts[1];
+          const dx = b[0] - a[0], dz = b[1] - a[1], l = Math.hypot(dx, dz);
+          const D0 = r.t === "primary" ? 9 : 6.5;
+          if (l < D0 + 4) continue;
+          const tx = dx / l, tz = dz / l, nx = -tz, nz = tx;
+          const cx = a[0] + tx * D0, cz = a[1] + tz * D0;
+          for (let k = -w / 2 + 0.6; k < w / 2 - 0.5; k += 1) {
+            const x = cx + nx * k, z = cz + nz * k;
+            const hw = 0.25, hl = 1.4;
+            const P0 = [x + nx * hw - tx * hl, 0.05, z + nz * hw - tz * hl], P1 = [x - nx * hw - tx * hl, 0.05, z - nz * hw - tz * hl], P2 = [x - nx * hw + tx * hl, 0.05, z - nz * hw + tz * hl], P3 = [x + nx * hw + tx * hl, 0.05, z + nz * hw + tz * hl];
+            markG.quad(P0, P3, P2, P1, [0, 1, 0], [0, 0], [0, 0], [0, 0], [0, 0]);
+          }
+        }
+      }
+    }
+    add2(curbG, new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -1.5, polygonOffsetUnits: -1.5 }));
+    add2(footG, new MeshStandardMaterial({ map: paveTex(11, "#c4b496", 64), roughness: 0.95, polygonOffset: true, polygonOffsetFactor: -1.2, polygonOffsetUnits: -1.2 }));
+    add2(pedG, plazaMat);
+    add2(roadG, asphMat);
+    add2(markG, new MeshStandardMaterial({ color: 16777215, roughness: 0.55, side: DoubleSide, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }));
+    const mh = [];
+    for (const r of out.roadsDrive) {
+      let acc = 0;
+      for (let i = 0; i < r.p.length - 1; i++) {
+        const a = r.p[i], b = r.p[i + 1];
+        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        for (let s = (17 - acc % 17 + 17) % 17; s < l; s += 23) {
+          const t = s / l;
+          mh.push({ x: a[0] + (b[0] - a[0]) * t + (mh.length % 3 - 1) * 1.2, z: a[1] + (b[1] - a[1]) * t, y: 0.055, rot: 0 });
+        }
+        acc += l;
+      }
+    }
+    const mhm = new MeshStandardMaterial({ color: 2763306, roughness: 0.6, metalness: 0.4, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 });
+    const mg = new CircleGeometry(0.35, 12);
+    mg.rotateX(-Math.PI / 2);
+    inst(mg, mhm, mh, 0).castShadow = false;
+    let treePts = (D.trees || []).slice();
+    if (treePts.length < 120) {
+      for (const r of out.roadsDrive) {
+        if (!["residential", "tertiary", "unclassified", "living_street", "secondary"].includes(r.t)) continue;
+        let acc = 10;
+        for (let i = 0; i < r.p.length - 1; i++) {
+          const a = r.p[i], b = r.p[i + 1];
+          const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          if (l < 1) continue;
+          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          while (acc < l) {
+            for (const s of [-1, 1]) {
+              if ((treePts.length + s & 1) === 0) continue;
+              const x = a[0] + tx * acc - tz * (r.w / 2 + 2.5) * s, z = a[1] + tz * acc + tx * (r.w / 2 + 2.5) * s;
+              treePts.push([x, z]);
+            }
+            acc += 16 + treePts.length * 5 % 7;
+          }
+          acc -= l;
+        }
+      }
+    }
+    for (const a of D.areas || []) {
+      if (!(a.park || a.t === "grass")) continue;
+      const pts = a.p;
+      if (!pts || pts.length < 3) continue;
+      let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
+      for (const q of pts) {
+        minx = Math.min(minx, q[0]);
+        maxx = Math.max(maxx, q[0]);
+        minz = Math.min(minz, q[1]);
+        maxz = Math.max(maxz, q[1]);
+      }
+      const A = Math.abs((maxx - minx) * (maxz - minz));
+      const nT = Math.min(40, Math.floor(A / 220));
+      for (let k = 0; k < nT; k++) {
+        const x = minx + k * 57 % 100 / 100 * (maxx - minx), z = minz + k * 91 % 100 / 100 * (maxz - minz);
+        if (pip(x, z, pts)) treePts.push([x, z]);
+      }
+    }
+    const trees = treePts.filter((t) => out.inEdge(t[0], t[1], 1.5) && !out.buildings.some((B) => Math.abs(B.b.p[0][0] - t[0]) < 80 && pip(t[0], t[1], B.b.p)));
+    const tr = rng(77);
+    const canGeo = new SphereGeometry(1, 28, 16);
+    canGeo.rotateX(Math.PI / 2);
+    {
+      const pa = canGeo.attributes.position;
+      const cl = [];
+      for (let i = 0; i < pa.count; i++) {
+        const x = pa.getX(i), y = pa.getY(i), z = pa.getZ(i);
+        const n = 1 + 0.07 * Math.sin(x * 5.1 + z * 2.3) * Math.cos(z * 4.7 - y * 3.1) + 0.05 * Math.sin(y * 7 + x * 3);
+        pa.setXYZ(i, x * n, y * n * 0.62, z * n);
+        const sh = 0.55 + 0.45 * Math.max(0, (y + 0.3) / 1.3);
+        cl.push(sh, sh, sh);
+      }
+      canGeo.setAttribute("color", new Float32BufferAttribute(cl, 3));
+      canGeo.computeVertexNormals();
+    }
+    const canMat = new MeshStandardMaterial({ color: 16777215, map: leafTex(5), vertexColors: true, roughness: 0.95 });
+    canMat.map.repeat.set(3, 2);
+    const can = new InstancedMesh(canGeo, canMat, trees.length * 3);
+    const trunk = new InstancedMesh(new CylinderGeometry(0.16, 0.26, 4.2, 8), new MeshStandardMaterial({ color: 3811870, roughness: 0.9 }), trees.length);
+    const o = new Object3D();
+    const col = new Color();
+    trees.forEach((t, i) => {
+      const s = 1.7 + tr() * 1;
+      o.position.set(t[0], 2.1, t[1]);
+      o.rotation.set(0, 0, 0);
+      o.scale.set(1, 1, 1);
+      o.updateMatrix();
+      trunk.setMatrixAt(i, o.matrix);
+      const hue = 0.22 + tr() * 0.08, sat = 0.42 + tr() * 0.18, li = 0.3 + tr() * 0.08;
+      o.position.set(t[0], 4.4 + s * 0.25, t[1]);
+      o.rotation.set(0, tr() * 6, 0);
+      o.scale.set(s, s, s);
+      o.updateMatrix();
+      can.setMatrixAt(i * 3, o.matrix);
+      col.setHSL(hue, sat, li);
+      can.setColorAt(i * 3, col);
+      for (let k = 1; k < 3; k++) {
+        const a2 = tr() * 6.28, d = s * 0.45;
+        const s2 = s * (0.55 + tr() * 0.15);
+        o.position.set(t[0] + Math.cos(a2) * d, 4.6 + s * 0.3 + tr() * 0.4, t[1] + Math.sin(a2) * d);
+        o.scale.set(s2, s2, s2);
+        o.rotation.set(0, tr() * 6, 0);
+        o.updateMatrix();
+        can.setMatrixAt(i * 3 + k, o.matrix);
+        col.setHSL(hue + 0.01 * k, sat, li + 0.03 * k);
+        can.setColorAt(i * 3 + k, col);
+      }
+    });
+    can.castShadow = true;
+    can.receiveShadow = true;
+    trunk.castShadow = true;
+    scene.add(can, trunk);
+    const lamps = D.lamps.filter((l) => out.inEdge(l[0], l[1], 1.5) && !out.buildings.some((B) => Math.abs(B.b.p[0][0] - l[0]) < 80 && pip(l[0], l[1], B.b.p)));
+    const pole = new InstancedMesh(new CylinderGeometry(0.07, 0.1, 5.5, 6), new MeshStandardMaterial({ color: 3816770, metalness: 0.5, roughness: 0.5 }), lamps.length);
+    const headM = new MeshStandardMaterial({ color: 5592405, emissive: 16767392, emissiveIntensity: 1 });
+    out.lampHeadMat = headM;
+    const head = new InstancedMesh(new BoxGeometry(0.5, 0.18, 0.5), headM, lamps.length);
+    const poolM = new MeshBasicMaterial({ map: radialTex("rgba(255,200,120,1)"), transparent: true, blending: AdditiveBlending, depthWrite: false, opacity: 0.5, polygonOffset: true, polygonOffsetFactor: -6, polygonOffsetUnits: -6 });
+    const poolGeo = new PlaneGeometry(1, 1);
+    poolGeo.rotateX(-Math.PI / 2);
+    const nPools = lamps.length;
+    const pools = new InstancedMesh(poolGeo, poolM, nPools);
+    lamps.forEach((l, i) => {
+      o.rotation.set(0, 0, 0);
+      o.scale.set(1, 1, 1);
+      o.position.set(l[0], 2.75, l[1]);
+      o.updateMatrix();
+      pole.setMatrixAt(i, o.matrix);
+      o.position.set(l[0], 5.5, l[1]);
+      o.updateMatrix();
+      head.setMatrixAt(i, o.matrix);
+      o.position.set(l[0], 0.07, l[1]);
+      o.scale.set(13, 1, 13);
+      o.updateMatrix();
+      pools.setMatrixAt(i, o.matrix);
+    });
+    pole.castShadow = true;
+    scene.add(pole, head, pools);
+    out.poolMat = poolM;
+    out.lamps = lamps;
+    const propsList = (D.props || []).slice();
+    if (propsList.length < 50) {
+      for (const r of out.roadsDrive) {
+        if (!["residential", "living_street", "tertiary", "unclassified"].includes(r.t)) continue;
+        let acc = 14;
+        for (let i = 0; i < r.p.length - 1; i++) {
+          const a = r.p[i], b = r.p[i + 1];
+          const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          if (l < 1) continue;
+          const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+          while (acc < l) {
+            const side = propsList.length % 2 ? 1 : -1;
+            const x = a[0] + tx * acc - tz * (r.w / 2 + 1.55) * side, z = a[1] + tz * acc + tx * (r.w / 2 + 1.55) * side;
+            if (!out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 70 && pip(x, z, B.b.p))) {
+              const kinds = ["bollard", "bin", "planter", "bench", "hydrant"];
+              propsList.push({ p: [x, z], k: kinds[propsList.length % kinds.length], rot: Math.atan2(tx, tz) });
+            }
+            acc += 12 + propsList.length * 3 % 6;
+          }
+          acc -= l;
+        }
+      }
+    }
+    const benches = [], bins = [], hydrants = [], bollards = [], planters = [];
+    for (const pr of propsList) {
+      const x = pr.p[0], z = pr.p[1];
+      if (!out.inEdge(x, z, 1)) continue;
+      if (out.buildings.some((B) => Math.abs(B.b.p[0][0] - x) < 55 && pip(x, z, B.b.p))) continue;
+      const it = { x, z, rot: pr.rot || 0, y: 0 };
+      if (pr.k === "bench") benches.push(it);
+      else if (pr.k === "bin") bins.push(it);
+      else if (pr.k === "hydrant") hydrants.push(it);
+      else if (pr.k === "planter") planters.push(it);
+      else bollards.push(it);
+    }
+    inst(new BoxGeometry(1.15, 0.08, 0.38), propMat(5914672), benches, 0.42);
+    {
+      const m = new InstancedMesh(new BoxGeometry(1.15, 0.32, 0.06), propMat(4863016), Math.max(1, benches.length));
+      const o2 = new Object3D();
+      benches.forEach((it, i) => {
+        const bx = Math.sin(it.rot || 0), bz = Math.cos(it.rot || 0);
+        o2.position.set(it.x + bx * 0.16, 0.62, it.z + bz * 0.16);
+        o2.rotation.set(0, it.rot || 0, 0);
+        o2.scale.set(1, 1, 1);
+        o2.updateMatrix();
+        m.setMatrixAt(i, o2.matrix);
+      });
+      if (benches.length) {
+        m.castShadow = true;
+        scene.add(m);
+      }
+    }
+    inst(new CylinderGeometry(0.18, 0.2, 0.55, 8), propMat(2764338, 0.6, 0.3), bins, 0.28);
+    inst(new CylinderGeometry(0.12, 0.14, 0.55, 8), propMat(11538456, 0.5, 0.4), hydrants, 0.28);
+    inst(new CylinderGeometry(0.08, 0.09, 0.7, 6), propMat(13157560, 0.5, 0.2), bollards, 0.35);
+    inst(new CylinderGeometry(0.35, 0.4, 0.45, 10), propMat(6967360), planters, 0.22);
+    if (planters.length) {
+      const m = new InstancedMesh(new CylinderGeometry(0.32, 0.32, 0.18, 10), new MeshStandardMaterial({ color: 3828264, roughness: 1 }), planters.length);
+      const o2 = new Object3D();
+      planters.forEach((it, i) => {
+        o2.position.set(it.x, 0.55, it.z);
+        o2.rotation.set(0, 0, 0);
+        o2.scale.set(1, 1, 1);
+        o2.updateMatrix();
+        m.setMatrixAt(i, o2.matrix);
+      });
+      m.castShadow = true;
+      scene.add(m);
+    }
+    const facing = /* @__PURE__ */ __name((x, z, maxd) => {
+      let best = null, bd = maxd;
+      for (const B of out.buildings) {
+        if (Math.abs(B.b.p[0][0] - x) > 90 || Math.abs(B.b.p[0][1] - z) > 90) continue;
+        for (const e of B.edges) {
+          const [d, cx, cz] = segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1]);
+          if (d < bd && e.len > 4) {
+            bd = d;
+            best = { B, e, cx, cz };
+          }
+        }
+      }
+      return best;
+    }, "facing");
+    out.facing = facing;
+    const used = /* @__PURE__ */ new Set();
+    let nameI = {};
+    const placeSign = /* @__PURE__ */ __name((f, text, fg, opt = {}) => {
+      const e = f.e;
+      const k = Math.round(f.cx * 2) + "_" + Math.round(f.cz * 2);
+      if (used.has(e)) return null;
+      used.add(e);
+      let tx = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+      if (tx < -0.3 || Math.abs(tx) <= 0.3 && tz > 0) {
+        tx = -tx;
+        tz = -tz;
+      }
+      const W = Math.min(opt.w || 5.5, e.len - 0.6), Hh = W / 4;
+      const gH = Math.min(f.B.h - 0.8, f.B.shopish ? 4.2 : 3.6);
+      const mat = new MeshBasicMaterial({ map: signTex(text, { fg, sub: opt.sub }), toneMapped: false });
+      out.neonMats.push(mat);
+      const g = new PlaneGeometry(W, Hh);
+      const m = new Mesh(g, mat);
+      const right = new Vector3(tx, 0, tz), upv = new Vector3(tz, 0, -tx);
+      const nrm = new Vector3().crossVectors(right, upv);
+      const tilt = 0.42;
+      const up2 = upv.clone().multiplyScalar(Math.cos(tilt)).add(new Vector3(0, 1, 0).multiplyScalar(Math.sin(tilt)));
+      const n2 = new Vector3().crossVectors(right, up2);
+      const M = new Matrix4().makeBasis(right, up2, n2);
+      m.quaternion.setFromRotationMatrix(M);
+      const outD = Hh / 2 + 0.25;
+      const dot = upv.x * e.nx + upv.z * e.nz;
+      m.position.set(f.cx + e.nx * outD, gH + 0.15 + (dot < 0 ? Hh * 0.5 * Math.sin(tilt) : 0), f.cz + e.nz * outD);
+      scene.add(m);
+      const br = new Mesh(new BoxGeometry(W, 0.08, Hh * 0.9), new MeshStandardMaterial({ color: 2236962 }));
+      br.quaternion.copy(m.quaternion);
+      br.rotateX(-Math.PI / 2);
+      br.position.copy(m.position).add(new Vector3(0, -0.06, 0));
+      br.castShadow = true;
+      scene.add(br);
+      out.signs.push(m);
+      return m;
+    }, "placeSign");
+    const hn = opts.hubNear || [0, 0];
+    const hubPick = D.pois.filter((p) => ["fast_food", "restaurant"].includes(p.a) && Math.abs(p.p[0]) < 450 && Math.abs(p.p[1]) < 380).map((p) => ({ p, d: Math.hypot(p.p[0] - hn[0], p.p[1] - hn[1]) + (p.a === "fast_food" ? 0 : 60) + (p.fallback ? 40 : 0) - (p.n ? 30 : 0) })).sort((a, b) => a.d - b.d).find((c) => facing(c.p.p[0], c.p.p[1], 20));
+    for (const poi of D.pois) {
+      if (poi === hubPick?.p) continue;
+      if (!["fast_food", "restaurant", "cafe", "bar", "pub"].includes(poi.a)) continue;
+      const f = facing(poi.p[0], poi.p[1], 14);
+      if (!f) continue;
+      const list = SHOP_NAMES[poi.a] || SHOP_NAMES.fast_food;
+      nameI[poi.a] = (nameI[poi.a] || 0) + 1;
+      const nm = list[nameI[poi.a] % list.length];
+      placeSign(f, nm, NEON[R() * NEON.length | 0]);
+    }
+    for (const B of out.buildings) {
+      if (!B.shopish) continue;
+      for (const e of B.edges) {
+        if (e.street && e.len > 7 && R() < 0.22 && !used.has(e)) {
+          placeSign({ B, e, cx: e.mx, cz: e.mz }, EXTRA_SIGNS[R() * EXTRA_SIGNS.length | 0], NEON[R() * NEON.length | 0], { w: 4.5 });
+        }
+      }
+    }
+    const ADS = [["SCHAUM", "das Feierabendbier", "#ffe03f", "#7a1010"], ["KOLA ROT", "eiskalt seit 1987", "#ffffff", "#b0101a"], ["NACHTEXPRESS", "Taxi rund um die Uhr", "#111111", "#f2c200"], ["ZAHNARZT DR. KNIRSCH", "tut kaum weh", "#1a3a6a", "#e8f0f8"], ["POTT FM 99,1", "Radio f\xFCr die Hood", "#3ff0ff", "#14102a"], ["GOLDENE KRONE", "Spielothek", "#ffd04f", "#3a0a3a"]];
+    let ad = 0;
+    for (const B of out.buildings.filter((B2) => B2.h > 15).sort((a, b) => a.b.r % 97 - b.b.r % 97).slice(0, 10)) {
+      const e = B.edges.filter((e2) => e2.len > 9).sort((a, b) => b.nz - a.nz)[0];
+      if (!e) continue;
+      const A = ADS[ad++ % ADS.length];
+      const mat = new MeshBasicMaterial({ map: signTex(A[0], { fg: A[2], bg: A[3], core: A[2], border: A[2], blur: 8, sub: A[1], w: 512, h: 192, font: '900 80px "Arial Black", Impact, sans-serif' }), toneMapped: false });
+      out.neonMats.push(mat);
+      const W = Math.min(9, e.len * 0.8), H = W * 0.375;
+      const m = new Mesh(new PlaneGeometry(W, H), mat);
+      let tx = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+      if (tx < 0) {
+        tx = -tx;
+        tz = -tz;
+      }
+      const right = new Vector3(tx, 0, tz);
+      const upv = new Vector3(tz, 0, -tx);
+      const up2 = upv.clone().multiplyScalar(Math.cos(0.9)).add(new Vector3(0, Math.sin(0.9), 0));
+      m.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(right, up2, new Vector3().crossVectors(right, up2)));
+      const c = [e.mx - e.nx * 2.2, e.mz - e.nz * 2.2];
+      m.position.set(c[0], B.h + 0.45 + 1.2 + H / 2 * Math.sin(0.9), c[1]);
+      scene.add(m);
+      for (const s of [-0.4, 0.4]) {
+        const leg = new Mesh(new BoxGeometry(0.15, 1.6 + H * 0.6, 0.15), propMat(2763306));
+        leg.position.set(c[0] + tx * W * s, B.h + 0.45 + (1.6 + H * 0.6) / 2, c[1] + tz * W * s);
+        leg.castShadow = true;
+        scene.add(leg);
+      }
+      const back = new Mesh(new PlaneGeometry(W, H), propMat(3158064));
+      back.quaternion.copy(m.quaternion);
+      back.rotateY(Math.PI);
+      back.position.copy(m.position);
+      back.castShadow = true;
+      scene.add(back);
+    }
+    const hzTex = hazardTex();
+    const hzMat = new MeshStandardMaterial({ map: hzTex, roughness: 0.72, metalness: 0.04 });
+    const hzGeo = new BoxGeometry(0.42, 8, 0.42);
+    hzGeo.translate(0, 4, 0);
+    const hzList = [];
+    for (const B of out.buildings) {
+      if (!(B.b.k === "industrial" || B.h > 18)) continue;
+      for (const e of B.edges) {
+        if (!e.street || e.len < 8) continue;
+        for (let s = 2; s < e.len - 2; s += 4.6) hzList.push({ x: e.A[0] + (e.B[0] - e.A[0]) / e.len * s + e.nx * 0.22, z: e.A[1] + (e.B[1] - e.A[1]) / e.len * s + e.nz * 0.22, h: Math.min(B.h, 10) });
+      }
+    }
+    if (hzList.length) {
+      const im = new InstancedMesh(hzGeo, hzMat, Math.min(hzList.length, 80));
+      const m4 = new Matrix4(), p = new Vector3(), q = new Quaternion(), sc = new Vector3();
+      hzList.slice(0, 80).forEach((h, i) => {
+        p.set(h.x, 0, h.z);
+        sc.set(1, h.h / 8, 1);
+        m4.compose(p, q, sc);
+        im.setMatrixAt(i, m4);
+      });
+      im.castShadow = true;
+      im.receiveShadow = true;
+      scene.add(im);
+    }
+    out.cams = [];
+    const camMat = new MeshStandardMaterial({ color: 2236968, roughness: 0.4 });
+    const coneMat = new MeshBasicMaterial({ color: 4770047, transparent: true, opacity: 0.2, depthWrite: false, side: DoubleSide, toneMapped: false });
+    let ci = 0;
+    for (const B of out.buildings) {
+      for (const e of B.edges) {
+        if (!e.street || e.len < 9 || R() > 0.16) continue;
+        const x = e.mx + e.nx * 0.35, z = e.mz + e.nz * 0.35, y = Math.min(B.h * 0.5, 7.2);
+        const box2 = new Mesh(new BoxGeometry(0.28, 0.18, 0.42), camMat);
+        box2.position.set(x, y, z);
+        box2.lookAt(x + e.nx, y, z + e.nz);
+        scene.add(box2);
+        const tip = [x, 0.07, z], left = [x + e.nx * 13 + e.nz * 5.2, 0.07, z + e.nz * 13 - e.nx * 5.2], right = [x + e.nx * 13 - e.nz * 5.2, 0.07, z + e.nz * 13 + e.nx * 5.2];
+        const cg = new BufferGeometry();
+        cg.setAttribute("position", new Float32BufferAttribute([...tip, ...left, ...right], 3));
+        cg.computeVertexNormals();
+        const cone = new Mesh(cg, coneMat.clone());
+        scene.add(cone);
+        out.cams.push({ x, z, dx: e.nx, dz: e.nz, range: 14, cos: Math.cos(0.52), cone });
+        if (++ci >= 16) break;
+      }
+      if (ci >= 16) break;
+    }
+    out.blitz = [];
+    let bi = 0;
+    for (const j of out.junctions || []) {
+      if (R() > 0.38 || !out.inEdge(j[0], j[1], 4)) continue;
+      const pole2 = new Mesh(new CylinderGeometry(0.07, 0.08, 3.4, 8), propMat(3355448));
+      pole2.position.set(j[0], 1.7, j[1]);
+      pole2.castShadow = true;
+      scene.add(pole2);
+      const head2 = new Mesh(new BoxGeometry(0.38, 0.3, 0.3), new MeshStandardMaterial({ color: 13213728, roughness: 0.45, emissive: 0, emissiveIntensity: 0 }));
+      head2.position.set(j[0], 3.35, j[1]);
+      scene.add(head2);
+      out.blitz.push({ x: j[0], z: j[1], cool: 0, head: head2 });
+      if (++bi >= 10) break;
+    }
+    {
+      const E2 = out.edge;
+      const C = [[E2.minx, E2.minz], [E2.maxx, E2.minz], [E2.maxx, E2.maxz], [E2.minx, E2.maxz]];
+      const mats = [];
+      const m4 = new Matrix4(), q = new Quaternion(), pv = new Vector3(), sv = new Vector3(1, 1, 1), Y = new Vector3(0, 1, 0);
+      for (let i = 0; i < 4; i++) {
+        const a = C[i], b = C[(i + 1) % 4];
+        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+        const n = Math.max(1, Math.round(l / 4));
+        for (let k = 0; k < n; k++) {
+          const t0 = k / n, t1 = (k + 1) / n;
+          out.grid.add(a[0] + (b[0] - a[0]) * t0, a[1] + (b[1] - a[1]) * t0, a[0] + (b[0] - a[0]) * t1, a[1] + (b[1] - a[1]) * t1);
+          const t = (k + 0.5) / n;
+          pv.set(a[0] + (b[0] - a[0]) * t, 0, a[1] + (b[1] - a[1]) * t);
+          q.setFromAxisAngle(Y, Math.atan2(-tz, tx));
+          sv.set(l / n / 4, 1, 1);
+          mats.push(m4.compose(pv, q, sv).clone());
+        }
+      }
+      if (!instanceProp("barrier", mats, scene)) {
+        const bg = new BoxGeometry(4, 0.95, 0.6);
+        bg.translate(0, 0.475, 0);
+        const im = new InstancedMesh(bg, new MeshStandardMaterial({ map: hazardTex(), roughness: 0.8 }), mats.length);
+        mats.forEach((m, i) => im.setMatrixAt(i, m));
+        im.castShadow = true;
+        scene.add(im);
+      }
+      const S = 1400, dark = new MeshBasicMaterial({ color: 460813, fog: false });
+      const y = 0.6;
+      const strip2 = /* @__PURE__ */ __name((x0, z0, x1, z1) => {
+        const g = new PlaneGeometry(x1 - x0, z1 - z0);
+        g.rotateX(-Math.PI / 2);
+        const m = new Mesh(g, dark);
+        m.position.set((x0 + x1) / 2, y, (z0 + z1) / 2);
+        scene.add(m);
+      }, "strip");
+      const o2 = 0.8;
+      strip2(E2.minx - S, E2.minz - S, E2.maxx + S, E2.minz - o2);
+      strip2(E2.minx - S, E2.maxz + o2, E2.maxx + S, E2.maxz + S);
+      strip2(E2.minx - S, E2.minz - o2, E2.minx - o2, E2.maxz + o2);
+      strip2(E2.maxx + o2, E2.minz - o2, E2.maxx + S, E2.maxz + o2);
+      const cv = document.createElement("canvas");
+      cv.width = 4;
+      cv.height = 64;
+      const cg = cv.getContext("2d");
+      const gr = cg.createLinearGradient(0, 0, 0, 64);
+      gr.addColorStop(0, "rgba(7,8,13,0)");
+      gr.addColorStop(1, "rgba(7,8,13,0.85)");
+      cg.fillStyle = gr;
+      cg.fillRect(0, 0, 4, 64);
+      const ft = new CanvasTexture(cv);
+      const fm = new MeshBasicMaterial({ map: ft, transparent: true, depthWrite: false, fog: false });
+      const F = 14;
+      const fade = /* @__PURE__ */ __name((cx, cz, len, rot) => {
+        const g = new PlaneGeometry(len, F);
+        g.rotateX(-Math.PI / 2);
+        const m = new Mesh(g, fm);
+        m.rotation.y = rot;
+        m.position.set(cx, 0.08, cz);
+        m.renderOrder = 2;
+        scene.add(m);
+      }, "fade");
+      const W2 = E2.maxx - E2.minx, H2 = E2.maxz - E2.minz;
+      fade((E2.minx + E2.maxx) / 2, E2.minz + F / 2, W2, Math.PI);
+      fade((E2.minx + E2.maxx) / 2, E2.maxz - F / 2, W2, 0);
+      fade(E2.minx + F / 2, (E2.minz + E2.maxz) / 2, H2, -Math.PI / 2);
+      fade(E2.maxx - F / 2, (E2.minz + E2.maxz) / 2, H2, Math.PI / 2);
+    }
+    out.hubPoi = hubPick?.p;
+    out.placeSign = placeSign;
+    out.propMat = propMat;
+    return out;
+  }
+  var LEVEL_H, DRIVE_WIDEN, Geo, EdgeGrid, ROOF_COLS, SHOP_NAMES, EXTRA_SIGNS, NEON;
+  var init_city = __esm({
+    "src/city.js"() {
+      init_three_module();
+      init_sets();
+      init_tex();
+      LEVEL_H = 3.3;
+      DRIVE_WIDEN = /* @__PURE__ */ __name((r) => +(r.w * 1.2 + 1.2).toFixed(2), "DRIVE_WIDEN");
+      __name(laneOffset, "laneOffset");
+      __name(pip, "pip");
+      __name(segDist, "segDist");
+      Geo = class {
+        static {
+          __name(this, "Geo");
+        }
+        constructor() {
+          this.p = [];
+          this.n = [];
+          this.u = [];
+          this.c = [];
+        }
+        tri(a, b, c, n, ua, ub, uc, col) {
+          this.p.push(...a, ...b, ...c);
+          for (let i = 0; i < 3; i++) this.n.push(...n);
+          this.u.push(...ua, ...ub, ...uc);
+          if (col) for (let i = 0; i < 3; i++) this.c.push(...col);
+        }
+        quad(a, b, c, d, n, ua, ub, uc, ud, col) {
+          this.tri(a, b, c, n, ua, ub, uc, col);
+          this.tri(a, c, d, n, ua, uc, ud, col);
+        }
+        build() {
+          const g = new BufferGeometry();
+          g.setAttribute("position", new Float32BufferAttribute(this.p, 3));
+          g.setAttribute("normal", new Float32BufferAttribute(this.n, 3));
+          g.setAttribute("uv", new Float32BufferAttribute(this.u, 2));
+          if (this.c.length) g.setAttribute("color", new Float32BufferAttribute(this.c, 3));
+          g.computeBoundingSphere();
+          return g;
+        }
+      };
+      EdgeGrid = class {
+        static {
+          __name(this, "EdgeGrid");
+        }
+        constructor(cell = 16) {
+          this.cell = cell;
+          this.m = /* @__PURE__ */ new Map();
+        }
+        key(i, j) {
+          return i * 10007 + j;
+        }
+        add(ax, az, bx, bz) {
+          const c = this.cell;
+          const x0 = Math.floor(Math.min(ax, bx) / c) - 1, x1 = Math.floor(Math.max(ax, bx) / c) + 1, z0 = Math.floor(Math.min(az, bz) / c) - 1, z1 = Math.floor(Math.max(az, bz) / c) + 1;
+          for (let i = x0; i <= x1; i++) for (let j = z0; j <= z1; j++) {
+            const k = this.key(i, j);
+            if (!this.m.has(k)) this.m.set(k, []);
+            this.m.get(k).push([ax, az, bx, bz]);
+          }
+        }
+        near(x, z) {
+          return this.m.get(this.key(Math.floor(x / this.cell), Math.floor(z / this.cell))) || [];
+        }
+        // push circle out of edges; returns hit normal or null
+        resolve(pos, r) {
+          let hit = null;
+          for (let it = 0; it < 3; it++) {
+            let any = false;
+            for (const s of this.near(pos.x, pos.z)) {
+              const [d, cx, cz] = segDist(pos.x, pos.z, s[0], s[1], s[2], s[3]);
+              if (d < r) {
+                let nx = pos.x - cx, nz = pos.z - cz;
+                const l = Math.hypot(nx, nz) || 1;
+                nx /= l;
+                nz /= l;
+                pos.x = cx + nx * r;
+                pos.z = cz + nz * r;
+                hit = { x: nx, z: nz };
+                any = true;
+              }
+            }
+            if (!any) break;
+          }
+          return hit;
+        }
+      };
+      ROOF_COLS = [[0.46, 0.44, 0.4], [0.58, 0.3, 0.22], [0.3, 0.42, 0.34], [0.7, 0.62, 0.46], [0.26, 0.27, 0.31], [0.52, 0.44, 0.54], [0.32, 0.44, 0.56], [0.74, 0.4, 0.26], [0.62, 0.62, 0.58], [0.34, 0.26, 0.22], [0.24, 0.48, 0.5], [0.6, 0.56, 0.3]];
+      SHOP_NAMES = { fast_food: ["PIZZA NOTTE", "BURGER BUDE", "CURRY ECK", "FALAFEL HOUSE", "IMBISS ROSI", "H\xC4HNCHEN HEINZ", "WOK STATION 9", "KUMPIR K\xD6NIG", "B\xD6REK BOX", "POMMES POTT"], restaurant: ["TRATTORIA LUNA", "TAVERNA DELFI", "ASIA GARDEN", "STEAKHAUS RUHR", "LA CANTINA", "BALKAN GRILL", "SUSHI KAZE", "PHO SAIGON", "GASTHAUS KRONE"], cafe: ["CAF\xC9 KORN", "KAFFEEKLATSCH", "BACKSTUBE 11", "ESPRESSO 44", "CAF\xC9 ZUCKER"], bar: ["BAR NOIR", "LUCKY 13", "BLAUE STUNDE", "EXIT BAR", "COCKTAIL CLUB"], pub: ["ZUM HENKEL", "KNEIPE 7", "ZUR ECKE", "PILS-STUBE", "SCHICHT-ENDE"] };
+      EXTRA_SIGNS = ["KIOSK", "SPIELHALLE", "WETTB\xDCRO", "HANDY DOC", "SHISHA LOUNGE", "SALON SCHNITT", "ORIENT MARKT", "PFANDHAUS", "TATTOO INK", "SP\xC4TI 24", "GOLD ANKAUF", "NAGEL STUDIO", "REISEB\xDCRO SONNE", "APOTHEKE AM ECK"];
+      NEON = ["#ff3fa4", "#3ff0ff", "#ffe03f", "#7dff5a", "#ff6a2a", "#b46bff", "#ff2a3a"];
+      __name(buildCity, "buildCity");
     }
   });
 
@@ -30538,7 +30992,12 @@ void main() {
     const tpl = getCarTemplate(type);
     if (tpl) {
       const visual = tpl.clone(true);
-      tintNamed(visual, { Paint: color });
+      visual.traverse((o) => {
+        if (o.isMesh && o.name === "Paint") {
+          o.material = o.material.clone();
+          o.material.color.set(color);
+        }
+      });
       g.add(visual);
       const L2 = carLightsGeometry(type);
       const hf2 = new Mesh(L2.front, mats.head);
@@ -30552,28 +31011,8 @@ void main() {
       const cone2 = new Mesh(mats.coneGeo, mats.cone);
       cone2.position.set(0, 0.07, T2.L / 2 + 7.5);
       g.add(cone2);
-      const dentMat2 = new MeshStandardMaterial({ color: 2763306, roughness: 0.95, metalness: 0.1 });
-      const scratchMat2 = new MeshStandardMaterial({ color: 1710618, roughness: 1, metalness: 0 });
-      const dents2 = [];
-      for (let i = 0; i < 4; i++) {
-        const d = new Mesh(new SphereGeometry(0.18 + i * 0.04, 8, 6), dentMat2);
-        d.visible = false;
-        d.scale.set(1.4, 0.35, 1.1);
-        g.add(d);
-        dents2.push(d);
-      }
-      const scratches2 = [];
-      for (let i = 0; i < 3; i++) {
-        const s = new Mesh(new BoxGeometry(0.06, 0.04, 0.7 + i * 0.2), scratchMat2);
-        s.visible = false;
-        g.add(s);
-        scratches2.push(s);
-      }
-      const smoke2 = new Mesh(new SphereGeometry(0.35, 8, 6), new MeshBasicMaterial({ color: 8947848, transparent: true, opacity: 0.45, depthWrite: false }));
-      smoke2.position.set(0, 1.1, -T2.L * 0.15);
-      smoke2.visible = false;
-      g.add(smoke2);
-      g.userData = { type, T: T2, cone: cone2, body: visual, hf: hf2, hr: hr2, dents: dents2, scratches: scratches2, smoke: smoke2, damage: 0, paint: [c.r, c.g, c.b] };
+      const { dents: dents2, scratches: scratches2 } = damageBits(g, T2);
+      g.userData = { type, T: T2, cone: cone2, body: visual, hf: hf2, hr: hr2, dents: dents2, scratches: scratches2, blob: blob2, damage: 0, paint: [c.r, c.g, c.b], fromSet: true };
       return g;
     }
     const geo = carGeometry(type, [c.r, c.g, c.b]);
@@ -30593,63 +31032,58 @@ void main() {
     const cone = new Mesh(mats.coneGeo, mats.cone);
     cone.position.set(0, 0.07, T.L / 2 + 7.5);
     g.add(cone);
-    const dentMat = new MeshStandardMaterial({ color: 2763306, roughness: 0.95, metalness: 0.1 });
-    const scratchMat = new MeshStandardMaterial({ color: 1710618, roughness: 1, metalness: 0 });
-    const dents = [];
-    for (let i = 0; i < 4; i++) {
-      const d = new Mesh(new SphereGeometry(0.18 + i * 0.04, 8, 6), dentMat);
+    const { dents, scratches } = damageBits(g, T);
+    g.userData = { type, T, cone, body: m, hf, hr, dents, scratches, blob, damage: 0, paint: [c.r, c.g, c.b] };
+    return g;
+  }
+  function damageBits(g, T) {
+    const dents = [], scratches = [];
+    for (let i = 0; i < 6; i++) {
+      const d = new Mesh(dentGeo, dentMat);
       d.visible = false;
-      d.scale.set(1.4, 0.35, 1.1);
       g.add(d);
       dents.push(d);
     }
-    const scratches = [];
-    for (let i = 0; i < 3; i++) {
-      const s = new Mesh(new BoxGeometry(0.06, 0.04, 0.7 + i * 0.2), scratchMat);
+    for (let i = 0; i < 4; i++) {
+      const s = new Mesh(scratchGeo, scratchMat);
       s.visible = false;
       g.add(s);
       scratches.push(s);
     }
-    const smoke = new Mesh(new SphereGeometry(0.35, 8, 6), new MeshBasicMaterial({ color: 8947848, transparent: true, opacity: 0.45, depthWrite: false }));
-    smoke.position.set(0, 1.1, -T.L * 0.15);
-    smoke.visible = false;
-    g.add(smoke);
-    g.userData = { type, T, cone, body: m, hf, hr, dents, scratches, smoke, damage: 0, paint: [c.r, c.g, c.b] };
-    return g;
+    return { dents, scratches };
   }
-  function applyCarDamage(carObj, imp) {
+  function setCarDamage(carObj, d) {
     const g = carObj.g || carObj;
     const u = g.userData;
     if (!u || !u.dents) return;
-    u.damage = Math.min(1, (u.damage || 0) + Math.min(0.35, imp * 0.04));
-    const T = u.T, d = u.damage;
+    d = Math.max(0, Math.min(1, d));
+    u.damage = d;
+    const T = u.T;
     if (u.body) {
-      u.body.scale.set(1, 1 - d * 0.04, 1 - d * 0.08);
-      u.body.position.z = -d * 0.12;
+      u.body.scale.set(1, 1 - d * 0.05, 1 - d * 0.06);
+      u.body.position.z = -d * 0.08;
     }
+    const H = T.hb || 0.86;
     u.dents.forEach((m, i) => {
-      const show = d > 0.08 + i * 0.15;
+      const show = d > 0.06 + i * 0.12;
       m.visible = show;
       if (show) {
         const side = i % 2 ? 1 : -1;
-        m.position.set(side * (T.W / 2 - 0.1), 0.55 + i * 0.08, T.L / 2 - 0.4 - i * 0.35);
-        m.scale.set(1.2 + d, 0.25 + d * 0.2, 0.9 + d);
+        const fr = i < 3 ? 1 : -1;
+        m.position.set(side * (T.W / 2 - 0.12), H - 0.12 + i % 3 * 0.06, fr * (T.L / 2 - 0.5 - i % 3 * 0.45));
+        m.scale.set(0.22 + d * 0.12, 0.06 + d * 0.05, 0.26 + d * 0.15);
       }
     });
     u.scratches.forEach((m, i) => {
-      const show = d > 0.12 + i * 0.2;
+      const show = d > 0.1 + i * 0.15;
       m.visible = show;
       if (show) {
-        m.position.set((i - 1) * 0.25, 0.7, T.L / 2 - 0.9 - i * 0.4);
-        m.rotation.y = 0.2 * i;
+        const side = i % 2 ? 1 : -1;
+        m.position.set(side * (T.W / 2 + 0.01), H - 0.25 + i * 0.05, (i - 1.5) * 0.6);
+        m.scale.set(1, 1, 0.5 + i * 0.2);
       }
     });
-    if (u.smoke) {
-      u.smoke.visible = d > 0.55;
-      u.smoke.scale.setScalar(0.8 + d * 1.4);
-      u.smoke.material.opacity = 0.25 + d * 0.4;
-    }
-    u.speedMul = Math.max(0.35, 1 - d * 0.7);
+    u.speedMul = Math.max(0.55, 1 - d * 0.45);
   }
   function repairCar(carObj) {
     const g = carObj.g || carObj;
@@ -30663,32 +31097,40 @@ void main() {
     }
     (u.dents || []).forEach((m) => m.visible = false);
     (u.scratches || []).forEach((m) => m.visible = false);
-    if (u.smoke) u.smoke.visible = false;
+  }
+  function makeHusk(carObj) {
+    const g = carObj.g || carObj;
+    const u = g.userData;
+    if (u.body) u.body.traverse((o) => {
+      if (!o.isMesh) return;
+      if (o.name === "Glow") {
+        o.visible = false;
+        return;
+      }
+      o.material = o.name === "Rest" ? huskRest : huskMat;
+    });
+    if (u.hf) u.hf.visible = false;
+    if (u.hr) u.hr.visible = false;
+    if (u.cone) u.cone.visible = false;
+    (u.dents || []).forEach((m) => m.visible = false);
+    (u.scratches || []).forEach((m) => m.visible = false);
+    if (u.body) {
+      u.body.scale.set(1.02, 0.86, 0.97);
+      u.body.position.y = -0.08;
+    }
+    if (u.blob) {
+      u.blob.scale.multiplyScalar(1.35);
+      u.blob.material = u.blob.material.clone();
+      u.blob.material.opacity = 1;
+    }
   }
   function findPart(root, name) {
+    const re = new RegExp("^" + name + "(\\.?\\d{3})?$");
     let found = null;
     root.traverse((o) => {
-      if (!found && (o.name === name || o.name.startsWith(name + "."))) found = o;
+      if (!found && re.test(o.name)) found = o;
     });
     return found;
-  }
-  function tintNamed(root, map) {
-    root.traverse((o) => {
-      if (!o.isMesh || !o.material) return;
-      o.castShadow = true;
-      o.receiveShadow = true;
-      const list = [].concat(o.material);
-      const next = list.map((m) => {
-        const n = m.clone();
-        const key = (n.name || "").split(".")[0];
-        if (map[key] && n.color) {
-          if (Array.isArray(map[key])) n.color.setRGB(map[key][0], map[key][1], map[key][2]);
-          else n.color.set(map[key]);
-        }
-        return n;
-      });
-      o.material = Array.isArray(o.material) ? next : next[0];
-    });
   }
   function look(seed, custom) {
     const R = /* @__PURE__ */ __name((k) => {
@@ -30737,11 +31179,10 @@ void main() {
     const c = look(seed, custom);
     const tpl = getPedTemplate(!!custom?.hero);
     if (tpl) {
-      const cloned = tpl.clone(true);
+      const cloned = clonePed(tpl, { Jacket: c.jacket, Shirt: c.shirt, Pants: c.pants, Skin: c.skin, Hair: c.hair, Shoes: c.shoes });
       const inner2 = findPart(cloned, "Inner") || cloned;
       inner2.scale.setScalar(scale);
       g.add(cloned);
-      tintNamed(cloned, { Jacket: c.jacket, Shirt: c.shirt, Pants: c.pants, Skin: c.skin, Hair: c.hair, Shoes: c.shoes });
       const legs2 = ["LegL", "LegR"].map((n) => findPart(cloned, n)).filter(Boolean);
       const arms2 = ["ArmL", "ArmR"].map((n) => findPart(cloned, n)).filter(Boolean);
       if (legs2.length === 2 && arms2.length === 2) {
@@ -30749,7 +31190,7 @@ void main() {
         blob2.scale.set(1.25, 1, 0.95);
         blob2.position.y = 0.065;
         inner2.add(blob2);
-        g.userData = { legs: legs2, arms: arms2, body: inner2, phase: R(9) * 6, bob: 0 };
+        g.userData = { legs: legs2, arms: arms2, body: inner2, phase: R(9) * 6, bob: 0, fromSet: true };
         return g;
       }
     }
@@ -30812,7 +31253,7 @@ void main() {
       if (u.body) u.body.position.y *= 0.8;
     }
   }
-  var box, GLASS, GLASS_HI, TYRE, TRIM, CHROME, CAR_TYPES, CAR_COLORS, carMat, SKIN, HAIR, JACKET, SHIRT, PANTS, SHOES, cap, sph;
+  var box, GLASS, GLASS_HI, TYRE, TRIM, CHROME, CAR_TYPES, CAR_COLORS, carMat, dentMat, scratchMat, dentGeo, scratchGeo, huskMat, huskRest, SKIN, HAIR, JACKET, SHIRT, PANTS, SHOES, cap, sph;
   var init_actors = __esm({
     "src/actors.js"() {
       init_three_module();
@@ -30833,24 +31274,31 @@ void main() {
       TRIM = [0.11, 0.11, 0.12];
       CHROME = [0.6, 0.62, 0.64];
       CAR_TYPES = {
-        sedan: { L: 4.4, W: 1.8, hb: 0.86, hr: 0.5, hood: 1.25, ws: 0.75, roof: 1.2, rw: 0.6 },
-        hatch: { L: 3.9, W: 1.72, hb: 0.86, hr: 0.52, hood: 1, ws: 0.7, roof: 1.42, rw: 0.42 },
-        kombi: { L: 4.7, W: 1.82, hb: 0.88, hr: 0.52, hood: 1.25, ws: 0.75, roof: 2.1, rw: 0.25, rails: true },
-        van: { L: 4.9, W: 1.95, hb: 1, hr: 0.88, hood: 0.95, ws: 0.85, roof: 2.85, rw: 0.12, rails: true, van: true },
-        taxi: { L: 4.5, W: 1.82, hb: 0.86, hr: 0.5, hood: 1.28, ws: 0.75, roof: 1.25, rw: 0.6, taxi: true },
-        coupe: { L: 4.5, W: 1.86, hb: 0.8, hr: 0.42, hood: 1.6, ws: 0.85, roof: 0.8, rw: 0.8, stripe: true },
-        police: { L: 4.55, W: 1.9, hb: 0.88, hr: 0.52, hood: 1.22, ws: 0.7, roof: 1.35, rw: 0.55, police: true },
-        truck: { L: 6.6, W: 2.2, hb: 1.12, hr: 1.02, hood: 1.35, ws: 0.72, roof: 3.4, rw: 0.14, van: true, truck: true }
+        sedan: { L: 4.4, W: 1.8, hb: 0.86, hr: 0.5, hood: 1.25, ws: 0.75, roof: 1.2, rw: 0.6, hp: 100 },
+        hatch: { L: 3.9, W: 1.72, hb: 0.86, hr: 0.52, hood: 1, ws: 0.7, roof: 1.42, rw: 0.42, hp: 85 },
+        kombi: { L: 4.7, W: 1.82, hb: 0.88, hr: 0.52, hood: 1.25, ws: 0.75, roof: 2.1, rw: 0.25, rails: true, hp: 105 },
+        van: { L: 4.9, W: 1.95, hb: 1, hr: 0.88, hood: 0.95, ws: 0.85, roof: 2.85, rw: 0.12, rails: true, van: true, hp: 130 },
+        taxi: { L: 4.5, W: 1.82, hb: 0.86, hr: 0.5, hood: 1.28, ws: 0.75, roof: 1.25, rw: 0.6, taxi: true, hp: 100 },
+        coupe: { L: 4.5, W: 1.86, hb: 0.8, hr: 0.42, hood: 1.6, ws: 0.85, roof: 0.8, rw: 0.8, stripe: true, hp: 90 },
+        police: { L: 4.55, W: 1.9, hb: 0.88, hr: 0.52, hood: 1.22, ws: 0.7, roof: 1.35, rw: 0.55, police: true, hp: 130 },
+        truck: { L: 6.6, W: 2.2, hb: 1.12, hr: 1.02, hood: 1.35, ws: 0.72, roof: 3.4, rw: 0.14, van: true, truck: true, hp: 180 }
       };
       __name(carGeometry, "carGeometry");
       __name(carLightsGeometry, "carLightsGeometry");
       CAR_COLORS = [12855342, 1985192, 15253562, 3050053, 15921384, 1710622, 12864024, 6956160, 2787496, 15262940, 9054746, 3824682, 13672488, 2371680];
       carMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.62, metalness: 0.06 });
       __name(makeCar, "makeCar");
-      __name(applyCarDamage, "applyCarDamage");
+      dentMat = new MeshStandardMaterial({ color: 2763306, roughness: 0.95, metalness: 0.1 });
+      scratchMat = new MeshStandardMaterial({ color: 9079430, roughness: 0.6, metalness: 0.5 });
+      dentGeo = new SphereGeometry(1, 10, 6);
+      scratchGeo = new BoxGeometry(0.05, 0.03, 1);
+      __name(damageBits, "damageBits");
+      __name(setCarDamage, "setCarDamage");
       __name(repairCar, "repairCar");
+      huskMat = new MeshStandardMaterial({ color: 1775638, roughness: 1, metalness: 0.15 });
+      huskRest = new MeshStandardMaterial({ color: 2762274, roughness: 1, metalness: 0.1, vertexColors: true });
+      __name(makeHusk, "makeHusk");
       __name(findPart, "findPart");
-      __name(tintNamed, "tintNamed");
       SKIN = [[0.9, 0.72, 0.58], [0.78, 0.57, 0.42], [0.56, 0.38, 0.26], [0.36, 0.25, 0.18], [0.95, 0.8, 0.68]];
       HAIR = [[0.07, 0.05, 0.04], [0.3, 0.19, 0.1], [0.62, 0.48, 0.26], [0.18, 0.18, 0.18], [0.45, 0.14, 0.08], [0.75, 0.72, 0.68]];
       JACKET = [[0.12, 0.14, 0.22], [0.18, 0.22, 0.34], [0.32, 0.33, 0.36], [0.22, 0.28, 0.18], [0.42, 0.14, 0.14], [0.55, 0.48, 0.36], [0.2, 0.28, 0.42], [0.5, 0.22, 0.14], [0.16, 0.2, 0.2], [0.58, 0.58, 0.56]];
@@ -31441,6 +31889,15 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         beep(180, 0.08, "square", 0.06, 90);
         setTimeout(() => beep(120, 0.1, "sine", 0.05), 70);
       },
+      shot(v = 1) {
+        noiseBurst(0.09, 0.16 * v, 600, 6e3);
+        beep(160, 0.06, "square", 0.05 * v, 60);
+      },
+      boom(dist = 0) {
+        const g = Math.max(0.12, 0.5 - dist * 4e-3);
+        noiseBurst(0.9, g, 30, 1800);
+        beep(55, 0.7, "sawtooth", g * 0.6, 28);
+      },
       crash(imp) {
         const g = Math.min(0.45, 0.08 + imp * 0.03);
         noiseBurst(0.18 + Math.min(0.3, imp * 0.02), g, 80, 3500);
@@ -32015,6 +32472,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       }
     }
     __name(updateGhosts, "updateGhosts");
+    const state = { inCar: false, nearCar: false, follow: true, deal: false, dealLabel: "", armed: false, weaponLabel: "", hasWeapons: false };
     const P = { x: hub ? hub.door.x + 2.2 : 0, z: hub ? hub.door.z + 4.5 : 0, rot: Math.PI, vx: 0, vz: 0, car: null };
     player.position.set(P.x, 0, P.z);
     const R = rng(4242);
@@ -32031,7 +32489,8 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       c.position.set(x, 0, z);
       c.rotation.y = rot;
       scene.add(c);
-      const o = { g: c, type, x, z, rot, speed: 0, steer: 0, ai, driven: false, police: type === "police", stolen: false };
+      const hp = CAR_TYPES[type].hp || 100;
+      const o = { g: c, type, x, z, rot, speed: 0, steer: 0, ai, driven: false, police: type === "police", stolen: false, hp, maxHp: hp, fire: false, wrecked: false, hitCool: 0, spawn: { x, z, rot } };
       cars.push(o);
       setLit(o, !!ai);
       return o;
@@ -32047,7 +32506,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
     const nearJ = /* @__PURE__ */ __name((x, z, d) => city.junctions.some((j) => Math.hypot(j[0] - x, j[1] - z) < d), "nearJ");
     const parked = [];
     for (const r of city.roadsDrive) {
-      if (!["residential", "unclassified", "living_street", "tertiary"].includes(r.t)) continue;
+      if (!["residential", "unclassified", "tertiary"].includes(r.t)) continue;
       for (const side of [-1, 1]) {
         let acc = 0;
         for (let i = 0; i < r.p.length - 1; i++) {
@@ -32057,9 +32516,10 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           const tx = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx;
           for (let s = 3; s < l - 3; s += 5.6) {
             if (R() < 0.4) continue;
-            const off = r.w / 2 - 1.15;
+            const off = r.w / 2 - 1;
             const x = a[0] + tx * s + nx * off * side, z = a[1] + tz * s + nz * off * side;
             if (nearJ(x, z, 12)) continue;
+            if (!city.inEdge(x, z, 6)) continue;
             if (!freeSpot(x, z, 1.6)) continue;
             if (parked.some((p) => Math.hypot(p.x - x, p.z - z) < 4.8)) continue;
             parked.push({ x, z, rot: Math.atan2(tx, tz) + (side > 0 ? 0 : Math.PI) + (R() - 0.5) * 0.06 });
@@ -32068,7 +32528,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       }
     }
     for (const p of parked.slice(0, MOBILE ? 90 : 140)) {
-      const t = ["sedan", "hatch", "kombi", "sedan", "van", "coupe", "taxi", "hatch", "kombi"][R() * 9 | 0];
+      const t = ["sedan", "hatch", "kombi", "sedan", "van", "coupe", "taxi", "hatch", "kombi", "truck", "van", "coupe"][R() * 12 | 0];
       addCar(t, t === "taxi" ? 15909376 : CAR_COLORS[R() * CAR_COLORS.length | 0], p.x, p.z, p.rot, false);
     }
     let myCar = null;
@@ -32107,13 +32567,13 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       o.route = { ri, pts, k: 1, rev, ow: r.ow, w: r.w };
     }
     __name(startRoute, "startRoute");
-    const aiRoads = city.roadsDrive.map((r, i) => i).filter((i) => ["primary", "residential", "unclassified", "secondary", "tertiary", "living_street"].includes(city.roadsDrive[i].t) && city.roadsDrive[i].p.length >= 2);
+    const aiRoads = city.roadsDrive.map((r, i) => i).filter((i) => ["primary", "residential", "unclassified", "secondary", "tertiary", "living_street"].includes(city.roadsDrive[i].t) && city.roadsDrive[i].p.length >= 2 && city.inEdge(city.roadsDrive[i].p[0][0], city.roadsDrive[i].p[0][1], 12));
     for (let k = 0; k < (MOBILE ? 16 : 26) && aiRoads.length; k++) {
       const ri = aiRoads[R() * aiRoads.length | 0];
       const r = city.roadsDrive[ri];
       const rev = !r.ow && R() < 0.5;
-      const t = k === 3 ? "truck" : ["sedan", "hatch", "van", "taxi", "kombi", "coupe"][R() * 6 | 0];
-      const col = t === "taxi" ? 15909376 : t === "truck" ? 12855834 : CAR_COLORS[R() * CAR_COLORS.length | 0];
+      const t = k % 7 === 3 ? "truck" : ["sedan", "hatch", "van", "taxi", "kombi", "coupe", "sedan", "hatch"][R() * 8 | 0];
+      const col = t === "taxi" ? 15909376 : t === "truck" ? [12855834, 1985192, 3050053][k % 3] : CAR_COLORS[R() * CAR_COLORS.length | 0];
       const o = addCar(t, col, 0, 0, 0, true);
       startRoute(o, ri, rev);
       const p = o.route.pts[0];
@@ -32133,11 +32593,33 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       o.max = 15;
     }
     function laneOff(o) {
-      const r = o.route;
-      return r.ow ? 0 : Math.min(r.w / 4, 2.2);
+      return laneOffset(city.roadsDrive[o.route.ri]);
     }
     __name(laneOff, "laneOff");
+    function spawnTraffic(o) {
+      const ri = aiRoads[Math.random() * aiRoads.length | 0];
+      if (ri == null) return;
+      startRoute(o, ri, !city.roadsDrive[ri].ow && Math.random() < 0.5);
+      const p = o.route.pts[0];
+      o.x = p[0];
+      o.z = p[1];
+      o.rot = Math.atan2(o.route.pts[1][0] - p[0], o.route.pts[1][1] - p[1]);
+      o.speed = 5;
+    }
+    __name(spawnTraffic, "spawnTraffic");
     function aiStep(o, dt) {
+      if (o.wrecked) return;
+      if (!city.inEdge(o.x, o.z, 7) && o.route && !o.turnT) {
+        const r2 = o.route;
+        if (!r2.ow) {
+          r2.pts.reverse();
+          r2.k = Math.max(1, r2.pts.length - r2.k);
+          r2.rev = !r2.rev;
+          o.turnT = 3;
+          o.speed = Math.min(o.speed, 4);
+        } else if (Math.hypot(o.x - P.x, o.z - P.z) > cam.h * 2.2) spawnTraffic(o);
+      }
+      if (o.turnT) o.turnT = Math.max(0, o.turnT - dt);
       if (o.police && wanted > 0 && !hiding) {
         const ddx2 = P.x - o.x, ddz2 = P.z - o.z;
         const dist2 = Math.hypot(ddx2, ddz2) || 1;
@@ -32201,7 +32683,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         return ahead > 0 && ahead < 9 && lat < 1.8;
       }, "chk");
       if (chk(P.x, P.z)) block = true;
-      for (const c of cars) if (c !== o && chk(c.x, c.z)) {
+      for (const c of cars) if (c !== o && Math.abs(c.x - o.x) < 10 && Math.abs(c.z - o.z) < 10 && chk(c.x, c.z)) {
         block = true;
         break;
       }
@@ -32252,11 +32734,24 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       if ((o.down || 0) > 0) {
         o.down -= dt;
         o.g.rotation.x = Math.min(1.25, (2.6 - o.down) * 0.55);
+        o.g.position.y = Math.min(1.25, (2.6 - o.down) * 0.55) * 0.12;
         if (o.down <= 0) {
           o.down = 0;
           o.g.rotation.x = 0;
+          o.g.position.y = 0;
+          o.ret = true;
         }
         return;
+      }
+      if (o.seek || o.ret) {
+        pedSeekStep(o, dt);
+        return;
+      }
+      o.scanT = (o.scanT ?? Math.random() * 1.5) - dt;
+      if (o.scanT <= 0) {
+        o.scanT = 0.8 + Math.random() * 0.8;
+        pedScan(o);
+        if (o.seek) return;
       }
       const pp = o.path;
       const i = o.dir > 0 ? o.k - 1 : o.k;
@@ -32284,6 +32779,437 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       animPed(o.g, o.speed, dt);
     }
     __name(pedStep, "pedStep");
+    function pathPos(o) {
+      const pp = o.path;
+      const A = pp.pts[o.dir > 0 ? o.k - 1 : o.k], B = pp.pts[o.dir > 0 ? o.k : o.k - 1];
+      const off = (pp.off || 0) * (o.dir > 0 ? 1 : -1);
+      return pedPoint({ off }, A, B, o.lat * (o.dir > 0 ? 1 : -1), o.t);
+    }
+    __name(pathPos, "pathPos");
+    function pedSeekStep(o, dt) {
+      let tx, tz;
+      if (o.seek) {
+        if (o.seek.taken) {
+          o.seek = null;
+          o.ret = true;
+          return;
+        }
+        tx = o.seek.x;
+        tz = o.seek.z;
+      } else {
+        const p = pathPos(o);
+        tx = p[0];
+        tz = p[1];
+      }
+      const dx = tx - o.x, dz = tz - o.z, d = Math.hypot(dx, dz);
+      const sp = o.seek ? 1.9 : 1.4;
+      if (o.seek && d < 0.9) {
+        pedTake(o, o.seek);
+        o.seek = null;
+        o.ret = true;
+        return;
+      }
+      if (!o.seek && d < 0.3) {
+        o.ret = false;
+        o.seekT = 0;
+        return;
+      }
+      const st = Math.min(d, sp * dt);
+      const np = { x: o.x + dx / d * st, z: o.z + dz / d * st };
+      city.grid.resolve(np, 0.35);
+      o.g.rotation.y = Math.atan2(dx, dz);
+      o.x = np.x;
+      o.z = np.z;
+      o.g.position.set(o.x, 0, o.z);
+      animPed(o.g, sp, dt);
+      o.seekT = (o.seekT || 0) + dt;
+      if (o.seekT > 14) {
+        if (o.seek) o.seek.claim = null;
+        o.seek = null;
+        o.ret = false;
+        o.seekT = 0;
+        const p = pathPos(o);
+        o.x = p[0];
+        o.z = p[1];
+      }
+    }
+    __name(pedSeekStep, "pedSeekStep");
+    const pickups = [];
+    const PK = { crate: "rgba(255,205,60,1)", pistol: "rgba(255,70,60,1)", bat: "rgba(255,120,50,1)" };
+    const pkGlowMats = {};
+    for (const k in PK) pkGlowMats[k] = new MeshBasicMaterial({ map: radialTex(PK[k]), transparent: true, blending: AdditiveBlending, depthWrite: false, opacity: 0.85, toneMapped: false });
+    function pickupVisual(kind) {
+      const tpl = getPropTemplate(kind);
+      let v;
+      if (tpl) v = tpl.clone(true);
+      else {
+        v = new Mesh(kind === "crate" ? new BoxGeometry(0.8, 0.8, 0.8).translate(0, 0.4, 0) : new BoxGeometry(0.1, 0.1, 0.6), new MeshStandardMaterial({ color: kind === "crate" ? 10119728 : 2236966 }));
+      }
+      const g = new Group();
+      const spin = new Group();
+      g.add(spin);
+      spin.add(v);
+      if (kind === "pistol") {
+        v.scale.setScalar(3.4);
+        v.rotation.z = Math.PI / 2;
+        v.position.y = 0.1;
+      } else if (kind === "bat") {
+        v.scale.setScalar(1.9);
+        v.rotation.x = Math.PI / 2;
+        v.position.set(0, 0.15, -0.85);
+      }
+      const glow = new Mesh(blobGeo, pkGlowMats[kind]);
+      glow.scale.set(2.8, 1, 2.8);
+      glow.position.y = 0.07;
+      g.add(glow);
+      g.userData = { spin, glow };
+      return g;
+    }
+    __name(pickupVisual, "pickupVisual");
+    function spotOnSidewalk(near, minD, maxD) {
+      for (let tries = 0; tries < 60; tries++) {
+        const pp = goodPaths[Math.random() * goodPaths.length | 0];
+        if (!pp || pp.pts.length < 2) continue;
+        const i = Math.random() * (pp.pts.length - 1) | 0;
+        const pt = pedPoint(pp, pp.pts[i], pp.pts[i + 1], (Math.random() - 0.5) * 0.8, Math.random());
+        const x = pt[0], z = pt[1];
+        if (!city.inEdge(x, z, 4)) continue;
+        if (near) {
+          const d = Math.hypot(x - near.x, z - near.z);
+          if (d < minD || d > maxD) continue;
+        }
+        if (!freeSpot(x, z, 0.8)) continue;
+        if (pickups.some((q) => !q.taken && Math.hypot(q.x - x, q.z - z) < 12)) continue;
+        return { x, z };
+      }
+      return null;
+    }
+    __name(spotOnSidewalk, "spotOnSidewalk");
+    function placePickup(kind, pos, extra = {}) {
+      if (!pos) return null;
+      const g = pickupVisual(kind);
+      g.position.set(pos.x, 0, pos.z);
+      scene.add(g);
+      const o = { kind, x: pos.x, z: pos.z, g, taken: false, t: Math.random() * 6, claim: null, cash: extra.cash ?? 20 + (Math.random() * 9 | 0) * 5, dropped: !!extra.dropped };
+      pickups.push(o);
+      return o;
+    }
+    __name(placePickup, "placePickup");
+    function respawnLater(kind, delay) {
+      setTimeout(() => {
+        const pos = spotOnSidewalk({ x: P.x, z: P.z }, 45, 400) || spotOnSidewalk(null);
+        placePickup(kind, pos);
+      }, delay * 1e3);
+    }
+    __name(respawnLater, "respawnLater");
+    function takePickup(pk) {
+      pk.taken = true;
+      scene.remove(pk.g);
+      const i = pickups.indexOf(pk);
+      if (i >= 0) pickups.splice(i, 1);
+      if (!pk.dropped) respawnLater(pk.kind, 40 + Math.random() * 35);
+    }
+    __name(takePickup, "takePickup");
+    {
+      const start = { x: P.x, z: P.z };
+      placePickup("crate", spotOnSidewalk(start, 8, 40));
+      placePickup("pistol", spotOnSidewalk(start, 12, 55));
+      placePickup("crate", spotOnSidewalk(start, 20, 70));
+      placePickup("bat", spotOnSidewalk(start, 15, 70));
+      const NC = MOBILE ? 12 : 18, NW = MOBILE ? 6 : 9;
+      for (let i = 0; i < NC; i++) placePickup("crate", spotOnSidewalk(null));
+      for (let i = 0; i < NW; i++) placePickup(i % 3 === 2 ? "bat" : "pistol", spotOnSidewalk(null));
+    }
+    function pedScan(o) {
+      let best = null, bd = 10;
+      for (const pk of pickups) {
+        if (pk.taken || pk.claim && pk.claim !== o) continue;
+        const d = Math.hypot(pk.x - o.x, pk.z - o.z);
+        if (d < bd) {
+          bd = d;
+          best = pk;
+        }
+      }
+      if (best && !(best.kind !== "crate" && o.armed) && !(best.kind === "crate" && o.loot)) {
+        o.seek = best;
+        best.claim = o;
+        o.seekT = 0;
+      }
+    }
+    __name(pedScan, "pedScan");
+    function attachWeapon(g, kind) {
+      const arm = findPart(g, "ArmR");
+      if (!arm) return null;
+      const old = arm.userData.weapon;
+      if (old) {
+        arm.remove(old);
+        arm.userData.weapon = null;
+      }
+      if (!kind) return null;
+      const tpl = getPropTemplate(kind);
+      const w = tpl ? tpl.clone(true) : new Mesh(new BoxGeometry(0.05, 0.08, 0.3), new MeshStandardMaterial({ color: 2236962 }));
+      if (kind === "pistol") {
+        w.scale.setScalar(1.5);
+        w.position.set(0.02, -0.66, 0.08);
+      } else {
+        w.scale.setScalar(1.05);
+        w.rotation.x = Math.PI / 2 * 0.92;
+        w.position.set(0.02, -0.64, -0.06);
+      }
+      arm.add(w);
+      arm.userData.weapon = w;
+      return w;
+    }
+    __name(attachWeapon, "attachWeapon");
+    function pedTake(o, pk) {
+      if (pk.taken) return;
+      const near = Math.hypot(o.x - P.x, o.z - P.z) < 28;
+      if (pk.kind === "crate") {
+        o.loot = (o.loot || 0) + pk.cash;
+        if (near) toast("Ein Passant schnappt sich die Kiste.", 1.8);
+      } else {
+        o.armed = pk.kind;
+        attachWeapon(o.g, pk.kind);
+        if (near) toast(pk.kind === "pistol" ? "Ein Passant hat eine Pistole gefunden!" : "Ein Passant hat einen Schl\xE4ger gefunden.", 2);
+      }
+      takePickup(pk);
+    }
+    __name(pedTake, "pedTake");
+    function knockPed(pd) {
+      pd.down = 2.6;
+      if (pd.seek) {
+        pd.seek.claim = null;
+        pd.seek = null;
+      }
+      if (pd.loot) {
+        placePickup("crate", { x: pd.x + 0.8, z: pd.z + 0.4 }, { cash: pd.loot, dropped: true });
+        pd.loot = 0;
+      }
+      if (pd.armed) {
+        placePickup(pd.armed, { x: pd.x - 0.7, z: pd.z - 0.5 }, { dropped: true });
+        pd.armed = null;
+        attachWeapon(pd.g, null);
+      }
+    }
+    __name(knockPed, "knockPed");
+    P.weapons = { pistol: 0, bat: false };
+    P.weapon = null;
+    P.fireCool = 0;
+    P.aimT = 0;
+    P.swingT = 0;
+    function setWeapon(k) {
+      P.weapon = k;
+      attachWeapon(player, k);
+      updateHoodHud();
+    }
+    __name(setWeapon, "setWeapon");
+    function playerPickups() {
+      const r = P.car ? 2.4 : 1.35;
+      for (const pk of pickups.slice()) {
+        if (pk.taken) continue;
+        if (Math.hypot(pk.x - P.x, pk.z - P.z) > r) continue;
+        if (pk.kind === "crate") {
+          deal.setCash(deal.state().cash + pk.cash);
+          toast("Kiste geknackt: +" + pk.cash + " \u20AC");
+          audio.door();
+        } else if (pk.kind === "pistol") {
+          if (P.weapons.pistol >= 60) continue;
+          P.weapons.pistol = Math.min(60, P.weapons.pistol + 12);
+          toast("Pistole: +12 Schuss");
+          if (P.weapon !== "pistol") setWeapon("pistol");
+        } else if (pk.kind === "bat") {
+          if (P.weapons.bat && P.weapon === "bat") continue;
+          P.weapons.bat = true;
+          toast("Baseballschl\xE4ger");
+          setWeapon("bat");
+        }
+        if (pk.claim) {
+          pk.claim.seek = null;
+          pk.claim.ret = true;
+        }
+        takePickup(pk);
+        updateHoodHud();
+      }
+    }
+    __name(playerPickups, "playerPickups");
+    function cycleWeapon() {
+      const list = [null];
+      if (P.weapons.pistol > 0) list.push("pistol");
+      if (P.weapons.bat) list.push("bat");
+      const i = list.indexOf(P.weapon);
+      setWeapon(list[(i + 1) % list.length]);
+    }
+    __name(cycleWeapon, "cycleWeapon");
+    const tracerMat = new LineBasicMaterial({ color: 16771488, transparent: true, opacity: 1, toneMapped: false });
+    const tracers = [];
+    function tracer(x0, z0, x1, z1) {
+      let t = tracers.find((q) => q.life <= 0);
+      if (!t) {
+        const g = new BufferGeometry();
+        g.setAttribute("position", new Float32BufferAttribute(new Float32Array(6), 3));
+        const l = new Line(g, tracerMat.clone());
+        l.frustumCulled = false;
+        scene.add(l);
+        t = { l, life: 0 };
+        tracers.push(t);
+      }
+      const a = t.l.geometry.attributes.position;
+      a.setXYZ(0, x0, 1.9, z0);
+      a.setXYZ(1, x1, 1.6, z1);
+      a.needsUpdate = true;
+      t.life = 0.09;
+      t.l.visible = true;
+      emit("flash", x0, 1.9, z0, { vy: 0, s0: 0.9, s1: 0.3, max: 0.08, a: 1 });
+    }
+    __name(tracer, "tracer");
+    function rayWall(x, z, dx, dz, maxD) {
+      let best = maxD;
+      for (let t = 0; t < maxD + 6; t += 6) {
+        for (const sg of city.grid.near(x + dx * t, z + dz * t)) {
+          const ex = sg[2] - sg[0], ez = sg[3] - sg[1];
+          const den = dx * ez - dz * ex;
+          if (Math.abs(den) < 1e-9) continue;
+          const u = ((sg[0] - x) * ez - (sg[1] - z) * ex) / den, v = ((sg[0] - x) * dz - (sg[1] - z) * dx) / den;
+          if (u > 0.05 && v >= 0 && v <= 1 && u < best) best = u;
+        }
+      }
+      return best;
+    }
+    __name(rayWall, "rayWall");
+    function inCar(c, x, z, pad = 0) {
+      const T = CAR_TYPES[c.type];
+      const rx = x - c.x, rz = z - c.z;
+      const lz = rx * Math.sin(c.rot) + rz * Math.cos(c.rot), lx = rx * Math.cos(c.rot) - rz * Math.sin(c.rot);
+      return Math.abs(lx) < T.W / 2 + pad && Math.abs(lz) < T.L / 2 + pad;
+    }
+    __name(inCar, "inCar");
+    function fire() {
+      if (P.car || document.body.classList.contains("onTitle")) return;
+      if (P.fireCool > 0) return;
+      const fx = Math.sin(P.rot), fz = Math.cos(P.rot);
+      if (P.weapon === "pistol" && P.weapons.pistol > 0) {
+        P.weapons.pistol--;
+        P.fireCool = 0.3;
+        P.aimT = 0.6;
+        audio.shot && audio.shot();
+        const R0 = 24;
+        const wd = rayWall(P.x, P.z, fx, fz, R0);
+        let hit = null, hd = wd;
+        const nearPeds = peds.filter((pd) => !(pd.down > 0) && Math.abs(pd.x - P.x) < R0 && Math.abs(pd.z - P.z) < R0), nearCars = cars.filter((c) => Math.abs(c.x - P.x) < R0 + 4 && Math.abs(c.z - P.z) < R0 + 4);
+        for (let t = 0.8; t < hd; t += 0.35) {
+          const x = P.x + fx * t, z = P.z + fz * t;
+          for (const pd of nearPeds) if (Math.hypot(pd.x - x, pd.z - z) < 0.65) {
+            hit = { pd };
+            hd = t;
+            break;
+          }
+          if (hit) break;
+          for (const c of nearCars) if (inCar(c, x, z)) {
+            hit = { c };
+            hd = t;
+            break;
+          }
+          if (hit) break;
+        }
+        tracer(P.x + fx * 0.9, P.z + fz * 0.9, P.x + fx * hd, P.z + fz * hd);
+        addHeat(0.18);
+        if (hit && hit.pd) {
+          knockPed(hit.pd);
+          addHeat(0.45);
+        } else if (hit && hit.c) {
+          damageCar(hit.c, 9);
+          if (hit.c.police) addHeat(0.6);
+        }
+        if (P.weapons.pistol <= 0) {
+          toast("Keine Munition mehr.", 1.4);
+          setWeapon(P.weapons.bat ? "bat" : null);
+        }
+        updateHoodHud();
+      } else if (P.weapon === "bat") {
+        P.fireCool = 0.55;
+        P.swingT = 0.35;
+        audio.step();
+        let any = false;
+        for (const pd of peds) {
+          if (pd.down > 0) continue;
+          const dx = pd.x - P.x, dz = pd.z - P.z, d = Math.hypot(dx, dz);
+          if (d < 2.1 && (dx * fx + dz * fz) / (d || 1) > 0.35) {
+            knockPed(pd);
+            any = true;
+          }
+        }
+        for (const c of cars) {
+          if (inCar(c, P.x + fx * 1.4, P.z + fz * 1.4, 0.2)) {
+            damageCar(c, 4);
+            audio.crash(4);
+            any = true;
+            if (c.police) addHeat(0.4);
+          }
+        }
+        if (any) addHeat(0.3);
+      }
+    }
+    __name(fire, "fire");
+    function weaponPose(dt) {
+      P.fireCool = Math.max(0, P.fireCool - dt);
+      P.aimT = Math.max(0, P.aimT - dt);
+      const u = player.userData;
+      if (!u || !u.arms) return;
+      if (P.swingT > 0) {
+        P.swingT = Math.max(0, P.swingT - dt);
+        const k = 1 - P.swingT / 0.35;
+        u.arms[1].rotation.x = -2.3 * Math.sin(k * Math.PI) - 0.3;
+        u.arms[1].rotation.z = 0.6 * Math.sin(k * Math.PI);
+      } else if (P.aimT > 0 || P.weapon === "pistol" && Math.hypot(P.vx, P.vz) < 0.2) {
+        u.arms[1].rotation.x += (-1.4 - u.arms[1].rotation.x) * Math.min(1, dt * 18);
+        u.arms[1].rotation.z *= 0.8;
+      } else u.arms[1].rotation.z *= 0.8;
+    }
+    __name(weaponPose, "weaponPose");
+    function enemyFire(dt) {
+      if (hiding) return;
+      const shoot = /* @__PURE__ */ __name((o, x, z, chance) => {
+        o.shootT = (o.shootT ?? 1 + Math.random()) - dt;
+        if (o.shootT > 0) return;
+        o.shootT = 1.5 + Math.random() * 1.2;
+        const dx = P.x - x, dz = P.z - z, d = Math.hypot(dx, dz) || 1;
+        if (rayWall(x, z, dx / d, dz / d, d) < d - 0.5) return;
+        const hitIt = Math.random() < chance;
+        const mx = hitIt ? 0 : (Math.random() - 0.5) * 3, mz = hitIt ? 0 : (Math.random() - 0.5) * 3;
+        tracer(x + dx / d * 0.8, z + dz / d * 0.8, P.x + mx, P.z + mz);
+        audio.shot && audio.shot(0.6);
+        if (hitIt) {
+          if (P.car) damageCar(P.car, 5);
+          else {
+            hurt(1);
+            toast("Getroffen!", 1.2);
+          }
+        }
+      }, "shoot");
+      if (wanted >= 3) for (const c of cars) {
+        if (!c.police || c.wrecked || c === P.car) continue;
+        const d = Math.hypot(c.x - P.x, c.z - P.z);
+        if (d < 16) shoot(c, c.x, c.z, P.car ? 0.4 : 0.32);
+      }
+      if (wanted >= 2) for (const pd of peds) {
+        if (pd.armed !== "pistol" || pd.down > 0) continue;
+        const d = Math.hypot(pd.x - P.x, pd.z - P.z);
+        if (d < 11) {
+          pd.g.rotation.y = Math.atan2(P.x - pd.x, P.z - pd.z);
+          shoot(pd, pd.x, pd.z, 0.25);
+        }
+      }
+    }
+    __name(enemyFire, "enemyFire");
+    let toastT = 0;
+    function toast(msg, sec = 2) {
+      const el = document.getElementById("toast");
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.add("on");
+      toastT = sec;
+    }
+    __name(toast, "toast");
     const TIMES = {
       afternoon: { sun: 16769720, si: 2.6, el: 34, az: 235, sky: 12110048, gnd: 6970956, hi: 1.05, win: 0.05, shop: 0.25, neon: 0.85, pool: 0, lamp: 0.2, bg: 9413560, exp: 1, bloom: 0.15, cone: 0 },
       dusk: { sun: 16756848, si: 2.7, el: 28, az: 250, sky: 9085112, gnd: 5918792, hi: 1.05, win: 0.7, shop: 0.75, neon: 1.2, pool: 0.35, lamp: 1.15, bg: 2764864, exp: 1.05, bloom: 0.18, cone: 0.28 },
@@ -32376,14 +33302,91 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       return { x: poi.p[0], z: poi.p[1], poi };
     }
     __name(foodDoor, "foodDoor");
-    const foodDoors = foodPois.map(foodDoor);
+    const foodDoors = foodPois.map(foodDoor).filter((f) => city.inEdge(f.x, f.z, 2));
+    const HUBD = { hub: true };
+    {
+      const R2 = rng(99);
+      const order = foodDoors.slice().sort(() => R2() - 0.5);
+      let n = 0;
+      for (const f of order) {
+        if (n < 3 && (!hub || Math.hypot(f.x - hub.door.x, f.z - hub.door.z) > 60)) {
+          f.role = "job";
+          n++;
+        } else f.role = "heal";
+      }
+    }
+    const healTpl = getPropTemplate("heal");
+    for (const f of foodDoors) {
+      if (f.role === "job") {
+        const r = new Mesh(new RingGeometry(1, 1.35, 32), new MeshBasicMaterial({ color: 16765503, transparent: true, opacity: 0.8, toneMapped: false, side: DoubleSide, depthWrite: false }));
+        r.rotation.x = -Math.PI / 2;
+        r.position.set(f.x, 0.09, f.z);
+        scene.add(r);
+        f.mark = r;
+      } else {
+        let m;
+        if (healTpl) {
+          m = healTpl.clone(true);
+          m.scale.setScalar(1.1);
+        } else {
+          m = new Group();
+          const gm = new MeshBasicMaterial({ color: 2872410, toneMapped: false });
+          m.add(new Mesh(new BoxGeometry(0.7, 0.08, 0.22), gm), new Mesh(new BoxGeometry(0.22, 0.08, 0.7), gm));
+        }
+        const g = new Group();
+        g.add(m);
+        m.rotation.x = 0.9;
+        g.position.set(f.x, 2.6, f.z);
+        scene.add(g);
+        const pl = new Mesh(blobGeo, new MeshBasicMaterial({ map: radialTex("rgba(80,255,130,1)"), transparent: true, blending: AdditiveBlending, depthWrite: false, opacity: 0.45 }));
+        pl.scale.set(4, 1, 4);
+        pl.position.set(f.x, 0.08, f.z);
+        scene.add(pl);
+        f.mark = g;
+        f.pool = pl;
+      }
+    }
+    function missionHere(nf) {
+      if (!nf) return false;
+      const giver = nf.kind === "hub" || nf.door.role === "job";
+      if (!job) return giver;
+      return nf.door === job.to || nf.door === job.fromDoor;
+    }
+    __name(missionHere, "missionHere");
+    function healAt() {
+      const cash = deal.state().cash;
+      let msg;
+      if (health >= 5) return { ok: false, msg: "Du bist satt." };
+      if (cash >= 10) {
+        deal.setCash(cash - 10);
+        health = 5;
+        msg = "Lecker. Voll geheilt (\u221210 \u20AC).";
+      } else {
+        health = Math.min(5, health + 1);
+        msg = "Pommes aufs Haus: +1 \u2665";
+      }
+      audio.door();
+      if (wanted >= 1) startHide();
+      updateHoodHud();
+      return { ok: true, msg, cash: deal.state().cash };
+    }
+    __name(healAt, "healAt");
     const jobRing = new Mesh(new RingGeometry(1.15, 1.6, 36), new MeshBasicMaterial({ color: 16765503, transparent: true, opacity: 0.9, toneMapped: false, side: DoubleSide, depthWrite: false }));
     jobRing.rotation.x = -Math.PI / 2;
     jobRing.visible = false;
     scene.add(jobRing);
     function updateHoodHud() {
       const he = document.getElementById("hearts");
-      if (he) he.textContent = "\u2665".repeat(health) + "\u2661".repeat(Math.max(0, 5 - health));
+      if (he) he.innerHTML = "<b>" + "\u2665".repeat(health) + "</b>" + "\u2665".repeat(Math.max(0, 5 - health));
+      const we = document.getElementById("weapon");
+      if (we && P.weapons) {
+        const w = P.weapon;
+        we.textContent = w === "pistol" ? "PISTOLE \xB7 " + P.weapons.pistol : w === "bat" ? "SCHL\xC4GER" : "";
+        we.style.display = w ? "" : "none";
+      }
+      state.armed = !!P.weapon;
+      state.weaponLabel = P.weapon === "pistol" ? "Schie\xDFen" : P.weapon === "bat" ? "Schlagen" : "";
+      state.hasWeapons = !!(P.weapons && (P.weapons.pistol > 0 || P.weapons.bat));
       const st = document.getElementById("stars");
       if (st) {
         st.textContent = wanted ? "\u2605".repeat(wanted) + "\u2606".repeat(5 - wanted) : "";
@@ -32412,14 +33415,14 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         const d = Math.hypot(hub.door.x - x, hub.door.z - z);
         if (d < bd) {
           bd = d;
-          best = { kind: "hub", x: hub.door.x, z: hub.door.z };
+          best = { kind: "hub", x: hub.door.x, z: hub.door.z, door: HUBD };
         }
       }
       for (const f of foodDoors) {
         const d = Math.hypot(f.x - x, f.z - z);
         if (d < bd) {
           bd = d;
-          best = { kind: "food", x: f.x, z: f.z, poi: f.poi };
+          best = { kind: "food", x: f.x, z: f.z, poi: f.poi, door: f };
         }
       }
       return best;
@@ -32427,11 +33430,11 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
     __name(nearFood, "nearFood");
     function acceptJob() {
       const from = nearFood(P.x, P.z, 4) || (hub ? { x: hub.door.x, z: hub.door.z } : { x: P.x, z: P.z });
-      const dests = foodDoors.filter((f) => Math.hypot(f.x - from.x, f.z - from.z) > 28);
+      const dests = foodDoors.filter((f) => f !== from.door && Math.hypot(f.x - from.x, f.z - from.z) > 28);
       const to = dests.length ? dests[Math.random() * dests.length | 0] : foodDoors[0];
       if (!to) return { ok: false, msg: "Gerade keine Auftr\xE4ge." };
       const J = JOB_LIST[Math.random() * JOB_LIST.length | 0];
-      job = { title: J.title, pay: J.pay, talk: J.talk, to };
+      job = { title: J.title, pay: J.pay, talk: J.talk, to, fromDoor: from.door || HUBD };
       jobRing.position.set(to.x, 0.1, to.z);
       jobRing.visible = true;
       updateHoodHud();
@@ -32464,6 +33467,11 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       hiding = false;
       hideAt = null;
       stolenCar = false;
+      if (P.weapons) {
+        P.weapons.pistol = 0;
+        P.weapons.bat = false;
+        setWeapon(null);
+      }
       if (P.car) {
         P.car.driven = false;
         setLit(P.car, false);
@@ -32489,10 +33497,250 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
     __name(wasted, "wasted");
     function hurt(n = 1) {
       health = Math.max(0, health - n);
+      hurtFlash = 0.5;
       updateHoodHud();
       if (health <= 0) wasted("down");
     }
     __name(hurt, "hurt");
+    let hurtFlash = 0;
+    function carLoss(imp) {
+      return imp < 2.5 ? 0 : 0.35 * Math.pow(imp - 1.5, 1.45);
+    }
+    __name(carLoss, "carLoss");
+    function carImpact(c, imp) {
+      damageCar(c, carLoss(imp));
+      audio.crash(imp);
+      if (c === P.car) {
+        shake = Math.max(shake, Math.min(1.1, imp * 0.06));
+        if (navigator.vibrate && imp > 4) try {
+          navigator.vibrate(Math.min(70, 15 + imp * 3));
+        } catch (_) {
+        }
+      }
+    }
+    __name(carImpact, "carImpact");
+    function damageCar(o, loss) {
+      if (!o || o.wrecked || !(loss > 0)) return;
+      o.hp = Math.max(0, o.hp - loss);
+      setCarDamage(o, 1 - o.hp / o.maxHp);
+      if (!o.fire && o.hp <= o.maxHp * 0.25) {
+        o.fire = true;
+        if (o === P.car) toast("Das Auto brennt \u2014 raus da!", 2.5);
+      }
+      if (o.hp <= 0) explodeCar(o);
+    }
+    __name(damageCar, "damageCar");
+    function fixCar(o) {
+      o.hp = o.maxHp;
+      o.fire = false;
+      repairCar(o);
+      if (o.g.userData.fireGlow) o.g.userData.fireGlow.visible = false;
+    }
+    __name(fixCar, "fixCar");
+    function obb(a, b) {
+      const A = CAR_TYPES[a.type], B = CAR_TYPES[b.type];
+      const dx = a.x - b.x, dz = a.z - b.z;
+      if (dx * dx + dz * dz > (A.L + B.L) * (A.L + B.L) / 4) return null;
+      const ax = [[Math.sin(a.rot), Math.cos(a.rot)], [Math.cos(a.rot), -Math.sin(a.rot)], [Math.sin(b.rot), Math.cos(b.rot)], [Math.cos(b.rot), -Math.sin(b.rot)]];
+      let best = 1e9, bn = null;
+      for (const [ux, uz] of ax) {
+        const ra = Math.abs(A.L / 2 * (Math.sin(a.rot) * ux + Math.cos(a.rot) * uz)) + Math.abs(A.W / 2 * (Math.cos(a.rot) * ux - Math.sin(a.rot) * uz));
+        const rb = Math.abs(B.L / 2 * (Math.sin(b.rot) * ux + Math.cos(b.rot) * uz)) + Math.abs(B.W / 2 * (Math.cos(b.rot) * ux - Math.sin(b.rot) * uz));
+        const d = dx * ux + dz * uz;
+        const ov = ra + rb - Math.abs(d);
+        if (ov <= 0) return null;
+        if (ov < best) {
+          best = ov;
+          bn = d < 0 ? [-ux, -uz] : [ux, uz];
+        }
+      }
+      return { nx: bn[0], nz: bn[1], d: best };
+    }
+    __name(obb, "obb");
+    const FX = [];
+    const fxGroup = new Group();
+    scene.add(fxGroup);
+    const fireT = radialTex("rgba(255,190,90,1)"), smokeT = radialTex("rgba(60,56,52,1)"), flashT = radialTex("rgba(255,240,200,1)");
+    const fxPool = [];
+    function fxSprite(kind) {
+      let s = fxPool.find((p) => !p.visible && p.userData.kind === kind);
+      if (!s) {
+        const m = new SpriteMaterial({ map: kind === "smoke" ? smokeT : kind === "flash" ? flashT : fireT, transparent: true, depthWrite: false, blending: kind === "smoke" ? NormalBlending : AdditiveBlending, toneMapped: false, fog: false });
+        s = new Sprite(m);
+        s.userData.kind = kind;
+        s.renderOrder = 5;
+        fxPool.push(s);
+        fxGroup.add(s);
+      }
+      s.visible = true;
+      return s;
+    }
+    __name(fxSprite, "fxSprite");
+    function emit(kind, x, y, z, o = {}) {
+      if (FX.length > 420) return;
+      const s = fxSprite(kind);
+      s.position.set(x, y, z);
+      const p = { s, kind, vx: o.vx || 0, vy: o.vy ?? (kind === "smoke" ? 2.2 : 2.8), vz: o.vz || 0, life: 0, max: o.max || (kind === "smoke" ? 2.4 : 0.6), s0: o.s0 || (kind === "smoke" ? 0.9 : 0.8), s1: o.s1 || (kind === "smoke" ? 3.6 : 0.25), a: o.a ?? (kind === "smoke" ? 0.55 : 0.95) };
+      s.material.opacity = p.a;
+      s.scale.setScalar(p.s0);
+      if (kind === "fire") s.material.color.setRGB(1, 0.85, 0.5);
+      else if (kind === "smoke") s.material.color.setScalar(o.dark ? 0.5 : 1);
+      else s.material.color.setRGB(1, 1, 1);
+      FX.push(p);
+    }
+    __name(emit, "emit");
+    const debrisGeo = new BoxGeometry(0.22, 0.08, 0.3), debrisMat = new MeshStandardMaterial({ color: 1907224, roughness: 0.9, metalness: 0.3 });
+    const debris = [];
+    function spawnDebris(x, z, n) {
+      for (let i = 0; i < n; i++) {
+        let d = debris.find((q) => !q.m.visible);
+        if (!d) {
+          if (debris.length > 48) break;
+          const m = new Mesh(debrisGeo, debrisMat);
+          m.castShadow = true;
+          scene.add(m);
+          d = { m };
+          debris.push(d);
+        }
+        const a = Math.random() * Math.PI * 2, v = 4 + Math.random() * 9;
+        Object.assign(d, { x, z, y: 0.8, vx: Math.cos(a) * v, vz: Math.sin(a) * v, vy: 6 + Math.random() * 8, life: 2.6 + Math.random() });
+        d.m.visible = true;
+        d.m.scale.setScalar(0.7 + Math.random() * 1.4);
+      }
+    }
+    __name(spawnDebris, "spawnDebris");
+    function fxStep(dt) {
+      for (let i = FX.length - 1; i >= 0; i--) {
+        const p = FX[i];
+        p.life += dt;
+        const t = p.life / p.max;
+        if (t >= 1) {
+          p.s.visible = false;
+          FX.splice(i, 1);
+          continue;
+        }
+        p.s.position.x += p.vx * dt;
+        p.s.position.y += p.vy * dt;
+        p.s.position.z += p.vz * dt;
+        p.vx *= Math.pow(0.4, dt);
+        p.vz *= Math.pow(0.4, dt);
+        p.s.scale.setScalar(p.s0 + (p.s1 - p.s0) * t);
+        p.s.material.opacity = p.a * (p.kind === "smoke" ? Math.min(1, t * 4) * (1 - t) : 1 - t);
+        if (p.kind === "fire") p.s.material.color.setRGB(1, 0.85 - 0.55 * t, 0.5 - 0.45 * t);
+      }
+      for (const d of debris) {
+        if (!d.m.visible) continue;
+        d.life -= dt;
+        if (d.life <= 0) {
+          d.m.visible = false;
+          continue;
+        }
+        d.vy -= 24 * dt;
+        d.x += d.vx * dt;
+        d.z += d.vz * dt;
+        d.y += d.vy * dt;
+        if (d.y < 0.05) {
+          d.y = 0.05;
+          d.vy *= -0.3;
+          d.vx *= 0.6;
+          d.vz *= 0.6;
+        }
+        d.m.position.set(d.x, d.y, d.z);
+        d.m.rotation.x += d.vx * dt;
+        d.m.rotation.z += d.vz * dt;
+      }
+    }
+    __name(fxStep, "fxStep");
+    function carFireStep(o, dt, vis) {
+      const T = CAR_TYPES[o.type];
+      const fx = Math.sin(o.rot), fz = Math.cos(o.rot);
+      const ex = o.x + fx * (T.L / 2 - 0.95), ez = o.z + fz * (T.L / 2 - 0.95), ey = (T.hb || 0.9) + 0.2;
+      if (o.wrecked) {
+        o.smokeT = (o.smokeT || 0) - dt;
+        if (vis && o.smokeT > 0 && Math.random() < dt * 5) emit("smoke", o.x + (Math.random() - 0.5), 1.2, o.z + (Math.random() - 0.5), { dark: true, max: 3, s1: 4.5, a: 0.45 });
+        return;
+      }
+      const frac = o.hp / o.maxHp;
+      if (o.fire) {
+        o.hp -= dt * o.maxHp * 0.034;
+        setCarDamage(o, 1 - Math.max(0, o.hp) / o.maxHp);
+        if (o.hp <= 0) {
+          explodeCar(o);
+          return;
+        }
+        let gl = o.g.userData.fireGlow;
+        if (!gl) {
+          gl = new Sprite(new SpriteMaterial({ map: fireT, transparent: true, depthWrite: false, blending: AdditiveBlending, toneMapped: false }));
+          gl.renderOrder = 5;
+          o.g.add(gl);
+          o.g.userData.fireGlow = gl;
+        }
+        gl.visible = true;
+        gl.position.set(0, ey + 0.4, T.L / 2 - 0.95);
+        gl.scale.setScalar(2.4 + Math.sin(tAcc * 23 + o.x) * 0.35 + Math.random() * 0.3);
+        if (vis) {
+          if (Math.random() < dt * 26) emit("fire", ex + (Math.random() - 0.5) * T.W * 0.6, ey, ez + (Math.random() - 0.5) * 0.8, { vy: 2.4 + Math.random() * 1.6, s0: 0.9 + Math.random() * 0.6, s1: 0.2, max: 0.45 + Math.random() * 0.35 });
+          if (Math.random() < dt * 9) emit("smoke", ex, ey + 0.8, ez, { dark: true, vx: (Math.random() - 0.5) * 0.8, vz: (Math.random() - 0.5) * 0.8 });
+        }
+      } else if (frac < 0.5 && vis && Math.random() < dt * (frac < 0.35 ? 6 : 2.5)) emit("smoke", ex, ey + 0.2, ez, { a: 0.35, s0: 0.5, s1: 2.2, max: 1.8 });
+    }
+    __name(carFireStep, "carFireStep");
+    const pendingBlast = [];
+    function explodeCar(o) {
+      if (o.wrecked) return;
+      o.wasAi = o.ai || o.wasAi;
+      o.wrecked = true;
+      o.fire = false;
+      o.hp = 0;
+      o.speed = 0;
+      o.ai = false;
+      o.route = null;
+      o.smokeT = 22;
+      o.deadT = 0;
+      if (o.g.userData.fireGlow) o.g.userData.fireGlow.visible = false;
+      makeHusk(o.g);
+      emit("flash", o.x, 2.5, o.z, { vy: 0, s0: 4, s1: 16, max: 0.35, a: 1 });
+      for (let i = 0; i < 26; i++) {
+        const a = Math.random() * Math.PI * 2, v = 1.5 + Math.random() * 5;
+        emit("fire", o.x + Math.cos(a) * 0.6, 1 + Math.random(), o.z + Math.sin(a) * 0.6, { vx: Math.cos(a) * v, vz: Math.sin(a) * v, vy: 2 + Math.random() * 4, s0: 1.6 + Math.random() * 1.6, s1: 0.4, max: 0.6 + Math.random() * 0.5 });
+      }
+      for (let i = 0; i < 14; i++) {
+        const a = Math.random() * Math.PI * 2, v = 0.8 + Math.random() * 2.5;
+        emit("smoke", o.x, 1.5, o.z, { dark: true, vx: Math.cos(a) * v, vz: Math.sin(a) * v, vy: 2 + Math.random() * 2, s0: 1.5, s1: 6, max: 3 + Math.random() * 1.5, a: 0.6 });
+      }
+      spawnDebris(o.x, o.z, 10);
+      const dP = Math.hypot(o.x - P.x, o.z - P.z);
+      audio.crash(30);
+      audio.boom && audio.boom(dP);
+      shake = Math.max(shake, Math.max(0, 1.4 - dP * 0.03));
+      if (P.car === o) {
+        exitCar(true);
+        hurt(3);
+        toast("Das Auto ist explodiert!", 2.5);
+      } else if (!P.car && dP < 6.5) hurt(dP < 3.2 ? 2 : 1);
+      if (dP < 60) addHeat(0.35);
+      for (const c of cars) {
+        if (c === o || c.wrecked) continue;
+        const d = Math.hypot(c.x - o.x, c.z - o.z);
+        if (d < 7.5) pendingBlast.push({ c, loss: 55 * (1 - d / 7.5) + 5, t: 0.25 });
+      }
+      for (const pd of peds) {
+        const d = Math.hypot(pd.x - o.x, pd.z - o.z);
+        if (d < 6.5 && !(pd.down > 0)) knockPed(pd);
+      }
+    }
+    __name(explodeCar, "explodeCar");
+    function blastStep(dt) {
+      for (let i = pendingBlast.length - 1; i >= 0; i--) {
+        const b = pendingBlast[i];
+        b.t -= dt;
+        if (b.t <= 0) {
+          pendingBlast.splice(i, 1);
+          damageCar(b.c, b.loss);
+        }
+      }
+    }
+    __name(blastStep, "blastStep");
     updateHoodHud();
     const keys = {};
     addEventListener("keydown", (e) => {
@@ -32510,6 +33758,8 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           }
         } else toggleCar();
       }
+      if (e.code === "KeyF" || e.code === "ControlLeft" || e.code === "ControlRight") fire();
+      if (e.code === "KeyQ") cycleWeapon();
       if (e.code === "KeyT") {
         const L = Object.keys(TIMES);
         applyTime(L[(L.indexOf(timeName) + 1) % L.length]);
@@ -32601,35 +33851,45 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       }
     }
     __name(ejectFromBuildings, "ejectFromBuildings");
+    function exitCar(blown) {
+      const c = P.car;
+      if (!c) return;
+      const sx = Math.cos(c.rot), sz = -Math.sin(c.rot);
+      let x = c.x - sx * 1.6, z = c.z - sz * 1.6;
+      tmp2.x = x;
+      tmp2.z = z;
+      ejectFromBuildings(tmp2, 0.55);
+      city.grid.resolve(tmp2, 0.35);
+      P.x = tmp2.x;
+      P.z = tmp2.z;
+      P.car.driven = false;
+      setLit(P.car, false);
+      P.car = null;
+      P.vx = 0;
+      P.vz = 0;
+      player.visible = true;
+      player.position.set(P.x, 0, P.z);
+      audio.door();
+      audio.engineStop();
+      radio.fadeOut(450);
+      document.body.classList.remove("incar");
+      const rad = document.getElementById("radio");
+      if (rad) rad.style.display = "";
+      if (blown) {
+        P.vx = (P.x - c.x) * 3;
+        P.vz = (P.z - c.z) * 3;
+      }
+    }
+    __name(exitCar, "exitCar");
     function toggleCar() {
       audio.resume();
       if (P.car) {
-        const c = P.car;
-        const sx = Math.cos(c.rot), sz = -Math.sin(c.rot);
-        let x = c.x - sx * 1.6, z = c.z - sz * 1.6;
-        tmp2.x = x;
-        tmp2.z = z;
-        ejectFromBuildings(tmp2, 0.55);
-        city.grid.resolve(tmp2, 0.35);
-        P.x = tmp2.x;
-        P.z = tmp2.z;
-        P.car.driven = false;
-        setLit(P.car, false);
-        P.car = null;
-        P.vx = 0;
-        P.vz = 0;
-        player.visible = true;
-        player.position.set(P.x, 0, P.z);
-        audio.door();
-        audio.engineStop();
-        radio.fadeOut(450);
-        document.body.classList.remove("incar");
-        const rad = document.getElementById("radio");
-        if (rad) rad.style.display = "";
+        exitCar(false);
         return;
       }
       let best = null, bd = 3.6;
       for (const c of cars) {
+        if (c.wrecked) continue;
         const d = Math.hypot(c.x - P.x, c.z - P.z);
         if (d < bd) {
           bd = d;
@@ -32690,7 +33950,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
             if (c.speed < vmax) c.speed += 9 * Math.min(1, TOUCH.mag + 0.2) * dt;
             else c.speed *= Math.pow(0.6, dt);
             if (c.speed < -0.3) c.speed += 16 * dt;
-            st = Math.max(-1, Math.min(1, d * 2.2));
+            st = Math.max(-1, Math.min(1, d * 1.5));
           } else {
             if (c.speed > 0.5) {
               c.speed -= 16 * dt;
@@ -32699,7 +33959,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
               c.backT = (c.backT || 0) + dt;
               if (c.backT > 0.4 || c.speed < -0.5) {
                 c.speed -= 6 * dt;
-                st = -Math.max(-1, Math.min(1, wrapA(want - (c.rot + Math.PI)) * 2.2));
+                st = -Math.max(-1, Math.min(1, wrapA(want - (c.rot + Math.PI)) * 1.5));
               } else c.speed *= Math.pow(0.1, dt);
             }
           }
@@ -32711,60 +33971,72 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         }
         c.speed = Math.max(-6, Math.min(24 * mul, c.speed));
         if (keys.Space || TOUCH.hbrake) c.speed *= Math.pow(0.05, dt);
-        c.steer += (st * 0.6 - c.steer) * Math.min(1, dt * 8);
-        c.rot += c.steer * c.speed / (T.L * 0.62) * dt;
+        c.steer += (st - c.steer) * Math.min(1, dt * 5);
+        const asp = Math.abs(c.speed);
+        const yawMax = Math.min(asp * 0.19, 1.75) * (1 - 0.2 * Math.min(1, asp / 24));
+        c.rot += c.steer * yawMax * Math.sign(c.speed) * dt;
         c.x += Math.sin(c.rot) * c.speed * dt;
         c.z += Math.cos(c.rot) * c.speed * dt;
-        let hit = false, imp = 0;
-        for (const s of [-1, 1]) {
-          const fx = Math.sin(c.rot) * s * (T.L / 2 - 0.9), fz = Math.cos(c.rot) * s * (T.L / 2 - 0.9);
+        c.hitCool = Math.max(0, (c.hitCool || 0) - dt);
+        let wall = false, impW = 0;
+        const vx0 = Math.sin(c.rot) * c.speed, vz0 = Math.cos(c.rot) * c.speed;
+        for (const s2 of [-1, 0, 1]) {
+          const fx = Math.sin(c.rot) * s2 * (T.L / 2 - 0.9), fz = Math.cos(c.rot) * s2 * (T.L / 2 - 0.9);
           tmp2.x = c.x + fx;
           tmp2.z = c.z + fz;
           const h = city.grid.resolve(tmp2, T.W / 2 + 0.05);
           if (h) {
             c.x = tmp2.x - fx;
             c.z = tmp2.z - fz;
-            hit = true;
-            imp = Math.max(imp, Math.abs(c.speed));
+            wall = true;
+            impW = Math.max(impW, -(vx0 * h.x + vz0 * h.z));
           }
+        }
+        if (wall) {
+          if (impW > Math.max(1.5, asp * 0.55)) {
+            c.speed *= -0.22;
+          } else c.speed *= Math.pow(0.4, dt);
+          if (impW >= 2.5 && c.hitCool <= 0) {
+            carImpact(c, impW);
+            c.hitCool = 0.4;
+          } else if (asp > 3) damageCar(c, asp * 0.12 * dt);
         }
         for (const o of cars) {
           if (o === c) continue;
-          const d = Math.hypot(o.x - c.x, o.z - c.z);
-          if (d < T.L * 0.75) {
-            const nx = (c.x - o.x) / (d || 1), nz = (c.z - o.z) / (d || 1);
-            c.x += nx * (T.L * 0.75 - d);
-            c.z += nz * (T.L * 0.75 - d);
-            hit = true;
-            imp = Math.max(imp, Math.abs(c.speed) + Math.abs(o.speed || 0) * 0.5);
-          }
-        }
-        if (hit) {
-          const prev = Math.abs(c.speed);
-          c.speed *= -0.25;
-          if (prev > 2.2) {
-            applyCarDamage(c, prev);
-            audio.crash(prev);
-            shake = Math.min(1.2, prev * 0.08);
-            if (prev > 7) hurt(prev > 14 ? 2 : 1);
-            if (navigator.vibrate) try {
-              navigator.vibrate(Math.min(80, 20 + prev * 4));
-            } catch (_) {
-            }
+          if (Math.abs(o.x - c.x) > 9 || Math.abs(o.z - c.z) > 9) continue;
+          const hit = obb(c, o);
+          if (!hit) continue;
+          const w = o.wrecked || !o.ai ? 0.82 : 0.6;
+          c.x += hit.nx * hit.d * w;
+          c.z += hit.nz * hit.d * w;
+          o.x -= hit.nx * hit.d * (1 - w);
+          o.z -= hit.nz * hit.d * (1 - w);
+          const ovx = Math.sin(o.rot) * (o.speed || 0), ovz = Math.cos(o.rot) * (o.speed || 0);
+          const imp = -((vx0 - ovx) * hit.nx + (vz0 - ovz) * hit.nz);
+          if (imp > 1.5) {
+            c.speed *= -0.2;
+            o.speed = (o.speed || 0) * 0.4;
+          } else c.speed *= Math.pow(0.5, dt);
+          if (imp >= 2.5 && c.hitCool <= 0) {
+            carImpact(c, imp);
+            damageCar(o, carLoss(imp) * 0.8);
+            c.hitCool = 0.4;
+            if (o.police && imp > 5) addHeat(0.25);
           }
         }
         for (const rp of repairs) {
-          if (Math.hypot(rp.x - c.x, rp.z - c.z) < 4.5 && (c.g.userData.damage || 0) > 0.05 && Math.abs(c.speed) < 1.2) {
-            repairCar(c);
+          if (Math.hypot(rp.x - c.x, rp.z - c.z) < 4.5 && (c.hp < c.maxHp - 1 || c.fire) && Math.abs(c.speed) < 1.2) {
+            fixCar(c);
+            toast("Werkstatt: Auto wieder fit.");
           }
         }
+        if (P.car !== c) return;
         audio.engineTick(c.speed, c.speed < -0.4);
+        const EG = city.edge;
+        c.x = Math.max(EG.minx + 1.5, Math.min(EG.maxx - 1.5, c.x));
+        c.z = Math.max(EG.minz + 1.5, Math.min(EG.maxz - 1.5, c.z));
         P.x = c.x;
         P.z = c.z;
-        P.x = Math.max(-BOX_X + 8, Math.min(BOX_X - 8, P.x));
-        P.z = Math.max(-BOX_Z + 8, Math.min(BOX_Z - 8, P.z));
-        c.x = P.x;
-        c.z = P.z;
         return;
       }
       let wx = 0, wz = 0, wish = 0;
@@ -32834,13 +34106,27 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           P.z += -ax * Math.sin(c.rot) + az * Math.cos(c.rot);
           P.vx *= 0.35;
           P.vz *= 0.35;
+          if (Math.abs(c.speed || 0) > 5 && (P.hitCool || 0) <= 0 && !c.wrecked) {
+            P.hitCool = 1.6;
+            hurt(Math.abs(c.speed) > 13 ? 2 : 1);
+            shake = Math.max(shake, 0.5);
+            audio.crash(6);
+            P.vx = (P.x - c.x) * 4;
+            P.vz = (P.z - c.z) * 4;
+            toast("Angefahren!", 1.4);
+          }
         }
       }
-      P.x = Math.max(-BOX_X + 6, Math.min(BOX_X - 6, P.x));
-      P.z = Math.max(-BOX_Z + 6, Math.min(BOX_Z - 6, P.z));
+      P.hitCool = Math.max(0, (P.hitCool || 0) - dt);
+      {
+        const EG = city.edge;
+        P.x = Math.max(EG.minx + 0.8, Math.min(EG.maxx - 0.8, P.x));
+        P.z = Math.max(EG.minz + 0.8, Math.min(EG.maxz - 0.8, P.z));
+      }
       player.position.set(P.x, 0, P.z);
       player.rotation.y = P.rot;
       animPed(player, spd, dt);
+      weaponPose(dt);
     }
     __name(playerStep, "playerStep");
     const TILT = 11 * Math.PI / 180;
@@ -32913,19 +34199,28 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         state.deal = true;
         state.dealLabel = "Abgeben";
         state._dealAct = finishJob;
-      } else if (!job && nf && (nf.kind === "hub" || nf.kind === "food")) {
-        pr = "Imbiss \u2014 Auftrag annehmen";
-        state.deal = true;
-        state.dealLabel = "Auftrag";
-        state._dealAct = acceptJob;
-      } else if (wanted >= 1 && nf) {
-        pr = wanted >= 4 ? "Imbiss \u2014 die Bullen schauen hier rein" : "Imbiss \u2014 untertauchen";
-        state.deal = true;
-        state.dealLabel = "Untertauchen";
-        state._dealAct = startHide;
+      } else if (nf) {
+        const here = missionHere(nf);
+        if (!job && here) {
+          pr = "Imbiss \u2014 Auftrag annehmen";
+          state.deal = true;
+          state.dealLabel = "Auftrag";
+          state._dealAct = acceptJob;
+        } else if (!here && health < 5) {
+          pr = deal.state().cash >= 10 ? "Imbiss \u2014 essen & heilen \xB7 10 \u20AC" : "Imbiss \u2014 Pommes aufs Haus (+1 \u2665)";
+          state.deal = true;
+          state.dealLabel = "Essen";
+          state._dealAct = healAt;
+        } else if (wanted >= 1) {
+          pr = wanted >= 4 ? "Imbiss \u2014 die Bullen schauen hier rein" : "Imbiss \u2014 untertauchen";
+          state.deal = true;
+          state.dealLabel = "Untertauchen";
+          state._dealAct = startHide;
+        } else if (here && job) pr = "Auftrag l\xE4uft: " + job.title;
+        else pr = "Imbiss \u2014 du bist satt";
       }
       if (!P.car) {
-        let near = cars.some((c) => Math.hypot(c.x - P.x, c.z - P.z) < 3.6);
+        let near = cars.some((c) => !c.wrecked && Math.hypot(c.x - P.x, c.z - P.z) < 3.6);
         state.nearCar = near;
         if (!pr && near) pr = "Auto in der N\xE4he";
         if (!state._dealAct) {
@@ -32948,6 +34243,19 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       if (hiding) pr = wanted >= 4 ? "Imbiss \u2014 die Bullen sind nah" : "Du sitzt im Lokal";
       state.inCar = !!P.car;
       state.follow = follow;
+      {
+        const ch = document.getElementById("carHp");
+        if (ch) {
+          if (P.car) {
+            const f = Math.max(0, P.car.hp / P.car.maxHp);
+            ch.style.display = "";
+            const bar = ch.firstElementChild;
+            bar.style.width = (f * 100).toFixed(1) + "%";
+            bar.style.background = f > 0.5 ? "#7be07b" : f > 0.25 ? "#ffc23a" : "#ff4a2a";
+            ch.classList.toggle("burn", !!P.car.fire);
+          } else ch.style.display = "none";
+        }
+      }
       if (!P.car) {
         const rs = radio.getState();
         if (rs.on) radio.stop(true);
@@ -32962,22 +34270,79 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       if (opts.onState) opts.onState(state);
     }
     __name(hud, "hud");
-    const state = { inCar: false, nearCar: false, follow: true, deal: false, dealLabel: "" };
     audio.setAmbience(timeName === "afternoon" ? 0.9 : timeName === "dusk" ? 0.55 : 0.28);
     let tAcc = 0;
     function update(dt) {
       tAcc += dt;
       playerStep(dt);
       updateGhosts();
-      for (const c of cars) {
+      const visR = Math.max(60, cam.h * 1.9);
+      for (let i = cars.length - 1; i >= 0; i--) {
+        const c = cars[i];
         if (c.ai) aiStep(c, dt);
         c.g.position.set(c.x, 0, c.z);
         c.g.rotation.y = c.rot;
-        const sm = c.g.userData.smoke;
-        if (sm && sm.visible) {
-          sm.position.y = 1 + Math.sin(tAcc * 6 + c.x) * 0.15;
-          sm.scale.setScalar(0.8 + (c.g.userData.damage || 0) * 1.4 + Math.sin(tAcc * 4) * 0.1);
+        const vis = Math.abs(c.x - cam.x) < visR && Math.abs(c.z - cam.z) < visR;
+        if (c.fire || c.wrecked || c.hp < c.maxHp * 0.5) carFireStep(c, dt, vis);
+        if (c.wrecked) {
+          c.deadT += dt;
+          if (c.deadT > 75 && !vis && c !== P.car) {
+            scene.remove(c.g);
+            cars.splice(i, 1);
+            if (c === myCar) {
+              const sp = c.spawn;
+              myCar = addCar("coupe", 13115434, sp.x, sp.z, sp.rot, false);
+            } else if (c.wasAi || c.police) {
+              const n = addCar(c.police ? "police" : ["sedan", "hatch", "kombi", "van", "taxi", "coupe"][Math.random() * 6 | 0], c.police ? 1981066 : CAR_COLORS[Math.random() * CAR_COLORS.length | 0], 0, 0, 0, true);
+              spawnTraffic(n);
+              n.max = c.police ? 15 : 7 + Math.random() * 5;
+            }
+          }
         }
+      }
+      blastStep(dt);
+      fxStep(dt);
+      for (const t of tracers) if (t.life > 0) {
+        t.life -= dt;
+        t.l.material.opacity = Math.max(0, t.life / 0.09);
+        if (t.life <= 0) t.l.visible = false;
+      }
+      if (!document.body.classList.contains("onTitle")) {
+        playerPickups();
+        enemyFire(dt);
+      }
+      for (const pk of pickups) {
+        pk.t += dt;
+        const u = pk.g.userData;
+        u.spin.rotation.y = pk.t * 1.8;
+        u.spin.position.y = 0.25 + Math.sin(pk.t * 3) * 0.12;
+        u.glow.material.opacity = 0.55 + 0.3 * Math.sin(pk.t * 4);
+      }
+      for (const f of foodDoors) {
+        if (!f.mark || Math.abs(f.x - P.x) > visR || Math.abs(f.z - P.z) > visR) continue;
+        const here = missionHere({ kind: "food", door: f });
+        if (f.role === "heal") {
+          f.mark.visible = !here;
+          f.pool.visible = !here;
+          f.mark.position.y = 2.6 + Math.sin(tAcc * 2.4 + f.x) * 0.25;
+          f.mark.rotation.y = tAcc * 1.2;
+          f.pool.material.opacity = health < 5 ? 0.5 + 0.25 * Math.sin(tAcc * 4) : 0.22;
+        } else {
+          f.mark.visible = !job;
+          f.mark.material.opacity = 0.5 + 0.3 * Math.sin(tAcc * 4);
+        }
+      }
+      if (toastT > 0) {
+        toastT -= dt;
+        if (toastT <= 0) {
+          const el = document.getElementById("toast");
+          if (el) el.classList.remove("on");
+        }
+      }
+      if (hurtFlash > 0) {
+        hurtFlash = Math.max(0, hurtFlash - dt);
+        const el = document.getElementById("hurt");
+        if (el) el.style.opacity = (hurtFlash * 1.4).toFixed(2);
       }
       for (const p of peds) {
         const d = Math.hypot(p.x - P.x, p.z - P.z);
@@ -33070,7 +34435,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         for (const ped of peds) {
           if ((ped.down || 0) > 0) continue;
           if (spd > 3.6 && Math.hypot(ped.x - P.car.x, ped.z - P.car.z) < 1.2) {
-            ped.down = 2.6;
+            knockPed(ped);
             addHeat(0.48);
             shake = Math.max(shake, 0.28);
           }
@@ -33267,10 +34632,31 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         if (opts.onState) opts.onState(state);
       },
       damageCar(imp = 12) {
-        if (P.car) applyCarDamage(P.car, imp);
-        else if (myCar) applyCarDamage(myCar, imp);
+        const c = P.car || myCar;
+        if (c) carImpact(c, imp);
         hud();
       },
+      hurtCar(loss, c) {
+        damageCar(c || P.car || myCar, loss);
+        hud();
+      },
+      carLoss,
+      explode(c) {
+        explodeCar(c || P.car || myCar);
+      },
+      fire,
+      cycleWeapon,
+      pickups,
+      foodDoors,
+      getHealth: /* @__PURE__ */ __name(() => health, "getHealth"),
+      setHealth: /* @__PURE__ */ __name((v) => {
+        health = v;
+        updateHoodHud();
+      }, "setHealth"),
+      obb,
+      edge: city.edge,
+      toast,
+      getMyCar: /* @__PURE__ */ __name(() => myCar, "getMyCar"),
       step(sec, n = 1) {
         const dt = sec / n;
         for (let i = 0; i < n; i++) update(dt);
@@ -33310,6 +34696,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       init_UnrealBloomPass();
       init_OutputPass();
       init_city();
+      init_sets();
       init_BufferGeometryUtils();
       init_actors();
       init_tex();
@@ -33356,6 +34743,50 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       var TOUCH = { active: false, x: 0, y: 0, mag: 0, hbrake: false };
       var game = null;
       var muted = !!LS.get("mute", false);
+      var titleMusic = (() => {
+        const a = new Audio("assets/music/title.mp3");
+        a.loop = true;
+        a.preload = "auto";
+        a.volume = 0.7;
+        let want = false, fadeT = 0;
+        const tryPlay = /* @__PURE__ */ __name(() => {
+          if (!want || muted || SHOT2) return;
+          clearInterval(fadeT);
+          a.volume = 0.7;
+          const p = a.play();
+          if (p && p.catch) p.catch(() => {
+          });
+        }, "tryPlay");
+        for (const ev of ["pointerdown", "keydown", "touchstart"]) addEventListener(ev, () => {
+          if (want && a.paused) tryPlay();
+        }, { capture: true, passive: true });
+        return {
+          start() {
+            want = true;
+            tryPlay();
+          },
+          stop() {
+            want = false;
+            clearInterval(fadeT);
+            if (a.paused) return;
+            fadeT = setInterval(() => {
+              a.volume = Math.max(0, a.volume - 0.07);
+              if (a.volume <= 0.01) {
+                clearInterval(fadeT);
+                a.pause();
+                a.currentTime = 0;
+              }
+            }, 40);
+          },
+          setMute(m) {
+            if (m) {
+              clearInterval(fadeT);
+              a.pause();
+            } else if (want) tryPlay();
+          },
+          el: a
+        };
+      })();
       function showLoading(msg) {
         $("loading").classList.remove("hidden", "error");
         $("loadMsg").textContent = msg;
@@ -33392,7 +34823,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         });
       }
       __name(loadScript, "loadScript");
-      var keyOf = /* @__PURE__ */ __name((c) => c.lat.toFixed(5) + "," + c.lon.toFixed(5), "keyOf");
+      var keyOf2 = /* @__PURE__ */ __name((c) => c.lat.toFixed(5) + "," + c.lon.toFixed(5), "keyOf");
       async function getCityData(c) {
         if (c.builtin) {
           if (!window.HOOD_DATA) {
@@ -33402,7 +34833,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           return window.HOOD_DATA;
         }
         const cache2 = LS.get("cache", null);
-        if (cache2 && cache2.key === keyOf(c) && cache2.data) return cache2.data;
+        if (cache2 && cache2.key === keyOf2(c) && cache2.data) return cache2.data;
         showLoading("Lade \u201E" + c.name + "\u201C aus OpenStreetMap \u2026");
         const els = await fetchOverpass(c.lat, c.lon, (m) => {
           $("loadMsg").textContent = m;
@@ -33415,7 +34846,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           e.empty = true;
           throw e;
         }
-        if (!LS.set("cache", { key: keyOf(c), data: D })) {
+        if (!LS.set("cache", { key: keyOf2(c), data: D })) {
           LS.del("cache");
         }
         return D;
@@ -33488,6 +34919,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       }
       __name(runTitle, "runTitle");
       function openMenu(start) {
+        titleMusic.start();
         $("title").classList.remove("hidden");
         $("title").classList.toggle("start", !!start);
         document.body.classList.add("onTitle");
@@ -33499,6 +34931,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       }
       __name(openMenu, "openMenu");
       function closeMenu() {
+        titleMusic.stop();
         $("title").classList.add("hidden");
         document.body.classList.remove("onTitle");
         LS.set("seen", true);
@@ -33675,7 +35108,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
         const g = $("game");
         const dist = /* @__PURE__ */ __name((a, b) => Math.hypot(a.x - b.x, a.y - b.y), "dist");
         g.addEventListener("pointerdown", (e) => {
-          if (e.target.closest("#stick,.abtn,#zoomBox,#btnFollow,#radio,#menuBtn")) return;
+          if (e.target.closest("#stick,.abtn,#zoomBox,#btnFollow,#radio,#menuBtn,#weapon")) return;
           pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
           if (pts.size === 2) {
             const [a, b] = [...pts.values()];
@@ -33740,6 +35173,11 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           deal.classList.toggle("hidden", !show);
           if (show) deal.textContent = s.dealLabel || "Handeln";
         }
+        const bf = $("btnFire");
+        if (bf) {
+          bf.classList.toggle("hidden", s.inCar || !s.armed);
+          bf.textContent = s.weaponLabel || "Angriff";
+        }
         const fol = $("btnFollow");
         if (fol) fol.classList.toggle("hidden", !!s.follow);
       }
@@ -33771,6 +35209,15 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           e.preventDefault();
           if (game) game.doDeal();
         });
+        $("btnFire").addEventListener("pointerdown", (e) => {
+          e.preventDefault();
+          if (game) game.fire();
+          if (navigator.vibrate) try {
+            navigator.vibrate(12);
+          } catch (_) {
+          }
+        });
+        $("weapon").addEventListener("click", () => game && game.cycleWeapon());
         $("btnZin").addEventListener("click", () => {
           if (game) {
             game.zoomBy(1 / 1.22);
@@ -33827,6 +35274,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
           LS.set("mute", muted);
           applyMuteUi();
           if (game) game.setMute(muted);
+          titleMusic.setMute(muted);
         });
         $("creditsBtn").addEventListener("click", () => $("credits").classList.add("open"));
         $("creditsClose").addEventListener("click", () => $("credits").classList.remove("open"));
@@ -33854,7 +35302,7 @@ node["emergency"="fire_hydrant"](${bb});node["amenity"="waste_basket"](${bb});
       initGestures();
       initButtons();
       boot();
-      window.hoodApp = { TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS };
+      window.hoodApp = { titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS };
     }
   });
   require_app();

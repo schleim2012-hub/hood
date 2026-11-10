@@ -10,43 +10,54 @@
 <link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--fr:9px}
 html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial,Helvetica,sans-serif;touch-action:none;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;position:fixed;inset:0}
 #game,#game canvas{display:block;position:fixed;inset:0}
 .vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,0,0,0) 58%,rgba(0,0,0,.38) 100%)}
 .ui{position:fixed;pointer-events:none;z-index:2}
-#logo{left:calc(12px + env(safe-area-inset-left));top:calc(8px + env(safe-area-inset-top));color:#ffd23f;font:700 22px/1 "Arial Black",Impact,Arial,sans-serif;letter-spacing:1.5px;text-shadow:2px 2px 0 #000,0 0 10px rgba(255,120,0,.35)}
+#logo{left:calc(12px + env(safe-area-inset-left) + var(--fr));top:calc(8px + env(safe-area-inset-top) + var(--fr));color:#ffd23f;font:700 22px/1 "Arial Black",Impact,Arial,sans-serif;letter-spacing:1.5px;text-shadow:2px 2px 0 #000,0 0 10px rgba(255,120,0,.35)}
 #logo small{display:block;font:italic 700 10px Arial,sans-serif;color:#eee;letter-spacing:2px;text-shadow:1px 1px 0 #000;margin-top:2px}
 #cityName{display:block;font:700 11px Arial,sans-serif;color:#9fe7ff;letter-spacing:.5px;margin-top:3px;text-shadow:1px 1px 0 #000;max-width:42vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#hudRight{right:calc(12px + env(safe-area-inset-right));top:calc(8px + env(safe-area-inset-top));text-align:right;color:#fff;font:700 12px Arial,sans-serif;text-shadow:1px 1px 0 #000;pointer-events:none}
+#hudRight{right:calc(72px + env(safe-area-inset-right) + var(--fr));top:calc(8px + env(safe-area-inset-top) + var(--fr));text-align:right;color:#fff;font:700 12px Arial,sans-serif;text-shadow:1px 1px 0 #000;pointer-events:none;background:rgba(6,8,14,.62);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 10px 7px;min-width:118px}
 #time{letter-spacing:2px;opacity:.85;font-size:11px}
 #money{margin-top:4px;color:#b8f0a0;font-size:16px}
-#hearts{margin-top:4px;color:#ff3a4a;font-size:15px;letter-spacing:2px;text-shadow:1px 1px 0 #000}
+#hearts{margin-top:3px;color:#4a2228;font-size:19px;line-height:1;letter-spacing:1px;text-shadow:none;white-space:nowrap}#hearts b{color:#ff3046;font-weight:400;text-shadow:0 0 6px rgba(255,40,60,.55),1px 1px 0 #000}
+#carHp{margin:6px 0 0 auto;width:100px;height:8px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}#carHp i{display:block;height:100%;width:100%;background:#7be07b;transition:width .15s}#carHp.burn i{animation:burn .35s steps(2) infinite}@keyframes burn{50%{background:#ffe03a}}
+#weapon{margin-top:5px;color:#ffd23f;font:800 12px Arial,sans-serif;letter-spacing:1px;pointer-events:auto;cursor:pointer}
+#toast{left:50%;top:calc(19% + var(--fr));transform:translateX(-50%) translateY(-6px);color:#fff;font:800 15px 'Arial Black',Arial,sans-serif;letter-spacing:1px;text-shadow:2px 2px 0 #000;background:rgba(8,10,16,.72);border-left:4px solid #e30613;padding:8px 14px;opacity:0;transition:opacity .2s,transform .2s;white-space:nowrap;max-width:88vw;overflow:hidden;text-overflow:ellipsis;z-index:3}#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#hurt{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:0;background:radial-gradient(ellipse at center,rgba(255,0,0,0) 45%,rgba(200,0,0,.55) 100%)}
+/* play-field frame: black bezel + red keyline + corner ticks (Hood title colours) */
+#frame{position:fixed;inset:0;pointer-events:none;z-index:3;border-style:solid;border-color:#040406;border-width:calc(var(--fr) + env(safe-area-inset-top)) calc(var(--fr) + env(safe-area-inset-right)) calc(var(--fr) + env(safe-area-inset-bottom)) calc(var(--fr) + env(safe-area-inset-left));box-shadow:inset 0 0 22px 4px rgba(0,0,0,.55)}
+#frame::before{content:'';position:absolute;inset:0;border:2px solid #e30613;box-shadow:inset 0 0 0 1px rgba(0,0,0,.6)}
+#frame::after{content:'';position:absolute;inset:5px;background:linear-gradient(#f4f4f4,#f4f4f4) left top/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) left top/3px 22px,linear-gradient(#f4f4f4,#f4f4f4) right top/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) right top/3px 22px,linear-gradient(#f4f4f4,#f4f4f4) left bottom/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) left bottom/3px 22px,linear-gradient(#f4f4f4,#f4f4f4) right bottom/22px 3px,linear-gradient(#f4f4f4,#f4f4f4) right bottom/3px 22px;background-repeat:no-repeat;opacity:.9}
+#frame .tag{position:absolute;left:50%;bottom:-2px;transform:translate(-50%,50%);background:#040406;color:#e30613;font:italic 800 10px/1 Impact,'Arial Black',Arial,sans-serif;letter-spacing:3px;padding:2px 10px}
 #stars{margin-top:2px;color:#ffd23f;font-size:17px;letter-spacing:1px;text-shadow:1px 1px 0 #000;min-height:20px}
-#jobBanner{left:50%;top:calc(10px + env(safe-area-inset-top));transform:translateX(-50%);background:#d4b02a;color:#1a1408;font:800 15px/1 "Arial Black",Arial,sans-serif;letter-spacing:2px;padding:7px 16px;border:2px solid #8a6a12;z-index:3}
+#jobBanner{left:50%;top:calc(10px + env(safe-area-inset-top) + var(--fr));transform:translateX(-50%);background:#d4b02a;color:#1a1408;font:800 15px/1 "Arial Black",Arial,sans-serif;letter-spacing:2px;padding:7px 16px;border:2px solid #8a6a12;z-index:3}
 #jobBanner.hidden{display:none!important}
 #street{left:50%;top:12%;transform:translateX(-50%);color:#fff;font:700 20px "Arial Black",Arial,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000;opacity:0;white-space:nowrap}
 #street.pop{animation:pop 3s ease-out}
 @keyframes pop{0%{opacity:0;transform:translate(-50%,-8px)}10%{opacity:1;transform:translate(-50%,0)}75%{opacity:1}100%{opacity:0}}
-#prompt{left:50%;bottom:calc(118px + env(safe-area-inset-bottom));transform:translateX(-50%);color:#d8ffe0;font:700 13px Arial,sans-serif;text-shadow:1px 1px 0 #000;transition:opacity .2s;white-space:nowrap;background:rgba(8,10,16,.55);padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.12);max-width:90vw;overflow:hidden;text-overflow:ellipsis}
+#prompt{left:50%;bottom:calc(118px + env(safe-area-inset-bottom) + var(--fr));transform:translateX(-50%);color:#d8ffe0;font:700 13px Arial,sans-serif;text-shadow:1px 1px 0 #000;transition:opacity .2s;white-space:nowrap;background:rgba(8,10,16,.55);padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.12);max-width:90vw;overflow:hidden;text-overflow:ellipsis}
 #hint{left:50%;top:20%;transform:translateX(-50%);color:#fff;font:700 13px/1.45 Arial,sans-serif;text-align:center;background:rgba(0,0,0,.55);padding:8px 14px;border-radius:10px;transition:opacity .5s;text-shadow:1px 1px 0 #000}
 #hint.hidden{opacity:0;pointer-events:none}
 /* fixed stick */
-#stick{position:fixed;left:calc(18px + env(safe-area-inset-left));bottom:calc(22px + env(safe-area-inset-bottom));width:116px;height:116px;border-radius:50%;background:rgba(255,255,255,.10);border:2px solid rgba(255,255,255,.32);z-index:4;touch-action:none}
+#stick{position:fixed;left:calc(18px + env(safe-area-inset-left) + var(--fr));bottom:calc(22px + env(safe-area-inset-bottom) + var(--fr));width:116px;height:116px;border-radius:50%;background:rgba(255,255,255,.10);border:2px solid rgba(255,255,255,.32);z-index:4;touch-action:none}
 #stick b{position:absolute;left:36px;top:36px;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e8e0c8 55%,#b8a878);box-shadow:0 2px 8px rgba(0,0,0,.45);pointer-events:none}
 /* action buttons — compact, not neon demo slabs */
 .abtn{position:fixed;z-index:4;min-width:52px;min-height:52px;border-radius:14px;border:1px solid rgba(255,255,255,.22);color:#f2f2f2;font:700 12px Arial,sans-serif;letter-spacing:.3px;display:flex;align-items:center;justify-content:center;text-align:center;touch-action:none;background:rgba(12,14,22,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 2px 10px rgba(0,0,0,.35);padding:6px 10px}
 .abtn:active,.abtn.down{transform:translateY(1px);background:rgba(30,34,48,.85)}
 .abtn.dim{opacity:.4;pointer-events:none}
 .abtn.hidden{display:none!important}
-#btnCar{right:calc(16px + env(safe-area-inset-right));bottom:calc(22px + env(safe-area-inset-bottom));width:78px;height:78px;border-radius:18px;border-color:rgba(120,220,140,.35);color:#d8ffe0}
-#btnBrake{right:calc(104px + env(safe-area-inset-right));bottom:calc(28px + env(safe-area-inset-bottom));width:64px;height:64px;border-radius:16px;border-color:rgba(240,120,100,.4);color:#ffd8d0}
-#btnDeal{right:calc(16px + env(safe-area-inset-right));bottom:calc(110px + env(safe-area-inset-bottom));width:auto;min-width:72px;padding:8px 12px;border-color:rgba(200,180,100,.35);color:#ffe9a8}
-#zoomBox{position:fixed;z-index:4;right:calc(16px + env(safe-area-inset-right));bottom:calc(168px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px}
+#btnCar{right:calc(16px + env(safe-area-inset-right) + var(--fr));bottom:calc(22px + env(safe-area-inset-bottom) + var(--fr));width:78px;height:78px;border-radius:18px;border-color:rgba(120,220,140,.35);color:#d8ffe0}
+#btnBrake{right:calc(104px + env(safe-area-inset-right) + var(--fr));bottom:calc(28px + env(safe-area-inset-bottom) + var(--fr));width:64px;height:64px;border-radius:16px;border-color:rgba(240,120,100,.4);color:#ffd8d0}
+#btnFire{right:calc(104px + env(safe-area-inset-right) + var(--fr));bottom:calc(110px + env(safe-area-inset-bottom) + var(--fr));width:64px;height:64px;border-radius:32px;border-color:rgba(255,90,70,.5);color:#ffd8d0;font-size:11px}
+#btnDeal{right:calc(16px + env(safe-area-inset-right) + var(--fr));bottom:calc(110px + env(safe-area-inset-bottom) + var(--fr));width:auto;min-width:72px;padding:8px 12px;border-color:rgba(200,180,100,.35);color:#ffe9a8}
+#zoomBox{position:fixed;z-index:4;right:calc(16px + env(safe-area-inset-right) + var(--fr));bottom:calc(168px + env(safe-area-inset-bottom) + var(--fr));display:flex;flex-direction:column;gap:8px}
 #zoomBox button,#btnFollow{width:44px;height:44px;border-radius:22px;border:1px solid rgba(255,255,255,.2);background:rgba(12,14,22,.7);color:#fff;font:700 20px/1 Arial,sans-serif;touch-action:none}
-#btnFollow{position:fixed;z-index:4;right:calc(16px + env(safe-area-inset-right));bottom:calc(268px + env(safe-area-inset-bottom));width:auto;min-width:64px;padding:0 12px;font-size:12px;border-radius:22px;border:1px solid rgba(255,255,255,.2);background:rgba(12,14,22,.7);color:#fff}
-#menuBtn{position:fixed;z-index:5;right:calc(12px + env(safe-area-inset-right));top:calc(8px + env(safe-area-inset-top));width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(8,10,16,.65);color:#ffd23f;font-size:22px;line-height:1}
+#btnFollow{position:fixed;z-index:4;right:calc(16px + env(safe-area-inset-right) + var(--fr));bottom:calc(268px + env(safe-area-inset-bottom) + var(--fr));width:auto;min-width:64px;padding:0 12px;font-size:12px;border-radius:22px;border:1px solid rgba(255,255,255,.2);background:rgba(12,14,22,.7);color:#fff}
+#menuBtn{position:fixed;z-index:5;right:calc(12px + env(safe-area-inset-right) + var(--fr));top:calc(8px + env(safe-area-inset-top) + var(--fr));width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(8,10,16,.65);color:#ffd23f;font-size:22px;line-height:1}
 /* radio */
-#radio{position:fixed;z-index:4;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);display:none;align-items:center;gap:8px;background:rgba(8,10,16,.7);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:6px 8px;color:#fff;font:700 12px Arial,sans-serif;max-width:min(420px,70vw)}
+#radio{position:fixed;z-index:4;left:50%;bottom:calc(22px + env(safe-area-inset-bottom) + var(--fr));transform:translateX(-50%);display:none;align-items:center;gap:8px;background:rgba(8,10,16,.7);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:6px 8px;color:#fff;font:700 12px Arial,sans-serif;max-width:min(420px,70vw)}
 body.incar #radio{display:flex}
 #radio .nm{min-width:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#9fe7ff}
 #radio button{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:16px}
@@ -85,7 +96,7 @@ body.incar #radio{display:flex}
 .res b{display:block;font-size:15px;color:#fff}.res span{font-size:11px;color:#999}
 #menu .fine{font-size:11px;color:#777;margin-top:8px;line-height:1.45}
 #optsBack,#quitBack{margin-top:14px}
-body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #street,body.onTitle #prompt,body.onTitle #hint,body.onTitle #stick,body.onTitle .abtn,body.onTitle #zoomBox,body.onTitle #btnFollow,body.onTitle #radio,body.onTitle #menuBtn{display:none!important}
+body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #street,body.onTitle #prompt,body.onTitle #hint,body.onTitle #stick,body.onTitle .abtn,body.onTitle #zoomBox,body.onTitle #btnFollow,body.onTitle #radio,body.onTitle #menuBtn,body.onTitle #frame,body.onTitle #toast,body.onTitle #hurt{display:none!important}
 @media (orientation:portrait){#title{grid-template-columns:1fr;grid-template-rows:minmax(38%,1fr) auto}.titlePanel{padding:24px 22px 28px}.wordmark{font-size:42px}#titleNav button{font-size:24px}#crosshair .ch-ring{width:min(42%,180px)}}
 #credits{position:fixed;inset:0;z-index:25;background:rgba(6,7,14,.94);color:#ddd;padding:24px;overflow:auto;font:14px/1.55 Arial,sans-serif;display:none}
 #credits.open{display:block}
@@ -99,21 +110,22 @@ body.onTitle #logo,body.onTitle #hudRight,body.onTitle #jobBanner,body.onTitle #
 #loadMsg{font-size:15px;max-width:520px;line-height:1.4}#loading.error #loadMsg{color:#ffcf8a}
 #loadBtns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media (max-height:460px){#logo{font:700 18px/1 "Arial Black",Arial,sans-serif}#street{font-size:16px}#menu h1{font-size:28px}#prompt{bottom:calc(100px + env(safe-area-inset-bottom))}}
-@media (orientation:portrait){#stick{left:calc(14px + env(safe-area-inset-left));bottom:calc(18px + env(safe-area-inset-bottom))}#btnBrake{right:calc(16px + env(safe-area-inset-right));bottom:calc(110px + env(safe-area-inset-bottom))}#btnCar{bottom:calc(18px + env(safe-area-inset-bottom))}#btnDeal{bottom:calc(190px + env(safe-area-inset-bottom))}#zoomBox{bottom:calc(250px + env(safe-area-inset-bottom))}#btnFollow{bottom:calc(350px + env(safe-area-inset-bottom))}#radio{bottom:calc(18px + env(safe-area-inset-bottom));max-width:92vw}#prompt{bottom:calc(210px + env(safe-area-inset-bottom))}}
+@media (max-height:460px){:root{--fr:6px}#hearts{font-size:16px}#logo{font:700 18px/1 "Arial Black",Arial,sans-serif}#street{font-size:16px}#menu h1{font-size:28px}#prompt{bottom:calc(100px + env(safe-area-inset-bottom) + var(--fr))}}
+@media (orientation:portrait){#stick{left:calc(14px + env(safe-area-inset-left) + var(--fr));bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr))}#btnBrake{right:calc(16px + env(safe-area-inset-right) + var(--fr));bottom:calc(110px + env(safe-area-inset-bottom) + var(--fr))}#btnCar{bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr))}#btnDeal{bottom:calc(190px + env(safe-area-inset-bottom) + var(--fr))}#zoomBox{bottom:calc(250px + env(safe-area-inset-bottom) + var(--fr))}#btnFollow{bottom:calc(350px + env(safe-area-inset-bottom) + var(--fr))}#btnFire{bottom:calc(22px + env(safe-area-inset-bottom) + var(--fr))}#hudRight{min-width:0}#cityName{max-width:30vw}#radio{bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr));max-width:92vw}#prompt{bottom:calc(210px + env(safe-area-inset-bottom) + var(--fr))}}
 body.shot #street.pop{animation:none;opacity:1}
 body.shot #hint{display:none}
 </style></head><body>
-<div id="game"></div><div class="vig"></div>
+<div id="game"></div><div class="vig"></div><div id="hurt"></div><div id="frame"><span class="tag">HOOD</span></div>
 <div id="logo" class="ui">HOOD<small>PLACE TO BE</small><span id="cityName"></span></div>
-<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts">♥♥♥♥♥</div><div id="stars"></div></div>
+<div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts" aria-label="Leben"><b>♥♥♥♥♥</b></div><div id="carHp" style="display:none"><i></i></div><div id="weapon" style="display:none"></div><div id="stars"></div></div>
 <div id="jobBanner" class="ui hidden"></div>
-<div id="street" class="ui"></div><div id="prompt" class="ui"></div>
-<div id="hint" class="ui hidden">Stick links: laufen &amp; lenken<br>Rechts: einsteigen · rauszoomen mit +/− oder Pinch</div>
+<div id="street" class="ui"></div><div id="prompt" class="ui"></div><div id="toast" class="ui"></div>
+<div id="hint" class="ui hidden">Stick links: laufen &amp; lenken<br>Rechts: einsteigen · Kisten &amp; Waffen einsammeln<br>Grünes + am Imbiss: essen &amp; heilen</div>
 <div id="stick" aria-label="Steuerung"><b id="stickKnob"></b></div>
 <button id="btnCar" class="abtn dim" type="button">Einsteigen</button>
 <button id="btnBrake" class="abtn hidden" type="button">Handbremse</button>
 <button id="btnDeal" class="abtn hidden" type="button">Handeln</button>
+<button id="btnFire" class="abtn hidden" type="button">Angriff</button>
 <div id="zoomBox"><button id="btnZin" type="button" aria-label="Heranzoomen">+</button><button id="btnZout" type="button" aria-label="Rauszoomen">−</button></div>
 <button id="btnFollow" class="hidden" type="button">Folgen</button>
 <div id="radio"><button id="radPrev" type="button" aria-label="Vorheriger Sender">⏮</button><span class="nm" id="radName">Radio</span><button id="radNext" type="button" aria-label="Nächster Sender">⏭</button></div>
@@ -151,6 +163,6 @@ body.shot #hint{display:none}
 <p>Alle Läden, Schilder und Decknamen im Spiel sind erfunden. Keine echten Marken.</p>
 <button class="btn" id="creditsClose" type="button">Zurück</button></div>
 <div id="loading"><div class="lg">HOOD</div><div class="sp"></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
-<script>window.HOOD_V='1106h6';</script>
-<script src="hood.js?v=1106h6"></script>
+<script>window.HOOD_V='1106h8';</script>
+<script src="hood.js?v=1106h8"></script>
 </body></html>
