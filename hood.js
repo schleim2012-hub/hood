@@ -33291,6 +33291,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     let ctx = null, master = null, muted = false, vol = 0.9, scene = "title", ambLevel = 0.55;
     const ens = {};
     let passT = 0;
+    const samples = {};
+    let squealUntil = 0, loaded = false;
     function noiseBuf(sec, brown) {
       const n = Math.floor(ctx.sampleRate * sec);
       const b = ctx.createBuffer(1, n, ctx.sampleRate);
@@ -33311,6 +33313,32 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       return b;
     }
     __name(noiseBuf, "noiseBuf");
+    function bump() {
+      const v = window.HOOD_V ? "?v=" + window.HOOD_V : "";
+      const files = { shot: "assets/sfx/shot.mp3", boom: "assets/sfx/boom.mp3", crash: "assets/sfx/crash.mp3", squeal: "assets/sfx/squeal.mp3", carDoor: "assets/sfx/door.mp3", step: "assets/sfx/step.mp3", pickup: "assets/sfx/pickup.mp3", heal: "assets/sfx/heal.mp3", bat: "assets/sfx/bat.mp3", engine: "assets/sfx/engine.mp3", city: "assets/sfx/city.mp3" };
+      Object.keys(files).forEach((k) => {
+        fetch(files[k] + v).then((r) => r.ok ? r.arrayBuffer() : Promise.reject()).then((b) => ctx.decodeAudioData(b.slice(0))).then((buf) => {
+          samples[k] = buf;
+          if (k === "city") startCity();
+        }).catch(() => {
+        });
+      });
+    }
+    __name(bump, "bump");
+    function startCity() {
+      if (!ctx || ens.city || !samples.city) return;
+      const s = ctx.createBufferSource();
+      s.buffer = samples.city;
+      s.loop = true;
+      const g = ctx.createGain();
+      g.gain.value = 0;
+      s.connect(g);
+      g.connect(master);
+      s.start();
+      ens.city = { s, g };
+      applyBed(0.4);
+    }
+    __name(startCity, "startCity");
     function ensure() {
       if (ctx) return;
       ctx = getCtx();
@@ -33348,6 +33376,10 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       g2.connect(bed);
       n2.start();
       ens.bed = { g: bed, f1, g1, g2 };
+      if (!loaded) {
+        loaded = true;
+        bump();
+      }
     }
     __name(ensure, "ensure");
     function live() {
@@ -33363,12 +33395,21 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     function applyBed(ramp = 0.6) {
       if (!ctx) return;
       const t = ctx.currentTime;
-      const target = scene === "game" && !muted ? 0.1 + ambLevel * 0.16 : 0;
+      const on = scene === "game" && !muted;
+      const has = !!ens.city;
+      const target = on ? has ? 0.035 + ambLevel * 0.05 : 0.1 + ambLevel * 0.16 : 0;
       const g = ens.bed.g.gain;
       g.cancelScheduledValues(t);
       g.setValueAtTime(g.value, t);
       g.linearRampToValueAtTime(target, t + ramp);
       ens.bed.f1.frequency.setTargetAtTime(420 + ambLevel * 380, t, 0.3);
+      if (ens.city) {
+        const cg = ens.city.g.gain;
+        const ct = on ? 0.18 + ambLevel * 0.22 : 0;
+        cg.cancelScheduledValues(t);
+        cg.setValueAtTime(cg.value, t);
+        cg.linearRampToValueAtTime(ct, t + ramp);
+      }
     }
     __name(applyBed, "applyBed");
     function setMute(m) {
@@ -33430,6 +33471,19 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       s.start();
     }
     __name(noiseBurst, "noiseBurst");
+    function playSamp(name, gain = 1, rate = 1) {
+      if (!live() || !samples[name]) return false;
+      const s = ctx.createBufferSource();
+      s.buffer = samples[name];
+      s.playbackRate.value = rate;
+      const g = ctx.createGain();
+      g.gain.value = gain;
+      s.connect(g);
+      g.connect(master);
+      s.start();
+      return true;
+    }
+    __name(playSamp, "playSamp");
     function passBy() {
       if (!live() || scene !== "game") return;
       const t = ctx.currentTime, dur = 2.2 + Math.random() * 1.8;
@@ -33468,7 +33522,6 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       setVol,
       getMute: /* @__PURE__ */ __name(() => muted, "getMute"),
       getVol: /* @__PURE__ */ __name(() => vol, "getVol"),
-      // 'title' silences the city (the title song plays), 'game' brings the street sound in
       setScene(s) {
         scene = s;
         ensure();
@@ -33488,20 +33541,24 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (ctx) applyBed(0.4);
       },
       step() {
+        if (playSamp("step", 0.55, 0.9 + Math.random() * 0.2)) return;
         if (!live()) return;
         noiseBurst(0.06, 0.16, 350, 2600);
         beep(80 + Math.random() * 30, 0.06, "triangle", 0.07);
       },
       pickup() {
+        if (playSamp("pickup", 0.7)) return;
         beep(784, 0.08, "square", 0.09);
         setTimeout(() => beep(1175, 0.12, "square", 0.08), 70);
       },
       heal() {
+        if (playSamp("heal", 0.72)) return;
         beep(523, 0.12, "triangle", 0.12);
         setTimeout(() => beep(659, 0.12, "triangle", 0.12), 90);
         setTimeout(() => beep(784, 0.2, "triangle", 0.12), 180);
       },
-      door() {
+      door(kind) {
+        if (kind === "car" && playSamp("carDoor", 0.75)) return;
         beep(170, 0.1, "square", 0.12, 90);
         setTimeout(() => {
           beep(110, 0.12, "sine", 0.14);
@@ -33509,25 +33566,57 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         }, 80);
       },
       shot(v = 1) {
+        if (playSamp("shot", 0.85 * v, 0.96 + Math.random() * 0.08)) return;
         noiseBurst(0.12, 0.42 * v, 500, 7e3, 1e-3);
         beep(150, 0.08, "square", 0.14 * v, 55);
       },
       boom(dist = 0) {
-        const g = Math.max(0.2, 0.9 - dist * 6e-3);
+        const g = Math.max(0.25, 0.95 - dist * 6e-3);
+        if (playSamp("boom", g)) return;
         noiseBurst(1.1, g, 25, 1600, 2e-3);
         beep(52, 0.9, "sawtooth", g * 0.45, 26);
       },
       crash(imp) {
-        const g = Math.min(0.7, 0.16 + imp * 0.04);
+        const g = Math.min(0.95, 0.28 + imp * 0.05);
+        if (playSamp("crash", g, 0.92 + Math.min(0.2, imp * 0.01))) return;
         noiseBurst(0.2 + Math.min(0.35, imp * 0.02), g, 90, 3800, 1e-3);
         beep(68, 0.22, "sawtooth", g * 0.45, 38);
       },
-      // engine loop: pitch/gain by speed (m/s), reverse flag
+      bat() {
+        if (playSamp("bat", 0.8, 0.95 + Math.random() * 0.1)) return;
+        noiseBurst(0.08, 0.22, 200, 2400);
+        beep(140, 0.1, "sawtooth", 0.12, 70);
+      },
+      squeal(amt = 1) {
+        if (!live()) return;
+        const t = ctx.currentTime;
+        if (t < squealUntil) return;
+        if (playSamp("squeal", 0.28 + 0.5 * Math.min(1, amt), 0.9 + Math.random() * 0.15)) {
+          squealUntil = t + 0.6;
+        }
+      },
       engineStart() {
         if (ens.eng) return;
         ensure();
         if (!ctx) return;
         resume();
+        if (samples.engine) {
+          const s = ctx.createBufferSource();
+          s.buffer = samples.engine;
+          s.loop = true;
+          s.playbackRate.value = 0.78;
+          const g2 = ctx.createGain();
+          g2.gain.value = 0;
+          s.connect(g2);
+          g2.connect(master);
+          s.start();
+          const t2 = ctx.currentTime;
+          g2.gain.setValueAtTime(0, t2);
+          g2.gain.linearRampToValueAtTime(0.2, t2 + 0.12);
+          g2.gain.linearRampToValueAtTime(0.12, t2 + 0.5);
+          ens.eng = { mode: "samp", s, g: g2 };
+          return;
+        }
         const o1 = ctx.createOscillator();
         o1.type = "sawtooth";
         o1.frequency.value = 48;
@@ -33558,7 +33647,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         g.gain.setValueAtTime(0, t);
         g.gain.linearRampToValueAtTime(0.16, t + 0.12);
         g.gain.linearRampToValueAtTime(0.09, t + 0.5);
-        ens.eng = { o1, o2, o3, f, g };
+        ens.eng = { mode: "osc", o1, o2, o3, f, g };
       },
       engineStop() {
         if (!ens.eng) return;
@@ -33569,9 +33658,12 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         const e = ens.eng;
         setTimeout(() => {
           try {
-            e.o1.stop();
-            e.o2.stop();
-            e.o3.stop();
+            if (e.s) e.s.stop();
+            if (e.o1) {
+              e.o1.stop();
+              e.o2.stop();
+              e.o3.stop();
+            }
           } catch (_) {
           }
         }, 450);
@@ -33581,6 +33673,12 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         if (!ens.eng || !ctx) return;
         const sp = Math.abs(speed);
         const t = ctx.currentTime;
+        if (ens.eng.mode === "samp") {
+          ens.eng.s.playbackRate.setTargetAtTime((rev ? 0.7 : 0.78) + sp * 0.032, t, 0.08);
+          const lvl2 = sp < 0.4 ? 0.1 : 0.14 + Math.min(0.2, sp * 0.01);
+          ens.eng.g.gain.setTargetAtTime(muted ? 0 : lvl2, t, 0.08);
+          return;
+        }
         const base = rev ? 44 : 50;
         const freq = base + sp * 6.2;
         ens.eng.o1.frequency.setTargetAtTime(freq, t, 0.06);
@@ -33592,7 +33690,6 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       },
       radioDuck(on) {
       },
-      // GTA2-like teletype click while job text appears
       type() {
         if (!live()) return;
         const t = ctx.currentTime;
@@ -33610,7 +33707,6 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         o.start(t);
         o.stop(t + 0.03);
       },
-      // short mumbled burst when a job is given (not real speech; ElevenLabs can replace later)
       gibber() {
         if (!live()) return;
         const t0 = ctx.currentTime, dur = 0.55 + Math.random() * 0.35;
@@ -34836,7 +34932,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       } else if (P.weapon === "bat") {
         P.fireCool = 0.55;
         P.swingT = 0.35;
-        audio.step();
+        audio.bat ? audio.bat() : audio.step();
         let any = false;
         for (const pd of peds) {
           if (pd.down > 0) continue;
@@ -35108,6 +35204,19 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     jobNav.add(navHead, navShaft);
     jobNav.visible = false;
     scene.add(jobNav);
+    function preloadJobVoices() {
+      showTalk._ready = showTalk._ready || {};
+      const v = window.HOOD_V ? "?v=" + window.HOOD_V : "";
+      for (const J of JOB_LIST) {
+        const url = "assets/voice/" + J.title.toLowerCase() + ".mp3";
+        fetch(url + v).then((r) => {
+          if (r.ok) showTalk._ready[url] = true;
+        }).catch(() => {
+        });
+      }
+    }
+    __name(preloadJobVoices, "preloadJobVoices");
+    preloadJobVoices();
     function showTalk(who, text, voice) {
       const box2 = document.getElementById("talk"), p = document.getElementById("talkTxt"), w = document.getElementById("talkWho");
       if (!box2 || !p || !text) return;
@@ -35117,7 +35226,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       p.textContent = "";
       clearInterval(showTalk._t);
       clearTimeout(showTalk._h);
-      if (audio && audio.gibber) audio.gibber();
+      const hasV = !!(voice && showTalk._ready && showTalk._ready[voice]);
+      if (audio && audio.gibber && !hasV) audio.gibber();
       showTalk._t = setInterval(() => {
         i++;
         p.textContent = text.slice(0, i);
@@ -35127,14 +35237,15 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
           showTalk._h = setTimeout(() => box2.classList.add("hidden"), 2600 + Math.min(2200, text.length * 16));
         }
       }, 26);
-      if (voice && showTalk._ready && showTalk._ready[voice]) {
+      if (hasV) {
         try {
           if (showTalk._a) {
             showTalk._a.pause();
             showTalk._a = null;
           }
-          const a = new Audio(voice);
+          const a = new Audio(voice + (window.HOOD_V ? "?v=" + window.HOOD_V : ""));
           showTalk._a = a;
+          a.volume = 0.9;
           a.play().catch(() => {
           });
         } catch (_) {
@@ -35653,7 +35764,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
       P.vz = 0;
       player.visible = true;
       player.position.set(P.x, 0, P.z);
-      audio.door();
+      audio.door("car");
       audio.engineStop();
       radio.fadeOut(450);
       document.body.classList.remove("incar");
@@ -35687,7 +35798,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         setLit(best, true);
         P.car = best;
         player.visible = false;
-        audio.door();
+        audio.door("car");
         audio.engineStart();
         radio.play();
         if (best !== myCar) {
@@ -35816,6 +35927,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
         }
         if (P.car !== c) return;
         audio.engineTick(c.speed, c.speed < -0.4);
+        if (audio.squeal && asp > 8 && (Math.abs(c.steer) > 0.55 || keys.Space || TOUCH.hbrake)) audio.squeal(Math.min(1, asp / 18));
         const EG = city.edge;
         c.x = Math.max(EG.minx + 1.5, Math.min(EG.maxx - 1.5, c.x));
         c.z = Math.max(EG.minz + 1.5, Math.min(EG.maxz - 1.5, c.z));
