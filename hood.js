@@ -40820,6 +40820,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     updateHoodHud();
     const keys = {};
     addEventListener("keydown", (e) => {
+      if (e.target && e.target.closest && e.target.closest("input,textarea")) return;
       keys[e.code] = true;
       if (e.code === "KeyE") {
         if (state && state._dealAct) {
@@ -42340,6 +42341,48 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(loadScript, "loadScript");
       var keyOf2 = /* @__PURE__ */ __name((c) => c.lat.toFixed(5) + "," + c.lon.toFixed(5), "keyOf");
+      var keyOfC = /* @__PURE__ */ __name((c) => !c || c.builtin ? "dortmund" : keyOf2(c), "keyOfC");
+      var NEW = Q2.get("nh") === "1";
+      var hoodNames = /* @__PURE__ */ __name(() => LS.get("hoodNames", null) || {}, "hoodNames");
+      var nameOf = /* @__PURE__ */ __name((k) => hoodNames()[k] || "", "nameOf");
+      function setName(k, n) {
+        const m = hoodNames();
+        if (n) m[k] = n;
+        else delete m[k];
+        LS.set("hoodNames", m);
+      }
+      __name(setName, "setName");
+      var cityName = /* @__PURE__ */ __name((c) => c && !c.builtin ? c.name : DEFAULT.name, "cityName");
+      var plainCity = /* @__PURE__ */ __name((c) => c.builtin ? { builtin: true } : { name: c.name, lat: c.lat, lon: c.lon }, "plainCity");
+      function freeLS() {
+        try {
+          for (let i = localStorage.length - 1; i >= 0; i--) {
+            const k = localStorage.key(i);
+            if (!k || k === "hood.hoodNames") continue;
+            const v = localStorage.getItem(k) || "";
+            if (v.length > 5e4) localStorage.removeItem(k);
+          }
+        } catch (_) {
+        }
+      }
+      __name(freeLS, "freeLS");
+      function writeCity(c) {
+        LS.del("cache");
+        LS.del("cache2");
+        const once = /* @__PURE__ */ __name(() => {
+          if (c.builtin) {
+            LS.del("city");
+            return LS.get("city", null) == null;
+          }
+          LS.set("city", { name: c.name, lat: c.lat, lon: c.lon });
+          const b = LS.get("city", null);
+          return !!b && b.lat === c.lat && b.lon === c.lon;
+        }, "once");
+        if (once()) return true;
+        freeLS();
+        return once();
+      }
+      __name(writeCity, "writeCity");
       var doneHoods = /* @__PURE__ */ __name(() => LS.get("doneHoods", []) || [], "doneHoods");
       var isDone = /* @__PURE__ */ __name((k) => doneHoods().some((d) => d.k === k), "isDone");
       var curCity = null;
@@ -42396,8 +42439,6 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           }
           return D2;
         }
-        LS.del("cache");
-        LS.del("cache2");
         const ck = keyOf2(c) + "|" + OSM_VER;
         try {
           const hit = await idb.get("city", ck);
@@ -42423,37 +42464,42 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(getCityData, "getCityData");
       async function boot() {
-        if (!SHOT2) {
+        LS.del("cache");
+        LS.del("cache2");
+        let city = LS.get("city", null);
+        const ql = Q2.get("lat"), qo = Q2.get("lon");
+        if (ql && qo && isFinite(+ql) && isFinite(+qo)) city = { name: Q2.get("name") || "Ort", lat: +ql, lon: +qo };
+        else if (NEW && Q2.get("home") === "1") city = DEFAULT;
+        if (!city || !isFinite(city.lat)) city = DEFAULT;
+        let D;
+        cityKey = keyOfC(city);
+        curCity = city;
+        if (!LS.get("hoodNames", null)) {
+          const old = LS.get("hoodName", "");
+          LS.set("hoodNames", old && !NEW ? { [cityKey]: old } : {});
+        }
+        if (NEW) {
+          bootTitle = false;
+          closeTitleOnly();
+          showLoading("Baue deine neue Hood \u201E" + city.name + "\u201C \u2026");
+        } else if (!SHOT2) {
           bootTitle = true;
           hideLoading();
           openMenu(true);
         }
-        let city = LS.get("city", null);
-        const ql = Q2.get("lat"), qo = Q2.get("lon");
-        if (ql && qo) city = { name: Q2.get("name") || "Ort", lat: +ql, lon: +qo };
-        if (!city || !isFinite(city.lat)) city = DEFAULT;
-        let D;
-        cityKey = city.builtin ? "dortmund" : keyOf2(city);
-        curCity = city;
-        idb.get("kv", "save:" + cityKey).then((S) => {
-          hasSave = !!(S && S.v === 1);
-          if (S && S.hood && !LS.get("hoodName", "")) LS.set("hoodName", S.hood);
-        }).catch(() => {
+        const saveP = idb.get("kv", "save:" + cityKey).then((S) => S && S.v === 1 ? S : null).catch(() => null);
+        saveP.then((S) => {
+          hasSave = !!S;
+          if (S && S.hood && !nameOf(cityKey)) setName(cityKey, S.hood);
         });
         try {
           D = await getCityData(city);
         } catch (e) {
           console.warn(e);
-          const msg = e.empty ? "Rund um \u201E" + city.name + "\u201C gibt es in OpenStreetMap kaum H\xE4user oder Stra\xDFen. Such dir einen Ort mit mehr Stadt." : (e.timeout ? "Zeit\xFCberschreitung: Der Kartenserver (Overpass) hat zu lange gebraucht." : "Der Kartenserver (OpenStreetMap / Overpass) antwortet gerade nicht oder ist \xFCberlastet.") + " Bitte gleich nochmal versuchen \u2013 oder erst mal in Dortmund spielen.";
+          const why = e.empty ? "Rund um \u201E" + city.name + "\u201C gibt es in OpenStreetMap kaum H\xE4user oder Stra\xDFen. Such dir einen Ort mit mehr Stadt." : (e.timeout ? "Zeit\xFCberschreitung: Der Kartenserver (Overpass) hat zu lange gebraucht." : "Der Kartenserver (OpenStreetMap / Overpass) antwortet gerade nicht oder ist \xFCberlastet.") + " Bitte gleich nochmal versuchen.";
           bootTitle = false;
           closeTitleOnly();
-          loadError(msg, [["Nochmal versuchen", () => location.reload()], ["Andere Stadt suchen", () => {
-            hideLoading();
-            openMenu(true);
-          }], ["Zur\xFCck nach Dortmund", () => {
-            LS.del("city");
-            location.href = location.pathname + (location.search.replace(/[?&](lat|lon|name)=[^&]*/g, "").replace(/^&/, "?") || "");
-          }]]);
+          showBootError(city, why);
           return;
         }
         const _b0 = performance.now();
@@ -42466,7 +42512,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const zoom = zRaw == null ? matchMedia("(pointer:coarse)").matches ? 0.85 : 1 : zRaw > 5 ? zRaw / 13 : zRaw;
         game = startGame(D, { touch: TOUCH, hubNear: city.builtin ? [-146.9, -38.7] : [0, 0], time: LS.get("time", "dusk"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
           if ($("bagOv").classList.contains("open")) renderBag();
-        }, "onBag"), hoodName: LS.get("hoodName", ""), onShop: showShop, onTag: showTagWall, onHoodDone });
+        }, "onBag"), hoodName: nameOf(cityKey), onShop: showShop, onTag: showTagWall, onHoodDone });
         window.hoodGame = game;
         if (game.audio) {
           game.audio.setScene(titleUp() ? "title" : "game");
@@ -42474,11 +42520,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         $("cityName").textContent = city.name;
         $("curCity").textContent = city.name;
-        hideLoading();
+        if (!NEW) hideLoading();
         bootTitle = false;
         setStatus("");
         if (SHOT2) showHint();
-        else if (pendingPlay) {
+        else if (NEW) {
+        } else if (pendingPlay) {
           pendingPlay = false;
           closeMenu();
         } else paintStartBtn();
@@ -42489,27 +42536,104 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           const st = LS.get("station", null);
           if (st && game.radio) game.radio.select(st);
         }
-        idb.get("kv", "save:" + cityKey).then((S) => {
-          savedGame = S && S.v === 1 ? S : null;
-          const carry = LS.get("carry", null);
-          if (carry) {
-            if (savedGame) {
-              Object.assign(savedGame, { cash: carry.cash, stats: carry.stats, jobsDone: carry.jobsDone, weapons: carry.weapons, gotUnlock: carry.gotUnlock, tank: carry.tank });
-            } else {
-              game.applyCarry(carry);
-              saveGame(true);
-            }
-            LS.del("carry");
+        savedGame = await saveP;
+        const carry = LS.get("carry", null);
+        if (carry) {
+          if (savedGame) {
+            Object.assign(savedGame, { cash: carry.cash, stats: carry.stats, jobsDone: carry.jobsDone, weapons: carry.weapons, gotUnlock: carry.gotUnlock, tank: carry.tank });
+          } else {
+            game.applyCarry(carry);
+            await saveGame(true);
           }
-          paintCont();
-        });
+          LS.del("carry");
+        }
+        paintCont();
+        if (NEW && !SHOT2) startNewHood(city);
       }
       __name(boot, "boot");
+      function startNewHood(city) {
+        writeCity(city);
+        LS.set("seen", true);
+        try {
+          history.replaceState(null, "", location.pathname);
+        } catch (_) {
+        }
+        if (savedGame) {
+          game.restore(savedGame);
+          savedGame = null;
+          paintCont();
+        }
+        const go = /* @__PURE__ */ __name(() => {
+          if (game.setPaused) game.setPaused(false);
+          hideLoading();
+          closeMenu();
+          toast2("Neue Hood: " + city.name);
+          uiBlip("ok", muted);
+        }, "go");
+        if (!nameOf(cityKey)) {
+          hideLoading();
+          if (game.setPaused) game.setPaused(true);
+          askHood(go);
+        } else go();
+      }
+      __name(startNewHood, "startNewHood");
+      var lastErr = null;
+      var played = false;
+      function goCity(c, fresh) {
+        const k = keyOfC(c);
+        const pre = game && played && !savedGame && k !== cityKey ? saveGame(true).catch(() => {
+        }) : Promise.resolve();
+        return pre.then(() => {
+          if (curCity && k !== cityKey && game) LS.set("prevCity", plainCity(curCity));
+          if (pickFirst && k !== cityKey && !nameOf(k) && nameOf(cityKey)) {
+            setName(k, nameOf(cityKey));
+            if (!hasSave && !savedGame) setName(cityKey, "");
+          }
+          writeCity(c);
+          LS.set("seen", true);
+          const u = new URL(location.href);
+          ["lat", "lon", "name", "nh", "home"].forEach((q) => u.searchParams.delete(q));
+          if (fresh) {
+            if (c.builtin) u.searchParams.set("home", "1");
+            else {
+              u.searchParams.set("lat", String(c.lat));
+              u.searchParams.set("lon", String(c.lon));
+              u.searchParams.set("name", c.name);
+            }
+            u.searchParams.set("nh", "1");
+          }
+          const to = u.pathname + u.search;
+          if (to === location.pathname + location.search) location.reload();
+          else location.replace(to);
+        });
+      }
+      __name(goCity, "goCity");
+      function showBootError(city, why) {
+        const prev = LS.get("prevCity", null), pk = prev ? keyOfC(prev) : null;
+        const msg = (NEW ? "Die neue Hood \u201E" + city.name + "\u201C konnte nicht gebaut werden. " : "\u201E" + city.name + "\u201C konnte nicht geladen werden. ") + why + (NEW ? " Du bist NICHT in der neuen Hood." : "");
+        const btns = [["Nochmal versuchen", () => location.reload()], ["Andere Hood suchen", () => {
+          hideLoading();
+          openMenu(true);
+          openHoodPick("\u201E" + city.name + "\u201C ging nicht. Such dir eine andere Hood.");
+        }]];
+        if (NEW && prev && pk !== cityKey && !isDone(pk)) btns.push(["Zur\xFCck zu \u201E" + cityName(prev) + "\u201C", () => {
+          showLoading("Lade \u201E" + cityName(prev) + "\u201C \u2026");
+          goCity(prev.builtin ? DEFAULT : prev, false);
+        }]);
+        if (cityKey !== "dortmund" && pk !== "dortmund" && !isDone("dortmund")) btns.push(["Dortmund-Innenstadt (offline)", () => {
+          showLoading("Lade Dortmund \u2026");
+          goCity(DEFAULT, true);
+        }]);
+        lastErr = /* @__PURE__ */ __name(() => loadError(msg, btns), "lastErr");
+        lastErr();
+      }
+      __name(showBootError, "showBootError");
       var titleIdx = 0;
       var tMode = "press";
       var pendingPlay = false;
       var hasSave = false;
       var hoodAsked = false;
+      var pickFirst = false;
       var navBtns = /* @__PURE__ */ __name(() => [...document.querySelectorAll("#titleNav [data-act]")].filter((b) => !b.classList.contains("hidden")), "navBtns");
       function paintTitle() {
         navBtns().forEach((b, i) => b.classList.toggle("on", i === titleIdx));
@@ -42554,7 +42678,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           }
           return;
         }
-        if (act === "play" && !hoodAsked && !LS.get("hoodName", "") && !hasSave && !savedGame && !SHOT2) {
+        if (act === "play" && !hoodAsked && !nameOf(cityKey) && !hasSave && !savedGame && !SHOT2) {
           hoodAsked = true;
           askHood(() => runTitle("play"));
           return;
@@ -42612,6 +42736,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(runTitle, "runTitle");
       var quitT = 0;
       function openHoodPick(msg, first) {
+        pickFirst = !!first;
         $("pickMsg").textContent = msg || "";
         $("resList").innerHTML = "";
         $("searchMsg").textContent = "";
@@ -42668,6 +42793,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(closeTitleOnly, "closeTitleOnly");
       function closeMenu() {
+        if (game) played = true;
         titleMusic.stop(1500);
         $("title").classList.add("hidden");
         $("title").classList.remove("opts");
@@ -42799,21 +42925,20 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(goFull, "goFull");
       function chooseCity(c) {
-        const k = c.builtin ? "dortmund" : keyOf2(c);
+        const k = keyOfC(c);
         if (isDone(k)) {
           $("searchMsg").textContent = "\u201E" + c.name + "\u201C hast du schon abgeschlossen. Such dir eine andere Hood.";
           uiBlip("back", muted);
           return;
         }
-        if (game && !titleUp()) saveGame(true);
-        if (c.builtin) {
-          LS.del("city");
-        } else LS.set("city", { name: c.name, lat: c.lat, lon: c.lon });
-        LS.set("seen", true);
-        showLoading("Lade \u201E" + c.name + "\u201C \u2026");
-        const u = new URL(location.href);
-        ["lat", "lon", "name"].forEach((k2) => u.searchParams.delete(k2));
-        location.href = u.pathname + (u.search || "") + (u.hash || "");
+        if (k === cityKey && game) {
+          $("searchMsg").textContent = "\u201E" + cityName(c) + "\u201C ist schon deine aktuelle Hood. Such dir einen anderen Ort.";
+          uiBlip("back", muted);
+          return;
+        }
+        uiBlip("ok", muted);
+        showLoading("Neue Hood \u201E" + cityName(c) + "\u201C wird vorbereitet \u2026");
+        goCity(c, true);
       }
       __name(chooseCity, "chooseCity");
       var searching = false;
@@ -43174,6 +43299,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         });
         $("hoodBack").addEventListener("click", () => {
           uiBlip("back", muted);
+          if (!game && lastErr) {
+            closeTitleOnly();
+            lastErr();
+            return;
+          }
           showTitleNav();
         });
         $("hereBtn").addEventListener("click", () => {
@@ -43999,7 +44129,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(tagCrop, "tagCrop");
       function askHood(done) {
         const ov = $("hoodOv"), inp = $("hoodIn");
-        inp.value = LS.get("hoodName", "") || "";
+        inp.value = nameOf(cityKey) || "";
         $("hoodMsg").textContent = "";
         ov.classList.add("open");
         setTimeout(() => {
@@ -44015,7 +44145,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             uiBlip("back", muted);
             return;
           }
-          LS.set("hoodName", n);
+          setName(cityKey, n);
           if (game && game.setHoodName) game.setHoodName(n);
           ov.classList.remove("open");
           try {
@@ -44044,7 +44174,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       async function saveGame(auto) {
         if (!game) return;
         const S = game.snapshot();
-        if (S.hood) LS.set("hoodName", S.hood);
+        if (S.hood) setName(cityKey, S.hood);
         S.city = cityKey;
         const ok = await idb.set("kv", "save:" + cityKey, S);
         if (!auto) {
@@ -44108,7 +44238,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       applyMuteUi();
       lockPortrait();
       boot();
-      window.hoodApp = { openHoodPick, onHoodDone, isDone, doneHoods, exitApp, askHood, showTagWall, tagUI, tagCrop, showShop, hasSave: /* @__PURE__ */ __name(() => hasSave, "hasSave"), openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
+      window.hoodApp = { nameOf, cityKey: /* @__PURE__ */ __name(() => cityKey, "cityKey"), curCity: /* @__PURE__ */ __name(() => curCity, "curCity"), isNew: /* @__PURE__ */ __name(() => NEW, "isNew"), openHoodPick, onHoodDone, isDone, doneHoods, exitApp, askHood, showTagWall, tagUI, tagCrop, showShop, hasSave: /* @__PURE__ */ __name(() => hasSave, "hasSave"), openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
     }
   });
   require_app();
