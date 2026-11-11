@@ -42941,6 +42941,30 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         goCity(c, true);
       }
       __name(chooseCity, "chooseCity");
+      function onTap(el, fn) {
+        let d = null, last = 0;
+        const fire = /* @__PURE__ */ __name(() => {
+          const n = performance.now();
+          if (n - last < 800) return;
+          last = n;
+          fn();
+        }, "fire");
+        el.addEventListener("pointerdown", (e) => {
+          d = { x: e.clientX, y: e.clientY, id: e.pointerId };
+        });
+        el.addEventListener("pointerup", (e) => {
+          if (d && d.id === e.pointerId && Math.hypot(e.clientX - d.x, e.clientY - d.y) < 12) {
+            e.preventDefault();
+            fire();
+          }
+          d = null;
+        });
+        el.addEventListener("pointercancel", () => {
+          d = null;
+        });
+        el.addEventListener("click", fire);
+      }
+      __name(onTap, "onTap");
       var searching = false;
       async function doSearch(ev) {
         ev && ev.preventDefault();
@@ -42967,7 +42991,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
                 li.classList.add("done");
                 li.querySelector("span").textContent = "Schon abgeschlossen \xB7 " + r.name;
               }
-              li.onclick = () => chooseCity({ name: r.short, lat: r.lat, lon: r.lon });
+              onTap(li, () => chooseCity({ name: r.short, lat: r.lat, lon: r.lon }));
               $("resList").appendChild(li);
             }
           }
