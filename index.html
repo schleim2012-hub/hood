@@ -20,7 +20,8 @@ html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial
 #logo{display:none}
 #cityName{display:none}
 #hudRight{right:calc(10px + env(safe-area-inset-right) + var(--fr));top:calc(8px + env(safe-area-inset-top) + var(--fr));text-align:right;color:#fff;font:700 12px Arial,sans-serif;text-shadow:1px 1px 0 #000,0 0 6px #000;pointer-events:none;background:none;border:0;padding:0;min-width:0}
-#time{display:none}
+#time{margin:0 0 3px;color:#cfd8ff;font:700 12px/1 Arial,sans-serif;letter-spacing:.5px;text-shadow:1px 1px 0 #000,0 0 6px #000}
+#nightVig{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0;transition:opacity .5s}body.onTitle #nightVig{display:none}
 #money{margin:0;color:#ffe14d;font:800 18px/1 "Arial Black",Arial,sans-serif;letter-spacing:.5px;text-shadow:2px 2px 0 #000}
 #hearts{margin-top:4px;color:#4a2228;font-size:18px;line-height:1;letter-spacing:1px;text-shadow:none;white-space:nowrap}#hearts b{color:#ff3046;font-weight:400;text-shadow:0 0 6px rgba(255,40,60,.55),1px 1px 0 #000}
 #carHp{margin:6px 0 0 auto;width:72px;height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden;position:relative}#carHp i{display:block;height:100%;width:100%;background:#7be07b;transition:width .15s}#carHp.burn i{animation:burn .35s steps(2) infinite}@keyframes burn{50%{background:#ffe03a}}
@@ -58,6 +59,12 @@ html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial
 #btnCar{right:calc(14px + env(safe-area-inset-right) + var(--fr));bottom:calc(110px + env(safe-area-inset-bottom) + var(--fr));width:70px;height:58px;border-radius:18px;border-color:rgba(120,220,140,.35);color:#d8ffe0}
 #btnBrake{right:calc(14px + env(safe-area-inset-right) + var(--fr));bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr));width:84px;height:84px;border-radius:42px;border-radius:16px;border-color:rgba(240,120,100,.4);color:#ffd8d0}
 #btnFire{right:calc(14px + env(safe-area-inset-right) + var(--fr));bottom:calc(18px + env(safe-area-inset-bottom) + var(--fr));width:84px;height:84px;border-radius:42px;border-color:rgba(255,90,70,.5);color:#ffd8d0;font-size:11px}
+#btnUfo{right:calc(92px + env(safe-area-inset-right) + var(--fr));bottom:calc(178px + env(safe-area-inset-bottom) + var(--fr));width:78px;min-height:40px;height:40px;border-radius:14px;border-color:rgba(190,140,255,.6);color:#e8d8ff;font-size:11px;background:rgba(60,20,90,.62);box-shadow:0 0 14px rgba(170,110,255,.45)}
+#ufoT{position:fixed;left:50%;top:calc(58px + env(safe-area-inset-top));transform:translateX(-50%);z-index:4;padding:4px 12px;border-radius:12px;background:rgba(40,10,70,.75);border:1px solid rgba(190,140,255,.6);color:#f0e4ff;font:800 14px/1.2 "Arial Black",Impact,sans-serif;letter-spacing:1px;text-shadow:0 0 8px #a06aff}
+#ufoT.low{color:#ffb0b0;border-color:#ff6a6a}
+.floatTxt{position:fixed;left:0;top:0;z-index:3;pointer-events:none;font:900 18px/1 "Arial Black",Impact,sans-serif;color:#ffe14d;text-shadow:0 2px 0 #000,0 0 6px rgba(0,0,0,.85);white-space:nowrap;will-change:transform,opacity}
+body.onTitle .floatTxt,body.onTitle #ufoT,body.onTitle #btnUfo{display:none}
+#btnLight{right:calc(14px + env(safe-area-inset-right) + var(--fr));bottom:calc(178px + env(safe-area-inset-bottom) + var(--fr));width:70px;min-height:40px;height:40px;border-radius:14px;border-color:rgba(255,230,140,.35);color:#fff3c4;font-size:10px}#btnLight.off{color:#9aa0b0;border-color:rgba(255,255,255,.15)}
 #btnDeal{right:calc(108px + env(safe-area-inset-right) + var(--fr));bottom:calc(30px + env(safe-area-inset-bottom) + var(--fr));width:70px;min-width:70px;height:56px;padding:6px 8px;border-color:rgba(200,180,100,.35);color:#ffe9a8}
 #zoomBox,#btnFollow{display:none!important}
 #menuBtn{position:fixed;z-index:5;left:calc(8px + env(safe-area-inset-left) + var(--fr));right:auto;top:calc(8px + env(safe-area-inset-top) + var(--fr));width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(8,10,16,.45);color:#ffd23f;font-size:18px;line-height:1}
@@ -252,12 +259,13 @@ body.shot #hint{display:none}
 <div id="wepBar" class="ui hidden" aria-hidden="true"><button type="button" data-wep="" class="on"><b>1</b><span>Faust</span></button><button type="button" data-wep="bat" class="dim"><b>2</b><span>Schläger</span></button><button type="button" data-wep="pistol" class="dim"><b>3</b><span>Pistole</span></button></div>
 <div id="hudRight" class="ui"><div id="time"></div><div id="money">120 €</div><div id="hearts" aria-label="Leben"><b>♥♥♥♥♥</b></div><div id="carHp" style="display:none"><i></i></div><div id="weapon" class="fist" type="button"><span class="ic" aria-hidden="true"></span><i id="wepAmmo"></i></div><div id="stars"></div><div id="fxChip"></div></div>
 <div id="jobBanner" class="ui hidden"></div>
-<div id="talk" class="ui hidden"><img class="face" id="talkFace" src="assets/faces/chef.webp?v=V02" alt="" aria-hidden="true"><div class="tx"><b id="talkWho"></b><p id="talkTxt"></p></div></div>
+<div id="talk" class="ui hidden"><img class="face" id="talkFace" src="assets/faces/chef.webp?v=V03" alt="" aria-hidden="true"><div class="tx"><b id="talkWho"></b><p id="talkTxt"></p></div></div>
 <div id="street" class="ui"></div><div id="prompt" class="ui"></div><div id="toast" class="ui"></div>
 <div id="hint" class="ui hidden">Links: Stick zum Laufen. Rechts: Angriff, Einsteigen, Aktion.<br>Im Auto: Straße antippen und er fährt hin. Am Imbiss: Aufträge.</div>
 <div id="stick" aria-label="Steuerung"><b id="stickKnob"></b></div>
 <button id="btnCar" class="abtn dim" type="button">Einsteigen</button>
 <button id="btnBrake" class="abtn hidden" type="button">Handbremse</button>
+<button id="btnLight" class="abtn hidden" type="button">Licht an</button><button id="btnUfo" class="abtn hidden" type="button">UFO rufen</button><div id="ufoT" class="ui hidden"></div>
 <button id="btnDeal" class="abtn hidden" type="button">Handeln</button>
 <button id="btnFire" class="abtn hidden" type="button">Angriff</button>
 <div id="zoomBox"><button id="btnZin" type="button" aria-label="Heranzoomen">+</button><button id="btnZout" type="button" aria-label="Rauszoomen">−</button></div>
@@ -268,7 +276,7 @@ body.shot #hint{display:none}
 <div id="mapOv" class="ovl"><div class="oh"><b>Karte</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><canvas id="mapCv"></canvas><div id="mapHint"></div><div id="mapLeg"><span><i style="background:#ffe14d"></i>Du</span><span><i style="background:#5fc04a"></i>Auftraggeber</span><span><i style="background:#ff3df0"></i>Ziel</span><span><i style="background:rgba(80,200,120,.55)"></i>Dein Revier</span><span><i style="background:rgba(230,70,60,.5)"></i>Fremdes Revier</span><span><i style="background:#3aa0ff"></i>U-Bahn</span><span><i style="background:#ff8fd0"></i>Laden</span><span><i style="background:transparent;border:1px dashed #5fc04a"></i>Dein Tag (Radius)</span><span><i style="background:transparent;border:1px dashed #e0442e"></i>Fremdes Tag</span></div></div>
 <div id="bagOv" class="ovl"><div class="oh"><b>Tasche</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div class="body" id="bagBody"></div></div>
 <div id="charOv" class="ovl"><div class="oh"><b>Charakter</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div class="body" id="charBody"></div></div>
-<div id="boardOv" class="ovl"><div class="oh"><b id="boardWho">Aufträge</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div id="boardHead"><img id="boardFace" src="assets/faces/chef.webp?v=V02" alt=""><p id="boardLine"></p></div><div class="body" id="boardBody"></div></div>
+<div id="boardOv" class="ovl"><div class="oh"><b id="boardWho">Aufträge</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div id="boardHead"><img id="boardFace" src="assets/faces/chef.webp?v=V03" alt=""><p id="boardLine"></p></div><div class="body" id="boardBody"></div></div>
 <div id="ubOv" class="ovl"><div class="oh"><b>U-Bahn</b><button class="x" type="button" data-close aria-label="Schließen">✕</button></div><div class="body" id="ubBody"></div></div>
 <div id="ubFx"><span id="ubFxT">U-Bahn</span></div>
 <div id="lvlPop"><b id="lvlT">Stufe 2</b><span id="lvlS"></span></div>
@@ -322,6 +330,8 @@ body.shot #hint{display:none}
   <div class="fine" id="saveMsg">Wird nach jedem Auftrag automatisch gesichert. Die Stadt bleibt im Speicher und lädt beim nächsten Mal sofort.</div>
   <h2>Tageszeit</h2>
   <div class="row"><button class="btn" data-time="afternoon" type="button">Nachmittag</button><button class="btn" data-time="dusk" type="button">Dämmerung</button><button class="btn" data-time="night" type="button">Nacht</button></div>
+  <div class="row"><button class="btn" id="clockBtn" type="button">Uhr: läuft</button></div>
+  <div class="fine" id="clockMsg">Die Uhr läuft von selbst: 1 Tag = 6 Minuten. Eine Tageszeit antippen spult dorthin vor. „Uhr anhalten“ friert die Tageszeit ein.</div>
   <h2>Kamera</h2>
   <div class="row"><button class="btn" id="optZin" type="button">Ran</button><button class="btn" id="optZout" type="button">Raus</button><button class="btn" id="optFollow" type="button">Folgen</button></div>
   <h2>Ton</h2>
@@ -347,6 +357,6 @@ body.shot #hint{display:none}
 <div id="tagOv" class="ovl"><div class="oh"><b>Dein Tag</b><button class="x" type="button" id="tagX" aria-label="Abbrechen">✕</button></div><div id="tagInfo"></div><div id="tagWrap"><canvas id="tagCv"></canvas></div><div id="tagTools"><div id="tagCols"></div><div id="tagSizes"><button type="button" data-sz="0.6">fein</button><button type="button" data-sz="1" class="on">mittel</button><button type="button" data-sz="1.7">fett</button></div></div><div id="tagBtns"><button type="button" class="btn" id="tagNew">Neu</button><button type="button" class="btn hot" id="tagDone">Fertig — an die Wand</button></div></div>
 <div id="hoodOv"><form id="hoodForm" autocomplete="off"><div class="hh">WIE HEISST DEINE HOOD?</div><p>Dein Viertel bekommt deinen Namen — auf der Karte, an den Wänden, überall.</p><input id="hoodIn" maxlength="20" placeholder="z.B. Nordstadt-Ost" enterkeyhint="done" autocapitalize="characters"><div id="hoodMsg"></div><button type="submit" class="btn hot" id="hoodOk">Los geht’s</button></form></div>
 <div id="loading"><div class="lg">HOOD</div><div class="sprayLoad" aria-hidden="true"><svg class="can" viewBox="0 0 60 110"><defs><linearGradient id="cg" x1="0" x2="1"><stop offset="0" stop-color="#9a1f5c"/><stop offset=".45" stop-color="#ff3d9a"/><stop offset="1" stop-color="#7a1448"/></linearGradient><linearGradient id="kg" x1="0" x2="1"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#eee"/><stop offset="1" stop-color="#666"/></linearGradient></defs><rect x="25" y="4" width="10" height="9" rx="2" fill="#222"/><rect x="34" y="6" width="5" height="4" fill="#111"/><path d="M14 30 Q14 16 30 14 Q46 16 46 30Z" fill="url(#kg)"/><rect x="12" y="29" width="36" height="74" rx="5" fill="url(#cg)"/><rect x="12" y="46" width="36" height="22" fill="#ffe14d"/><text x="30" y="62" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-size="12" fill="#111">HOOD</text><rect x="12" y="96" width="36" height="7" rx="3" fill="#5a0e34"/><rect x="17" y="32" width="4" height="66" rx="2" fill="rgba(255,255,255,.35)"/></svg><i class="mist m1"></i><i class="mist m2"></i><i class="mist m3"></i></div><div id="loadMsg">Lade …</div><div id="loadBtns"></div></div>
-<script>window.HOOD_V='V02';</script>
-<script src="hood.js?v=V02"></script>
+<script>window.HOOD_V='V03';</script>
+<script src="hood.js?v=V03"></script>
 </body></html>
