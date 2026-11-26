@@ -7947,7 +7947,7 @@
       }
     }
   }
-  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, ConeGeometry, PolyhedronGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, IcosahedronGeometry, RingGeometry, SphereGeometry, TorusGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, LineDashedMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer, _matrix, Raycaster;
+  var REVISION, CullFaceNone, CullFaceBack, CullFaceFront, PCFShadowMap, PCFSoftShadowMap, VSMShadowMap, FrontSide, BackSide, DoubleSide, NoBlending, NormalBlending, AdditiveBlending, SubtractiveBlending, MultiplyBlending, CustomBlending, AddEquation, SubtractEquation, ReverseSubtractEquation, MinEquation, MaxEquation, ZeroFactor, OneFactor, SrcColorFactor, OneMinusSrcColorFactor, SrcAlphaFactor, OneMinusSrcAlphaFactor, DstAlphaFactor, OneMinusDstAlphaFactor, DstColorFactor, OneMinusDstColorFactor, SrcAlphaSaturateFactor, ConstantColorFactor, OneMinusConstantColorFactor, ConstantAlphaFactor, OneMinusConstantAlphaFactor, NeverDepth, AlwaysDepth, LessDepth, LessEqualDepth, EqualDepth, GreaterEqualDepth, GreaterDepth, NotEqualDepth, MultiplyOperation, MixOperation, AddOperation, NoToneMapping, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, CustomToneMapping, AgXToneMapping, NeutralToneMapping, AttachedBindMode, DetachedBindMode, UVMapping, CubeReflectionMapping, CubeRefractionMapping, EquirectangularReflectionMapping, EquirectangularRefractionMapping, CubeUVReflectionMapping, RepeatWrapping, ClampToEdgeWrapping, MirroredRepeatWrapping, NearestFilter, NearestMipmapNearestFilter, NearestMipmapLinearFilter, LinearFilter, LinearMipmapNearestFilter, LinearMipmapLinearFilter, UnsignedByteType, ByteType, ShortType, UnsignedShortType, IntType, UnsignedIntType, FloatType, HalfFloatType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, AlphaFormat, RGBFormat, RGBAFormat, LuminanceFormat, LuminanceAlphaFormat, DepthFormat, DepthStencilFormat, RedFormat, RedIntegerFormat, RGFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, RED_GREEN_RGTC2_Format, SIGNED_RED_GREEN_RGTC2_Format, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, ZeroCurvatureEnding, ZeroSlopeEnding, WrapAroundEnding, NormalAnimationBlendMode, TrianglesDrawMode, TriangleStripDrawMode, TriangleFanDrawMode, BasicDepthPacking, RGBADepthPacking, TangentSpaceNormalMap, ObjectSpaceNormalMap, NoColorSpace, SRGBColorSpace, LinearSRGBColorSpace, LinearTransfer, SRGBTransfer, KeepStencilOp, AlwaysStencilFunc, NeverCompare, LessCompare, EqualCompare, LessEqualCompare, GreaterCompare, NotEqualCompare, GreaterEqualCompare, AlwaysCompare, StaticDrawUsage, GLSL3, WebGLCoordinateSystem, WebGPUCoordinateSystem, EventDispatcher, _lut, _seed, DEG2RAD, RAD2DEG, MathUtils, Vector2, Matrix3, _m3, _cache, ColorManagement, REC709_PRIMARIES, REC709_LUMINANCE_COEFFICIENTS, D65, LINEAR_REC709_TO_XYZ, XYZ_TO_LINEAR_REC709, _canvas, ImageUtils, _sourceId, Source, _textureId, Texture, Vector4, RenderTarget, WebGLRenderTarget, DataArrayTexture, Data3DTexture, Quaternion, Vector3, _vector$c, _quaternion$4, Box3, _points, _vector$b, _box$4, _v0$3, _v1$7, _v2$4, _f0, _f1, _f2, _center, _extents, _triangleNormal, _testAxis, _box$3, _v1$6, _v2$3, Sphere, _vector$a, _segCenter, _segDir, _diff, _edge1, _edge2, _normal$1, Ray, Matrix4, _v1$5, _m1$4, _zero, _one, _x, _y, _z, _matrix$2, _quaternion$3, Euler, Layers, _object3DId, _v1$4, _q1, _m1$3, _target, _position$3, _scale$2, _quaternion$2, _xAxis, _yAxis, _zAxis, _addedEvent, _removedEvent, _childaddedEvent, _childremovedEvent, Object3D, _v0$2, _v1$3, _v2$2, _v3$2, _vab, _vac, _vbc, _vap, _vbp, _vcp, _v40, _v41, _v42, Triangle, _colorKeywords, _hslA, _hslB, Color, _color, _materialId, Material, MeshBasicMaterial, _vector$9, _vector2$1, BufferAttribute, Uint16BufferAttribute, Uint32BufferAttribute, Float32BufferAttribute, _id$2, _m1$2, _obj, _offset, _box$2, _boxMorphTargets, _vector$8, BufferGeometry, _inverseMatrix$3, _ray$3, _sphere$6, _sphereHitAt, _vA$1, _vB$1, _vC$1, _tempA, _morphA, _intersectionPoint, _intersectionPointWorld, Mesh, BoxGeometry, UniformsUtils, default_vertex, default_fragment, ShaderMaterial, Camera, _v3$1, _minTarget, _maxTarget, PerspectiveCamera, fov, aspect, CubeCamera, CubeTexture, WebGLCubeRenderTarget, _vector1, _vector2, _normalMatrix, Plane, _sphere$5, _vector$7, Frustum, PlaneGeometry, alphahash_fragment, alphahash_pars_fragment, alphamap_fragment, alphamap_pars_fragment, alphatest_fragment, alphatest_pars_fragment, aomap_fragment, aomap_pars_fragment, batching_pars_vertex, batching_vertex, begin_vertex, beginnormal_vertex, bsdfs, iridescence_fragment, bumpmap_pars_fragment, clipping_planes_fragment, clipping_planes_pars_fragment, clipping_planes_pars_vertex, clipping_planes_vertex, color_fragment, color_pars_fragment, color_pars_vertex, color_vertex, common, cube_uv_reflection_fragment, defaultnormal_vertex, displacementmap_pars_vertex, displacementmap_vertex, emissivemap_fragment, emissivemap_pars_fragment, colorspace_fragment, colorspace_pars_fragment, envmap_fragment, envmap_common_pars_fragment, envmap_pars_fragment, envmap_pars_vertex, envmap_vertex, fog_vertex, fog_pars_vertex, fog_fragment, fog_pars_fragment, gradientmap_pars_fragment, lightmap_pars_fragment, lights_lambert_fragment, lights_lambert_pars_fragment, lights_pars_begin, envmap_physical_pars_fragment, lights_toon_fragment, lights_toon_pars_fragment, lights_phong_fragment, lights_phong_pars_fragment, lights_physical_fragment, lights_physical_pars_fragment, lights_fragment_begin, lights_fragment_maps, lights_fragment_end, logdepthbuf_fragment, logdepthbuf_pars_fragment, logdepthbuf_pars_vertex, logdepthbuf_vertex, map_fragment, map_pars_fragment, map_particle_fragment, map_particle_pars_fragment, metalnessmap_fragment, metalnessmap_pars_fragment, morphinstance_vertex, morphcolor_vertex, morphnormal_vertex, morphtarget_pars_vertex, morphtarget_vertex, normal_fragment_begin, normal_fragment_maps, normal_pars_fragment, normal_pars_vertex, normal_vertex, normalmap_pars_fragment, clearcoat_normal_fragment_begin, clearcoat_normal_fragment_maps, clearcoat_pars_fragment, iridescence_pars_fragment, opaque_fragment, packing, premultiplied_alpha_fragment, project_vertex, dithering_fragment, dithering_pars_fragment, roughnessmap_fragment, roughnessmap_pars_fragment, shadowmap_pars_fragment, shadowmap_pars_vertex, shadowmap_vertex, shadowmask_pars_fragment, skinbase_vertex, skinning_pars_vertex, skinning_vertex, skinnormal_vertex, specularmap_fragment, specularmap_pars_fragment, tonemapping_fragment, tonemapping_pars_fragment, transmission_fragment, transmission_pars_fragment, uv_pars_fragment, uv_pars_vertex, uv_vertex, worldpos_vertex, vertex$h, fragment$h, vertex$g, fragment$g, vertex$f, fragment$f, vertex$e, fragment$e, vertex$d, fragment$d, vertex$c, fragment$c, vertex$b, fragment$b, vertex$a, fragment$a, vertex$9, fragment$9, vertex$8, fragment$8, vertex$7, fragment$7, vertex$6, fragment$6, vertex$5, fragment$5, vertex$4, fragment$4, vertex$3, fragment$3, vertex$2, fragment$2, vertex$1, fragment$1, ShaderChunk, UniformsLib, ShaderLib, _rgb, _e1$1, _m1$1, OrthographicCamera, LOD_MIN, EXTRA_LOD_SIGMA, MAX_SAMPLES, _flatCamera, _clearColor, _oldTarget, _oldActiveCubeFace, _oldActiveMipmapLevel, _oldXrEnabled, PHI, INV_PHI, _axisDirections, PMREMGenerator, DepthTexture, emptyTexture, emptyShadowTexture, emptyArrayTexture, empty3dTexture, emptyCubeTexture, arrayCacheF32, arrayCacheI32, mat4array, mat3array, mat2array, SingleUniform, PureArrayUniform, StructuredUniform, RePathPart, WebGLUniforms, COMPLETION_STATUS_KHR, programIdCount, _m0, _v0$1, includePattern, shaderChunkMap, unrollLoopPattern, _id$1, WebGLShaderCache, WebGLShaderStage, nextVersion, MeshDepthMaterial, MeshDistanceMaterial, vertex, fragment, reversedFuncs, ArrayCamera, Group, _moveEvent, WebXRController, _occlusion_vertex, _occlusion_fragment, WebXRDepthSensing, WebXRManager, _e1, _m1, WebGLRenderer, Scene, InterleavedBuffer, _vector$6, InterleavedBufferAttribute, SpriteMaterial, _geometry, _intersectPoint, _worldScale, _mvPosition, _alignedPosition, _rotatedPosition, _viewWorldMatrix, _vA, _vB, _vC, _uvA, _uvB, _uvC, Sprite, _basePosition, _skinIndex, _skinWeight, _vector3, _matrix4, _vertex, _sphere$4, _inverseMatrix$2, _ray$2, SkinnedMesh, Bone, DataTexture, _offsetMatrix, _identityMatrix, Skeleton, InstancedBufferAttribute, _instanceLocalMatrix, _instanceWorldMatrix, _instanceIntersects, _box3, _identity, _mesh$1, _sphere$3, InstancedMesh, LineBasicMaterial, _vStart, _vEnd, _inverseMatrix$1, _ray$1, _sphere$1, _intersectPointOnRay, _intersectPointOnSegment, Line, _start, _end, LineSegments, LineLoop, PointsMaterial, _inverseMatrix, _ray, _sphere, _position$2, Points, CanvasTexture, Curve, EllipseCurve, ArcCurve, tmp, px, py, pz, CatmullRomCurve3, CubicBezierCurve, CubicBezierCurve3, LineCurve, LineCurve3, QuadraticBezierCurve, QuadraticBezierCurve3, SplineCurve, Curves, CurvePath, Path, LatheGeometry, CapsuleGeometry, CircleGeometry, CylinderGeometry, ConeGeometry, PolyhedronGeometry, DodecahedronGeometry, Shape, Earcut, ShapeUtils, ExtrudeGeometry, WorldUVGenerator, IcosahedronGeometry, RingGeometry, SphereGeometry, TorusGeometry, RawShaderMaterial, MeshStandardMaterial, MeshPhysicalMaterial, LineDashedMaterial, Interpolant, CubicInterpolant, LinearInterpolant, DiscreteInterpolant, KeyframeTrack, BooleanKeyframeTrack, ColorKeyframeTrack, NumberKeyframeTrack, QuaternionLinearInterpolant, QuaternionKeyframeTrack, StringKeyframeTrack, VectorKeyframeTrack, AnimationClip, Cache, LoadingManager, DefaultLoadingManager, Loader, loading, HttpError, FileLoader, ImageLoader, TextureLoader, Light, HemisphereLight, _projScreenMatrix$1, _lightPositionWorld$1, _lookTarget$1, LightShadow, SpotLightShadow, SpotLight, _projScreenMatrix, _lightPositionWorld, _lookTarget, PointLightShadow, PointLight, DirectionalLightShadow, DirectionalLight, LoaderUtils, ImageBitmapLoader, Clock, _RESERVED_CHARS_RE, _reservedRe, _wordChar, _wordCharOrDot, _directoryRe, _nodeRe, _objectRe, _propertyRe, _trackRe, _supportedObjectNames, Composite, PropertyBinding, _controlInterpolantsResultBuffer, _matrix, Raycaster;
   var init_three_module = __esm({
     "node_modules/three/build/three.module.js"() {
       REVISION = "170";
@@ -22232,6 +22232,200 @@ void main() {
         }
         static fromJSON(data) {
           return new _PolyhedronGeometry(data.vertices, data.indices, data.radius, data.details);
+        }
+      };
+      DodecahedronGeometry = class _DodecahedronGeometry extends PolyhedronGeometry {
+        static {
+          __name(this, "DodecahedronGeometry");
+        }
+        constructor(radius = 1, detail = 0) {
+          const t = (1 + Math.sqrt(5)) / 2;
+          const r = 1 / t;
+          const vertices = [
+            // (±1, ±1, ±1)
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            -1,
+            -1,
+            1,
+            1,
+            1,
+            -1,
+            -1,
+            1,
+            -1,
+            1,
+            1,
+            1,
+            -1,
+            1,
+            1,
+            1,
+            // (0, ±1/φ, ±φ)
+            0,
+            -r,
+            -t,
+            0,
+            -r,
+            t,
+            0,
+            r,
+            -t,
+            0,
+            r,
+            t,
+            // (±1/φ, ±φ, 0)
+            -r,
+            -t,
+            0,
+            -r,
+            t,
+            0,
+            r,
+            -t,
+            0,
+            r,
+            t,
+            0,
+            // (±φ, 0, ±1/φ)
+            -t,
+            0,
+            -r,
+            t,
+            0,
+            -r,
+            -t,
+            0,
+            r,
+            t,
+            0,
+            r
+          ];
+          const indices = [
+            3,
+            11,
+            7,
+            3,
+            7,
+            15,
+            3,
+            15,
+            13,
+            7,
+            19,
+            17,
+            7,
+            17,
+            6,
+            7,
+            6,
+            15,
+            17,
+            4,
+            8,
+            17,
+            8,
+            10,
+            17,
+            10,
+            6,
+            8,
+            0,
+            16,
+            8,
+            16,
+            2,
+            8,
+            2,
+            10,
+            0,
+            12,
+            1,
+            0,
+            1,
+            18,
+            0,
+            18,
+            16,
+            6,
+            10,
+            2,
+            6,
+            2,
+            13,
+            6,
+            13,
+            15,
+            2,
+            16,
+            18,
+            2,
+            18,
+            3,
+            2,
+            3,
+            13,
+            18,
+            1,
+            9,
+            18,
+            9,
+            11,
+            18,
+            11,
+            3,
+            4,
+            14,
+            12,
+            4,
+            12,
+            0,
+            4,
+            0,
+            8,
+            11,
+            9,
+            5,
+            11,
+            5,
+            19,
+            11,
+            19,
+            7,
+            19,
+            5,
+            14,
+            19,
+            14,
+            4,
+            19,
+            4,
+            17,
+            1,
+            12,
+            14,
+            1,
+            14,
+            5,
+            1,
+            5,
+            9
+          ];
+          super(vertices, indices, radius, detail);
+          this.type = "DodecahedronGeometry";
+          this.parameters = {
+            radius,
+            detail
+          };
+        }
+        static fromJSON(data) {
+          return new _DodecahedronGeometry(data.radius, data.detail);
         }
       };
       Shape = class extends Path {
@@ -36822,8 +37016,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           if (l < 1) continue;
           const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx2;
           const lw = wAt(r, i);
-          if (lw / 2 - 1 - laneOffset(r) < 2.1) continue;
-          for (let s = 3; s < l - 3; s += 5.6) {
+          if (lw / 2 - 1 - laneOffset(r) < 2.1) {
+            acc = 3;
+            continue;
+          }
+          let s = acc;
+          for (; s < l; s += 5.6) {
             if (R() < 0.4) continue;
             const off = lw / 2 - 1;
             const x = a[0] + tx2 * s + nx * off * side, z = a[1] + tz * s + nz * off * side;
@@ -36833,6 +37031,45 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             if (parked.some((p) => Math.hypot(p.x - x, p.z - z) < 4.8)) continue;
             parked.push({ x, z, rot: Math.atan2(tx2, tz) + (side > 0 ? 0 : Math.PI) + (R() - 0.5) * 0.06 });
           }
+          acc = s - l;
+        }
+      }
+    }
+    if (parked.length < 26) {
+      for (const r of city.roadsDrive) {
+        if (parked.length >= 60) break;
+        if (["primary", "motorway", "trunk"].includes(r.t)) continue;
+        let vacc = 4;
+        for (let i = 0; i < r.p.length - 1; i++) {
+          const a = r.p[i], b = r.p[i + 1];
+          const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+          if (l < 0.5) continue;
+          const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx2;
+          const lw = wAt(r, i) || r.w || 5;
+          let s = vacc;
+          for (; s < l; s += 9) {
+            if (R() < 0.55) continue;
+            const side = R() < 0.5 ? 1 : -1;
+            const off = lw / 2 + 1.25;
+            const x = a[0] + tx2 * s + nx * off * side, z = a[1] + tz * s + nz * off * side;
+            if (nearJ(x, z, 10)) continue;
+            if (!city.inEdge(x, z, 6)) continue;
+            if (!freeSpot(x, z, 1.5)) continue;
+            if (parked.some((p) => Math.hypot(p.x - x, p.z - z) < 6)) continue;
+            parked.push({ x, z, rot: Math.atan2(tx2, tz) + (side > 0 ? 0 : Math.PI) });
+          }
+          vacc = s - l;
+        }
+      }
+    }
+    {
+      const cap2 = MOBILE ? 90 : 140;
+      if (parked.length > cap2) {
+        for (let i = parked.length - 1; i > 0; i--) {
+          const j = R() * (i + 1) | 0;
+          const t = parked[i];
+          parked[i] = parked[j];
+          parked[j] = t;
         }
       }
     }
@@ -37339,6 +37576,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(pedTake, "pedTake");
     function hitPed(pd, how) {
+      v4Src = how;
+      try {
+        return hitPed0(pd, how);
+      } finally {
+        v4Src = null;
+      }
+    }
+    __name(hitPed, "hitPed");
+    function hitPed0(pd, how) {
       if (pd.immortal) {
         pd.flinch = 0.4;
         toast("\u201EGewalt st\xF6rt die Schwingungen.\u201C", 1.4);
@@ -37385,8 +37631,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       addHeat(how === "gun" ? 0.45 : 0);
       audio.ouch && audio.ouch(pd.voice, Math.hypot(pd.x - P.x, pd.z - P.z));
     }
-    __name(hitPed, "hitPed");
+    __name(hitPed0, "hitPed0");
     function knockPed(pd, bloody) {
+      if (v4Src && !(pd.down > 0)) v4Knock(pd, v4Src);
       pd.downN = (pd.downN || 0) + (pd.down > 0 ? 0 : 1);
       pd.down = 2.6;
       if (pd.react) endReact(pd, true);
@@ -37881,6 +38128,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     let health = 5, wanted = 0, heat = 0, hiding = false, hideAt = null, bustT = 0, filmT = 0, stolenCar = false;
     const JOB_LIST = [{ title: "LIEFERUNG" }, { title: "KURIER" }, { title: "ABHOLUNG" }];
+    v4RuralPois();
     const foodPois = (D.pois || []).filter((p) => ["fast_food", "restaurant", "cafe", "bar", "pub"].includes(p.a));
     function foodDoor(poi) {
       const f = city.facing(poi.p[0], poi.p[1], 16);
@@ -38121,6 +38369,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(startHide, "startHide");
     function wasted(kind) {
+      v4OnWasted(kind);
       if (job) failJob(kind === "bust" ? "Geschnappt \u2014 der Auftrag ist geplatzt." : "Au\xDFer Gefecht \u2014 der Auftrag ist geplatzt.");
       if (P.train) leaveTrain(true);
       autoStop();
@@ -38602,13 +38851,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(pickFacade, "pickFacade");
     function makeSpot(kind, minD, maxD, sign2, col, sub, filt) {
-      let f = pickFacade(minD, maxD, filt) || pickFacade(40, 700, filt) || pickFacade(20, 900);
+      let f = pickFacade(minD, maxD, filt) || pickFacade(40, 700, filt) || pickFacade(20, 900) || pickFacadeLoose(filt) || pickFacadeLoose();
       if (!f) return null;
       usedSpot.push({ x: f.cx, z: f.cz });
       city.placeSign(f, sign2, col, { w: 6, sub });
       const e = f.e;
       const s = { kind, name: sign2, x: f.cx + e.nx * 2.6, z: f.cz + e.nz * 2.6, f };
-      if (kind === "garage") {
+      if (kind === "garage" || kind === "spray" || kind === "bomb" || kind === "crush") {
         const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
         const W = Math.min(5.2, e.len - 1.2);
         const sh = new Mesh(new BoxGeometry(W, 3, 0.18), new MeshStandardMaterial({ color: 7238520, roughness: 0.55, metalness: 0.4 }));
@@ -38658,6 +38907,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       { id: "knoellchen", title: "KN\xD6LLCHEN!", g: "zack", tier: 0, pay: 95, type: "chore", kind: "knoellchen", n: 4, unit: "Falschparker", act: "Zettel dran", gain: { ans: 1 }, talk: "Das Ordnungsamt ist im Urlaub, ich hab die Zettel. Klingt illegal, ist nur unbeliebt. Vier Falschparker, Zettel hinter den Wischer \u2014 und wenn der Fahrer kommt, bist du nur der Bote." },
       { id: "schicht", title: "LETZTE SCHICHT!", g: "deniz", tier: 2, pay: 300, type: "war", final: true, gain: { ans: 1, str: 1 }, talk: "Letzte Schicht, Kleiner. Der Laden gegen\xFCber macht heute zu \u2014 f\xFCr immer, wenn du das richtig anstellst. Danach geh\xF6rt die Ecke auf der Karte uns, und ich will keine Diskussion." }
     ];
+    for (const k of ["ute", "deniz"]) if (!foodDoors.some((f) => f.giver === k)) {
+      for (const J of JOBS) if (J.g === k) J.g = "chef";
+    }
     const TIER_N = ["leicht", "mittel", "schwer"];
     function tierOpen(t) {
       return t === 0 || t === 1 && (jobsDone >= 2 || stats.ans >= 4) || t === 2 && (jobsDone >= 4 || stats.ans >= 5);
@@ -38905,10 +39157,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       let pay = job.pay;
       const infR = job.reg0, infN = J.type === "chore" ? 2 : J.tier >= 1 ? 2 : 1;
       if (job.payMul) pay = Math.round(pay * job.payMul);
+      pay = Math.round(pay * v4PayMul());
       deal.setCash(deal.state().cash + pay);
       jobsDone++;
       doneIds[J.id] = (doneIds[J.id] || 0) + 1;
       const lines = raiseStats(J.gain || {});
+      if (J.type === "chore" && infR && infR.crew && infR.owner === "rival") v4Resp(infR.crew[0], 6);
       const rv = regions.filter((r) => r.rival && r.owner === "rival");
       if (rv.length) {
         const r = rv[Math.random() * rv.length | 0];
@@ -38985,8 +39239,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         o.speed = 4;
       } else {
         const p = cand.length ? cand[Math.random() * cand.length | 0] : parked[Math.random() * parked.length | 0];
-        if (!p) return null;
-        o = addCar(def.type, def.color, p.x, p.z, p.rot, false);
+        const q = p || v4RoadSpot(gd, 90, 340) || v4RoadSpot(gd, 25, 700);
+        if (!q) return null;
+        o = addCar(def.type, def.color, q.x, q.z, q.rot, false);
       }
       if (def.hp) {
         o.hp = o.maxHp = def.hp;
@@ -39093,6 +39348,21 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           c.push({ x, z });
         }
       }
+      if (c.length < n * 2) {
+        for (const B of city.buildings) {
+          if (B.h < 2.5) continue;
+          for (const e of B.edges) {
+            if (e.street || e.len < 4) continue;
+            if (r && !inReg(r, e.mx, e.mz)) continue;
+            if (!city.inEdge(e.mx, e.mz, 6)) continue;
+            const x = e.mx + e.nx * 1.4, z = e.mz + e.nz * 1.4;
+            if (insideAny(x, z)) continue;
+            const nr = city.nearRoad(x, z);
+            if (!nr || nr.d > 24) continue;
+            c.push({ x, z });
+          }
+        }
+      }
       return spaced(shuffleA(c), n, 16).map((q) => walkable(q.x, q.z));
     }
     __name(choreFacades, "choreFacades");
@@ -39104,8 +39374,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       return L[Math.random() * Math.min(2, L.length) | 0];
     }
     __name(choreRegion, "choreRegion");
-    function setupChore(J) {
-      const r = choreRegion();
+    function setupChore0(J, r) {
       if (!r) return false;
       let pts = [];
       const K = J.kind;
@@ -39152,7 +39421,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       job.count = 0;
       return true;
     }
-    __name(setupChore, "setupChore");
+    __name(setupChore0, "setupChore0");
     const CHORE_MSG = {
       prospekt: ["\u201EKeine Werbung\u201C steht drauf. Egal, rein damit.", "Der Kasten klemmt. Mit Gef\xFChl. Und mit dem Fu\xDF.", "Hinter der T\xFCr bellt was Gro\xDFes. Weiter.", "Eine Rentnerin am Fenster merkt sich dein Gesicht.", "Fertig. Die Prospekte liegen jetzt \xFCberall \u2014 nur nicht im Altpapier."],
       tonnen: ["Tonne an den Rand. Riecht nach Montag.", "Die ist schwerer als gedacht. Nicht fragen.", "Da hat einer eine Bowlingkugel entsorgt. Warum auch immer.", "Steht. Die Stra\xDFe dankt es dir nicht."],
@@ -39498,8 +39767,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(spawnThugs, "spawnThugs");
     function spawnTraitor(gd) {
       const o = makeSpecial(gd.x + 3, gd.z + 3, { jacket: [0.85, 0.78, 0.2], shirt: [0.2, 0.2, 0.2], pants: [0.3, 0.25, 0.2], hair: [0.3, 0.2, 0.1], skin: [0.86, 0.68, 0.52], shoes: [0.3, 0.2, 0.1], open: true, long: false, beanie: true, coat: true }, 1.42);
-      const dests = foodDoors.filter((f) => f.role === "heal" && Math.hypot(f.x - gd.x, f.z - gd.z) > 110 && Math.hypot(f.x - gd.x, f.z - gd.z) < 330);
-      const to = dests.find((f) => f.rivalOf) || dests[Math.random() * dests.length | 0];
+      let dests = foodDoors.filter((f) => f.role === "heal" && Math.hypot(f.x - gd.x, f.z - gd.z) > 110 && Math.hypot(f.x - gd.x, f.z - gd.z) < 330);
+      if (!dests.length) dests = foodDoors.filter((f) => f !== gd && Math.hypot(f.x - gd.x, f.z - gd.z) > 50 && Math.hypot(f.x - gd.x, f.z - gd.z) < 700);
+      let to = dests.find((f) => f.rivalOf) || dests[Math.random() * dests.length | 0];
+      if (!to) {
+        const q = v4RoadSpot(gd, 110, 420) || v4RoadSpot(gd, 50, 700);
+        if (q) to = { x: q.x, z: q.z, v4: true };
+      }
       if (!to) {
         scene.remove(o.g);
         peds.splice(peds.indexOf(o), 1);
@@ -40670,7 +40944,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(bagData, "bagData");
     function statData() {
-      return { level: level(), jobs: jobsDone, list: STAT_DEF.map(([k, n, d]) => ({ k, name: n, desc: d, v: stats[k] })), unlocks: UNLOCKS.map((u) => ({ name: u.name, need: Object.entries(u.need).map(([k, v]) => STAT_DEF.find((d) => d[0] === k)[1] + " " + v).join(" + "), ok: !!gotUnlock[u.k] })), regions: regions.filter((r) => r.owner === "mine").length, regionsTotal: regions.filter((r) => r.rival || r.owner === "mine").length };
+      return { level: level(), jobs: jobsDone, list: STAT_DEF.map(([k, n, d]) => ({ k, name: n, desc: d, v: stats[k] })), unlocks: UNLOCKS.map((u) => ({ name: u.name, need: Object.entries(u.need).map(([k, v]) => STAT_DEF.find((d) => d[0] === k)[1] + " " + v).join(" + "), ok: !!gotUnlock[u.k] })), regions: regions.filter((r) => r.owner === "mine").length, regionsTotal: regions.filter((r) => r.rival || r.owner === "mine").length, v4: v4Stats() };
     }
     __name(statData, "statData");
     function snapshot() {
@@ -40680,6 +40954,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         v: 1,
         t: Date.now(),
         v3: v3Save(),
+        v4: v4Save(),
         P: { x: pos.x, z: pos.z, rot: P.car ? P.car.rot : P.rot },
         cash: ds.cash,
         inv: ds.inv,
@@ -40714,6 +40989,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           v3Load(S.v3);
         } catch (e) {
           console.error("v3Load", e);
+        }
+        try {
+          v4Load(S.v4);
+        } catch (e) {
+          console.error("v4Load", e);
         }
         Object.assign(stats, S.stats || {});
         jobsDone = S.jobsDone | 0;
@@ -42046,7 +42326,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         } else if (ta) {
           let want = Math.atan2(TOUCH.x, TOUCH.y);
           if (c.wantA == null) c.wantA = want;
-          c.wantA += wrapA(want - c.wantA) * Math.min(1, dt * 16);
+          c.wantA += wrapA(want - c.wantA) * Math.min(1, dt * 10);
           want = c.wantA;
           const onRoad = city.nearRoad(c.x, c.z);
           const on = onRoad && onRoad.d < onRoad.w / 2 + 1.2;
@@ -42065,7 +42345,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             if (c.speed < vmax) c.speed += AC2 * Math.min(1, TOUCH.mag + 0.2) * dt;
             else c.speed -= Math.min(c.speed - vmax, 10 * dt);
             if (c.speed < -0.3) c.speed += 16 * dt;
-            yawCmd = clampY(d * 5.2);
+            yawCmd = clampY(d * (asp0 > 14 ? 3.9 : 4.6));
           } else {
             if (c.speed > 0.5) {
               c.speed -= 16 * dt;
@@ -42387,7 +42667,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         state.deal = true;
         state.dealLabel = ja.label;
         state._dealAct = ja.act;
-      } else if (v3p = v3Prompt()) {
+      } else if (v3p = v4Prompt() || v3Prompt()) {
         pr = v3p.text;
         if (v3p.act) {
           state.deal = true;
@@ -45075,7 +45355,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(propSignText, "propSignText");
     function propSub(p) {
-      return p.owner === "free" ? p.price + " \u20AC \xB7 " + p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" : p.owner === "mine" ? p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" : p.kind + " \xB7 Finger weg";
+      return p.owner === "free" ? p.price + " \u20AC \xB7 " + p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" : p.owner === "mine" ? p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" + (p.ten === false ? " \xB7 LEER" : "") : p.kind + " \xB7 Finger weg";
     }
     __name(propSub, "propSub");
     function setPropSign(p) {
@@ -45157,13 +45437,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (n <= 0) return;
       propRentTick.k = k;
       const mine = PROPS.filter((p) => p.owner === "mine");
-      if (mine.length) {
-        const sum = Math.round(mine.reduce((s, p) => s + p.rent, 0) * n / 2);
-        deal.setCash(deal.state().cash + sum);
-        toast("Miete eingegangen: +" + sum + " \u20AC (" + mine.length + (mine.length > 1 ? " H\xE4user" : " Haus") + ")", 2.4);
-        audio.kaching && audio.kaching();
-        updateHoodHud();
-      }
+      if (mine.length) v4RentPayout(mine, n);
       const kr = PROPS.filter((p) => p.owner === "kralle");
       KR.cash += Math.round((kr.reduce((s, p) => s + p.rent, 0) + RFIELDS.filter((f) => !f.marked).length * 60) * n / 2);
     }
@@ -45176,6 +45450,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       deal.setCash(c - p.price);
       p.owner = "mine";
+      v4OnBuy(p);
       setPropSign(p);
       audio.kaching && audio.kaching();
       toast(p.kind + " gekauft! Miete " + p.rent + " \u20AC/Tag l\xE4uft \xFCber die Uhr.", 2.6);
@@ -45474,7 +45749,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     function setupZoneChore(J) {
       const pts = [];
       for (let i = 0; i < J.n * 4 && pts.length < J.n; i++) {
-        const p = zonePoint(J.zk, { road: 30, free: 1 });
+        const p = zonePoint(J.zk, { road: 30, free: 1 }) || (i >= J.n ? v4OpenSpot(P.car || P, 30, 380) : null);
         if (!p) continue;
         if (pts.some((q) => Math.hypot(q.x - p.x, q.z - p.z) < 20)) continue;
         pts.push({ x: p.x, z: p.z });
@@ -45503,7 +45778,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
       }
       if (!v || bd > 400) {
-        const p = nearSpot(job.gd, 8) || spotOnSidewalk(job.gd, 6, 40);
+        const p = nearSpot(job.gd, 8) || spotOnSidewalk(job.gd, 6, 40) || nearSpot(job.gd, 18) || v4RoadSpot(job.gd, 4, 120);
         if (!p) return false;
         v = spawnVeh(J.veh[0], p, null, J.veh[0] === "mtb" ? 3186752 : void 0);
         if (!v) return false;
@@ -45511,10 +45786,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       v.vRole = "job";
       job.veh = v;
       const stops = [];
-      const B = J.toPlanes ? null : zonePoint(J.to, { road: 40, free: 2 });
+      const B = J.toPlanes ? null : zonePoint(J.to, { road: 40, free: 2 }) || v4OpenSpot(job.gd, 60, 380);
       for (let i = 0; i < J.n; i++) {
         if (J.cp) {
-          const p = zonePoint(J.to, { road: 30, free: 1 });
+          const p = zonePoint(J.to, { road: 30, free: 1 }) || v4OpenSpot(job.gd, 40, 380);
           if (p) stops.push({ x: p.x, z: p.z, k: "cp", label: "Checkpunkt" });
           continue;
         }
@@ -45524,7 +45799,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         const to = J.toPlanes ? PLANES[i % PLANES.length] && { x: PLANES[i % PLANES.length].x + Math.cos(PLANES[i % PLANES.length].rot) * 5, z: PLANES[i % PLANES.length].z - Math.sin(PLANES[i % PLANES.length].rot) * 5 } : B;
         if (!J.dropOnly) {
-          const a = zonePoint(J.from, { road: 40, free: 2 });
+          const a = zonePoint(J.from, { road: 40, free: 2 }) || v4OpenSpot(job.gd, 40, 380);
           if (a) stops.push({ x: a.x, z: a.z, k: "load", label: "Aufladen" });
         }
         if (to) stops.push({ x: to.x, z: to.z, k: "drop", label: J.id === "tanken" ? "Betanken" : "Abladen" });
@@ -45730,6 +46005,1518 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(skidStep, "skidStep");
     let v3Seeded = false;
+    function v4RuralPois() {
+      try {
+        const FOOD = ["fast_food", "restaurant", "cafe", "bar", "pub"];
+        const E = city.edge;
+        if (!E) return;
+        const N = 3;
+        const w = (E.maxx - E.minx) / N, h = (E.maxz - E.minz) / N;
+        const cellOf = /* @__PURE__ */ __name((x, z) => Math.min(N - 1, Math.max(0, Math.floor((x - E.minx) / w))) + N * Math.min(N - 1, Math.max(0, Math.floor((z - E.minz) / h))), "cellOf");
+        const food = (D.pois || []).filter((p) => FOOD.includes(p.a) && city.inEdge(p.p[0], p.p[1], 2));
+        const have = new Array(N * N).fill(0);
+        for (const p of food) have[cellOf(p.p[0], p.p[1])]++;
+        const hd = hub ? hub.door : { x: 0, z: 0 };
+        const hubCell = cellOf(hd.x, hd.z);
+        const givable = /* @__PURE__ */ __name(() => food.concat(picked.map((q) => ({ p: [q.x, q.z] }))).filter((p) => {
+          const d = Math.hypot(p.p[0] - hd.x, p.p[1] - hd.z);
+          return d > 60 && d < 420;
+        }).length, "givable");
+        const picked = [];
+        if (food.length >= 8 && have.filter((v, i) => v > 0 && i !== hubCell).length >= 5 && givable() >= 3) return;
+        const R5 = rng(4242);
+        const cands = [];
+        const usedB = /* @__PURE__ */ new Set();
+        for (const B of city.buildings) {
+          if (B.h < 2.5 || (B.area || 0) < 30) continue;
+          for (const e of B.edges) {
+            if (e.len < 4.5) continue;
+            const x = e.mx + e.nx * 1.2, z = e.mz + e.nz * 1.2;
+            if (!city.inEdge(x, z, 14)) continue;
+            const nr = city.nearRoad(x, z);
+            if (!nr || nr.d > 18) continue;
+            if (insideAny(x, z)) continue;
+            cands.push({ B, e, x, z, d: Math.hypot(x - hd.x, z - hd.z), c: cellOf(x, z), rd: nr.d + R5() * 6 });
+          }
+        }
+        cands.sort((a, b) => a.rd - b.rd);
+        const cands2 = [];
+        for (const B of city.buildings) {
+          if (B.h < 2.2) continue;
+          for (const e of B.edges) {
+            if (e.len < 3.5) continue;
+            const x = e.mx + e.nx * 1.2, z = e.mz + e.nz * 1.2;
+            if (!city.inEdge(x, z, 10)) continue;
+            const nr = city.nearRoad(x, z);
+            if (!nr || nr.d > 36) continue;
+            if (insideAny(x, z)) continue;
+            cands2.push({ B, e, x, z, d: Math.hypot(x - hd.x, z - hd.z), c: cellOf(x, z), rd: nr.d });
+          }
+        }
+        cands2.sort((a, b) => a.rd - b.rd);
+        const ok = /* @__PURE__ */ __name((c) => !usedB.has(c.B) && c.d > 32 && !picked.some((q) => Math.hypot(q.x - c.x, q.z - c.z) < 60) && !food.some((p) => Math.hypot(p.p[0] - c.x, p.p[1] - c.z) < 45), "ok");
+        const take = /* @__PURE__ */ __name((c) => {
+          picked.push(c);
+          usedB.add(c.B);
+          have[c.c]++;
+        }, "take");
+        for (let cell = 0; cell < N * N; cell++) {
+          if (have[cell] > 0 || cell === hubCell) continue;
+          const c = cands.find((q) => q.c === cell && ok(q));
+          if (c) take(c);
+        }
+        for (const c of cands) {
+          if (givable() >= 3) break;
+          if (c.d > 60 && c.d < 420 && ok(c)) take(c);
+        }
+        for (const c of cands) {
+          if (food.length + picked.length >= 7) break;
+          if (ok(c)) take(c);
+        }
+        if (food.length + picked.length < 6) {
+          const ok2 = /* @__PURE__ */ __name((c) => !usedB.has(c.B) && c.d > 22 && !picked.some((q) => Math.hypot(q.x - c.x, q.z - c.z) < 30) && !food.some((p) => Math.hypot(p.p[0] - c.x, p.p[1] - c.z) < 28), "ok2");
+          for (const c of cands2) {
+            if (food.length + picked.length >= 6) break;
+            if (ok2(c)) take(c);
+          }
+        }
+        const NAMES = ["DORFKRUG", "LANDGASTHOF", "HOF-CAF\xC9", "SCH\xDCTZENHALLE", "BAUERNSTUBE", "TANKE-BISTRO", "KIRMES-GRILL", "MILCHBAR", "J\xC4GERST\xDCBCHEN", "KEGELBAHN", "STAMMTISCH"];
+        const COLS = ["#ffb14a", "#ff6a5a", "#7fe0ff", "#9dff7a", "#ffd23f", "#ff8fd0"];
+        picked.forEach((c, i) => {
+          const nm = NAMES[i % NAMES.length];
+          D.pois.push({ p: [c.x, c.z], a: "restaurant", n: nm, v4: true });
+          try {
+            city.placeSign({ B: c.B, e: c.e, cx: c.e.mx, cz: c.e.mz }, nm, COLS[i % COLS.length], { w: Math.min(6, Math.max(4, c.e.len - 0.6)), sub: "GASTST\xC4TTE \xB7 ESSEN" });
+          } catch (_) {
+          }
+        });
+        if (picked.length) console.log("V04 Dorf-Lokale:", picked.length, "(OSM hatte", food.length, ")");
+      } catch (e) {
+        console.warn("v4RuralPois", e);
+      }
+    }
+    __name(v4RuralPois, "v4RuralPois");
+    function pickFacadeLoose(filt) {
+      const c0 = hub ? hub.door : { x: 0, z: 0 };
+      for (const [RD, US, FD, LN] of [[14, 30, 12, 4.5], [24, 18, 9, 4], [34, 11, 7, 3.2], [48, 8, 6, 2.6]]) {
+        const cand = [];
+        for (const B of city.buildings) {
+          if (B.h < 2.2) continue;
+          for (const e of B.edges) {
+            if (e.len < LN) continue;
+            const mx = (e.A[0] + e.B[0]) / 2, mz = (e.A[1] + e.B[1]) / 2;
+            if (!city.inEdge(mx, mz, 8)) continue;
+            const nr = city.nearRoad(mx + e.nx * 3, mz + e.nz * 3);
+            if (!nr || nr.d > RD) continue;
+            if (insideAny(mx + e.nx * 2.6, mz + e.nz * 2.6)) continue;
+            if (foodDoors.some((f) => Math.hypot(f.x - mx, f.z - mz) < FD)) continue;
+            if (usedSpot.some((u) => Math.hypot(u.x - mx, u.z - mz) < US)) continue;
+            if (filt && !filt(B, e)) continue;
+            cand.push({ B, e, cx: mx, cz: mz, d: Math.abs(Math.hypot(mx - c0.x, mz - c0.z) - 160) + nr.d * 4 });
+          }
+        }
+        if (cand.length) {
+          cand.sort((a, b) => a.d - b.d);
+          return cand[0];
+        }
+      }
+      return null;
+    }
+    __name(pickFacadeLoose, "pickFacadeLoose");
+    function v4RoadSpot(c, minD, maxD) {
+      const RD = city.roadsDrive;
+      if (!RD || !RD.length) return null;
+      for (let t = 0; t < 160; t++) {
+        const r = RD[Math.random() * RD.length | 0];
+        if (!r || r.p.length < 2) continue;
+        const i = Math.random() * (r.p.length - 1) | 0;
+        const a = r.p[i];
+        let j = i + 1;
+        while (j < r.p.length - 1 && Math.hypot(r.p[j][0] - a[0], r.p[j][1] - a[1]) < 10) j++;
+        const b = r.p[j];
+        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (l < 6) continue;
+        const s = 3 + Math.random() * (l - 6), tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx2;
+        const x0 = a[0] + tx2 * s, z0 = a[1] + tz * s;
+        const d = Math.hypot(x0 - c.x, z0 - c.z);
+        if (d < minD || d > maxD) continue;
+        const lw = wAt(r, i) || r.w || 5;
+        const side = Math.random() < 0.5 ? 1 : -1;
+        for (const off of [lw / 2 - 1, lw / 2 + 1.3, lw / 2 + 2.6]) {
+          const x = x0 + nx * off * side, z = z0 + nz * off * side;
+          if (!city.inEdge(x, z, 6)) continue;
+          if (insideAny(x, z) || isWater(x, z)) continue;
+          if (!freeSpot(x, z, 1.3)) continue;
+          if (cars.some((q) => Math.abs(q.x - x) < 4 && Math.abs(q.z - z) < 4)) continue;
+          return { x, z, rot: Math.atan2(tx2, tz) + (side > 0 ? 0 : Math.PI) };
+        }
+      }
+      return null;
+    }
+    __name(v4RoadSpot, "v4RoadSpot");
+    function v4OpenSpot(c, minD, maxD) {
+      const RD = city.roadsDrive;
+      if (!RD || !RD.length) return null;
+      for (let t = 0; t < 140; t++) {
+        const r = RD[Math.random() * RD.length | 0];
+        if (!r || r.p.length < 2) continue;
+        const i = Math.random() * (r.p.length - 1) | 0;
+        const a = r.p[i];
+        let j = i + 1;
+        while (j < r.p.length - 1 && Math.hypot(r.p[j][0] - a[0], r.p[j][1] - a[1]) < 6) j++;
+        const b = r.p[j];
+        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (l < 4) continue;
+        const s = Math.random() * l, tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx2;
+        const off = (r.w || 5) / 2 + 3 + Math.random() * 12;
+        const side = Math.random() < 0.5 ? 1 : -1;
+        const x = a[0] + tx2 * s + nx * off * side, z = a[1] + tz * s + nz * off * side;
+        const d = Math.hypot(x - c.x, z - c.z);
+        if (d < minD || d > maxD) continue;
+        if (!city.inEdge(x, z, 12) || insideAny(x, z) || isWater(x, z)) continue;
+        if (!freeSpot(x, z, 1)) continue;
+        return { x, z };
+      }
+      return null;
+    }
+    __name(v4OpenSpot, "v4OpenSpot");
+    function setupChore(J) {
+      const first = choreRegion();
+      const rest = regions.slice().sort((a, b) => Math.hypot(a.cx - P.x, a.cz - P.z) - Math.hypot(b.cx - P.x, b.cz - P.z));
+      const order = [first].concat(rest.filter((r) => r !== first && r.owner !== "mine"), rest.filter((r) => r !== first && r.owner === "mine"));
+      for (const r of order) {
+        if (r && setupChore0(J, r)) return true;
+      }
+      return false;
+    }
+    __name(setupChore, "setupChore");
+    var v4Src = null;
+    var V4 = { mult: 1, amokDone: 0, bonusDone: 0, resp: {}, spots: {}, ramps: [], ramp: null, want: [], wantDay: -1, wantGot: {}, saveT: 0, ambT: 60, crushing: [], warnT: 0 };
+    const V4_VAL = { sedan: 150, hatch: 120, kombi: 160, van: 220, taxi: 200, coupe: 260, truck: 300, police: 450 };
+    const V4_NAME = { sedan: "Limousine", hatch: "Kleinwagen", kombi: "Kombi", van: "Lieferwagen", taxi: "Taxi", coupe: "Coup\xE9", truck: "Laster", police: "Streifenwagen" };
+    function v4PlainCar(c) {
+      return c && !c.veh && !c.tank && !c.wrecked && CAR_TYPES[c.type] && c.type !== "tank";
+    }
+    __name(v4PlainCar, "v4PlainCar");
+    function v4Pad(s, col) {
+      const pad = new Mesh(new RingGeometry(2.6, 3.1, 4, 1), new MeshBasicMaterial({ color: col, transparent: true, opacity: 0.6, toneMapped: false, side: DoubleSide, depthWrite: false }));
+      pad.rotation.set(-Math.PI / 2, 0, Math.PI / 4);
+      pad.position.set(s.x, 0.09, s.z);
+      scene.add(pad);
+      s.pad2 = pad;
+    }
+    __name(v4Pad, "v4Pad");
+    function v4Seed() {
+      if (V4.seeded) return;
+      V4.seeded = true;
+      const mk = /* @__PURE__ */ __name((k, a, b, sign2, col, sub, filt) => {
+        try {
+          return makeSpot(k, a, b, sign2, col, sub, filt);
+        } catch (e) {
+          console.warn("v4 spot", k, e);
+          return null;
+        }
+      }, "mk");
+      V4.spots.spray = mk("spray", 90, 460, "LACK & WEG", "#ff3d9a", "UMLACKIEREN \xB7 FAHNDUNG WEG", (B) => B.h < 16);
+      V4.spots.bomb = mk("bomb", 170, 620, "Z\xDCNDKERZE", "#ff8a3a", "AUTOBOMBEN \xB7 KEINE QUITTUNG", (B) => B.h < 16);
+      V4.spots.crush = mk("crush", 150, 650, "SCHROTTPRESSE", "#c8d0d8", "AUTOS REIN \xB7 GELD RAUS", (B) => B.h < 18);
+      V4.spots.save = mk("save", 25, 240, "KAPELLE", "#fff2b0", "HIER WIRD GESPEICHERT");
+      if (V4.spots.spray) v4Pad(V4.spots.spray, 16727450);
+      if (V4.spots.bomb) v4Pad(V4.spots.bomb, 16747066);
+      if (V4.spots.crush) v4Pad(V4.spots.crush, 13160664);
+      if (V4.spots.save) {
+        const s = V4.spots.save;
+        const r = new Mesh(new RingGeometry(1, 1.35, 32), new MeshBasicMaterial({ color: 16773808, transparent: true, opacity: 0.8, toneMapped: false, side: DoubleSide, depthWrite: false }));
+        r.rotation.x = -Math.PI / 2;
+        r.position.set(s.x, 0.09, s.z);
+        scene.add(r);
+        s.ring = r;
+      }
+      v4SeedRamps();
+      v4NewWant(true);
+      v4PropInit();
+      try {
+        v4Deco();
+      } catch (e) {
+        console.warn("v4 deco", e);
+      }
+      try {
+        v4Birds();
+      } catch (e) {
+        console.warn("v4 birds", e);
+      }
+    }
+    __name(v4Seed, "v4Seed");
+    function v4Respray(c, hex) {
+      const u = c.g.userData;
+      const nc = new Color(hex);
+      if (u.fromSet) {
+        c.g.traverse((o) => {
+          if (o.isMesh && o.name === "Paint") {
+            o.material = o.material.clone();
+            o.material.color.copy(nc);
+          }
+        });
+      } else if (u.body && u.body.geometry && u.paint) {
+        const old = u.paint;
+        const ca = u.body.geometry.attributes.color;
+        if (ca) {
+          const a = ca.array;
+          for (let i = 0; i < a.length; i += 3) {
+            for (const k of [1, 0.8, 0.75, 0.72, 0.7]) {
+              const r = old[0] * k, g = old[1] * k, b = old[2] * k;
+              if (Math.abs(a[i] - r) < 4e-3 && Math.abs(a[i + 1] - g) < 4e-3 && Math.abs(a[i + 2] - b) < 4e-3) {
+                a[i] = nc.r * k;
+                a[i + 1] = nc.g * k;
+                a[i + 2] = nc.b * k;
+                break;
+              }
+            }
+          }
+          ca.needsUpdate = true;
+        }
+      }
+      u.paint = [nc.r, nc.g, nc.b];
+      c.color = hex;
+    }
+    __name(v4Respray, "v4Respray");
+    function v4SprayAct() {
+      const c = P.car;
+      const cost = 150 + 50 * wanted;
+      if (deal.state().cash < cost) {
+        toast("Umlackieren kostet " + cost + " \u20AC.", 1.6);
+        return { ok: false };
+      }
+      deal.setCash(deal.state().cash - cost);
+      let col;
+      do {
+        col = CAR_COLORS[Math.random() * CAR_COLORS.length | 0];
+      } while (col === c.color && CAR_COLORS.length > 1);
+      c.speed = 0;
+      audio.sprayOn && audio.sprayOn();
+      setTimeout(() => audio.sprayOff && audio.sprayOff(), 900);
+      for (let i = 0; i < 10; i++) emit("smoke", c.x + (Math.random() - 0.5) * 2, 0.8 + Math.random(), c.z + (Math.random() - 0.5) * 2, { a: 0.35, s0: 1.2, s1: 3.2, max: 1.6 });
+      v4Respray(c, col);
+      heat = 0;
+      wanted = 0;
+      bustT = 0;
+      stolenCar = false;
+      c.stolen = false;
+      if (c.police) {
+        c.police = false;
+      }
+      updateHoodHud();
+      V4.sprayCool = 4;
+      return { ok: true, msg: "Frisch lackiert. Die Bullen suchen jetzt ein anderes Auto. \u2212" + cost + " \u20AC" };
+    }
+    __name(v4SprayAct, "v4SprayAct");
+    function v4BombAct() {
+      const c = P.car;
+      const cost = 300;
+      if (deal.state().cash < cost) {
+        toast("Die Bombe kostet " + cost + " \u20AC.", 1.6);
+        return { ok: false };
+      }
+      deal.setCash(deal.state().cash - cost);
+      c.v4bomb = true;
+      audio.clang && audio.clang();
+      updateHoodHud();
+      return { ok: true, msg: "Bombe eingebaut. Taste \u201EScharf\u201C \u2014 dann 5 Sekunden, raus da!" };
+    }
+    __name(v4BombAct, "v4BombAct");
+    function v4ArmBomb() {
+      const c = P.car;
+      if (!c || !c.v4bomb) return { ok: false };
+      c.v4bomb = false;
+      c.v4fuse = 5;
+      c.v4beep = 0;
+      toast("Die Bombe tickt! 5 Sekunden \u2014 raus da!", 2.2);
+      audio.click && audio.click();
+      return { ok: true };
+    }
+    __name(v4ArmBomb, "v4ArmBomb");
+    function v4CrushValue(c) {
+      const base = V4_VAL[c.type] || 140;
+      return Math.round((base * 0.45 + 40) * Math.max(0.3, (c.hp || 1) / (c.maxHp || 1)) / 5) * 5;
+    }
+    __name(v4CrushValue, "v4CrushValue");
+    function v4CrushAct() {
+      const c = P.car;
+      if (c === myCar) {
+        toast("Deine eigene Karre? Nee.", 1.4);
+        return { ok: false };
+      }
+      const v = v4CrushValue(c);
+      exitCar(false);
+      const s = V4.spots.crush;
+      tmp2.x = s.x + 3.5;
+      tmp2.z = s.z;
+      ejectFromBuildings(tmp2, 0.5);
+      P.x = tmp2.x;
+      P.z = tmp2.z;
+      player.position.set(P.x, 0, P.z);
+      c.noEnter = true;
+      c.ai = false;
+      c.speed = 0;
+      V4.crushing.push({ c, t: 0 });
+      deal.setCash(deal.state().cash + v);
+      heat = Math.max(0, heat - 1);
+      wanted = Math.floor(heat);
+      audio.clang && audio.clang();
+      audio.crash && audio.crash(18);
+      updateHoodHud();
+      return { ok: true, msg: "Gepresst. +" + v + " \u20AC \u2014 und die Beweise sind ein W\xFCrfel." };
+    }
+    __name(v4CrushAct, "v4CrushAct");
+    function v4NewWant(first) {
+      const d = dayNow();
+      if (!first && V4.wantDay === d) return;
+      V4.wantDay = d;
+      const pool = ["sedan", "hatch", "kombi", "van", "taxi", "coupe", "truck", "police"];
+      shuffleA(pool);
+      V4.want = pool.slice(0, 4);
+      V4.wantGot = {};
+    }
+    __name(v4NewWant, "v4NewWant");
+    function v4WantAct(c) {
+      const v = Math.round((V4_VAL[c.type] || 150) * (0.55 + 0.45 * Math.max(0, (c.hp || 1) / (c.maxHp || 1))) / 5) * 5;
+      exitCar(false);
+      const i = cars.indexOf(c);
+      if (i >= 0) cars.splice(i, 1);
+      scene.remove(c.g);
+      V4.wantGot[c.type] = true;
+      let msg = "Export: " + V4_NAME[c.type] + " abgeliefert. +" + v + " \u20AC";
+      let pay = v;
+      if (V4.want.every((t) => V4.wantGot[t])) {
+        pay += 1e3;
+        V4.bonusDone++;
+        msg = "Export-Liste komplett! +" + v + " \u20AC und 1000 \u20AC Bonus. Morgen gibt\u2019s eine neue.";
+        audio.levelUp && audio.levelUp();
+      }
+      deal.setCash(deal.state().cash + pay);
+      heat = Math.max(0, heat - 0.8);
+      wanted = Math.floor(heat);
+      audio.kaching && audio.kaching();
+      updateHoodHud();
+      if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 600);
+      return { ok: true, msg };
+    }
+    __name(v4WantAct, "v4WantAct");
+    function v4SkullTex(col) {
+      const cv2 = document.createElement("canvas");
+      cv2.width = cv2.height = 128;
+      const g = cv2.getContext("2d");
+      g.fillStyle = "rgba(0,0,0,.55)";
+      g.beginPath();
+      g.arc(64, 64, 60, 0, 7);
+      g.fill();
+      g.strokeStyle = col;
+      g.lineWidth = 8;
+      g.beginPath();
+      g.arc(64, 64, 54, 0, 7);
+      g.stroke();
+      g.fillStyle = "#f4f0e6";
+      g.beginPath();
+      g.arc(64, 56, 30, 0, 7);
+      g.fill();
+      g.fillRect(46, 70, 36, 20);
+      g.fillStyle = "#111";
+      g.beginPath();
+      g.arc(52, 56, 9, 0, 7);
+      g.arc(76, 56, 9, 0, 7);
+      g.fill();
+      g.beginPath();
+      g.moveTo(64, 66);
+      g.lineTo(59, 75);
+      g.lineTo(69, 75);
+      g.closePath();
+      g.fill();
+      for (let x = 50; x < 80; x += 7) g.fillRect(x, 82, 3, 8);
+      const t = new CanvasTexture(cv2);
+      t.colorSpace = SRGBColorSpace;
+      return t;
+    }
+    __name(v4SkullTex, "v4SkullTex");
+    const V4_RAMP_DEF = [{ kind: "smg", name: "Maschinenpistole", need: 15, time: 30, col: "#ff3a2a" }, { kind: "shotgun", name: "Schrotflinte", need: 12, time: 30, col: "#ffd23f" }, { kind: "car", name: "Karre", need: 10, time: 35, col: "#3ad0ff" }];
+    function v4SeedRamps() {
+      for (const q of V4.ramps) {
+        if (q.m) scene.remove(q.m);
+      }
+      V4.ramps = [];
+      const c0 = hub ? hub.door : { x: P.x, z: P.z };
+      for (const d of V4_RAMP_DEF) {
+        let p = null;
+        for (let t = 0; t < 6 && !p; t++) {
+          p = (d.kind === "car" ? v4RoadSpot(c0, 90, 420) : goodPaths.length ? spotOnSidewalk(c0, 80, 420) : null) || v4OpenSpot(c0, 70, 450);
+          if (p && V4.ramps.some((q) => Math.hypot(q.x - p.x, q.z - p.z) < 70)) p = null;
+        }
+        if (!p) continue;
+        const m = new Sprite(new SpriteMaterial({ map: v4SkullTex(d.col), transparent: true, depthWrite: false }));
+        m.scale.set(1.9, 1.9, 1);
+        m.position.set(p.x, 1.5, p.z);
+        scene.add(m);
+        V4.ramps.push({ ...d, x: p.x, z: p.z, m, done: false });
+      }
+    }
+    __name(v4SeedRamps, "v4SeedRamps");
+    function v4RampStart(q) {
+      if (job) {
+        if (V4.warnT <= 0) {
+          toast("Amok geht erst ohne laufenden Auftrag.", 1.6);
+          V4.warnT = 5;
+        }
+        return;
+      }
+      const R2 = { q, t: q.time, need: q.need, kills: 0, kind: q.kind };
+      if (q.kind !== "car") {
+        R2.prev = P.weapons[q.kind] || 0;
+        R2.prevW = P.weapon;
+        P.weapons[q.kind] = 999;
+        setWeapon(q.kind);
+      }
+      V4.ramp = R2;
+      q.done = true;
+      scene.remove(q.m);
+      q.m = null;
+      audio.bell && audio.bell();
+      audio.siren && audio.siren();
+      toast("AMOK! " + q.need + (q.kind === "car" ? " Leute \xFCberfahren" : " Leute umhauen") + " in " + q.time + " Sekunden!", 2.6);
+      v4AmokHud();
+    }
+    __name(v4RampStart, "v4RampStart");
+    function v4RampEnd(ok) {
+      const R2 = V4.ramp;
+      if (!R2) return;
+      V4.ramp = null;
+      if (R2.kind !== "car") {
+        P.weapons[R2.kind] = R2.prev || 0;
+        const L = ownedWeapons();
+        setWeapon(L.includes(R2.prevW) ? R2.prevW : L[L.length - 1] ?? null);
+      }
+      if (ok) {
+        const bonus = 200 + 150 * V4.mult;
+        V4.mult = Math.min(5, V4.mult + 1);
+        V4.amokDone++;
+        deal.setCash(deal.state().cash + bonus);
+        audio.jingle && audio.jingle();
+        setTimeout(() => audio.levelUp && audio.levelUp(), 400);
+        toast("AMOK GESCHAFFT! +" + bonus + " \u20AC \xB7 Multiplikator \xD7" + V4.mult, 3);
+        if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 800);
+      } else toast("AMOK VERSAUT \u2014 nur " + R2.kills + "/" + R2.need + ".", 2.4);
+      v4AmokHud();
+      updateHoodHud();
+    }
+    __name(v4RampEnd, "v4RampEnd");
+    function v4AmokHud() {
+      let el = document.getElementById("amokBar");
+      if (!el) {
+        el = document.createElement("div");
+        el.id = "amokBar";
+        el.className = "ui";
+        document.body.appendChild(el);
+      }
+      const R2 = V4.ramp;
+      document.body.classList.toggle("amok", !!R2);
+      if (!R2) {
+        el.style.display = "none";
+      } else {
+        el.style.display = "";
+        el.innerHTML = "<b>AMOK</b> " + R2.kills + " / " + R2.need + " <i>" + Math.ceil(R2.t) + " s</i>";
+        el.classList.toggle("low", R2.t <= 8);
+      }
+      let m = document.getElementById("multChip");
+      if (!m) {
+        const hr = document.getElementById("hudRight");
+        if (hr) {
+          m = document.createElement("div");
+          m.id = "multChip";
+          hr.insertBefore(m, document.getElementById("hearts"));
+        }
+      }
+      if (m) {
+        m.textContent = V4.mult > 1 ? "\xD7" + V4.mult : "";
+        m.style.display = V4.mult > 1 ? "" : "none";
+      }
+    }
+    __name(v4AmokHud, "v4AmokHud");
+    function v4PayMul() {
+      return 1 + 0.25 * (V4.mult - 1);
+    }
+    __name(v4PayMul, "v4PayMul");
+    function v4OnWasted() {
+      if (V4.ramp) v4RampEnd(false);
+      if (V4.mult > 1) {
+        V4.mult = 1;
+        setTimeout(() => toast("Multiplikator weg.", 1.6), 1600);
+      }
+      v4AmokHud();
+    }
+    __name(v4OnWasted, "v4OnWasted");
+    function v4CrewOf(pd) {
+      return pd.crewR && pd.crewR.crew ? pd.crewR.crew[0] : null;
+    }
+    __name(v4CrewOf, "v4CrewOf");
+    function v4Resp(n, dv, why) {
+      if (!n) return;
+      const o = V4.resp[n] || 0;
+      const v = Math.max(-100, Math.min(100, o + dv));
+      V4.resp[n] = v;
+      if (why && Math.abs(dv) >= 8) toast(n + ": Respekt " + (dv > 0 ? "+" : "") + dv + (why ? " \xB7 " + why : ""), 1.8);
+      if (o > -40 && v <= -40) setTimeout(() => toast("Die " + n + " wollen dich jetzt tot sehen.", 2.2), 1900);
+      if (o < 50 && v >= 50) setTimeout(() => toast("Die " + n + " lassen dich in Ruhe \u2014 und ihr Laden heilt dich umsonst.", 2.4), 1900);
+    }
+    __name(v4Resp, "v4Resp");
+    function v4Knock(pd, how) {
+      const R2 = V4.ramp;
+      if (R2 && !pd.immortal) {
+        const okK = R2.kind === "car" ? how === "car" : how !== "car";
+        if (okK) {
+          R2.kills++;
+          floatText(pd.x, pd.z, "+1", "#ff5040");
+          v4AmokHud();
+          if (R2.kills >= R2.need) v4RampEnd(true);
+        }
+      }
+      const n = v4CrewOf(pd);
+      if (n) v4Resp(n, -12, "du hast einen umgehauen");
+    }
+    __name(v4Knock, "v4Knock");
+    function v4RespTick(dt) {
+      V4.ambT -= dt;
+      if (V4.ambT > 0) return;
+      V4.ambT = 40 + Math.random() * 40;
+      if (P.train || hiding) return;
+      const r = regionAt(P.x, P.z);
+      if (!r || !r.crew || r.owner !== "rival") return;
+      const n = r.crew[0];
+      if ((V4.resp[n] || 0) > -40) return;
+      const L = spawnThugs(2, P.x, P.z, 16, n, r.crew, Math.random() < 0.5 ? "bat" : null);
+      if (L && L.length) {
+        toast("Die " + n + " kommen \u2014 Rache!", 2);
+        audio.siren && audio.siren();
+      }
+    }
+    __name(v4RespTick, "v4RespTick");
+    function v4Prompt() {
+      const onFoot = !P.car && !P.train && !P.gond;
+      const S = V4.spots;
+      if (P.car && !P.train) {
+        const c = P.car;
+        const slow = Math.abs(c.speed) < 2.5;
+        if (S.spray && slow && Math.hypot(S.spray.x - c.x, S.spray.z - c.z) < 4.2 && v4PlainCar(c)) return { text: "LACK & WEG \u2014 umlackieren \xB7 " + (150 + 50 * wanted) + " \u20AC (Fahndung weg)", label: "Lackieren", act: v4SprayAct };
+        if (S.bomb && slow && Math.hypot(S.bomb.x - c.x, S.bomb.z - c.z) < 4.2 && v4PlainCar(c) && !c.v4bomb && c.v4fuse == null) return { text: "Z\xDCNDKERZE \u2014 Autobombe einbauen \xB7 300 \u20AC", label: "Bombe", act: v4BombAct };
+        if (S.crush && slow && Math.hypot(S.crush.x - c.x, S.crush.z - c.z) < 4.2 && v4PlainCar(c) && !c.target) return { text: c === myCar ? "SCHROTTPRESSE \u2014 nicht mit deinem eigenen Auto" : "SCHROTTPRESSE \u2014 Karre pressen \xB7 +" + v4CrushValue(c) + " \u20AC", label: c === myCar ? "" : "Pressen", act: c === myCar ? null : v4CrushAct };
+        if (SPOTS.garage && slow && Math.hypot(SPOTS.garage.x - c.x, SPOTS.garage.z - c.z) < 4.2 && v4PlainCar(c) && c !== myCar && !c.target && !(job && job.J.type === "steal")) {
+          if (V4.want.includes(c.type) && !V4.wantGot[c.type]) return { text: "GARAGE 9 \u2014 Export: " + V4_NAME[c.type] + " abliefern \xB7 +" + (V4_VAL[c.type] || 150) + " \u20AC", label: "Abliefern", act: /* @__PURE__ */ __name(() => v4WantAct(c), "act") };
+          const open2 = V4.want.filter((t) => !V4.wantGot[t]).map((t) => V4_NAME[t]);
+          if (open2.length) return { text: "GARAGE 9 sucht: " + open2.join(", "), label: "", act: null };
+        }
+        if (c.v4bomb) return { text: "Autobombe an Bord \u2014 scharf machen?", label: "Scharf", act: v4ArmBomb };
+        if (c.v4fuse != null) return { text: "BOMBE TICKT \xB7 " + Math.ceil(c.v4fuse) + " s \u2014 RAUS!", label: "", act: null };
+      }
+      if (onFoot) {
+        if (S.save && Math.hypot(S.save.x - P.x, S.save.z - P.z) < 2.6) return { text: "KAPELLE \u2014 Spiel speichern", label: "Speichern", act: /* @__PURE__ */ __name(() => {
+          if (opts.onAutosave) opts.onAutosave();
+          audio.bell && audio.bell();
+          return { ok: true, msg: "Gespeichert. Der Herr speichert." };
+        }, "act") };
+        if (SPOTS.garage && Math.hypot(SPOTS.garage.x - P.x, SPOTS.garage.z - P.z) < 4.2 && tankOwned && tankAlive()) {
+          const open2 = V4.want.filter((t) => !V4.wantGot[t]).map((t) => V4_NAME[t]);
+          if (open2.length) return { text: "GARAGE 9 \u2014 Export-Liste: " + open2.join(", "), label: "", act: null };
+        }
+        const nf = nearFood(P.x, P.z, 3.4);
+        const door = nf && nf.door;
+        if (door && door.rivalOf && door.rivalOf.owner !== "mine" && door.rivalOf.crew && !job) {
+          const n = door.rivalOf.crew[0];
+          const rv = V4.resp[n] || 0;
+          if (rv >= 50 && health < MAXH()) return { text: "Laden der " + n + " \u2014 die m\xF6gen dich: essen umsonst", label: "Essen", act: /* @__PURE__ */ __name(() => {
+            health = MAXH();
+            updateHoodHud();
+            audio.heal && audio.heal();
+            return { ok: true, msg: "Aufs Haus. Respekt hat Vorteile." };
+          }, "act") };
+          if (rv < 50) return { text: "Laden der " + n + " \u2014 Schutzgeld zahlen \xB7 100 \u20AC (Respekt +25)", label: "Zahlen", act: /* @__PURE__ */ __name(() => {
+            if (deal.state().cash < 100) {
+              toast("Zu wenig Geld.", 1.3);
+              return { ok: false };
+            }
+            deal.setCash(deal.state().cash - 100);
+            v4Resp(n, 25);
+            updateHoodHud();
+            audio.kaching && audio.kaching();
+            return { ok: true, msg: "Die " + n + " nehmen das Geld. Respekt jetzt " + V4.resp[n] + "." };
+          }, "act") };
+        }
+      }
+      return null;
+    }
+    __name(v4Prompt, "v4Prompt");
+    function v4Tick(dt) {
+      if (!V4.seeded) return;
+      V4.warnT -= dt;
+      if (V4.sprayCool > 0) V4.sprayCool -= dt;
+      const t = performance.now() / 1e3;
+      for (const q of V4.ramps) {
+        if (!q.m) continue;
+        q.m.position.y = 1.5 + Math.sin(t * 3 + q.x) * 0.25;
+        q.m.material.rotation = Math.sin(t * 2) * 0.25;
+        if (!V4.ramp && !P.train) {
+          const d = Math.hypot(q.x - P.x, q.z - P.z);
+          if (q.kind === "car" ? P.car && v4PlainCar(P.car) && d < 3.2 : !P.car && d < 1.6) v4RampStart(q);
+        }
+      }
+      const R2 = V4.ramp;
+      if (R2) {
+        R2.t -= dt;
+        if (R2.t <= 0) v4RampEnd(false);
+        else {
+          R2.hudT = (R2.hudT || 0) - dt;
+          if (R2.hudT <= 0) {
+            R2.hudT = 0.2;
+            v4AmokHud();
+          }
+          if (R2.kind !== "car" && !(P.weapons[R2.kind] > 0)) P.weapons[R2.kind] = 999;
+        }
+      }
+      for (const c of cars) {
+        if (c.v4fuse == null || c.wrecked) continue;
+        c.v4fuse -= dt;
+        c.v4beep = (c.v4beep || 0) - dt;
+        if (c.v4beep <= 0) {
+          c.v4beep = c.v4fuse < 2 ? 0.25 : 0.8;
+          audio.click && audio.click();
+        }
+        if (c.v4fuse <= 0) {
+          c.v4fuse = null;
+          const inside = P.car === c;
+          explodeCar(c);
+          if (inside && !c.veh) {
+            wasted("blast");
+          }
+          for (const pd of peds) {
+            if (!(pd.down > 0) && Math.hypot(pd.x - c.x, pd.z - c.z) < 6) {
+              v4Src = "car";
+              knockPed(pd, true);
+              v4Src = null;
+            }
+          }
+          for (const o of cars) {
+            if (o !== c && !o.wrecked && Math.hypot(o.x - c.x, o.z - c.z) < 5.5) damageCar(o, 60);
+          }
+        }
+      }
+      for (let i = V4.crushing.length - 1; i >= 0; i--) {
+        const q = V4.crushing[i];
+        q.t += dt;
+        const k = Math.max(0.12, 1 - q.t / 1.4);
+        q.c.g.scale.set(1, k, 1 + (1 - k) * 0.15);
+        if (q.t > 1.6) {
+          const j = cars.indexOf(q.c);
+          if (j >= 0) cars.splice(j, 1);
+          scene.remove(q.c.g);
+          V4.crushing.splice(i, 1);
+        }
+      }
+      v4RespTick(dt);
+      v4PropTick();
+      v4BirdStep(dt);
+    }
+    __name(v4Tick, "v4Tick");
+    function v4NewDay() {
+      v4NewWant(false);
+      v4SeedRamps();
+    }
+    __name(v4NewDay, "v4NewDay");
+    function v4Markers(mk) {
+      const S = V4.spots;
+      if (S.spray) mk.push({ k: "v4", x: S.spray.x, z: S.spray.z, ch: "L", col: "#ff3d9a", t: "Lack & Weg" });
+      if (S.bomb) mk.push({ k: "v4", x: S.bomb.x, z: S.bomb.z, ch: "B", col: "#ff8a3a", t: "Bomben" });
+      if (S.crush) mk.push({ k: "v4", x: S.crush.x, z: S.crush.z, ch: "P", col: "#c8d0d8", t: "Schrottpresse" });
+      if (S.save) mk.push({ k: "v4", x: S.save.x, z: S.save.z, ch: "\u271A", col: "#fff2b0", t: "Kapelle" });
+      for (const q of V4.ramps) if (q.m) mk.push({ k: "v4", x: q.x, z: q.z, ch: "\u2620", col: q.col, t: "Amok" });
+    }
+    __name(v4Markers, "v4Markers");
+    function v4Save() {
+      return { mult: V4.mult, amok: V4.amokDone, bonus: V4.bonusDone, resp: { ...V4.resp }, want: V4.want, wantGot: { ...V4.wantGot }, wantDay: V4.wantDay, props: PROPS.map((p) => p.owner === "mine" ? { rent: p.rent, lvl: p.lvl, cond: Math.round(p.cond), ten: !!p.ten, mood: Math.round(p.mood), inc: p.inc | 0 } : null) };
+    }
+    __name(v4Save, "v4Save");
+    function v4Load(S) {
+      v4Seed();
+      for (const p of PROPS) {
+        if (p.owner === "mine" && !p.v4own) {
+          p.ten = true;
+          p.v4own = true;
+          p.cond = 85;
+          p.mood = 72;
+        }
+      }
+      if (!S) return;
+      V4.mult = S.mult || 1;
+      V4.amokDone = S.amok || 0;
+      V4.bonusDone = S.bonus || 0;
+      V4.resp = { ...S.resp || {} };
+      if (S.want && S.want.length) {
+        V4.want = S.want;
+        V4.wantGot = { ...S.wantGot || {} };
+        V4.wantDay = S.wantDay ?? V4.wantDay;
+      }
+      (S.props || []).forEach((o, i) => {
+        const p = PROPS[i];
+        if (!p || !o || p.owner !== "mine") return;
+        Object.assign(p, { rent: o.rent ?? p.rent, lvl: o.lvl || 1, cond: o.cond ?? 90, ten: o.ten !== false, mood: o.mood ?? 70, inc: o.inc || 0 });
+        setPropSign(p);
+      });
+      v4AmokHud();
+    }
+    __name(v4Load, "v4Load");
+    function v4Stats() {
+      const crews = [];
+      for (const r of regions) {
+        if (r.crew && !crews.some((c) => c.name === r.crew[0])) crews.push({ name: r.crew[0], v: V4.resp[r.crew[0]] || 0, mine: r.owner === "mine" });
+      }
+      return { mult: V4.mult, amok: V4.amokDone, bonus: V4.bonusDone, crews, want: V4.want.map((t) => ({ name: V4_NAME[t], got: !!V4.wantGot[t] })) };
+    }
+    __name(v4Stats, "v4Stats");
+    const V4_LV = [1, 1.35, 1.75];
+    function v4Fair(p) {
+      return Math.round((p.base || p.rent) * V4_LV[(p.lvl || 1) - 1] / 5) * 5;
+    }
+    __name(v4Fair, "v4Fair");
+    function v4PropInit() {
+      for (const p of PROPS) {
+        if (p.base == null) p.base = p.rent;
+        if (p.lvl == null) {
+          p.lvl = 1;
+          p.cond = 88;
+          p.ten = false;
+          p.mood = 70;
+          p.inc = 0;
+        }
+      }
+    }
+    __name(v4PropInit, "v4PropInit");
+    function v4OnBuy(p) {
+      if (p.base == null) p.base = p.rent;
+      p.lvl = p.lvl || 1;
+      p.cond = Math.round(78 + Math.random() * 17);
+      p.ten = true;
+      p.mood = 72;
+      p.inc = p.inc || 0;
+      p.v4own = true;
+    }
+    __name(v4OnBuy, "v4OnBuy");
+    function v4Mood(p) {
+      const r = p.rent / Math.max(5, v4Fair(p));
+      return Math.max(0, Math.min(100, 86 - (r - 1) * 95 - (100 - p.cond) * 0.45 + (p.lvl - 1) * 4));
+    }
+    __name(v4Mood, "v4Mood");
+    function v4PropTick() {
+      for (const p of PROPS) {
+        if (p.owner === "mine" && !p.v4own) v4OnBuy(p);
+        if (p.owner !== "mine" && p.v4own) {
+          p.v4own = false;
+          p.ten = false;
+        }
+      }
+    }
+    __name(v4PropTick, "v4PropTick");
+    function v4RentPayout(mine, n) {
+      let sum = 0, ev = [];
+      for (let k = 0; k < n; k++) for (const p of mine) {
+        if (!p.v4own) v4OnBuy(p);
+        p.cond = Math.max(0, p.cond - (1.6 + Math.random() * 1.6));
+        if (Math.random() < 0.05) {
+          p.cond = Math.max(0, p.cond - 14);
+          ev.push(p.name + ": Rohrbruch! Zustand \u221214");
+        }
+        const tg = v4Mood(p);
+        p.mood += (tg - p.mood) * 0.55;
+        if (p.ten) {
+          const pay = Math.round(p.rent / 2 * (p.cond < 25 ? 0.5 : 1));
+          sum += pay;
+          p.inc = (p.inc || 0) + pay;
+          if (p.mood < 35 && Math.random() < (35 - p.mood) / 55) {
+            p.ten = false;
+            ev.push(p.name + ": Mieter ausgezogen" + (p.rent > v4Fair(p) * 1.15 ? " \u2014 zu teuer" : p.cond < 45 ? " \u2014 zu runtergekommen" : ""));
+            setPropSign(p);
+          }
+        } else {
+          const r = p.rent / Math.max(5, v4Fair(p));
+          const ch = Math.max(0.03, Math.min(0.85, 0.7 - (r - 1) * 1.1 - (100 - p.cond) / 260));
+          if (Math.random() < ch) {
+            p.ten = true;
+            p.mood = Math.max(45, tg);
+            ev.push(p.name + ": neuer Mieter eingezogen");
+            setPropSign(p);
+          }
+        }
+      }
+      const vac = mine.filter((p) => !p.ten).length;
+      if (sum > 0 || ev.length) {
+        deal.setCash(deal.state().cash + sum);
+        toast((sum > 0 ? "Miete: +" + sum + " \u20AC (" + (mine.length - vac) + " vermietet" + (vac ? ", " + vac + " leer" : "") + ")" : "Keine Miete \u2014 alles leer") + (ev.length ? " \xB7 " + ev[0] + (ev.length > 1 ? " (+" + (ev.length - 1) + ")" : "") : ""), 3);
+        if (sum > 0) audio.kaching && audio.kaching();
+        updateHoodHud();
+      }
+      V4.lastEv = ev.slice(-6).concat(V4.lastEv || []).slice(0, 8);
+    }
+    __name(v4RentPayout, "v4RentPayout");
+    function v4Repair(i) {
+      const p = PROPS[i];
+      if (!p || p.owner !== "mine") return { ok: false };
+      const cost = v4RepCost(p);
+      if (cost <= 0) return { ok: false, msg: "Da gibt\u2019s nichts zu reparieren." };
+      if (deal.state().cash < cost) return { ok: false, msg: "Reparatur kostet " + cost + " \u20AC." };
+      deal.setCash(deal.state().cash - cost);
+      p.cond = 100;
+      p.mood = Math.min(100, p.mood + 8);
+      audio.clang && audio.clang();
+      updateHoodHud();
+      return { ok: true, msg: p.name + " repariert. \u2212" + cost + " \u20AC" };
+    }
+    __name(v4Repair, "v4Repair");
+    function v4RepCost(p) {
+      return p.cond >= 99 ? 0 : Math.max(20, Math.round((100 - p.cond) * v4Fair(p) * 0.07 / 5) * 5);
+    }
+    __name(v4RepCost, "v4RepCost");
+    function v4UpCost(p) {
+      return p.lvl >= 3 ? 0 : Math.round(p.price * 0.4 * p.lvl / 50) * 50;
+    }
+    __name(v4UpCost, "v4UpCost");
+    function v4Upgrade(i) {
+      const p = PROPS[i];
+      if (!p || p.owner !== "mine" || p.lvl >= 3) return { ok: false };
+      const cost = v4UpCost(p);
+      if (deal.state().cash < cost) return { ok: false, msg: "Ausbau kostet " + cost + " \u20AC." };
+      deal.setCash(deal.state().cash - cost);
+      const m0 = V4_LV[p.lvl - 1];
+      p.lvl++;
+      p.cond = 100;
+      p.rent = Math.round(p.rent * V4_LV[p.lvl - 1] / m0 / 5) * 5;
+      p.rent = Math.min(p.rent, Math.round(v4Fair(p) * 2.5 / 5) * 5);
+      p.mood = Math.min(100, p.mood + 10);
+      setPropSign(p);
+      audio.levelUp && audio.levelUp();
+      updateHoodHud();
+      if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 500);
+      return { ok: true, msg: p.name + " ausgebaut auf Stufe " + p.lvl + ". Faire Miete jetzt " + v4Fair(p) + " \u20AC/Tag." };
+    }
+    __name(v4Upgrade, "v4Upgrade");
+    function v4SetRent(i, v) {
+      const p = PROPS[i];
+      if (!p || p.owner !== "mine") return { ok: false };
+      const f = v4Fair(p);
+      p.rent = Math.max(Math.round(f * 0.5 / 5) * 5, Math.min(Math.round(f * 2.5 / 5) * 5, Math.round(v / 5) * 5));
+      setPropSign(p);
+      return { ok: true, rent: p.rent };
+    }
+    __name(v4SetRent, "v4SetRent");
+    function v4Advert(i) {
+      const p = PROPS[i];
+      if (!p || p.owner !== "mine" || p.ten) return { ok: false };
+      if (deal.state().cash < 30) return { ok: false, msg: "Anzeige kostet 30 \u20AC." };
+      deal.setCash(deal.state().cash - 30);
+      const r = p.rent / Math.max(5, v4Fair(p));
+      const ch = Math.max(0.08, Math.min(0.95, 0.85 - (r - 1) * 1.2 - (100 - p.cond) / 240));
+      updateHoodHud();
+      if (Math.random() < ch) {
+        p.ten = true;
+        p.mood = Math.max(50, v4Mood(p));
+        setPropSign(p);
+        return { ok: true, msg: "Anzeige hat geklappt: neuer Mieter in " + p.name + "." };
+      }
+      return { ok: true, msg: "Keiner hat angebissen. " + (r > 1.2 ? "Vielleicht ist die Miete zu hoch." : p.cond < 50 ? "Vielleicht erst reparieren." : "Pech. Nochmal versuchen.") };
+    }
+    __name(v4Advert, "v4Advert");
+    function v4SellVal(p) {
+      return Math.round(p.price * (0.7 + 0.25 * (p.lvl - 1)) * (0.6 + 0.4 * p.cond / 100) / 50) * 50;
+    }
+    __name(v4SellVal, "v4SellVal");
+    function v4Sell(i) {
+      const p = PROPS[i];
+      if (!p || p.owner !== "mine") return { ok: false };
+      const v = v4SellVal(p);
+      deal.setCash(deal.state().cash + v);
+      p.owner = "free";
+      p.ten = false;
+      p.v4own = false;
+      p.lvl = 1;
+      p.rent = p.base;
+      p.cond = 88;
+      setPropSign(p);
+      audio.kaching && audio.kaching();
+      updateHoodHud();
+      if (opts.onAutosave) setTimeout(() => opts.onAutosave(), 500);
+      return { ok: true, msg: p.name + " verkauft. +" + v + " \u20AC" };
+    }
+    __name(v4Sell, "v4Sell");
+    function v4PropList() {
+      const L = PROPS.map((p, i) => {
+        const mine2 = p.owner === "mine";
+        const o = { i, name: p.name, kind: p.kind, street: p.street || "", x: p.x, z: p.z, owner: p.owner, price: p.price, rent: p.rent };
+        if (mine2) {
+          const md = Math.round(p.mood);
+          Object.assign(o, { fair: v4Fair(p), lvl: p.lvl, cond: Math.round(p.cond), ten: !!p.ten, mood: md, inc: p.inc | 0, mood_t: !p.ten ? "leer" : md >= 65 ? "zufrieden" : md >= 40 ? "geht so" : "unzufrieden", rep: v4RepCost(p), up: v4UpCost(p), sell: v4SellVal(p), min: Math.round(v4Fair(p) * 0.5 / 5) * 5, max: Math.round(v4Fair(p) * 2.5 / 5) * 5 });
+        }
+        return o;
+      });
+      const mine = L.filter((q) => q.owner === "mine");
+      return { list: L, mine: mine.length, rented: mine.filter((q) => q.ten).length, perDay: mine.filter((q) => q.ten).reduce((s, q) => s + q.rent, 0), total: mine.reduce((s, q) => s + q.inc, 0), cash: deal.state().cash, events: V4.lastEv || [], P: { x: P.x, z: P.z }, edge: city.edge, hood: HOOD() };
+    }
+    __name(v4PropList, "v4PropList");
+    const V4API = {
+      props: v4PropList,
+      setRent: v4SetRent,
+      repair: v4Repair,
+      upgrade: v4Upgrade,
+      advertise: v4Advert,
+      sell: v4Sell,
+      stats: /* @__PURE__ */ __name(() => v4Stats(), "stats"),
+      state: /* @__PURE__ */ __name(() => V4, "state"),
+      seed: /* @__PURE__ */ __name(() => v4Seed(), "seed"),
+      _t: { buy: /* @__PURE__ */ __name((i) => buyProp(PROPS[i]), "buy"), parked: /* @__PURE__ */ __name(() => parked.length, "parked"), roadSpot: /* @__PURE__ */ __name((a, b) => v4RoadSpot(hub ? hub.door : P, a, b), "roadSpot"), spray: /* @__PURE__ */ __name(() => v4SprayAct(), "spray"), bomb: /* @__PURE__ */ __name(() => v4BombAct(), "bomb"), crush: /* @__PURE__ */ __name(() => v4CrushAct(), "crush"), save: /* @__PURE__ */ __name(() => v4Save(), "save"), spots: /* @__PURE__ */ __name(() => V4.spots, "spots"), ramps: /* @__PURE__ */ __name(() => V4.ramps, "ramps"), startRamp: /* @__PURE__ */ __name((i) => v4RampStart(V4.ramps[i]), "startRamp"), endRamp: /* @__PURE__ */ __name((ok) => v4RampEnd(ok), "endRamp"), payout: /* @__PURE__ */ __name((n) => {
+        const m = PROPS.filter((p) => p.owner === "mine");
+        if (m.length) v4RentPayout(m, n || 1);
+      }, "payout"), respray: /* @__PURE__ */ __name((c, h) => v4Respray(c, h), "respray"), birds: /* @__PURE__ */ __name(() => V4.birds ? V4.birds.length : 0, "birds"), deco: /* @__PURE__ */ __name(() => V4.decoN || {}, "deco") }
+    };
+    function v4Deco() {
+      const N = {};
+      const rural = ZONE.mode !== "city" || !!city.rural;
+      const R6 = rng(6060);
+      const cap2 = /* @__PURE__ */ __name((k) => Math.round(k * (MOBILE ? 0.7 : 1)), "cap");
+      const BG = /* @__PURE__ */ new Map();
+      const BC = 40;
+      for (const B of city.buildings) {
+        const bb = bbOf(B.b.p);
+        for (let i = Math.floor(bb.x0 / BC); i <= Math.floor(bb.x1 / BC); i++) for (let j = Math.floor(bb.z0 / BC); j <= Math.floor(bb.z1 / BC); j++) {
+          const k = i * 7919 + j;
+          let a = BG.get(k);
+          if (!a) BG.set(k, a = []);
+          a.push(B);
+        }
+      }
+      const inB = /* @__PURE__ */ __name((x, z, m = 0) => {
+        const a = BG.get(Math.floor(x / BC) * 7919 + Math.floor(z / BC));
+        if (!a) return false;
+        for (const B of a) {
+          if (pip2(x, z, B.b.p)) return true;
+          if (m > 0) for (const e of B.edges) {
+            if (segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1])[0] < m) return true;
+          }
+        }
+        return false;
+      }, "inB");
+      const nearRd = /* @__PURE__ */ __name((x, z) => {
+        const n = city.nearRoad(x, z);
+        return n ? n.d : 99;
+      }, "nearRd");
+      const ok = /* @__PURE__ */ __name((x, z, road, m = 0.6) => city.inEdge(x, z, 3) && nearRd(x, z) > road && !inB(x, z, m) && !inZ("water", x, z), "ok");
+      const O = new Object3D();
+      const COL = new Color();
+      const inst = /* @__PURE__ */ __name((geo, mat3, list, shadow = true) => {
+        if (!list.length) return null;
+        const m = new InstancedMesh(geo, mat3, list.length);
+        list.forEach((it, i) => {
+          O.position.set(it.x, it.y || 0, it.z);
+          O.rotation.set(it.rx || 0, it.ry || 0, it.rz || 0);
+          O.scale.set(it.sx ?? it.s ?? 1, it.sy ?? it.s ?? 1, it.sz ?? it.s ?? 1);
+          O.updateMatrix();
+          m.setMatrixAt(i, O.matrix);
+          if (it.c != null) {
+            COL.set(it.c);
+            m.setColorAt(i, COL);
+          }
+        });
+        if (m.instanceColor) m.instanceColor.needsUpdate = true;
+        m.castShadow = shadow;
+        m.receiveShadow = true;
+        m.computeBoundingSphere();
+        scene.add(m);
+        return m;
+      }, "inst");
+      const mat2 = /* @__PURE__ */ __name((c, r = 0.85, mt = 0) => new MeshStandardMaterial({ color: c, roughness: r, metalness: mt }), "mat");
+      const randIn = /* @__PURE__ */ __name((q) => {
+        const b = q.bb;
+        for (let t = 0; t < 20; t++) {
+          const x = b.x0 + R6() * (b.x1 - b.x0), z = b.z0 + R6() * (b.z1 - b.z0);
+          if (pip2(x, z, q.p)) return [x, z];
+        }
+        return null;
+      }, "randIn");
+      {
+        const posts = [], rails = [];
+        const MAXP = cap2(1600);
+        for (const k of ["pasture", "yard"]) {
+          for (const q of ZN[k]) {
+            if (posts.length > MAXP) break;
+            const p = q.p;
+            let prev = null;
+            for (let i = 0; i < p.length; i++) {
+              const a = p[i], b = p[(i + 1) % p.length];
+              const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+              if (l < 1) continue;
+              const n = Math.max(1, Math.round(l / 2.6));
+              for (let s = 0; s <= n; s++) {
+                if (s === n && i < p.length - 1) continue;
+                const x = a[0] + (b[0] - a[0]) * s / n, z = a[1] + (b[1] - a[1]) * s / n;
+                const good = city.inEdge(x, z, 2) && nearRd(x, z) > 0.9 && !inB(x, z, 0.3);
+                if (good) {
+                  posts.push({ x, z, y: 0.5 });
+                  if (prev) {
+                    const dx = x - prev[0], dz = z - prev[1], ll = Math.hypot(dx, dz);
+                    if (ll < 3.6) {
+                      const ry = Math.atan2(-dz, dx);
+                      for (const y of [0.55, 0.88]) rails.push({ x: (x + prev[0]) / 2, z: (z + prev[1]) / 2, y, ry, sx: ll, sy: 1, sz: 1 });
+                    }
+                  }
+                  prev = [x, z];
+                } else prev = null;
+              }
+            }
+          }
+        }
+        inst(new BoxGeometry(0.12, 1, 0.12), mat2(7031339), posts);
+        inst(new BoxGeometry(1, 0.08, 0.06), mat2(9071170), rails);
+        N.fence = posts.length;
+      }
+      {
+        const bales = [];
+        const MAXB = cap2(130);
+        for (const q of ZN.field) {
+          const n = Math.min(10, Math.floor(q.A / 1800));
+          for (let i = 0; i < n && bales.length < MAXB; i++) {
+            const p = randIn(q);
+            if (!p || !ok(p[0], p[1], 6, 1)) continue;
+            if (bales.some((b) => Math.abs(b.x - p[0]) < 3 && Math.abs(b.z - p[1]) < 3)) continue;
+            const ry = R6() * 6.28;
+            bales.push({ x: p[0], z: p[1], y: 0.75, rz: Math.PI / 2, ry, c: [13610586, 12885834, 14203754][R6() * 3 | 0] });
+            if (R6() < 0.35 && bales.length < MAXB) {
+              const x2 = p[0] + Math.cos(ry) * 1.7, z2 = p[1] - Math.sin(ry) * 1.7;
+              if (ok(x2, z2, 6, 1)) bales.push({ x: x2, z: z2, y: 0.75, rz: Math.PI / 2, ry, c: 13149776 });
+            }
+          }
+        }
+        const sil = [];
+        for (const q of ZN.yard) {
+          if (sil.length > cap2(60)) break;
+          if (R6() < 0.4) continue;
+          const p = randIn(q);
+          if (!p || !ok(p[0], p[1], 3, 1.2)) continue;
+          const ry = R6() * 6.28, cx = Math.cos(ry), sz = -Math.sin(ry);
+          const c = [15659242, 1842204, 3828274][R6() * 3 | 0];
+          for (let k = 0; k < 4; k++) {
+            const x = p[0] + cx * k * 1.45, z = p[1] + sz * k * 1.45;
+            if (!ok(x, z, 2.5, 1)) break;
+            sil.push({ x, z, y: 0.7, rz: Math.PI / 2, ry: ry + Math.PI / 2, c, s: 0.95 });
+          }
+        }
+        const bm = new MeshStandardMaterial({ color: 16777215, roughness: 0.95 });
+        const all = bales.concat(sil);
+        inst(new CylinderGeometry(0.75, 0.75, 1.2, 14), bm, bales);
+        const sm = new MeshStandardMaterial({ color: 16777215, roughness: 0.35, metalness: 0.05 });
+        inst(new CylinderGeometry(0.7, 0.7, 1.25, 14), sm, sil);
+        for (const b of all) addDyn(b.x, b.z, 0.85, null);
+        N.bales = bales.length;
+        N.silage = sil.length;
+      }
+      {
+        const bush = [], stone = [], flow = [];
+        const MAXBU = cap2(rural ? 520 : 160);
+        for (const r of city.roadsDrive) {
+          if (bush.length > MAXBU) break;
+          if (!rural && r.t !== "track" && r.t !== "unclassified") continue;
+          let acc = R6() * 14;
+          for (let i = 0; i < r.p.length - 1; i++) {
+            const a = r.p[i], b = r.p[i + 1];
+            const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+            if (l < 1) continue;
+            const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+            for (let s = acc; s < l; s += 9 + R6() * 12) {
+              if (R6() < 0.45) continue;
+              const side = R6() < 0.5 ? 1 : -1;
+              const off = (r.w || 5) / 2 + 2.2 + R6() * 3;
+              const x = a[0] + tx2 * s - tz * off * side, z = a[1] + tz * s + tx2 * off * side;
+              if (!ok(x, z, 1.8, 1.2)) continue;
+              const sc = 0.7 + R6() * 0.9;
+              bush.push({ x, z, y: 0.45 * sc, s: sc, sy: sc * 0.75, ry: R6() * 6, c: [3959338, 4880944, 3103268, 5929514][R6() * 4 | 0] });
+              if (R6() < 0.4) {
+                const x2 = x + tx2 * 1.2, z2 = z + tz * 1.2;
+                bush.push({ x: x2, z: z2, y: 0.35 * sc, s: sc * 0.8, sy: sc * 0.6, ry: R6() * 6, c: 4288556 });
+              }
+            }
+            acc = (acc + l) % 9;
+          }
+        }
+        for (const k of ["pasture", "field", "grass", "park"]) {
+          for (const q of ZN[k]) {
+            const n = Math.min(k === "field" ? 3 : 6, Math.floor(q.A / 900));
+            for (let i = 0; i < n && stone.length < cap2(180); i++) {
+              const p = randIn(q);
+              if (!p || !ok(p[0], p[1], 2, 0.6)) continue;
+              const s = 0.3 + R6() * 0.55;
+              stone.push({ x: p[0], z: p[1], y: s * 0.25, s, sy: s * 0.6, ry: R6() * 6, c: [9079428, 10131084, 7762796][R6() * 3 | 0] });
+            }
+          }
+        }
+        const FC = [16769357, 16052454, 13660384, 16738906, 6992127];
+        for (const k of rural ? ["yard", "grass", "pasture", "park"] : ["park", "grass"]) {
+          for (const q of ZN[k]) {
+            if (flow.length > cap2(700)) break;
+            const n = Math.min(4, Math.floor(q.A / 700));
+            for (let i = 0; i < n; i++) {
+              const p = randIn(q);
+              if (!p || !ok(p[0], p[1], 1.5, 0.5)) continue;
+              const c = FC[R6() * FC.length | 0];
+              const m = 5 + (R6() * 6 | 0);
+              for (let j = 0; j < m; j++) {
+                const x = p[0] + (R6() - 0.5) * 2.4, z = p[1] + (R6() - 0.5) * 2.4;
+                flow.push({ x, z, y: 0.07, rx: -Math.PI / 2, s: 0.8 + R6() * 0.6, c });
+              }
+            }
+          }
+        }
+        inst(new IcosahedronGeometry(1, 0), new MeshStandardMaterial({ color: 16777215, roughness: 0.95, flatShading: true }), bush);
+        inst(new DodecahedronGeometry(1, 0), new MeshStandardMaterial({ color: 16777215, roughness: 0.9, flatShading: true }), stone);
+        inst(new CircleGeometry(0.16, 6), new MeshBasicMaterial({ color: 16777215 }), flow, false);
+        N.bush = bush.length;
+        N.stone = stone.length;
+        N.flower = flow.length;
+      }
+      if (rural) {
+        const poles = [], arms = [], wires = [];
+        const MAXPL = cap2(240);
+        for (const r of city.roadsDrive) {
+          if (poles.length > MAXPL) break;
+          if (!["tertiary", "unclassified", "residential", "track", "secondary"].includes(r.t)) continue;
+          const side = (r.p[0][0] * 7 + r.p[0][1] * 3) % 2 > 1 ? 1 : -1;
+          let acc = 0, prev = null;
+          for (let i = 0; i < r.p.length - 1; i++) {
+            const a = r.p[i], b = r.p[i + 1];
+            const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+            if (l < 1) continue;
+            const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l;
+            for (let s = (34 - acc % 34) % 34; s < l; s += 34) {
+              const off = (r.w || 5) / 2 + 2;
+              const x = a[0] + tx2 * s - tz * off * side, z = a[1] + tz * s + tx2 * off * side;
+              if (!ok(x, z, 1.2, 0.8)) {
+                prev = null;
+                continue;
+              }
+              const ry = Math.atan2(-tz, tx2) + Math.PI / 2;
+              poles.push({ x, z, y: 3.5 });
+              arms.push({ x, z, y: 6.8, ry });
+              const ends2 = [-0.7, 0, 0.7].map((k) => [x + Math.cos(ry) * k, z - Math.sin(ry) * k]);
+              if (prev && Math.hypot(prev.x - x, prev.z - z) < 45) {
+                for (let w = 0; w < 3; w++) {
+                  const A = prev.ends[w], B = ends2[w];
+                  const mx = (A[0] + B[0]) / 2, mz = (A[1] + B[1]) / 2;
+                  wires.push(A[0], 6.9, A[1], mx, 6.2, mz, mx, 6.2, mz, B[0], 6.9, B[1]);
+                }
+              }
+              prev = { x, z, ends: ends2 };
+            }
+            acc += l;
+          }
+        }
+        inst(new CylinderGeometry(0.11, 0.14, 7, 6), mat2(5916210), poles);
+        inst(new BoxGeometry(1.7, 0.1, 0.12), mat2(4864554), arms);
+        if (wires.length) {
+          const g = new BufferGeometry();
+          g.setAttribute("position", new Float32BufferAttribute(wires, 3));
+          scene.add(new LineSegments(g, new LineBasicMaterial({ color: 1710618, transparent: true, opacity: 0.75 })));
+        }
+        N.poles = poles.length;
+      }
+      {
+        const mbp = [], mbb = [], logs = [], chim = [];
+        for (const B of city.buildings) {
+          const small = (B.area || 0) < 260 && B.h < 12;
+          if (small && chim.length < cap2(420) && R6() < 0.75) {
+            const bb = bbOf(B.b.p);
+            for (let t = 0; t < 6; t++) {
+              const x = bb.x0 + (0.25 + R6() * 0.5) * (bb.x1 - bb.x0), z = bb.z0 + (0.25 + R6() * 0.5) * (bb.z1 - bb.z0);
+              if (!pip2(x, z, B.b.p)) continue;
+              let edge = false;
+              for (const e of B.edges) if (segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1])[0] < 0.8) {
+                edge = true;
+                break;
+              }
+              if (edge) continue;
+              chim.push({ x, z, y: B.h + 0.55, ry: Math.atan2(B.edges[0]?.nz || 0, B.edges[0]?.nx || 1), c: [8010282, 9062962, 5920082][R6() * 3 | 0] });
+              break;
+            }
+          }
+          if (!rural || !small) continue;
+          if (mbp.length < cap2(130)) {
+            for (const e of B.edges) {
+              if (e.len < 4) continue;
+              const x = e.mx + e.nx * 3.2, z = e.mz + e.nz * 3.2;
+              const d = nearRd(x, z);
+              if (d > 9 || d < 0.8 || inB(x, z, 0.4)) continue;
+              mbp.push({ x, z, y: 0.5 });
+              mbb.push({ x, z, y: 1.1, ry: Math.atan2(e.nx, e.nz), c: [15253536, 3828282, 9054754, 6975090][R6() * 4 | 0] });
+              break;
+            }
+          }
+          if (logs.length < cap2(240) && inZ("yard", B.b.p[0][0], B.b.p[0][1]) && R6() < 0.5) {
+            const e = B.edges[R6() * B.edges.length | 0];
+            if (e && e.len > 3) {
+              const x0 = e.mx + e.nx * 1.1, z0 = e.mz + e.nz * 1.1;
+              if (!inB(x0, z0, 0.3)) {
+                const tx2 = (e.B[0] - e.A[0]) / e.len, tz = (e.B[1] - e.A[1]) / e.len;
+                const ry = Math.atan2(-tz, tx2);
+                for (let r22 = 0; r22 < 3; r22++) for (let c = 0; c < 3 - r22; c++) {
+                  const o = (c - (2 - r22) / 2) * 0.36;
+                  logs.push({ x: x0 + e.nx * o, z: z0 + e.nz * o, y: 0.18 + r22 * 0.31, rz: Math.PI / 2, ry, c: [8018490, 9071172, 6965806][R6() * 3 | 0] });
+                }
+              }
+            }
+          }
+        }
+        inst(new BoxGeometry(0.55, 1.1, 0.55), new MeshStandardMaterial({ color: 16777215, roughness: 0.9 }), chim);
+        inst(new BoxGeometry(0.07, 1, 0.07), mat2(3815994, 0.6, 0.4), mbp);
+        inst(new BoxGeometry(0.42, 0.32, 0.3), new MeshStandardMaterial({ color: 16777215, roughness: 0.6, metalness: 0.2 }), mbb);
+        inst(new CylinderGeometry(0.17, 0.17, 2, 8), new MeshStandardMaterial({ color: 16777215, roughness: 0.95 }), logs);
+        N.chimney = chim.length;
+        N.mailbox = mbp.length;
+        N.logs = logs.length;
+      }
+      {
+        const cv2 = document.createElement("canvas");
+        cv2.width = cv2.height = 64;
+        const g = cv2.getContext("2d");
+        const gr = g.createRadialGradient(32, 32, 2, 32, 32, 31);
+        gr.addColorStop(0, "rgba(255,255,255,0.85)");
+        gr.addColorStop(0.6, "rgba(255,255,255,0.45)");
+        gr.addColorStop(1, "rgba(255,255,255,0)");
+        g.fillStyle = gr;
+        g.fillRect(0, 0, 64, 64);
+        for (let i = 0; i < 90; i++) {
+          g.fillStyle = "rgba(0,0,0," + (0.1 + Math.random() * 0.2) + ")";
+          g.fillRect(Math.random() * 64, Math.random() * 64, 1 + Math.random() * 2, 1 + Math.random() * 2);
+        }
+        const tx2 = new CanvasTexture(cv2);
+        tx2.colorSpace = SRGBColorSpace;
+        const pm = new MeshStandardMaterial({ map: tx2, transparent: true, depthWrite: false, roughness: 1, polygonOffset: true, polygonOffsetFactor: -0.6, polygonOffsetUnits: -0.6 });
+        const pg = new PlaneGeometry(1, 1);
+        pg.rotateX(-Math.PI / 2);
+        const pt = [];
+        const MAXG = cap2(rural ? 380 : 140);
+        const E = city.edge;
+        const pool = rural ? null : ["park", "grass", "pasture"].flatMap((k) => ZN[k]);
+        for (let t = 0; t < MAXG * 5 && pt.length < MAXG; t++) {
+          let x, z;
+          if (pool) {
+            if (!pool.length) break;
+            const q = pool[R6() * pool.length | 0];
+            const p = randIn(q);
+            if (!p) continue;
+            [x, z] = p;
+          } else {
+            x = E.minx + R6() * (E.maxx - E.minx);
+            z = E.minz + R6() * (E.maxz - E.minz);
+          }
+          if (!ok(x, z, 3, 1)) continue;
+          const s = 5 + R6() * 17;
+          pt.push({ x, z, y: 0.02, s, sx: s, sz: s * (0.6 + R6() * 0.7), sy: 1, ry: R6() * 6, c: [6969914, 10132042, 3099170, 5933626, 8022600][R6() * 5 | 0] });
+        }
+        inst(pg, pm, pt, false);
+        N.patch = pt.length;
+        const oil = [];
+        for (const r of city.roadsDrive) {
+          if (oil.length > cap2(rural ? 90 : 260)) break;
+          if (r.t === "track") continue;
+          for (let i = 0; i < r.p.length - 1; i++) {
+            if (R6() < 0.6) continue;
+            const a = r.p[i], b = r.p[i + 1];
+            const u = R6();
+            const lo = (R6() - 0.5) * (r.w || 5) * 0.6;
+            const l = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+            const x = a[0] + (b[0] - a[0]) * u - (b[1] - a[1]) / l * lo, z = a[1] + (b[1] - a[1]) * u + (b[0] - a[0]) / l * lo;
+            const s = 0.8 + R6() * 1.8;
+            oil.push({ x, z, y: 0.046, s, sx: s, sz: s * (0.5 + R6() * 0.6), sy: 1, ry: R6() * 6, c: R6() < 0.7 ? 1118484 : 3815996 });
+          }
+        }
+        const om = new MeshStandardMaterial({ map: tx2, transparent: true, depthWrite: false, roughness: 0.35, metalness: 0.2, opacity: 0.55, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 });
+        inst(pg, om, oil, false);
+        N.oil = oil.length;
+        if (!rural && goodPaths.length) {
+          const lit = [];
+          for (let t = 0; t < cap2(420); t++) {
+            const pp = goodPaths[R6() * goodPaths.length | 0];
+            if (!pp || pp.pts.length < 2) continue;
+            const i = R6() * (pp.pts.length - 1) | 0;
+            const a = pp.pts[i], b = pp.pts[i + 1];
+            const u = R6();
+            const x = a[0] + (b[0] - a[0]) * u + (R6() - 0.5) * 1.4, z = a[1] + (b[1] - a[1]) * u + (R6() - 0.5) * 1.4;
+            lit.push({ x, z, y: 0.065, ry: R6() * 6, sx: 0.18 + R6() * 0.2, sy: 0.02, sz: 0.14 + R6() * 0.12, c: [15921382, 15261896, 4886736, 13647920, 14211280, 6982218][R6() * 6 | 0] });
+          }
+          inst(new BoxGeometry(1, 1, 1), new MeshStandardMaterial({ color: 16777215, roughness: 0.8 }), lit, false);
+          N.litter = lit.length;
+        }
+      }
+      V4.decoN = N;
+      console.log("V04 deco", JSON.stringify(N));
+    }
+    __name(v4Deco, "v4Deco");
+    function v4Birds() {
+      const rural = ZONE.mode !== "city" || !!city.rural;
+      const flocks = [];
+      const c0 = hub ? hub.door : { x: P.x, z: P.z };
+      const nF = MOBILE ? 6 : 9;
+      for (let t = 0; t < nF * 6 && flocks.length < nF; t++) {
+        let p = null;
+        if (rural && ZN.field.length && Math.random() < 0.7) {
+          const q = ZN.field[Math.random() * ZN.field.length | 0];
+          const b = q.bb;
+          const x = b.x0 + Math.random() * (b.x1 - b.x0), z = b.z0 + Math.random() * (b.z1 - b.z0);
+          if (pip2(x, z, q.p) && !insideAny(x, z)) p = { x, z };
+        } else if (goodPaths.length) p = spotOnSidewalk(c0, 10, 360);
+        if (!p) p = v4OpenSpot(c0, 15, 380);
+        if (!p) continue;
+        if (flocks.some((f) => Math.hypot(f.x - p.x, f.z - p.z) < 30)) continue;
+        flocks.push({ x: p.x, z: p.z });
+      }
+      const birds = [];
+      for (const f of flocks) {
+        const n = 5 + (Math.random() * 4 | 0);
+        for (let i = 0; i < n; i++) birds.push({ f, x: f.x + (Math.random() - 0.5) * 4, z: f.z + (Math.random() - 0.5) * 4, y: 0, vx: 0, vz: 0, vy: 0, fly: 0, t: Math.random() * 3, ry: Math.random() * 6, hop: 0 });
+      }
+      if (!birds.length) return;
+      const col = rural ? 1842208 : 9079956;
+      const body = new InstancedMesh(new BoxGeometry(0.2, 0.14, 0.32), new MeshStandardMaterial({ color: col, roughness: 0.8 }), birds.length);
+      const head = new InstancedMesh(new BoxGeometry(0.11, 0.11, 0.11), new MeshStandardMaterial({ color: rural ? 1579034 : 5925498, roughness: 0.7 }), birds.length);
+      const wing = new InstancedMesh(new BoxGeometry(0.62, 0.02, 0.16), new MeshStandardMaterial({ color: rural ? 1052690 : 8027268, roughness: 0.85 }), birds.length);
+      for (const m of [body, head, wing]) {
+        m.frustumCulled = false;
+        m.castShadow = true;
+        scene.add(m);
+      }
+      V4.birds = birds;
+      V4.birdM = { body, head, wing, O: new Object3D(), flocks };
+    }
+    __name(v4Birds, "v4Birds");
+    function v4BirdStep(dt) {
+      const B = V4.birds;
+      if (!B) return;
+      const M2 = V4.birdM;
+      const O = M2.O;
+      const t = performance.now() / 1e3;
+      const px2 = P.car ? P.car.x : P.x, pz2 = P.car ? P.car.z : P.z;
+      const fast = P.car ? Math.abs(P.car.speed) > 2 : Math.hypot(P.vx || 0, P.vz || 0) > 2.5;
+      for (const f of M2.flocks) {
+        const d = Math.hypot(f.x - px2, f.z - pz2);
+        if (!f.up && (d < (P.car ? 9 : fast ? 6 : 3.2) || P.aimT > 0.5 && d < 22)) {
+          f.up = true;
+          f.upT = 3 + Math.random() * 2;
+          audio.whoosh && d < 20 && audio.whoosh();
+          let nx = 0, nz = 0;
+          for (let k = 0; k < 12; k++) {
+            const a = Math.random() * 6.28, r = 25 + Math.random() * 20;
+            const x = f.x + Math.cos(a) * r, z = f.z + Math.sin(a) * r;
+            if (city.inEdge(x, z, 6) && !insideAny(x, z) && Math.hypot(x - px2, z - pz2) > d) {
+              nx = x;
+              nz = z;
+              break;
+            }
+          }
+          if (!nx && !nz) {
+            nx = f.x + (f.x - px2);
+            nz = f.z + (f.z - pz2);
+          }
+          f.nx = nx;
+          f.nz = nz;
+        }
+        if (f.up) {
+          f.upT -= dt;
+          if (f.upT <= 0) {
+            f.up = false;
+            f.x = f.nx;
+            f.z = f.nz;
+          }
+        }
+      }
+      let i = 0;
+      for (const b of B) {
+        const f = b.f;
+        const near2 = Math.abs(b.x - px2) < 120 && Math.abs(b.z - pz2) < 120;
+        if (near2) {
+          if (f.up) {
+            if (!b.fly) {
+              b.fly = 1;
+              b.vy = 4 + Math.random() * 2;
+            }
+            const tx2 = f.upT > 1.2 ? b.x + (f.nx - f.x) * 0.02 : f.nx + (Math.random() - 0.5) * 3, tz = f.upT > 1.2 ? b.z + (f.nz - f.z) * 0.02 : f.nz + (Math.random() - 0.5) * 3;
+            const ty = f.upT > 1.2 ? 6.5 : 0;
+            b.vx += ((f.nx - b.x) * 0.6 - b.vx) * dt * 1.5;
+            b.vz += ((f.nz - b.z) * 0.6 - b.vz) * dt * 1.5;
+            const sp = Math.hypot(b.vx, b.vz);
+            if (sp > 9) {
+              b.vx *= 9 / sp;
+              b.vz *= 9 / sp;
+            }
+            b.vy += ((ty - b.y) * 1.6 - b.vy) * dt * 2;
+            b.x += b.vx * dt;
+            b.z += b.vz * dt;
+            b.y = Math.max(0, b.y + b.vy * dt);
+            b.ry = Math.atan2(b.vx, b.vz);
+          } else {
+            if (b.fly) {
+              b.vx *= Math.pow(0.05, dt);
+              b.vz *= Math.pow(0.05, dt);
+              b.x += b.vx * dt;
+              b.z += b.vz * dt;
+              b.y = Math.max(0, b.y - 3 * dt);
+              if (b.y <= 0.01) {
+                b.fly = 0;
+                b.y = 0;
+              }
+            } else {
+              b.t -= dt;
+              if (b.t <= 0) {
+                b.t = 0.6 + Math.random() * 2.2;
+                if (Math.random() < 0.45) {
+                  b.hop = 0.25;
+                  b.ry += (Math.random() - 0.5) * 2;
+                }
+                const dx = f.x - b.x, dz = f.z - b.z;
+                if (Math.hypot(dx, dz) > 3.5) {
+                  b.ry = Math.atan2(dx, dz);
+                  b.hop = 0.3;
+                }
+              }
+              if (b.hop > 0) {
+                b.hop -= dt;
+                b.x += Math.sin(b.ry) * dt * 1.4;
+                b.z += Math.cos(b.ry) * dt * 1.4;
+              }
+            }
+          }
+        }
+        const fl = b.fly && b.y > 0.05;
+        const peck = !fl && Math.sin(t * 7 + b.t * 5) > 0.6;
+        const hopY = b.hop > 0 ? Math.sin(b.hop / 0.3 * Math.PI) * 0.12 : 0;
+        O.position.set(b.x, b.y + 0.14 + hopY, b.z);
+        O.rotation.set(0, b.ry, 0);
+        O.scale.set(1, 1, 1);
+        O.updateMatrix();
+        M2.body.setMatrixAt(i, O.matrix);
+        O.position.set(b.x + Math.sin(b.ry) * (peck ? 0.2 : 0.17), b.y + (peck ? 0.12 : 0.26) + hopY, b.z + Math.cos(b.ry) * (peck ? 0.2 : 0.17));
+        O.updateMatrix();
+        M2.head.setMatrixAt(i, O.matrix);
+        const fs = fl ? 1 : 1e-3;
+        O.position.set(b.x, b.y + 0.2, b.z);
+        O.rotation.set(0, b.ry, fl ? Math.sin(t * 28 + i) * 0.6 : 0);
+        O.scale.set(fs, 1, fs);
+        O.updateMatrix();
+        M2.wing.setMatrixAt(i, O.matrix);
+        i++;
+      }
+      M2.body.instanceMatrix.needsUpdate = true;
+      M2.head.instanceMatrix.needsUpdate = true;
+      M2.wing.instanceMatrix.needsUpdate = true;
+    }
+    __name(v4BirdStep, "v4BirdStep");
     function v3Seed() {
       if (v3Seeded) return;
       v3Seeded = true;
@@ -45746,10 +47533,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       } catch (e) {
         console.error("v3 seed", e);
       }
+      try {
+        v4Seed();
+      } catch (e) {
+        console.error("v4 seed", e);
+      }
     }
     __name(v3Seed, "v3Seed");
     let rareT = 0;
     function v3Tick(dt) {
+      v4Tick(dt);
       floatStep(dt);
       dynStep(dt);
       projStep(dt);
@@ -45816,7 +47609,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             return { ok: true };
           }, "act") };
           if (p.owner === "kralle") return { text: "Die Kralle ist pleite \u2014 " + p.kind + " kaufen \xB7 " + p.price + " \u20AC", label: "Kaufen", act: /* @__PURE__ */ __name(() => buyProp(p), "act") };
-          return { text: "Dein " + p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag", label: "", act: null };
+          return { text: "Dein " + p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" + (p.ten === false ? " \xB7 LEER" : ""), label: "Verwalten", act: /* @__PURE__ */ __name(() => {
+            if (opts.onProps) opts.onProps(p.i);
+            return { ok: true };
+          }, "act") };
         }
         if (KR.hq && !KR.boss && !(clock < KR.downUntil) && Math.hypot(KR.hq.x - P.x, KR.hq.z - P.z) < 3) return { text: "Kralle-Zentrale \u2014 \xC4rger machen", label: "\xC4rger", act: /* @__PURE__ */ __name(() => {
           hqRaid();
@@ -45827,6 +47623,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(v3Prompt, "v3Prompt");
     function v3Markers(mk) {
+      v4Markers(mk);
       for (const c of VEHS) {
         if (c.wrecked || c.type === "ufo" || c === P.car) continue;
         if (c.rareV || c.vRole === "job" || ["rtractor", "combine", "haycat", "balloon", "sub", "schoolbus", "forklift", "snowmobile", "fueltruck", "bagcart", "planetug", "tug", "horse", "bull", "ostrich", "wheelchair"].includes(c.type)) mk.push({ k: "veh", x: c.x, z: c.z, t: VEH[c.type].name, rare: !!c.rareV });
@@ -45932,6 +47729,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(overmarkQuiet, "overmarkQuiet");
     function v3NewDay() {
+      try {
+        v4NewDay();
+      } catch (e) {
+        console.warn("v4NewDay", e);
+      }
       if (!pasture) return;
       const want = MOBILE ? 5 : 6;
       for (const c of COWS.slice()) if (c.dead) {
@@ -46221,7 +48023,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             const h = ped.hostile;
             bloodHit(ped, Math.sin(P.car.rot), Math.cos(P.car.rot), "car");
             if (!h && !ped.special) ped.wasHit = true;
+            v4Src = "car";
             knockPed(ped, true);
+            v4Src = null;
             panicAround(ped.x, ped.z, ped);
             if (!h) addHeat(0.48);
             rivalNoise(ped.x, ped.z, 0.5);
@@ -46271,6 +48075,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(screenToGround, "screenToGround");
     window.hood = {
+      v4: V4API,
       v3: V3API,
       callUfo: /* @__PURE__ */ __name(() => {
         const r = callUfo();
@@ -47057,7 +48862,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           el.classList.remove("hidden");
           el.textContent = "UFO \xB7 " + t + " s";
           el.classList.toggle("low", t <= 10);
-        }, "onUfo"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
+        }, "onUfo"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onProps: /* @__PURE__ */ __name((i) => openProps(i), "onProps"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
           if ($("bagOv").classList.contains("open")) renderBag();
         }, "onBag"), hoodName: nameOf(cityKey), onShop: showShop, onTag: showTagWall, onHoodDone });
         window.hoodGame = game;
@@ -47856,6 +49661,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           e.stopPropagation();
           openBag();
         });
+        $("propBtn").addEventListener("click", (e) => {
+          e.stopPropagation();
+          openProps();
+        });
         document.querySelectorAll(".ovl [data-close]").forEach((b) => b.addEventListener("click", (e) => {
           e.stopPropagation();
           closeOv(b.closest(".ovl").id);
@@ -48093,6 +49902,192 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         uiBlip("back", muted);
       }
       __name(closeOv, "closeOv");
+      var propSel = -1;
+      var propMsg = "";
+      var propSellArm = -1;
+      var propView = null;
+      function openProps(sel) {
+        if (!game || !game.v4) return;
+        if (sel != null) propSel = sel;
+        propMsg = "";
+        propSellArm = -1;
+        openOv("propOv");
+        renderProps();
+        requestAnimationFrame(drawProps);
+      }
+      __name(openProps, "openProps");
+      function propAct(fn) {
+        const r = fn();
+        if (r && r.msg) propMsg = r.msg;
+        else if (r && !r.ok) propMsg = "Geht gerade nicht.";
+        uiBlip(r && r.ok ? "ok" : "back", muted);
+        renderProps();
+        drawProps();
+      }
+      __name(propAct, "propAct");
+      function renderProps() {
+        const d = game.v4.props();
+        const mine = d.list.filter((q) => q.owner === "mine");
+        const free = d.list.filter((q) => q.owner === "free");
+        const kr = d.list.filter((q) => q.owner === "kralle");
+        $("propSum").innerHTML = `<span><b>${mine.length}</b> H\xE4user</span><span><b>${d.rented}</b> vermietet</span><span class="${mine.length - d.rented ? "bad" : ""}"><b>${mine.length - d.rented}</b> leer</span><span><b>${d.perDay} \u20AC</b> / Tag</span><span>gesamt <b>${d.total} \u20AC</b></span><span>Konto <b>${d.cash} \u20AC</b></span>`;
+        let h = propMsg ? `<div class="pMsg">${esc(propMsg)}</div>` : "";
+        if (!mine.length) h += '<div class="slot"><span class="em">\u{1F3E0}</span><span class="nm"><b>Noch kein Haus</b><span>Gr\xFCne H\xE4user auf der Karte stehen zum Verkauf. Hingehen und kaufen \u2014 dann kannst du hier die Miete einstellen.</span></span></div>';
+        for (const q of mine) {
+          const sel = q.i === propSel;
+          const mc = !q.ten ? "bad" : q.mood >= 65 ? "good" : q.mood >= 40 ? "mid" : "bad";
+          const rr = q.rent / q.fair;
+          h += `<div class="pCard${sel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc(q.name)}</b><span class="pSt ${mc}">${q.ten ? "Mieter " + q.mood_t : "LEER"}</span></div>
+  <div class="pSub">${esc(q.kind)} \xB7 ${"\u2605".repeat(q.lvl)}${"\u2606".repeat(3 - q.lvl)}${q.street ? " \xB7 " + esc(q.street) : ""} \xB7 bisher ${q.inc} \u20AC</div>
+  <div class="pRent"><button type="button" data-a="rent-" data-i="${q.i}">\u2212</button><div><b>${q.rent} \u20AC</b>/Tag<small>fair ${q.fair} \u20AC \xB7 ${rr > 1.25 ? "teuer \u2014 Mieter murren" : rr < 0.85 ? "billig \u2014 Mieter bleiben gern" : "passt"}</small></div><button type="button" data-a="rent+" data-i="${q.i}">+</button></div>
+  <div class="pBar"><span>Zustand</span><i><u style="width:${q.cond}%;background:${q.cond < 35 ? "#e0442e" : q.cond < 65 ? "#e8c22a" : "#5fc04a"}"></u></i><em>${q.cond}%</em></div>
+  <div class="pBar"><span>Laune</span><i><u style="width:${q.ten ? q.mood : 0}%;background:${q.mood < 40 ? "#e0442e" : q.mood < 65 ? "#e8c22a" : "#5fc04a"}"></u></i><em>${q.ten ? q.mood + "%" : "\u2014"}</em></div>
+  <div class="pBtns">${q.rep ? `<button type="button" data-a="rep" data-i="${q.i}">Reparieren ${q.rep} \u20AC</button>` : ""}${q.up ? `<button type="button" data-a="up" data-i="${q.i}">Ausbauen ${q.up} \u20AC</button>` : '<button type="button" disabled>Voll ausgebaut</button>'}${!q.ten ? `<button type="button" data-a="ad" data-i="${q.i}">Anzeige 30 \u20AC</button>` : ""}<button type="button" class="sell" data-a="sell" data-i="${q.i}">${propSellArm === q.i ? "Wirklich? +" + q.sell + " \u20AC" : "Verkaufen"}</button></div></div>`;
+        }
+        if (free.length) {
+          h += '<div class="sec">Zu verkaufen</div>';
+          for (const q of free) h += `<div class="pCard free${q.i === propSel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc(q.kind)}</b><span class="pSt good">${q.price} \u20AC</span></div><div class="pSub">Miete ca. ${q.rent} \u20AC/Tag${q.street ? " \xB7 " + esc(q.street) : ""} \xB7 hingehen und kaufen</div></div>`;
+        }
+        if (kr.length) {
+          h += '<div class="sec">Kralle Immobilien</div>';
+          for (const q of kr) h += `<div class="pCard kr${q.i === propSel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc(q.kind)}</b><span class="pSt bad">Kralle</span></div><div class="pSub">${q.street ? esc(q.street) + " \xB7 " : ""}\xDCbernehmen vor Ort (Anwalt + \xC4rger)</div></div>`;
+        }
+        if (d.events && d.events.length) {
+          h += '<div class="sec">Zuletzt</div>';
+          for (const e of d.events.slice(0, 5)) h += `<div class="pEv">${esc(e)}</div>`;
+        }
+        $("propBody").innerHTML = h;
+      }
+      __name(renderProps, "renderProps");
+      function drawProps() {
+        const cv2 = $("propCv");
+        if (!cv2 || !game || !$("propOv").classList.contains("open")) return;
+        const d = game.v4.props();
+        const md = game.mapData();
+        const r = cv2.getBoundingClientRect();
+        const dpr = Math.min(2, devicePixelRatio || 1);
+        const W = Math.max(10, r.width * dpr | 0), H = Math.max(10, r.height * dpr | 0);
+        if (cv2.width !== W || cv2.height !== H) {
+          cv2.width = W;
+          cv2.height = H;
+        }
+        const c = cv2.getContext("2d");
+        const E = md.edge;
+        const ew = E.maxx - E.minx, eh = E.maxz - E.minz;
+        const sc = Math.min(W / ew, H / eh) * 0.96;
+        const ox = (W - ew * sc) / 2 - E.minx * sc, oz = (H - eh * sc) / 2 - E.minz * sc;
+        propView = { sc, ox, oz, dpr };
+        const X = /* @__PURE__ */ __name((x) => ox + x * sc, "X"), Z = /* @__PURE__ */ __name((z) => oz + z * sc, "Z");
+        c.fillStyle = "#0c0d12";
+        c.fillRect(0, 0, W, H);
+        c.lineCap = "round";
+        for (const rd of md.roads) {
+          c.strokeStyle = rd.big ? "#4a4d58" : "#2e3038";
+          c.lineWidth = Math.max(1 * dpr, rd.w * sc * 0.8);
+          c.beginPath();
+          rd.p.forEach((q, i) => i ? c.lineTo(X(q[0]), Z(q[1])) : c.moveTo(X(q[0]), Z(q[1])));
+          c.stroke();
+        }
+        c.fillStyle = "#ffe14d";
+        c.beginPath();
+        c.arc(X(d.P.x), Z(d.P.z), 4 * dpr, 0, 7);
+        c.fill();
+        c.textAlign = "center";
+        for (const q of d.list) {
+          const x = X(q.x), y = Z(q.z);
+          const col = q.owner === "mine" ? q.ten ? "#ffd23f" : "#ff7a4a" : q.owner === "free" ? "#9dff7a" : "#2fe0dc";
+          const s = q.i === propSel ? 1.6 : 1;
+          c.fillStyle = col;
+          c.fillRect(x - 5 * dpr * s, y - 3 * dpr * s, 10 * dpr * s, 8 * dpr * s);
+          c.beginPath();
+          c.moveTo(x - 7 * dpr * s, y - 3 * dpr * s);
+          c.lineTo(x, y - 9 * dpr * s);
+          c.lineTo(x + 7 * dpr * s, y - 3 * dpr * s);
+          c.closePath();
+          c.fill();
+          c.strokeStyle = q.i === propSel ? "#fff" : "#000";
+          c.lineWidth = (q.i === propSel ? 2 : 1) * dpr;
+          c.stroke();
+          if (q.owner === "mine") {
+            c.font = "bold " + (9 * dpr | 0) + "px Arial";
+            c.fillStyle = q.ten ? "#ffe9a0" : "#ffb090";
+            c.fillText(q.ten ? q.rent + " \u20AC" : "LEER", x, y + 18 * dpr);
+          }
+        }
+      }
+      __name(drawProps, "drawProps");
+      function propTap(e) {
+        if (!propView || !game) return;
+        const r = $("propCv").getBoundingClientRect();
+        const px2 = (e.clientX - r.left) * propView.dpr, pz2 = (e.clientY - r.top) * propView.dpr;
+        const d = game.v4.props();
+        let best = -1, bd = 26 * propView.dpr;
+        for (const q of d.list) {
+          const dd = Math.hypot(propView.ox + q.x * propView.sc - px2, propView.oz + q.z * propView.sc - pz2);
+          if (dd < bd) {
+            bd = dd;
+            best = q.i;
+          }
+        }
+        if (best < 0) return;
+        propSel = best;
+        propMsg = "";
+        renderProps();
+        drawProps();
+        const el = document.querySelector('#propBody .pCard[data-i="' + best + '"]');
+        if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      }
+      __name(propTap, "propTap");
+      function initProps() {
+        $("propCv").addEventListener("pointerup", propTap);
+        $("propBody").addEventListener("click", (e) => {
+          const b = e.target.closest("button[data-a]");
+          const card = e.target.closest(".pCard");
+          if (!b) {
+            if (card) {
+              propSel = +card.dataset.i;
+              propSellArm = -1;
+              renderProps();
+              drawProps();
+            }
+            return;
+          }
+          const i = +b.dataset.i, a = b.dataset.a;
+          propSel = i;
+          const q = game.v4.props().list[i];
+          if (a !== "sell") propSellArm = -1;
+          if (a === "rent-" || a === "rent+") {
+            const st = Math.max(5, Math.round(q.fair * 0.1 / 5) * 5);
+            const r = game.v4.setRent(i, q.rent + (a === "rent+" ? st : -st));
+            propMsg = r.ok ? "Miete " + q.name + ": " + r.rent + " \u20AC/Tag" : "";
+            uiBlip("ok", muted);
+            renderProps();
+            drawProps();
+            return;
+          }
+          if (a === "rep") return propAct(() => game.v4.repair(i));
+          if (a === "up") return propAct(() => game.v4.upgrade(i));
+          if (a === "ad") return propAct(() => game.v4.advertise(i));
+          if (a === "sell") {
+            if (propSellArm !== i) {
+              propSellArm = i;
+              propMsg = "Nochmal tippen zum Verkaufen.";
+              renderProps();
+              return;
+            }
+            propSellArm = -1;
+            return propAct(() => game.v4.sell(i));
+          }
+        });
+      }
+      __name(initProps, "initProps");
+      setTimeout(() => {
+        try {
+          initProps();
+        } catch (e) {
+          console.warn("props ui", e);
+        }
+      }, 0);
       var mapRaf = 0;
       var mapView = null;
       function openMap() {
@@ -48426,6 +50421,22 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             c.stroke();
             continue;
           }
+          if (m.k === "v4") {
+            c.fillStyle = m.col;
+            c.beginPath();
+            c.arc(x, y, 7 * dpr, 0, 7);
+            c.fill();
+            c.strokeStyle = "#000";
+            c.lineWidth = 1.5 * dpr;
+            c.stroke();
+            c.fillStyle = "#111";
+            c.font = "bold " + (9 * dpr | 0) + "px Arial";
+            c.fillText(m.ch, x, y + 3 * dpr);
+            c.font = (10 * dpr | 0) + "px Arial";
+            c.fillStyle = m.col;
+            c.fillText(lb, x, y + 18 * dpr);
+            continue;
+          }
           col = { bank: "#ffd23f", kiosk: "#ffa24a", garage: "#b0b8c8", zack: "#9dff7a" }[m.k] || "#ccc";
           c.fillStyle = col;
           c.fillRect(x - 4 * dpr, y - 4 * dpr, 8 * dpr, 8 * dpr);
@@ -48543,6 +50554,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         h += '<div class="sec">Freischalten</div>';
         for (const u of s.unlocks) h += `<div class="slot${u.ok ? "" : " lock"}"><span class="em">${u.ok ? "\u2714" : "\u{1F512}"}</span><span class="nm"><b>${esc(u.name)}</b><span>${u.ok ? "Freigeschaltet" : "Braucht " + esc(u.need)}</span></span></div>`;
+        if (s.v4) {
+          const V = s.v4;
+          h += '<div class="sec">Respekt der Banden</div>';
+          if (!V.crews.length) h += '<div class="slot"><span class="nm"><span>Keine Banden in dieser Hood.</span></span></div>';
+          for (const c of V.crews) {
+            const v = c.v;
+            const pc = Math.round((v + 100) / 2);
+            h += `<div class="stat"><b>${esc(c.name)}</b><span class="rbar"><i style="width:${pc}%;background:${v <= -40 ? "#e0442e" : v >= 50 ? "#5fc04a" : "#e8c22a"}"></i></span><em>${v > 0 ? "+" : ""}${v}</em><small>${c.mine ? "Ihr Viertel geh\xF6rt dir" : v <= -40 ? "Die jagen dich" : v >= 50 ? "Lassen dich in Ruhe, Essen umsonst" : "Schutzgeld zahlen hebt Respekt, Pr\xFCgeln senkt ihn"}</small></div>`;
+          }
+          h += `<div class="sec">Amok &amp; Export</div><div class="slot"><span class="em">\u2620</span><span class="nm"><b>Multiplikator \xD7${V.mult}</b><span>${V.amok} Amokl\xE4ufe geschafft \xB7 Auftr\xE4ge zahlen \xD7${(1 + 0.25 * (V.mult - 1)).toFixed(2).replace(".", ",")} \xB7 weg, wenn du umf\xE4llst</span></span></div><div class="slot"><span class="em">\u{1F697}</span><span class="nm"><b>GARAGE 9 Export-Liste</b><span>${V.want.map((w) => (w.got ? "\u2714 " : "") + esc(w.name)).join(" \xB7 ")} \xB7 ${V.bonus} Listen komplett</span></span></div>`;
+        }
         $("charBody").innerHTML = h;
         openOv("charOv");
       }
