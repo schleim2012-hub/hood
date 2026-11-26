@@ -532,7 +532,7 @@
       return background;
     }
     __name(getBackground, "getBackground");
-    function render(scene) {
+    function render2(scene) {
       let forceClear = false;
       const background = getBackground(scene);
       if (background === null) {
@@ -554,7 +554,7 @@
         renderer.clear(renderer.autoClearColor, renderer.autoClearDepth, renderer.autoClearStencil);
       }
     }
-    __name(render, "render");
+    __name(render2, "render");
     function addToRenderList(renderList, scene) {
       const background = getBackground(scene);
       if (background && (background.isCubeTexture || background.mapping === CubeUVReflectionMapping)) {
@@ -668,7 +668,7 @@
         clearAlpha = alpha2;
         setClear(clearColor, clearAlpha);
       }, "setClearAlpha"),
-      render,
+      render: render2,
       addToRenderList
     };
   }
@@ -1025,11 +1025,11 @@
       mode = value;
     }
     __name(setMode, "setMode");
-    function render(start, count) {
+    function render2(start, count) {
       gl.drawArrays(mode, start, count);
       info.update(count, mode, 1);
     }
-    __name(render, "render");
+    __name(render2, "render");
     function renderInstances(start, count, primcount) {
       if (primcount === 0) return;
       gl.drawArraysInstanced(mode, start, count, primcount);
@@ -1065,7 +1065,7 @@
     }
     __name(renderMultiDrawInstances, "renderMultiDrawInstances");
     this.setMode = setMode;
-    this.render = render;
+    this.render = render2;
     this.renderInstances = renderInstances;
     this.renderMultiDraw = renderMultiDraw;
     this.renderMultiDrawInstances = renderMultiDrawInstances;
@@ -1826,11 +1826,11 @@
       bytesPerElement = value.bytesPerElement;
     }
     __name(setIndex, "setIndex");
-    function render(start, count) {
+    function render2(start, count) {
       gl.drawElements(mode, count, type, start * bytesPerElement);
       info.update(count, mode, 1);
     }
-    __name(render, "render");
+    __name(render2, "render");
     function renderInstances(start, count, primcount) {
       if (primcount === 0) return;
       gl.drawElementsInstanced(mode, count, type, start * bytesPerElement, primcount);
@@ -1867,7 +1867,7 @@
     __name(renderMultiDrawInstances, "renderMultiDrawInstances");
     this.setMode = setMode;
     this.setIndex = setIndex;
-    this.render = render;
+    this.render = render2;
     this.renderInstances = renderInstances;
     this.renderMultiDraw = renderMultiDraw;
     this.renderMultiDrawInstances = renderMultiDrawInstances;
@@ -1877,7 +1877,7 @@
       geometries: 0,
       textures: 0
     };
-    const render = {
+    const render2 = {
       frame: 0,
       calls: 0,
       triangles: 0,
@@ -1885,22 +1885,22 @@
       lines: 0
     };
     function update(count, mode, instanceCount) {
-      render.calls++;
+      render2.calls++;
       switch (mode) {
         case gl.TRIANGLES:
-          render.triangles += instanceCount * (count / 3);
+          render2.triangles += instanceCount * (count / 3);
           break;
         case gl.LINES:
-          render.lines += instanceCount * (count / 2);
+          render2.lines += instanceCount * (count / 2);
           break;
         case gl.LINE_STRIP:
-          render.lines += instanceCount * (count - 1);
+          render2.lines += instanceCount * (count - 1);
           break;
         case gl.LINE_LOOP:
-          render.lines += instanceCount * count;
+          render2.lines += instanceCount * count;
           break;
         case gl.POINTS:
-          render.points += instanceCount * count;
+          render2.points += instanceCount * count;
           break;
         default:
           console.error("THREE.WebGLInfo: Unknown draw mode:", mode);
@@ -1909,15 +1909,15 @@
     }
     __name(update, "update");
     function reset() {
-      render.calls = 0;
-      render.triangles = 0;
-      render.points = 0;
-      render.lines = 0;
+      render2.calls = 0;
+      render2.triangles = 0;
+      render2.points = 0;
+      render2.lines = 0;
     }
     __name(reset, "reset");
     return {
       memory,
-      render,
+      render: render2,
       programs: null,
       autoReset: true,
       reset,
@@ -22603,7 +22603,7 @@ void main() {
           function addShape(shape) {
             const placeholder = [];
             const curveSegments = options.curveSegments !== void 0 ? options.curveSegments : 12;
-            const steps = options.steps !== void 0 ? options.steps : 1;
+            const steps2 = options.steps !== void 0 ? options.steps : 1;
             const depth = options.depth !== void 0 ? options.depth : 1;
             let bevelEnabled = options.bevelEnabled !== void 0 ? options.bevelEnabled : true;
             let bevelThickness = options.bevelThickness !== void 0 ? options.bevelThickness : 0.2;
@@ -22615,10 +22615,10 @@ void main() {
             let extrudePts, extrudeByPath = false;
             let splineTube, binormal, normal, position2;
             if (extrudePath) {
-              extrudePts = extrudePath.getSpacedPoints(steps);
+              extrudePts = extrudePath.getSpacedPoints(steps2);
               extrudeByPath = true;
               bevelEnabled = false;
-              splineTube = extrudePath.computeFrenetFrames(steps, false);
+              splineTube = extrudePath.computeFrenetFrames(steps2, false);
               binormal = new Vector3();
               normal = new Vector3();
               position2 = new Vector3();
@@ -22754,11 +22754,11 @@ void main() {
                 v(position2.x, position2.y, position2.z);
               }
             }
-            for (let s = 1; s <= steps; s++) {
+            for (let s = 1; s <= steps2; s++) {
               for (let i = 0; i < vlen; i++) {
                 const vert = bevelEnabled ? scalePt2(vertices[i], verticesMovements[i], bs) : vertices[i];
                 if (!extrudeByPath) {
-                  v(vert.x, vert.y, depth / steps * s);
+                  v(vert.x, vert.y, depth / steps2 * s);
                 } else {
                   normal.copy(splineTube.normals[s]).multiplyScalar(vert.x);
                   binormal.copy(splineTube.binormals[s]).multiplyScalar(vert.y);
@@ -22783,7 +22783,7 @@ void main() {
                   if (!extrudeByPath) {
                     v(vert.x, vert.y, depth + z);
                   } else {
-                    v(vert.x, vert.y + extrudePts[steps - 1].y, extrudePts[steps - 1].x + z);
+                    v(vert.x, vert.y + extrudePts[steps2 - 1].y, extrudePts[steps2 - 1].x + z);
                   }
                 }
               }
@@ -22799,7 +22799,7 @@ void main() {
                   const face = faces[i];
                   f3(face[2] + offset, face[1] + offset, face[0] + offset);
                 }
-                layer = steps + bevelSegments * 2;
+                layer = steps2 + bevelSegments * 2;
                 offset = vlen * layer;
                 for (let i = 0; i < flen; i++) {
                   const face = faces[i];
@@ -22812,7 +22812,7 @@ void main() {
                 }
                 for (let i = 0; i < flen; i++) {
                   const face = faces[i];
-                  f3(face[0] + vlen * steps, face[1] + vlen * steps, face[2] + vlen * steps);
+                  f3(face[0] + vlen * steps2, face[1] + vlen * steps2, face[2] + vlen * steps2);
                 }
               }
               scope.addGroup(start, verticesArray.length / 3 - start, 0);
@@ -22837,7 +22837,7 @@ void main() {
                 const j = i;
                 let k = i - 1;
                 if (k < 0) k = contour2.length - 1;
-                for (let s = 0, sl = steps + bevelSegments * 2; s < sl; s++) {
+                for (let s = 0, sl = steps2 + bevelSegments * 2; s < sl; s++) {
                   const slen1 = vlen * s;
                   const slen2 = vlen * (s + 1);
                   const a = layeroffset + j + slen1, b = layeroffset + k + slen1, c = layeroffset + k + slen2, d = layeroffset + j + slen2;
@@ -30050,9 +30050,9 @@ void main() {
     return tex(c);
   }
   function asphaltTex(seed) {
-    return noiseTex("#2f4a46", 0.28, 22e3, 512, seed, (g, R, s) => {
+    return noiseTex("#4a4f52", 0.28, 22e3, 512, seed, (g, R, s) => {
       wrapDraw(g, s, s, () => {
-        blotch(g, s, s, 30, R, "10,18,14", 0.22, 80);
+        blotch(g, s, s, 30, R, "22,24,26", 0.22, 80);
         blotch(g, s, s, 12, R, "90,100,95", 0.12, 60);
       });
       g.strokeStyle = "rgba(20,20,20,.45)";
@@ -30354,8 +30354,8 @@ void main() {
     const L = offsetLine(pts, w / 2, opt.closed), R = offsetLine(pts, -w / 2, opt.closed);
     let acc = 0;
     const ys = Array.isArray(y) ? y : null;
-    const M = opt.closed ? n : n - 1;
-    for (let i = 0; i < M; i++) {
+    const M2 = opt.closed ? n : n - 1;
+    for (let i = 0; i < M2; i++) {
       const j = (i + 1) % n;
       const l = Math.hypot(pts[j][0] - pts[i][0], pts[j][1] - pts[i][1]);
       const yi = ys ? ys[i] : y, yj = ys ? ys[j] : y;
@@ -30416,8 +30416,8 @@ void main() {
         b02 = Math.min(b02, v);
         b12 = Math.max(b12, v);
       }
-      const A = (a12 - a02) * (b12 - b02);
-      if (!best || A < best.A) best = { A, ux: ux2, uz: uz2, a0: a02, a1: a12, b0: b02, b1: b12 };
+      const A2 = (a12 - a02) * (b12 - b02);
+      if (!best || A2 < best.A) best = { A: A2, ux: ux2, uz: uz2, a0: a02, a1: a12, b0: b02, b1: b12 };
     }
     if (!best) return null;
     let { ux, uz, a0, a1, b0, b1 } = best;
@@ -30533,14 +30533,14 @@ void main() {
     g.strokeStyle = "#e8eef8";
     g.lineWidth = 5;
     g.strokeRect(5, 5, 502, 102);
-    const badge = mode === "u" ? "U" : mode === "tram" ? "H" : "Bf";
+    const badge2 = mode === "u" ? "U" : mode === "tram" ? "H" : "Bf";
     g.fillStyle = mode === "tram" ? "#f4cf1a" : "#fff";
     g.fillRect(16, 16, 80, 80);
     g.fillStyle = mode === "u" ? "#123d82" : mode === "tram" ? "#0f5a2e" : "#c4141c";
     g.font = "900 60px Arial Black, Arial, sans-serif";
     g.textAlign = "center";
     g.textBaseline = "middle";
-    g.fillText(badge, 56, 60);
+    g.fillText(badge2, 56, 60);
     g.fillStyle = "#fff";
     g.textAlign = "left";
     let sz = 50;
@@ -30561,9 +30561,9 @@ void main() {
     const k = Math.max(3, Math.min(10, 1024 / Math.max(L2, W2m)));
     const w = Math.max(16, Math.round(L2 * k)), h = Math.max(16, Math.round(W2m * k));
     const c = cv(w, h), g = c.getContext("2d"), R = rng(seed);
-    const M = /* @__PURE__ */ __name((x) => x * k, "M");
+    const M2 = /* @__PURE__ */ __name((x) => x * k, "M");
     let line = "rgba(250,250,245,.95)";
-    const lw = Math.max(2, M(0.12));
+    const lw = Math.max(2, M2(0.12));
     const soft = ["grass", "artificial_turf", "", "turf"];
     const cinder = ["compacted", "dirt", "fine_gravel", "gravel", "ground", "clay", "earth", "unpaved"];
     const hard = ["asphalt", "concrete", "paved", "acrylic", "tartan", "rubber", "paving_stones"];
@@ -30625,15 +30625,15 @@ void main() {
     g.strokeStyle = line;
     g.fillStyle = line;
     g.lineWidth = lw;
-    const rect = /* @__PURE__ */ __name((x, y, ww, hh) => g.strokeRect(M(x), M(y), M(ww), M(hh)), "rect");
+    const rect = /* @__PURE__ */ __name((x, y, ww, hh) => g.strokeRect(M2(x), M2(y), M2(ww), M2(hh)), "rect");
     const circ = /* @__PURE__ */ __name((x, y, r, a0 = 0, a1 = Math.PI * 2) => {
       g.beginPath();
-      g.arc(M(x), M(y), M(r), a0, a1);
+      g.arc(M2(x), M2(y), M2(r), a0, a1);
       g.stroke();
     }, "circ");
     const dot = /* @__PURE__ */ __name((x, y, r) => {
       g.beginPath();
-      g.arc(M(x), M(y), Math.max(1.5, M(r)), 0, 7);
+      g.arc(M2(x), M2(y), Math.max(1.5, M2(r)), 0, 7);
       g.fill();
     }, "dot");
     const cx = L2 / 2, cy = W2m / 2;
@@ -30644,12 +30644,12 @@ void main() {
       rect(cx - lL / 2, cy - lW / 2, lL, lW);
       rect(cx - lL / 2, cy - sW / 2, lL, sW);
       g.beginPath();
-      g.moveTo(M(cx - sv), M(cy - sW / 2));
-      g.lineTo(M(cx - sv), M(cy + sW / 2));
-      g.moveTo(M(cx + sv), M(cy - sW / 2));
-      g.lineTo(M(cx + sv), M(cy + sW / 2));
-      g.moveTo(M(cx - sv), M(cy));
-      g.lineTo(M(cx + sv), M(cy));
+      g.moveTo(M2(cx - sv), M2(cy - sW / 2));
+      g.lineTo(M2(cx - sv), M2(cy + sW / 2));
+      g.moveTo(M2(cx + sv), M2(cy - sW / 2));
+      g.lineTo(M2(cx + sv), M2(cy + sW / 2));
+      g.moveTo(M2(cx - sv), M2(cy));
+      g.lineTo(M2(cx + sv), M2(cy));
       g.stroke();
       if (L2 > 14) return { tex: c, net: { w: lW + 1, h: 0.95 }, kind: "tennis" };
       return { tex: c, kind: "tennis" };
@@ -30659,16 +30659,16 @@ void main() {
       const fl = L2 - 2 * m, fw = W2m - 2 * m;
       rect(m, m, fl, fw);
       g.beginPath();
-      g.moveTo(M(cx), M(m));
-      g.lineTo(M(cx), M(W2m - m));
+      g.moveTo(M2(cx), M2(m));
+      g.lineTo(M2(cx), M2(W2m - m));
       g.stroke();
       circ(cx, cy, Math.min(1.8, fw * 0.12));
       const kd = Math.min(5.8, fl * 0.2), kw = Math.min(4.9, fw * 0.35);
       for (const e of [0, 1]) {
         const x0 = e ? L2 - m - kd : m;
         g.fillStyle = "rgba(40,70,140,.55)";
-        g.fillRect(M(x0), M(cy - kw / 2), M(kd), M(kw));
-        g.strokeRect(M(x0), M(cy - kw / 2), M(kd), M(kw));
+        g.fillRect(M2(x0), M2(cy - kw / 2), M2(kd), M2(kw));
+        g.strokeRect(M2(x0), M2(cy - kw / 2), M2(kd), M2(kw));
         const ax = e ? L2 - m - 1.2 : m + 1.2;
         const r3 = Math.min(6.75, fw * 0.45);
         circ(ax, cy, r3, e ? Math.PI / 2 : -Math.PI / 2, e ? Math.PI * 1.5 : Math.PI / 2);
@@ -30679,19 +30679,19 @@ void main() {
     }
     if (sport === "beachvolleyball" || sport === "volleyball") {
       g.strokeStyle = "rgba(30,80,180,.9)";
-      g.lineWidth = Math.max(2, M(0.06));
+      g.lineWidth = Math.max(2, M2(0.06));
       const s = Math.min(1, (L2 - 3) / 16, (W2m - 2) / 8);
       rect(cx - 8 * s, cy - 4 * s, 16 * s, 8 * s);
       return { tex: c, net: { w: 8 * s + 1.5, h: 1.4 }, kind: "volley" };
     }
     if (sport === "athletics" || sport === "running") {
-      g.lineWidth = Math.max(1.5, M(0.05));
+      g.lineWidth = Math.max(1.5, M2(0.05));
       const lanes = Math.max(1, Math.floor(W2m / 1.22));
       for (let i = 0; i <= lanes; i++) {
         const y = cy - lanes * 0.61 + i * 1.22;
         g.beginPath();
-        g.moveTo(0, M(y));
-        g.lineTo(w, M(y));
+        g.moveTo(0, M2(y));
+        g.lineTo(w, M2(y));
         g.stroke();
       }
       return { tex: c, kind: "run" };
@@ -30709,24 +30709,24 @@ void main() {
         g.ellipse(w / 2, h / 2, w * 0.47, h * 0.45, 0, 0, 7);
         g.fill();
         g.strokeStyle = "rgba(220,220,214,.9)";
-        g.lineWidth = Math.max(2, M(0.15));
+        g.lineWidth = Math.max(2, M2(0.15));
         g.beginPath();
         g.ellipse(w / 2, h / 2, w * 0.47, h * 0.45, 0, 0, 7);
         g.stroke();
       } else {
         for (const e of [0, 1]) {
-          const gr = g.createLinearGradient(e ? w : 0, 0, e ? w - M(3) : M(3), 0);
+          const gr = g.createLinearGradient(e ? w : 0, 0, e ? w - M2(3) : M2(3), 0);
           gr.addColorStop(0, "rgba(50,50,54,.5)");
           gr.addColorStop(1, "rgba(0,0,0,0)");
           g.fillStyle = gr;
-          g.fillRect(e ? w - M(3) : 0, 0, M(3), h);
+          g.fillRect(e ? w - M2(3) : 0, 0, M2(3), h);
           g.fillStyle = "rgba(225,225,220,.9)";
-          g.fillRect(e ? w - M(0.25) : 0, 0, M(0.25), h);
+          g.fillRect(e ? w - M2(0.25) : 0, 0, M2(0.25), h);
         }
         g.fillStyle = "rgba(60,60,64,.45)";
         for (let i = 0; i < 3; i++) {
-          const x = M(L2 * (0.3 + R2() * 0.4)), y = M(W2m * (0.25 + R2() * 0.5));
-          g.fillRect(x - M(1.5), y - M(0.6), M(3), M(1.2));
+          const x = M2(L2 * (0.3 + R2() * 0.4)), y = M2(W2m * (0.25 + R2() * 0.5));
+          g.fillRect(x - M2(1.5), y - M2(0.6), M2(3), M2(1.2));
         }
       }
       return { tex: c, kind: "skate" };
@@ -30736,7 +30736,7 @@ void main() {
       for (let i = 0; i < 500; i++) {
         const x = R() * w, y = R() * h;
         g.beginPath();
-        g.ellipse(x, y, M(0.12), M(0.08), R() * 3, 0, 7);
+        g.ellipse(x, y, M2(0.12), M2(0.08), R() * 3, 0, 7);
         g.fill();
       }
       return { tex: c, fence: true, kind: "horse" };
@@ -30744,7 +30744,7 @@ void main() {
     if (sport === "boules" || sport === "petanque" || sport === "table_tennis") {
       g.strokeStyle = "rgba(255,255,255,.6)";
       g.lineWidth = 2;
-      g.strokeRect(M(0.4), M(0.4), w - M(0.8), h - M(0.8));
+      g.strokeRect(M2(0.4), M2(0.4), w - M2(0.8), h - M2(0.8));
       return { tex: c, table: sport === "table_tennis", kind: sport };
     }
     if (isBall) {
@@ -30753,8 +30753,8 @@ void main() {
       const s = Math.min(1, fl / 100);
       rect(m, m, fl, fw);
       g.beginPath();
-      g.moveTo(M(cx), M(m));
-      g.lineTo(M(cx), M(W2m - m));
+      g.moveTo(M2(cx), M2(m));
+      g.lineTo(M2(cx), M2(W2m - m));
       g.stroke();
       circ(cx, cy, Math.max(1.5, 9.15 * s));
       dot(cx, cy, 0.22);
@@ -30769,8 +30769,8 @@ void main() {
           dot(sx, cy, 0.2);
           g.save();
           g.beginPath();
-          if (e) g.rect(0, 0, M(L2 - m - pd), h);
-          else g.rect(M(m + pd), 0, w - M(m + pd), h);
+          if (e) g.rect(0, 0, M2(L2 - m - pd), h);
+          else g.rect(M2(m + pd), 0, w - M2(m + pd), h);
           g.clip();
           circ(sx, cy, ar);
           g.restore();
@@ -30786,7 +30786,7 @@ void main() {
     }
     g.strokeStyle = "rgba(255,255,255,.7)";
     g.lineWidth = lw;
-    g.strokeRect(M(0.8), M(0.8), w - M(1.6), h - M(1.6));
+    g.strokeRect(M2(0.8), M2(0.8), w - M2(1.6), h - M2(1.6));
     return { tex: c, kind: "other" };
   }
   function buildTransit(scene, D, out) {
@@ -31042,8 +31042,8 @@ void main() {
               return Math.abs(q[0] - c0[0]) < 80 && Math.abs(q[1] - c0[1]) < 80 && B.b.p.some((v) => pip(v[0], v[1], C));
             });
             if (bad) continue;
-            const steps = 5;
-            for (let k = 0; k < steps; k++) {
+            const steps2 = 5;
+            for (let k = 0; k < steps2; k++) {
               const vv = sd2 * (o.W + gap + 0.8 + k * 1.4);
               const q = W2(o, 0, vv);
               const hgt = 0.45 + k * 0.5;
@@ -31262,14 +31262,14 @@ void main() {
         const sA = P2(hl + 0.31, -hw - 0.3), sB = P2(hl + 0.31, hw + 0.3), sc = P2(hl + 0.31, 0);
         (out.tagSpots = out.tagSpots || []).push({ A: sA, B: sB, len: 2 * hw + 0.6, nx: tx2, nz: tz, cx: sc[0], cz: sc[1], h: 1.25, kind: "ubahn", maxW: 2.3 });
       }
-      const A = P2(-hl, -hw - 0.3), B = P2(hl + 0.3, -hw - 0.3), C = P2(hl + 0.3, hw + 0.3), Dd = P2(-hl, hw + 0.3);
-      out.grid.add(A[0], A[1], B[0], B[1]);
+      const A2 = P2(-hl, -hw - 0.3), B = P2(hl + 0.3, -hw - 0.3), C = P2(hl + 0.3, hw + 0.3), Dd = P2(-hl, hw + 0.3);
+      out.grid.add(A2[0], A2[1], B[0], B[1]);
       out.grid.add(B[0], B[1], C[0], C[1]);
       out.grid.add(C[0], C[1], Dd[0], Dd[1]);
       const pq = P2(-hl - 0.2, hw + 0.55);
       pylons.push({ x: pq[0], z: pq[1], m: e.m || "u", h: 3.2, big: true });
       if (e.n) boards.push({ x: P2(hl + 0.2, 0)[0], z: P2(hl + 0.2, 0)[1], y: 1.35, n: e.n, m: e.m || "u", small: true, rot });
-      noTreePolys.push([A, B, C, Dd]);
+      noTreePolys.push([A2, B, C, Dd]);
     }
     for (const b of bus) {
       const c = curbside(b.p[0], b.p[1], 1.2);
@@ -31547,6 +31547,760 @@ void main() {
     }
   });
 
+  // src/detail5.js
+  function rngS(s) {
+    let a = s >>> 0;
+    return () => {
+      a = a + 1831565813 >>> 0;
+      let t = a;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function tileTex() {
+    const c = cv2(128, 128), g = c.getContext("2d");
+    const R = rngS(55);
+    g.fillStyle = "#d8d8d8";
+    g.fillRect(0, 0, 128, 128);
+    for (let y = 0; y < 128; y += 16) {
+      for (let x = -(y / 16 % 2) * 8; x < 128; x += 16) {
+        const v = 200 + (R() * 40 | 0);
+        g.fillStyle = `rgb(${v},${v},${v})`;
+        g.fillRect(x + 1, y + 1, 14, 13);
+        const gr = g.createLinearGradient(0, y, 0, y + 16);
+        gr.addColorStop(0, "rgba(255,255,255,.18)");
+        gr.addColorStop(0.7, "rgba(0,0,0,0)");
+        gr.addColorStop(1, "rgba(0,0,0,.38)");
+        g.fillStyle = gr;
+        g.fillRect(x, y, 16, 16);
+      }
+    }
+    for (let i = 0; i < 260; i++) {
+      g.fillStyle = `rgba(${R() < 0.5 ? 0 : 255},${R() < 0.5 ? 0 : 255},0,${R() * 0.06})`;
+      g.fillRect(R() * 128, R() * 128, 2 + R() * 6, 2 + R() * 4);
+    }
+    return T(c);
+  }
+  function canopyTex() {
+    const c = cv2(256, 256), g = c.getContext("2d");
+    const R = rngS(77);
+    g.fillStyle = "#24401c";
+    g.fillRect(0, 0, 256, 256);
+    const blob = /* @__PURE__ */ __name((x, y, r, col) => {
+      const gr = g.createRadialGradient(x - r * 0.3, y - r * 0.3, r * 0.1, x, y, r);
+      gr.addColorStop(0, col[0]);
+      gr.addColorStop(0.75, col[1]);
+      gr.addColorStop(1, "rgba(10,22,8,0)");
+      g.fillStyle = gr;
+      g.beginPath();
+      g.arc(x, y, r, 0, 7);
+      g.fill();
+    }, "blob");
+    const C = [["#5d8a3a", "#2f5222"], ["#4f7d34", "#29481c"], ["#6c9440", "#355a24"], ["#3f6a2e", "#20381a"], ["#7a9a48", "#3a5a26"]];
+    for (let i = 0; i < 520; i++) {
+      const x = R() * 256, y = R() * 256, r = 7 + R() * 13, col = C[R() * C.length | 0];
+      for (const dx of [-256, 0, 256]) for (const dy of [-256, 0, 256]) if (x + dx > -r && x + dx < 256 + r && y + dy > -r && y + dy < 256 + r) blob(x + dx, y + dy, r, col);
+    }
+    return T(c);
+  }
+  function areaTex(k) {
+    if (k === "forest") return canopyTex();
+    if (k === "wet") return flat("#4a5e34", 9e3, 0.35, 61, (g, R) => {
+      for (let i = 0; i < 14; i++) {
+        g.fillStyle = "rgba(60,110,130,.55)";
+        g.beginPath();
+        g.ellipse(R() * 256, R() * 256, 6 + R() * 16, 3 + R() * 8, R() * 3, 0, 7);
+        g.fill();
+      }
+    });
+    if (k === "sand") return flat("#d8c690", 9e3, 0.25, 62);
+    if (k === "play") return flat("#d2b77c", 8e3, 0.25, 63, (g, R) => {
+      g.strokeStyle = "rgba(120,80,40,.25)";
+      for (let i = 0; i < 10; i++) {
+        g.beginPath();
+        g.arc(R() * 256, R() * 256, 10 + R() * 20, 0, 7);
+        g.stroke();
+      }
+    });
+    if (k === "pool") return flat("#3fb6d8", 2e3, 0.12, 64, (g, R) => {
+      g.strokeStyle = "rgba(255,255,255,.35)";
+      g.lineWidth = 2;
+      for (let i = 0; i < 30; i++) {
+        g.beginPath();
+        const x = R() * 256, y = R() * 256;
+        g.moveTo(x, y);
+        g.quadraticCurveTo(x + 8, y - 5, x + 18, y);
+        g.stroke();
+      }
+    });
+    if (k === "dirt") return flat("#8a7456", 12e3, 0.35, 65);
+    if (k === "allot") return flat("#5c7a38", 6e3, 0.3, 66, (g, R) => {
+      for (let y = 0; y < 256; y += 32) for (let x = 0; x < 256; x += 48) {
+        const cols = ["#6a4a2e", "#4f7a2a", "#7a8a3a", "#5a3a24", "#86a04a"];
+        for (let k2 = 0; k2 < 4; k2++) {
+          g.fillStyle = cols[R() * cols.length | 0];
+          g.fillRect(x + 4 + k2 * 10, y + 4, 8, 22);
+        }
+        g.fillStyle = "rgba(200,190,170,.6)";
+        g.fillRect(x, y + 28, 48, 3);
+      }
+    });
+    return null;
+  }
+  function groundMask(D, out, rural) {
+    const S = 1024, W = 2400, k = S / W;
+    const toP = /* @__PURE__ */ __name((x, z) => [(x + W / 2) * k, (z + W / 2) * k], "toP");
+    const m = cv2(S, S), g = m.getContext("2d");
+    g.fillStyle = "#000";
+    g.fillRect(0, 0, S, S);
+    const poly = /* @__PURE__ */ __name((ctx, p) => {
+      ctx.beginPath();
+      p.forEach((q, i) => {
+        const [x, y] = toP(q[0], q[1]);
+        if (i) ctx.lineTo(x, y);
+        else ctx.moveTo(x, y);
+      });
+      ctx.closePath();
+    }, "poly");
+    if (!rural) {
+      const a = cv2(S, S), ga = a.getContext("2d");
+      ga.fillStyle = "#fff";
+      for (const b of D.buildings) {
+        poly(ga, b.p);
+        ga.fill();
+      }
+      const b2 = cv2(S, S), gb = b2.getContext("2d");
+      gb.filter = "blur(14px)";
+      gb.drawImage(a, 0, 0);
+      gb.filter = "none";
+      const b3 = cv2(S, S), g3 = b3.getContext("2d");
+      g3.filter = "blur(46px)";
+      g3.drawImage(a, 0, 0);
+      g3.filter = "none";
+      let wd = null;
+      try {
+        wd = g3.getImageData(0, 0, S, S).data;
+      } catch (e) {
+      }
+      let id;
+      try {
+        id = gb.getImageData(0, 0, S, S);
+      } catch (e) {
+        id = null;
+      }
+      if (id) {
+        const d = id.data;
+        for (let i = 0; i < d.length; i += 4) {
+          const v = d[i + 3] / 255;
+          let t2 = Math.max(0, Math.min(1, (v - 0.3) / 0.14));
+          if (wd) {
+            const w = wd[i + 3] / 255;
+            t2 = Math.max(t2, Math.min(1, Math.max(0, (w - 0.3) / 0.1)));
+          }
+          d[i] = d[i + 1] = d[i + 2] = t2 * 255;
+          d[i + 3] = 255;
+        }
+        g.putImageData(id, 0, 0);
+      }
+    }
+    g.fillStyle = "#fff";
+    g.strokeStyle = "#fff";
+    g.lineCap = "round";
+    g.lineJoin = "round";
+    for (const L of D.lu || []) if (L.k === "com" || L.k === "ind") {
+      poly(g, L.p);
+      g.fill();
+    }
+    for (const r of D.roads) {
+      if (r.t === "foot") {
+        g.globalAlpha = 0.85;
+        g.lineWidth = 2.6 * k;
+      } else if (r.t === "track") {
+        continue;
+      } else {
+        g.globalAlpha = rural ? 0.55 : 1;
+        g.lineWidth = ((r.w || 6) + (rural ? 1.6 : 5.4)) * k;
+      }
+      g.beginPath();
+      r.p.forEach((q, i) => {
+        const [x, y] = toP(q[0], q[1]);
+        if (i) g.lineTo(x, y);
+        else g.moveTo(x, y);
+      });
+      g.stroke();
+    }
+    g.globalAlpha = 1;
+    g.lineWidth = 2.4 * k;
+    for (const B of out.buildings) {
+      const p = B.b.p;
+      poly(g, p);
+      g.stroke();
+      if (B.area < 420 && out.nearRoad) {
+        let cx = 0, cz = 0;
+        for (const q of p) {
+          cx += q[0];
+          cz += q[1];
+        }
+        cx /= p.length;
+        cz /= p.length;
+        const nr = out.nearRoad(cx, cz);
+        if (nr && nr.d < 26 && nr.s) {
+          const [dd, px2, pz2] = segDist(cx, cz, nr.s[0], nr.s[1], nr.s[2], nr.s[3]);
+          g.lineWidth = 3.2 * k;
+          g.beginPath();
+          const A2 = toP(cx, cz), Bq = toP(px2, pz2);
+          g.moveTo(A2[0], A2[1]);
+          g.lineTo(Bq[0], Bq[1]);
+          g.stroke();
+          g.lineWidth = 2.4 * k;
+        }
+      }
+    }
+    g.fillStyle = "#000";
+    for (const a of D.areas) if (a.t === "grass" || a.t === "forest" || a.t === "field") {
+      poly(g, a.p);
+      g.fill();
+    }
+    window.__hoodMask = m;
+    const t = new CanvasTexture(m);
+    t.colorSpace = NoColorSpace;
+    t.wrapS = t.wrapT = ClampToEdgeWrapping;
+    t.minFilter = LinearFilter;
+    t.generateMipmaps = false;
+    const id2 = g.getImageData(0, 0, S, S).data;
+    return { tex: t, pave: /* @__PURE__ */ __name((x, z) => {
+      const [px2, py2] = toP(x, z);
+      const i = (Math.max(0, Math.min(S - 1, py2 | 0)) * S + Math.max(0, Math.min(S - 1, px2 | 0))) * 4;
+      return id2[i] / 255;
+    }, "pave") };
+  }
+  function maskMaterial(mat2, maskTex, paveMap, rep) {
+    mat2.onBeforeCompile = (sh) => {
+      sh.uniforms.uPave = { value: paveMap };
+      sh.uniforms.uMask = { value: maskTex };
+      sh.uniforms.uRep = { value: rep };
+      sh.fragmentShader = sh.fragmentShader.replace("#include <map_pars_fragment>", "#include <map_pars_fragment>\nuniform sampler2D uPave;uniform sampler2D uMask;uniform float uRep;").replace("#include <map_fragment>", `#ifdef USE_MAP
+ vec4 gC=texture2D(map,vMapUv);vec4 pC=texture2D(uPave,vMapUv);float mk=texture2D(uMask,vMapUv/uRep).r;
+ mk=smoothstep(0.3,0.7,mk+(gC.g-0.3)*0.45);diffuseColor*=mix(gC,pC,mk);
+#endif`);
+    };
+    mat2.needsUpdate = true;
+    return mat2;
+  }
+  function inst(scene, geo, mat2, list, shadow = true) {
+    if (!list.length) return null;
+    const m = new InstancedMesh(geo, mat2, list.length);
+    const o = new Object3D();
+    const C = new Color();
+    list.forEach((it, i) => {
+      o.position.set(it.x, it.y || 0, it.z);
+      o.rotation.set(it.rx || 0, it.ry || 0, 0);
+      o.scale.set(it.sx ?? 1, it.sy ?? 1, it.sz ?? 1);
+      o.updateMatrix();
+      m.setMatrixAt(i, o.matrix);
+      if (it.c != null) {
+        C.set(it.c);
+        m.setColorAt(i, C);
+      }
+    });
+    if (m.instanceColor) m.instanceColor.needsUpdate = true;
+    m.castShadow = shadow;
+    m.receiveShadow = true;
+    m.computeBoundingSphere();
+    scene.add(m);
+    return m;
+  }
+  function obbOf(p) {
+    let best = null;
+    for (let i = 0; i < p.length; i++) {
+      const a = p[i], b = p[(i + 1) % p.length];
+      const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      if (!best || l > best.l) best = { l, ux: (b[0] - a[0]) / l, uz: (b[1] - a[1]) / l };
+    }
+    const { ux, uz } = best;
+    const vx = -uz, vz = ux;
+    let s0 = 1e9, s1 = -1e9, t0 = 1e9, t1 = -1e9;
+    for (const q of p) {
+      const s = q[0] * ux + q[1] * uz, t = q[0] * vx + q[1] * vz;
+      s0 = Math.min(s0, s);
+      s1 = Math.max(s1, s);
+      t0 = Math.min(t0, t);
+      t1 = Math.max(t1, t);
+    }
+    const W = /* @__PURE__ */ __name((s, t) => [s * ux + t * vx, s * uz + t * vz], "W");
+    return { ux, uz, vx, vz, s0, s1, t0, t1, W, L: s1 - s0, D: t1 - t0, ang: Math.atan2(ux, uz) };
+  }
+  function detailLayer(scene, D, out, opt) {
+    const N = {};
+    const rural = !!opt.rural;
+    const MOB = !!opt.mobile;
+    const R = rngS(5150);
+    const cap2 = /* @__PURE__ */ __name((k) => Math.round(k * (MOB ? 0.7 : 1)), "cap");
+    const box3 = new BoxGeometry(1, 1, 1);
+    box3.translate(0, 0.5, 0);
+    const roadAt = /* @__PURE__ */ __name((x, z, m = 0.8) => {
+      const n = out.nearRoad(x, z);
+      return n && n.d < m;
+    }, "roadAt");
+    const inBld = /* @__PURE__ */ __name((x, z, m = 0) => {
+      for (const B of out.buildings) {
+        const q = B.b.p[0];
+        if (Math.abs(q[0] - x) > 70 || Math.abs(q[1] - z) > 70) continue;
+        if (pip2(x, z, B.b.p)) return true;
+        if (m > 0) {
+          for (const e of B.edges) if (segDist(x, z, e.A[0], e.A[1], e.B[0], e.B[1])[0] < m) return true;
+        }
+      }
+      return false;
+    }, "inBld");
+    const SD = /* @__PURE__ */ __name((px2, pz2, ax, az, bx, bz) => {
+      const dx = bx - ax, dz = bz - az, L = dx * dx + dz * dz || 1;
+      let t = ((px2 - ax) * dx + (pz2 - az) * dz) / L;
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      return Math.hypot(px2 - ax - dx * t, pz2 - az - dz * t);
+    }, "SD");
+    const water = /* @__PURE__ */ __name((x, z) => (D.water || []).some((w) => pip2(x, z, w.p)) || (D.streams || []).some((st) => {
+      if (st.w < 3) return false;
+      const p = st.p;
+      for (let i = 0; i < p.length - 1; i++) {
+        if (Math.abs(p[i][0] - x) > 60 && Math.abs(p[i + 1][0] - x) > 60) continue;
+        if (SD(x, z, p[i][0], p[i][1], p[i + 1][0], p[i + 1][1]) < st.w / 2 + 0.5) return true;
+      }
+      return false;
+    }), "water");
+    const free = /* @__PURE__ */ __name((x, z, m = 0.8) => out.inEdge(x, z, 4) && !roadAt(x, z, 2.2) && !inBld(x, z, m) && !water(x, z), "free");
+    const dense = /* @__PURE__ */ __name((x, z) => opt.mask ? opt.mask.pave(x, z) > 0.55 : false, "dense");
+    const gTrees = [];
+    const GD = { a: 0, dense: 0, nr: 0, ok: 0 };
+    out.GD = GD;
+    const sheds = [], shedRoof = [], tramp = [], trampRim = [], pools = [], poolRim = [], terr = [], hedges = [], lines = [];
+    for (const B of out.buildings) {
+      const b = B.b;
+      if (!(b.k === "res" || b.k === "shop") || B.area > 360 || B.area < 45 || B.h > 13) continue;
+      let cx = 0, cz = 0;
+      for (const q2 of b.p) {
+        cx += q2[0];
+        cz += q2[1];
+      }
+      cx /= b.p.length;
+      cz /= b.p.length;
+      GD.a++;
+      const nr = out.nearRoad(cx, cz);
+      if (!nr || nr.d > 40 || !nr.s) {
+        GD.nr++;
+        continue;
+      }
+      const [, px2, pz2] = segDist(cx, cz, nr.s[0], nr.s[1], nr.s[2], nr.s[3]);
+      let bx = cx - px2, bz = cz - pz2;
+      const bl = Math.hypot(bx, bz) || 1;
+      bx /= bl;
+      bz /= bl;
+      const o = obbOf(b.p);
+      const half = Math.max(o.L, o.D) / 2;
+      const r = rngS(b.r || 1);
+      const at = /* @__PURE__ */ __name((d, side) => [cx + bx * (half + d) + -bz * side, cz + bz * (half + d) + bx * side], "at");
+      const rot = Math.atan2(bx, bz);
+      {
+        const g0 = at(7, 0), g1 = at(7, 4), g2 = at(7, -4);
+        if (dense(g0[0], g0[1]) && dense(g1[0], g1[1]) && dense(g2[0], g2[1])) {
+          GD.dense++;
+          continue;
+        }
+      }
+      GD.ok++;
+      if (r() < 0.55) {
+        const [x, z] = at(2.2, (r() - 0.5) * 4);
+        if (free(x, z, 0.6) && free(x + bx * 1.5, z + bz * 1.5, 0.3)) terr.push({ x, z, y: 0.035, ry: rot, sx: Math.min(7, o.L * 0.7), sy: 0.04, sz: 3, c: ["#b8aa94", "#9c9a94", "#a8846a", "#c8c0b0"][r() * 4 | 0] });
+      }
+      if (r() < 0.45) {
+        const [x, z] = at(9 + r() * 6, (r() - 0.5) * 8);
+        if (free(x, z, 1.6)) {
+          const w = 2 + r() * 1.4, d = 1.8 + r();
+          sheds.push({ x, z, ry: rot + (r() - 0.5) * 0.3, sx: w, sy: 2.1, sz: d, c: ["#7a5a3a", "#5a4a3a", "#8a7a5a", "#4a5a4a", "#9a9a90"][r() * 5 | 0] });
+          shedRoof.push({ x, z, y: 2.1, ry: rot, sx: w + 0.4, sy: 0.12, sz: d + 0.4, c: ["#3a3a3a", "#5a2a22", "#2a3a2a"][r() * 3 | 0] });
+          out.grid.add(x - w / 2, z - d / 2, x + w / 2, z - d / 2);
+          out.grid.add(x + w / 2, z - d / 2, x + w / 2, z + d / 2);
+          out.grid.add(x + w / 2, z + d / 2, x - w / 2, z + d / 2);
+          out.grid.add(x - w / 2, z + d / 2, x - w / 2, z - d / 2);
+        }
+      }
+      const q = r();
+      if (q < 0.13) {
+        const [x, z] = at(7 + r() * 5, (r() - 0.5) * 8);
+        if (free(x, z, 2.2)) {
+          tramp.push({ x, z, y: 0.9, sx: 1.8, sy: 0.06, sz: 1.8, c: "#1a1a1e" });
+          trampRim.push({ x, z, y: 0.88, sx: 2.05, sy: 0.1, sz: 2.05, c: ["#2a7a3a", "#2a4a9a", "#9a2a2a"][r() * 3 | 0] });
+        }
+      } else if (q < 0.2) {
+        const [x, z] = at(6 + r() * 4, (r() - 0.5) * 6);
+        const L = 5 + r() * 3, W22 = 3 + r() * 1.2;
+        if (free(x, z, 2.4) && free(x + -bz * L / 2, z + bx * L / 2, 1) && free(x - -bz * L / 2, z - bx * L / 2, 1)) {
+          pools.push({ x, z, y: 0.07, ry: rot + Math.PI / 2, sx: L, sy: 0.02, sz: W22, c: "#3fbcdc" });
+          poolRim.push({ x, z, y: 0.04, ry: rot + Math.PI / 2, sx: L + 1.2, sy: 0.05, sz: W22 + 1.2, c: "#e8e4dc" });
+        }
+      }
+      if (r() < (rural ? 0.35 : 0.5)) {
+        const d = 13 + r() * 5;
+        const [x, z] = at(d, 0);
+        const len = Math.min(22, o.L + 6);
+        if (free(x, z, 1.2) && free(x + -bz * len / 2, z + bx * len / 2, 1) && free(x - -bz * len / 2, z - bx * len / 2, 1)) hedges.push({ x, z, y: 0, ry: rot + Math.PI / 2, sx: len, sy: 1.5 + r() * 0.5, sz: 0.9, c: ["#2f5a26", "#3a6a2a", "#2a4a22"][r() * 3 | 0] });
+      }
+      if (r() < 0.12) {
+        const [x, z] = at(4.5, (r() - 0.5) * 3);
+        if (free(x, z, 0.5)) lines.push({ x, z, y: 1.7, ry: rot + Math.PI / 2, sx: 3.2, sy: 0.03, sz: 0.03, c: "#e0e0e0" });
+      }
+      const nt = (r() < 0.85 ? 1 : 0) + (r() < 0.55 ? 1 : 0) + (r() < 0.25 ? 1 : 0);
+      for (let k = 0; k < nt && gTrees.length < cap2(1500); k++) {
+        const [x, z] = at(5 + r() * 12, (r() - 0.5) * 12);
+        const big = r();
+        const cr = big < 0.2 ? 3.6 + r() * 1.6 : big < 0.7 ? 2.2 + r() * 1.2 : 1.2 + r() * 0.6;
+        if (!free(x, z, cr * 0.5)) continue;
+        const conifer = r() < 0.22;
+        gTrees.push({ x, z, cr, h: cr < 1.9 ? 0.2 : 1.6 + cr * 0.7, conifer, c: conifer ? ["#1f3d22", "#24462a", "#2a4a2a"][r() * 3 | 0] : ["#3a6a2a", "#467a30", "#2f5a26", "#55803a", "#3f6a34", "#6a8a3a"][r() * 6 | 0] });
+      }
+      if (r() < 0.6) {
+        const [x, z] = at(-half - 2.2 - r() * 1.5, (r() - 0.5) * 6);
+        if (free(x, z, 0.5) && gTrees.length < cap2(1500)) gTrees.push({ x, z, cr: 0.7 + r() * 0.5, h: 0, c: ["#3a6a2a", "#5a7a2a", "#6a4a6a", "#8a6a3a"][r() * 4 | 0] });
+      }
+    }
+    {
+      const noTree = (D.areas || []).filter((a) => /^(field|parking|plaza|school|gravel|pool|sand|play|pitch|sport)/.test(a.t));
+      const HX = out.halfX || 560, HZ = out.halfZ || 460;
+      let tries = 0;
+      const BG = /* @__PURE__ */ new Set();
+      for (const b of D.buildings || []) {
+        const q = b.p[0];
+        BG.add(Math.floor(q[0] / 40) * 4001 + Math.floor(q[1] / 40));
+      }
+      const nearB = /* @__PURE__ */ __name((x, z) => {
+        const i = Math.floor(x / 40), j = Math.floor(z / 40);
+        for (let a = -1; a <= 1; a++) for (let c = -1; c <= 1; c++) if (BG.has((i + a) * 4001 + j + c)) return true;
+        return false;
+      }, "nearB");
+      while (tries++ < cap2(5e3) && gTrees.length < cap2(2300)) {
+        const x = (R() * 2 - 1) * HX, z = (R() * 2 - 1) * HZ;
+        if (opt.mask && opt.mask.pave(x, z) > 0.05) continue;
+        if (rural && !roadAt(x, z, 22)) continue;
+        if (!nearB(x, z)) continue;
+        if (!free(x, z, 3)) continue;
+        if (roadAt(x, z, 5)) continue;
+        if (noTree.some((a) => pip2(x, z, a.p))) continue;
+        if ((D.sport || []).some((a) => a.p && pip2(x, z, a.p))) continue;
+        const cr = 1.8 + R() * 2.6;
+        const conifer = R() < 0.18;
+        const n = R() < 0.5 ? 3 : 1;
+        for (let k = 0; k < n; k++) {
+          const xx = x + (R() - 0.5) * 7 * k, zz = z + (R() - 0.5) * 7 * k;
+          if (k && !free(xx, zz, 2)) continue;
+          gTrees.push({ x: xx, z: zz, cr: cr * (0.8 + R() * 0.4), h: 1.6 + cr * 0.7, conifer, c: conifer ? "#24462a" : ["#3a6a2a", "#467a30", "#2f5a26", "#55803a", "#3f6a34"][R() * 5 | 0] });
+        }
+      }
+    }
+    {
+      const fT = [];
+      const FC = ["#1f3d1c", "#2a4a22", "#24421f", "#33552a", "#2c4a2c", "#3a5a2a"];
+      for (const a of D.areas || []) {
+        if (a.t !== "forest") continue;
+        let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9;
+        for (const q of a.p) {
+          x0 = Math.min(x0, q[0]);
+          x1 = Math.max(x1, q[0]);
+          z0 = Math.min(z0, q[1]);
+          z1 = Math.max(z1, q[1]);
+        }
+        const sp = 8.5;
+        for (let x = x0; x < x1; x += sp) for (let z = z0; z < z1; z += sp) {
+          if (fT.length >= cap2(2e3)) break;
+          const xx = x + (R() - 0.5) * sp * 0.9, zz = z + (R() - 0.5) * sp * 0.9;
+          if (!pip2(xx, zz, a.p) || !out.inEdge(xx, zz, 2) || roadAt(xx, zz, 3) || water(xx, zz)) continue;
+          const cr = 3 + R() * 2.4;
+          const con = R() < 0.3;
+          fT.push({ x: xx, z: zz, y: (con ? 0 : 5) + R() * 1.5, cr, con, c: FC[R() * FC.length | 0] });
+        }
+      }
+      const ico0 = new IcosahedronGeometry(0.5, 0);
+      const cone = new ConeGeometry(0.5, 1, 6);
+      cone.translate(0, 0.5, 0);
+      inst(scene, ico0, M(16777215, 0.95, 0, { flatShading: true }), fT.filter((t) => !t.con).map((t) => ({ x: t.x, z: t.z, y: t.y + t.cr * 0.6, ry: t.x, sx: t.cr * 2.1, sy: t.cr * 1.5, sz: t.cr * 2.1, c: t.c })), !MOB);
+      inst(scene, cone, M(16777215, 0.95, 0, { flatShading: true }), fT.filter((t) => t.con).map((t) => ({ x: t.x, z: t.z, y: 1.5, sx: t.cr * 1.5, sy: t.cr * 3.2, sz: t.cr * 1.5, c: t.c })), !MOB);
+      N.forestTree = fT.length;
+    }
+    {
+      const crowns = [], cones = [], trunks = [];
+      for (const t of gTrees) {
+        if (t.h > 0) trunks.push({ x: t.x, z: t.z, y: 0, sx: 0.32, sy: t.h + 0.4, sz: 0.32, c: "#5a4030" });
+        if (t.conifer) cones.push({ x: t.x, z: t.z, y: t.h * 0.6, sx: t.cr * 1.3, sy: t.cr * 2.6, sz: t.cr * 1.3, c: t.c });
+        else crowns.push({ x: t.x, z: t.z, y: t.h + t.cr * 0.75, ry: t.x, sx: t.cr * 2, sy: t.cr * 1.55, sz: t.cr * 2, c: t.c });
+      }
+      const cyl = new CylinderGeometry(0.5, 0.6, 1, 6);
+      cyl.translate(0, 0.5, 0);
+      inst(scene, cyl, M(16777215, 0.95), trunks, false);
+      const ico = new IcosahedronGeometry(0.5, 1);
+      inst(scene, ico, M(16777215, 0.92, 0, { flatShading: true }), crowns);
+      const cone = new ConeGeometry(0.5, 1, 7);
+      cone.translate(0, 0.5, 0);
+      inst(scene, cone, M(16777215, 0.92, 0, { flatShading: true }), cones);
+      N.gardenTree = gTrees.length;
+    }
+    const nH = cap2(1400);
+    const hedgeO = [], wallO = [], fenceO = [];
+    for (const bq of D.barriers || []) {
+      const L = bq.k === "hedge" ? hedgeO : bq.k === "wall" ? wallO : fenceO;
+      for (let i = 0; i < bq.p.length - 1; i++) {
+        const a = bq.p[i], b = bq.p[i + 1];
+        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (l < 0.5) continue;
+        const x = (a[0] + b[0]) / 2, z = (a[1] + b[1]) / 2;
+        if (!out.inEdge(x, z, 2)) continue;
+        if (roadAt(x, z, 0.5)) continue;
+        L.push({ x, z, y: 0, ry: Math.atan2(b[0] - a[0], b[1] - a[1]) + Math.PI / 2, sx: l + 0.2, sy: bq.k === "hedge" ? 1.6 : bq.k === "wall" ? 1.4 : 1.1, sz: bq.k === "hedge" ? 0.9 : bq.k === "wall" ? 0.35 : 0.06, c: bq.k === "hedge" ? "#2f5a26" : bq.k === "wall" ? "#9a8a78" : "#6a6a62" });
+      }
+    }
+    const hedgeMat = M(16777215, 0.95);
+    const hedgeAll = hedges.concat(hedgeO).slice(0, nH);
+    inst(scene, box3, hedgeMat, hedgeAll);
+    N.hedge = hedgeAll.length;
+    inst(scene, box3, M(16777215, 0.9), wallO.slice(0, cap2(900)));
+    inst(scene, box3, M(16777215, 0.5, 0.5), fenceO.slice(0, cap2(900)), false);
+    N.wall = wallO.length;
+    N.fence = fenceO.length;
+    inst(scene, box3, M(16777215, 0.9), sheds);
+    inst(scene, box3, M(16777215, 0.8), shedRoof);
+    N.shed = sheds.length;
+    inst(scene, new CylinderGeometry(0.5, 0.5, 1, 20), M(16777215, 0.8), tramp);
+    inst(scene, new CylinderGeometry(0.5, 0.5, 1, 20), M(16777215, 0.6), trampRim, false);
+    N.tramp = tramp.length;
+    inst(scene, box3, M(16777215, 0.15, 0.1, { emissive: 670280, emissiveIntensity: 0.4 }), pools, false);
+    inst(scene, box3, M(16777215, 0.9), poolRim, false);
+    N.pool = pools.length;
+    inst(scene, box3, M(16777215, 0.95), terr, false);
+    inst(scene, box3, M(16777215, 0.5), lines, false);
+    N.terr = terr.length;
+    const stall = [];
+    for (const a of D.areas) {
+      if (a.t !== "parking" || a.fuel) continue;
+      const A2 = Math.abs(polyArea2(a.p));
+      if (A2 < 120 || A2 > 3e4) continue;
+      const o = obbOf(a.p);
+      for (let t = o.t0 + 2.6; t < o.t1 - 2.5; t += 11) {
+        for (let s = o.s0 + 1.4; s < o.s1 - 1.2; s += 2.6) {
+          for (const dt of [0, 5.6]) {
+            const tt = t + dt;
+            if (tt > o.t1 - 1) continue;
+            const [x, z] = o.W(s, tt + (dt ? -2.5 : 2.5) * 0);
+            const [x1, z1] = o.W(s, tt);
+            if (!pip2(x1, z1, a.p)) continue;
+            const [xm, zm] = o.W(s, tt + (dt ? -1.2 : 1.2));
+            if (!pip2(xm, zm, a.p)) continue;
+            stall.push({ x: xm, z: zm, y: 0.045, ry: o.ang, sx: 0.1, sy: 0.01, sz: 2.4, c: "#e8e8e0" });
+          }
+        }
+        if (stall.length > cap2(2600)) break;
+      }
+    }
+    inst(scene, box3, M(16777215, 0.6, 0, { polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }), stall, false);
+    N.stall = stall.length;
+    const zeb = [], poles = [], heads = [], lampsR = [], lampsY = [], lampsG = [];
+    const sig = [];
+    for (const xg of D.xings || []) {
+      const [x, z] = xg.p;
+      const nr = out.nearRoad(x, z);
+      if (!nr || nr.d > 1.5 || !nr.s) continue;
+      const s = nr.s;
+      const l = Math.hypot(s[2] - s[0], s[3] - s[1]) || 1;
+      const tx2 = (s[2] - s[0]) / l, tz = (s[3] - s[1]) / l, nx = -tz, nz = tx2;
+      const w = nr.w || 7;
+      const ry = Math.atan2(tx2, tz);
+      if (xg.k === "z" || xg.k === "s") {
+        for (let k = -w / 2 + 0.5; k < w / 2 - 0.3; k += 1) zeb.push({ x: x + nx * k, z: z + nz * k, y: 0.052, ry, sx: 0.5, sy: 0.01, sz: 2.8, c: "#f4f4ee" });
+      }
+      if (xg.k === "s" && !sig.some((q) => Math.hypot(q[0] - x, q[1] - z) < 9)) {
+        sig.push([x, z]);
+        for (const sd2 of [1, -1]) {
+          const px2 = x + nx * (w / 2 + 0.9) * sd2 + tx2 * 1.6 * sd2, pz2 = z + nz * (w / 2 + 0.9) * sd2 + tz * 1.6 * sd2;
+          poles.push({ x: px2, z: pz2, sx: 0.14, sy: 3.2, sz: 0.14, c: "#3a3e42" });
+          heads.push({ x: px2, z: pz2, y: 2.4, ry, sx: 0.36, sy: 1, sz: 0.32, c: "#1c1e20" });
+          const ox = -tx2 * sd2 * 0.18, oz = -tz * sd2 * 0.18;
+          lampsR.push({ x: px2 + ox, z: pz2 + oz, y: 3.2, sx: 0.2, sy: 0.2, sz: 0.2 });
+          lampsY.push({ x: px2 + ox, z: pz2 + oz, y: 2.9, sx: 0.2, sy: 0.2, sz: 0.2 });
+          lampsG.push({ x: px2 + ox, z: pz2 + oz, y: 2.6, sx: 0.2, sy: 0.2, sz: 0.2 });
+        }
+      }
+    }
+    inst(scene, box3, M(16777215, 0.6, 0, { polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }), zeb, false);
+    N.zebra = zeb.length;
+    inst(scene, box3, M(16777215, 0.5, 0.4), poles);
+    inst(scene, box3, M(16777215, 0.6), heads);
+    const sph2 = new SphereGeometry(0.5, 8, 6);
+    const lr = M(16722458, 0.4, 0, { emissive: 16722458, emissiveIntensity: 1.2 }), ly = M(5917200, 0.4, 0, { emissive: 3353096, emissiveIntensity: 0.6 }), lg = M(1727018, 0.4, 0, { emissive: 670230, emissiveIntensity: 0.6 });
+    const mR = inst(scene, sph2, lr, lampsR, false), mY = inst(scene, sph2, ly, lampsY, false), mG = inst(scene, sph2, lg, lampsG, false);
+    N.signals = sig.length;
+    out.signalMats = { lr, ly, lg };
+    const isl = [];
+    const rings = /* @__PURE__ */ new Map();
+    for (const r of D.roads) {
+      if (!r.rb) continue;
+      const k = r.n || "rb" + Math.round(r.p[0][0] / 40) + "," + Math.round(r.p[0][1] / 40);
+      if (!rings.has(k)) rings.set(k, []);
+      rings.get(k).push(...r.p);
+    }
+    for (const [, pts] of rings) {
+      let cx = 0, cz = 0;
+      for (const q of pts) {
+        cx += q[0];
+        cz += q[1];
+      }
+      cx /= pts.length;
+      cz /= pts.length;
+      let rr = 0;
+      for (const q of pts) rr += Math.hypot(q[0] - cx, q[1] - cz);
+      rr /= pts.length;
+      if (rr < 6 || rr > 60) continue;
+      const ri = rr - 5;
+      if (ri < 2) continue;
+      isl.push({ x: cx, z: cz, y: 0.03, sx: ri * 2, sy: 0.12, sz: ri * 2, c: "#4f7a32" });
+      isl.push({ x: cx, z: cz, y: 0.15, sx: ri * 2 + 0.6, sy: 0.05, sz: ri * 2 + 0.6, c: "#c8c4b8" });
+    }
+    for (const xg of D.xings || []) if (xg.k === "r") {
+      isl.push({ x: xg.p[0], z: xg.p[1], y: 0.05, sx: 3, sy: 0.03, sz: 3, c: "#f0f0e8" });
+    }
+    inst(scene, new CylinderGeometry(0.5, 0.5, 1, 28), M(16777215, 0.9), isl, false);
+    N.roundabout = isl.length / 2 | 0;
+    const deck = [], rail = [], post = [], pier = [];
+    out.bridges = [];
+    const hasW = (D.water || []).length > 0 || (D.streams || []).length > 0;
+    for (const r of D.roads) {
+      if (r.t === "track") continue;
+      if (!r.br && !hasW) continue;
+      const w = (r.t === "foot" ? 3 : r.w || 7) + 1.2;
+      const seg = [];
+      for (let i = 0; i < r.p.length - 1; i++) {
+        const a = r.p[i], b = r.p[i + 1];
+        const l = Math.hypot(b[0] - a[0], b[1] - a[1]);
+        if (l < 0.3) continue;
+        const tx2 = (b[0] - a[0]) / l, tz = (b[1] - a[1]) / l, nx = -tz, nz = tx2;
+        const x = (a[0] + b[0]) / 2, z = (a[1] + b[1]) / 2;
+        const ry = Math.atan2(tx2, tz);
+        if (!r.br && !water(x, z) && !water(a[0], a[1]) && !water(b[0], b[1])) continue;
+        const ow = water(x, z) || water(a[0], a[1]) || water(b[0], b[1]);
+        deck.push({ x, z, y: -0.6, ry, sx: w, sy: 0.7, sz: l + 0.3, c: "#8a8a86" });
+        for (const sd2 of [1, -1]) {
+          rail.push({ x: x + nx * (w / 2) * sd2, z: z + nz * (w / 2) * sd2, y: 0.05, ry, sx: 0.35, sy: 0.4, sz: l + 0.3, c: "#b0aca4" });
+          rail.push({ x: x + nx * (w / 2) * sd2, z: z + nz * (w / 2) * sd2, y: 1, ry, sx: 0.12, sy: 0.1, sz: l + 0.3, c: "#4a5a6a" });
+        }
+        for (let s = 0; s < l; s += 2.2) for (const sd2 of [1, -1]) post.push({ x: a[0] + tx2 * s + nx * (w / 2) * sd2, z: a[1] + tz * s + nz * (w / 2) * sd2, y: 0.4, sx: 0.08, sy: 0.635, sz: 0.08, c: "#4a5a6a" });
+        if (l > 4 && water(x, z)) pier.push({ x, z, y: -2, ry, sx: w * 0.9, sy: 2, sz: 1, c: "#7a7670" });
+        seg.push([a, b, w]);
+      }
+      if (seg.length) out.bridges.push({ r, seg, w });
+    }
+    inst(scene, box3, M(16777215, 0.9), deck);
+    inst(scene, box3, M(16777215, 0.8), rail);
+    inst(scene, box3, M(16777215, 0.5, 0.5), post.slice(0, cap2(3e3)), false);
+    inst(scene, box3, M(16777215, 0.9), pier, false);
+    N.bridge = out.bridges.length;
+    const pg = [];
+    for (const a of D.areas) {
+      if (a.t !== "play") continue;
+      const o = obbOf(a.p);
+      if (o.L < 5 || o.D < 5) continue;
+      const [cx, cz] = o.W((o.s0 + o.s1) / 2, (o.t0 + o.t1) / 2);
+      const r = rngS(Math.round(cx * 7 + cz));
+      const put = /* @__PURE__ */ __name((ds, dt, list) => {
+        const [x, z] = o.W((o.s0 + o.s1) / 2 + ds, (o.t0 + o.t1) / 2 + dt);
+        if (!pip2(x, z, a.p)) return;
+        for (const it of list) pg.push({ ...it, x: x + (it.dx || 0) * o.ux + (it.dz || 0) * o.vx, z: z + (it.dx || 0) * o.uz + (it.dz || 0) * o.vz, ry: o.ang });
+      }, "put");
+      put(-o.L * 0.22, 0, [{ dx: -1.3, y: 0, sx: 0.12, sy: 2.4, sz: 0.12, c: "#c03a2a" }, { dx: 1.3, y: 0, sx: 0.12, sy: 2.4, sz: 0.12, c: "#c03a2a" }, { y: 2.35, sx: 2.8, sy: 0.12, sz: 0.12, c: "#c03a2a" }, { dx: -0.6, y: 0.45, sx: 0.5, sy: 0.06, sz: 0.25, c: "#2a2a2a" }, { dx: 0.6, y: 0.45, sx: 0.5, sy: 0.06, sz: 0.25, c: "#2a2a2a" }]);
+      put(o.L * 0.2, 0, [{ y: 0, sx: 1.4, sy: 1.8, sz: 1.4, c: "#e0b030" }, { dz: 1.8, y: 0.6, sx: 0.7, sy: 0.12, sz: 2.6, rx: 0.45, c: "#2a8ac0" }]);
+      put(0, o.D * 0.22, [{ y: 0, sx: 2.6, sy: 0.25, sz: 2.6, c: "#8a6a4a" }, { y: 0.02, sx: 2.2, sy: 0.24, sz: 2.2, c: "#e8d6a0" }]);
+    }
+    inst(scene, box3, M(16777215, 0.7), pg);
+    N.playground = pg.length;
+    const ash = [], ashR = [];
+    for (const a of D.areas) {
+      if (a.t !== "allot") continue;
+      const o = obbOf(a.p);
+      for (let s = o.s0 + 4; s < o.s1 - 3; s += 12) for (let t = o.t0 + 4; t < o.t1 - 3; t += 16) {
+        const [x, z] = o.W(s + (R() - 0.5) * 2, t + (R() - 0.5) * 2);
+        if (!pip2(x, z, a.p) || inBld(x, z, 1)) continue;
+        if (ash.length > cap2(300)) break;
+        const c = ["#7a5a3a", "#5a6a4a", "#8a6a4a", "#6a4a3a", "#3a5a6a"][R() * 5 | 0];
+        ash.push({ x, z, ry: o.ang, sx: 2.2, sy: 2, sz: 1.8, c });
+        ashR.push({ x, z, y: 2, ry: o.ang, sx: 2.6, sy: 0.12, sz: 2.2, c: "#3a3a3a" });
+      }
+    }
+    inst(scene, box3, M(16777215, 0.9), ash);
+    inst(scene, box3, M(16777215, 0.8), ashR);
+    N.allotShed = ash.length;
+    const fu = [];
+    for (const a of D.areas) {
+      if (!a.fuel) continue;
+      const o = obbOf(a.p);
+      const [x, z] = o.W((o.s0 + o.s1) / 2, (o.t0 + o.t1) / 2);
+      const L = Math.min(18, o.L * 0.6), W = Math.min(10, o.D * 0.5);
+      fu.push({ x, z, y: 4.6, ry: o.ang, sx: W, sy: 0.6, sz: L, c: "#e8e8e8" });
+      fu.push({ x, z, y: 5.2, ry: o.ang, sx: W + 0.2, sy: 0.25, sz: L + 0.2, c: "#d02a2a" });
+      for (const d of [-L / 3, 0, L / 3]) {
+        const [px2, pz2] = [x + o.ux * d, z + o.uz * d];
+        fu.push({ x: px2, z: pz2, ry: o.ang, sx: 0.5, sy: 1.6, sz: 0.9, c: "#2a2a30" });
+        fu.push({ x: px2 - o.vx * W * 0.4, z: pz2 - o.vz * W * 0.4, sx: 0.3, sy: 4.6, sz: 0.3, c: "#cfcfcf" });
+        fu.push({ x: px2 + o.vx * W * 0.4, z: pz2 + o.vz * W * 0.4, sx: 0.3, sy: 4.6, sz: 0.3, c: "#cfcfcf" });
+      }
+    }
+    inst(scene, box3, M(16777215, 0.6, 0.2), fu);
+    N.fuel = fu.length ? 1 : 0;
+    out.detailN = N;
+    console.log("V05 detail", JSON.stringify(N));
+    return N;
+  }
+  var cv2, T, flat, M;
+  var init_detail5 = __esm({
+    "src/detail5.js"() {
+      init_three_module();
+      init_city();
+      cv2 = /* @__PURE__ */ __name((w, h) => {
+        const c = document.createElement("canvas");
+        c.width = w;
+        c.height = h;
+        return c;
+      }, "cv");
+      __name(rngS, "rngS");
+      T = /* @__PURE__ */ __name((c, rep = true) => {
+        const t = new CanvasTexture(c);
+        t.colorSpace = SRGBColorSpace;
+        if (rep) {
+          t.wrapS = t.wrapT = RepeatWrapping;
+        }
+        t.anisotropy = 4;
+        return t;
+      }, "T");
+      __name(tileTex, "tileTex");
+      __name(canopyTex, "canopyTex");
+      flat = /* @__PURE__ */ __name((base, n, amp, seed, extra) => {
+        const c = cv2(256, 256), g = c.getContext("2d");
+        const R = rngS(seed);
+        g.fillStyle = base;
+        g.fillRect(0, 0, 256, 256);
+        for (let i = 0; i < n; i++) {
+          const v = (R() - 0.5) * amp * 255;
+          g.fillStyle = v > 0 ? `rgba(255,255,255,${v / 255})` : `rgba(0,0,0,${-v / 255})`;
+          g.fillRect(R() * 256, R() * 256, 1 + R() * 2, 1 + R() * 2);
+        }
+        if (extra) extra(g, R);
+        return T(c);
+      }, "flat");
+      __name(areaTex, "areaTex");
+      __name(groundMask, "groundMask");
+      __name(maskMaterial, "maskMaterial");
+      __name(inst, "inst");
+      M = /* @__PURE__ */ __name((c, r = 0.85, mt = 0, ex) => new MeshStandardMaterial({ color: c, roughness: r, metalness: mt, ...ex || {} }), "M");
+      __name(obbOf, "obbOf");
+      __name(detailLayer, "detailLayer");
+    }
+  });
+
   // src/roadfit.js
   function laneOffset(r) {
     return r.ow ? 0 : Math.max(1.35, Math.min(r.w / 4, r.w / 2 - 3.1));
@@ -31804,6 +32558,8 @@ void main() {
       return m;
     });
     const trimMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: DoubleSide });
+    const pitchMat = new MeshStandardMaterial({ map: tileTex(), vertexColors: true, roughness: 0.85 });
+    const pitchG = new Geo2();
     const roofMats = [0, 1, 2, 3, 4, 5].map((k) => new MeshStandardMaterial({ map: roofTex(9 + k, k), vertexColors: true, roughness: k === 3 || k === 5 ? 0.55 : 0.95, metalness: k === 3 || k === 5 ? 0.35 : 0 }));
     const facG = facMats.map(() => new Geo2());
     const facOf = /* @__PURE__ */ __name((style, r) => style * NV + (r() * NV | 0), "facOf"), shopG = shopMats.map(() => new Geo2()), resG = resMats.map(() => new Geo2()), trimG = new Geo2(), roofGs = [0, 1, 2, 3, 4, 5].map(() => new Geo2());
@@ -31865,8 +32621,9 @@ void main() {
       let roofCol = ROOF_COLS[r() * ROOF_COLS.length | 0];
       if (b.roofCol) {
         const c = new Color(b.roofCol);
-        roofCol = [c.r, c.g, c.b];
-      } else if (b.k === "church") roofCol = [0.28, 0.42, 0.38];
+        const L = (c.r + c.g + c.b) / 3 * 0.9 + 0.08, k = big || Math.abs(polyArea2(b.p)) > 900 ? 0.7 : 0.4;
+        roofCol = [c.r + (L - c.r) * k, c.g + (L - c.g) * k, c.b + (L - c.b) * k];
+      } else if (b.k === "church") roofCol = [0.27, 0.29, 0.32];
       else if (b.k === "industrial") roofCol = [0.55, 0.56, 0.58];
       else if (b.k === "garage") roofCol = [0.45, 0.45, 0.48];
       if (b.col) {
@@ -31881,6 +32638,22 @@ void main() {
       const para = 0.45;
       const nf = Math.max(1, Math.round((top - gH) / LEVEL_H));
       const shopIdx = r() * shopMats.length | 0, resIdx = r() * resMats.length | 0;
+      let pitched = null;
+      {
+        const a0 = Math.abs(polyArea2(p));
+        const o2 = obbOf(p);
+        const rect = a0 / Math.max(1, o2.L * o2.D);
+        const tag = b.roof || "";
+        const want = /gabled|hipped|gambrel|pyramidal|half-hipped|mansard/.test(tag);
+        const okK = b.k === "res" || b.k === "church" || b.k === "shop" && h < 11 || b.k === "school" && h < 12 || b.k === "greenhouse";
+        const rr = r();
+        if (tag !== "flat" && rect > 0.74 && o2.D > 3.2 && o2.D < (b.k === "church" ? 30 : 17) && n <= 12 && (want || okK && h <= (b.k === "church" ? 40 : 15) && a0 <= (b.k === "church" ? 3e3 : 460) && rr < (b.k === "church" ? 1 : 0.9))) pitched = o2;
+        if (!pitched && b.k === "church" && tag !== "flat" && o2.D > 4 && o2.D < 42 && o2.L < 120) pitched = o2;
+      }
+      if (!pitched && b.roofCol) {
+        const L = (roofCol[0] + roofCol[1] + roofCol[2]) / 3;
+        roofCol = roofCol.map((v) => v + (L * 0.95 - v) * 0.6);
+      }
       const edges = [];
       const borderQ = [];
       for (let i = 0; i < n; i++) {
@@ -31894,9 +32667,9 @@ void main() {
           nz = -nz;
         }
         const rx = nz, rz = -nx;
-        let A = a, B = c;
+        let A2 = a, B = c;
         if (dx * rx + dz * rz < 0) {
-          A = c;
+          A2 = c;
           B = a;
         }
         out.grid.add(a[0], a[1], c[0], c[1]);
@@ -31906,24 +32679,26 @@ void main() {
         const nr = out.nearRoad(mx + nx * 3, mz + nz * 3);
         const street = nr && nr.d < 10;
         const gGeo = street && shopish ? shopG[shopIdx] : resG[resIdx];
-        gGeo.quad(P(A, 0), P(B, 0), P(B, gH), P(A, gH), N, [0, 0], [U, 0], [U, 1], [0, 1]);
-        if (top > gH + 0.5) facG[fvi].quad(P(A, gH), P(B, gH), P(B, top), P(A, top), N, [uo, 0], [uo + U, 0], [uo + U, nf / 4], [uo, nf / 4]);
-        trimG.quad(P(A, Math.max(gH, top)), P(B, Math.max(gH, top)), P(B, h + para), P(A, h + para), N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
+        gGeo.quad(P(A2, 0), P(B, 0), P(B, gH), P(A2, gH), N, [0, 0], [U, 0], [U, 1], [0, 1]);
+        if (top > gH + 0.5) facG[fvi].quad(P(A2, gH), P(B, gH), P(B, top), P(A2, top), N, [uo, 0], [uo + U, 0], [uo + U, nf / 4], [uo, nf / 4]);
+        trimG.quad(P(A2, Math.max(gH, top)), P(B, Math.max(gH, top)), P(B, pitched ? h : h + para), P(A2, pitched ? h : h + para), N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
         if (top > gH + 0.5) {
           const o2 = 0.12;
-          trimG.quad([A[0] + nx * o2, gH + 0.25, A[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [B[0], gH + 0.25, B[1]], [A[0], gH + 0.25, A[1]], [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
-          trimG.quad([A[0] + nx * o2, gH, A[1] + nz * o2], [B[0] + nx * o2, gH, B[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [A[0] + nx * o2, gH + 0.25, A[1] + nz * o2], N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
+          trimG.quad([A2[0] + nx * o2, gH + 0.25, A2[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [B[0], gH + 0.25, B[1]], [A2[0], gH + 0.25, A2[1]], [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
+          trimG.quad([A2[0] + nx * o2, gH, A2[1] + nz * o2], [B[0] + nx * o2, gH, B[1] + nz * o2], [B[0] + nx * o2, gH + 0.25, B[1] + nz * o2], [A2[0] + nx * o2, gH + 0.25, A2[1] + nz * o2], N, [0, 0], [1, 0], [1, 1], [0, 1], trim);
         }
-        const w = 0.35;
-        const Ai = [A[0] - nx * w, A[1] - nz * w], Bi = [B[0] - nx * w, B[1] - nz * w];
-        trimG.quad(P(A, h + para), P(B, h + para), P(Bi, h + para), P(Ai, h + para), [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
-        trimG.quad(P(Bi, h), P(Ai, h), P(Ai, h + para), P(Bi, h + para), [-nx, 0, -nz], [0, 0], [1, 0], [1, 1], [0, 1], [roofCol[0] * 0.8, roofCol[1] * 0.8, roofCol[2] * 0.8]);
-        {
+        if (!pitched) {
+          const w = 0.35;
+          const Ai = [A2[0] - nx * w, A2[1] - nz * w], Bi = [B[0] - nx * w, B[1] - nz * w];
+          trimG.quad(P(A2, h + para), P(B, h + para), P(Bi, h + para), P(Ai, h + para), [0, 1, 0], [0, 0], [1, 0], [1, 1], [0, 1], capC);
+          trimG.quad(P(Bi, h), P(Ai, h), P(Ai, h + para), P(Bi, h + para), [-nx, 0, -nz], [0, 0], [1, 0], [1, 1], [0, 1], [roofCol[0] * 0.8, roofCol[1] * 0.8, roofCol[2] * 0.8]);
+        }
+        if (!pitched) {
           const bw = 1.1;
           const rc = [roofCol[0] * 0.72, roofCol[1] * 0.72, roofCol[2] * 0.74];
-          borderQ.push([[A[0], h + 0.03, A[1]], [B[0], h + 0.03, B[1]], [B[0] - nx * bw, h + 0.03, B[1] - nz * bw], [A[0] - nx * bw, h + 0.03, A[1] - nz * bw], rc]);
+          borderQ.push([[A2[0], h + 0.03, A2[1]], [B[0], h + 0.03, B[1]], [B[0] - nx * bw, h + 0.03, B[1] - nz * bw], [A2[0] - nx * bw, h + 0.03, A2[1] - nz * bw], rc]);
         }
-        edges.push({ A, B, nx, nz, len, street, mx, mz });
+        edges.push({ A: A2, B, nx, nz, len, street, mx, mz });
       }
       const v2 = p.map((q) => new Vector2(q[0], q[1]));
       let tris = [];
@@ -31947,7 +32722,119 @@ void main() {
         const [x, yy, z] = cr < 0 ? [a, bq, c] : [a, c, bq];
         roofG.tri([x[0], y, x[1]], [yy[0], y, yy[1]], [z[0], y, z[1]], [0, 1, 0], ruv(x), ruv(yy), ruv(z), col2);
       }, "roofTri");
-      for (const t of tris) roofTri(p[t[0]], p[t[1]], p[t[2]], h, roofCol);
+      if (pitched) {
+        const o2 = pitched;
+        const steep = b.k === "church" ? 1.05 : b.k === "greenhouse" ? 0.5 : 0.62 + r() * 0.22;
+        const ov = b.k === "greenhouse" ? 0.05 : 0.45;
+        const tc = (o2.t0 + o2.t1) / 2;
+        let rise = Math.min(b.k === "church" ? 16 : 7.5, o2.D / 2 * steep);
+        const hip = /hipped|pyramidal/.test(b.roof || "") || !/gabled/.test(b.roof || "") && r() < 0.3 && o2.L > o2.D * 1.05 ? Math.min(o2.L / 2 - 0.01, o2.D / 2 * 0.92) : 0;
+        const pc = b.roofCol ? roofCol : b.k === "church" ? r() < 0.2 ? [0.3, 0.48, 0.4] : [0.22, 0.23, 0.26] : b.k === "greenhouse" ? [0.75, 0.82, 0.85] : PITCH_COLS[r() * PITCH_COLS.length | 0];
+        const ye = h - ov * steep, yr = h + rise;
+        const W3 = /* @__PURE__ */ __name((s2, t2, y) => {
+          const q = o2.W(s2, t2);
+          return [q[0], y, q[1]];
+        }, "W3");
+        const face = /* @__PURE__ */ __name((A3, B3, C3, col2, uvs) => {
+          const ux1 = B3[0] - A3[0], uy1 = B3[1] - A3[1], uz1 = B3[2] - A3[2], vx1 = C3[0] - A3[0], vy1 = C3[1] - A3[1], vz1 = C3[2] - A3[2];
+          let nx = uy1 * vz1 - uz1 * vy1, ny = uz1 * vx1 - ux1 * vz1, nz = ux1 * vy1 - uy1 * vx1;
+          const l = Math.hypot(nx, ny, nz) || 1;
+          nx /= l;
+          ny /= l;
+          nz /= l;
+          if (ny < 0) {
+            pitchG.tri(A3, C3, B3, [-nx, -ny, -nz], uvs[0], uvs[2], uvs[1], col2);
+          } else pitchG.tri(A3, B3, C3, [nx, ny, nz], uvs[0], uvs[1], uvs[2], col2);
+        }, "face");
+        const E00 = W3(o2.s0 - ov, o2.t0 - ov, ye), E10 = W3(o2.s1 + ov, o2.t0 - ov, ye), E11 = W3(o2.s1 + ov, o2.t1 + ov, ye), E01 = W3(o2.s0 - ov, o2.t1 + ov, ye);
+        const R0 = W3(hip ? o2.s0 + hip : o2.s0 - ov, tc, yr), R1 = W3(hip ? o2.s1 - hip : o2.s1 + ov, tc, yr);
+        const sl = (o2.D / 2 + ov) * 1.2;
+        const cA = pc, cB = [pc[0] * 0.78, pc[1] * 0.78, pc[2] * 0.8];
+        const u0 = (o2.s0 - ov) * 0.8, u1 = (o2.s1 + ov) * 0.8, ur0 = (hip ? o2.s0 + hip : o2.s0 - ov) * 0.8, ur1 = (hip ? o2.s1 - hip : o2.s1 + ov) * 0.8;
+        face(E00, E10, R1, cA, [[u0, 0], [u1, 0], [ur1, sl]]);
+        face(E00, R1, R0, cA, [[u0, 0], [ur1, sl], [ur0, sl]]);
+        face(E11, E01, R0, cB, [[u1, 0], [u0, 0], [ur0, sl]]);
+        face(E11, R0, R1, cB, [[u1, 0], [ur0, sl], [ur1, sl]]);
+        if (hip) {
+          const cC = [pc[0] * 0.9, pc[1] * 0.9, pc[2] * 0.9];
+          face(E01, E00, R0, cC, [[0, 0], [o2.D * 0.8, 0], [o2.D * 0.4, sl]]);
+          face(E10, E11, R1, cC, [[0, 0], [o2.D * 0.8, 0], [o2.D * 0.4, sl]]);
+        } else {
+          for (const sE of [o2.s0, o2.s1]) {
+            const a3 = W3(sE, o2.t0, h), b3 = W3(sE, o2.t1, h), c3 = W3(sE, tc, yr);
+            const nn = sE === o2.s0 ? [-o2.ux, 0, -o2.uz] : [o2.ux, 0, o2.uz];
+            const cr = (b3[0] - a3[0]) * (c3[2] - a3[2]) - (b3[2] - a3[2]) * (c3[0] - a3[0]);
+            trimG.tri(a3, b3, c3, nn, [0, 0], [1, 0], [0.5, 1], trim);
+            trimG.tri(a3, c3, b3, nn, [0, 0], [0.5, 1], [1, 0], trim);
+          }
+        }
+        {
+          const q0 = o2.W(hip ? o2.s0 + hip : o2.s0 - ov, tc), q1 = o2.W(hip ? o2.s1 - hip : o2.s1 + ov, tc);
+          const rc = [pc[0] * 0.6, pc[1] * 0.6, pc[2] * 0.6];
+          const ww = 0.16;
+          const P0 = [q0[0] + o2.vx * ww, yr + 0.06, q0[1] + o2.vz * ww], P1 = [q1[0] + o2.vx * ww, yr + 0.06, q1[1] + o2.vz * ww], P2 = [q1[0] - o2.vx * ww, yr + 0.06, q1[1] - o2.vz * ww], P3 = [q0[0] - o2.vx * ww, yr + 0.06, q0[1] - o2.vz * ww];
+          face(P0, P1, P2, rc, [[0, 0], [1, 0], [1, 1]]);
+          face(P0, P2, P3, rc, [[0, 0], [1, 1], [0, 1]]);
+        }
+        b.roofTop = yr;
+        b.pitched = 1;
+      }
+      if (b.k === "church") {
+        const o2 = pitched || obbOf(p);
+        const ts = Math.max(4.2, Math.min(8, o2.D * 0.6));
+        const tc = (o2.t0 + o2.t1) / 2;
+        let cs = o2.s0 + ts / 2 + 0.3;
+        let [tx2, tz] = o2.W(cs, tc);
+        if (!pip2(tx2, tz, p)) {
+          let cx = 0, cz = 0;
+          for (const q of p) {
+            cx += q[0];
+            cz += q[1];
+          }
+          tx2 = cx / n;
+          tz = cz / n;
+        }
+        const th = Math.min(h + 30, h + 13 + b.r % 9 * 1.4), sp = 8 + b.r % 7 * 1.3;
+        const wc = [Math.min(1, wallHex.r * 1.05 + 0.05), Math.min(1, wallHex.g * 1.02 + 0.04), Math.min(1, wallHex.b * 0.98 + 0.03)];
+        const hs = ts / 2;
+        const C4 = [[-hs, -hs], [hs, -hs], [hs, hs], [-hs, hs]].map(([a2, b2]) => [tx2 + a2 * o2.ux + b2 * o2.vx, tz + a2 * o2.uz + b2 * o2.vz]);
+        for (let i = 0; i < 4; i++) {
+          const A2 = C4[i], B2 = C4[(i + 1) % 4];
+          const ex = B2[0] - A2[0], ez = B2[1] - A2[1], el2 = Math.hypot(ex, ez);
+          let N2 = [ez / el2, 0, -ex / el2];
+          const mx = (A2[0] + B2[0]) / 2, mz = (A2[1] + B2[1]) / 2;
+          if (Math.hypot(mx + N2[0] - tx2, mz + N2[2] - tz) < Math.hypot(mx - tx2, mz - tz)) N2 = [-N2[0], 0, -N2[2]];
+          trimG.quad([A2[0], 0, A2[1]], [B2[0], 0, B2[1]], [B2[0], th, B2[1]], [A2[0], th, A2[1]], N2, [0, 0], [1, 0], [1, 1], [0, 1], wc);
+          const off = 0.03;
+          const sl = /* @__PURE__ */ __name((f0, f1, y02, y1, col2) => {
+            const a = [A2[0] + ex * f0 + N2[0] * off, A2[1] + ez * f0 + N2[2] * off], c2 = [A2[0] + ex * f1 + N2[0] * off, A2[1] + ez * f1 + N2[2] * off];
+            trimG.quad([a[0], y02, a[1]], [c2[0], y02, c2[1]], [c2[0], y1, c2[1]], [a[0], y1, a[1]], N2, [0, 0], [1, 0], [1, 1], [0, 1], col2);
+          }, "sl");
+          sl(0.28, 0.44, th - 3.4, th - 1, [0.06, 0.06, 0.07]);
+          sl(0.56, 0.72, th - 3.4, th - 1, [0.06, 0.06, 0.07]);
+          sl(0.3, 0.7, th - 6.4, th - 4.2, [0.92, 0.9, 0.84]);
+          sl(0.47, 0.53, th - 5.9, th - 4.7, [0.1, 0.1, 0.1]);
+          sl(0.4, 0.6, 1.2, 4.2, [0.18, 0.12, 0.08]);
+        }
+        const spc = r() < 0.6 ? [0.28, 0.46, 0.38] : [0.2, 0.21, 0.24];
+        const top2 = [tx2, th + sp, tz];
+        for (let i = 0; i < 4; i++) {
+          const A2 = C4[i], B2 = C4[(i + 1) % 4];
+          const ex = 0.25;
+          const a = [A2[0] + (A2[0] - tx2) * 0.08, th, A2[1] + (A2[1] - tz) * 0.08], c2 = [B2[0] + (B2[0] - tx2) * 0.08, th, B2[1] + (B2[1] - tz) * 0.08];
+          const ux2 = c2[0] - a[0], uz2 = c2[2] - a[2], vx2 = top2[0] - a[0], vy2 = top2[1] - a[1], vz2 = top2[2] - a[2];
+          let nx = 0 * vz2 - uz2 * vy2, ny = uz2 * vx2 - ux2 * vz2, nz = ux2 * vy2 - 0 * vx2;
+          const l = Math.hypot(nx, ny, nz) || 1;
+          if (ny < 0) pitchG.tri(a, top2, c2, [-nx / l, -ny / l, -nz / l], [0, 0], [0.5, sp], [ts, 0], i % 2 ? spc : [spc[0] * 0.8, spc[1] * 0.8, spc[2] * 0.8]);
+          else pitchG.tri(a, c2, top2, [nx / l, ny / l, nz / l], [0, 0], [ts, 0], [0.5, sp], i % 2 ? spc : [spc[0] * 0.8, spc[1] * 0.8, spc[2] * 0.8]);
+        }
+        const gold = [0.85, 0.68, 0.25];
+        const cx2 = tx2, cz2 = tz, y0 = th + sp;
+        trimG.quad([cx2 - 0.08, y0, cz2], [cx2 + 0.08, y0, cz2], [cx2 + 0.08, y0 + 2.2, cz2], [cx2 - 0.08, y0 + 2.2, cz2], [0, 0, 1], [0, 0], [1, 0], [1, 1], [0, 1], gold);
+        trimG.quad([cx2 - 0.7, y0 + 1.4, cz2], [cx2 + 0.7, y0 + 1.4, cz2], [cx2 + 0.7, y0 + 1.6, cz2], [cx2 - 0.7, y0 + 1.6, cz2], [0, 0, 1], [0, 0], [1, 0], [1, 1], [0, 1], gold);
+        b.tower = { x: tx2, z: tz, top: th + sp };
+      }
+      if (!pitched) for (const t of tris) roofTri(p[t[0]], p[t[1]], p[t[2]], h, roofCol);
       for (const q of borderQ) {
         roofTri([q[0][0], q[0][2]], [q[1][0], q[1][2]], [q[2][0], q[2][2]], h + 0.03, q[4]);
         roofTri([q[0][0], q[0][2]], [q[2][0], q[2][2]], [q[3][0], q[3][2]], h + 0.03, q[4]);
@@ -31959,7 +32846,7 @@ void main() {
         area3 += a[0] * c[1] - c[0] * a[1];
       }
       area3 = Math.abs(area3) / 2;
-      if (area3 > 350 && b.k !== "church") {
+      if (area3 > 350 && b.k !== "church" && !pitched) {
         const na = area3 > 3e3 ? 6 : area3 > 1500 ? 4 : area3 > 700 ? 2 : 1;
         let cx = 0, cz = 0;
         for (const q of p) {
@@ -31974,17 +32861,17 @@ void main() {
           const C = [[-w / 2, -d / 2], [w / 2, -d / 2], [w / 2, d / 2], [-w / 2, d / 2]].map(([a2, b2]) => [ox + a2 * ux - b2 * uz, oz + a2 * uz + b2 * ux]);
           if (!C.every((q) => pip2(q[0], q[1], p))) continue;
           if (C.some((q) => edges.some((e) => segDist(q[0], q[1], e.A[0], e.A[1], e.B[0], e.B[1])[0] < 1.5))) continue;
-          if (annex.some((A) => Math.hypot(A.x - ox, A.z - oz) < A.r + Math.hypot(w, d) / 2)) continue;
+          if (annex.some((A2) => Math.hypot(A2.x - ox, A2.z - oz) < A2.r + Math.hypot(w, d) / 2)) continue;
           annex.push({ x: ox, z: oz, r: Math.hypot(w, d) / 2, C, h: h + ah });
           k++;
           const wc = [wallHex.r * 0.9, wallHex.g * 0.9, wallHex.b * 0.9];
           for (let i = 0; i < 4; i++) {
-            const A = C[i], B2 = C[(i + 1) % 4];
-            const ex = B2[0] - A[0], ez = B2[1] - A[1], el = Math.hypot(ex, ez);
-            const N2 = [ez / el, 0, -ex / el];
-            const nn = pip2((A[0] + B2[0]) / 2 + N2[0] * 0.1, (A[1] + B2[1]) / 2 + N2[2] * 0.1, C) ? [-N2[0], 0, -N2[2]] : N2;
-            trimG.quad([A[0], h, A[1]], [B2[0], h, B2[1]], [B2[0], h + ah, B2[1]], [A[0], h + ah, A[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], wc);
-            trimG.quad([A[0], h + ah, A[1]], [B2[0], h + ah, B2[1]], [B2[0], h + ah + 0.3, B2[1]], [A[0], h + ah + 0.3, A[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], capC);
+            const A2 = C[i], B2 = C[(i + 1) % 4];
+            const ex = B2[0] - A2[0], ez = B2[1] - A2[1], el2 = Math.hypot(ex, ez);
+            const N2 = [ez / el2, 0, -ex / el2];
+            const nn = pip2((A2[0] + B2[0]) / 2 + N2[0] * 0.1, (A2[1] + B2[1]) / 2 + N2[2] * 0.1, C) ? [-N2[0], 0, -N2[2]] : N2;
+            trimG.quad([A2[0], h, A2[1]], [B2[0], h, B2[1]], [B2[0], h + ah, B2[1]], [A2[0], h + ah, A2[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], wc);
+            trimG.quad([A2[0], h + ah, A2[1]], [B2[0], h + ah, B2[1]], [B2[0], h + ah + 0.3, B2[1]], [A2[0], h + ah + 0.3, A2[1]], nn, [0, 0], [1, 0], [1, 1], [0, 1], capC);
           }
           const rc2 = [roofCol[0] * 0.85, roofCol[1] * 0.85, roofCol[2] * 0.85];
           roofTri(C[0], C[1], C[2], h + ah + 0.3, rc2);
@@ -31992,7 +32879,7 @@ void main() {
         }
       }
       const clear = [];
-      if (area3 > 260 && b.k !== "church") {
+      if (area3 > 260 && b.k !== "church" && !pitched) {
         const vx = -uz, vz = ux;
         let s0 = 1e9, s1 = -1e9, t0 = 1e9, t1 = -1e9;
         for (const q of p) {
@@ -32003,9 +32890,9 @@ void main() {
           t1 = Math.max(t1, tt);
         }
         const SR = s1 - s0, TR = t1 - t0;
-        const boxes = annex.map((A) => {
-          const ss = A.x * ux + A.z * uz, tt = A.x * vx + A.z * vz;
-          return [ss - A.r, ss + A.r, tt - A.r, tt + A.r];
+        const boxes = annex.map((A2) => {
+          const ss = A2.x * ux + A2.z * uz, tt = A2.x * vx + A2.z * vz;
+          return [ss - A2.r, ss + A2.r, tt - A2.r, tt + A2.r];
         });
         const W22 = /* @__PURE__ */ __name((ss, tt) => [ss * ux + tt * vx, ss * uz + tt * vz], "W2");
         const fits = /* @__PURE__ */ __name((sc, tc, hw, hd, m, avoid) => {
@@ -32035,11 +32922,11 @@ void main() {
         }, "quadRoof");
         const sides = /* @__PURE__ */ __name((C, y0, y1, col2) => {
           for (let i = 0; i < 4; i++) {
-            const A = C[i], B2 = C[(i + 1) % 4];
-            const ex = B2[0] - A[0], ez = B2[1] - A[1], el = Math.hypot(ex, ez) || 1;
-            let N2 = [ez / el, 0, -ex / el];
-            if (pip2((A[0] + B2[0]) / 2 + N2[0] * 0.05, (A[1] + B2[1]) / 2 + N2[2] * 0.05, C)) N2 = [-N2[0], 0, -N2[2]];
-            trimG.quad([A[0], y0, A[1]], [B2[0], y0, B2[1]], [B2[0], y1, B2[1]], [A[0], y1, A[1]], N2, [0, 0], [1, 0], [1, 1], [0, 1], col2);
+            const A2 = C[i], B2 = C[(i + 1) % 4];
+            const ex = B2[0] - A2[0], ez = B2[1] - A2[1], el2 = Math.hypot(ex, ez) || 1;
+            let N2 = [ez / el2, 0, -ex / el2];
+            if (pip2((A2[0] + B2[0]) / 2 + N2[0] * 0.05, (A2[1] + B2[1]) / 2 + N2[2] * 0.05, C)) N2 = [-N2[0], 0, -N2[2]];
+            trimG.quad([A2[0], y0, A2[1]], [B2[0], y0, B2[1]], [B2[0], y1, B2[1]], [A2[0], y1, A2[1]], N2, [0, 0], [1, 0], [1, 1], [0, 1], col2);
           }
         }, "sides");
         const nfld = area3 > 2500 ? 3 : area3 > 900 ? 2 : r() < 0.6 ? 1 : 0;
@@ -32070,9 +32957,9 @@ void main() {
         }
         const big2 = area3 > 1100 || b.k === "garage" && area3 > 500;
         if (big2 && paintN < 18 && r() < 0.85) {
-          const PAINTS = [["KAUFHAUS LINDE", "#f4efe0", "#2a5a3a"], ["KOLA ROT", "#ffffff", "#b0141c"], ["POTT FM 99,1", "#14102a", "#3fd8e8"], ["ELEKTRO BLITZ", "#1a1a1a", "#f2c200"], ["ZECHE SIEBEN", "#f2c200", "#1c1c22"], ["SCHAUM", "#7a1010", "#ffe03f"], ["LINDENKAUF", "#ffffff", "#1f4f9a"], ["NACHTEXPRESS", "#f2c200", "#111111"], ["BACKSTUBE 11", "#5a2a10", "#f0dcb0"]];
+          const PAINTS2 = [["KAUFHAUS LINDE", "#f4efe0", "#2a5a3a"], ["KOLA ROT", "#ffffff", "#b0141c"], ["POTT FM 99,1", "#14102a", "#3fd8e8"], ["ELEKTRO BLITZ", "#1a1a1a", "#f2c200"], ["ZECHE SIEBEN", "#f2c200", "#1c1c22"], ["SCHAUM", "#7a1010", "#ffe03f"], ["LINDENKAUF", "#ffffff", "#1f4f9a"], ["NACHTEXPRESS", "#f2c200", "#111111"], ["BACKSTUBE 11", "#5a2a10", "#f0dcb0"]];
           const isP = b.k === "garage";
-          const A = isP ? ["P", "#ffffff", "#1f4f9a"] : PAINTS[(b.r + paintN) % PAINTS.length];
+          const A2 = isP ? ["P", "#ffffff", "#1f4f9a"] : PAINTS2[(b.r + paintN) % PAINTS2.length];
           const dirs = [[ux, uz], [-ux, -uz], [vx, vz], [-vx, -vz]];
           let up = dirs[0];
           for (const d of dirs) if (d[1] < up[1]) up = d;
@@ -32091,7 +32978,7 @@ void main() {
             const sc = s0 + hs + 1.5 + r() * Math.max(0, SR - 2 * hs - 3), tc = t0 + ht + 1.5 + r() * Math.max(0, TR - 2 * ht - 3);
             if (!fits(sc, tc, hs, ht, 1.3, boxes)) continue;
             const cw = W22(sc, tc);
-            roofPaint.push({ x: cw[0], z: cw[1], y: h + 0.15, w: wl, d: dl, ang: Math.atan2(-up[0], -up[1]), A, seed: b.r, sq: isP });
+            roofPaint.push({ x: cw[0], z: cw[1], y: h + 0.15, w: wl, d: dl, ang: Math.atan2(-up[0], -up[1]), A: A2, seed: b.r, sq: isP });
             clear.push(fits(sc, tc, hs + 0.6, ht + 0.6, 0, null) || []);
             boxes.push([sc - hs, sc + hs, tc - ht, tc + ht]);
             paintN++;
@@ -32141,8 +33028,8 @@ void main() {
         minz = Math.min(minz, q[1]);
         maxz = Math.max(maxz, q[1]);
       }
-      const M = 40;
-      out.edge = { minx: Math.max(-bx + 6, minx - M), maxx: Math.min(bx - 6, maxx + M), minz: Math.max(-bz + 6, minz - M), maxz: Math.min(bz - 6, maxz + M) };
+      const M2 = 40;
+      out.edge = { minx: Math.max(-bx + 6, minx - M2), maxx: Math.min(bx - 6, maxx + M2), minz: Math.max(-bz + 6, minz - M2), maxz: Math.min(bz - 6, maxz + M2) };
       if (!(out.edge.maxx > out.edge.minx + 60 && out.edge.maxz > out.edge.minz + 60)) out.edge = { minx: -bx + 6, maxx: bx - 6, minz: -bz + 6, maxz: bz - 6 };
     }
     const E = out.edge;
@@ -32160,6 +33047,7 @@ void main() {
     resG.forEach((g, i) => add(g, resMats[i]));
     add(trimG, trimMat);
     roofGs.forEach((g, i) => add(g, roofMats[i]));
+    add(pitchG, pitchMat);
     const props = { ac: [], vent: [], sky: [], hut: [], tank: [], ant: [], dish: [] };
     for (const B of out.buildings) {
       const b = B.b, p = b.p, r = rng(b.r + 7);
@@ -32169,6 +33057,19 @@ void main() {
         maxx = Math.max(maxx, q[0]);
         minz = Math.min(minz, q[1]);
         maxz = Math.max(maxz, q[1]);
+      }
+      if (b.pitched) {
+        if (r() < 0.5) {
+          let cx = 0, cz = 0;
+          for (const q of p) {
+            cx += q[0];
+            cz += q[1];
+          }
+          cx /= p.length;
+          cz /= p.length;
+          props[r() < 0.7 ? "vent" : "dish"].push({ x: cx + (r() - 0.5) * 2, z: cz + (r() - 0.5) * 2, y: b.roofTop - 0.9, rot: r() * 6, s: 0.8 });
+        }
+        continue;
       }
       const area3 = (maxx - minx) * (maxz - minz);
       let cnt = Math.min(45, Math.floor(area3 / 55));
@@ -32185,7 +33086,7 @@ void main() {
         }
         if (!ok) continue;
         if (placed.some((q) => Math.hypot(q[0] - x, q[1] - z) < 2.6)) continue;
-        if (B.annex.some((A) => pip2(x, z, A.C) || Math.hypot(A.x - x, A.z - z) < A.r + 0.8)) continue;
+        if (B.annex.some((A2) => pip2(x, z, A2.C) || Math.hypot(A2.x - x, A2.z - z) < A2.r + 0.8)) continue;
         if (B.clear.some((C) => C.length && pip2(x, z, C))) continue;
         placed.push([x, z]);
         const v = r();
@@ -32201,7 +33102,7 @@ void main() {
       }
     }
     const propMat = /* @__PURE__ */ __name((c, rough = 0.8, metal = 0.1) => new MeshStandardMaterial({ color: c, roughness: rough, metalness: metal }), "propMat");
-    const inst = /* @__PURE__ */ __name((geo, mat2, list, yoff, scaleFn) => {
+    const inst2 = /* @__PURE__ */ __name((geo, mat2, list, yoff, scaleFn) => {
       if (!list.length) return;
       const m = new InstancedMesh(geo, mat2, list.length);
       const o2 = new Object3D();
@@ -32219,17 +33120,17 @@ void main() {
       return m;
     }, "inst");
     const acGeo = new BoxGeometry(1.4, 0.9, 1);
-    inst(acGeo, propMat(12106944, 0.6, 0.3), props.ac, 0.45);
+    inst2(acGeo, propMat(12106944, 0.6, 0.3), props.ac, 0.45);
     const fanGeo = new CylinderGeometry(0.35, 0.35, 0.06, 12);
-    inst(fanGeo, propMat(2763824), props.ac.map((a) => ({ ...a, x: a.x + Math.cos(a.rot) * 0.25 * a.s, z: a.z - Math.sin(a.rot) * 0.25 * a.s })), 0.93);
-    inst(new CylinderGeometry(0.3, 0.3, 1, 10), propMat(9080208, 0.5, 0.5), props.vent, 0.5);
-    inst(new CylinderGeometry(0.42, 0.3, 0.25, 10), propMat(6974832, 0.5, 0.5), props.vent, 1.1);
-    inst(new BoxGeometry(1.6, 0.35, 2.4), propMat(7311264, 0.2, 0.4), props.sky, 0.17);
+    inst2(fanGeo, propMat(2763824), props.ac.map((a) => ({ ...a, x: a.x + Math.cos(a.rot) * 0.25 * a.s, z: a.z - Math.sin(a.rot) * 0.25 * a.s })), 0.93);
+    inst2(new CylinderGeometry(0.3, 0.3, 1, 10), propMat(9080208, 0.5, 0.5), props.vent, 0.5);
+    inst2(new CylinderGeometry(0.42, 0.3, 0.25, 10), propMat(6974832, 0.5, 0.5), props.vent, 1.1);
+    inst2(new BoxGeometry(1.6, 0.35, 2.4), propMat(7311264, 0.2, 0.4), props.sky, 0.17);
     {
       const sg = new BoxGeometry(2, 0.5, 2.6);
-      inst(sg, propMat(9087160, 0.15, 0.5), skyRows, 0.25);
+      inst2(sg, propMat(9087160, 0.15, 0.5), skyRows, 0.25);
       const fg = new BoxGeometry(2.3, 0.2, 2.9);
-      inst(fg, propMat(5922402, 0.6, 0.3), skyRows, 0.1);
+      inst2(fg, propMat(5922402, 0.6, 0.3), skyRows, 0.1);
     }
     if (solarL.length) {
       const m = new InstancedMesh(new BoxGeometry(1.1, 0.06, 2), new MeshStandardMaterial({ map: solarTex(), roughness: 0.25, metalness: 0.5 }), solarL.length);
@@ -32254,16 +33155,17 @@ void main() {
       m.receiveShadow = true;
       scene.add(m);
     }
-    inst(new BoxGeometry(2.6, 2.4, 2.8), propMat(10130054), props.hut, 1.2);
-    inst(new CylinderGeometry(0.9, 0.9, 1.8, 14), propMat(8018496), props.tank, 0.9);
-    inst(new CylinderGeometry(1, 0.9, 0.15, 14), propMat(4864560), props.tank, 1.85);
-    inst(new CylinderGeometry(0.04, 0.04, 4, 5), propMat(3355443), props.ant, 2);
+    inst2(new BoxGeometry(2.6, 2.4, 2.8), propMat(10130054), props.hut, 1.2);
+    inst2(new CylinderGeometry(0.9, 0.9, 1.8, 14), propMat(8018496), props.tank, 0.9);
+    inst2(new CylinderGeometry(1, 0.9, 0.15, 14), propMat(4864560), props.tank, 1.85);
+    inst2(new CylinderGeometry(0.04, 0.04, 4, 5), propMat(3355443), props.ant, 2);
     const dishGeo = new SphereGeometry(0.5, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2.6);
     dishGeo.rotateX(-1);
-    inst(dishGeo, propMat(14211280, 0.6, 0.1), props.dish, 0.6);
+    inst2(dishGeo, propMat(14211280, 0.6, 0.1), props.dish, 0.6);
     const zoneA = (D.zones || []).reduce((a, z) => a + (["field", "pasture", "forest", "yard", "mountain"].includes(z.k) ? Math.abs(polyArea2(z.p)) : 0), 0);
     out.rural = D.buildings.length < 220 && zoneA > 9e4 || D.buildings.length < 70;
-    const ground = new Mesh(new PlaneGeometry(2400, 2400), new MeshStandardMaterial({ map: out.rural ? noiseTex("#5d7a3a", 0.42, 3e4, 256, 4, (g, R2, s) => {
+    out.mask = groundMask(D, out, out.rural);
+    const baseMap = out.rural ? noiseTex("#5d7a3a", 0.42, 3e4, 256, 4, (g, R2, s) => {
       for (let i = 0; i < 26; i++) {
         const x = R2() * s, y = R2() * s, r = 8 + R2() * 40;
         const gr = g.createRadialGradient(x, y, 0, x, y, r);
@@ -32272,12 +33174,16 @@ void main() {
         g.fillStyle = gr;
         g.fillRect(x - r, y - r, 2 * r, 2 * r);
       }
-    }) : paveTex(3), roughness: 0.95 }));
+    }) : grassTex(8);
+    const paveMap = out.rural ? noiseTex("#8f877a", 0.3, 2e4, 256, 22) : paveTex(3);
+    for (const t of [baseMap, paveMap]) {
+      t.repeat.set(2400 / 8, 2400 / 8);
+    }
+    const ground = new Mesh(new PlaneGeometry(2400, 2400), maskMaterial(new MeshStandardMaterial({ map: baseMap, roughness: 0.95 }), out.mask.tex, paveMap, 2400 / 8));
     ground.rotation.x = -Math.PI / 2;
-    ground.material.map.repeat.set(2400 / 8, 2400 / 8);
     ground.receiveShadow = true;
     scene.add(ground);
-    const areaG = { grass: new Geo2(), plaza: new Geo2(), parking: new Geo2(), school: new Geo2(), gravel: new Geo2(), field0: new Geo2(), field1: new Geo2(), field2: new Geo2(), field3: new Geo2() };
+    const areaG = { grass: new Geo2(), plaza: new Geo2(), parking: new Geo2(), school: new Geo2(), gravel: new Geo2(), field0: new Geo2(), field1: new Geo2(), field2: new Geo2(), field3: new Geo2(), forest: new Geo2(), wet: new Geo2(), sand: new Geo2(), play: new Geo2(), pool: new Geo2(), allot: new Geo2(), dirt: new Geo2() };
     for (const a of D.areas) {
       const AT = a.t === "field" ? "field" + (a.crop | 0) % 4 : a.t;
       if (!areaG[AT]) continue;
@@ -32288,8 +33194,8 @@ void main() {
       } catch (e) {
         continue;
       }
-      const y = { grass: 0.02, plaza: 0.012, parking: 0.03, school: 8e-3, gravel: 0.016 }[a.t] ?? 0.018;
-      const s = { grass: 6, plaza: 8, parking: 10, school: 8, gravel: 5 }[a.t] ?? 14;
+      const y = { grass: 0.02, plaza: 0.012, parking: 0.03, school: 8e-3, gravel: 0.016, forest: 0.022, wet: 0.019, sand: 0.017, play: 0.024, pool: 0.032, allot: 0.021, dirt: 0.015 }[a.t] ?? 0.018;
+      const s = { grass: 6, plaza: 8, parking: 10, school: 8, gravel: 5, forest: 16, wet: 12, sand: 8, play: 6, pool: 5, allot: 14, dirt: 8 }[a.t] ?? 14;
       for (const t of tris) {
         const q = [a.p[t[0]], a.p[t[1]], a.p[t[2]]];
         const cr = (q[1][0] - q[0][0]) * (q[2][1] - q[0][1]) - (q[1][1] - q[0][1]) * (q[2][0] - q[0][0]);
@@ -32306,6 +33212,11 @@ void main() {
       me.receiveShadow = true;
       scene.add(me);
     }, "add2");
+    for (const k of ["forest", "wet", "sand", "play", "pool", "allot", "dirt"]) {
+      const t = areaTex(k);
+      if (!t) continue;
+      add2(areaG[k], new MeshStandardMaterial({ map: t, roughness: k === "pool" ? 0.2 : 1, metalness: k === "pool" ? 0.1 : 0, emissive: k === "pool" ? 667712 : 0, emissiveIntensity: 0.4, polygonOffset: true, polygonOffsetFactor: k === "pool" ? -1.6 : -1.05, polygonOffsetUnits: k === "pool" ? -1.6 : -1.05 }));
+    }
     add2(areaG.grass, new MeshStandardMaterial({ map: grs, roughness: 1, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
     add2(areaG.plaza, plazaMat);
     add2(areaG.parking, asphMat);
@@ -32403,7 +33314,8 @@ void main() {
       disc(curbG, r.p[0], wS / 2 + 0.35, 0.035, 1, curbC);
       disc(curbG, r.p[r.p.length - 1], wE / 2 + 0.35, 0.035, 1, curbC);
       if (r.t !== "service") out.roadsDrive.push(r);
-      if (w >= 6 && r.t !== "service" && r.t !== "living_street") {
+      const minorR = (r.t === "residential" || r.t === "unclassified") && !r.ow && w < 9;
+      if (w >= 6 && !minorR && r.t !== "service" && r.t !== "living_street") {
         const lanes = r.ow ? Math.max(1, Math.round(w / 3.3)) : 2;
         const offs = [];
         if (r.ow) {
@@ -32431,7 +33343,7 @@ void main() {
           }
         }
       }
-      if (w >= 7 && r.t !== "service" && r.t !== "living_street") {
+      if (w >= 7 && !minorR && r.t !== "service" && r.t !== "living_street") {
         const lanesA = r.ow ? Math.max(1, Math.round(w / 3.3)) : 2;
         const lo = laneOffset(r);
         const laneF = r.ow ? Array.from({ length: lanesA }, (_, k) => (k + 0.5) / lanesA - 0.5) : null;
@@ -32521,11 +33433,16 @@ void main() {
     const mhm = new MeshStandardMaterial({ color: 2763306, roughness: 0.6, metalness: 0.4, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 });
     const mg = new CircleGeometry(0.35, 12);
     mg.rotateX(-Math.PI / 2);
-    inst(mg, mhm, mh, 0).castShadow = false;
+    inst2(mg, mhm, mh, 0).castShadow = false;
     try {
       buildTransit(scene, D, out);
     } catch (e) {
       console.warn("transit layer failed", e);
+    }
+    try {
+      detailLayer(scene, D, out, { rural: out.rural, mobile: !!(opts && opts.mobile), mask: out.mask });
+    } catch (e) {
+      console.warn("V05 detail layer failed", e);
     }
     let treePts = (D.trees || []).slice();
     if (treePts.length < 120) {
@@ -32561,8 +33478,8 @@ void main() {
         minz = Math.min(minz, q[1]);
         maxz = Math.max(maxz, q[1]);
       }
-      const A = Math.abs((maxx - minx) * (maxz - minz));
-      const nT = Math.min(40, Math.floor(A / 220));
+      const A2 = Math.abs((maxx - minx) * (maxz - minz));
+      const nT = Math.min(40, Math.floor(A2 / 220));
       for (let k = 0; k < nT; k++) {
         const x = minx + k * 57 % 100 / 100 * (maxx - minx), z = minz + k * 91 % 100 / 100 * (maxz - minz);
         if (pip2(x, z, pts)) treePts.push([x, z]);
@@ -32770,7 +33687,7 @@ void main() {
       else if (pr.k === "planter") planters.push(it);
       else bollards.push(it);
     }
-    inst(new BoxGeometry(1.15, 0.08, 0.38), propMat(5914672), benches, 0.42);
+    inst2(new BoxGeometry(1.15, 0.08, 0.38), propMat(5914672), benches, 0.42);
     {
       const m = new InstancedMesh(new BoxGeometry(1.15, 0.32, 0.06), propMat(4863016), Math.max(1, benches.length));
       const o2 = new Object3D();
@@ -32787,10 +33704,10 @@ void main() {
         scene.add(m);
       }
     }
-    inst(new CylinderGeometry(0.18, 0.2, 0.55, 8), propMat(2764338, 0.6, 0.3), bins, 0.28);
-    inst(new CylinderGeometry(0.12, 0.14, 0.55, 8), propMat(11538456, 0.5, 0.4), hydrants, 0.28);
-    inst(new CylinderGeometry(0.08, 0.09, 0.7, 6), propMat(13157560, 0.5, 0.2), bollards, 0.35);
-    inst(new CylinderGeometry(0.35, 0.4, 0.45, 10), propMat(6967360), planters, 0.22);
+    inst2(new CylinderGeometry(0.18, 0.2, 0.55, 8), propMat(2764338, 0.6, 0.3), bins, 0.28);
+    inst2(new CylinderGeometry(0.12, 0.14, 0.55, 8), propMat(11538456, 0.5, 0.4), hydrants, 0.28);
+    inst2(new CylinderGeometry(0.08, 0.09, 0.7, 6), propMat(13157560, 0.5, 0.2), bollards, 0.35);
+    inst2(new CylinderGeometry(0.35, 0.4, 0.45, 10), propMat(6967360), planters, 0.22);
     if (planters.length) {
       const m = new InstancedMesh(new CylinderGeometry(0.32, 0.32, 0.18, 10), new MeshStandardMaterial({ color: 3828264, roughness: 1 }), planters.length);
       const o2 = new Object3D();
@@ -32977,25 +33894,25 @@ void main() {
           occMark(x, z);
         }
       });
-      inst(new BoxGeometry(0.9, 1.15, 0.4), propMat(10921368, 0.75, 0.15), boxes, 0.575);
-      inst(new BoxGeometry(0.92, 0.06, 0.42), propMat(7829101, 0.6, 0.3), boxes, 1.18);
+      inst2(new BoxGeometry(0.9, 1.15, 0.4), propMat(10921368, 0.75, 0.15), boxes, 0.575);
+      inst2(new BoxGeometry(0.92, 0.06, 0.42), propMat(7829101, 0.6, 0.3), boxes, 1.18);
       {
         const g = new TorusGeometry(0.38, 0.035, 5, 12, Math.PI);
-        inst(g, propMat(10133670, 0.4, 0.7), bikes, 0.02);
+        inst2(g, propMat(10133670, 0.4, 0.7), bikes, 0.02);
       }
       {
         const cols = [3107642, 7031338, 14211282];
         for (let k = 0; k < 3; k++) {
           const L = glass.filter((q) => q.k === k);
-          inst(new BoxGeometry(1.3, 1.5, 1.3), propMat(cols[k], 0.6, 0.3), L, 0.75);
+          inst2(new BoxGeometry(1.3, 1.5, 1.3), propMat(cols[k], 0.6, 0.3), L, 0.75);
         }
-        inst(new CylinderGeometry(0.22, 0.22, 0.08, 10), propMat(2236962), glass, 1.53);
+        inst2(new CylinderGeometry(0.22, 0.22, 0.08, 10), propMat(2236962), glass, 1.53);
       }
       if (litfass.length) {
-        const cv2 = document.createElement("canvas");
-        cv2.width = 256;
-        cv2.height = 128;
-        const g2 = cv2.getContext("2d");
+        const cv3 = document.createElement("canvas");
+        cv3.width = 256;
+        cv3.height = 128;
+        const g2 = cv3.getContext("2d");
         const pc = ["#e94e3c", "#f4c430", "#3c7be9", "#ffffff", "#2ecc71", "#ff7fbf", "#111111"];
         for (let i = 0; i < 8; i++) {
           g2.fillStyle = pc[i * 3 % pc.length];
@@ -33005,22 +33922,22 @@ void main() {
           g2.fillStyle = "rgba(0,0,0,0.55)";
           for (let l = 0; l < 4; l++) g2.fillRect(i * 32 + 5, 70 + l * 12, 18 + (l * 7 + i) % 6, 4);
         }
-        const tex2 = new CanvasTexture(cv2);
+        const tex2 = new CanvasTexture(cv3);
         tex2.colorSpace = SRGBColorSpace;
         tex2.wrapS = RepeatWrapping;
-        inst(new CylinderGeometry(0.58, 0.58, 2.4, 16, 1, true), new MeshStandardMaterial({ map: tex2, roughness: 0.8 }), litfass, 1.25);
-        inst(new CylinderGeometry(0.72, 0.62, 0.22, 16), propMat(2902586, 0.5, 0.4), litfass, 2.55);
-        inst(new CylinderGeometry(0.64, 0.7, 0.12, 16), propMat(2902586, 0.5, 0.4), litfass, 0.06);
+        inst2(new CylinderGeometry(0.58, 0.58, 2.4, 16, 1, true), new MeshStandardMaterial({ map: tex2, roughness: 0.8 }), litfass, 1.25);
+        inst2(new CylinderGeometry(0.72, 0.62, 0.22, 16), propMat(2902586, 0.5, 0.4), litfass, 2.55);
+        inst2(new CylinderGeometry(0.64, 0.7, 0.12, 16), propMat(2902586, 0.5, 0.4), litfass, 0.06);
       }
       {
         const g = new SphereGeometry(0.32, 9, 6);
         g.scale(1, 0.78, 1);
-        inst(g, propMat(1381914, 0.35, 0.1), bags, 0.22);
+        inst2(g, propMat(1381914, 0.35, 0.1), bags, 0.22);
       }
       const signTexOf = /* @__PURE__ */ __name((kind) => {
-        const cv2 = document.createElement("canvas");
-        cv2.width = cv2.height = 128;
-        const g = cv2.getContext("2d");
+        const cv3 = document.createElement("canvas");
+        cv3.width = cv3.height = 128;
+        const g = cv3.getContext("2d");
         if (kind === 0) {
           g.fillStyle = "#fff";
           g.beginPath();
@@ -33068,12 +33985,12 @@ void main() {
           g.lineWidth = 2;
           g.strokeRect(-44, -44, 88, 88);
         }
-        const t = new CanvasTexture(cv2);
+        const t = new CanvasTexture(cv3);
         t.colorSpace = SRGBColorSpace;
         return t;
       }, "signTexOf");
       const poleL = [...signsA, ...signsB, ...signsC];
-      inst(new CylinderGeometry(0.045, 0.05, 2.5, 6), propMat(9080725, 0.4, 0.6), poleL, 1.25);
+      inst2(new CylinderGeometry(0.045, 0.05, 2.5, 6), propMat(9080725, 0.4, 0.6), poleL, 1.25);
       [signsA, signsB, signsC].forEach((L, k) => {
         if (!L.length) return;
         const g = new PlaneGeometry(0.72, 0.72);
@@ -33129,8 +34046,8 @@ void main() {
       const tilt = 0.42;
       const up2 = upv.clone().multiplyScalar(Math.cos(tilt)).add(new Vector3(0, 1, 0).multiplyScalar(Math.sin(tilt)));
       const n2 = new Vector3().crossVectors(right, up2);
-      const M = new Matrix4().makeBasis(right, up2, n2);
-      m.quaternion.setFromRotationMatrix(M);
+      const M2 = new Matrix4().makeBasis(right, up2, n2);
+      m.quaternion.setFromRotationMatrix(M2);
       const outD = Hh / 2 + 0.25;
       const dot = upv.x * e.nx + upv.z * e.nz;
       m.position.set(f.cx + e.nx * outD, gH + 0.15 + (dot < 0 ? Hh * 0.5 * Math.sin(tilt) : 0), f.cz + e.nz * outD);
@@ -33169,8 +34086,8 @@ void main() {
     for (const B of out.buildings.filter((B2) => B2.h > 15).sort((a, b) => a.b.r % 97 - b.b.r % 97).slice(0, 10)) {
       const e = B.edges.filter((e2) => e2.len > 9).sort((a, b) => b.nz - a.nz)[0];
       if (!e) continue;
-      const A = ADS[ad++ % ADS.length];
-      const mat2 = new MeshBasicMaterial({ map: signTex(A[0], { fg: A[2], bg: A[3], core: A[2], border: A[2], blur: 8, sub: A[1], w: 512, h: 192, font: '900 80px "Arial Black", Impact, sans-serif' }), toneMapped: false });
+      const A2 = ADS[ad++ % ADS.length];
+      const mat2 = new MeshBasicMaterial({ map: signTex(A2[0], { fg: A2[2], bg: A2[3], core: A2[2], border: A2[2], blur: 8, sub: A2[1], w: 512, h: 192, font: '900 80px "Arial Black", Impact, sans-serif' }), toneMapped: false });
       out.neonMats.push(mat2);
       const W = Math.min(9, e.len * 0.8), H = W * 0.375;
       const m = new Mesh(new PlaneGeometry(W, H), mat2);
@@ -33192,12 +34109,12 @@ void main() {
         leg.castShadow = true;
         scene.add(leg);
       }
-      const back = new Mesh(new PlaneGeometry(W, H), propMat(3158064));
-      back.quaternion.copy(m.quaternion);
-      back.rotateY(Math.PI);
-      back.position.copy(m.position);
-      back.castShadow = true;
-      scene.add(back);
+      const back2 = new Mesh(new PlaneGeometry(W, H), propMat(3158064));
+      back2.quaternion.copy(m.quaternion);
+      back2.rotateY(Math.PI);
+      back2.position.copy(m.position);
+      back2.castShadow = true;
+      scene.add(back2);
     }
     const hzTex = hazardTex();
     const hzMat = new MeshStandardMaterial({ map: hzTex, roughness: 0.72, metalness: 0.04 });
@@ -33303,16 +34220,16 @@ void main() {
       strip2(E2.minx - S, E2.maxz + o2, E2.maxx + S, E2.maxz + S);
       strip2(E2.minx - S, E2.minz - o2, E2.minx - o2, E2.maxz + o2);
       strip2(E2.maxx + o2, E2.minz - o2, E2.maxx + S, E2.maxz + o2);
-      const cv2 = document.createElement("canvas");
-      cv2.width = 4;
-      cv2.height = 64;
-      const cg = cv2.getContext("2d");
+      const cv3 = document.createElement("canvas");
+      cv3.width = 4;
+      cv3.height = 64;
+      const cg = cv3.getContext("2d");
       const gr = cg.createLinearGradient(0, 0, 0, 64);
       gr.addColorStop(0, "rgba(7,8,13,0)");
       gr.addColorStop(1, "rgba(7,8,13,0.85)");
       cg.fillStyle = gr;
       cg.fillRect(0, 0, 4, 64);
-      const ft = new CanvasTexture(cv2);
+      const ft = new CanvasTexture(cv3);
       const fm = new MeshBasicMaterial({ map: ft, transparent: true, depthWrite: false, fog: false });
       const F = 14;
       const fade = /* @__PURE__ */ __name((cx, cz, len, rot) => {
@@ -33335,12 +34252,13 @@ void main() {
     out.propMat = propMat;
     return out;
   }
-  var LEVEL_H, Geo2, EdgeGrid, ROOF_COLS, SHOP_NAMES, EXTRA_SIGNS, NEON;
+  var LEVEL_H, Geo2, EdgeGrid, ROOF_COLS, PITCH_COLS, SHOP_NAMES, EXTRA_SIGNS, NEON;
   var init_city = __esm({
     "src/city.js"() {
       init_three_module();
       init_sets();
       init_transit();
+      init_detail5();
       init_tex();
       init_roadfit();
       LEVEL_H = 3.3;
@@ -33423,7 +34341,8 @@ void main() {
           return hit;
         }
       };
-      ROOF_COLS = [[0.46, 0.44, 0.4], [0.58, 0.3, 0.22], [0.3, 0.42, 0.34], [0.7, 0.62, 0.46], [0.26, 0.27, 0.31], [0.52, 0.44, 0.54], [0.32, 0.44, 0.56], [0.74, 0.4, 0.26], [0.62, 0.62, 0.58], [0.34, 0.26, 0.22], [0.24, 0.48, 0.5], [0.6, 0.56, 0.3]];
+      ROOF_COLS = [[0.46, 0.45, 0.43], [0.4, 0.39, 0.38], [0.55, 0.53, 0.5], [0.62, 0.6, 0.56], [0.3, 0.31, 0.33], [0.5, 0.46, 0.4], [0.36, 0.38, 0.4], [0.58, 0.4, 0.32], [0.66, 0.66, 0.62], [0.42, 0.36, 0.32], [0.34, 0.42, 0.4], [0.56, 0.54, 0.46]];
+      PITCH_COLS = [[0.62, 0.3, 0.22], [0.55, 0.26, 0.19], [0.7, 0.36, 0.25], [0.42, 0.22, 0.17], [0.24, 0.25, 0.27], [0.2, 0.21, 0.23], [0.3, 0.31, 0.34], [0.36, 0.27, 0.22], [0.46, 0.45, 0.45], [0.28, 0.32, 0.38], [0.66, 0.42, 0.3], [0.22, 0.22, 0.22]];
       SHOP_NAMES = { fast_food: ["PIZZA NOTTE", "BURGER BUDE", "CURRY ECK", "FALAFEL HOUSE", "IMBISS ROSI", "H\xC4HNCHEN HEINZ", "WOK STATION 9", "KUMPIR K\xD6NIG", "B\xD6REK BOX", "POMMES POTT"], restaurant: ["TRATTORIA LUNA", "TAVERNA DELFI", "ASIA GARDEN", "STEAKHAUS RUHR", "LA CANTINA", "BALKAN GRILL", "SUSHI KAZE", "PHO SAIGON", "GASTHAUS KRONE"], cafe: ["CAF\xC9 KORN", "KAFFEEKLATSCH", "BACKSTUBE 11", "ESPRESSO 44", "CAF\xC9 ZUCKER"], bar: ["BAR NOIR", "LUCKY 13", "BLAUE STUNDE", "EXIT BAR", "COCKTAIL CLUB"], pub: ["ZUM HENKEL", "KNEIPE 7", "ZUR ECKE", "PILS-STUBE", "SCHICHT-ENDE"] };
       EXTRA_SIGNS = ["KIOSK", "SPIELHALLE", "WETTB\xDCRO", "HANDY DOC", "SHISHA LOUNGE", "SALON SCHNITT", "ORIENT MARKT", "PFANDHAUS", "TATTOO INK", "SP\xC4TI 24", "GOLD ANKAUF", "NAGEL STUDIO", "REISEB\xDCRO SONNE", "APOTHEKE AM ECK"];
       NEON = ["#ff3fa4", "#3ff0ff", "#ffe03f", "#7dff5a", "#ff6a2a", "#b46bff", "#ff2a3a"];
@@ -33454,14 +34373,14 @@ void main() {
   function faceColor(g, fn) {
     g = strip(g);
     const p = g.attributes.position, n = p.count, a = new Float32Array(n * 3);
-    const A = new Vector3(), B = new Vector3(), C = new Vector3(), N = new Vector3();
+    const A2 = new Vector3(), B = new Vector3(), C = new Vector3(), N = new Vector3();
     for (let i = 0; i < n; i += 3) {
-      A.fromBufferAttribute(p, i);
+      A2.fromBufferAttribute(p, i);
       B.fromBufferAttribute(p, i + 1);
       C.fromBufferAttribute(p, i + 2);
-      N.subVectors(C, B).cross(B.clone().sub(A)).normalize();
+      N.subVectors(C, B).cross(B.clone().sub(A2)).normalize();
       if (N.lengthSq() < 0.5) N.set(0, 1, 0);
-      const cy = (A.y + B.y + C.y) / 3, cz = (A.z + B.z + C.z) / 3;
+      const cy = (A2.y + B.y + C.y) / 3, cz = (A2.z + B.z + C.z) / 3;
       const c = fn(-N.x, -N.y, -N.z, cy, cz);
       for (let k = 0; k < 3; k++) {
         a[(i + k) * 3] = c[0];
@@ -33483,15 +34402,15 @@ void main() {
     return g;
   }
   function carGeometry(type, paint = [1, 1, 1]) {
-    const T = CAR_TYPES[type];
-    if (T.tank) return tankGeometry(T, paint);
+    const T2 = CAR_TYPES[type] || CAR_TYPES.sedan;
+    if (T2.tank) return tankGeometry(T2, paint);
     const parts = [];
-    const { L, W, hb, hr } = T;
+    const { L, W, hb, hr } = T2;
     const y0 = 0.34, b = 0.06;
     const P = paint, side = [P[0] * 0.8, P[1] * 0.8, P[2] * 0.8];
-    const zA = L / 2 - T.hood, zB = zA - T.ws, zC = zB - T.roof, zD = zC - T.rw;
+    const zA = L / 2 - T2.hood, zB = zA - T2.ws, zC = zB - T2.roof, zD = zC - T2.rw;
     const F = L / 2 - b, Bk = -L / 2 + b;
-    const nose = T.van ? [[F, hb - 0.32], [F - 0.2, hb - 0.12]] : [[F, hb - 0.24], [F - 0.14, hb - 0.1]];
+    const nose = T2.van ? [[F, hb - 0.32], [F - 0.2, hb - 0.12]] : [[F, hb - 0.24], [F - 0.14, hb - 0.1]];
     const body = profile([[Bk, y0], [F, y0], ...nose, [zA, hb - b], [zD, hb - b], [Bk + 0.14, hb - b - 0.02], [Bk, hb - b - 0.14]], W, b);
     parts.push(faceColor(body, (nx, ny, nz, cy) => cy < 0.42 ? TRIM : ny > 0.6 ? P : side));
     const cab = profile([[zD, hb - 0.02], [zA, hb - 0.02], [zB, hb + hr - b], [zC, hb + hr - b]], W - 0.16, b);
@@ -33505,9 +34424,9 @@ void main() {
       cab.computeVertexNormals();
     }
     parts.push(faceColor(cab, (nx, ny, nz, cy, cz) => ny > 0.8 && cy > hb + hr - 0.08 ? P : ny > 0.25 && cz > zB - 0.05 ? GLASS_HI : GLASS));
-    const pz2 = (zB + zC) / 2 - (T.van ? 0.4 : 0.05);
+    const pz2 = (zB + zC) / 2 - (T2.van ? 0.4 : 0.05);
     for (const sx of [-1, 1]) parts.push(colorize(box(0.06, hr - 0.08, 0.12, sx * ((W - 0.16) / 2 * 0.935), hb + hr / 2, pz2), P));
-    const wz = [L / 2 - 0.82 - (T.van ? 0.05 : 0), -L / 2 + 0.78];
+    const wz = [L / 2 - 0.82 - (T2.van ? 0.05 : 0), -L / 2 + 0.78];
     for (const sx of [-1, 1]) for (const z of wz) {
       const w = new CylinderGeometry(0.34, 0.34, 0.25, 14);
       w.rotateZ(Math.PI / 2);
@@ -33522,35 +34441,35 @@ void main() {
     parts.push(colorize(box(W - 0.12, 0.2, 0.14, 0, y0 + 0.08, L / 2 - 0.02), TRIM), colorize(box(W - 0.12, 0.2, 0.14, 0, y0 + 0.08, -L / 2 + 0.02), TRIM));
     parts.push(colorize(box(W * 0.46, 0.12, 0.04, 0, hb - 0.27, L / 2 + 5e-3), TRIM));
     parts.push(colorize(box(W - 0.42, 0.03, 0.09, 0, hb + 5e-3, zA + 0.06), TRIM));
-    if (!T.van) for (const sx of [-1, 1]) parts.push(colorize(box(0.035, 0.02, T.hood - 0.45, sx * 0.43, hb - 0.01, zA + (T.hood - 0.45) / 2 + 0.12), [P[0] * 0.72, P[1] * 0.72, P[2] * 0.72]));
-    if (T.rw > 0.3) {
+    if (!T2.van) for (const sx of [-1, 1]) parts.push(colorize(box(0.035, 0.02, T2.hood - 0.45, sx * 0.43, hb - 0.01, zA + (T2.hood - 0.45) / 2 + 0.12), [P[0] * 0.72, P[1] * 0.72, P[2] * 0.72]));
+    if (T2.rw > 0.3) {
       parts.push(colorize(box(W - 0.5, 0.02, 0.05, 0, hb - 0.01, zD - 0.12), [P[0] * 0.7, P[1] * 0.7, P[2] * 0.7]));
     }
     for (const sx of [-1, 1]) parts.push(colorize(box(0.18, 0.1, 0.1, sx * (W / 2 + 0.07), hb + 0.06, zA - 0.12), P));
-    if (T.stripe) for (const sx of [-1, 1]) {
+    if (T2.stripe) for (const sx of [-1, 1]) {
       const c = [0.95, 0.95, 0.92];
-      parts.push(colorize(box(0.13, 0.02, T.hood - 0.2, sx * 0.17, hb - 0.015, zA + (T.hood - 0.2) / 2), c), colorize(box(0.13, 0.02, T.roof + 0.1, sx * 0.17 * 0.87, hb + hr + 5e-3, (zB + zC) / 2), c), colorize(box(0.13, 0.02, zD - Bk - 0.15, sx * 0.17, hb - 0.04, (zD + Bk) / 2 + 0.05), c));
+      parts.push(colorize(box(0.13, 0.02, T2.hood - 0.2, sx * 0.17, hb - 0.015, zA + (T2.hood - 0.2) / 2), c), colorize(box(0.13, 0.02, T2.roof + 0.1, sx * 0.17 * 0.87, hb + hr + 5e-3, (zB + zC) / 2), c), colorize(box(0.13, 0.02, zD - Bk - 0.15, sx * 0.17, hb - 0.04, (zD + Bk) / 2 + 0.05), c));
     }
-    if (T.rails) for (const sx of [-1, 1]) parts.push(colorize(box(0.05, 0.05, T.roof * 0.85, sx * (W / 2 - 0.08 - 0.13 * W / 2), hb + hr + 0.02, (zB + zC) / 2), TRIM));
-    if (T.taxi) {
+    if (T2.rails) for (const sx of [-1, 1]) parts.push(colorize(box(0.05, 0.05, T2.roof * 0.85, sx * (W / 2 - 0.08 - 0.13 * W / 2), hb + hr + 0.02, (zB + zC) / 2), TRIM));
+    if (T2.taxi) {
       parts.push(colorize(box(0.62, 0.17, 0.24, 0, hb + hr + 0.08, (zB + zC) / 2), [1, 0.93, 0.55]));
     }
-    if (T.police) {
+    if (T2.police) {
       parts.push(colorize(box(W - 0.55, 0.13, 0.58, 0, hb + hr + 0.1, (zB + zC) / 2), [0.1, 0.1, 0.12]));
       parts.push(colorize(box(0.3, 0.11, 0.4, -0.24, hb + hr + 0.2, (zB + zC) / 2), [0.12, 0.28, 0.95]));
       parts.push(colorize(box(0.3, 0.11, 0.4, 0.24, hb + hr + 0.2, (zB + zC) / 2), [0.95, 0.12, 0.12]));
       parts.push(colorize(box(W - 0.35, 0.025, 0.16, 0, hb + 0.012, zA - 0.08), [0.95, 0.95, 0.96]));
     }
-    if (T.truck) {
-      parts.push(colorize(box(W - 0.35, 0.06, T.roof * 0.7, 0, hb + hr + 0.04, (zB + zC) / 2 - 0.2), [P[0] * 0.75, P[1] * 0.75, P[2] * 0.75]));
+    if (T2.truck) {
+      parts.push(colorize(box(W - 0.35, 0.06, T2.roof * 0.7, 0, hb + hr + 0.04, (zB + zC) / 2 - 0.2), [P[0] * 0.75, P[1] * 0.75, P[2] * 0.75]));
     }
-    if (T.van) {
+    if (T2.van) {
       parts.push(colorize(box(0.02, 0.5, 0.03, W / 2 + 2e-3, hb - 0.1, zC + 0.9), TRIM));
     }
     return mergeGeometries(parts);
   }
-  function tankGeometry(T, P) {
-    const { L, W } = T;
+  function tankGeometry(T2, P) {
+    const { L, W } = T2;
     const parts = [];
     const dark = [P[0] * 0.62, P[1] * 0.62, P[2] * 0.62], trk = [0.09, 0.09, 0.085], wheel2 = [0.2, 0.2, 0.19];
     for (const sx of [-1, 1]) {
@@ -33593,42 +34512,152 @@ void main() {
     return mergeGeometries(parts);
   }
   function carLightsGeometry(type) {
-    const T = CAR_TYPES[type];
+    const T2 = CAR_TYPES[type];
     const f = [], r = [];
-    const { L, W, hb } = T;
+    const { L, W, hb } = T2;
     for (const sx of [-1, 1]) {
-      f.push(box(0.42, 0.13, 0.16, sx * (W / 2 - 0.3), hb - (T.van ? 0.2 : 0.14), L / 2 - 0.06));
+      f.push(box(0.42, 0.13, 0.16, sx * (W / 2 - 0.3), hb - (T2.van ? 0.2 : 0.14), L / 2 - 0.06));
       r.push(box(0.4, 0.12, 0.12, sx * (W / 2 - 0.28), hb - 0.1, -L / 2 + 0.05));
     }
     return { front: mergeGeometries(f), rear: mergeGeometries(r) };
   }
+  function envTex() {
+    if (ENV) return ENV;
+    const c = document.createElement("canvas");
+    c.width = 256;
+    c.height = 128;
+    const g = c.getContext("2d");
+    const gr = g.createLinearGradient(0, 0, 0, 128);
+    gr.addColorStop(0, "#6f9fd8");
+    gr.addColorStop(0.45, "#dfe9f2");
+    gr.addColorStop(0.5, "#8a8f94");
+    gr.addColorStop(1, "#2a2c30");
+    g.fillStyle = gr;
+    g.fillRect(0, 0, 256, 128);
+    for (let i = 0; i < 14; i++) {
+      g.fillStyle = "rgba(255,255,255," + (0.25 + Math.random() * 0.5) + ")";
+      g.fillRect(Math.random() * 256, 40 + Math.random() * 20, 4 + Math.random() * 16, 8 + Math.random() * 14);
+    }
+    g.fillStyle = "rgba(255,250,230,.95)";
+    g.beginPath();
+    g.arc(70, 22, 9, 0, 7);
+    g.fill();
+    ENV = new CanvasTexture(c);
+    ENV.mapping = EquirectangularReflectionMapping;
+    ENV.colorSpace = SRGBColorSpace;
+    return ENV;
+  }
+  function paintMat(color, metallic) {
+    const k = color + "|" + metallic;
+    let m = PAINTS.get(k);
+    if (m) return m;
+    m = new MeshPhysicalMaterial({ color, roughness: metallic ? 0.32 : 0.4, metalness: metallic ? 0.55 : 0.12, clearcoat: 0.85, clearcoatRoughness: 0.18, envMap: envTex(), envMapIntensity: metallic ? 1 : 0.75 });
+    PAINTS.set(k, m);
+    return m;
+  }
+  function carRnd(color, type) {
+    let a = Number(color) * 2654435761 + type.length * 977 + (Math.random() * 1e6 | 0) >>> 0;
+    return () => {
+      a = a + 1831565813 >>> 0;
+      let t = a;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function topBB(visual, type) {
+    if (BBC[type]) return BBC[type];
+    const bb = new Box3();
+    visual.traverse((o) => {
+      if (o.isMesh && o.name === "Paint") {
+        o.geometry.computeBoundingBox();
+        bb.union(o.geometry.boundingBox);
+      }
+    });
+    if (bb.isEmpty()) bb.setFromObject(visual);
+    let top = bb.max.y;
+    visual.traverse((o) => {
+      if (o.isMesh && o.name === "Paint") {
+        const p = o.geometry.attributes.position;
+        let best = -1e9;
+        for (let i = 0; i < p.count; i++) {
+          if (Math.abs(p.getZ(i)) < 0.35 && Math.abs(p.getX(i)) < 0.3) best = Math.max(best, p.getY(i));
+        }
+        if (best > -1e8) top = best;
+      }
+    });
+    return BBC[type] = { minZ: bb.min.z, maxZ: bb.max.z, w: bb.max.x - bb.min.x, top };
+  }
+  function carExtras(visual, type, R, color) {
+    if (["police", "taxi", "truck", "van"].includes(type) && R() < 0.6) return;
+    const B = topBB(visual, type);
+    const add = /* @__PURE__ */ __name((m, sx, sy, sz, x, y, z) => {
+      const o = new Mesh(XB, m);
+      o.scale.set(sx, sy, sz);
+      o.position.set(x, y, z);
+      o.castShadow = sy > 0.08;
+      visual.add(o);
+      return o;
+    }, "add");
+    const t = B.top, W = B.w;
+    const q = R();
+    if (q < 0.14) add(XM.dark, W * 0.42, 0.32, 1.5, 0, t + 0.18, -0.25);
+    else if (q < 0.36) add(XM.glass, W * 0.38, 0.03, 0.62, 0, t + 0.012, 0.05);
+    else if (q < 0.44) {
+      for (const sx of [-1, 1]) add(XM.dark, 0.05, 0.06, 1.3, sx * W * 0.3, t + 0.04, -0.1);
+      add(XM.dark, W * 0.62, 0.04, 0.05, 0, t + 0.08, 0.4);
+      add(XM.dark, W * 0.62, 0.04, 0.05, 0, t + 0.08, -0.6);
+    }
+    if (R() < 0.35) {
+      const a = add(XM.dark, 0.03, 0.32, 0.03, W * 0.22, t + 0.16, B.minZ * 0.55);
+      a.rotation.x = -0.35;
+    }
+    if ((type === "coupe" || type === "hatch" || type === "mini") && R() < 0.4) add(XM.dark, W * 0.8, 0.05, 0.22, 0, t * 0.82, B.minZ + 0.25);
+    add(XM.plate, 0.52, 0.12, 0.02, 0, 0.48, B.maxZ + 0.01);
+    add(XM.plate, 0.52, 0.12, 0.02, 0, 0.52, B.minZ - 0.01);
+    if (R() < 0.12 && type !== "suv") add(XM.white, W * 0.72, 0.02, 1, 0, t + 8e-3, 0);
+  }
   function makeCar(type, color, mats) {
     const g = new Group();
     const c = new Color(color);
-    const tpl = getCarTemplate(type);
+    const T0 = CAR_TYPES[type] || {};
+    const tpl = getCarTemplate(T0.tpl || type);
     if (tpl) {
       const visual = tpl.clone(true);
+      const vr = carRnd(color, type);
+      const metallic = vr() < 0.45;
       visual.traverse((o) => {
-        if (o.isMesh && o.name === "Paint") {
-          o.material = o.material.clone();
-          o.material.color.set(color);
+        if (!o.isMesh) return;
+        if (o.name === "Paint") {
+          o.material = paintMat(color, metallic);
+        } else if (o.name === "Rest" && !o.material.envMap) {
+          o.material.envMap = envTex();
+          o.material.envMapIntensity = 0.55;
+          o.material.needsUpdate = true;
         }
       });
-      g.add(visual);
+      carExtras(visual, type, vr, color);
+      let bodyW = visual;
+      if (T0.sc) {
+        bodyW = new Group();
+        visual.scale.set(T0.sc[0], T0.sc[1], T0.sc[2]);
+        bodyW.add(visual);
+      }
+      g.add(bodyW);
       const L2 = carLightsGeometry(type);
       const hf2 = new Mesh(L2.front, mats.head);
       const hr2 = new Mesh(L2.rear, mats.tail);
       g.add(hf2, hr2);
-      const T2 = CAR_TYPES[type];
+      const T3 = CAR_TYPES[type];
       const blob2 = new Mesh(mats.blobGeo, mats.blob);
-      blob2.scale.set(T2.W + 0.9, 1, T2.L + 0.9);
+      blob2.scale.set(T3.W + 0.9, 1, T3.L + 0.9);
       blob2.position.y = 0.06;
       g.add(blob2);
       const cone2 = new Mesh(mats.coneGeo, mats.cone);
-      cone2.position.set(0, 0.07, T2.L / 2 + 7.5);
+      cone2.position.set(0, 0.07, T3.L / 2 + 7.5);
       g.add(cone2);
-      const { dents: dents2, scratches: scratches2 } = damageBits(g, T2);
-      g.userData = { type, T: T2, cone: cone2, body: visual, hf: hf2, hr: hr2, dents: dents2, scratches: scratches2, blob: blob2, damage: 0, paint: [c.r, c.g, c.b], fromSet: true };
+      const { dents: dents2, scratches: scratches2 } = damageBits(g, T3);
+      g.userData = { type, T: T3, cone: cone2, body: bodyW, hf: hf2, hr: hr2, dents: dents2, scratches: scratches2, blob: blob2, damage: 0, paint: [c.r, c.g, c.b], fromSet: true };
       return g;
     }
     const geo = carGeometry(type, [c.r, c.g, c.b]);
@@ -33640,19 +34669,19 @@ void main() {
     const hf = new Mesh(L.front, mats.head);
     const hr = new Mesh(L.rear, mats.tail);
     g.add(hf, hr);
-    const T = CAR_TYPES[type];
+    const T2 = CAR_TYPES[type];
     const blob = new Mesh(mats.blobGeo, mats.blob);
-    blob.scale.set(T.W + 0.9, 1, T.L + 0.9);
+    blob.scale.set(T2.W + 0.9, 1, T2.L + 0.9);
     blob.position.y = 0.06;
     g.add(blob);
     const cone = new Mesh(mats.coneGeo, mats.cone);
-    cone.position.set(0, 0.07, T.L / 2 + 7.5);
+    cone.position.set(0, 0.07, T2.L / 2 + 7.5);
     g.add(cone);
-    const { dents, scratches } = damageBits(g, T);
-    g.userData = { type, T, cone, body: m, hf, hr, dents, scratches, blob, damage: 0, paint: [c.r, c.g, c.b] };
+    const { dents, scratches } = damageBits(g, T2);
+    g.userData = { type, T: T2, cone, body: m, hf, hr, dents, scratches, blob, damage: 0, paint: [c.r, c.g, c.b] };
     return g;
   }
-  function damageBits(g, T) {
+  function damageBits(g, T2) {
     const dents = [], scratches = [];
     for (let i = 0; i < 6; i++) {
       const d = new Mesh(dentGeo, dentMat);
@@ -33674,19 +34703,19 @@ void main() {
     if (!u || !u.dents) return;
     d = Math.max(0, Math.min(1, d));
     u.damage = d;
-    const T = u.T;
+    const T2 = u.T;
     if (u.body) {
       u.body.scale.set(1, 1 - d * 0.05, 1 - d * 0.06);
       u.body.position.z = -d * 0.08;
     }
-    const H = T.hb || 0.86;
+    const H = T2.hb || 0.86;
     u.dents.forEach((m, i) => {
       const show = d > 0.06 + i * 0.12;
       m.visible = show;
       if (show) {
         const side = i % 2 ? 1 : -1;
         const fr = i < 3 ? 1 : -1;
-        m.position.set(side * (T.W / 2 - 0.12), H - 0.12 + i % 3 * 0.06, fr * (T.L / 2 - 0.5 - i % 3 * 0.45));
+        m.position.set(side * (T2.W / 2 - 0.12), H - 0.12 + i % 3 * 0.06, fr * (T2.L / 2 - 0.5 - i % 3 * 0.45));
         m.scale.set(0.22 + d * 0.12, 0.06 + d * 0.05, 0.26 + d * 0.15);
       }
     });
@@ -33695,7 +34724,7 @@ void main() {
       m.visible = show;
       if (show) {
         const side = i % 2 ? 1 : -1;
-        m.position.set(side * (T.W / 2 + 0.01), H - 0.25 + i * 0.05, (i - 1.5) * 0.6);
+        m.position.set(side * (T2.W / 2 + 0.01), H - 0.25 + i * 0.05, (i - 1.5) * 0.6);
         m.scale.set(1, 1, 0.5 + i * 0.2);
       }
     });
@@ -33782,6 +34811,48 @@ void main() {
     parts.push(colorize(cap(0.16, 0.2, 0, 0.96, 0, 1.15, 0.95, Math.PI / 2), c.pants));
     return mergeGeometries(parts);
   }
+  function pedTop(inner) {
+    if (PH) return PH;
+    const bb = new Box3();
+    const s0 = inner.scale.x;
+    inner.scale.setScalar(1);
+    inner.updateMatrixWorld(true);
+    bb.setFromObject(inner);
+    inner.scale.setScalar(s0);
+    PH = { top: bb.max.y, back: bb.min.z, front: bb.max.z, w: bb.max.x - bb.min.x };
+    return PH;
+  }
+  function pedExtras(inner, R, c) {
+    const H = pedTop(inner);
+    const t = H.top;
+    const add = /* @__PURE__ */ __name((g, m, sx, sy, sz, x, y, z) => {
+      const o = new Mesh(g, m);
+      o.scale.set(sx, sy, sz);
+      o.position.set(x, y, z);
+      o.castShadow = true;
+      inner.add(o);
+      return o;
+    }, "add");
+    const col = /* @__PURE__ */ __name(() => ACC[R(21) * ACC.length | 0], "col");
+    const q = R(22);
+    if (q < 0.22) add(PX, pxm(col()), 0.34, 0.42, 0.16, 0, t * 0.68, H.back - 0.06);
+    else if (q < 0.3) {
+      add(PX, pxm([0.35, 0.22, 0.12]), 0.09, 0.3, 0.24, H.w * 0.42, t * 0.42, 0);
+    }
+    const h = R(23);
+    if (h < 0.16) {
+      const cc = col();
+      add(PS, pxm(cc), 0.36, 0.24, 0.38, 0, t - 0.11, 0);
+      add(PX, pxm(cc), 0.26, 0.025, 0.16, 0, t - 0.11, 0.2);
+    } else if (h < 0.24) add(PS, pxm(col()), 0.38, 0.34, 0.38, 0, t - 0.12, 0);
+    else if (h < 0.29) {
+      add(PC, pxm([0.08, 0.08, 0.09]), 0.05, 0.12, 0.12, 0.19, t - 0.2, 0);
+      add(PC, pxm([0.08, 0.08, 0.09]), 0.05, 0.12, 0.12, -0.19, t - 0.2, 0);
+      add(PX, pxm([0.08, 0.08, 0.09]), 0.38, 0.03, 0.05, 0, t - 0.03, 0);
+    }
+    const sc = 0.9 + R(24) * 0.2;
+    inner.scale.multiplyScalar(sc);
+  }
   function limbGeo(r, l, col, end, endCol) {
     const a = colorize(cap(r, l, 0, -(l / 2 + r), 0), col);
     return mergeGeometries([a, colorize(end, endCol)]);
@@ -33806,6 +34877,7 @@ void main() {
         blob2.scale.set(1.25, 1, 0.95);
         blob2.position.y = 0.065;
         inner2.add(blob2);
+        if (!custom?.hero) pedExtras(inner2, R, c);
         g.userData = { legs: legs2, arms: arms2, body: inner2, phase: R(9) * 6, bob: 0, fromSet: true };
         return g;
       }
@@ -33848,12 +34920,20 @@ void main() {
     const moving = speed > 0.15;
     if (moving) {
       u.phase += dt * speed * 2.15;
-      const s = Math.min(0.42, 0.18 + speed * 0.045);
+      const run = Math.max(0, Math.min(1, (speed - 4) / 3));
+      const s = Math.min(0.62, 0.22 + speed * 0.055);
       const a = Math.sin(u.phase) * s;
+      if (u.body) {
+        u.body.rotation.y = -Math.sin(u.phase) * 0.09 * (1 + run);
+        u.body.rotation.x = 0.05 + run * 0.14;
+        u.body.rotation.z = Math.sin(u.phase) * 0.025;
+      }
+      u.arms[0].rotation.z = -0.06 - run * 0.1;
+      u.arms[1].rotation.z = 0.06 + run * 0.1;
       u.legs[0].rotation.x = a;
       u.legs[1].rotation.x = -a;
-      u.arms[0].rotation.x = -a * 0.65;
-      u.arms[1].rotation.x = a * 0.65;
+      u.arms[0].rotation.x = -a * (0.75 + run * 0.35);
+      u.arms[1].rotation.x = a * (0.75 + run * 0.35);
       u.legs[0].rotation.z = a * 0.02;
       u.legs[1].rotation.z = -a * 0.02;
       u.bob = Math.abs(Math.sin(u.phase * 2)) * 0.018 * Math.min(1, speed / 3.5);
@@ -33866,10 +34946,17 @@ void main() {
       u.arms.forEach((ag) => {
         ag.rotation.x *= 0.75;
       });
-      if (u.body) u.body.position.y *= 0.8;
+      if (u.body) {
+        u.body.position.y *= 0.8;
+        u.body.rotation.x *= 0.8;
+        u.body.rotation.y *= 0.8;
+        u.body.rotation.z *= 0.8;
+        u.idle = (u.idle || 0) + dt;
+        u.body.scale.y = u.body.scale.x * (1 + Math.sin(u.idle * 2.2 + u.phase) * 8e-3);
+      }
     }
   }
-  var box, GLASS, GLASS_HI, TYRE, TRIM, CHROME, CAR_TYPES, CAR_COLORS, carMat, dentMat, scratchMat, dentGeo, scratchGeo, huskMat, huskRest, SKIN, HAIR, JACKET, SHIRT, PANTS, SHOES, cap, sph;
+  var box, GLASS, GLASS_HI, TYRE, TRIM, CHROME, CAR_TYPES, ENV, PAINTS, XB, XM, BBC, CAR_COLORS, carMat, dentMat, scratchMat, dentGeo, scratchGeo, huskMat, huskRest, SKIN, HAIR, JACKET, SHIRT, PANTS, SHOES, cap, sph, PX, PS, PC, PXM, pxm, ACC, PH;
   var init_actors = __esm({
     "src/actors.js"() {
       init_three_module();
@@ -33898,12 +34985,24 @@ void main() {
         coupe: { L: 4.5, W: 1.86, hb: 0.8, hr: 0.42, hood: 1.6, ws: 0.85, roof: 0.8, rw: 0.8, stripe: true, hp: 90 },
         police: { L: 4.55, W: 1.9, hb: 0.88, hr: 0.52, hood: 1.22, ws: 0.7, roof: 1.35, rw: 0.55, police: true, hp: 130 },
         truck: { L: 6.6, W: 2.2, hb: 1.12, hr: 1.02, hood: 1.35, ws: 0.72, roof: 3.4, rw: 0.14, van: true, truck: true, hp: 180 },
+        suv: { L: 4.75, W: 1.98, hb: 1, hr: 0.6, hood: 1.2, ws: 0.75, roof: 2, rw: 0.3, rails: true, hp: 120, tpl: "kombi", sc: [1.08, 1.16, 1] },
+        mini: { L: 3.45, W: 1.64, hb: 0.82, hr: 0.5, hood: 0.85, ws: 0.65, roof: 1.25, rw: 0.35, hp: 70, tpl: "hatch", sc: [0.95, 0.97, 0.88] },
         tank: { L: 6.4, W: 3, hb: 1.25, hr: 0.7, hood: 1.2, ws: 0.6, roof: 2.4, rw: 0.4, van: true, tank: true, hp: 950 }
       };
       __name(carGeometry, "carGeometry");
       __name(tankGeometry, "tankGeometry");
       __name(carLightsGeometry, "carLightsGeometry");
-      CAR_COLORS = [12855342, 1985192, 15253562, 3050053, 15921384, 1710622, 12864024, 6956160, 2787496, 15262940, 9054746, 3824682, 13672488, 2371680];
+      ENV = null;
+      __name(envTex, "envTex");
+      PAINTS = /* @__PURE__ */ new Map();
+      __name(paintMat, "paintMat");
+      __name(carRnd, "carRnd");
+      XB = new BoxGeometry(1, 1, 1);
+      XM = { dark: new MeshStandardMaterial({ color: 1381914, roughness: 0.5, metalness: 0.2 }), glass: new MeshStandardMaterial({ color: 791584, roughness: 0.08, metalness: 0.6 }), chrome: new MeshStandardMaterial({ color: 13620184, roughness: 0.2, metalness: 0.9 }), plate: new MeshStandardMaterial({ color: 15921898, roughness: 0.5 }), white: new MeshStandardMaterial({ color: 16053488, roughness: 0.6 }) };
+      BBC = {};
+      __name(topBB, "topBB");
+      __name(carExtras, "carExtras");
+      CAR_COLORS = [12106946, 8027780, 2829617, 1052690, 16119282, 5926528, 9051170, 3100474, 13218442, 12106946, 2829617, 12855342, 1985192, 15253562, 3050053, 15921384, 1710622, 12864024, 6956160, 2787496, 15262940, 9054746, 3824682, 13672488, 2371680];
       carMat = new MeshStandardMaterial({ vertexColors: true, roughness: 0.62, metalness: 0.06 });
       __name(makeCar, "makeCar");
       dentMat = new MeshStandardMaterial({ color: 2763306, roughness: 0.95, metalness: 0.1 });
@@ -33919,10 +35018,10 @@ void main() {
       __name(findPart, "findPart");
       SKIN = [[0.9, 0.72, 0.58], [0.78, 0.57, 0.42], [0.56, 0.38, 0.26], [0.36, 0.25, 0.18], [0.95, 0.8, 0.68]];
       HAIR = [[0.07, 0.05, 0.04], [0.3, 0.19, 0.1], [0.62, 0.48, 0.26], [0.18, 0.18, 0.18], [0.45, 0.14, 0.08], [0.75, 0.72, 0.68]];
-      JACKET = [[0.12, 0.14, 0.22], [0.18, 0.22, 0.34], [0.32, 0.33, 0.36], [0.22, 0.28, 0.18], [0.42, 0.14, 0.14], [0.55, 0.48, 0.36], [0.2, 0.28, 0.42], [0.5, 0.22, 0.14], [0.16, 0.2, 0.2], [0.58, 0.58, 0.56]];
-      SHIRT = [[0.86, 0.84, 0.78], [0.18, 0.18, 0.2], [0.55, 0.62, 0.72], [0.62, 0.18, 0.18], [0.72, 0.64, 0.48]];
-      PANTS = [[0.16, 0.22, 0.38], [0.1, 0.1, 0.12], [0.24, 0.28, 0.4], [0.32, 0.3, 0.24], [0.34, 0.34, 0.36]];
-      SHOES = [[0.06, 0.06, 0.06], [0.85, 0.85, 0.82], [0.28, 0.18, 0.1]];
+      JACKET = [[0.85, 0.12, 0.14], [0.95, 0.75, 0.12], [0.1, 0.45, 0.75], [0.92, 0.92, 0.9], [0.35, 0.6, 0.3], [0.62, 0.3, 0.62], [0.95, 0.45, 0.15], [0.08, 0.08, 0.09], [0.12, 0.14, 0.22], [0.18, 0.22, 0.34], [0.32, 0.33, 0.36], [0.22, 0.28, 0.18], [0.42, 0.14, 0.14], [0.55, 0.48, 0.36], [0.2, 0.28, 0.42], [0.5, 0.22, 0.14], [0.16, 0.2, 0.2], [0.58, 0.58, 0.56]];
+      SHIRT = [[0.95, 0.95, 0.95], [0.2, 0.55, 0.85], [0.95, 0.8, 0.25], [0.85, 0.35, 0.45], [0.86, 0.84, 0.78], [0.18, 0.18, 0.2], [0.55, 0.62, 0.72], [0.62, 0.18, 0.18], [0.72, 0.64, 0.48]];
+      PANTS = [[0.36, 0.46, 0.62], [0.55, 0.5, 0.4], [0.22, 0.32, 0.22], [0.62, 0.6, 0.58], [0.16, 0.22, 0.38], [0.1, 0.1, 0.12], [0.24, 0.28, 0.4], [0.32, 0.3, 0.24], [0.34, 0.34, 0.36]];
+      SHOES = [[0.92, 0.92, 0.92], [0.85, 0.15, 0.15], [0.15, 0.25, 0.65], [0.06, 0.06, 0.06], [0.85, 0.85, 0.82], [0.28, 0.18, 0.1]];
       cap = /* @__PURE__ */ __name((r, l, x, y, z, sx = 1, sz = 1, rotZ = 0) => {
         const g = new CapsuleGeometry(r, l, 4, 10);
         if (rotZ) g.rotateZ(rotZ);
@@ -33938,6 +35037,23 @@ void main() {
       }, "sph");
       __name(look, "look");
       __name(pedGeometry, "pedGeometry");
+      PX = new BoxGeometry(1, 1, 1);
+      PS = new SphereGeometry(0.5, 10, 6, 0, Math.PI * 2, 0, Math.PI / 2);
+      PC = new CylinderGeometry(0.5, 0.5, 1, 10);
+      PXM = /* @__PURE__ */ new Map();
+      pxm = /* @__PURE__ */ __name((c) => {
+        const k = c.join(",");
+        let m = PXM.get(k);
+        if (!m) {
+          m = new MeshStandardMaterial({ color: new Color(c[0], c[1], c[2]), roughness: 0.75 });
+          PXM.set(k, m);
+        }
+        return m;
+      }, "pxm");
+      ACC = [[0.85, 0.12, 0.14], [0.1, 0.1, 0.12], [0.12, 0.35, 0.75], [0.95, 0.8, 0.15], [0.2, 0.5, 0.25], [0.9, 0.9, 0.88], [0.55, 0.3, 0.15]];
+      PH = null;
+      __name(pedTop, "pedTop");
+      __name(pedExtras, "pedExtras");
       __name(limbGeo, "limbGeo");
       __name(makePed, "makePed");
       __name(animPed, "animPed");
@@ -34384,7 +35500,9 @@ ${EXTRA_Q(bb)}
 );out body;>;out skel qt;`;
     return `[out:json][timeout:60];(
 way["building"](${bb});relation["building"](${bb});
-way["highway"](${bb});way["landuse"](${bb});way["leisure"](${bb});way["natural"~"wood|scrub|grassland|heath|bare_rock|scree|glacier"](${bb});
+way["highway"](${bb});way["landuse"](${bb});way["leisure"](${bb});way["natural"~"wood|scrub|grassland|heath|bare_rock|scree|glacier|wetland|sand|beach|tree_row"](${bb});
+relation["landuse"](${bb});relation["natural"~"^(wood|scrub|grassland|heath|wetland)$"](${bb});relation["leisure"~"^(park|garden)$"](${bb});
+way["barrier"~"^(hedge|wall|fence)$"](${bb});node["highway"~"^(traffic_signals|crossing|mini_roundabout)$"](${bb});way["amenity"~"^(grave_yard|place_of_worship|fuel)$"](${bb});
 way["aeroway"~"^(aerodrome|runway|taxiway|apron)$"](${bb});way["aerialway"~"^(cable_car|gondola|chair_lift|mixed_lift)$"](${bb});way["man_made"~"^(pier|quay)$"](${bb});way["harbour"](${bb});node["natural"="peak"](${bb});
 way["amenity"="parking"](${bb});
 node["natural"="tree"](${bb});node["highway"="street_lamp"](${bb});
@@ -34497,8 +35615,8 @@ ${EXTRA_Q(bb)}
       if (!inside([cx, cz])) return;
       const a = area2(pts);
       if (a < 0) pts.reverse();
-      const A = Math.abs(a);
-      if (A < 6) return;
+      const A2 = Math.abs(a);
+      if (A2 < 6) return;
       const b = t.building || "yes";
       if (["roof", "carport", "construction", "ruins"].includes(b)) return;
       if (t["building:part"]) return;
@@ -34508,8 +35626,8 @@ ${EXTRA_Q(bb)}
       if (lv == null) {
         if (["garage", "garages", "shed", "kiosk", "hut"].includes(b)) lv = 1;
         else if (["church", "cathedral", "chapel"].includes(b)) lv = 3;
-        else if (A < 40) lv = 2;
-        else if (A < 120) lv = 3 + r % 2;
+        else if (A2 < 40) lv = 2;
+        else if (A2 < 120) lv = 3 + r % 2;
         else lv = 4 + r % 3;
       }
       const rl = num(t["roof:levels"]) || 0;
@@ -34586,24 +35704,134 @@ ${EXTRA_Q(bb)}
         if (hw === "pedestrian") wd = 8;
         if (hw === "service" && t.service === "parking_aisle") wd = 5;
         if (t.tunnel === "yes" || String(t.layer || "0").startsWith("-") || t.area === "yes") continue;
-        out.roads.push({ t: ht, w: wd, p: pts, n: t.name || "", ow: t.oneway === "yes", nd });
+        out.roads.push({ t: ht, w: wd, p: pts, n: t.name || "", ow: t.oneway === "yes" || t.junction === "roundabout", nd, br: t.bridge && t.bridge !== "no" ? 1 : 0, rb: t.junction === "roundabout" ? 1 : 0 });
       } else if (["footway", "path", "cycleway", "steps"].includes(hw) && !["sidewalk", "crossing"].includes(t.footway)) {
         if (t.tunnel === "yes") continue;
-        out.roads.push({ t: "foot", w: 3, p: pts, n: "", ow: false, nd });
+        out.roads.push({ t: "foot", w: 3, p: pts, n: "", ow: false, nd, br: t.bridge && t.bridge !== "no" ? 1 : 0 });
       }
     }
-    for (const w of ways.values()) {
+    const luList = [...ways.values()].filter((w) => w.tags && w.nodes && w.nodes[0] === w.nodes[w.nodes.length - 1]);
+    for (const e of els) {
+      if (e.type !== "relation" || !e.tags || !(e.tags.landuse || e.tags.natural || e.tags.leisure) || e.tags.building) continue;
+      if (e.tags.natural === "water") continue;
+      const segs = e.members.filter((m) => m.type === "way" && m.role !== "inner" && ways.has(m.ref) && ways.get(m.ref).nodes).map((m) => ways.get(m.ref).nodes.slice());
+      while (segs.length) {
+        let cur = segs.shift();
+        let ch = true;
+        while (cur[0] !== cur[cur.length - 1] && ch) {
+          ch = false;
+          for (let i = 0; i < segs.length; i++) {
+            const sg = segs[i];
+            if (sg[0] === cur[cur.length - 1]) {
+              cur = cur.concat(sg.slice(1));
+              segs.splice(i, 1);
+              ch = true;
+              break;
+            }
+            if (sg[sg.length - 1] === cur[cur.length - 1]) {
+              cur = cur.concat(sg.slice().reverse().slice(1));
+              segs.splice(i, 1);
+              ch = true;
+              break;
+            }
+          }
+        }
+        if (cur[0] === cur[cur.length - 1] && cur.length > 3) luList.push({ id: e.id * 7 + luList.length, tags: e.tags, nodes: cur });
+      }
+    }
+    out.lu = [];
+    out.worship = [];
+    for (const w of luList) {
       const t = w.tags || {};
-      const lu = t.landuse || t.leisure || t.natural || (t.amenity === "parking" ? "parking" : null);
+      const lu = t.landuse || t.leisure || t.natural || (t.amenity === "parking" ? "parking" : t.amenity === "grave_yard" ? "cemetery" : t.amenity === "fuel" ? "fuel" : t.amenity === "place_of_worship" ? "religious" : null);
+      if (t.building) continue;
       if (lu && w.nodes && w.nodes[0] === w.nodes[w.nodes.length - 1]) {
-        const pts = w.nodes.slice(0, -1).filter((n) => nodes.has(n)).map((n) => P(...nodes.get(n)));
+        let pts = w.nodes.slice(0, -1).filter((n) => nodes.has(n)).map((n) => P(...nodes.get(n)));
         if (pts.length < 3) continue;
         const zk = ["farmland", "orchard", "vineyard", "plant_nursery", "greenhouse_horticulture", "allotments"].includes(lu) ? "field" : lu === "farmyard" ? "yard" : ["meadow", "grassland", "heath", "village_green"].includes(lu) ? "pasture" : ["forest", "wood", "scrub"].includes(lu) ? "forest" : lu === "port" || t.industrial === "port" || t.harbour === "yes" || lu === "industrial" && /hafen|port|harbou?r/i.test(t.name || "") ? "harbor" : ["winter_sports", "bare_rock", "scree", "glacier"].includes(lu) ? "mountain" : null;
         if (zk) {
           const cp = clipRect(pts, -HX, -HZ, HX, HZ);
           if (cp.length >= 3 && Math.abs(area2(cp)) > 150) (out.zones = out.zones || []).push({ k: zk, p: cp.map((q) => [Math.round(q[0] * 10) / 10, Math.round(q[1] * 10) / 10]) });
         }
-        if (!pts.some(inside)) continue;
+        if (!pts.some(inside)) {
+          const cp = clipRect(pts, -HX - 30, -HZ - 30, HX + 30, HZ + 30);
+          if (cp.length < 3 || Math.abs(area2(cp)) < 120) continue;
+          pts = cp.map((q) => [Math.round(q[0] * 10) / 10, Math.round(q[1] * 10) / 10]);
+          if (area2(pts) < 0) pts.reverse();
+        }
+        if (["residential"].includes(lu)) {
+          out.lu.push({ k: "res", p: pts });
+          continue;
+        }
+        if (["commercial", "retail"].includes(lu)) {
+          out.lu.push({ k: "com", p: pts });
+          continue;
+        }
+        if (["industrial", "garages", "depot", "port"].includes(lu)) {
+          out.lu.push({ k: "ind", p: pts });
+          if (lu !== "port") continue;
+        }
+        if (lu === "religious") {
+          out.worship.push(pts);
+          out.areas.push({ t: "grass", p: pts, park: false });
+          continue;
+        }
+        if (["construction", "brownfield", "landfill", "quarry"].includes(lu)) {
+          out.areas.push({ t: "dirt", p: pts });
+          continue;
+        }
+        if (["wetland", "marsh"].includes(lu)) {
+          out.areas.push({ t: "wet", p: pts });
+          continue;
+        }
+        if (["sand", "beach"].includes(lu)) {
+          out.areas.push({ t: "sand", p: pts });
+          continue;
+        }
+        if (lu === "playground") {
+          out.areas.push({ t: "play", p: pts });
+          continue;
+        }
+        if (lu === "swimming_pool") {
+          out.areas.push({ t: "pool", p: pts });
+          continue;
+        }
+        if (lu === "fuel") {
+          out.areas.push({ t: "parking", p: pts, fuel: 1 });
+          continue;
+        }
+        if (lu === "allotments") {
+          out.areas.push({ t: "allot", p: pts });
+        }
+        if (lu === "orchard") {
+          out.areas.push({ t: "grass", p: pts, orch: 1 });
+          {
+            let minx = 1e9, maxx = -1e9, minz = 1e9, maxz = -1e9;
+            for (const q of pts) {
+              minx = Math.min(minx, q[0]);
+              maxx = Math.max(maxx, q[0]);
+              minz = Math.min(minz, q[1]);
+              maxz = Math.max(maxz, q[1]);
+            }
+            let k = 0;
+            for (let x = minx + 4; x < maxx; x += 9) for (let z = minz + 4; z < maxz; z += 9) {
+              if (k > 160) break;
+              let ins = false;
+              for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+                const xi = pts[i][0], zi = pts[i][1], xj = pts[j][0], zj = pts[j][1];
+                if (zi > z !== zj > z && x < (xj - xi) * (z - zi) / (zj - zi) + xi) ins = !ins;
+              }
+              if (ins && inside([x, z])) {
+                out.trees.push([Math.round(x * 100) / 100, Math.round(z * 100) / 100]);
+                k++;
+              }
+            }
+          }
+          continue;
+        }
+        if (["forest", "wood"].includes(lu)) {
+          out.areas.push({ t: "forest", p: pts, park: true });
+        }
         if (zk === "field" && lu !== "allotments") {
           out.areas.push({ t: "field", p: pts, crop: hsh(w.id) % 4 });
           continue;
@@ -34612,15 +35840,19 @@ ${EXTRA_Q(bb)}
           out.areas.push({ t: "gravel", p: pts });
           continue;
         }
-        const typ = ["grass", "village_green", "park", "garden", "flowerbed", "playground", "dog_park", "meadow", "recreation_ground", "cemetery", "wood", "forest", "scrub", "stadium", "grassland", "heath", "allotments"].includes(lu) ? "grass" : lu === "parking" ? "parking" : lu === "railway" ? "gravel" : null;
-        if (typ) {
-          const ar = { t: typ, p: pts, park: ["park", "garden", "recreation_ground", "wood", "forest"].includes(lu) };
-          if (lu === "cemetery") ar.cem = 1;
-          if (lu === "stadium") ar.nt = 1;
-          out.areas.push(ar);
-          if (["park", "garden", "wood", "forest", "recreation_ground"].includes(lu)) {
-            let A = Math.abs(area2(pts));
-            const nT = Math.min(80, Math.floor(A / 180));
+        const typ = ["forest", "wood"].includes(lu) ? null : ["grass", "village_green", "park", "garden", "flowerbed", "dog_park", "meadow", "recreation_ground", "cemetery", "scrub", "stadium", "grassland", "heath", "greenfield", "golf_course", "common", "pitch"].includes(lu) ? "grass" : lu === "parking" ? "parking" : lu === "railway" ? "gravel" : null;
+        if (typ || ["forest", "wood"].includes(lu)) {
+          if (typ) {
+            const ar = { t: typ, p: pts, park: ["park", "garden", "recreation_ground"].includes(lu) };
+            if (lu === "cemetery") ar.cem = 1;
+            if (lu === "stadium") ar.nt = 1;
+            if (lu === "scrub") ar.scrub = 1;
+            out.areas.push(ar);
+          }
+          if (["park", "garden", "wood", "forest", "recreation_ground", "scrub"].includes(lu)) {
+            let A2 = Math.abs(area2(pts));
+            const forest = ["wood", "forest"].includes(lu);
+            const nT = forest ? Math.min(260, Math.floor(A2 / 260)) : Math.min(80, Math.floor(A2 / 180));
             for (let k = 0; k < nT; k++) {
               const u = hsh(w.id * 31 + k) / 4294967296, v = hsh(w.id * 97 + k * 3) / 4294967296;
               let cx = 0, cz = 0;
@@ -34681,10 +35913,28 @@ ${EXTRA_Q(bb)}
         if (pts.length >= 2 && pts.some(inside)) out.piers.push({ p: pts });
       }
     }
+    out.xings = [];
+    out.barriers = [];
     for (const e of els) {
       if (e.type !== "node" || !e.tags) continue;
       const t = e.tags, p = P(e.lat, e.lon);
       if (!inside(p)) continue;
+      if (t.highway === "traffic_signals") {
+        out.xings.push({ p, k: "s" });
+        continue;
+      }
+      if (t.highway === "crossing") {
+        out.xings.push({ p, k: t.crossing === "traffic_signals" ? "s" : t.crossing === "zebra" || t.crossing === "marked" || t.crossing_ref === "zebra" || t.crossing === "uncontrolled" ? "z" : "u" });
+        continue;
+      }
+      if (t.highway === "mini_roundabout") {
+        out.xings.push({ p, k: "r" });
+        continue;
+      }
+      if (t.amenity === "place_of_worship") {
+        out.worship.push(p);
+        continue;
+      }
       if (t.natural === "peak") {
         out.peaks.push({ p, ele: num(t.ele) || 0, n: t.name || "" });
         continue;
@@ -34739,6 +35989,67 @@ ${EXTRA_Q(bb)}
         }
       }
     }
+    for (const w of ways.values()) {
+      const t = w.tags;
+      if (!t || !t.barrier || !w.nodes) continue;
+      if (!["hedge", "wall", "fence"].includes(t.barrier)) continue;
+      const pts = w.nodes.filter((n) => nodes.has(n)).map((n) => P(...nodes.get(n)));
+      if (pts.length < 2 || !pts.some(inside)) continue;
+      if (out.barriers.length > 2500) break;
+      out.barriers.push({ k: t.barrier, p: pts });
+    }
+    {
+      const pipq = /* @__PURE__ */ __name((x, z, p) => {
+        let c = false;
+        for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
+          const a = p[i], b = p[j];
+          if (a[1] > z !== b[1] > z && x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0]) c = !c;
+        }
+        return c;
+      }, "pipq");
+      const ctr = /* @__PURE__ */ __name((b) => {
+        let x = 0, z = 0;
+        for (const q of b.p) {
+          x += q[0];
+          z += q[1];
+        }
+        return [x / b.p.length, z / b.p.length];
+      }, "ctr");
+      for (const b of out.buildings) {
+        if (b.k === "church") continue;
+        if (/(kirche|kapelle|\bdom\b|münster|moschee|synagoge)/i.test(b.n || "") && !/(gemeinde|haus|zentrum|center|kunden|heim|büro|kita|kindergarten|laden|shop)/i.test(b.n || "")) {
+          b.k = "church";
+          continue;
+        }
+      }
+      for (const w of out.worship) {
+        if (Array.isArray(w[0])) {
+          let best = null, ba = 0;
+          for (const b of out.buildings) {
+            const c = ctr(b);
+            if (!pipq(c[0], c[1], w)) continue;
+            const A2 = Math.abs(area2(b.p));
+            if (A2 > ba) {
+              ba = A2;
+              best = b;
+            }
+          }
+          if (best && ba > 80) best.k = "church";
+        } else {
+          for (const b of out.buildings) {
+            if (Math.abs(b.p[0][0] - w[0]) > 80 || Math.abs(b.p[0][1] - w[1]) > 80) continue;
+            if (pipq(w[0], w[1], b.p)) {
+              if (Math.abs(area2(b.p)) > 60) b.k = "church";
+              break;
+            }
+          }
+        }
+      }
+      for (const b of out.buildings) if (b.k === "church" && b.h < 12) {
+        b.h = Math.max(b.h, 11 + b.r % 5);
+      }
+    }
+    out.worship = out.worship.filter((w) => !Array.isArray(w[0]));
     extraLayers(els, nodes, ways, P, inside, out);
     out.ver = OSM_VER;
     out.fallbackHub = opt.noHub ? null : ensureHub(out);
@@ -34803,8 +36114,8 @@ ${EXTRA_Q(bb)}
         const ug = under(t);
         const br = !!(t.bridge && t.bridge !== "no");
         const emb = t.embedded === "yes" || t.embedded === "partial" || rw === "tram" && t.embedded !== "no";
-        const el = rw === "rail" ? t.electrified && t.electrified !== "no" ? 1 : 0 : t.electrified === "no" ? 0 : 1;
-        out.rails.push({ t: rw, p, ug: ug ? 1 : 0, br: br ? 1 : 0, emb: emb ? 1 : 0, el, sv: t.service || "", n: t.name || "", ref: t.ref || "" });
+        const el2 = rw === "rail" ? t.electrified && t.electrified !== "no" ? 1 : 0 : t.electrified === "no" ? 0 : 1;
+        out.rails.push({ t: rw, p, ug: ug ? 1 : 0, br: br ? 1 : 0, emb: emb ? 1 : 0, el: el2, sv: t.service || "", n: t.name || "", ref: t.ref || "" });
         continue;
       }
       const isPlat = rw === "platform" || t.public_transport === "platform" && (t.train === "yes" || t.tram === "yes" || t.light_rail === "yes" || t.subway === "yes" || t.railway);
@@ -35087,8 +36398,8 @@ node["railway"~"^(station|halt|stop|tram_stop|subway_entrance)$"](${bb});node["p
 way["public_transport"="platform"]["bus"!="yes"](${bb});node["highway"="bus_stop"](${bb});
 way["natural"="water"](${bb});relation["natural"="water"](${bb});way["waterway"~"^(river|stream|canal|ditch)$"](${bb});
 way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
-      OSM_VER = "osm4-zones";
-      OSM_VER_OLD = "osm3-transit-sport";
+      OSM_VER = "osm5-detail";
+      OSM_VER_OLD = "osm4-zones";
       __name(fetchTimeout, "fetchTimeout");
       __name(fetchOverpass, "fetchOverpass");
       __name(processOSM, "processOSM");
@@ -35966,7 +37277,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     let i = Math.max(0, list().findIndex((s) => s.id === (opts.station || "")));
     let on = false, vol = opts.vol ?? 0.45, muted = !!opts.muted, audio = null, fadeT = null, fail = 0;
     const cur = /* @__PURE__ */ __name(() => list()[Math.min(i, list().length - 1)], "cur");
-    const el = /* @__PURE__ */ __name(() => {
+    const el2 = /* @__PURE__ */ __name(() => {
       if (audio) return audio;
       audio = new Audio();
       audio.preload = "none";
@@ -36013,7 +37324,7 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     __name(srcOf, "srcOf");
     function play(force) {
       on = true;
-      const a = el();
+      const a = el2();
       const st = cur();
       const src = srcOf(st);
       if (!src) {
@@ -36586,8 +37897,8 @@ way["amenity"~"^(school|kindergarten|college)$"](${bb});`, "EXTRA_Q");
     g.putImageData(img, 0, 0);
     return c;
   }
-  function tagTexture(cv2) {
-    return ctex(cv2);
+  function tagTexture(cv3) {
+    return ctex(cv3);
   }
   function makeTagMesh(tex2, seg, aspect2 = 2) {
     const g = new Group();
@@ -36721,7 +38032,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
     }, "synthUbahn"))();
     mark("pre");
-    const city = buildCity(scene, D, { hubNear: HUB_NEAR });
+    const city = buildCity(scene, D, { hubNear: HUB_NEAR, mobile: MOBILE });
     mark("buildCity");
     const BOX_X = D.bbox?.x || HALF_X, BOX_Z = D.bbox?.z || HALF_Z;
     (/* @__PURE__ */ __name(function chunkInstanced() {
@@ -36774,7 +38085,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     const coneGeo = new PlaneGeometry(6, 14);
     coneGeo.rotateX(-Math.PI / 2);
     coneGeo.rotateY(Math.PI);
-    const M = {
+    const M2 = {
       blob: new MeshBasicMaterial({ map: blobTex(), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -8, polygonOffsetUnits: -8 }),
       blobGeo,
       coneGeo,
@@ -36880,10 +38191,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           pl.rotation.x = -0.95;
           pl.position.y = 2.2;
           rs.add(pl);
-          const back = new Mesh(new BoxGeometry(10.4, 2.9, 0.25), city.propMat(2763310));
-          back.rotation.x = -0.95;
-          back.position.set(0, 2.2 - Math.sin(0.95) * 0.2, -Math.cos(0.95) * 0.2);
-          rs.add(back);
+          const back2 = new Mesh(new BoxGeometry(10.4, 2.9, 0.25), city.propMat(2763310));
+          back2.rotation.x = -0.95;
+          back2.position.set(0, 2.2 - Math.sin(0.95) * 0.2, -Math.cos(0.95) * 0.2);
+          rs.add(back2);
           for (const sx of [-4, 4]) {
             const leg = new Mesh(new BoxGeometry(0.2, 2.2, 0.2), city.propMat(3815994, 0.5, 0.6));
             leg.position.set(sx, 1.1, -0.6);
@@ -36900,7 +38211,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         hub = { door, ring, arrow, pool, sign: sign2 };
       }
     }
-    const player = makePed(7, M, { hero: true, jacket: [0.6, 0.07, 0.09], shirt: [0.94, 0.93, 0.9], pants: [0.2, 0.3, 0.5], hair: [0.03, 0.02, 0.015], skin: [0.88, 0.68, 0.52], shoes: [0.9, 0.9, 0.88], open: true, long: false, beanie: false, coat: false }, 1.75);
+    const player = makePed(7, M2, { hero: true, jacket: [0.6, 0.07, 0.09], shirt: [0.94, 0.93, 0.9], pants: [0.2, 0.3, 0.5], hair: [0.03, 0.02, 0.015], skin: [0.88, 0.68, 0.52], shoes: [0.9, 0.9, 0.88], open: true, long: false, beanie: false, coat: false }, 1.75);
     scene.add(player);
     const ghostMat = new MeshBasicMaterial({ color: 15249978, depthWrite: false, depthFunc: GreaterDepth, fog: false, toneMapped: false });
     function setGhost(root, on) {
@@ -36981,12 +38292,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     function setLit(o, on) {
       if (o.g.userData.noLights || !o.g.userData.cone || !o.g.userData.hf) return;
       o.g.userData.cone.visible = on;
-      o.g.userData.hf.material = on ? M.head : M.headOff;
-      o.g.userData.hr.material = on ? M.tail : M.tailOff;
+      o.g.userData.hf.material = on ? M2.head : M2.headOff;
+      o.g.userData.hr.material = on ? M2.tail : M2.tailOff;
     }
     __name(setLit, "setLit");
     function addCar(type, color, x, z, rot, ai) {
-      const c = VEH[type] ? buildVeh(type, color, M) : makeCar(type, color, M);
+      const c = VEH[type] ? buildVeh(type, color, M2) : makeCar(type, color, M2);
       c.position.set(x, 0, z);
       c.rotation.y = rot;
       scene.add(c);
@@ -37074,7 +38385,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
     }
     for (const p of parked.slice(0, MOBILE ? 90 : 140)) {
-      const t = ["sedan", "hatch", "kombi", "sedan", "van", "coupe", "taxi", "hatch", "kombi", "truck", "van", "coupe"][R() * 12 | 0];
+      const t = ["sedan", "hatch", "kombi", "sedan", "van", "coupe", "taxi", "hatch", "kombi", "truck", "suv", "mini", "suv", "mini"][R() * 14 | 0];
       addCar(t, t === "taxi" ? 15909376 : CAR_COLORS[R() * CAR_COLORS.length | 0], p.x, p.z, p.rot, false);
     }
     mark("parked");
@@ -37119,7 +38430,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const ri = aiRoads[R() * aiRoads.length | 0];
       const r = city.roadsDrive[ri];
       const rev = !r.ow && R() < 0.5;
-      const t = k % 7 === 3 ? "truck" : ["sedan", "hatch", "van", "taxi", "kombi", "coupe", "sedan", "hatch"][R() * 8 | 0];
+      const t = k % 7 === 3 ? "truck" : ["sedan", "hatch", "van", "taxi", "kombi", "coupe", "sedan", "hatch", "suv", "mini"][R() * 10 | 0];
       const col = t === "taxi" ? 15909376 : t === "truck" ? [12855834, 1985192, 3050053][k % 3] : CAR_COLORS[R() * CAR_COLORS.length | 0];
       const o = addCar(t, col, 0, 0, 0, true);
       startRoute(o, ri, rev);
@@ -37274,7 +38585,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     for (let k = 0; k < (MOBILE ? 185 : 255); k++) {
       const pp = goodPaths[R() * goodPaths.length | 0];
       if (!pp) break;
-      const g = makePed(100 + k, M);
+      const g = makePed(100 + k, M2);
       scene.add(g);
       const o = { g, path: pp, k: 1, dir: 1, lat: (R() - 0.5) * 2 * pp.lat, speed: 1.1 + R() * 0.6, t: R(), tough: R() < 0.28, pitch: 0.82 + R() * 0.42, voice: ["m", "m", "f", "f", "old", "deep", "hi"][R() * 7 | 0] };
       const i = Math.floor(R() * (pp.pts.length - 1));
@@ -37363,9 +38674,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           o.k = Math.max(1, Math.min(pp.pts.length - 1, o.k));
         }
       }
-      const A = pp.pts[o.dir > 0 ? o.k - 1 : o.k], B = pp.pts[o.dir > 0 ? o.k : o.k - 1];
+      const A2 = pp.pts[o.dir > 0 ? o.k - 1 : o.k], B = pp.pts[o.dir > 0 ? o.k : o.k - 1];
       const off = (pp.off || 0) * (o.dir > 0 ? 1 : -1);
-      const pos = pedPoint({ off }, A, B, o.lat * (o.dir > 0 ? 1 : -1), o.t);
+      const pos = pedPoint({ off }, A2, B, o.lat * (o.dir > 0 ? 1 : -1), o.t);
       const nx = pos[0] - o.x, nz = pos[1] - o.z;
       const np = { x: pos[0], z: pos[1] };
       city.grid.resolve(np, 0.35);
@@ -37379,9 +38690,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(pedStep, "pedStep");
     function pathPos(o) {
       const pp = o.path;
-      const A = pp.pts[o.dir > 0 ? o.k - 1 : o.k], B = pp.pts[o.dir > 0 ? o.k : o.k - 1];
+      const A2 = pp.pts[o.dir > 0 ? o.k - 1 : o.k], B = pp.pts[o.dir > 0 ? o.k : o.k - 1];
       const off = (pp.off || 0) * (o.dir > 0 ? 1 : -1);
-      return pedPoint({ off }, A, B, o.lat * (o.dir > 0 ? 1 : -1), o.t);
+      return pedPoint({ off }, A2, B, o.lat * (o.dir > 0 ? 1 : -1), o.t);
     }
     __name(pathPos, "pathPos");
     function pedSeekStep(o, dt) {
@@ -37780,10 +39091,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(rayWall, "rayWall");
     function inCar(c, x, z, pad = 0) {
-      const T = CAR_TYPES[c.type];
+      const T2 = CAR_TYPES[c.type];
       const rx = x - c.x, rz = z - c.z;
       const lz = rx * Math.sin(c.rot) + rz * Math.cos(c.rot), lx = rx * Math.cos(c.rot) - rz * Math.sin(c.rot);
-      return Math.abs(lx) < T.W / 2 + pad && Math.abs(lz) < T.L / 2 + pad;
+      return Math.abs(lx) < T2.W / 2 + pad && Math.abs(lz) < T2.L / 2 + pad;
     }
     __name(inCar, "inCar");
     const GUN = { pistol: { cool: 0.3, range: 24, rays: 1, spread: 0, heat: 0.18 }, smg: { cool: 0.09, range: 20, rays: 1, spread: 0.07, heat: 0.1 }, shotgun: { cool: 0.85, range: 13, rays: 5, spread: 0.13, heat: 0.35 } };
@@ -37947,12 +39258,24 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(enemyFire, "enemyFire");
     mark("pickups");
+    const MSGLOG = [];
+    let msgUnread = 0;
     let toastT = 0;
     function toast(msg, sec = 2) {
-      const el = document.getElementById("toast");
-      if (!el) return;
-      el.textContent = msg;
-      el.classList.add("on");
+      if (msg && MSGLOG[0]?.m !== msg) {
+        let at = "";
+        try {
+          at = clockText(gameHour());
+        } catch (e) {
+        }
+        MSGLOG.unshift({ m: String(msg), at });
+        if (MSGLOG.length > 60) MSGLOG.length = 60;
+        msgUnread++;
+      }
+      const el2 = document.getElementById("toast");
+      if (!el2) return;
+      el2.textContent = msg;
+      el2.classList.add("on");
       toastT = sec;
     }
     __name(toast, "toast");
@@ -37994,38 +39317,38 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const [h1, n1, d1] = KEYS2[i], [h2, n2, d2] = KEYS2[i + 1];
       let t = (h - h1) / Math.max(1e-6, h2 - h1);
       t = t * t * (3 - 2 * t);
-      const A = TIMES[n1], B = TIMES[n2], o = {};
-      for (const k in A) o[k] = k === "sun" || k === "sky" || k === "gnd" || k === "bg" ? lerpHex(A[k], B[k], t) : lerpN(A[k], B[k], t);
+      const A2 = TIMES[n1], B = TIMES[n2], o = {};
+      for (const k in A2) o[k] = k === "sun" || k === "sky" || k === "gnd" || k === "bg" ? lerpHex(A2[k], B[k], t) : lerpN(A2[k], B[k], t);
       o.dark = lerpN(d1, d2, t);
       return o;
     }
     __name(lightAt, "lightAt");
     function applyLight(h) {
-      const T = lightAt(h);
-      Object.assign(LIGHT, T);
-      sun.color.setHex(T.sun);
-      sun.intensity = T.si;
-      hemi.color.setHex(T.sky);
-      hemi.groundColor.setHex(T.gnd);
-      hemi.intensity = T.hi;
+      const T2 = lightAt(h);
+      Object.assign(LIGHT, T2);
+      sun.color.setHex(T2.sun);
+      sun.intensity = T2.si;
+      hemi.color.setHex(T2.sky);
+      hemi.groundColor.setHex(T2.gnd);
+      hemi.intensity = T2.hi;
       if (!scene.background || !scene.background.isColor) scene.background = new Color();
-      scene.background.setHex(T.bg);
+      scene.background.setHex(T2.bg);
       scene.fog = null;
-      for (const m of city.emiMats) m.emissiveIntensity = T.win;
-      for (const m of city.shopMats) m.emissiveIntensity = T.shop;
-      for (const m of city.neonMats) m.color.setScalar(T.neon);
-      city.poolMat.opacity = T.pool;
-      city.lampHeadMat.emissiveIntensity = T.lamp;
-      M.cone.opacity = T.cone;
-      M.head.emissiveIntensity = lerpN(0.3, 1.6, Math.min(1, T.dark * 1.6 + T.lamp * 0.3));
-      renderer.toneMappingExposure = T.exp;
-      if (typeof bloom !== "undefined" && bloom) bloom.strength = T.bloom;
-      const el = T.el * Math.PI / 180, az = T.az * Math.PI / 180;
-      sunDir.set(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el) * -1).normalize();
+      for (const m of city.emiMats) m.emissiveIntensity = T2.win;
+      for (const m of city.shopMats) m.emissiveIntensity = T2.shop;
+      for (const m of city.neonMats) m.color.setScalar(T2.neon);
+      city.poolMat.opacity = T2.pool;
+      city.lampHeadMat.emissiveIntensity = T2.lamp;
+      M2.cone.opacity = T2.cone;
+      M2.head.emissiveIntensity = lerpN(0.3, 1.6, Math.min(1, T2.dark * 1.6 + T2.lamp * 0.3));
+      renderer.toneMappingExposure = T2.exp;
+      if (typeof bloom !== "undefined" && bloom) bloom.strength = T2.bloom;
+      const el2 = T2.el * Math.PI / 180, az = T2.az * Math.PI / 180;
+      sunDir.set(Math.sin(az) * Math.cos(el2), Math.sin(el2), Math.cos(az) * Math.cos(el2) * -1).normalize();
       const ph = phaseOf(h);
       timeName = ph === "night" ? "night" : ph === "day" ? "afternoon" : "dusk";
       try {
-        if (typeof audio !== "undefined" && audio) audio.setAmbience(T.amb);
+        if (typeof audio !== "undefined" && audio) audio.setAmbience(T2.amb);
       } catch (_) {
       }
     }
@@ -38087,8 +39410,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     if (opts.muted) audio.setMute(true);
     const radio = createRadio({ muted: !!opts.muted, onChange: /* @__PURE__ */ __name((st) => {
       if (opts.onRadio) opts.onRadio(st);
-      const el = document.getElementById("radName");
-      if (el) el.textContent = st.name;
+      const el2 = document.getElementById("radName");
+      if (el2) el2.textContent = st.name;
     }, "onChange") });
     const STAT_DEF = [["str", "St\xE4rke", "Nahkampf, Reichweite, ab 6 ein Herz mehr"], ["cha", "Charisma", "bessere Preise beim Dealen"], ["pot", "Potenz", "Ausstrahlung: Leute machen Platz, ab 7 ein Herz mehr"], ["ner", "Nerven", "Fahndung k\xFChlt schneller ab, Bullen brauchen l\xE4nger"], ["ges", "Geschick", "pr\xE4ziser lenken, schneller schie\xDFen"], ["ans", "Ansehen", "schwerere Jobs, bessere Waffen"]];
     let stats = { str: 3, cha: 3, pot: 3, ner: 3, ges: 3, ans: 3 };
@@ -38460,13 +39783,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(fixCar, "fixCar");
     function obb2(a, b) {
-      const A = CAR_TYPES[a.type], B = CAR_TYPES[b.type];
+      const A2 = CAR_TYPES[a.type], B = CAR_TYPES[b.type];
       const dx = a.x - b.x, dz = a.z - b.z;
-      if (dx * dx + dz * dz > (A.L + B.L) * (A.L + B.L) / 4) return null;
+      if (dx * dx + dz * dz > (A2.L + B.L) * (A2.L + B.L) / 4) return null;
       const ax = [[Math.sin(a.rot), Math.cos(a.rot)], [Math.cos(a.rot), -Math.sin(a.rot)], [Math.sin(b.rot), Math.cos(b.rot)], [Math.cos(b.rot), -Math.sin(b.rot)]];
       let best = 1e9, bn = null;
       for (const [ux, uz] of ax) {
-        const ra = Math.abs(A.L / 2 * (Math.sin(a.rot) * ux + Math.cos(a.rot) * uz)) + Math.abs(A.W / 2 * (Math.cos(a.rot) * ux - Math.sin(a.rot) * uz));
+        const ra = Math.abs(A2.L / 2 * (Math.sin(a.rot) * ux + Math.cos(a.rot) * uz)) + Math.abs(A2.W / 2 * (Math.cos(a.rot) * ux - Math.sin(a.rot) * uz));
         const rb = Math.abs(B.L / 2 * (Math.sin(b.rot) * ux + Math.cos(b.rot) * uz)) + Math.abs(B.W / 2 * (Math.cos(b.rot) * ux - Math.sin(b.rot) * uz));
         const d = dx * ux + dz * uz;
         const ov = ra + rb - Math.abs(d);
@@ -38574,9 +39897,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(fxStep, "fxStep");
     function carFireStep(o, dt, vis) {
-      const T = CAR_TYPES[o.type];
+      const T2 = CAR_TYPES[o.type];
       const fx = Math.sin(o.rot), fz = Math.cos(o.rot);
-      const ex = o.x + fx * (T.L / 2 - 0.95), ez = o.z + fz * (T.L / 2 - 0.95), ey = (T.hb || 0.9) + 0.2;
+      const ex = o.x + fx * (T2.L / 2 - 0.95), ez = o.z + fz * (T2.L / 2 - 0.95), ey = (T2.hb || 0.9) + 0.2;
       if (o.wrecked) {
         o.smokeT = (o.smokeT || 0) - dt;
         if (vis && o.smokeT > 0 && Math.random() < dt * 5) emit("smoke", o.x + (Math.random() - 0.5), 1.2, o.z + (Math.random() - 0.5), { dark: true, max: 3, s1: 4.5, a: 0.45 });
@@ -38598,10 +39921,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           o.g.userData.fireGlow = gl;
         }
         gl.visible = true;
-        gl.position.set(0, ey + 0.4, T.L / 2 - 0.95);
+        gl.position.set(0, ey + 0.4, T2.L / 2 - 0.95);
         gl.scale.setScalar(2.4 + Math.sin(tAcc * 23 + o.x) * 0.35 + Math.random() * 0.3);
         if (vis) {
-          if (Math.random() < dt * 26) emit("fire", ex + (Math.random() - 0.5) * T.W * 0.6, ey, ez + (Math.random() - 0.5) * 0.8, { vy: 2.4 + Math.random() * 1.6, s0: 0.9 + Math.random() * 0.6, s1: 0.2, max: 0.45 + Math.random() * 0.35 });
+          if (Math.random() < dt * 26) emit("fire", ex + (Math.random() - 0.5) * T2.W * 0.6, ey, ez + (Math.random() - 0.5) * 0.8, { vy: 2.4 + Math.random() * 1.6, s0: 0.9 + Math.random() * 0.6, s1: 0.2, max: 0.45 + Math.random() * 0.35 });
           if (Math.random() < dt * 9) emit("smoke", ex, ey + 0.8, ez, { dark: true, vx: (Math.random() - 0.5) * 0.8, vz: (Math.random() - 0.5) * 0.8 });
         }
       } else if (frac < 0.5 && vis && Math.random() < dt * (frac < 0.35 ? 6 : 2.5)) emit("smoke", ex, ey + 0.2, ez, { a: 0.35, s0: 0.5, s1: 2.2, max: 1.8 });
@@ -38965,8 +40288,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const gd = giverDoor(J.g);
       job = { J, id: J.id, title: J.title, tier: J.tier, pay: J.pay, giver: J.g, gd, stage: 0, line: "", t: 0 };
       const voice = J.voice ? "assets/voice/" + J.id + ".mp3" : null;
-      const T = J.type;
-      if (T === "deliver" || T === "fetch") {
+      const T2 = J.type;
+      if (T2 === "deliver" || T2 === "fetch") {
         const dests = foodDoors.filter((f) => f !== gd && Math.hypot(f.x - gd.x, f.z - gd.z) > 40 && Math.hypot(f.x - gd.x, f.z - gd.z) < 420);
         const to = dests.length ? dests[Math.random() * dests.length | 0] : foodDoors.find((f) => f !== gd);
         if (!to) {
@@ -38974,21 +40297,21 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           return { ok: false, msg: "Gerade keine Auftr\xE4ge." };
         }
         job.to = to;
-        if (T === "deliver") {
+        if (T2 === "deliver") {
           bagAdd(J.item[0], J.item[1], J.item[2]);
           job.line = "Abgeben";
         } else job.line = "Abholen";
-      } else if (T === "bank") {
+      } else if (T2 === "bank") {
         job.to = SPOTS.bank;
         job.line = "Filiale";
-      } else if (T === "umschlag") {
+      } else if (T2 === "umschlag") {
         job.to = SPOTS.kiosk;
         job.line = "Kiosk";
-      } else if (T === "sign") {
+      } else if (T2 === "sign") {
         job.n = 0;
         job.line = "0/" + J.need + " Unterschriften";
         bagAdd(J.item[0], J.item[1], J.item[2]);
-      } else if (T === "steal") {
+      } else if (T2 === "steal") {
         const c = spawnTargetCar(J.car, gd);
         if (!c) {
           job = null;
@@ -38996,7 +40319,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         job.car = c;
         job.line = J.car.label + " holen";
-      } else if (T === "follow") {
+      } else if (T2 === "follow") {
         const t = spawnTraitor(gd);
         if (!t) {
           job = null;
@@ -39004,7 +40327,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         job.ped = t;
         job.line = "Folgen, Abstand halten";
-      } else if (T === "war") {
+      } else if (T2 === "war") {
         const r = warTarget(!!J.final);
         if (!r) {
           job = null;
@@ -39013,24 +40336,24 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         job.reg = r;
         job.to = r.rival;
         job.line = (r.crew ? r.crew[0] : "Laden") + " \xB7 " + r.name;
-      } else if (T === "haul") {
+      } else if (T2 === "haul") {
         if (!setupHaul(J)) {
           job = null;
           return { ok: false, msg: "Das Fahrzeug ist gerade nicht da." };
         }
-      } else if (T === "chore" && J.zk) {
+      } else if (T2 === "chore" && J.zk) {
         if (!setupZoneChore(J)) {
           job = null;
           return { ok: false, msg: "Gerade nichts zu tun. Komm sp\xE4ter wieder." };
         }
-      } else if (T === "chore") {
+      } else if (T2 === "chore") {
         if (!setupChore(J)) {
           job = null;
           return { ok: false, msg: "Gerade nichts zu tun. Komm sp\xE4ter wieder." };
         }
       }
-      if (!job.reg0 && T !== "war") {
-        const tg = T === "steal" ? job.car : T === "follow" ? job.ped && job.ped.dest : T === "sign" ? P : T === "haul" ? job.stops[0] : job.to;
+      if (!job.reg0 && T2 !== "war") {
+        const tg = T2 === "steal" ? job.car : T2 === "follow" ? job.ped && job.ped.dest : T2 === "sign" ? P : T2 === "haul" ? job.stops[0] : job.to;
         job.reg0 = tg ? regionAt(tg.x, tg.z) : null;
         if (!job.reg0 || job.reg0.owner === "mine") job.reg0 = regionAt(gd.x, gd.z);
       }
@@ -39041,17 +40364,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(startJob, "startJob");
     function jobTarget() {
       if (!job) return null;
-      const T = job.J.type;
-      if (T === "steal") return job.stage === 0 ? job.car.wrecked ? null : { x: job.car.x, z: job.car.z } : SPOTS.garage;
-      if (T === "follow") return job.stage < 2 ? job.ped ? { x: job.ped.x, z: job.ped.z } : null : job.gd;
-      if (T === "sign") return job.stage === 1 ? job.gd : null;
-      if (T === "war") return job.reg && job.reg.rival;
-      if (T === "haul") return haulTarget();
-      if (T === "chore") {
+      const T2 = job.J.type;
+      if (T2 === "steal") return job.stage === 0 ? job.car.wrecked ? null : { x: job.car.x, z: job.car.z } : SPOTS.garage;
+      if (T2 === "follow") return job.stage < 2 ? job.ped ? { x: job.ped.x, z: job.ped.z } : null : job.gd;
+      if (T2 === "sign") return job.stage === 1 ? job.gd : null;
+      if (T2 === "war") return job.reg && job.reg.rival;
+      if (T2 === "haul") return haulTarget();
+      if (T2 === "chore") {
         const q = job.pts[job.pi];
         return q ? q.car ? { x: q.car.x, z: q.car.z } : q : null;
       }
-      if (T === "deliver") return job.to;
+      if (T2 === "deliver") return job.to;
       return job.stage === 0 ? job.to : job.gd;
     }
     __name(jobTarget, "jobTarget");
@@ -39061,9 +40384,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(near, "near");
     function jobAction() {
       if (!job) return null;
-      const J = job.J, T = J.type;
+      const J = job.J, T2 = J.type;
       const onFoot = !P.car && !P.train;
-      if (T === "deliver" && near(job.to, 4)) return { text: J.item[1] + " abgeben", label: "Abgeben", act: /* @__PURE__ */ __name(() => {
+      if (T2 === "deliver" && near(job.to, 4)) return { text: J.item[1] + " abgeben", label: "Abgeben", act: /* @__PURE__ */ __name(() => {
         bagDel(J.item[0]);
         if (J.twist) {
           addHeat(Math.max(0, 1.3 - heat));
@@ -39072,18 +40395,18 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         return completeJob();
       }, "act") };
-      if (T === "fetch" && job.stage === 0 && near(job.to, 4)) return { text: J.item[1] + " abholen", label: "Abholen", act: /* @__PURE__ */ __name(() => {
+      if (T2 === "fetch" && job.stage === 0 && near(job.to, 4)) return { text: J.item[1] + " abholen", label: "Abholen", act: /* @__PURE__ */ __name(() => {
         bagAdd(J.item[0], J.item[1], J.item[2]);
         job.stage = 1;
         job.line = "Zur\xFCck zu " + GIVERS[J.g].who;
         updateHoodHud();
         return { ok: true, msg: "P\xE4ckchen eingesteckt. Ab zur\xFCck." };
       }, "act") };
-      if ((T === "fetch" || T === "bank" || T === "umschlag" || T === "follow" || T === "sign") && job.stage === (T === "follow" ? 2 : 1) && near(job.gd, 4.2)) return { text: "Bei " + GIVERS[J.g].who + " abliefern", label: "Abliefern", act: /* @__PURE__ */ __name(() => {
+      if ((T2 === "fetch" || T2 === "bank" || T2 === "umschlag" || T2 === "follow" || T2 === "sign") && job.stage === (T2 === "follow" ? 2 : 1) && near(job.gd, 4.2)) return { text: "Bei " + GIVERS[J.g].who + " abliefern", label: "Abliefern", act: /* @__PURE__ */ __name(() => {
         if (J.item) bagDel(J.item[0]);
         return completeJob();
       }, "act") };
-      if (T === "bank" && job.stage === 0 && onFoot && near(job.to, 4)) return { text: "Filiale \u2014 Beutel schnappen", label: "Beutel", act: /* @__PURE__ */ __name(() => {
+      if (T2 === "bank" && job.stage === 0 && onFoot && near(job.to, 4)) return { text: "Filiale \u2014 Beutel schnappen", label: "Beutel", act: /* @__PURE__ */ __name(() => {
         bagAdd(J.item[0], J.item[1], J.item[2]);
         job.stage = 1;
         job.line = "Zur\xFCck zum Imbiss";
@@ -39094,7 +40417,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         updateHoodHud();
         return { ok: true, msg: "Beutel im Sack. Lauf!" };
       }, "act") };
-      if (T === "umschlag" && job.stage === 0 && onFoot && near(job.to, 4)) return { text: "Kiosk \u2014 Umschlag holen", label: "Umschlag", act: /* @__PURE__ */ __name(() => {
+      if (T2 === "umschlag" && job.stage === 0 && onFoot && near(job.to, 4)) return { text: "Kiosk \u2014 Umschlag holen", label: "Umschlag", act: /* @__PURE__ */ __name(() => {
         bagAdd(J.item[0], J.item[1], J.item[2]);
         job.stage = 1;
         job.line = "Unauff\xE4llig zur\xFCck";
@@ -39104,7 +40427,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         updateHoodHud();
         return { ok: true, msg: "Umschlag eingesteckt. Nicht aufmachen." };
       }, "act") };
-      if (T === "sign" && job.stage === 0 && onFoot) {
+      if (T2 === "sign" && job.stage === 0 && onFoot) {
         let best = null, bd = 1.9;
         for (const pd of peds) {
           if (pd.signed || pd.hostile || pd.special || pd.react || pd.loiter || (pd.down || 0) > 0) continue;
@@ -39134,8 +40457,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           return { ok: true, msg: "Unterschrift " + job.n + "/" + J.need + (job.n >= J.need ? " \u2014 zur\xFCck zu Ute." : "") };
         }, "act") };
       }
-      if (T === "haul") return haulAction();
-      if (T === "chore") {
+      if (T2 === "haul") return haulAction();
+      if (T2 === "chore") {
         const q = job.pts[job.pi];
         const tq = q && (q.car ? { x: q.car.x, z: q.car.z } : q);
         if (q && onFoot && near(tq, q.car ? 3.4 : 3) && !job.counting) {
@@ -39144,7 +40467,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         return null;
       }
-      if (T === "follow" && job.stage === 1 && onFoot && job.ped && near(job.ped, 2.4)) return { text: "Den falschen Kurier stellen", label: "Stellen", act: /* @__PURE__ */ __name(() => {
+      if (T2 === "follow" && job.stage === 1 && onFoot && job.ped && near(job.ped, 2.4)) return { text: "Den falschen Kurier stellen", label: "Stellen", act: /* @__PURE__ */ __name(() => {
         confrontTraitor();
         return { ok: true, msg: "Er l\xE4sst das Notizbuch fallen und rennt." };
       }, "act") };
@@ -39369,8 +40692,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     function choreRegion() {
       const P0 = P.car || P;
       const list = regions.slice().sort((a, b) => (a.owner === "mine") - (b.owner === "mine") || Math.hypot(a.cx - P0.x, a.cz - P0.z) - Math.hypot(b.cx - P0.x, b.cz - P0.z));
-      const open2 = list.filter((r) => r.owner !== "mine");
-      const L = open2.length ? open2 : list;
+      const open3 = list.filter((r) => r.owner !== "mine");
+      const L = open3.length ? open3 : list;
       return L[Math.random() * Math.min(2, L.length) | 0];
     }
     __name(choreRegion, "choreRegion");
@@ -39723,7 +41046,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(fireCannon, "fireCannon");
     function makeSpecial(x, z, look2, scale = 1.4) {
-      const g = makePed(900 + (Math.random() * 9e3 | 0), M, look2, scale);
+      const g = makePed(900 + (Math.random() * 9e3 | 0), M2, look2, scale);
       scene.add(g);
       tmp2.x = x;
       tmp2.z = z;
@@ -40271,15 +41594,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(nearestNode, "nearestNode");
     function findPath(sx, sz, tx2, tz, walk) {
-      const A = nearestNode(sx, sz, 90, walk), B = nearestNode(tx2, tz, 90, walk);
-      if (!A || !B) return null;
-      if (A === B) return [{ x: A.x, z: A.z, w: A.w }];
-      const g = /* @__PURE__ */ new Map([[A, 0]]), came = /* @__PURE__ */ new Map(), open2 = [[Math.hypot(A.x - B.x, A.z - B.z), A]], closed = /* @__PURE__ */ new Set();
+      const A2 = nearestNode(sx, sz, 90, walk), B = nearestNode(tx2, tz, 90, walk);
+      if (!A2 || !B) return null;
+      if (A2 === B) return [{ x: A2.x, z: A2.z, w: A2.w }];
+      const g = /* @__PURE__ */ new Map([[A2, 0]]), came = /* @__PURE__ */ new Map(), open3 = [[Math.hypot(A2.x - B.x, A2.z - B.z), A2]], closed = /* @__PURE__ */ new Set();
       let it = 0;
-      while (open2.length && it++ < 2e4) {
+      while (open3.length && it++ < 2e4) {
         let bi = 0;
-        for (let i = 1; i < open2.length; i++) if (open2[i][0] < open2[bi][0]) bi = i;
-        const cur = open2.splice(bi, 1)[0][1];
+        for (let i = 1; i < open3.length; i++) if (open3[i][0] < open3[bi][0]) bi = i;
+        const cur = open3.splice(bi, 1)[0][1];
         if (cur === B) break;
         if (closed.has(cur)) continue;
         closed.add(cur);
@@ -40289,7 +41612,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           if (ng < (g.get(e.n) ?? 1e18)) {
             g.set(e.n, ng);
             came.set(e.n, cur);
-            open2.push([ng + Math.hypot(e.n.x - B.x, e.n.z - B.z), e.n]);
+            open3.push([ng + Math.hypot(e.n.x - B.x, e.n.z - B.z), e.n]);
           }
         }
       }
@@ -40367,19 +41690,19 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(autoStop, "autoStop");
     function apStep(c, dt) {
-      const A = AP;
-      const pts = A.pts;
-      while (A.i < pts.length - 1 && Math.hypot(pts[A.i].x - c.x, pts[A.i].z - c.z) < 5) A.i++;
+      const A2 = AP;
+      const pts = A2.pts;
+      while (A2.i < pts.length - 1 && Math.hypot(pts[A2.i].x - c.x, pts[A2.i].z - c.z) < 5) A2.i++;
       const end = pts[pts.length - 1];
       const dEnd = Math.hypot(end.x - c.x, end.z - c.z);
-      if (A.i >= pts.length - 1 && dEnd < 3.5) {
+      if (A2.i >= pts.length - 1 && dEnd < 3.5) {
         autoStop();
         toast("Angekommen.", 1.2);
         return { ang: c.rot, v: 0 };
       }
       const asp = Math.abs(c.speed);
-      let look2 = 4 + asp * 0.45, px2 = pts[A.i].x, pz2 = pts[A.i].z, acc = Math.hypot(px2 - c.x, pz2 - c.z);
-      for (let k = A.i; k < pts.length - 1 && acc < look2; k++) {
+      let look2 = 4 + asp * 0.45, px2 = pts[A2.i].x, pz2 = pts[A2.i].z, acc = Math.hypot(px2 - c.x, pz2 - c.z);
+      for (let k = A2.i; k < pts.length - 1 && acc < look2; k++) {
         const a = pts[k], b = pts[k + 1];
         const l = Math.hypot(b.x - a.x, b.z - a.z);
         if (acc + l >= look2) {
@@ -40396,7 +41719,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const ang = Math.atan2(px2 - c.x, pz2 - c.z);
       let v = 17;
       let turn = 0, dist = 0;
-      for (let k = A.i; k < pts.length - 2 && dist < 28; k++) {
+      for (let k = A2.i; k < pts.length - 2 && dist < 28; k++) {
         const a = pts[k], b = pts[k + 1], e = pts[k + 2];
         dist += Math.hypot(b.x - a.x, b.z - a.z);
         turn = Math.max(turn, Math.abs(wrapA(Math.atan2(e.x - b.x, e.z - b.z) - Math.atan2(b.x - a.x, b.z - a.z))) * (1 - dist / 40));
@@ -40414,17 +41737,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           v = Math.min(v, Math.max(0, (ah - 4) * 1.5));
         }
       }
-      if (A.rev > 0) {
-        A.rev -= dt;
+      if (A2.rev > 0) {
+        A2.rev -= dt;
         return { ang, rev: true };
       }
       if (v > 2.5 && asp < 0.7) {
-        A.stuck += dt;
-        if (A.stuck > 1.8) {
-          A.stuck = 0;
-          A.rev = 1.1;
+        A2.stuck += dt;
+        if (A2.stuck > 1.8) {
+          A2.stuck = 0;
+          A2.rev = 1.1;
         }
-      } else A.stuck = Math.max(0, A.stuck - dt);
+      } else A2.stuck = Math.max(0, A2.stuck - dt);
       return { ang, v };
     }
     __name(apStep, "apStep");
@@ -40581,15 +41904,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           startRoute(o, ri, rev);
           const k = rev ? rd.p.length - 1 - i : i + 1;
           o.route.k = Math.max(1, Math.min(o.route.pts.length - 1, k));
-          const A = o.route.pts[o.route.k - 1], B = o.route.pts[o.route.k];
+          const A2 = o.route.pts[o.route.k - 1], B = o.route.pts[o.route.k];
           const tt = 0.2 + Math.random() * 0.6;
-          const px2 = A[0] + (B[0] - A[0]) * tt, pz2 = A[1] + (B[1] - A[1]) * tt;
+          const px2 = A2[0] + (B[0] - A2[0]) * tt, pz2 = A2[1] + (B[1] - A2[1]) * tt;
           if (!offScreen(px2, pz2, 6) || cars.some((c) => c !== o && Math.abs(c.x - px2) < 6 && Math.abs(c.z - pz2) < 6)) {
             continue;
           }
           o.x = px2;
           o.z = pz2;
-          o.rot = Math.atan2(B[0] - A[0], B[1] - A[1]);
+          o.rot = Math.atan2(B[0] - A2[0], B[1] - A2[1]);
           o.speed = 5;
           o.turnT = 0;
           m++;
@@ -40836,9 +42159,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
       }
       for (let a = 0; a < ubahn.length; a++) for (let b = ubahn.length - 1; b > a; b--) {
-        const A = ubahn[a], B = ubahn[b];
-        if (A.name === B.name && Math.hypot(A.x - B.x, A.z - B.z) < 700) {
-          A.ents.push(...B.ents);
+        const A2 = ubahn[a], B = ubahn[b];
+        if (A2.name === B.name && Math.hypot(A2.x - B.x, A2.z - B.z) < 700) {
+          A2.ents.push(...B.ents);
           ubahn.splice(b, 1);
         }
       }
@@ -41374,12 +42697,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(tripStep, "tripStep");
     function fxChip() {
-      const el = document.getElementById("fxChip");
-      if (!el) return;
+      const el2 = document.getElementById("fxChip");
+      if (!el2) return;
       const h = boostList().map((b) => `<span>${b.icon}<b>${b.t}</b></span>`).join("");
-      if (el._h !== h) {
-        el._h = h;
-        el.innerHTML = h;
+      if (el2._h !== h) {
+        el2._h = h;
+        el2.innerHTML = h;
       }
     }
     __name(fxChip, "fxChip");
@@ -41545,8 +42868,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     function crewCanvas(ci) {
       if (!crewTex[ci]) {
         const cr = CREWS[ci];
-        const cv2 = crewTagCanvas(CREW_TAGS[ci] || cr[0], cr[1], ci + 3);
-        crewTex[ci] = { cv: cv2, tex: tagTexture(cv2) };
+        const cv3 = crewTagCanvas(CREW_TAGS[ci] || cr[0], cr[1], ci + 3);
+        crewTex[ci] = { cv: cv3, tex: tagTexture(cv3) };
       }
       return crewTex[ci];
     }
@@ -41630,12 +42953,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       return tags.find((t) => Math.hypot(t.seg.cx - seg.cx, t.seg.cz - seg.cz) < 2.6 && t.seg.nx * seg.nx + t.seg.nz * seg.nz > 0.7) || null;
     }
     __name(tagAt, "tagAt");
-    function addTag(seg, owner, crew, cv2, img, tex0, ar0) {
+    function addTag(seg, owner, crew, cv3, img, tex0, ar0) {
       const ex = tagAt(seg);
       if (ex) removeTag(ex);
       const own = owner === "mine";
-      const tex2 = tex0 || (own ? tagTexture(cv2) : crewCanvas(crew).tex);
-      const ar = ar0 || (cv2 ? cv2.width / cv2.height : 2);
+      const tex2 = tex0 || (own ? tagTexture(cv3) : crewCanvas(crew).tex);
+      const ar = ar0 || (cv3 ? cv3.width / cv3.height : 2);
       const mesh = makeTagMesh(tex2, seg, ar);
       scene.add(mesh);
       const r = regionAt(seg.cx, seg.cz);
@@ -41680,17 +43003,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       pendingTag = null;
     }
     __name(cancelTag, "cancelTag");
-    function finishTag(cv2) {
-      if (!pendingTag || !cv2) return { ok: false };
+    function finishTag(cv3) {
+      if (!pendingTag || !cv3) return { ok: false };
       const seg = pendingTag;
       pendingTag = null;
       let url = "";
       try {
-        url = cv2.toDataURL("image/webp", 0.85);
-        if (!/^data:image\/webp/.test(url)) url = cv2.toDataURL("image/png");
+        url = cv3.toDataURL("image/webp", 0.85);
+        if (!/^data:image\/webp/.test(url)) url = cv3.toDataURL("image/png");
       } catch (_) {
       }
-      const t = addTag(seg, "mine", -1, cv2, url);
+      const t = addTag(seg, "mine", -1, cv3, url);
       afterTag(t);
       return { ok: true, id: t.id };
     }
@@ -42292,7 +43615,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const ta = TOUCH.active && TOUCH.mag > 0.18;
       if (P.car) {
         const c = P.car;
-        const T = CAR_TYPES[c.type];
+        const T2 = CAR_TYPES[c.type];
         const mul = (c.g.userData.speedMul ?? 1) * (c.tank ? 0.62 : 1);
         const V = c.veh;
         const VM = V ? vehMax(c) : 24, AC2 = V ? V.acc : 9.5;
@@ -42338,8 +43661,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             if (Math.abs(dd) < 0.3) want = ra + dd * Math.max(0, (Math.abs(dd) - 0.12) / 0.18);
           }
           const d = wrapA(want - c.rot);
-          const back = Math.abs(d) > 2.25;
-          if (!back) {
+          const back2 = Math.abs(d) > 2.25;
+          if (!back2) {
             const roadMul = V || on ? 1 : 0.6;
             const vmax = VM * mul * roadMul * Math.min(1, TOUCH.mag) * (Math.abs(d) > 1.1 ? 0.5 : Math.abs(d) > 0.6 ? 0.75 : 1);
             if (c.speed < vmax) c.speed += AC2 * Math.min(1, TOUCH.mag + 0.2) * dt;
@@ -42358,7 +43681,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
               } else c.speed *= Math.pow(0.1, dt);
             }
           }
-          if (!back) c.backT = 0;
+          if (!back2) c.backT = 0;
         } else {
           c.wantA = null;
           if (up) c.speed += acc * dt;
@@ -42379,10 +43702,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         let wall = false, impW = 0;
         const vx0 = Math.sin(c.rot) * c.speed, vz0 = Math.cos(c.rot) * c.speed;
         for (const s2 of [-1, 0, 1]) {
-          const fx = Math.sin(c.rot) * s2 * (T.L / 2 - 0.9), fz = Math.cos(c.rot) * s2 * (T.L / 2 - 0.9);
+          const fx = Math.sin(c.rot) * s2 * (T2.L / 2 - 0.9), fz = Math.cos(c.rot) * s2 * (T2.L / 2 - 0.9);
           tmp2.x = c.x + fx;
           tmp2.z = c.z + fz;
-          const h = city.grid.resolve(tmp2, T.W / 2 + 0.05);
+          const h = city.grid.resolve(tmp2, T2.W / 2 + 0.05);
           if (h) {
             c.x = tmp2.x - fx;
             c.z = tmp2.z - fz;
@@ -42483,11 +43806,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         else {
           wx = dx / dl;
           wz = dz / dl;
-          wish = 4.2;
+          wish = walkTarget.sp || 4.2;
         }
       }
       if (ta || up || dn || lf || rt) {
         walkTarget = null;
+        if (V5T) v5Cancel("Selbst gesteuert \u2014 Reise abgebrochen.");
         wx = (rt ? 1 : 0) - (lf ? 1 : 0);
         wz = (dn ? 1 : 0) - (up ? 1 : 0);
         if (ta) {
@@ -42520,6 +43844,43 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           P.vz = 0;
         }
       }
+      P._wt = (P._wt || 0) - 1;
+      if (P._wt <= 0) {
+        P._wt = 3;
+        const w = isWater(P.x, P.z);
+        if (w && !P.swim) {
+          P.swim = true;
+          P.swimT = 0;
+          audio.crash && audio.crash(1.2);
+          toast("Du bist im Wasser \u2014 schnell raus, sonst ertrinkst du!", 2.4);
+        } else if (!w && P.swim) {
+          P.swim = false;
+          P.swimT = 0;
+        }
+      }
+      if (P.swim) {
+        P.swimT += dt;
+        const sw = 0.36;
+        P.vx *= 1 - (1 - sw) * Math.min(1, dt * 8);
+        P.vz *= 1 - (1 - sw) * Math.min(1, dt * 8);
+        if (P.swimT > 4) {
+          P.drownT = (P.drownT || 0) - dt;
+          if (P.drownT <= 0) {
+            P.drownT = 1.4;
+            if (health <= 1) {
+              P.swim = false;
+              P.swimT = 0;
+              toast("Ertrunken!", 2.4);
+              health = 0;
+              wasted("drown");
+              return;
+            }
+            hurt(1);
+            shake = Math.max(shake, 0.2);
+            toast("Du gehst unter \u2026 raus aus dem Wasser!", 1.2);
+          }
+        }
+      }
       P.x += P.vx * dt;
       P.z += P.vz * dt;
       const spd = Math.hypot(P.vx, P.vz);
@@ -42531,10 +43892,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       P.x = tmp2.x;
       P.z = tmp2.z;
       for (const c of cars) {
-        const T = CAR_TYPES[c.type];
+        const T2 = CAR_TYPES[c.type];
         const lx = (P.x - c.x) * Math.cos(c.rot) - (P.z - c.z) * Math.sin(c.rot), lz = (P.x - c.x) * Math.sin(c.rot) + (P.z - c.z) * Math.cos(c.rot);
-        if (Math.abs(lx) < T.W / 2 + 0.3 && Math.abs(lz) < T.L / 2 + 0.3) {
-          const px2 = T.W / 2 + 0.3 - Math.abs(lx), pz2 = T.L / 2 + 0.3 - Math.abs(lz);
+        if (Math.abs(lx) < T2.W / 2 + 0.3 && Math.abs(lz) < T2.L / 2 + 0.3) {
+          const px2 = T2.W / 2 + 0.3 - Math.abs(lx), pz2 = T2.L / 2 + 0.3 - Math.abs(lz);
           let ax = 0, az = 0;
           if (px2 < pz2) ax = Math.sign(lx) * px2;
           else az = Math.sign(lz) * pz2;
@@ -42559,9 +43920,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         P.x = Math.max(EG.minx + 0.8, Math.min(EG.maxx - 0.8, P.x));
         P.z = Math.max(EG.minz + 0.8, Math.min(EG.maxz - 0.8, P.z));
       }
-      player.position.set(P.x, 0, P.z);
+      player.position.set(P.x, P.swim ? -0.95 + Math.sin(tAcc * 3) * 0.08 : 0, P.z);
       player.rotation.y = P.rot;
-      animPed(player, spd, dt);
+      animPed(player, P.swim ? spd * 0.6 : spd, dt);
       weaponPose(dt);
       {
         const k = Math.floor(((player.userData.phase || 0) - Math.PI / 2) / Math.PI);
@@ -42838,7 +44199,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         if (vig.style.opacity !== "0") vig.style.opacity = "0";
         return;
       }
-      const pxm = innerWidth / (camera.right - camera.left || 1);
+      const pxm2 = innerWidth / (camera.right - camera.left || 1);
       const c = P.car;
       let x = c ? c.x : P.x, z = c ? c.z : P.z, r = 13;
       if (c) {
@@ -42851,7 +44212,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       _pv.set(x, 0, z).project(camera);
       const sx = (_pv.x + 1) / 2 * innerWidth, sy = (1 - _pv.y) / 2 * innerHeight;
-      const R2 = r * pxm, a = (0.66 * k * (cam.h > 90 ? 0.4 : 1)).toFixed(3);
+      const R2 = r * pxm2, a = (0.66 * k * (cam.h > 90 ? 0.4 : 1)).toFixed(3);
       vig.style.background = `radial-gradient(circle at ${sx.toFixed(0)}px ${sy.toFixed(0)}px, rgba(4,6,16,0) ${(R2 * 0.55).toFixed(0)}px, rgba(4,6,16,${(a * 0.55).toFixed(3)}) ${R2.toFixed(0)}px, rgba(4,6,16,${a}) ${(R2 * 1.9).toFixed(0)}px)`;
       vig.style.opacity = "1";
     }
@@ -43167,12 +44528,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     let tAcc = 0;
     const floats = [];
     function floatText(x, z, text, col) {
-      const el = document.createElement("div");
-      el.className = "ui floatTxt";
-      el.textContent = text;
-      if (col) el.style.color = col;
-      document.body.appendChild(el);
-      floats.push({ el, x, z, t: 0 });
+      const el2 = document.createElement("div");
+      el2.className = "ui floatTxt";
+      el2.textContent = text;
+      if (col) el2.style.color = col;
+      document.body.appendChild(el2);
+      floats.push({ el: el2, x, z, t: 0 });
     }
     __name(floatText, "floatText");
     function floatStep(dt) {
@@ -43219,9 +44580,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         p = clipRect(p, E.minx, E.minz, E.maxx, E.maxz);
         if (p.length < 3) return;
       }
-      const A = Math.abs(polyArea2(p));
-      if (A < 20) return;
-      ZN[k].push({ p, bb: bbOf(p), A });
+      const A2 = Math.abs(polyArea2(p));
+      if (A2 < 20) return;
+      ZN[k].push({ p, bb: bbOf(p), A: A2 });
     }, "addZ");
     for (const z of D.zones || []) if (ZN[z.k]) addZ(z.k, z.p);
     for (const a of D.areas || []) {
@@ -43241,6 +44602,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(inZ, "inZ");
     function isWater(x, z) {
+      if (!waterRaw(x, z)) return false;
+      for (const b of city.bridges || []) for (const q of b.seg) {
+        const a = q[0], c = q[1];
+        if (Math.abs(a[0] - x) > 40 && Math.abs(c[0] - x) > 40) continue;
+        if (segDist(x, z, a[0], a[1], c[0], c[1])[0] < q[2] / 2 + 0.3) return false;
+      }
+      const n = city.nearRoad(x, z);
+      return !(n && n.d < 0.6 && n.road && n.road.t !== "track");
+    }
+    __name(isWater, "isWater");
+    function waterRaw(x, z) {
       if (inZ("water", x, z)) return true;
       for (const s of D.streams || []) {
         if (s.w < 6) continue;
@@ -43252,7 +44624,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       return false;
     }
-    __name(isWater, "isWater");
+    __name(waterRaw, "waterRaw");
     function terrainAt(x, z) {
       if (isWater(x, z)) return "water";
       const c = city.carriage(x, z);
@@ -43317,8 +44689,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const b = q.bb;
         const x = b.x0 + Math.random() * (b.x1 - b.x0), z = b.z0 + Math.random() * (b.z1 - b.z0);
         if (!pip2(x, z, q.p) || !city.inEdge(x, z, opt.edge ?? 12)) continue;
-        if (!opt.water && isWater(x, z)) continue;
-        if (opt.water && !isWater(x, z)) continue;
+        if (!opt.water && waterRaw(x, z)) continue;
+        if (opt.water && !waterRaw(x, z)) continue;
         if (insideAny(x, z)) continue;
         if (opt.road != null) {
           const n = city.nearRoad(x, z);
@@ -43530,7 +44902,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         return true;
       }
       if (V.kind === "water") {
-        if (!isWater(c.x, c.z)) {
+        if (!waterRaw(c.x, c.z)) {
           c.x = c.px ?? c.x;
           c.z = c.pz ?? c.z;
           if (Math.abs(c.speed) > 2.5) {
@@ -43769,13 +45141,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     __name(furrow, "furrow");
     const PROJ = [];
     const baleMat = new MeshStandardMaterial({ color: 14202960, roughness: 1 }), sandMat = new MeshStandardMaterial({ color: 10125400, roughness: 1 });
-    function launch(kind, x, y, z, tx2, tz, T) {
+    function launch(kind, x, y, z, tx2, tz, T2) {
       const m = new Mesh(dynGeo, kind === "bale" ? baleMat : sandMat);
       m.scale.setScalar(kind === "bale" ? 1.2 : 0.6);
       m.castShadow = true;
       m.position.set(x, y, z);
       scene.add(m);
-      PROJ.push({ kind, m, x0: x, y0: y, z0: z, tx: tx2, tz, T, t: 0 });
+      PROJ.push({ kind, m, x0: x, y0: y, z0: z, tx: tx2, tz, T: T2, t: 0 });
     }
     __name(launch, "launch");
     function projStep(dt) {
@@ -44085,7 +45457,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const n2 = c.hostages;
         c.hostages = 0;
         for (let i = 0; i < n2; i++) {
-          const g = makePed(300 + (Math.random() * 900 | 0), M);
+          const g = makePed(300 + (Math.random() * 900 | 0), M2);
           scene.add(g);
           const o = { g, x: c.x + Math.cos(i) * 2.5, z: c.z + Math.sin(i) * 2.5, path: goodPaths[0], k: 1, dir: 1, lat: 0, speed: 1.4, t: 0, pitch: 0.85 + Math.random() * 0.4, voice: VOICES[Math.random() * VOICES.length | 0] };
           g.position.set(o.x, 0, o.z);
@@ -44277,7 +45649,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           b.spin -= dt;
           b.rot += dt * b.spin * 2;
           const nx = b.x + b.vx * dt, nz = b.z + b.vz * dt;
-          if (isWater(nx, nz)) {
+          if (waterRaw(nx, nz)) {
             b.x = nx;
             b.z = nz;
           }
@@ -44504,13 +45876,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     const GONDS = [];
     function seedGondolas() {
       for (const a of D.aerial || []) {
-        const A = { x: a.p[0][0], z: a.p[0][1] }, B = { x: a.p[1][0], z: a.p[1][1] };
-        const L = Math.hypot(B.x - A.x, B.z - A.z);
+        const A2 = { x: a.p[0][0], z: a.p[0][1] }, B = { x: a.p[1][0], z: a.p[1][1] };
+        const L = Math.hypot(B.x - A2.x, B.z - A2.z);
         if (L < 40) continue;
-        if (!city.inEdge(A.x, A.z, 4) && !city.inEdge(B.x, B.z, 4)) continue;
-        const ln = new Line(new BufferGeometry().setFromPoints([new Vector3(A.x, 9, A.z), new Vector3(B.x, 9, B.z)]), new LineBasicMaterial({ color: 2236962 }));
+        if (!city.inEdge(A2.x, A2.z, 4) && !city.inEdge(B.x, B.z, 4)) continue;
+        const ln = new Line(new BufferGeometry().setFromPoints([new Vector3(A2.x, 9, A2.z), new Vector3(B.x, 9, B.z)]), new LineBasicMaterial({ color: 2236962 }));
         scene.add(ln);
-        for (const S of [A, B]) {
+        for (const S of [A2, B]) {
           const st = new Mesh(dynGeo, new MeshStandardMaterial({ color: 9080466, roughness: 0.6 }));
           st.scale.set(5, 5, 5);
           st.position.set(S.x, 2.5, S.z);
@@ -44538,7 +45910,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           if (o.isMesh) o.castShadow = true;
         });
         scene.add(cab);
-        GONDS.push({ A, B, L, cab, t: Math.random(), dir: 1, wait: 0, n: a.n || "Seilbahn" });
+        GONDS.push({ A: A2, B, L, cab, t: Math.random(), dir: 1, wait: 0, n: a.n || "Seilbahn" });
       }
     }
     __name(seedGondolas, "seedGondolas");
@@ -44637,12 +46009,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         g.add(l);
         legs.push(l);
       }
-      const sh = new Mesh(blobGeo, M.blob);
+      const sh = new Mesh(blobGeo, M2.blob);
       sh.scale.set(1.8, 1, 2.8);
       sh.position.y = 0.05;
       g.add(sh);
       g.traverse((o) => {
-        if (o.isMesh && o.material !== M.blob) o.castShadow = true;
+        if (o.isMesh && o.material !== M2.blob) o.castShadow = true;
       });
       g.userData = { body, legs };
       return g;
@@ -45348,6 +46720,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(rayBlocked, "rayBlocked");
     const PROPS = [];
+    const V5 = { fields: 0 };
     const KR = { cash: 500, props: 0, downUntil: 0, next: 90, contest: null, regionRaid: null, hq: null, boss: null, raid: null, cool: 0 };
     const propCol = { free: "#9dff7a", mine: "#ffd23f", kralle: "#2fe0dc" };
     function propSignText(p) {
@@ -45355,6 +46728,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(propSignText, "propSignText");
     function propSub(p) {
+      if (p.field) return p.owner === "free" ? p.price + " \u20AC \xB7 " + p.kind + " " + p.ha + " ha \xB7 Ertrag " + p.rent + " \u20AC/Tag" : p.owner === "mine" ? p.kind + " \xB7 Ertrag " + p.rent + " \u20AC/Tag" : p.kind + " \xB7 Finger weg";
       return p.owner === "free" ? p.price + " \u20AC \xB7 " + p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" : p.owner === "mine" ? p.kind + " \xB7 Miete " + p.rent + " \u20AC/Tag" + (p.ten === false ? " \xB7 LEER" : "") : p.kind + " \xB7 Finger weg";
     }
     __name(propSub, "propSub");
@@ -45366,6 +46740,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         p.sign.material.needsUpdate = true;
       }
       p.ring.material.color.set(propCol[p.owner]);
+      if (p.edge) p.edge.material.color.set(propCol[p.owner]);
     }
     __name(setPropSign, "setPropSign");
     function seedProps() {
@@ -45386,7 +46761,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           break;
         }
       }
-      shuffleA(cands);
+      {
+        const R2 = rng(7070 + cands.length);
+        for (let i = cands.length - 1; i > 0; i--) {
+          const j = R2() * (i + 1) | 0;
+          [cands[i], cands[j]] = [cands[j], cands[i]];
+        }
+      }
       const out = [];
       for (const c of cands) {
         if (out.length >= N) break;
@@ -45453,7 +46834,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       v4OnBuy(p);
       setPropSign(p);
       audio.kaching && audio.kaching();
-      toast(p.kind + " gekauft! Miete " + p.rent + " \u20AC/Tag l\xE4uft \xFCber die Uhr.", 2.6);
+      toast(p.field ? p.kind + " gekauft! Ertrag " + p.rent + " \u20AC/Tag \u2014 die Ernte l\xE4uft \xFCber die Uhr." : p.kind + " gekauft! Miete " + p.rent + " \u20AC/Tag l\xE4uft \xFCber die Uhr.", 2.6);
       const r = regionAt(p.x, p.z);
       if (r) addInfluence(r, 1, "mission");
       updateHoodHud();
@@ -46403,9 +47784,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(v4WantAct, "v4WantAct");
     function v4SkullTex(col) {
-      const cv2 = document.createElement("canvas");
-      cv2.width = cv2.height = 128;
-      const g = cv2.getContext("2d");
+      const cv3 = document.createElement("canvas");
+      cv3.width = cv3.height = 128;
+      const g = cv3.getContext("2d");
       g.fillStyle = "rgba(0,0,0,.55)";
       g.beginPath();
       g.arc(64, 64, 60, 0, 7);
@@ -46432,7 +47813,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       g.closePath();
       g.fill();
       for (let x = 50; x < 80; x += 7) g.fillRect(x, 82, 3, 8);
-      const t = new CanvasTexture(cv2);
+      const t = new CanvasTexture(cv3);
       t.colorSpace = SRGBColorSpace;
       return t;
     }
@@ -46508,21 +47889,21 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
     __name(v4RampEnd, "v4RampEnd");
     function v4AmokHud() {
-      let el = document.getElementById("amokBar");
-      if (!el) {
-        el = document.createElement("div");
-        el.id = "amokBar";
-        el.className = "ui";
-        document.body.appendChild(el);
+      let el2 = document.getElementById("amokBar");
+      if (!el2) {
+        el2 = document.createElement("div");
+        el2.id = "amokBar";
+        el2.className = "ui";
+        document.body.appendChild(el2);
       }
       const R2 = V4.ramp;
       document.body.classList.toggle("amok", !!R2);
       if (!R2) {
-        el.style.display = "none";
+        el2.style.display = "none";
       } else {
-        el.style.display = "";
-        el.innerHTML = "<b>AMOK</b> " + R2.kills + " / " + R2.need + " <i>" + Math.ceil(R2.t) + " s</i>";
-        el.classList.toggle("low", R2.t <= 8);
+        el2.style.display = "";
+        el2.innerHTML = "<b>AMOK</b> " + R2.kills + " / " + R2.need + " <i>" + Math.ceil(R2.t) + " s</i>";
+        el2.classList.toggle("low", R2.t <= 8);
       }
       let m = document.getElementById("multChip");
       if (!m) {
@@ -46608,8 +47989,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         if (S.crush && slow && Math.hypot(S.crush.x - c.x, S.crush.z - c.z) < 4.2 && v4PlainCar(c) && !c.target) return { text: c === myCar ? "SCHROTTPRESSE \u2014 nicht mit deinem eigenen Auto" : "SCHROTTPRESSE \u2014 Karre pressen \xB7 +" + v4CrushValue(c) + " \u20AC", label: c === myCar ? "" : "Pressen", act: c === myCar ? null : v4CrushAct };
         if (SPOTS.garage && slow && Math.hypot(SPOTS.garage.x - c.x, SPOTS.garage.z - c.z) < 4.2 && v4PlainCar(c) && c !== myCar && !c.target && !(job && job.J.type === "steal")) {
           if (V4.want.includes(c.type) && !V4.wantGot[c.type]) return { text: "GARAGE 9 \u2014 Export: " + V4_NAME[c.type] + " abliefern \xB7 +" + (V4_VAL[c.type] || 150) + " \u20AC", label: "Abliefern", act: /* @__PURE__ */ __name(() => v4WantAct(c), "act") };
-          const open2 = V4.want.filter((t) => !V4.wantGot[t]).map((t) => V4_NAME[t]);
-          if (open2.length) return { text: "GARAGE 9 sucht: " + open2.join(", "), label: "", act: null };
+          const open3 = V4.want.filter((t) => !V4.wantGot[t]).map((t) => V4_NAME[t]);
+          if (open3.length) return { text: "GARAGE 9 sucht: " + open3.join(", "), label: "", act: null };
         }
         if (c.v4bomb) return { text: "Autobombe an Bord \u2014 scharf machen?", label: "Scharf", act: v4ArmBomb };
         if (c.v4fuse != null) return { text: "BOMBE TICKT \xB7 " + Math.ceil(c.v4fuse) + " s \u2014 RAUS!", label: "", act: null };
@@ -46621,8 +48002,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           return { ok: true, msg: "Gespeichert. Der Herr speichert." };
         }, "act") };
         if (SPOTS.garage && Math.hypot(SPOTS.garage.x - P.x, SPOTS.garage.z - P.z) < 4.2 && tankOwned && tankAlive()) {
-          const open2 = V4.want.filter((t) => !V4.wantGot[t]).map((t) => V4_NAME[t]);
-          if (open2.length) return { text: "GARAGE 9 \u2014 Export-Liste: " + open2.join(", "), label: "", act: null };
+          const open3 = V4.want.filter((t) => !V4.wantGot[t]).map((t) => V4_NAME[t]);
+          if (open3.length) return { text: "GARAGE 9 \u2014 Export-Liste: " + open3.join(", "), label: "", act: null };
         }
         const nf = nearFood(P.x, P.z, 3.4);
         const door = nf && nf.door;
@@ -46824,6 +48205,19 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       let sum = 0, ev = [];
       for (let k = 0; k < n; k++) for (const p of mine) {
         if (!p.v4own) v4OnBuy(p);
+        if (p.field) {
+          p.ten = true;
+          p.mood = 80;
+          p.cond = Math.max(0, p.cond - (0.8 + Math.random()));
+          const pay = Math.round(p.rent / 2 * (0.5 + 0.5 * p.cond / 100) * (0.85 + Math.random() * 0.3));
+          sum += pay;
+          p.inc = (p.inc || 0) + pay;
+          if (Math.random() < 0.03) {
+            p.cond = Math.max(0, p.cond - 12);
+            ev.push(p.name + ": Unwetter \u2014 Ernte leidet");
+          }
+          continue;
+        }
         p.cond = Math.max(0, p.cond - (1.6 + Math.random() * 1.6));
         if (Math.random() < 0.05) {
           p.cond = Math.max(0, p.cond - 14);
@@ -46854,7 +48248,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const vac = mine.filter((p) => !p.ten).length;
       if (sum > 0 || ev.length) {
         deal.setCash(deal.state().cash + sum);
-        toast((sum > 0 ? "Miete: +" + sum + " \u20AC (" + (mine.length - vac) + " vermietet" + (vac ? ", " + vac + " leer" : "") + ")" : "Keine Miete \u2014 alles leer") + (ev.length ? " \xB7 " + ev[0] + (ev.length > 1 ? " (+" + (ev.length - 1) + ")" : "") : ""), 3);
+        const nF = mine.filter((p) => p.field).length, nH = mine.length - nF;
+        toast((sum > 0 ? nF && !nH ? "Ernte: +" + sum + " \u20AC (" + nF + (nF > 1 ? " Felder" : " Feld") + ")" : (nF ? "Miete & Ernte: +" : "Miete: +") + sum + " \u20AC (" + (nH - vac) + " vermietet" + (vac ? ", " + vac + " leer" : "") + (nF ? ", " + nF + (nF > 1 ? " Felder" : " Feld") : "") + ")" : "Keine Miete \u2014 alles leer") + (ev.length ? " \xB7 " + ev[0] + (ev.length > 1 ? " (+" + (ev.length - 1) + ")" : "") : ""), 3);
         if (sum > 0) audio.kaching && audio.kaching();
         updateHoodHud();
       }
@@ -46953,7 +48348,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     function v4PropList() {
       const L = PROPS.map((p, i) => {
         const mine2 = p.owner === "mine";
-        const o = { i, name: p.name, kind: p.kind, street: p.street || "", x: p.x, z: p.z, owner: p.owner, price: p.price, rent: p.rent };
+        const o = { i, name: p.name, kind: p.kind, street: p.street || "", x: p.x, z: p.z, owner: p.owner, price: p.price, rent: p.rent, field: !!p.field, ha: p.ha || 0 };
         if (mine2) {
           const md = Math.round(p.mood);
           Object.assign(o, { fair: v4Fair(p), lvl: p.lvl, cond: Math.round(p.cond), ten: !!p.ten, mood: md, inc: p.inc | 0, mood_t: !p.ten ? "leer" : md >= 65 ? "zufrieden" : md >= 40 ? "geht so" : "unzufrieden", rep: v4RepCost(p), up: v4UpCost(p), sell: v4SellVal(p), min: Math.round(v4Fair(p) * 0.5 / 5) * 5, max: Math.round(v4Fair(p) * 2.5 / 5) * 5 });
@@ -47013,7 +48408,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       const ok = /* @__PURE__ */ __name((x, z, road, m = 0.6) => city.inEdge(x, z, 3) && nearRd(x, z) > road && !inB(x, z, m) && !inZ("water", x, z), "ok");
       const O = new Object3D();
       const COL = new Color();
-      const inst = /* @__PURE__ */ __name((geo, mat3, list, shadow = true) => {
+      const inst2 = /* @__PURE__ */ __name((geo, mat3, list, shadow = true) => {
         if (!list.length) return null;
         const m = new InstancedMesh(geo, mat3, list.length);
         list.forEach((it, i) => {
@@ -47075,8 +48470,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             }
           }
         }
-        inst(new BoxGeometry(0.12, 1, 0.12), mat2(7031339), posts);
-        inst(new BoxGeometry(1, 0.08, 0.06), mat2(9071170), rails);
+        inst2(new BoxGeometry(0.12, 1, 0.12), mat2(7031339), posts);
+        inst2(new BoxGeometry(1, 0.08, 0.06), mat2(9071170), rails);
         N.fence = posts.length;
       }
       {
@@ -47112,9 +48507,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         const bm = new MeshStandardMaterial({ color: 16777215, roughness: 0.95 });
         const all = bales.concat(sil);
-        inst(new CylinderGeometry(0.75, 0.75, 1.2, 14), bm, bales);
+        inst2(new CylinderGeometry(0.75, 0.75, 1.2, 14), bm, bales);
         const sm = new MeshStandardMaterial({ color: 16777215, roughness: 0.35, metalness: 0.05 });
-        inst(new CylinderGeometry(0.7, 0.7, 1.25, 14), sm, sil);
+        inst2(new CylinderGeometry(0.7, 0.7, 1.25, 14), sm, sil);
         for (const b of all) addDyn(b.x, b.z, 0.85, null);
         N.bales = bales.length;
         N.silage = sil.length;
@@ -47175,9 +48570,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             }
           }
         }
-        inst(new IcosahedronGeometry(1, 0), new MeshStandardMaterial({ color: 16777215, roughness: 0.95, flatShading: true }), bush);
-        inst(new DodecahedronGeometry(1, 0), new MeshStandardMaterial({ color: 16777215, roughness: 0.9, flatShading: true }), stone);
-        inst(new CircleGeometry(0.16, 6), new MeshBasicMaterial({ color: 16777215 }), flow, false);
+        inst2(new IcosahedronGeometry(1, 0), new MeshStandardMaterial({ color: 16777215, roughness: 0.95, flatShading: true }), bush);
+        inst2(new DodecahedronGeometry(1, 0), new MeshStandardMaterial({ color: 16777215, roughness: 0.9, flatShading: true }), stone);
+        inst2(new CircleGeometry(0.16, 6), new MeshBasicMaterial({ color: 16777215 }), flow, false);
         N.bush = bush.length;
         N.stone = stone.length;
         N.flower = flow.length;
@@ -47208,9 +48603,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
               const ends2 = [-0.7, 0, 0.7].map((k) => [x + Math.cos(ry) * k, z - Math.sin(ry) * k]);
               if (prev && Math.hypot(prev.x - x, prev.z - z) < 45) {
                 for (let w = 0; w < 3; w++) {
-                  const A = prev.ends[w], B = ends2[w];
-                  const mx = (A[0] + B[0]) / 2, mz = (A[1] + B[1]) / 2;
-                  wires.push(A[0], 6.9, A[1], mx, 6.2, mz, mx, 6.2, mz, B[0], 6.9, B[1]);
+                  const A2 = prev.ends[w], B = ends2[w];
+                  const mx = (A2[0] + B[0]) / 2, mz = (A2[1] + B[1]) / 2;
+                  wires.push(A2[0], 6.9, A2[1], mx, 6.2, mz, mx, 6.2, mz, B[0], 6.9, B[1]);
                 }
               }
               prev = { x, z, ends: ends2 };
@@ -47218,8 +48613,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             acc += l;
           }
         }
-        inst(new CylinderGeometry(0.11, 0.14, 7, 6), mat2(5916210), poles);
-        inst(new BoxGeometry(1.7, 0.1, 0.12), mat2(4864554), arms);
+        inst2(new CylinderGeometry(0.11, 0.14, 7, 6), mat2(5916210), poles);
+        inst2(new BoxGeometry(1.7, 0.1, 0.12), mat2(4864554), arms);
         if (wires.length) {
           const g = new BufferGeometry();
           g.setAttribute("position", new Float32BufferAttribute(wires, 3));
@@ -47242,6 +48637,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
                 break;
               }
               if (edge) continue;
+              if (B.b.pitched) {
+                let cx = 0, cz = 0;
+                for (const q of B.b.p) {
+                  cx += q[0];
+                  cz += q[1];
+                }
+                cx /= B.b.p.length;
+                cz /= B.b.p.length;
+                chim.push({ x: cx, z: cz, y: B.b.roofTop - 0.1, ry: Math.atan2(B.edges[0]?.nz || 0, B.edges[0]?.nx || 1), c: [8010282, 9062962, 5920082][R6() * 3 | 0] });
+                break;
+              }
               chim.push({ x, z, y: B.h + 0.55, ry: Math.atan2(B.edges[0]?.nz || 0, B.edges[0]?.nx || 1), c: [8010282, 9062962, 5920082][R6() * 3 | 0] });
               break;
             }
@@ -47273,18 +48679,18 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             }
           }
         }
-        inst(new BoxGeometry(0.55, 1.1, 0.55), new MeshStandardMaterial({ color: 16777215, roughness: 0.9 }), chim);
-        inst(new BoxGeometry(0.07, 1, 0.07), mat2(3815994, 0.6, 0.4), mbp);
-        inst(new BoxGeometry(0.42, 0.32, 0.3), new MeshStandardMaterial({ color: 16777215, roughness: 0.6, metalness: 0.2 }), mbb);
-        inst(new CylinderGeometry(0.17, 0.17, 2, 8), new MeshStandardMaterial({ color: 16777215, roughness: 0.95 }), logs);
+        inst2(new BoxGeometry(0.55, 1.1, 0.55), new MeshStandardMaterial({ color: 16777215, roughness: 0.9 }), chim);
+        inst2(new BoxGeometry(0.07, 1, 0.07), mat2(3815994, 0.6, 0.4), mbp);
+        inst2(new BoxGeometry(0.42, 0.32, 0.3), new MeshStandardMaterial({ color: 16777215, roughness: 0.6, metalness: 0.2 }), mbb);
+        inst2(new CylinderGeometry(0.17, 0.17, 2, 8), new MeshStandardMaterial({ color: 16777215, roughness: 0.95 }), logs);
         N.chimney = chim.length;
         N.mailbox = mbp.length;
         N.logs = logs.length;
       }
       {
-        const cv2 = document.createElement("canvas");
-        cv2.width = cv2.height = 64;
-        const g = cv2.getContext("2d");
+        const cv3 = document.createElement("canvas");
+        cv3.width = cv3.height = 64;
+        const g = cv3.getContext("2d");
         const gr = g.createRadialGradient(32, 32, 2, 32, 32, 31);
         gr.addColorStop(0, "rgba(255,255,255,0.85)");
         gr.addColorStop(0.6, "rgba(255,255,255,0.45)");
@@ -47295,7 +48701,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           g.fillStyle = "rgba(0,0,0," + (0.1 + Math.random() * 0.2) + ")";
           g.fillRect(Math.random() * 64, Math.random() * 64, 1 + Math.random() * 2, 1 + Math.random() * 2);
         }
-        const tx2 = new CanvasTexture(cv2);
+        const tx2 = new CanvasTexture(cv3);
         tx2.colorSpace = SRGBColorSpace;
         const pm = new MeshStandardMaterial({ map: tx2, transparent: true, depthWrite: false, roughness: 1, polygonOffset: true, polygonOffsetFactor: -0.6, polygonOffsetUnits: -0.6 });
         const pg = new PlaneGeometry(1, 1);
@@ -47320,7 +48726,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           const s = 5 + R6() * 17;
           pt.push({ x, z, y: 0.02, s, sx: s, sz: s * (0.6 + R6() * 0.7), sy: 1, ry: R6() * 6, c: [6969914, 10132042, 3099170, 5933626, 8022600][R6() * 5 | 0] });
         }
-        inst(pg, pm, pt, false);
+        inst2(pg, pm, pt, false);
         N.patch = pt.length;
         const oil = [];
         for (const r of city.roadsDrive) {
@@ -47338,7 +48744,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           }
         }
         const om = new MeshStandardMaterial({ map: tx2, transparent: true, depthWrite: false, roughness: 0.35, metalness: 0.2, opacity: 0.55, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 });
-        inst(pg, om, oil, false);
+        inst2(pg, om, oil, false);
         N.oil = oil.length;
         if (!rural && goodPaths.length) {
           const lit = [];
@@ -47351,7 +48757,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             const x = a[0] + (b[0] - a[0]) * u + (R6() - 0.5) * 1.4, z = a[1] + (b[1] - a[1]) * u + (R6() - 0.5) * 1.4;
             lit.push({ x, z, y: 0.065, ry: R6() * 6, sx: 0.18 + R6() * 0.2, sy: 0.02, sz: 0.14 + R6() * 0.12, c: [15921382, 15261896, 4886736, 13647920, 14211280, 6982218][R6() * 6 | 0] });
           }
-          inst(new BoxGeometry(1, 1, 1), new MeshStandardMaterial({ color: 16777215, roughness: 0.8 }), lit, false);
+          inst2(new BoxGeometry(1, 1, 1), new MeshStandardMaterial({ color: 16777215, roughness: 0.8 }), lit, false);
           N.litter = lit.length;
         }
       }
@@ -47399,12 +48805,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     function v4BirdStep(dt) {
       const B = V4.birds;
       if (!B) return;
-      const M2 = V4.birdM;
-      const O = M2.O;
+      const M3 = V4.birdM;
+      const O = M3.O;
       const t = performance.now() / 1e3;
       const px2 = P.car ? P.car.x : P.x, pz2 = P.car ? P.car.z : P.z;
       const fast = P.car ? Math.abs(P.car.speed) > 2 : Math.hypot(P.vx || 0, P.vz || 0) > 2.5;
-      for (const f of M2.flocks) {
+      for (const f of M3.flocks) {
         const d = Math.hypot(f.x - px2, f.z - pz2);
         if (!f.up && (d < (P.car ? 9 : fast ? 6 : 3.2) || P.aimT > 0.5 && d < 22)) {
           f.up = true;
@@ -47500,21 +48906,21 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         O.rotation.set(0, b.ry, 0);
         O.scale.set(1, 1, 1);
         O.updateMatrix();
-        M2.body.setMatrixAt(i, O.matrix);
+        M3.body.setMatrixAt(i, O.matrix);
         O.position.set(b.x + Math.sin(b.ry) * (peck ? 0.2 : 0.17), b.y + (peck ? 0.12 : 0.26) + hopY, b.z + Math.cos(b.ry) * (peck ? 0.2 : 0.17));
         O.updateMatrix();
-        M2.head.setMatrixAt(i, O.matrix);
+        M3.head.setMatrixAt(i, O.matrix);
         const fs = fl ? 1 : 1e-3;
         O.position.set(b.x, b.y + 0.2, b.z);
         O.rotation.set(0, b.ry, fl ? Math.sin(t * 28 + i) * 0.6 : 0);
         O.scale.set(fs, 1, fs);
         O.updateMatrix();
-        M2.wing.setMatrixAt(i, O.matrix);
+        M3.wing.setMatrixAt(i, O.matrix);
         i++;
       }
-      M2.body.instanceMatrix.needsUpdate = true;
-      M2.head.instanceMatrix.needsUpdate = true;
-      M2.wing.instanceMatrix.needsUpdate = true;
+      M3.body.instanceMatrix.needsUpdate = true;
+      M3.head.instanceMatrix.needsUpdate = true;
+      M3.wing.instanceMatrix.needsUpdate = true;
     }
     __name(v4BirdStep, "v4BirdStep");
     function v3Seed() {
@@ -47529,6 +48935,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         seedRFields();
         seedCult();
         seedProps();
+        try {
+          v5SeedFields();
+        } catch (e) {
+          console.warn("fields", e);
+        }
         seedZoneJobs();
       } catch (e) {
         console.error("v3 seed", e);
@@ -47603,6 +49014,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }, "act") };
         for (const p of PROPS) {
           if (Math.hypot(p.x - P.x, p.z - P.z) > 2.6) continue;
+          if (p.field && p.owner === "free") return { text: p.kind + " (" + p.ha + " ha) kaufen \xB7 " + p.price + " \u20AC (Ertrag " + p.rent + " \u20AC/Tag)", label: "Kaufen", act: /* @__PURE__ */ __name(() => buyProp(p), "act") };
+          if (p.field && p.owner === "mine") return { text: (p.kind === "Weide" ? "Deine " : "Dein ") + p.kind + " \xB7 Ertrag " + p.rent + " \u20AC/Tag \xB7 Zustand " + Math.round(p.cond) + " %", label: "Verwalten", act: /* @__PURE__ */ __name(() => {
+            if (opts.onProps) opts.onProps(p.i);
+            return { ok: true };
+          }, "act") };
           if (p.owner === "free") return { text: p.kind + " kaufen \xB7 " + p.price + " \u20AC (Miete " + p.rent + " \u20AC/Tag)", label: "Kaufen", act: /* @__PURE__ */ __name(() => buyProp(p), "act") };
           if (p.owner === "kralle" && !(clock < KR.downUntil)) return { text: "Kralle-Haus \xFCbernehmen \xB7 " + Math.round(p.price * 0.6 / 50) * 50 + " \u20AC + \xC4rger", label: "\xDCbernehmen", act: /* @__PURE__ */ __name(() => {
             takeoverProp(p);
@@ -47622,6 +49038,93 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       return null;
     }
     __name(v3Prompt, "v3Prompt");
+    function v5SeedFields() {
+      const R2 = rng(9090 + PROPS.length);
+      const rural = ZONE.mode !== "city" || !!city.rural;
+      const N = MOBILE ? 5 : 7;
+      const C = [];
+      for (const a of D.areas || []) {
+        const isF = a.t === "field";
+        if (!isF && !(rural && a.t === "grass" && !a.park)) continue;
+        const A2 = Math.abs(polyArea2(a.p));
+        if (A2 < (isF ? 1500 : 5e3) || A2 > 4e5) continue;
+        let cx = 0, cz = 0;
+        for (const q of a.p) {
+          cx += q[0];
+          cz += q[1];
+        }
+        cx /= a.p.length;
+        cz /= a.p.length;
+        if (!city.inEdge(cx, cz, 30)) continue;
+        if (RFIELDS.some((f) => Math.hypot(f.x - cx, f.z - cz) < 45)) continue;
+        let best = null, bd = 14;
+        for (const q of a.p) {
+          if (!city.inEdge(q[0], q[1], 10)) continue;
+          const n = city.nearRoad(q[0], q[1]);
+          if (n && n.d < bd) {
+            bd = n.d;
+            best = q;
+          }
+        }
+        if (!best) continue;
+        const dx = cx - best[0], dz = cz - best[1], dl = Math.hypot(dx, dz) || 1;
+        const ins = Math.min(9, dl * 0.5);
+        const sx = best[0] + dx / dl * ins, sz = best[1] + dz / dl * ins;
+        if (city.nearRoad(sx, sz) && city.nearRoad(sx, sz).d < 2.5) continue;
+        if (!pip2(sx, sz, a.p) || insideAny(sx, sz)) continue;
+        C.push({ a, A: A2, x: sx, z: sz, cx, cz, isF });
+      }
+      for (let i = C.length - 1; i > 0; i--) {
+        const j = R2() * (i + 1) | 0;
+        [C[i], C[j]] = [C[j], C[i]];
+      }
+      const pick = [];
+      for (const c of C) {
+        if (pick.length >= N) break;
+        if (pick.some((o) => Math.hypot(o.x - c.x, o.z - c.z) < 70)) continue;
+        if (PROPS.some((o) => Math.hypot(o.x - c.x, o.z - c.z) < 25)) continue;
+        pick.push(c);
+      }
+      pick.forEach((c, k) => {
+        const ha = c.A / 1e4;
+        const kind = c.isF ? ["Weizenacker", "R\xFCbenacker", "Maisfeld", "Rapsfeld"][(c.a.crop | 0) % 4] : "Weide";
+        const rent = Math.max(25, Math.min(240, Math.round((c.isF ? 70 : 45) * Math.sqrt(ha) * (0.85 + R2() * 0.3) / 5) * 5));
+        const price = Math.round(rent * 10 / 50) * 50;
+        const p = { i: PROPS.length, x: c.x, z: c.z, B: null, e: null, kind, price, rent, owner: "free", name: (c.isF ? "Feld " : "Weide ") + (k + 1), street: streetName(c.x, c.z), field: true, ha: Math.round(ha * 10) / 10, poly: c.a.p };
+        const g = new Group();
+        const postM = new MeshStandardMaterial({ color: 6965802, roughness: 0.9 });
+        for (const ox of [-1.7, 1.7]) {
+          const po = new Mesh(dynGeo, postM);
+          po.scale.set(0.16, 2.4, 0.16);
+          po.position.set(ox, 1.2, 0);
+          po.castShadow = true;
+          g.add(po);
+        }
+        const tx2 = signTex(propSignText(p), { fg: propCol.free, sub: propSub(p) });
+        const bm = new MeshBasicMaterial({ map: tx2, transparent: true, side: DoubleSide, toneMapped: false });
+        const board = new Mesh(new PlaneGeometry(4.4, 1.8), bm);
+        board.position.set(0, 2.6, 0);
+        board.rotation.x = -0.55;
+        g.add(board);
+        g.position.set(c.x, 0, c.z);
+        scene.add(g);
+        p.sign = board;
+        const r = new Mesh(ringGeo, new MeshBasicMaterial({ color: propCol.free, transparent: true, opacity: 0.55, depthWrite: false }));
+        r.rotation.x = -Math.PI / 2;
+        r.scale.setScalar(1.9);
+        r.position.set(c.x, 0.07, c.z);
+        scene.add(r);
+        p.ring = r;
+        const pts = c.a.p.map((q) => new Vector3(q[0], 0.12, q[1]));
+        const ln = new LineLoop(new BufferGeometry().setFromPoints(pts), new LineDashedMaterial({ color: propCol.free, dashSize: 2.2, gapSize: 1.6, transparent: true, opacity: 0.75, toneMapped: false }));
+        ln.computeLineDistances();
+        scene.add(ln);
+        p.edge = ln;
+        PROPS.push(p);
+      });
+      V5.fields = pick.length;
+    }
+    __name(v5SeedFields, "v5SeedFields");
     function v3Markers(mk) {
       v4Markers(mk);
       for (const c of VEHS) {
@@ -47833,6 +49336,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     v3Seed();
     function update(dt) {
       tAcc += dt;
+      v5Tick(dt);
       for (const c of cars) if (c.crushCool > 0) c.crushCool -= dt;
       if (city.tick) city.tick(tAcc);
       playerStep(dt);
@@ -47906,14 +49410,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       if (toastT > 0) {
         toastT -= dt;
         if (toastT <= 0) {
-          const el = document.getElementById("toast");
-          if (el) el.classList.remove("on");
+          const el2 = document.getElementById("toast");
+          if (el2) el2.classList.remove("on");
         }
       }
       if (hurtFlash > 0) {
         hurtFlash = Math.max(0, hurtFlash - dt);
-        const el = document.getElementById("hurt");
-        if (el) el.style.opacity = (hurtFlash * 1.4).toFixed(2);
+        const el2 = document.getElementById("hurt");
+        if (el2) el2.style.opacity = (hurtFlash * 1.4).toFixed(2);
       }
       for (const p of peds) {
         const d = Math.hypot(p.x - P.x, p.z - P.z);
@@ -47999,16 +49503,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           updateHoodHud();
         }
       }
-      let close = false;
+      let close2 = false;
       if (wanted > 0 && !hiding) {
         for (const c of cars) {
           if (c.police && Math.hypot(c.x - px2, c.z - pz2) < 3.1) {
-            close = true;
+            close2 = true;
             break;
           }
         }
       }
-      if (close && !P.train && !P.gond && !(P.car && (P.car.tank || P.car.hostages || (P.car.y || 0) > 2 || P.car.shedHide))) bustT += dt;
+      if (close2 && !P.train && !P.gond && !(P.car && (P.car.tank || P.car.hostages || (P.car.y || 0) > 2 || P.car.shedHide))) bustT += dt;
       else bustT = Math.max(0, bustT - dt * 0.85);
       if (bustT > 2.15 * (1 + 0.07 * (stats.ner - 3)) * (boostOn("gum") ? 1.3 : 1)) {
         bustT = 0;
@@ -48036,14 +49540,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       camStep(dt);
     }
     __name(update, "update");
-    function render() {
+    function render2() {
       const tv = tripStep();
       trip.enabled = tv;
       bloom.enabled = bloomOn && cam.h < 90;
       if (bloom.enabled || tv) composer.render();
       else renderer.render(scene, camera);
     }
-    __name(render, "render");
+    __name(render2, "render");
     mark("rest");
     camStep(0, true);
     initStreetLife();
@@ -48057,7 +49561,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         update(dt);
         hud();
       }
-      render();
+      render2();
       requestAnimationFrame(frame);
     }
     __name(frame, "frame");
@@ -48074,6 +49578,321 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       return groundAt(cx, cy) || { x: cam.x, z: cam.z };
     }
     __name(screenToGround, "screenToGround");
+    let V5T = null;
+    function v5Free(x, z) {
+      tmp2.x = x;
+      tmp2.z = z;
+      ejectFromBuildings(tmp2, 0.6);
+      city.grid.resolve(tmp2, 0.4);
+      const EG = city.edge;
+      tmp2.x = Math.max(EG.minx + 2, Math.min(EG.maxx - 2, tmp2.x));
+      tmp2.z = Math.max(EG.minz + 2, Math.min(EG.maxz - 2, tmp2.z));
+      return { x: tmp2.x, z: tmp2.z };
+    }
+    __name(v5Free, "v5Free");
+    function v5Stops() {
+      const L = [];
+      for (const s of D.busStops || []) L.push({ x: s.p[0], z: s.p[1], n: s.n || "Haltestelle", k: "bus" });
+      for (const s of D.stops || []) if (s.k !== "entrance" || !s.syn) L.push({ x: s.p[0], z: s.p[1], n: s.n || "Bahnhof", k: s.m === "u" || s.ug ? "u" : "bahn" });
+      return L.filter((s) => city.inEdge(s.x, s.z, 6));
+    }
+    __name(v5Stops, "v5Stops");
+    function v5NearStop(x, z, max) {
+      let b = null, bd = max;
+      for (const s of v5Stops()) {
+        const d = Math.hypot(s.x - x, s.z - z);
+        if (d < bd) {
+          bd = d;
+          b = s;
+        }
+      }
+      return b;
+    }
+    __name(v5NearStop, "v5NearStop");
+    function v5TaxiCost(d) {
+      return Math.round(6 + d * 0.03);
+    }
+    __name(v5TaxiCost, "v5TaxiCost");
+    function v5Walk(pts, sp) {
+      V5T.walk = pts;
+      V5T.wi = 0;
+      V5T.sp = sp;
+      V5T.stuck = 0;
+      V5T.best = 1e9;
+      walkTarget = null;
+    }
+    __name(v5Walk, "v5Walk");
+    function v5WalkPts(x, z) {
+      const d = Math.hypot(x - P.x, z - P.z);
+      const out = [];
+      if (d > 24) {
+        const p = findPath(P.x, P.z, x, z, true);
+        if (p && p.length) {
+          let i0 = 0;
+          if (p.length > 1 && Math.hypot(p[1].x - P.x, p[1].z - P.z) < Math.hypot(p[1].x - p[0].x, p[1].z - p[0].z)) i0 = 1;
+          for (let i = i0; i < p.length; i++) out.push({ x: p[i].x, z: p[i].z });
+        }
+      }
+      out.push({ x, z });
+      return out;
+    }
+    __name(v5WalkPts, "v5WalkPts");
+    function v5Mark(x, z) {
+      apRing.position.set(x, 0.12, z);
+      apRing.visible = true;
+    }
+    __name(v5Mark, "v5Mark");
+    function v5Cancel(msg) {
+      if (!V5T) return;
+      V5T = null;
+      walkTarget = null;
+      if (!AP) apRing.visible = false;
+      if (msg) toast(msg, 1.1);
+    }
+    __name(v5Cancel, "v5Cancel");
+    function v5Fade(fn) {
+      const el2 = document.getElementById("v5fade");
+      if (el2) el2.classList.add("on");
+      setTimeout(() => {
+        try {
+          fn();
+        } finally {
+          setTimeout(() => {
+            if (el2) el2.classList.remove("on");
+          }, 350);
+        }
+      }, 480);
+    }
+    __name(v5Fade, "v5Fade");
+    function v5Teleport(x, z) {
+      const q = v5Free(x, z);
+      P.x = q.x;
+      P.z = q.z;
+      P.vx = P.vz = 0;
+      P.swim = false;
+      player.position.set(P.x, 0, P.z);
+      camStep(0, true);
+      fillAround(P.x, P.z);
+    }
+    __name(v5Teleport, "v5Teleport");
+    function v5Travel(x, z, how = "auto") {
+      if (P.train || P.gond) return { ok: false, msg: "Erst aussteigen." };
+      if (document.body.classList.contains("onTitle")) return { ok: false };
+      const T2 = v5Free(x, z);
+      x = T2.x;
+      z = T2.z;
+      const d = Math.hypot(x - (P.car ? P.car.x : P.x), z - (P.car ? P.car.z : P.z));
+      if (P.car) {
+        V5T = null;
+        const r = driveTo(x, z);
+        if (r && r.ok) V5T = { mode: "drive", x, z };
+        return r;
+      }
+      if (d < 2) return { ok: false };
+      V5T = { mode: "walk", x, z, how };
+      const car = myCar && !myCar.wrecked && !myCar.gone ? myCar : null;
+      const dCar = car ? Math.hypot(car.x - P.x, car.z - P.z) : 1e9;
+      if ((how === "auto" || how === "car") && car && dCar < 70 && d > 70 && city.nearRoad(x, z) && city.nearRoad(x, z).d < 30) {
+        V5T.mode = "tocar";
+        v5Walk(v5WalkPts(car.x, car.z), dCar > 25 ? 6.6 : 4.6);
+        v5Mark(car.x, car.z);
+        toast("Zum Auto \u2014 dann geht\u2019s los.", 1.6);
+        return { ok: true, mode: "car" };
+      }
+      if (how === "taxi" || how === "auto" && d > 420 && !(dCar < 70)) {
+        const cost = v5TaxiCost(d);
+        if (wanted > 0) {
+          toast("Mit Fahndung h\xE4lt kein Taxi an.", 1.6);
+          if (how === "taxi") {
+            V5T = null;
+            return { ok: false };
+          }
+        } else if (deal.state().cash < cost) {
+          toast("Taxi kostet " + cost + " \u20AC \u2014 zu wenig Geld. Ich laufe.", 1.8);
+          if (how === "taxi") {
+            V5T = null;
+            return { ok: false };
+          }
+        } else {
+          V5T.mode = "taxi";
+          V5T.t = 1.4;
+          V5T.cost = cost;
+          toast("Taxi bestellt (" + cost + " \u20AC) \u2014 kommt gleich \u2026", 1.6);
+          audio.pickup && audio.pickup();
+          return { ok: true, mode: "taxi", cost };
+        }
+      }
+      if (how === "bus" || how === "auto" && d > 300) {
+        const a = v5NearStop(P.x, P.z, how === "bus" ? 320 : 170), b = v5NearStop(x, z, how === "bus" ? 400 : 220);
+        if (a && b && a !== b && Math.hypot(a.x - b.x, a.z - b.z) > 120) {
+          V5T.mode = "tostop";
+          V5T.a = a;
+          V5T.b = b;
+          v5Walk(v5WalkPts(a.x, a.z), 6.4);
+          v5Mark(a.x, a.z);
+          toast((a.k === "bus" ? "Zur Haltestelle " : "Zum Bahnhof ") + (a.n || "") + " \u2014 Ticket 3 \u20AC.", 1.8);
+          return { ok: true, mode: "bus" };
+        }
+        if (how === "bus") {
+          toast("Hier f\xE4hrt nichts in die Richtung. Ich laufe.", 1.6);
+        }
+      }
+      v5Walk(v5WalkPts(x, z), d > 60 ? 6.6 : 4.6);
+      v5Mark(x, z);
+      return { ok: true, mode: "walk" };
+    }
+    __name(v5Travel, "v5Travel");
+    function v5Tick(dt) {
+      if (!V5T) return;
+      const T2 = V5T;
+      if (T2.mode === "drive") {
+        if (!P.car) {
+          V5T = null;
+          return;
+        }
+        if (!AP) {
+          V5T = null;
+        }
+        return;
+      }
+      if (T2.mode === "taxi") {
+        T2.t -= dt;
+        if (T2.t <= 0) {
+          const tx2 = T2.x, tz = T2.z, cost = T2.cost;
+          V5T = null;
+          v5Fade(() => {
+            deal.setCash(deal.state().cash - cost);
+            v5Teleport(tx2, tz);
+            clock += DAY_LEN * 0.02;
+            audio.kaching && audio.kaching();
+            toast("Taxi: angekommen. \u2212" + cost + " \u20AC", 1.8);
+            updateHoodHud();
+          });
+        }
+        return;
+      }
+      if (T2.walk) {
+        if (!walkTarget) {
+          const q = T2.walk[T2.wi];
+          if (!q) {
+            T2.walk = null;
+          } else walkTarget = { x: q.x, z: q.z, sp: T2.sp };
+        }
+        if (walkTarget) {
+          const dd = Math.hypot(walkTarget.x - P.x, walkTarget.z - P.z);
+          if (dd < 1.6 && T2.wi < T2.walk.length - 1) {
+            T2.wi++;
+            walkTarget = null;
+            T2.best = 1e9;
+            T2.stuck = 0;
+          } else {
+            if (dd < T2.best - 0.3) {
+              T2.best = dd;
+              T2.stuck = 0;
+            } else {
+              T2.stuck += dt;
+              if (T2.stuck > 2.2) {
+                T2.stuck = 0;
+                T2.best = 1e9;
+                if (T2.wi < T2.walk.length - 1) {
+                  T2.wi++;
+                  walkTarget = null;
+                } else {
+                  v5Cancel("Da komme ich nicht hin.");
+                  return;
+                }
+              }
+            }
+          }
+        }
+      }
+      const done = !T2.walk || T2.wi >= T2.walk.length - 1 && !walkTarget;
+      if (T2.mode === "tocar") {
+        const c = myCar;
+        if (!c || c.wrecked) {
+          v5Cancel();
+          return;
+        }
+        if (Math.hypot(c.x - P.x, c.z - P.z) < 2.6 || done) {
+          if (Math.hypot(c.x - P.x, c.z - P.z) > 4) {
+            v5Cancel("Ans Auto komme ich nicht ran.");
+            return;
+          }
+          walkTarget = null;
+          const tx2 = T2.x, tz = T2.z;
+          V5T = null;
+          toggleCar();
+          if (P.car) {
+            state.inCar = true;
+            if (opts.onState) opts.onState(state);
+            hud();
+            setTimeout(() => {
+              if (P.car) {
+                const r = driveTo(tx2, tz);
+                if (r && r.ok) V5T = { mode: "drive", x: tx2, z: tz };
+              }
+            }, 350);
+          }
+        }
+        return;
+      }
+      if (T2.mode === "tostop") {
+        if (done || Math.hypot(T2.a.x - P.x, T2.a.z - P.z) < 3) {
+          if (deal.state().cash < 3) {
+            v5Cancel("Kein Geld f\xFCrs Ticket (3 \u20AC).");
+            return;
+          }
+          const b = T2.b, tx2 = T2.x, tz = T2.z;
+          V5T = null;
+          walkTarget = null;
+          toast(T2.a.k === "bus" ? "Bus kommt \u2014 einsteigen \u2026" : "Zug f\xE4hrt ein \u2014 einsteigen \u2026", 1.4);
+          v5Fade(() => {
+            deal.setCash(deal.state().cash - 3);
+            v5Teleport(b.x, b.z);
+            clock += DAY_LEN * 0.03;
+            if (heat > 0) heat = Math.max(0, heat - 0.6);
+            audio.bell && audio.bell();
+            toast((T2.a.k === "bus" ? "Bus" : "Bahn") + ": " + (b.n || "Haltestelle") + " (\u22123 \u20AC)", 1.8);
+            updateHoodHud();
+            V5T = { mode: "walk", x: tx2, z: tz };
+            v5Walk(v5WalkPts(tx2, tz), 4.8);
+            v5Mark(tx2, tz);
+          });
+        }
+        return;
+      }
+      if (T2.mode === "walk" && done) {
+        V5T = null;
+        apRing.visible = false;
+        toast("Angekommen.", 1);
+      }
+    }
+    __name(v5Tick, "v5Tick");
+    function v5Dests() {
+      const d = mapData();
+      const L = [];
+      const seen = /* @__PURE__ */ new Set();
+      const add = /* @__PURE__ */ __name((x, z, label, k) => {
+        const key = label + "|" + Math.round(x / 20) + "|" + Math.round(z / 20);
+        if (seen.has(key)) return;
+        seen.add(key);
+        L.push({ x, z, label, k, d: Math.round(Math.hypot(x - P.x, z - P.z)) });
+      }, "add");
+      if (hub) add(hub.door.x, hub.door.z, "Imbiss (Zuhause)", "home");
+      const tg = jobTarget();
+      if (tg && job) add(tg.x, tg.z, "Auftrag: " + job.title, "job");
+      for (const m of d.markers) {
+        if (m.k === "giver") add(m.x, m.z, m.label + " (Auftr\xE4ge)", "giver");
+        else if (m.k === "shop") add(m.x, m.z, m.label, "shop");
+        else if (m.k === "ubahn") add(m.x, m.z, "U-Bahn " + m.label, "ubahn");
+        else if (["bank", "kiosk", "garage", "zack"].includes(m.k)) add(m.x, m.z, m.label, m.k);
+      }
+      for (const p of PROPS) if (p.owner === "mine") add(p.x, p.z, (p.field ? "Feld " : "Haus ") + p.name, "prop");
+      if (myCar && !myCar.wrecked && !P.car) add(myCar.x, myCar.z, "Mein Auto", "car");
+      L.sort((a, b) => a.d - b.d);
+      return L.slice(0, 40).map((q) => ({ ...q, taxi: v5TaxiCost(q.d) }));
+    }
+    __name(v5Dests, "v5Dests");
     window.hood = {
       v4: V4API,
       v3: V3API,
@@ -48141,6 +49960,41 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const gnd = screenToGround(cx, cy);
         walkTarget = { x: gnd.x, z: gnd.z };
       }, "tapWalk"),
+      isWater: /* @__PURE__ */ __name((x, z) => isWater(x, z), "isWater"),
+      waterRaw: /* @__PURE__ */ __name((x, z) => waterRaw(x, z), "waterRaw"),
+      msgLog: /* @__PURE__ */ __name(() => MSGLOG.slice(), "msgLog"),
+      msgUnread: /* @__PURE__ */ __name(() => msgUnread, "msgUnread"),
+      msgRead: /* @__PURE__ */ __name(() => {
+        msgUnread = 0;
+      }, "msgRead"),
+      towCar: /* @__PURE__ */ __name(() => {
+        const c = myCar;
+        if (!c || c.wrecked) return { ok: false, msg: "Kein Auto zum Abschleppen." };
+        if (P.car) return { ok: false, msg: "Du sitzt schon im Auto." };
+        if (deal.state().cash < 25) return { ok: false, msg: "Pannendienst kostet 25 \u20AC." };
+        const sp = v4RoadSpot(P, 6, 40);
+        if (!sp) return { ok: false, msg: "Hier kommt der Abschlepper nicht hin." };
+        deal.setCash(deal.state().cash - 25);
+        c.x = sp.x;
+        c.z = sp.z;
+        c.rot = sp.rot;
+        c.speed = 0;
+        c.ai = false;
+        c.route = null;
+        c.g.position.set(sp.x, 0, sp.z);
+        c.g.rotation.y = sp.rot;
+        updateHoodHud();
+        return { ok: true, msg: "Pannendienst: Dein Auto steht um die Ecke. \u221225 \u20AC" };
+      }, "towCar"),
+      travelTap: /* @__PURE__ */ __name((cx, cy, how) => {
+        const g = groundAt(cx, cy);
+        if (!g) return { ok: false };
+        return v5Travel(g.x, g.z, how);
+      }, "travelTap"),
+      travelTo: /* @__PURE__ */ __name((x, z, how) => v5Travel(x, z, how), "travelTo"),
+      travelDests: /* @__PURE__ */ __name(() => v5Dests(), "travelDests"),
+      travelState: /* @__PURE__ */ __name(() => V5T ? { mode: V5T.mode, x: V5T.x, z: V5T.z } : null, "travelState"),
+      travelCancel: /* @__PURE__ */ __name(() => v5Cancel(), "travelCancel"),
       setMute: /* @__PURE__ */ __name((m) => {
         audio.setMute(m);
         radio.setMute(m);
@@ -48365,7 +50219,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       hidePlayer(v) {
         player.visible = !v;
       },
-      render,
+      render: render2,
       drawCalls() {
         renderer.info.autoReset = false;
         renderer.info.reset();
@@ -48478,6 +50332,844 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
     }
   });
 
+  // src/phone.js
+  function hsh2(s) {
+    let h = 2166136261;
+    for (const c of String(s)) {
+      h ^= c.charCodeAt(0);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function rnd(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a = a + 1831565813 >>> 0;
+      let t = a;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function wallpaper() {
+    const W = 540, H = 1170;
+    const c = document.createElement("canvas");
+    c.width = W;
+    c.height = H;
+    const g = c.getContext("2d");
+    const R = rnd(77);
+    let gr = g.createLinearGradient(0, 0, 0, H * 0.62);
+    gr.addColorStop(0, "#1b2a5a");
+    gr.addColorStop(0.38, "#6a4b8c");
+    gr.addColorStop(0.7, "#f08a5d");
+    gr.addColorStop(1, "#ffcf7a");
+    g.fillStyle = gr;
+    g.fillRect(0, 0, W, H);
+    const sx = W * 0.62, sy = H * 0.56;
+    gr = g.createRadialGradient(sx, sy, 0, sx, sy, W * 0.7);
+    gr.addColorStop(0, "rgba(255,240,190,1)");
+    gr.addColorStop(0.08, "rgba(255,214,140,.9)");
+    gr.addColorStop(0.35, "rgba(255,150,90,.25)");
+    gr.addColorStop(1, "rgba(255,120,80,0)");
+    g.fillStyle = gr;
+    g.fillRect(0, 0, W, H);
+    for (let i = 0; i < 26; i++) {
+      const y = H * (0.12 + R() * 0.4), x2 = R() * W, w = 80 + R() * 220, h = 8 + R() * 22;
+      g.fillStyle = `rgba(${255},${170 + R() * 60 | 0},${150 + R() * 50 | 0},${0.12 + R() * 0.2})`;
+      g.beginPath();
+      g.ellipse(x2, y, w, h, 0, 0, 7);
+      g.fill();
+    }
+    const base = H * 0.63;
+    g.fillStyle = "#1a1424";
+    g.beginPath();
+    g.moveTo(0, base);
+    let x = 0;
+    while (x < W) {
+      const w = 14 + R() * 34, h = 20 + R() * 90;
+      g.lineTo(x, base - h);
+      g.lineTo(x + w, base - h);
+      x += w;
+    }
+    g.lineTo(W, base);
+    g.lineTo(W, H);
+    g.lineTo(0, H);
+    g.fill();
+    g.strokeStyle = "#1a1424";
+    g.lineWidth = 5;
+    const fx = W * 0.2;
+    g.beginPath();
+    g.moveTo(fx - 30, base - 80);
+    g.lineTo(fx, base - 230);
+    g.lineTo(fx + 30, base - 80);
+    g.moveTo(fx, base - 230);
+    g.lineTo(fx + 50, base - 120);
+    g.stroke();
+    g.fillStyle = "#1a1424";
+    g.beginPath();
+    g.arc(fx, base - 222, 16, 0, 7);
+    g.fill();
+    g.fillRect(W * 0.78, base - 200, 22, 200);
+    g.beginPath();
+    g.moveTo(W * 0.78 - 4, base - 200);
+    g.lineTo(W * 0.78 + 11, base - 270);
+    g.lineTo(W * 0.78 + 26, base - 200);
+    g.fill();
+    g.fillRect(W * 0.46, base - 300, 8, 300);
+    g.beginPath();
+    g.ellipse(W * 0.46 + 4, base - 250, 18, 10, 0, 0, 7);
+    g.fill();
+    gr = g.createLinearGradient(0, base, 0, H);
+    gr.addColorStop(0, "#3a2a44");
+    gr.addColorStop(1, "#0e0d18");
+    g.fillStyle = gr;
+    g.fillRect(0, base + 30, W, H);
+    for (let i = 0; i < 90; i++) {
+      const y = base + 34 + R() * (H - base - 40), w = 10 + R() * 60;
+      g.fillStyle = `rgba(255,${180 + R() * 60 | 0},120,${0.05 + 0.25 * (1 - (y - base) / (H - base))})`;
+      g.fillRect(sx - w / 2 + (R() - 0.5) * 140, y, w, 2);
+    }
+    g.fillStyle = "#120e1c";
+    g.fillRect(0, base + 18, W, 14);
+    return c.toDataURL("image/jpeg", 0.82);
+  }
+  function weather() {
+    const city = A.cityName() || "Hood";
+    const d0 = Math.floor(Date.now() / 864e5);
+    const R = rnd(hsh2(city) + d0);
+    const g = A.game();
+    const t = g && g.clockInfo ? g.clockInfo() : null;
+    const MT = [2, 3, 6, 10, 14, 17, 19, 19, 15, 11, 6, 3];
+    const base = MT[(/* @__PURE__ */ new Date()).getMonth()] - 3 + R() * 5;
+    const days = [];
+    const IC2 = ["\u2600\uFE0F", "\u{1F324}\uFE0F", "\u26C5", "\u{1F325}\uFE0F", "\u{1F327}\uFE0F", "\u{1F326}\uFE0F", "\u26C8\uFE0F"];
+    const NM = ["Sonnig", "Heiter", "Wolkig", "Bedeckt", "Regen", "Schauer", "Gewitter"];
+    const cold = base < 3;
+    if (cold) {
+      IC2[4] = "\u{1F328}\uFE0F";
+      NM[4] = "Schnee";
+      IC2[6] = "\u{1F327}\uFE0F";
+      NM[6] = "Schneeregen";
+    }
+    for (let i = 0; i < 5; i++) {
+      const k = Math.floor(R() * 7);
+      days.push({ k, hi: Math.round(base + R() * 6 + (k < 2 ? 3 : 0)), lo: Math.round(base - 3 - R() * 4) });
+    }
+    const hour = t && t.hour != null ? (t.hour % 24 + 24) % 24 : (/* @__PURE__ */ new Date()).getHours();
+    const night = hour < 6 || hour >= 21;
+    const cur = days[0];
+    const now2 = Math.round(cur.lo + (cur.hi - cur.lo) * Math.max(0, Math.sin((hour - 6) / 16 * Math.PI)));
+    const WD = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
+    const wd = (/* @__PURE__ */ new Date()).getDay();
+    return { now: now2, ic: night && cur.k < 3 ? "\u{1F319}" : IC2[cur.k], nm: NM[cur.k], hi: cur.hi, lo: cur.lo, city, fc: days.slice(1, 5).map((d, i) => ({ d: WD[(wd + i + 1) % 7], ic: IC2[d.k], hi: d.hi, lo: d.lo })) };
+  }
+  function clockStr() {
+    const g = A.game();
+    try {
+      const c = g && g.clockInfo && g.clockInfo();
+      if (c && c.text) return c.text;
+    } catch (e) {
+    }
+    const d = /* @__PURE__ */ new Date();
+    return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+  }
+  function statusBar() {
+    return `<span>${clockStr()}</span><span class="r">${IC.sig}${IC.wifi}<span class="phBat">${Math.round((bat.level || 0.8) * 100)}%<i><u style="width:${Math.max(8, Math.round((bat.level || 0.8) * 100))}%"></u></i></span></span>`;
+  }
+  function appIcon(id, small) {
+    const a = APPS[id];
+    if (!a) return "";
+    return `<button type="button" class="phApp" data-app="${id}"><span class="ico" style="background:${a[2]}">${a[1]}${badge(id)}</span><span class="lb">${esc(a[0])}</span></button>`;
+  }
+  function badge(id) {
+    const g = A.game();
+    if (!g) return "";
+    if (id === "jobs" && g.getJob && g.getJob()) return '<span class="badge">1</span>';
+    if (id === "msgs") {
+      const n = A.unread();
+      return n ? `<span class="badge">${n > 9 ? "9+" : n}</span>` : "";
+    }
+    if (id === "wanted" && g.getWanted && g.getWanted() > 0) return `<span class="badge">${g.getWanted()}</span>`;
+    return "";
+  }
+  function folderIcon(f, i) {
+    const n = f.apps.length;
+    return `<button type="button" class="phApp phFold${n <= 4 ? " f4" : ""}" data-fold="${i}"><span class="ico">${f.apps.slice(0, 9).map((a) => `<i style="background:${APPS[a][2]}">${APPS[a][1]}</i>`).join("")}</span><span class="lb">${esc(f.f)}</span></button>`;
+  }
+  function renderHome() {
+    const w = weather();
+    const g = A.game();
+    const st = g && g.radio ? g.radio.getState() : { name: "Radio", on: false };
+    const goal = 6e3;
+    const pct = Math.min(1, steps / goal);
+    $("phHome").innerHTML = `
+ <div id="phWeather" class="phW" data-app="weatherApp"><div class="top"><div><div class="tmp">${w.now}\xB0</div><div class="pl">\u{1F4CD} ${esc(w.city)}</div><div class="sub">${w.nm} \xB7 H:${w.hi}\xB0 T:${w.lo}\xB0</div></div><div class="ic">${w.ic}</div></div>
+  <div class="fc">${w.fc.map((d) => `<div><span>${d.d}</span><b>${d.ic}</b><span>${d.hi}\xB0 ${d.lo}\xB0</span></div>`).join("")}</div></div>
+ <div id="phPills"><button type="button" class="phPill phW" data-app="stats"><span class="ring" style="background:conic-gradient(#4cd964 ${pct * 360}deg,rgba(255,255,255,.25) 0)"><span style="background:rgba(30,30,40,.7);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px">\u{1F45F}</span></span><span><b>${steps.toLocaleString("de-DE")}</b><span>Schritte heute</span></span></button>
+  <button type="button" class="phPill phW" data-act="media"><span class="ring" style="background:rgba(255,255,255,.9);color:#222">${st.on ? "\u275A\u275A" : "\u25B6"}</span><span><b>${st.on ? "L\xE4uft" : "Radio"}</b><span>${esc(st.name || "Radio")}</span></span></button></div>
+ <div id="phSearch">${IC.search}<input id="phQ" type="search" placeholder="Suchen" autocomplete="off" enterkeyhint="search">${IC.mic}</div>
+ <div id="phGrid">${page === 0 ? HOME.map((h, i) => h.f ? folderIcon(h, i) : appIcon(h.a)).join("") : Object.keys(APPS).filter((k) => !DOCK.includes(k)).map((k) => appIcon(k)).join("")}</div>
+ <div id="phDots"><i class="${page === 0 ? "on" : ""}" data-page="0"></i><i class="${page === 1 ? "on" : ""}" data-page="1"></i></div>
+ <div id="phDock">${DOCK.map((a) => appIcon(a)).join("")}</div>
+ <div id="phNav"><button type="button" data-nav="rec">${IC.rec}</button><button type="button" data-nav="home">${IC.home}</button><button type="button" data-nav="back">${IC.back}</button></div>`;
+    const q = $("phQ");
+    q.addEventListener("input", () => {
+      if (q.value.trim().length >= 1) openApp("search", { q: q.value });
+    });
+  }
+  function render() {
+    $("phStat").innerHTML = statusBar();
+    renderHome();
+  }
+  function screen2(title, sub, body, dark) {
+    const s = $("phAppScr");
+    s.classList.toggle("dark", !!dark);
+    s.innerHTML = `<div class="hd"><div><h2>${esc(title)}</h2>${sub ? `<small>${sub}</small>` : ""}</div></div><div class="bd">${body}</div><div class="nv"><button type="button" data-nav="rec">${IC.rec}</button><button type="button" data-nav="home">${IC.home}</button><button type="button" data-nav="back">${IC.back}</button></div>`;
+    s.classList.add("open");
+  }
+  function row(em, bg, title, sub, btns) {
+    return `<div class="phRow"><span class="em" style="background:${bg}">${em}</span><span class="tx"><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ""}</span>${btns || ""}</div>`;
+  }
+  function openApp(id, o) {
+    if (!APPF[id]) return;
+    A.blip("ok");
+    $("phFolder").classList.remove("open");
+    if (id !== "search") stack.push(id);
+    try {
+      APPF[id](o || {});
+    } catch (e) {
+      console.warn("phone app", id, e);
+      screen2(APPS[id] ? APPS[id][0] : id, "", `<div class="phCard"><div class="phMuted">Gerade nicht verf\xFCgbar.</div></div>`);
+    }
+  }
+  function openFolder(i) {
+    const f = HOME[i];
+    if (!f || !f.f) return;
+    A.blip("ok");
+    const b = $("phFolder");
+    b.innerHTML = `<div class="box"><h3>${esc(f.f)}</h3><div class="g">${f.apps.map((a) => appIcon(a)).join("")}</div></div>`;
+    b.classList.add("open");
+  }
+  function goHome() {
+    $("phAppScr").classList.remove("open");
+    $("phFolder").classList.remove("open");
+    stack = [];
+    render();
+  }
+  function back() {
+    if ($("phFolder").classList.contains("open")) {
+      $("phFolder").classList.remove("open");
+      return;
+    }
+    if ($("phAppScr").classList.contains("open")) {
+      stack.pop();
+      const prev = stack.pop();
+      if (prev) openApp(prev);
+      else goHome();
+      return;
+    }
+    close();
+  }
+  function open2(app) {
+    if (!A.game() || document.body.classList.contains("onTitle")) return;
+    if (!el) build();
+    A.releaseStick();
+    const g = A.game();
+    if (g.setPaused && !g.isPaused()) {
+      g.setPaused(true);
+      pausedByPhone = true;
+    }
+    $("phScr").style.backgroundImage = `url(${wp || (wp = wallpaper())})`;
+    page = 0;
+    goHome();
+    el.classList.add("open");
+    A.blip("ok");
+    $("phoneBtn").classList.remove("new");
+    if (app) openApp(app);
+  }
+  function close() {
+    if (!el || !el.classList.contains("open")) return;
+    el.classList.remove("open");
+    $("phAppScr").classList.remove("open");
+    const g = A.game();
+    if (pausedByPhone && g && g.setPaused && !document.querySelector(".ovl.open")) {
+      g.setPaused(false);
+    }
+    pausedByPhone = false;
+  }
+  function isOpen() {
+    return !!(el && el.classList.contains("open"));
+  }
+  function build() {
+    const st = document.createElement("style");
+    st.textContent = CSS;
+    document.head.appendChild(st);
+    el = document.createElement("div");
+    el.id = "phone";
+    el.innerHTML = `<div id="phDev"><div id="phScr"><div id="phCam"></div><div id="phStat"></div><div id="phHome"></div><div id="phFolder"></div><div id="phAppScr"></div></div></div>`;
+    document.body.appendChild(el);
+    el.addEventListener("click", (e) => {
+      if (e.target === el) {
+        close();
+        return;
+      }
+      const t = e.target.closest("[data-app],[data-fold],[data-nav],[data-page],[data-go],[data-act],[data-ov],[data-radio],[data-hood],[data-app2]");
+      if (!t) return;
+      e.stopPropagation();
+      if (t.dataset.fold != null) return openFolder(+t.dataset.fold);
+      if (t.dataset.app) return openApp(t.dataset.app);
+      if (t.dataset.app2) return openApp(t.dataset.app2);
+      if (t.dataset.page != null) {
+        page = +t.dataset.page;
+        renderHome();
+        return;
+      }
+      if (t.dataset.nav) {
+        const n = t.dataset.nav;
+        if (n === "home") goHome();
+        else if (n === "back") back();
+        else openApp("hoods");
+        return;
+      }
+      if (t.dataset.go) {
+        const [x, z, how] = t.dataset.go.split(",");
+        close();
+        A.travel(+x, +z, how);
+        return;
+      }
+      if (t.dataset.ov) {
+        const sel = t.dataset.sel != null ? +t.dataset.sel : null;
+        close();
+        if (t.dataset.ov === "props") A.openProps(sel);
+        else if (t.dataset.ov === "char") A.openChar();
+        return;
+      }
+      if (t.dataset.hood) {
+        close();
+        A.continueHood(t.dataset.hood);
+        return;
+      }
+      if (t.dataset.radio) {
+        const g2 = A.game();
+        if (t.dataset.radio === "custom") {
+          const L = g2.radio.getState();
+          g2.radio.select("own");
+        } else g2.radio.select(t.dataset.radio);
+        if (!g2.radio.getState().on) g2.radio.play();
+        setTimeout(() => openApp(stack.pop() || "music"), 120);
+        return;
+      }
+      const a = t.dataset.act, g = A.game();
+      if (a === "media") {
+        const s = g.radio.getState();
+        if (s.on) g.radio.stop();
+        else g.radio.play();
+        setTimeout(renderHome, 150);
+        return;
+      }
+      if (a === "rplay") {
+        const s = g.radio.getState();
+        if (s.on) g.radio.stop();
+        else g.radio.play();
+        setTimeout(() => openApp(stack.pop() || "music"), 150);
+        return;
+      }
+      if (a === "rnext" || a === "rprev") {
+        a === "rnext" ? g.radio.next() : g.radio.prev();
+        setTimeout(() => openApp(stack.pop() || "music"), 150);
+        return;
+      }
+      if (a === "addmusic") {
+        const inp = document.getElementById("musicIn");
+        if (inp) inp.click();
+        return;
+      }
+      if (a === "tcancel") {
+        g.travelCancel();
+        openApp(stack.pop() || "travel");
+        return;
+      }
+      if (a === "tow") {
+        const r = A.tow();
+        A.toast(r.msg);
+        openApp(stack.pop() || "car");
+        return;
+      }
+      if (a === "newhood") {
+        close();
+        A.newHood();
+        return;
+      }
+    });
+    let sx = null;
+    el.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("#phHome")) sx = e.clientX;
+    });
+    el.addEventListener("pointerup", (e) => {
+      if (sx == null) return;
+      const dx = e.clientX - sx;
+      sx = null;
+      if ($("phAppScr").classList.contains("open")) return;
+      if (dx < -60 && page === 0) {
+        page = 1;
+        renderHome();
+      } else if (dx > 60 && page === 1) {
+        page = 0;
+        renderHome();
+      }
+    });
+    setInterval(() => {
+      if (isOpen()) $("phStat").innerHTML = statusBar();
+    }, 5e3);
+    if (A.idb) A.idb.get("kv", "phoneShots").then((v) => {
+      if (Array.isArray(v)) shots = v;
+    }).catch(() => {
+    });
+  }
+  function stepTick() {
+    const g = A.game();
+    if (!g || !g.P) return;
+    const P = g.P;
+    if (g.state && (g.state.inCar || g.state.inTrain)) {
+      lastP = null;
+      return;
+    }
+    if (lastP) {
+      const d = Math.hypot(P.x - lastP.x, P.z - lastP.z);
+      if (d < 12) steps += Math.round(d / 0.75);
+    }
+    lastP = { x: P.x, z: P.z };
+  }
+  function initPhone(api) {
+    A = api;
+    const day = (/* @__PURE__ */ new Date()).toDateString();
+    try {
+      const s = JSON.parse(localStorage.getItem("hood.phoneSteps") || "null");
+      if (s && s.d === day) steps = s.n | 0;
+    } catch (e) {
+    }
+    setInterval(() => {
+      stepTick();
+      try {
+        localStorage.setItem("hood.phoneSteps", JSON.stringify({ d: day, n: steps }));
+      } catch (e) {
+      }
+    }, 1e3);
+    const b = document.createElement("button");
+    b.id = "phoneBtn";
+    b.type = "button";
+    b.setAttribute("aria-label", "Handy");
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#ffd23f" stroke-width="2"><rect x="6.5" y="2" width="11" height="20" rx="3"/><path d="M10.5 18.5h3"/></svg><span class="dot"></span>';
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      isOpen() ? close() : open2();
+    });
+    b.addEventListener("pointerdown", (e) => e.stopPropagation());
+    document.body.appendChild(b);
+    addEventListener("keydown", (e) => {
+      if (e.code === "KeyP" && !e.target.closest("input")) {
+        isOpen() ? close() : open2();
+        e.preventDefault();
+      } else if (e.code === "Escape" && isOpen()) {
+        back();
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+    const fade = document.createElement("div");
+    fade.id = "v5fade";
+    document.body.appendChild(fade);
+    if (!el) build();
+    return { open: open2, close, isOpen, openApp, notify() {
+      if (!isOpen()) b.classList.add("new");
+    } };
+  }
+  var CSS, IC, APPS, HOME, DOCK, A, el, page, stack, pausedByPhone, shots, steps, lastP, $, esc, bat, goBtns, APPF, wp;
+  var init_phone = __esm({
+    "src/phone.js"() {
+      CSS = `
+#phoneBtn{position:fixed;z-index:6;left:calc(8px + env(safe-area-inset-left) + var(--fr,0px));top:calc(8px + env(safe-area-inset-top) + var(--fr,0px));width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.18);background:rgba(8,10,16,.5);padding:0;display:flex;align-items:center;justify-content:center}
+#phoneBtn svg{width:22px;height:22px}#phoneBtn .dot{position:absolute;right:5px;top:5px;width:8px;height:8px;border-radius:50%;background:#ff3b30;display:none}#phoneBtn.new .dot{display:block}
+body.onTitle #phoneBtn{display:none!important}
+#phone{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+#phone.open{display:flex}
+#phDev{position:relative;width:min(400px,94vw);height:min(860px,92vh);aspect-ratio:auto;border-radius:44px;background:#0a0a0c;padding:9px;box-shadow:0 0 0 2px #2a2a30,0 0 0 4px #121216,0 30px 80px rgba(0,0,0,.7);transform:translateY(40px) scale(.96);opacity:0;transition:transform .22s cubic-bezier(.2,.9,.3,1.2),opacity .18s}
+#phone.open #phDev{transform:none;opacity:1}
+#phScr{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#123 center/cover no-repeat;font-family:"SamsungOne","Roboto","Segoe UI",Arial,sans-serif;color:#fff;-webkit-user-select:none;user-select:none}
+#phCam{position:absolute;top:11px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:#000;box-shadow:inset 0 0 0 2px #1b1b22;z-index:9}
+#phStat{position:absolute;top:0;left:0;right:0;height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 22px 0 26px;font-size:13px;font-weight:600;z-index:8;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+#phStat .r{display:flex;gap:6px;align-items:center}#phStat svg{height:13px;fill:#fff}
+.phBat{display:inline-flex;align-items:center;gap:3px;font-size:12px}.phBat i{display:inline-block;width:22px;height:11px;border:1.5px solid #fff;border-radius:3px;position:relative}.phBat i:after{content:'';position:absolute;right:-4px;top:2.5px;width:2px;height:4px;background:#fff;border-radius:0 1px 1px 0}.phBat u{position:absolute;left:1px;top:1px;bottom:1px;background:#fff;border-radius:1px}
+#phHome{position:absolute;inset:34px 0 0 0;display:flex;flex-direction:column;padding:10px 16px 0}
+.phW{background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-radius:26px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+#phWeather{padding:14px 18px 12px;margin-top:6px}
+#phWeather .top{display:flex;justify-content:space-between;align-items:flex-start}
+#phWeather .tmp{font-size:52px;font-weight:300;line-height:1;letter-spacing:-2px}
+#phWeather .ic{font-size:40px;line-height:1}
+#phWeather .pl{font-size:14px;font-weight:600;margin-top:4px;display:flex;align-items:center;gap:4px}
+#phWeather .sub{font-size:12px;opacity:.85;margin-top:1px}
+#phWeather .fc{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;text-align:center}
+#phWeather .fc div{flex:1}#phWeather .fc b{display:block;font-size:17px;margin:2px 0;font-weight:400}#phWeather .fc span{opacity:.9}
+#phPills{display:flex;gap:10px;margin-top:10px}
+.phPill{flex:1;height:54px;border-radius:27px;display:flex;align-items:center;gap:9px;padding:0 14px;font-size:12px;border:0;color:#fff;text-align:left}
+.phPill .ring{width:30px;height:30px;border-radius:50%;flex:0 0 30px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.phPill b{display:block;font-size:15px;font-weight:600}.phPill span{opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100px}
+#phSearch{margin-top:12px;height:46px;border-radius:23px;display:flex;align-items:center;gap:10px;padding:0 16px;background:rgba(255,255,255,.92);color:#333}
+#phSearch input{flex:1;border:0;background:transparent;font-size:15px;outline:none;color:#222;min-width:0}
+#phSearch svg{width:18px;height:18px}
+#phGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 8px;margin-top:20px;flex:1;align-content:start}
+.phApp{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;color:#fff;padding:0;font-size:11.5px;text-shadow:0 1px 2px rgba(0,0,0,.6);min-width:0}
+.phApp .ico{width:58px;height:58px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 2px 6px rgba(0,0,0,.25);position:relative}
+.phApp .lb{max-width:74px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phApp .badge{position:absolute;right:-4px;top:-4px;min-width:18px;height:18px;border-radius:9px;background:#ff3b30;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;text-shadow:none}
+.phFold .ico{background:rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:7px;box-sizing:border-box}
+.phFold .ico i{width:13px;height:13px;border-radius:4px;font-style:normal;font-size:8px;display:flex;align-items:center;justify-content:center}
+.phFold.f4 .ico{grid-template-columns:repeat(2,1fr);padding:9px;gap:5px}.phFold.f4 .ico i{width:17px;height:17px;border-radius:5px;font-size:11px}
+#phDots{display:flex;justify-content:center;gap:7px;margin:6px 0 10px}#phDots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45)}#phDots i.on{background:#fff}
+#phDock{display:flex;justify-content:space-around;padding:8px 6px 12px;margin:0 -4px}
+#phDock .phApp .ico{border-radius:50%;width:56px;height:56px}
+#phNav{height:40px;display:flex;justify-content:space-around;align-items:center;margin:0 -16px;background:rgba(0,0,0,.12)}
+#phNav button{background:none;border:0;width:70px;height:40px;display:flex;align-items:center;justify-content:center}#phNav svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2}
+#phFolder{position:absolute;inset:0;z-index:12;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#phFolder.open{display:flex}
+#phFolder .box{width:84%;border-radius:30px;padding:16px 14px 18px;background:rgba(240,240,246,.25);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+#phFolder h3{margin:0 0 14px;text-align:center;font-size:18px;font-weight:600}
+#phFolder .g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 6px}
+#phAppScr{position:absolute;inset:0;z-index:14;display:none;flex-direction:column;background:#f2f2f6;color:#111}
+#phAppScr.open{display:flex}#phAppScr.dark{background:#0d0d12;color:#f2f2f2}
+#phAppScr .hd{padding:44px 20px 10px;display:flex;align-items:flex-end;justify-content:space-between}
+#phAppScr .hd h2{margin:0;font-size:30px;font-weight:400}#phAppScr .hd small{display:block;font-size:13px;opacity:.6;margin-top:2px}
+#phAppScr .bd{flex:1;overflow-y:auto;padding:4px 14px 16px;-webkit-overflow-scrolling:touch}
+#phAppScr .nv{height:40px;display:flex;justify-content:space-around;align-items:center;background:inherit;border-top:1px solid rgba(128,128,128,.15)}
+#phAppScr .nv button{background:none;border:0;width:70px;height:40px}#phAppScr .nv svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
+.phCard{background:#fff;border-radius:22px;padding:14px 16px;margin:0 0 10px;box-shadow:0 1px 2px rgba(0,0,0,.04)}#phAppScr.dark .phCard{background:#1c1c22}
+.phCard h4{margin:0 0 6px;font-size:13px;font-weight:600;opacity:.6;text-transform:none}
+.phRow{display:flex;align-items:center;gap:12px;padding:9px 0;border-top:1px solid rgba(128,128,128,.14)}.phRow:first-of-type{border-top:0}
+.phRow .em{width:38px;height:38px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:19px;flex:0 0 38px}
+.phRow .tx{flex:1;min-width:0}.phRow .tx b{display:block;font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.phRow .tx span{display:block;font-size:12px;opacity:.65;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.phBtn{border:0;border-radius:16px;padding:8px 12px;font-size:13px;font-weight:600;background:#e6ecff;color:#1d4fd8;white-space:nowrap}.phBtn.g{background:#e3f6e6;color:#167a2c}.phBtn.y{background:#fff3cc;color:#8a6200}.phBtn.r{background:#ffe3e0;color:#b3261e}.phBtn.big{width:100%;padding:12px;font-size:15px;margin-top:6px}
+#phAppScr.dark .phBtn{background:#24304d;color:#a9c1ff}
+.phBig{font-size:40px;font-weight:300;letter-spacing:-1px}.phBar{height:8px;border-radius:4px;background:rgba(128,128,128,.2);overflow:hidden;margin-top:5px}.phBar u{display:block;height:100%;border-radius:4px;background:#3e82f7}
+.phMuted{font-size:13px;opacity:.6;padding:6px 2px}
+.phShots{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.phShots img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;background:#333}
+#phShutter{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:30;transition:opacity .25s}
+.hoodRows{display:flex;flex-direction:column;gap:6px;margin:6px 0 10px}
+.hoodRow{display:grid;grid-template-columns:1fr auto;text-align:left;border:1px solid rgba(255,255,255,.18);background:rgba(20,26,36,.75);color:#fff;border-radius:12px;padding:8px 10px;font:600 13px Arial,sans-serif}
+.hoodRow b{grid-column:1;font-size:14px;color:#ffd23f}.hoodRow span{grid-column:1;font-size:11px;opacity:.8;font-weight:400}.hoodRow em{grid-column:2;grid-row:1/3;align-self:center;font-style:normal;background:#5fc04a;color:#0b1a08;border-radius:10px;padding:5px 10px}.hoodRow.cur em{background:#ffd23f}
+#phAppScr .hoodRow{background:#fff;color:#111;border-color:#e3e3ea}#phAppScr .hoodRow b{color:#111}
+#v5fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;z-index:35;transition:opacity .45s}#v5fade.on{opacity:1}
+`;
+      IC = {
+        wifi: '<svg viewBox="0 0 24 18"><path d="M12 17.5l3.2-4a5.2 5.2 0 0 0-6.4 0zM12 1C7.4 1 3.3 2.7 0 5.6l2.3 2.9A15 15 0 0 1 12 4.7a15 15 0 0 1 9.7 3.8L24 5.6C20.7 2.7 16.6 1 12 1zm0 6.4a9 9 0 0 0-6 2.3l2.3 2.9a5.4 5.4 0 0 1 7.4 0L18 9.7a9 9 0 0 0-6-2.3z"/></svg>',
+        sig: '<svg viewBox="0 0 20 16"><rect x="0" y="11" width="3.5" height="5" rx="1"/><rect x="5.5" y="7.5" width="3.5" height="8.5" rx="1"/><rect x="11" y="4" width="3.5" height="12" rx="1"/><rect x="16.5" y="0" width="3.5" height="16" rx="1" opacity=".45"/></svg>',
+        back: '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>',
+        home: '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="4"/></svg>',
+        rec: '<svg viewBox="0 0 24 24"><path d="M7 6v12M12 6v12M17 6v12"/></svg>',
+        search: '<svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2.4"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>',
+        mic: '<svg viewBox="0 0 24 24" fill="#555"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="#555" stroke-width="2" fill="none"/></svg>'
+      };
+      APPS = {
+        props: ["Immobilien", "\u{1F3E0}", "linear-gradient(135deg,#ff9a3d,#e8590c)"],
+        jobs: ["Auftr\xE4ge", "\u{1F4CB}", "linear-gradient(135deg,#5b8cff,#2f5bd8)"],
+        map: ["Karte", "\u{1F5FA}\uFE0F", "linear-gradient(135deg,#40c463,#1a8a3a)"],
+        travel: ["Schnellreise", "\u{1F695}", "linear-gradient(135deg,#ffd23f,#f0a800)"],
+        bank: ["Konto", "\u{1F4B6}", "linear-gradient(135deg,#00b894,#00876c)"],
+        bag: ["Tasche", "\u{1F392}", "linear-gradient(135deg,#a1887f,#6d4c41)"],
+        fields: ["Felder", "\u{1F33E}", "linear-gradient(135deg,#d4c046,#9b8a1c)"],
+        shops: ["L\xE4den", "\u{1F6D2}", "linear-gradient(135deg,#ff6b81,#d63a55)"],
+        skills: ["Skills", "\u2B50", "linear-gradient(135deg,#b06cff,#7a2fd8)"],
+        stats: ["Erfolge", "\u{1F3C6}", "linear-gradient(135deg,#ffb347,#e08400)"],
+        wanted: ["Fahndung", "\u{1F6A8}", "linear-gradient(135deg,#ff5f5f,#c62828)"],
+        turf: ["Viertel", "\u{1F9ED}", "linear-gradient(135deg,#26c6da,#00838f)"],
+        music: ["Musik", "\u{1F3B5}", "linear-gradient(135deg,#ff4fa3,#c2185b)"],
+        radio: ["Radio", "\u{1F4FB}", "linear-gradient(135deg,#7e57c2,#4527a0)"],
+        car: ["Mein Auto", "\u{1F697}", "linear-gradient(135deg,#90a4ae,#546e7a)"],
+        transit: ["Bus & Bahn", "\u{1F68C}", "linear-gradient(135deg,#29b6f6,#0277bd)"],
+        menu: ["Hauptmen\xFC", "\u{1F3C1}", "linear-gradient(135deg,#ffd23f,#c98a00)"],
+        hoods: ["Hoods", "\u{1F3D9}\uFE0F", "linear-gradient(135deg,#5c6bc0,#283593)"],
+        opts: ["Optionen", "\u2699\uFE0F", "linear-gradient(135deg,#9e9e9e,#5f5f5f)"],
+        save: ["Speichern", "\u{1F4BE}", "linear-gradient(135deg,#66bb6a,#2e7d32)"],
+        help: ["Hilfe", "\u2754", "linear-gradient(135deg,#78909c,#455a64)"],
+        credits: ["\xDCber", "\u2139\uFE0F", "linear-gradient(135deg,#8d99ae,#4a5568)"],
+        phone: ["Telefon", "\u{1F4DE}", "#2fbf4f"],
+        msgs: ["Nachrichten", "\u{1F4AC}", "#3d7bf7"],
+        gallery: ["Galerie", "\u{1F5BC}\uFE0F", "linear-gradient(135deg,#ff7aa2,#ff9f43)"],
+        camera: ["Kamera", "\u{1F4F7}", "#4a4a52"]
+      };
+      HOME = [
+        { f: "Hood", apps: ["jobs", "turf", "map", "travel"] },
+        { f: "Geld", apps: ["bank", "fields", "shops", "bag"] },
+        { f: "Ich", apps: ["skills", "stats", "wanted", "bag", "car"] },
+        { f: "Unterwegs", apps: ["travel", "transit", "car", "map"] },
+        { a: "props" },
+        { a: "music" },
+        { f: "Medien", apps: ["music", "radio", "gallery", "camera"] },
+        { f: "System", apps: ["hoods", "opts", "save", "menu", "help", "credits"] }
+      ];
+      DOCK = ["phone", "msgs", "gallery", "camera"];
+      A = null;
+      el = null;
+      page = 0;
+      stack = [];
+      pausedByPhone = false;
+      shots = [];
+      steps = 0;
+      lastP = null;
+      $ = /* @__PURE__ */ __name((id) => document.getElementById(id), "$");
+      esc = /* @__PURE__ */ __name((x) => String(x == null ? "" : x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]), "esc");
+      __name(hsh2, "hsh");
+      __name(rnd, "rnd");
+      __name(wallpaper, "wallpaper");
+      __name(weather, "weather");
+      __name(clockStr, "clockStr");
+      bat = { level: 0.82, charging: false };
+      try {
+        navigator.getBattery && navigator.getBattery().then((b) => {
+          bat = b;
+        }).catch(() => {
+        });
+      } catch (e) {
+      }
+      __name(statusBar, "statusBar");
+      __name(appIcon, "appIcon");
+      __name(badge, "badge");
+      __name(folderIcon, "folderIcon");
+      __name(renderHome, "renderHome");
+      __name(render, "render");
+      __name(screen2, "screen");
+      __name(row, "row");
+      goBtns = /* @__PURE__ */ __name((x, z, taxi) => `<button type="button" class="phBtn" data-go="${x.toFixed(1)},${z.toFixed(1)},auto">Hin</button>${taxi ? `<button type="button" class="phBtn y" data-go="${x.toFixed(1)},${z.toFixed(1)},taxi">${taxi} \u20AC</button>` : ""}`, "goBtns");
+      APPF = {
+        props() {
+          const d = A.game().v4.props();
+          const mine = d.list.filter((q) => q.owner === "mine"), free = d.list.filter((q) => q.owner === "free"), kr = d.list.filter((q) => q.owner === "kralle");
+          let h = `<div class="phCard"><h4>\xDCbersicht</h4><div style="display:flex;justify-content:space-between;align-items:flex-end"><div><div class="phBig">${d.perDay} \u20AC</div><div class="phMuted">pro Tag \xB7 ${mine.filter((q) => !q.field).length} H\xE4user \xB7 ${mine.filter((q) => q.field).length} Felder \xB7 ${d.rented} bringen Geld</div></div><button type="button" class="phBtn" data-ov="props">Verwalten</button></div></div>`;
+          h += `<div class="phCard"><h4>Mein Besitz</h4>${mine.length ? mine.map((q) => row(q.field ? "\u{1F33E}" : "\u{1F3E0}", q.field ? "#f3ecc0" : "#ffe7d1", q.name + (q.field ? " \xB7 " + q.ha + " ha" : ""), (q.field ? "Ertrag " : "Miete ") + q.rent + " \u20AC/Tag \xB7 Zustand " + q.cond + " %" + (q.field ? "" : q.ten ? " \xB7 vermietet" : " \xB7 LEER"), `<button type="button" class="phBtn" data-ov="props" data-sel="${q.i}">\xD6ffnen</button>`)).join("") : '<div class="phMuted">Noch nichts gekauft. Gr\xFCne Schilder in der Stadt stehen zum Verkauf \u2014 H\xE4user und Felder.</div>'}</div>`;
+          if (free.length) h += `<div class="phCard"><h4>Zu verkaufen</h4>${free.map((q) => row(q.field ? "\u{1F33E}" : "\u{1F3F7}\uFE0F", q.field ? "#f3ecc0" : "#e3f6e6", (q.field ? q.kind + " " + q.ha + " ha" : q.kind) + " \xB7 " + q.price + " \u20AC", (q.field ? "Ertrag ca. " : "Miete ca. ") + q.rent + " \u20AC/Tag" + (q.street ? " \xB7 " + q.street : ""), goBtns(q.x, q.z))).join("")}</div>`;
+          if (kr.length) h += `<div class="phCard"><h4>Kralle Immobilien</h4>${kr.map((q) => row("\u{1F980}", "#d7f6f5", q.kind, (q.street || "") + " \xB7 vor Ort \xFCbernehmen", goBtns(q.x, q.z))).join("")}</div>`;
+          screen2("Immobilien", "H\xE4user & Felder in " + esc(A.hoodName()), h);
+        },
+        fields() {
+          const d = A.game().v4.props();
+          const L = d.list.filter((q) => q.field);
+          let h = L.length ? `<div class="phCard"><h4>Felder in dieser Hood</h4>${L.map((q) => row("\u{1F33E}", "#f3ecc0", q.kind + " \xB7 " + q.ha + " ha", q.owner === "mine" ? "Deins \xB7 Ertrag " + q.rent + " \u20AC/Tag \xB7 Boden " + q.cond + " %" : q.owner === "free" ? q.price + " \u20AC \xB7 Ertrag ca. " + q.rent + " \u20AC/Tag" : "Geh\xF6rt der Kralle", q.owner === "mine" ? `<button type="button" class="phBtn" data-ov="props" data-sel="${q.i}">\xD6ffnen</button>` : goBtns(q.x, q.z))).join("")}</div>` : '<div class="phCard"><div class="phMuted">Hier gibt es keine \xC4cker oder Weiden zu kaufen \u2014 in D\xF6rfern und am Stadtrand schon.</div></div>';
+          screen2("Felder", "Acker & Weide \u2014 Ertrag jeden halben Tag", h);
+        },
+        jobs() {
+          const g = A.game();
+          const md = g.mapData();
+          const j = g.getJob && g.getJob();
+          let h = "";
+          if (md.job) {
+            const tg = md.markers.find((m) => m.k === "target");
+            h += `<div class="phCard" style="background:#e9f0ff"><h4>L\xE4uft gerade</h4><b style="font-size:17px">${esc(md.job.title)}</b><div class="phMuted">${esc(md.job.line || "")}</div>${tg ? `<button type="button" class="phBtn big" data-go="${tg.x.toFixed(1)},${tg.z.toFixed(1)},auto">Zum Ziel</button>` : ""}</div>`;
+          }
+          const gv = md.markers.filter((m) => m.k === "giver");
+          h += `<div class="phCard"><h4>Auftraggeber</h4>${gv.map((m) => {
+            const n = (md.avail[m.g] || []).length;
+            return row("\u{1F9D1}\u200D\u{1F373}", "#e6ecff", m.label, n ? n + " Auftr\xE4ge frei" : "gerade nichts frei", goBtns(m.x, m.z));
+          }).join("") || '<div class="phMuted">Keine Auftraggeber gefunden.</div>'}</div>`;
+          const other = md.markers.filter((m) => ["zack", "bank", "kiosk", "garage"].includes(m.k));
+          if (other.length) h += `<div class="phCard"><h4>Orte</h4>${other.map((m) => row("\u{1F4CD}", "#eef", m.label, "", goBtns(m.x, m.z))).join("")}</div>`;
+          screen2("Auftr\xE4ge", j ? "1 aktiver Auftrag" : "Kein aktiver Auftrag", h);
+        },
+        travel(o) {
+          const g = A.game();
+          const L = g.travelDests();
+          const cash = g.deal.state().cash;
+          const ts = g.travelState();
+          let h = ts ? `<div class="phCard" style="background:#fff7d6"><b>Unterwegs \u2026</b><div class="phMuted">${ts.mode === "drive" ? "Autopilot f\xE4hrt" : ts.mode === "taxi" ? "Taxi kommt" : ts.mode === "tostop" ? "Auf dem Weg zur Haltestelle" : ts.mode === "tocar" ? "Auf dem Weg zum Auto" : "L\xE4uft hin"}</div><button type="button" class="phBtn r big" data-act="tcancel">Abbrechen</button></div>` : "";
+          h += `<div class="phCard"><h4>Tipp</h4><div class="phMuted">Doppelt auf die Karte tippen: Die Figur l\xE4uft selbst hin, nimmt dein Auto wenn es nah ist, sonst Bus/Bahn oder Taxi. Selbst lenken bricht ab.</div></div>`;
+          h += `<div class="phCard"><h4>Ziele \xB7 Konto ${cash} \u20AC</h4>${L.map((q) => row({ home: "\u{1F354}", job: "\u{1F3AF}", giver: "\u{1F9D1}\u200D\u{1F373}", shop: "\u{1F6D2}", ubahn: "\u{1F687}", prop: "\u{1F3E0}", car: "\u{1F697}", bank: "\u{1F3E6}", kiosk: "\u{1F4F0}", garage: "\u{1F527}", zack: "\u{1F9F0}" }[q.k] || "\u{1F4CD}", "#f0f0f6", q.label, q.d + " m", goBtns(q.x, q.z, q.d > 80 ? q.taxi : 0))).join("")}</div>`;
+          screen2("Schnellreise", "Laufen \xB7 Auto \xB7 Bus & Bahn \xB7 Taxi", h);
+        },
+        transit() {
+          const g = A.game();
+          const L = g.travelDests().filter((q) => q.d > 250);
+          let h = `<div class="phCard"><div class="phMuted">Ticket 3 \u20AC pro Fahrt. Die Figur l\xE4uft zur n\xE4chsten Haltestelle, f\xE4hrt mit und l\xE4uft das letzte St\xFCck.</div></div>`;
+          h += `<div class="phCard"><h4>Wohin?</h4>${L.map((q) => row("\u{1F68C}", "#e1f3fd", q.label, q.d + " m", `<button type="button" class="phBtn" data-go="${q.x.toFixed(1)},${q.z.toFixed(1)},bus">Fahren</button>`)).join("") || '<div class="phMuted">Alles in Laufweite.</div>'}</div>`;
+          screen2("Bus & Bahn", "Nahverkehr in der Hood", h);
+        },
+        bank() {
+          const g = A.game();
+          const d = g.v4.props();
+          const s = g.statData();
+          const ev = d.events || [];
+          const log = A.log().filter((m) => /€/.test(m.m)).slice(0, 14);
+          let h = `<div class="phCard" style="background:linear-gradient(135deg,#00b894,#00876c);color:#fff"><h4 style="opacity:.8">Girokonto \xB7 ${esc(A.hoodName())}</h4><div class="phBig">${Math.round(d.cash).toLocaleString("de-DE")} \u20AC</div><div style="font-size:13px;opacity:.9">Einnahmen ${d.perDay} \u20AC/Tag \xB7 bisher ${d.total} \u20AC aus Besitz</div></div>`;
+          h += `<div class="phCard"><h4>Ums\xE4tze</h4>${log.length ? log.map((m) => row(/[−-]\s?\d|kostet/.test(m.m) ? "\u2796" : "\u2795", /[−-]\s?\d|kostet/.test(m.m) ? "#ffe3e0" : "#e3f6e6", m.m, m.at)).join("") : '<div class="phMuted">Noch keine Ums\xE4tze.</div>'}</div>`;
+          if (ev.length) h += `<div class="phCard"><h4>Besitz-Meldungen</h4>${ev.slice(0, 6).map((e) => row("\u{1F3E0}", "#fff3cc", e, "")).join("")}</div>`;
+          h += `<div class="phCard"><h4>Stufe</h4>Stufe <b>${s.level}</b> \xB7 ${s.jobs} Auftr\xE4ge erledigt</div>`;
+          screen2("Konto", "Hood-Bank", h);
+        },
+        skills() {
+          const s = A.game().statData();
+          let h = `<div class="phCard"><h4>Stufe ${s.level}</h4>${s.jobs} Auftr\xE4ge erledigt \xB7 ${s.regions}/${s.regionsTotal} Viertel</div><div class="phCard"><h4>F\xE4higkeiten</h4>${s.list.map((q) => `<div class="phRow"><span class="tx"><b>${esc(q.name)} \xB7 ${Math.round(q.v)}</b><span>${esc(q.desc)}</span><div class="phBar"><u style="width:${Math.min(100, q.v)}%"></u></div></span></div>`).join("")}</div>`;
+          h += `<div class="phCard"><h4>Freischaltungen</h4>${s.unlocks.map((u) => row(u.ok ? "\u2705" : "\u{1F512}", u.ok ? "#e3f6e6" : "#eee", u.name, u.need)).join("")}</div><button type="button" class="phBtn big" data-ov="char">Charakter-Ansicht</button>`;
+          screen2("Skills", "Was du drauf hast", h);
+        },
+        stats() {
+          const s = A.game().statData();
+          const v = s.v4 || {};
+          let h = `<div class="phCard"><h4>Heute</h4><div class="phBig">${steps.toLocaleString("de-DE")}</div><div class="phMuted">Schritte (gesch\xE4tzt aus deinem Laufweg)</div></div><div class="phCard"><h4>Hood</h4>${row("\u{1F3C6}", "#fff3cc", "Stufe " + s.level, s.jobs + " Auftr\xE4ge")}${row("\u{1F9ED}", "#d7f6f5", "Viertel", s.regions + " von " + s.regionsTotal)}${Object.entries(v).slice(0, 8).map(([k, x]) => row("\u2022", "#f0f0f6", k, typeof x === "object" ? JSON.stringify(x) : String(x))).join("")}</div>`;
+          screen2("Erfolge", "", h);
+        },
+        wanted() {
+          const g = A.game();
+          const w = g.getWanted();
+          screen2("Fahndung", w ? w + " Sterne" : "Keine Fahndung", `<div class="phCard"><div class="phBig">${"\u2605".repeat(w) || "\u2014"}</div><div class="phMuted">${w ? "Tipps: In eine Spritzlackiererei fahren, mit Bus/Bahn verschwinden oder untertauchen, bis die Sterne weg sind. Taxis halten nicht, solange du gesucht wirst." : "Alles ruhig."}</div></div>`);
+        },
+        turf() {
+          const md = A.game().mapData();
+          let h = `<div class="phCard"><h4>Viertel \xB7 ${md.mineN}/${md.regN}</h4>${md.regions.map((r) => row(r.owner === "mine" ? "\u{1F7E9}" : r.crew ? "\u{1F7E5}" : "\u2B1C", r.owner === "mine" ? "#e3f6e6" : "#f0f0f6", r.name, r.owner === "mine" ? "deins" + (r.home ? " \xB7 Zuhause" : "") : r.crew ? "Crew: " + r.crew : "frei", goBtns((r.x0 + r.x1) / 2, (r.z0 + r.z1) / 2))).join("")}</div>`;
+          screen2("Viertel", "Revier", h);
+        },
+        shops() {
+          const md = A.game().mapData();
+          const L = md.markers.filter((m) => m.k === "shop");
+          screen2("L\xE4den", "", `<div class="phCard">${L.map((m) => row("\u{1F6D2}", "#ffe3ea", m.label, "", goBtns(m.x, m.z))).join("") || '<div class="phMuted">Keine L\xE4den.</div>'}</div>`);
+        },
+        bag() {
+          A.close();
+          A.openBag();
+        },
+        map() {
+          A.close();
+          A.openMap();
+        },
+        char() {
+          A.close();
+          A.openChar();
+        },
+        music() {
+          const g = A.game();
+          const st = g.radio.getState();
+          const ss = g.radio.stations || [];
+          let h = `<div class="phCard" style="background:linear-gradient(135deg,#ff4fa3,#7e57c2);color:#fff"><h4 style="opacity:.8">Jetzt</h4><div style="font-size:20px;font-weight:600">${esc(st.name)}</div><div style="display:flex;gap:10px;margin-top:10px"><button type="button" class="phBtn" data-act="rprev">\u23EE</button><button type="button" class="phBtn" data-act="rplay">${st.on ? "\u275A\u275A Pause" : "\u25B6 Abspielen"}</button><button type="button" class="phBtn" data-act="rnext">\u23ED</button></div></div>`;
+          h += `<div class="phCard"><h4>Sender</h4>${ss.map((s) => row("\u{1F4FB}", "#ede7f6", s.name, s.genre || "", `<button type="button" class="phBtn" data-radio="${esc(s.id)}">${st.id === s.id ? "L\xE4uft" : "H\xF6ren"}</button>`)).join("")}${st.tracks ? row("\u{1F3A7}", "#fce4ec", "Eigene Musik", st.tracks + " Titel", `<button type="button" class="phBtn" data-radio="custom">H\xF6ren</button>`) : ""}</div>`;
+          h += `<div class="phCard"><h4>Eigene Playlist</h4><div class="phMuted">Eigene Lieder (MP3/M4A) hinzuf\xFCgen \u2014 bleiben nur auf diesem Ger\xE4t.</div><button type="button" class="phBtn big" data-act="addmusic">Lieder hinzuf\xFCgen</button></div>`;
+          screen2("Musik", "Playlist & Radio", h, true);
+        },
+        radio() {
+          APPF.music();
+        },
+        car() {
+          const g = A.game();
+          const c = g.getMyCar && g.getMyCar();
+          const P = g.P;
+          let h = "";
+          if (!c || c.wrecked) h = '<div class="phCard"><div class="phMuted">Dein Auto ist Schrott. In der Werkstatt gibt\u2019s ein neues.</div></div>';
+          else {
+            const d = Math.round(Math.hypot(c.x - P.x, c.z - P.z));
+            h = `<div class="phCard"><h4>Mein Auto</h4><div class="phBig">${d} m</div><div class="phMuted">entfernt \xB7 Zustand ${Math.round(100 * (c.hp || 1) / (c.maxHp || 1))} %</div><button type="button" class="phBtn big" data-go="${c.x.toFixed(1)},${c.z.toFixed(1)},walk">Hinlaufen</button><button type="button" class="phBtn y big" data-act="tow">Pannendienst: Auto herbringen (25 \u20AC)</button></div>`;
+          }
+          screen2("Mein Auto", "", h);
+        },
+        hoods() {
+          screen2("Hoods", "Gespielte Hoods \u2014 antippen zum Weiterspielen", `<div class="hoodRows">${A.hoodListHtml(20) || '<div class="phMuted">Noch keine gespeicherte Hood.</div>'}</div><button type="button" class="phBtn big" data-act="newhood">Neue Hood suchen</button>`);
+          try {
+            Promise.resolve(A.saveGame && A.saveGame()).then(() => {
+              const el2 = document.querySelector("#phone .hoodRows");
+              if (el2) {
+                const h = A.hoodListHtml(20);
+                if (h) el2.innerHTML = h;
+              }
+            }).catch(() => {
+            });
+          } catch (e) {
+          }
+        },
+        opts() {
+          A.close();
+          A.openOptions();
+        },
+        menu() {
+          A.close();
+          A.openMenu();
+        },
+        credits() {
+          A.close();
+          A.openCredits();
+        },
+        save() {
+          A.saveGame().then(() => {
+            screen2("Speichern", "", `<div class="phCard"><div class="phBig">\u2714</div><div class="phMuted">Gespeichert \u2014 ${clockStr()} (Spielzeit). Jede Hood hat ihren eigenen Spielstand.</div></div>`);
+          });
+          screen2("Speichern", "", `<div class="phCard"><div class="phMuted">Speichere \u2026</div></div>`);
+        },
+        help() {
+          screen2("Hilfe", "", `<div class="phCard"><h4>Steuerung</h4>${row("\u{1F579}\uFE0F", "#eef", "Stick links", "laufen / fahren")}${row("\u{1F446}\u{1F446}", "#eef", "Doppeltipp", "Figur geht/f\xE4hrt selbst hin \u2014 mit Auto, Bus/Bahn oder Taxi")}${row("\u{1F90F}", "#eef", "Zwei Finger", "zoomen")}${row("\u{1F4F1}", "#eef", "Handy", "alles rund ums Spiel")}${row("\u{1F30A}", "#eef", "Wasser", "Nicht zu lange schwimmen \u2014 nach ein paar Sekunden ertrinkst du. Br\xFCcken tragen.")}</div>`);
+        },
+        phone() {
+          screen2("Telefon", "Kontakte", `<div class="phCard">${row("\u{1F695}", "#fff3cc", "Taxi Ruhr", "bringt dich \xFCberall hin", `<button type="button" class="phBtn" data-app2="travel">Anrufen</button>`)}${row("\u{1F697}", "#eceff1", "Pannendienst", "bringt dein Auto f\xFCr 25 \u20AC", `<button type="button" class="phBtn" data-act="tow">Anrufen</button>`)}${row("\u{1F9D1}\u200D\u{1F373}", "#e6ecff", "Imbiss-Chef", "Auftr\xE4ge", `<button type="button" class="phBtn" data-app2="jobs">Anrufen</button>`)}${row("\u{1F3E6}", "#e3f6e6", "Hood-Bank", "Kontostand", `<button type="button" class="phBtn" data-app2="bank">Anrufen</button>`)}</div>`);
+        },
+        msgs() {
+          A.markRead();
+          const L = A.log();
+          screen2("Nachrichten", L.length + " Meldungen", `<div class="phCard">${L.length ? L.map((m) => row("\u{1F4AC}", "#e6ecff", m.m, m.at)).join("") : '<div class="phMuted">Noch keine Nachrichten.</div>'}</div>`);
+        },
+        gallery() {
+          const g = A.game();
+          const tags = (g.tags || []).filter((t) => t.owner === "mine" && t.img);
+          const im = /* @__PURE__ */ __name((x) => typeof x === "string" ? x : x && x.toDataURL ? x.toDataURL() : "", "im");
+          screen2("Galerie", "", `<div class="phCard"><h4>Fotos</h4>${shots.length ? `<div class="phShots">${shots.map((s) => `<img src="${s}" alt="">`).join("")}</div>` : '<div class="phMuted">Noch keine Fotos \u2014 mit der Kamera-App knipsen.</div>'}</div><div class="phCard"><h4>Deine Tags</h4>${tags.length ? `<div class="phShots">${tags.slice(0, 12).map((t) => `<img src="${im(t.img)}" alt="" style="object-fit:contain;background:#222">`).join("")}</div>` : '<div class="phMuted">Noch keine eigenen Tags gespr\xFCht.</div>'}</div>`);
+        },
+        camera() {
+          A.close();
+          setTimeout(() => {
+            const g = A.game();
+            try {
+              g.render && g.render();
+              const cv3 = g.renderer.domElement;
+              const w = 360, h = Math.round(cv3.height / cv3.width * w);
+              const c = document.createElement("canvas");
+              c.width = w;
+              c.height = h;
+              c.getContext("2d").drawImage(cv3, 0, 0, w, h);
+              const u = c.toDataURL("image/jpeg", 0.8);
+              shots.unshift(u);
+              shots = shots.slice(0, 12);
+              A.idb && A.idb.set("kv", "phoneShots", shots).catch(() => {
+              });
+              const f = document.createElement("div");
+              f.style.cssText = "position:fixed;inset:0;background:#fff;z-index:60;opacity:.9;transition:opacity .4s;pointer-events:none";
+              document.body.appendChild(f);
+              requestAnimationFrame(() => {
+                f.style.opacity = 0;
+              });
+              setTimeout(() => f.remove(), 500);
+              A.toast("\u{1F4F7} Foto in der Galerie.");
+            } catch (e) {
+              A.toast("Foto ging nicht.");
+            }
+          }, 120);
+        },
+        weatherApp() {
+          const w = weather();
+          screen2("Wetter", esc(w.city), `<div class="phCard" style="background:linear-gradient(160deg,#3a7bd5,#00d2ff);color:#fff"><div style="display:flex;justify-content:space-between"><div><div class="phBig" style="font-size:64px">${w.now}\xB0</div><div>${w.nm} \xB7 H:${w.hi}\xB0 T:${w.lo}\xB0</div></div><div style="font-size:64px">${w.ic}</div></div></div><div class="phCard"><h4>Vorhersage</h4>${w.fc.map((d) => row(d.ic, "#e1f3fd", d.d, d.hi + "\xB0 / " + d.lo + "\xB0")).join("")}</div>`);
+        },
+        search(o) {
+          const q = (o && o.q || "").toLowerCase();
+          const g = A.game();
+          const apps = Object.keys(APPS).filter((k) => APPS[k][0].toLowerCase().includes(q));
+          const L = g.travelDests().filter((d) => d.label.toLowerCase().includes(q));
+          screen2("Suche", "\u201E" + esc(o.q) + "\u201C", `<div class="phCard"><h4>Apps</h4><div class="g" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;color:#111">${apps.map((a) => appIcon(a)).join("") || '<div class="phMuted">\u2014</div>'}</div></div><div class="phCard"><h4>Orte</h4>${L.map((q2) => row("\u{1F4CD}", "#f0f0f6", q2.label, q2.d + " m", goBtns(q2.x, q2.z, q2.d > 80 ? q2.taxi : 0))).join("") || '<div class="phMuted">\u2014</div>'}</div>`);
+        }
+      };
+      __name(openApp, "openApp");
+      __name(openFolder, "openFolder");
+      __name(goHome, "goHome");
+      __name(back, "back");
+      __name(open2, "open");
+      wp = null;
+      __name(close, "close");
+      __name(isOpen, "isOpen");
+      __name(build, "build");
+      __name(stepTick, "stepTick");
+      __name(initPhone, "initPhone");
+    }
+  });
+
   // src/app.js
   var require_app = __commonJS({
     "src/app.js"() {
@@ -48486,7 +51178,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       init_osm();
       init_audio();
       init_store();
-      var $ = /* @__PURE__ */ __name((id) => document.getElementById(id), "$");
+      init_phone();
+      var $2 = /* @__PURE__ */ __name((id) => document.getElementById(id), "$");
       var Q2 = new URLSearchParams(location.search);
       var SHOT2 = Q2.has("shot");
       var LS = { get(k, d) {
@@ -48614,31 +51307,31 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }, "onGesture");
       for (const ev of ["pointerup", "touchend", "click", "keydown", "mousedown"]) addEventListener(ev, onGesture, { capture: true, passive: true });
       function showLoading(msg) {
-        if (titleUp() && !$("title").classList.contains("hidden") && bootTitle) {
+        if (titleUp() && !$2("title").classList.contains("hidden") && bootTitle) {
           setStatus(msg);
           return;
         }
-        $("loading").classList.remove("hidden", "error");
-        $("loadMsg").textContent = msg;
-        $("loadBtns").innerHTML = "";
+        $2("loading").classList.remove("hidden", "error");
+        $2("loadMsg").textContent = msg;
+        $2("loadBtns").innerHTML = "";
       }
       __name(showLoading, "showLoading");
-      var titleUp = /* @__PURE__ */ __name(() => !!$("title") && !$("title").classList.contains("hidden"), "titleUp");
+      var titleUp = /* @__PURE__ */ __name(() => !!$2("title") && !$2("title").classList.contains("hidden"), "titleUp");
       var bootTitle = false;
       function setStatus(m) {
-        const e = $("tStatus");
+        const e = $2("tStatus");
         if (e) e.textContent = m || "";
-        const tl = $("tLoad");
+        const tl = $2("tLoad");
         if (tl) tl.classList.toggle("hidden", !m);
-        const l = $("loadMsg");
+        const l = $2("loadMsg");
         if (l) l.textContent = m || "";
       }
       __name(setStatus, "setStatus");
       function loadError(msg, btns) {
-        $("loading").classList.remove("hidden");
-        $("loading").classList.add("error");
-        $("loadMsg").textContent = msg;
-        const b = $("loadBtns");
+        $2("loading").classList.remove("hidden");
+        $2("loading").classList.add("error");
+        $2("loadMsg").textContent = msg;
+        const b = $2("loadBtns");
         b.innerHTML = "";
         for (const [t, f] of btns) {
           const e = document.createElement("button");
@@ -48650,12 +51343,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(loadError, "loadError");
       function hideLoading() {
-        $("loading").classList.add("hidden");
+        $2("loading").classList.add("hidden");
       }
       __name(hideLoading, "hideLoading");
       function loadMsg(m) {
         if (bootTitle && titleUp()) setStatus(m);
-        else $("loadMsg").textContent = m;
+        else $2("loadMsg").textContent = m;
       }
       __name(loadMsg, "loadMsg");
       var frame = /* @__PURE__ */ __name(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))), "frame");
@@ -48781,7 +51474,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         showLoading("Lade \u201E" + c.name + "\u201C aus OpenStreetMap \u2026");
         let els;
         try {
-          els = await fetchOverpass(c.lat, c.lon, (m) => loadMsg(m));
+          els = Q2.get("raw") && /^[a-z0-9]+$/.test(Q2.get("raw")) ? await (await fetch("rawcache/" + Q2.get("raw") + ".json")).json() : await fetchOverpass(c.lat, c.lon, (m) => loadMsg(m));
         } catch (e) {
           try {
             const old = await idb.get("city", keyOf2(c) + "|" + OSM_VER_OLD);
@@ -48853,25 +51546,25 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const zRaw = LS.get("zoom", null);
         const zoom = zRaw == null ? matchMedia("(pointer:coarse)").matches ? 0.85 : 1 : zRaw > 5 ? zRaw / 13 : zRaw;
         game = startGame(D, { touch: TOUCH, hubNear: city.builtin ? [-146.9, -38.7] : [0, 0], clockLock: LS.get("clockLock", null), onClock: /* @__PURE__ */ __name(() => markTime(), "onClock"), onUfo: /* @__PURE__ */ __name((t) => {
-          const el = $("ufoT");
-          if (!el) return;
+          const el2 = $2("ufoT");
+          if (!el2) return;
           if (t == null) {
-            el.classList.add("hidden");
+            el2.classList.add("hidden");
             return;
           }
-          el.classList.remove("hidden");
-          el.textContent = "UFO \xB7 " + t + " s";
-          el.classList.toggle("low", t <= 10);
+          el2.classList.remove("hidden");
+          el2.textContent = "UFO \xB7 " + t + " s";
+          el2.classList.toggle("low", t <= 10);
         }, "onUfo"), zoom, muted, onState: updateButtons, onMoney: updateMoney, onRadio: updateRadio, onJobs: showBoard, onLevel: showLevel, onAutosave: /* @__PURE__ */ __name(() => saveGame(true), "onAutosave"), onProps: /* @__PURE__ */ __name((i) => openProps(i), "onProps"), onUbahn: showUbahn, onBag: /* @__PURE__ */ __name(() => {
-          if ($("bagOv").classList.contains("open")) renderBag();
+          if ($2("bagOv").classList.contains("open")) renderBag();
         }, "onBag"), hoodName: nameOf(cityKey), onShop: showShop, onTag: showTagWall, onHoodDone });
         window.hoodGame = game;
         if (game.audio) {
           game.audio.setScene(titleUp() ? "title" : "game");
           if (getCtx() && getCtx().state === "running") game.audio.resume();
         }
-        $("cityName").textContent = city.name;
-        $("curCity").textContent = city.name;
+        $2("cityName").textContent = city.name;
+        $2("curCity").textContent = city.name;
         if (!NEW) hideLoading();
         bootTitle = false;
         setStatus("");
@@ -48900,6 +51593,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           LS.del("carry");
         }
         paintCont();
+        if (savedGame && !myHoods().some((h) => h.k === cityKey)) regHood(savedGame);
+        if (!NEW && !SHOT2 && LS.get("v5cont", null) === cityKey) {
+          LS.del("v5cont");
+          if (savedGame) runTitle("cont");
+        }
         if (NEW && !SHOT2) startNewHood(city);
       }
       __name(boot, "boot");
@@ -48993,12 +51691,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(paintTitle, "paintTitle");
       function setMode(m) {
         tMode = m;
-        $("tPress").classList.toggle("hidden", m !== "press");
-        $("titleNav").classList.toggle("hidden", m !== "nav");
-        $("titleQuit").classList.toggle("hidden", m !== "quit");
-        $("menu").classList.toggle("hidden", m !== "opts");
-        $("hoodPick").classList.toggle("hidden", m !== "hood");
-        $("title").classList.toggle("opts", m === "opts" || m === "hood");
+        $2("tPress").classList.toggle("hidden", m !== "press");
+        $2("titleNav").classList.toggle("hidden", m !== "nav");
+        $2("titleQuit").classList.toggle("hidden", m !== "quit");
+        $2("menu").classList.toggle("hidden", m !== "opts");
+        $2("hoodPick").classList.toggle("hidden", m !== "hood");
+        $2("title").classList.toggle("opts", m === "opts" || m === "hood");
         if (m === "nav") paintTitle();
       }
       __name(setMode, "setMode");
@@ -49045,7 +51743,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           return;
         }
         if (act === "play") {
-          if (game && savedGame && $("title").classList.contains("start")) {
+          if (game && savedGame && $2("title").classList.contains("start")) {
             savedGame = null;
             paintCont();
           }
@@ -49060,12 +51758,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           markTime();
           setMode("opts");
         } else if (act === "quit") {
-          if (game && !$("title").classList.contains("start")) {
+          if (game && !$2("title").classList.contains("start")) {
             saveGame(true).then(() => {
               savedGame = game.snapshot();
               paintCont();
             });
-            $("title").classList.add("start");
+            $2("title").classList.add("start");
             titleIdx = 0;
             setMode("nav");
             paintStartBtn();
@@ -49090,19 +51788,21 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       var quitT = 0;
       function openHoodPick(msg, first) {
         pickFirst = !!first;
-        $("pickMsg").textContent = msg || "";
-        $("resList").innerHTML = "";
-        $("searchMsg").textContent = "";
-        const here = $("hereBtn");
+        $2("pickMsg").textContent = msg || "";
+        $2("resList").innerHTML = "";
+        $2("searchMsg").textContent = "";
+        const here = $2("hereBtn");
         const nm = curCity ? curCity.name : DEFAULT.name;
         here.classList.toggle("hidden", !first || isDone(cityKey));
         here.textContent = "Hier spielen: " + nm;
-        const hb = $("homeBtn");
+        const hb = $2("homeBtn");
         const dd = isDone("dortmund");
         hb.disabled = dd;
         hb.textContent = dd ? "Dortmund (abgeschlossen)" : "Dortmund-Innenstadt";
         const L = doneHoods();
-        $("doneList").innerHTML = L.length ? "<b>Abgeschlossene Hoods:</b><br>" + L.slice(-8).reverse().map((d) => "\u2714 " + esc(d.name)).join("<br>") : "";
+        const mh = hoodListHtml(8);
+        $2("doneList").innerHTML = (mh ? '<b>Deine Hoods \u2014 antippen zum Weiterspielen:</b><div class="hoodRows">' + mh + "</div>" : "") + (L.length ? "<b>Abgeschlossene Hoods:</b><br>" + L.slice(-8).reverse().map((d) => "\u2714 " + esc2(d.name)).join("<br>") : "");
+        $2("doneList").querySelectorAll("[data-hood]").forEach((b) => b.onclick = () => continueHood(b.dataset.hood));
         setMode("hood");
       }
       __name(openHoodPick, "openHoodPick");
@@ -49123,11 +51823,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(paintStartBtn, "paintStartBtn");
       function openMenu(start) {
-        $("title").classList.remove("hidden");
-        $("title").classList.toggle("start", !!start);
+        $2("title").classList.remove("hidden");
+        $2("title").classList.toggle("start", !!start);
         document.body.classList.add("onTitle");
-        $("resList").innerHTML = "";
-        $("searchMsg").textContent = "";
+        $2("resList").innerHTML = "";
+        $2("searchMsg").textContent = "";
         titleIdx = 0;
         setMode("nav");
         paintStartBtn();
@@ -49139,7 +51839,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(openMenu, "openMenu");
       function closeTitleOnly() {
-        $("title").classList.add("hidden");
+        $2("title").classList.add("hidden");
         document.body.classList.remove("onTitle");
         titleFx.stop();
         titleMusic.stop(600);
@@ -49148,8 +51848,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       function closeMenu() {
         if (game) played = true;
         titleMusic.stop(1500);
-        $("title").classList.add("hidden");
-        $("title").classList.remove("opts");
+        $2("title").classList.add("hidden");
+        $2("title").classList.remove("opts");
         document.body.classList.remove("onTitle");
         titleFx.stop();
         LS.set("seen", true);
@@ -49163,8 +51863,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(closeMenu, "closeMenu");
       var ART_AR = 1920 / 1434;
       function fitTitle() {
-        const el = $("tArt");
-        if (!el) return;
+        const el2 = $2("tArt");
+        if (!el2) return;
         const W = innerWidth, H = innerHeight;
         let h = H, w = h * ART_AR;
         if (w > W) {
@@ -49175,11 +51875,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const k = cover < 1.07 ? cover : 1;
         w *= k;
         h *= k;
-        const L = (W - w) / 2, T = (H - h) / 2;
-        Object.assign(el.style, { width: w + "px", height: h + "px", left: L + "px", top: T + "px" });
-        $("title").style.setProperty("--u", (h / 100).toFixed(3) + "px");
-        const box3 = $("tBox");
-        if (box3) Object.assign(box3.style, { left: L + w * 0.328 + "px", top: T + h * 0.378 + "px", width: w * 0.344 + "px", height: h * 0.24 + "px" });
+        const L = (W - w) / 2, T2 = (H - h) / 2;
+        Object.assign(el2.style, { width: w + "px", height: h + "px", left: L + "px", top: T2 + "px" });
+        $2("title").style.setProperty("--u", (h / 100).toFixed(3) + "px");
+        const box3 = $2("tBox");
+        if (box3) Object.assign(box3.style, { left: L + w * 0.328 + "px", top: T2 + h * 0.378 + "px", width: w * 0.344 + "px", height: h * 0.24 + "px" });
       }
       __name(fitTitle, "fitTitle");
       addEventListener("resize", () => {
@@ -49190,7 +51890,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }, 250));
       var titleFx = (() => {
         let raf = 0, env = null, lastB = 0, lastPop = 0, grainT = 0, side = 0;
-        const g = $("tGrain"), gc = g && g.getContext("2d");
+        const g = $2("tGrain"), gc = g && g.getContext("2d");
         let img = null;
         fetch("assets/music/title.env.json?v=" + (window.HOOD_V || "")).then((r) => r.json()).then((j) => {
           env = j;
@@ -49224,16 +51924,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             m = 0.1;
             h = 0.05;
           }
-          const sL = $("spkL"), sR = $("spkR");
+          const sL = $2("spkL"), sR = $2("spkR");
           const sc = 1 + 0.075 * b * b + 0.01 * m;
           if (sL) sL.style.transform = `scale(${sc.toFixed(4)})`;
           if (sR) sR.style.transform = `scale(${(1 + 0.07 * b * b + 0.012 * m).toFixed(4)})`;
-          const led = $("tLed");
+          const led = $2("tLed");
           if (led) led.style.opacity = (0.35 + 0.65 * Math.max(m, h)).toFixed(3);
           if (b > 0.62 && lastB <= 0.62 && now2 - lastPop > 240) {
             lastPop = now2;
             side ^= 1;
-            const w = $(side ? "wvL" : "wvR");
+            const w = $2(side ? "wvL" : "wvR");
             if (w) {
               w.classList.remove("pop");
               void w.getBBox;
@@ -49280,12 +51980,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       function chooseCity(c) {
         const k = keyOfC(c);
         if (isDone(k)) {
-          $("searchMsg").textContent = "\u201E" + c.name + "\u201C hast du schon abgeschlossen. Such dir eine andere Hood.";
+          $2("searchMsg").textContent = "\u201E" + c.name + "\u201C hast du schon abgeschlossen. Such dir eine andere Hood.";
           uiBlip("back", muted);
           return;
         }
         if (k === cityKey && game) {
-          $("searchMsg").textContent = "\u201E" + cityName(c) + "\u201C ist schon deine aktuelle Hood. Such dir einen anderen Ort.";
+          $2("searchMsg").textContent = "\u201E" + cityName(c) + "\u201C ist schon deine aktuelle Hood. Such dir einen anderen Ort.";
           uiBlip("back", muted);
           return;
         }
@@ -49294,7 +51994,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         goCity(c, true);
       }
       __name(chooseCity, "chooseCity");
-      function onTap(el, fn) {
+      function onTap(el2, fn) {
         let d = null, last = 0;
         const fire = /* @__PURE__ */ __name(() => {
           const n = performance.now();
@@ -49302,37 +52002,37 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           last = n;
           fn();
         }, "fire");
-        el.addEventListener("pointerdown", (e) => {
+        el2.addEventListener("pointerdown", (e) => {
           d = { x: e.clientX, y: e.clientY, id: e.pointerId };
         });
-        el.addEventListener("pointerup", (e) => {
+        el2.addEventListener("pointerup", (e) => {
           if (d && d.id === e.pointerId && Math.hypot(e.clientX - d.x, e.clientY - d.y) < 12) {
             e.preventDefault();
             fire();
           }
           d = null;
         });
-        el.addEventListener("pointercancel", () => {
+        el2.addEventListener("pointercancel", () => {
           d = null;
         });
-        el.addEventListener("click", fire);
+        el2.addEventListener("click", fire);
       }
       __name(onTap, "onTap");
       var searching = false;
       async function doSearch(ev) {
         ev && ev.preventDefault();
-        const q = $("searchIn").value.trim();
+        const q = $2("searchIn").value.trim();
         if (q.length < 2 || searching) return;
         searching = true;
-        $("searchMsg").textContent = "Suche \u2026";
-        $("resList").innerHTML = "";
-        $("searchIn").blur();
+        $2("searchMsg").textContent = "Suche \u2026";
+        $2("resList").innerHTML = "";
+        $2("searchIn").blur();
         try {
           const res = await searchPlaces(q);
           if (!res.length) {
-            $("searchMsg").textContent = "Keine Treffer f\xFCr \u201E" + q + "\u201C. Versuch es mit Stadt und Stadtteil, z. B. \u201EDortmund Hombruch\u201C.";
+            $2("searchMsg").textContent = "Keine Treffer f\xFCr \u201E" + q + "\u201C. Versuch es mit Stadt und Stadtteil, z. B. \u201EDortmund Hombruch\u201C.";
           } else {
-            $("searchMsg").textContent = "Tippe auf einen Ort:";
+            $2("searchMsg").textContent = "Tippe auf einen Ort:";
             for (const r of res) {
               const li = document.createElement("button");
               li.className = "res";
@@ -49345,30 +52045,30 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
                 li.querySelector("span").textContent = "Schon abgeschlossen \xB7 " + r.name;
               }
               onTap(li, () => chooseCity({ name: r.short, lat: r.lat, lon: r.lon }));
-              $("resList").appendChild(li);
+              $2("resList").appendChild(li);
             }
           }
         } catch (e) {
-          $("searchMsg").textContent = "Suche gerade nicht erreichbar (keine Verbindung?). Bitte nochmal versuchen.";
+          $2("searchMsg").textContent = "Suche gerade nicht erreichbar (keine Verbindung?). Bitte nochmal versuchen.";
         }
         searching = false;
       }
       __name(doSearch, "doSearch");
       function myLocation() {
         if (!navigator.geolocation) {
-          $("searchMsg").textContent = "Standort wird von diesem Browser nicht unterst\xFCtzt \u2014 nutz einfach die Suche.";
+          $2("searchMsg").textContent = "Standort wird von diesem Browser nicht unterst\xFCtzt \u2014 nutz einfach die Suche.";
           return;
         }
-        $("searchMsg").textContent = "Frage Standort ab \u2026";
+        $2("searchMsg").textContent = "Frage Standort ab \u2026";
         navigator.geolocation.getCurrentPosition(
           async (p) => {
             const lat = p.coords.latitude, lon = p.coords.longitude;
-            $("searchMsg").textContent = "Standort gefunden \u2026";
+            $2("searchMsg").textContent = "Standort gefunden \u2026";
             const n = await reversePlace(lat, lon);
             chooseCity({ name: n, lat, lon });
           },
           () => {
-            $("searchMsg").textContent = "Standort nicht freigegeben oder nicht verf\xFCgbar \u2014 nutz einfach die Suche.";
+            $2("searchMsg").textContent = "Standort nicht freigegeben oder nicht verf\xFCgbar \u2014 nutz einfach die Suche.";
           },
           { enableHighAccuracy: false, timeout: 12e3, maximumAge: 6e5 }
         );
@@ -49378,7 +52078,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const t = game ? game.getTime() : "dusk";
         document.querySelectorAll("[data-time]").forEach((b) => b.classList.toggle("on", b.dataset.time === t));
         const ci = game && game.clockInfo ? game.clockInfo() : null;
-        const cb = $("clockBtn");
+        const cb = $2("clockBtn");
         if (cb && ci) {
           cb.textContent = ci.locked ? "Uhr: angehalten (" + ci.text + ") \u2014 weiterlaufen lassen" : "Uhr: l\xE4uft (" + ci.text + ") \u2014 anhalten";
           cb.classList.toggle("on", !ci.locked);
@@ -49386,12 +52086,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(markTime, "markTime");
       function applyMuteUi() {
-        const b = $("muteBtn");
+        const b = $2("muteBtn");
         if (b) {
           b.textContent = muted ? "Ton: aus" : "Ton: an";
           b.classList.toggle("on", !muted);
         }
-        const t = $("tMute");
+        const t = $2("tMute");
         if (t) t.textContent = muted ? "\u266A Ton aus" : "\u266A Ton an";
       }
       __name(applyMuteUi, "applyMuteUi");
@@ -49408,16 +52108,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(toggleMute, "toggleMute");
       function updateMoney(cash) {
-        const el = $("money");
-        if (el) el.textContent = Math.round(cash) + " \u20AC";
+        const el2 = $2("money");
+        if (el2) el2.textContent = Math.round(cash) + " \u20AC";
       }
       __name(updateMoney, "updateMoney");
       var radHide = 0;
       var bootT = performance.now();
       function updateRadio(st) {
-        const nm = $("radName");
+        const nm = $2("radName");
         if (nm) nm.textContent = st && st.name ? st.name : "Radio";
-        const box3 = $("radio");
+        const box3 = $2("radio");
         if (!box3 || !st) return;
         if (st.id) LS.set("station", st.id);
         if (!document.body.classList.contains("incar") && performance.now() - bootT > 1500 && game) {
@@ -49430,7 +52130,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       var stickId = null;
       var Rmax = 52;
       function stickAt(cx, cy) {
-        const r = $("stick").getBoundingClientRect();
+        const r = $2("stick").getBoundingClientRect();
         const ox = r.left + r.width / 2, oy = r.top + r.height / 2;
         let dx = cx - ox, dy = cy - oy;
         let l = Math.hypot(dx, dy);
@@ -49443,7 +52143,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         TOUCH.y = l ? dy / Rmax : 0;
         TOUCH.mag = l / Rmax;
         TOUCH.active = true;
-        $("stickKnob").style.transform = `translate(${dx}px,${dy}px)`;
+        $2("stickKnob").style.transform = `translate(${dx}px,${dy}px)`;
       }
       __name(stickAt, "stickAt");
       function releaseStick() {
@@ -49451,12 +52151,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         TOUCH.active = false;
         TOUCH.mag = 0;
         TOUCH.x = TOUCH.y = 0;
-        const k = $("stickKnob");
+        const k = $2("stickKnob");
         if (k) k.style.transform = "translate(0,0)";
       }
       __name(releaseStick, "releaseStick");
       function initStick() {
-        const z = $("stick");
+        const z = $2("stick");
         z.addEventListener("pointerdown", (e) => {
           if (stickId !== null) return;
           stickId = e.pointerId;
@@ -49464,7 +52164,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             z.setPointerCapture(e.pointerId);
           } catch (_) {
           }
-          $("hint").classList.add("hidden");
+          $2("hint").classList.add("hidden");
           stickAt(e.clientX, e.clientY);
           e.preventDefault();
           e.stopPropagation();
@@ -49495,7 +52195,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       var tapX = 0;
       var tapY = 0;
       function initGestures() {
-        const g = $("game");
+        const g = $2("game");
+        let lastTap = null;
         const dist = /* @__PURE__ */ __name((a, b) => Math.hypot(a.x - b.x, a.y - b.y), "dist");
         g.addEventListener("pointerdown", (e) => {
           if (e.target.closest("#stick,.abtn,#zoomBox,#btnFollow,#radio,#menuBtn,#weapon,#wepBar")) return;
@@ -49542,7 +52243,14 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           if (e.pointerId === panId) {
             const dt = performance.now() - tapT;
             const moved = Math.hypot(e.clientX - tapX, e.clientY - tapY);
-            if (dt < 280 && moved < 12 && game && !game.isFollow()) {
+            const nowT = performance.now();
+            const dbl = dt < 280 && moved < 14 && game && game.travelTap && lastTap && nowT - lastTap.t < 380 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 44;
+            if (dt < 280 && moved < 14) lastTap = dbl ? null : { t: nowT, x: e.clientX, y: e.clientY };
+            if (dbl) {
+              const r = game.travelTap(e.clientX, e.clientY);
+              if (r && r.ok) uiBlip("ok", muted);
+              else if (r && r.msg) toast2(r.msg);
+            } else if (dt < 280 && moved < 12 && game && !game.isFollow()) {
             } else if (dt < 280 && moved < 14 && game && game.isFollow() && game.state.inCar) {
               const r = game.tapDrive(e.clientX, e.clientY);
               if (r && !r.ok && r.msg) toast2(r.msg);
@@ -49556,12 +52264,12 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(initGestures, "initGestures");
       function updateButtons(s) {
-        const car = $("btnCar");
+        const car = $2("btnCar");
         car.textContent = s.inCar || s.inTrain ? "Aussteigen" : "Einsteigen";
         car.classList.toggle("dim", !s.inCar && !s.nearCar && !s.inTrain);
-        $("btnBrake").classList.toggle("hidden", !s.inCar);
+        $2("btnBrake").classList.toggle("hidden", !s.inCar);
         {
-          const bl = $("btnLight");
+          const bl = $2("btnLight");
           if (bl) {
             bl.classList.toggle("hidden", !s.inCar || s.inTank);
             bl.textContent = s.lights ? "Licht an" : "Licht aus";
@@ -49569,28 +52277,28 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           }
         }
         document.body.classList.toggle("incar", s.inCar);
-        const deal = $("btnDeal");
+        const deal = $2("btnDeal");
         if (deal) {
           const show = !!s.deal;
           deal.classList.toggle("hidden", !show);
           if (show) deal.textContent = s.dealLabel || "Handeln";
         }
-        const bf = $("btnFire");
+        const bf = $2("btnFire");
         if (bf) {
           bf.classList.toggle("hidden", !s.vehFire && (s.inCar && !s.inTank || !s.armed));
           bf.textContent = s.vehFire || (s.inTank ? "Kanone" : s.weaponLabel || "Angriff");
         }
         {
-          const bu = $("btnUfo");
+          const bu = $2("btnUfo");
           if (bu) bu.classList.toggle("hidden", s.ufo !== "ready");
         }
-        const fol = $("btnFollow");
+        const fol = $2("btnFollow");
         if (fol) fol.classList.toggle("hidden", !!s.follow);
       }
       __name(updateButtons, "updateButtons");
       var fireRep = 0;
       function initButtons() {
-        $("btnCar").addEventListener("pointerdown", (e) => {
+        $2("btnCar").addEventListener("pointerdown", (e) => {
           e.preventDefault();
           if (game) game.toggleCar();
           if (navigator.vibrate) try {
@@ -49598,7 +52306,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           } catch (_) {
           }
         });
-        const bb = $("btnBrake");
+        const bb = $2("btnBrake");
         bb.addEventListener("pointerdown", (e) => {
           e.preventDefault();
           try {
@@ -49612,11 +52320,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           TOUCH.hbrake = false;
           bb.classList.remove("down");
         });
-        $("btnDeal").addEventListener("pointerdown", (e) => {
+        $2("btnDeal").addEventListener("pointerdown", (e) => {
           e.preventDefault();
           if (game) game.doDeal();
         });
-        $("btnFire").addEventListener("pointerdown", (e) => {
+        $2("btnFire").addEventListener("pointerdown", (e) => {
           e.preventDefault();
           if (game) game.fire();
           if (navigator.vibrate) try {
@@ -49629,39 +52337,39 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             else clearInterval(fireRep);
           }, 120);
         });
-        for (const ev of ["pointerup", "pointercancel", "pointerleave"]) $("btnFire").addEventListener(ev, () => clearInterval(fireRep));
-        $("btnUfo").addEventListener("pointerdown", (e) => {
+        for (const ev of ["pointerup", "pointercancel", "pointerleave"]) $2("btnFire").addEventListener(ev, () => clearInterval(fireRep));
+        $2("btnUfo").addEventListener("pointerdown", (e) => {
           e.preventDefault();
           if (game) game.callUfo();
         });
-        $("weapon").addEventListener("click", () => game && game.cycleWeapon());
-        $("btnZin").addEventListener("click", () => {
+        $2("weapon").addEventListener("click", () => game && game.cycleWeapon());
+        $2("btnZin").addEventListener("click", () => {
           if (game) {
             game.zoomBy(1 / 1.22);
             LS.set("zoom", game.getZoom());
           }
         });
-        $("btnZout").addEventListener("click", () => {
+        $2("btnZout").addEventListener("click", () => {
           if (game) {
             game.zoomBy(1.22);
             LS.set("zoom", game.getZoom());
           }
         });
-        $("btnFollow").addEventListener("click", () => {
+        $2("btnFollow").addEventListener("click", () => {
           if (game) game.setFollow(true);
         });
-        $("radPrev").addEventListener("click", () => game && game.radioPrev());
-        $("radNext").addEventListener("click", () => game && game.radioNext());
-        $("menuBtn").addEventListener("click", () => openMenu(false));
-        $("mapBtn").addEventListener("click", (e) => {
+        $2("radPrev").addEventListener("click", () => game && game.radioPrev());
+        $2("radNext").addEventListener("click", () => game && game.radioNext());
+        $2("menuBtn").addEventListener("click", () => openMenu(false));
+        $2("mapBtn").addEventListener("click", (e) => {
           e.stopPropagation();
           openMap();
         });
-        $("bagBtn").addEventListener("click", (e) => {
+        $2("bagBtn").addEventListener("click", (e) => {
           e.stopPropagation();
           openBag();
         });
-        $("propBtn").addEventListener("click", (e) => {
+        $2("propBtn").addEventListener("click", (e) => {
           e.stopPropagation();
           openProps();
         });
@@ -49669,10 +52377,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           e.stopPropagation();
           closeOv(b.closest(".ovl").id);
         }));
-        $("mapCv").addEventListener("pointerup", mapTap);
-        $("saveBtn").addEventListener("click", () => saveGame(false));
-        $("musicIn").addEventListener("change", addMusic);
-        $("musicDel").addEventListener("click", delMusic);
+        $2("mapCv").addEventListener("pointerup", mapTap);
+        $2("saveBtn").addEventListener("click", () => saveGame(false));
+        $2("musicIn").addEventListener("change", addMusic);
+        $2("musicDel").addEventListener("click", delMusic);
         document.querySelectorAll("#titleNav [data-act]").forEach((b) => {
           let last = 0;
           const idx = /* @__PURE__ */ __name(() => navBtns().indexOf(b), "idx");
@@ -49699,15 +52407,15 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         document.querySelectorAll("#wepBar [data-wep]").forEach((b) => b.addEventListener("click", () => {
           if (game && game.selectWeapon) game.selectWeapon(b.getAttribute("data-wep") || null);
         }));
-        $("tMute").addEventListener("click", (e) => {
+        $2("tMute").addEventListener("click", (e) => {
           e.stopPropagation();
           toggleMute();
         });
-        $("optsBack").addEventListener("click", () => {
+        $2("optsBack").addEventListener("click", () => {
           uiBlip("back", muted);
           showTitleNav();
         });
-        $("hoodBack").addEventListener("click", () => {
+        $2("hoodBack").addEventListener("click", () => {
           uiBlip("back", muted);
           if (!game && lastErr) {
             closeTitleOnly();
@@ -49716,20 +52424,20 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           }
           showTitleNav();
         });
-        $("hereBtn").addEventListener("click", () => {
+        $2("hereBtn").addEventListener("click", () => {
           uiBlip("ok", muted);
           showTitleNav();
           runTitle("play");
         });
-        $("homeBtn").addEventListener("click", () => chooseCity(DEFAULT));
-        $("quitBack").addEventListener("click", (e) => {
+        $2("homeBtn").addEventListener("click", () => chooseCity(DEFAULT));
+        $2("quitBack").addEventListener("click", (e) => {
           e.stopPropagation();
           uiBlip("back", muted);
           showTitleNav();
           titleMusic.start();
         });
         addEventListener("keydown", (e) => {
-          if ($("title").classList.contains("hidden")) {
+          if ($2("title").classList.contains("hidden")) {
             const ov = document.querySelector(".ovl.open");
             if (ov && (e.code === "Escape" || e.code === "KeyM" && ov.id === "mapOv" || e.code === "KeyI" && ov.id === "bagOv" || e.code === "KeyC" && ov.id === "charOv")) {
               closeOv(ov.id);
@@ -49752,7 +52460,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
               e.preventDefault();
               return;
             }
-            if ((e.code === "Escape" || e.code === "KeyP") && game && !$("credits").classList.contains("open")) {
+            if ((e.code === "Escape" || e.code === "KeyP") && game && !$2("credits").classList.contains("open")) {
               openMenu(false);
               e.preventDefault();
             }
@@ -49788,37 +52496,37 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             const b = NB[titleIdx];
             if (b) runTitle(b.dataset.act);
             e.preventDefault();
-          } else if (e.code === "Escape" && !$("title").classList.contains("start") && game) {
+          } else if (e.code === "Escape" && !$2("title").classList.contains("start") && game) {
             closeMenu();
             e.preventDefault();
           }
         });
-        $("searchForm").addEventListener("submit", doSearch);
-        $("locBtn").addEventListener("click", myLocation);
-        $("muteBtn").addEventListener("click", toggleMute);
-        $("creditsBtn").addEventListener("click", () => $("credits").classList.add("open"));
-        $("creditsClose").addEventListener("click", () => $("credits").classList.remove("open"));
-        const opt = $("optZin");
+        $2("searchForm").addEventListener("submit", doSearch);
+        $2("locBtn").addEventListener("click", myLocation);
+        $2("muteBtn").addEventListener("click", toggleMute);
+        $2("creditsBtn").addEventListener("click", () => $2("credits").classList.add("open"));
+        $2("creditsClose").addEventListener("click", () => $2("credits").classList.remove("open"));
+        const opt = $2("optZin");
         if (opt) opt.addEventListener("click", () => {
           if (game) {
             game.zoomBy(1 / 1.22);
             LS.set("zoom", game.getZoom());
           }
         });
-        const opto = $("optZout");
+        const opto = $2("optZout");
         if (opto) opto.addEventListener("click", () => {
           if (game) {
             game.zoomBy(1.22);
             LS.set("zoom", game.getZoom());
           }
         });
-        const optf = $("optFollow");
+        const optf = $2("optFollow");
         if (optf) optf.addEventListener("click", () => {
           if (game) game.setFollow(true);
         });
-        const rp = $("optRadPrev");
+        const rp = $2("optRadPrev");
         if (rp) rp.addEventListener("click", () => game && game.radioPrev());
-        const rn = $("optRadNext");
+        const rn = $2("optRadNext");
         if (rn) rn.addEventListener("click", () => game && game.radioNext());
         document.querySelectorAll("[data-time]").forEach((b) => b.addEventListener("click", () => {
           if (!game) return;
@@ -49828,7 +52536,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           uiBlip("ok", muted);
           markTime();
         }));
-        $("clockBtn").addEventListener("click", () => {
+        $2("clockBtn").addEventListener("click", () => {
           if (!game) return;
           const ci = game.clockInfo();
           game.setClockLock(!ci.locked);
@@ -49838,7 +52546,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           uiBlip("ok", muted);
           markTime();
         });
-        $("btnLight").addEventListener("pointerdown", (e) => {
+        $2("btnLight").addEventListener("pointerdown", (e) => {
           e.preventDefault();
           if (game && game.toggleLights) game.toggleLights();
         });
@@ -49850,7 +52558,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(initButtons, "initButtons");
       var hintT = 0;
       function showHint() {
-        const h = $("hint");
+        const h = $2("hint");
         h.classList.remove("hidden");
         clearTimeout(hintT);
         hintT = setTimeout(() => h.classList.add("hidden"), 3500);
@@ -49866,7 +52574,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(paintCont, "paintCont");
       var t2 = 0;
       function toast2(m) {
-        const t = $("toast");
+        const t = $2("toast");
         if (!t) return;
         t.textContent = m;
         t.classList.add("on");
@@ -49874,16 +52582,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         t2 = setTimeout(() => t.classList.remove("on"), 1800);
       }
       __name(toast2, "toast2");
-      function esc(x) {
+      function esc2(x) {
         return String(x == null ? "" : x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
       }
-      __name(esc, "esc");
+      __name(esc2, "esc");
       var ovPaused = false;
       function openOv(id) {
         document.querySelectorAll(".ovl.open").forEach((o) => {
           if (o.id !== id) o.classList.remove("open");
         });
-        $(id).classList.add("open");
+        $2(id).classList.add("open");
         releaseStick();
         TOUCH.hbrake = false;
         if (game && game.setPaused) {
@@ -49893,7 +52601,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(openOv, "openOv");
       function closeOv(id) {
-        $(id).classList.remove("open");
+        $2(id).classList.remove("open");
         if (id === "mapOv") cancelAnimationFrame(mapRaf);
         if (!document.querySelector(".ovl.open") && ovPaused && game && game.setPaused) {
           game.setPaused(false);
@@ -49929,49 +52637,57 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const d = game.v4.props();
         const mine = d.list.filter((q) => q.owner === "mine");
         const free = d.list.filter((q) => q.owner === "free");
+        const nF = mine.filter((q) => q.field).length;
         const kr = d.list.filter((q) => q.owner === "kralle");
-        $("propSum").innerHTML = `<span><b>${mine.length}</b> H\xE4user</span><span><b>${d.rented}</b> vermietet</span><span class="${mine.length - d.rented ? "bad" : ""}"><b>${mine.length - d.rented}</b> leer</span><span><b>${d.perDay} \u20AC</b> / Tag</span><span>gesamt <b>${d.total} \u20AC</b></span><span>Konto <b>${d.cash} \u20AC</b></span>`;
-        let h = propMsg ? `<div class="pMsg">${esc(propMsg)}</div>` : "";
+        $2("propSum").innerHTML = `<span><b>${mine.length - nF}</b> H\xE4user</span><span><b>${nF}</b> Felder</span><span><b>${d.rented}</b> vermietet</span><span class="${mine.length - d.rented ? "bad" : ""}"><b>${mine.length - d.rented}</b> leer</span><span><b>${d.perDay} \u20AC</b> / Tag</span><span>gesamt <b>${d.total} \u20AC</b></span><span>Konto <b>${d.cash} \u20AC</b></span>`;
+        let h = propMsg ? `<div class="pMsg">${esc2(propMsg)}</div>` : "";
         if (!mine.length) h += '<div class="slot"><span class="em">\u{1F3E0}</span><span class="nm"><b>Noch kein Haus</b><span>Gr\xFCne H\xE4user auf der Karte stehen zum Verkauf. Hingehen und kaufen \u2014 dann kannst du hier die Miete einstellen.</span></span></div>';
         for (const q of mine) {
           const sel = q.i === propSel;
           const mc = !q.ten ? "bad" : q.mood >= 65 ? "good" : q.mood >= 40 ? "mid" : "bad";
           const rr = q.rent / q.fair;
-          h += `<div class="pCard${sel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc(q.name)}</b><span class="pSt ${mc}">${q.ten ? "Mieter " + q.mood_t : "LEER"}</span></div>
-  <div class="pSub">${esc(q.kind)} \xB7 ${"\u2605".repeat(q.lvl)}${"\u2606".repeat(3 - q.lvl)}${q.street ? " \xB7 " + esc(q.street) : ""} \xB7 bisher ${q.inc} \u20AC</div>
+          if (q.field) {
+            h += `<div class="pCard${sel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc2(q.name)}</b><span class="pSt good">Ertrag ${q.rent} \u20AC/Tag</span></div>
+  <div class="pSub">${esc2(q.kind)} \xB7 ${q.ha} ha \xB7 ${"\u2605".repeat(q.lvl)}${"\u2606".repeat(3 - q.lvl)}${q.street ? " \xB7 " + esc2(q.street) : ""} \xB7 bisher ${q.inc} \u20AC</div>
+  <div class="pBar"><span>Boden</span><i><u style="width:${q.cond}%;background:${q.cond < 35 ? "#e0442e" : q.cond < 65 ? "#e8c22a" : "#5fc04a"}"></u></i><em>${q.cond}%</em></div>
+  <div class="pBtns">${q.rep ? `<button type="button" data-a="rep" data-i="${q.i}">Pflegen ${q.rep} \u20AC</button>` : ""}${q.up ? `<button type="button" data-a="up" data-i="${q.i}">Maschinen ${q.up} \u20AC</button>` : '<button type="button" disabled>Voll ausgebaut</button>'}<button type="button" data-a="go" data-i="${q.i}">Hin</button><button type="button" class="sell" data-a="sell" data-i="${q.i}">${propSellArm === q.i ? "Wirklich? +" + q.sell + " \u20AC" : "Verkaufen"}</button></div></div>`;
+            continue;
+          }
+          h += `<div class="pCard${sel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc2(q.name)}</b><span class="pSt ${mc}">${q.ten ? "Mieter " + q.mood_t : "LEER"}</span></div>
+  <div class="pSub">${esc2(q.kind)} \xB7 ${"\u2605".repeat(q.lvl)}${"\u2606".repeat(3 - q.lvl)}${q.street ? " \xB7 " + esc2(q.street) : ""} \xB7 bisher ${q.inc} \u20AC</div>
   <div class="pRent"><button type="button" data-a="rent-" data-i="${q.i}">\u2212</button><div><b>${q.rent} \u20AC</b>/Tag<small>fair ${q.fair} \u20AC \xB7 ${rr > 1.25 ? "teuer \u2014 Mieter murren" : rr < 0.85 ? "billig \u2014 Mieter bleiben gern" : "passt"}</small></div><button type="button" data-a="rent+" data-i="${q.i}">+</button></div>
   <div class="pBar"><span>Zustand</span><i><u style="width:${q.cond}%;background:${q.cond < 35 ? "#e0442e" : q.cond < 65 ? "#e8c22a" : "#5fc04a"}"></u></i><em>${q.cond}%</em></div>
   <div class="pBar"><span>Laune</span><i><u style="width:${q.ten ? q.mood : 0}%;background:${q.mood < 40 ? "#e0442e" : q.mood < 65 ? "#e8c22a" : "#5fc04a"}"></u></i><em>${q.ten ? q.mood + "%" : "\u2014"}</em></div>
-  <div class="pBtns">${q.rep ? `<button type="button" data-a="rep" data-i="${q.i}">Reparieren ${q.rep} \u20AC</button>` : ""}${q.up ? `<button type="button" data-a="up" data-i="${q.i}">Ausbauen ${q.up} \u20AC</button>` : '<button type="button" disabled>Voll ausgebaut</button>'}${!q.ten ? `<button type="button" data-a="ad" data-i="${q.i}">Anzeige 30 \u20AC</button>` : ""}<button type="button" class="sell" data-a="sell" data-i="${q.i}">${propSellArm === q.i ? "Wirklich? +" + q.sell + " \u20AC" : "Verkaufen"}</button></div></div>`;
+  <div class="pBtns">${q.rep ? `<button type="button" data-a="rep" data-i="${q.i}">Reparieren ${q.rep} \u20AC</button>` : ""}${q.up ? `<button type="button" data-a="up" data-i="${q.i}">Ausbauen ${q.up} \u20AC</button>` : '<button type="button" disabled>Voll ausgebaut</button>'}${!q.ten ? `<button type="button" data-a="ad" data-i="${q.i}">Anzeige 30 \u20AC</button>` : ""}<button type="button" data-a="go" data-i="${q.i}">Hin</button><button type="button" class="sell" data-a="sell" data-i="${q.i}">${propSellArm === q.i ? "Wirklich? +" + q.sell + " \u20AC" : "Verkaufen"}</button></div></div>`;
         }
         if (free.length) {
           h += '<div class="sec">Zu verkaufen</div>';
-          for (const q of free) h += `<div class="pCard free${q.i === propSel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc(q.kind)}</b><span class="pSt good">${q.price} \u20AC</span></div><div class="pSub">Miete ca. ${q.rent} \u20AC/Tag${q.street ? " \xB7 " + esc(q.street) : ""} \xB7 hingehen und kaufen</div></div>`;
+          for (const q of free) h += `<div class="pCard free${q.i === propSel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc2(q.kind)}</b><span class="pSt good">${q.price} \u20AC</span></div><div class="pSub">${q.field ? q.ha + " ha \xB7 Ertrag ca. " + q.rent : "Miete ca. " + q.rent} \u20AC/Tag${q.street ? " \xB7 " + esc2(q.street) : ""} \xB7 hingehen und kaufen</div><div class="pBtns"><button type="button" data-a="go" data-i="${q.i}">Hinlaufen</button><button type="button" data-a="taxi" data-i="${q.i}">Taxi</button></div></div>`;
         }
         if (kr.length) {
           h += '<div class="sec">Kralle Immobilien</div>';
-          for (const q of kr) h += `<div class="pCard kr${q.i === propSel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc(q.kind)}</b><span class="pSt bad">Kralle</span></div><div class="pSub">${q.street ? esc(q.street) + " \xB7 " : ""}\xDCbernehmen vor Ort (Anwalt + \xC4rger)</div></div>`;
+          for (const q of kr) h += `<div class="pCard kr${q.i === propSel ? " sel" : ""}" data-i="${q.i}"><div class="pTop"><b>${esc2(q.kind)}</b><span class="pSt bad">Kralle</span></div><div class="pSub">${q.street ? esc2(q.street) + " \xB7 " : ""}\xDCbernehmen vor Ort (Anwalt + \xC4rger)</div></div>`;
         }
         if (d.events && d.events.length) {
           h += '<div class="sec">Zuletzt</div>';
-          for (const e of d.events.slice(0, 5)) h += `<div class="pEv">${esc(e)}</div>`;
+          for (const e of d.events.slice(0, 5)) h += `<div class="pEv">${esc2(e)}</div>`;
         }
-        $("propBody").innerHTML = h;
+        $2("propBody").innerHTML = h;
       }
       __name(renderProps, "renderProps");
       function drawProps() {
-        const cv2 = $("propCv");
-        if (!cv2 || !game || !$("propOv").classList.contains("open")) return;
+        const cv3 = $2("propCv");
+        if (!cv3 || !game || !$2("propOv").classList.contains("open")) return;
         const d = game.v4.props();
         const md = game.mapData();
-        const r = cv2.getBoundingClientRect();
+        const r = cv3.getBoundingClientRect();
         const dpr = Math.min(2, devicePixelRatio || 1);
         const W = Math.max(10, r.width * dpr | 0), H = Math.max(10, r.height * dpr | 0);
-        if (cv2.width !== W || cv2.height !== H) {
-          cv2.width = W;
-          cv2.height = H;
+        if (cv3.width !== W || cv3.height !== H) {
+          cv3.width = W;
+          cv3.height = H;
         }
-        const c = cv2.getContext("2d");
+        const c = cv3.getContext("2d");
         const E = md.edge;
         const ew = E.maxx - E.minx, eh = E.maxz - E.minz;
         const sc = Math.min(W / ew, H / eh) * 0.96;
@@ -50018,7 +52734,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(drawProps, "drawProps");
       function propTap(e) {
         if (!propView || !game) return;
-        const r = $("propCv").getBoundingClientRect();
+        const r = $2("propCv").getBoundingClientRect();
         const px2 = (e.clientX - r.left) * propView.dpr, pz2 = (e.clientY - r.top) * propView.dpr;
         const d = game.v4.props();
         let best = -1, bd = 26 * propView.dpr;
@@ -50034,13 +52750,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         propMsg = "";
         renderProps();
         drawProps();
-        const el = document.querySelector('#propBody .pCard[data-i="' + best + '"]');
-        if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        const el2 = document.querySelector('#propBody .pCard[data-i="' + best + '"]');
+        if (el2) el2.scrollIntoView({ block: "nearest", behavior: "smooth" });
       }
       __name(propTap, "propTap");
       function initProps() {
-        $("propCv").addEventListener("pointerup", propTap);
-        $("propBody").addEventListener("click", (e) => {
+        $2("propCv").addEventListener("pointerup", propTap);
+        $2("propBody").addEventListener("click", (e) => {
           const b = e.target.closest("button[data-a]");
           const card = e.target.closest(".pCard");
           if (!b) {
@@ -50063,6 +52779,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             uiBlip("ok", muted);
             renderProps();
             drawProps();
+            return;
+          }
+          if (a === "go" || a === "taxi") {
+            travelUi(q.x, q.z, a === "taxi" ? "taxi" : "auto");
             return;
           }
           if (a === "rep") return propAct(() => game.v4.repair(i));
@@ -50088,13 +52808,23 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           console.warn("props ui", e);
         }
       }, 0);
+      function travelUi(x, z, how) {
+        document.querySelectorAll(".ovl.open").forEach((o) => closeOv(o.id));
+        if (window.hoodPhone) window.hoodPhone.close();
+        if (!game || !game.travelTo) return;
+        const r = game.travelTo(x, z, how || "auto");
+        if (r && !r.ok && r.msg) toast2(r.msg);
+        uiBlip(r && r.ok ? "ok" : "back", muted);
+        return r;
+      }
+      __name(travelUi, "travelUi");
       var mapRaf = 0;
       var mapView = null;
       function openMap() {
         if (!game) return;
         openOv("mapOv");
         const d = game.mapData();
-        $("mapHint").textContent = d.inCar ? "Stra\xDFe antippen: Er f\xE4hrt dich hin." : d.job ? "Auftrag: " + d.job.title + " \u2014 " + (d.job.line || "") : "Gr\xFCn = Auftraggeber. Magenta = Ziel.";
+        $2("mapHint").textContent = d.inCar ? "Stra\xDFe antippen: Er f\xE4hrt dich hin." : d.job ? "Auftrag: " + d.job.title + " \u2014 " + (d.job.line || "") : "Gr\xFCn = Auftraggeber. Magenta = Ziel.";
         const loop = /* @__PURE__ */ __name(() => {
           drawMap();
           mapRaf = requestAnimationFrame(loop);
@@ -50104,17 +52834,17 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(openMap, "openMap");
       function drawMap() {
-        const cv2 = $("mapCv");
-        if (!cv2 || !game) return;
+        const cv3 = $2("mapCv");
+        if (!cv3 || !game) return;
         const d = game.mapData();
-        const r = cv2.getBoundingClientRect();
+        const r = cv3.getBoundingClientRect();
         const dpr = Math.min(2, devicePixelRatio || 1);
         const W = Math.max(10, r.width * dpr | 0), H = Math.max(10, r.height * dpr | 0);
-        if (cv2.width !== W || cv2.height !== H) {
-          cv2.width = W;
-          cv2.height = H;
+        if (cv3.width !== W || cv3.height !== H) {
+          cv3.width = W;
+          cv3.height = H;
         }
-        const c = cv2.getContext("2d");
+        const c = cv3.getContext("2d");
         const E = d.edge;
         const ew = E.maxx - E.minx, eh = E.maxz - E.minz;
         const sc = Math.min(W / ew, H / eh) * 0.96;
@@ -50482,18 +53212,18 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         if (!game || !mapView) return;
         const d = game.mapData();
         if (!d.inCar) {
-          $("mapHint").textContent = "Ziel per Karte nur im Auto \u2014 steig erst ein.";
+          $2("mapHint").textContent = "Ziel per Karte nur im Auto \u2014 steig erst ein.";
           return;
         }
-        const r = $("mapCv").getBoundingClientRect();
+        const r = $2("mapCv").getBoundingClientRect();
         const px2 = (e.clientX - r.left) * mapView.dpr, pz2 = (e.clientY - r.top) * mapView.dpr;
         const x = (px2 - mapView.ox) / mapView.sc, z = (pz2 - mapView.oz) / mapView.sc;
         const res = game.driveTo(x, z);
         if (res && res.ok) {
-          $("mapHint").textContent = "Route steht. Stick, Handbremse oder Aussteigen bricht ab.";
+          $2("mapHint").textContent = "Route steht. Stick, Handbremse oder Aussteigen bricht ab.";
           uiBlip("ok", muted);
           setTimeout(() => closeOv("mapOv"), 650);
-        } else $("mapHint").textContent = res && res.msg || "Da f\xFChrt keine Stra\xDFe hin.";
+        } else $2("mapHint").textContent = res && res.msg || "Da f\xFChrt keine Stra\xDFe hin.";
       }
       __name(mapTap, "mapTap");
       function openBag() {
@@ -50504,44 +53234,44 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(openBag, "openBag");
       function renderBag() {
         const b = game.bagData();
-        const el = $("bagBody");
+        const el2 = $2("bagBody");
         let h = '<div class="sec">Waffen</div>';
         for (const w of b.weapons) {
           const on = (w.k || null) === (b.weapon || null);
-          h += `<div class="slot${w.have ? "" : " lock"}"><span class="em">${{ bat: "\u{1F3CF}", pistol: "\u{1F52B}", smg: "\u{1F52B}", shotgun: "\u{1F52B}" }[w.k] || "\u270A"}</span><span class="nm"><b>${esc(w.name)}</b><span>${w.k && w.k !== "bat" ? (w.ammo | 0) + " Schuss" : w.k === "bat" ? "Nahkampf" : "Immer dabei"}</span></span>${w.have ? `<button type="button" data-wep="${w.k || ""}" class="${on ? "on" : ""}">${on ? "In der Hand" : "Nehmen"}</button>` : '<span class="q">leer</span>'}</div>`;
+          h += `<div class="slot${w.have ? "" : " lock"}"><span class="em">${{ bat: "\u{1F3CF}", pistol: "\u{1F52B}", smg: "\u{1F52B}", shotgun: "\u{1F52B}" }[w.k] || "\u270A"}</span><span class="nm"><b>${esc2(w.name)}</b><span>${w.k && w.k !== "bat" ? (w.ammo | 0) + " Schuss" : w.k === "bat" ? "Nahkampf" : "Immer dabei"}</span></span>${w.have ? `<button type="button" data-wep="${w.k || ""}" class="${on ? "on" : ""}">${on ? "In der Hand" : "Nehmen"}</button>` : '<span class="q">leer</span>'}</div>`;
         }
         h += '<div class="sec">Ware</div>';
         const goods = b.goods.filter((g) => g.n > 0);
         if (!goods.length) h += '<div class="empty">Nichts dabei. Ware gibt\u2019s bei den H\xE4ndlern an den Ecken.</div>';
-        for (const g of goods) h += `<div class="slot"><span class="em">${g.icon}</span><span class="nm"><b>${esc(g.name)}</b><span>${esc(g.note || "")}</span></span><span class="q">\xD7${g.n}</span>${g.use ? `<button type="button" data-use="${g.id}">${esc(g.use)}</button>` : ""}<button type="button" data-drop="${g.id}">Weg</button></div>`;
+        for (const g of goods) h += `<div class="slot"><span class="em">${g.icon}</span><span class="nm"><b>${esc2(g.name)}</b><span>${esc2(g.note || "")}</span></span><span class="q">\xD7${g.n}</span>${g.use ? `<button type="button" data-use="${g.id}">${esc2(g.use)}</button>` : ""}<button type="button" data-drop="${g.id}">Weg</button></div>`;
         h += '<div class="sec">Zeug</div>';
         if (!b.stuff || !b.stuff.length) h += '<div class="empty">Leer. Dosen, Kurze, Pflaster und Kaugummi gibt\u2019s im KIOSK 24 und den L\xE4den an der Ecke (Tasche-Symbol auf der Karte).</div>';
-        for (const q of b.stuff || []) h += `<div class="slot"><span class="em">${q.icon}</span><span class="nm"><b>${esc(q.name)}</b><span>${esc(q.note || "")}</span></span><span class="q">\xD7${q.n}</span><button type="button" data-use="${q.id}">${esc(q.use || "Benutzen")}</button></div>`;
+        for (const q of b.stuff || []) h += `<div class="slot"><span class="em">${q.icon}</span><span class="nm"><b>${esc2(q.name)}</b><span>${esc2(q.note || "")}</span></span><span class="q">\xD7${q.n}</span><button type="button" data-use="${q.id}">${esc2(q.use || "Benutzen")}</button></div>`;
         if (b.boosts && b.boosts.length) {
           h += '<div class="sec">Wirkt gerade</div>';
-          for (const q of b.boosts) h += `<div class="slot"><span class="em">${q.icon}</span><span class="nm"><b>${esc(q.name)}</b><span>noch ${q.t} s</span></span></div>`;
+          for (const q of b.boosts) h += `<div class="slot"><span class="em">${q.icon}</span><span class="nm"><b>${esc2(q.name)}</b><span>noch ${q.t} s</span></span></div>`;
         }
         h += '<div class="sec">Auftrag</div>';
         if (!b.items.length) h += '<div class="empty">Keine Auftragssachen.</div>';
-        for (const it of b.items) h += `<div class="slot"><span class="em">${it.icon || "\u{1F4E6}"}</span><span class="nm"><b>${esc(it.name)}</b><span>${esc(it.note || "Geh\xF6rt zum Auftrag")}</span></span><span class="q">${it.n > 1 ? "\xD7" + it.n : ""}</span></div>`;
+        for (const it of b.items) h += `<div class="slot"><span class="em">${it.icon || "\u{1F4E6}"}</span><span class="nm"><b>${esc2(it.name)}</b><span>${esc2(it.note || "Geh\xF6rt zum Auftrag")}</span></span><span class="q">${it.n > 1 ? "\xD7" + it.n : ""}</span></div>`;
         h += `<div class="sec">Du</div><div class="slot"><span class="em">\u2665</span><span class="nm"><b>${b.health} / ${b.maxh} Leben</b><span>${Math.round(b.cash)} \u20AC in der Tasche</span></span><button type="button" data-char>Charakter</button></div>`;
-        el.innerHTML = h;
-        el.querySelectorAll("[data-wep]").forEach((x) => x.onclick = () => {
+        el2.innerHTML = h;
+        el2.querySelectorAll("[data-wep]").forEach((x) => x.onclick = () => {
           game.useItem("weapon", x.dataset.wep || null);
           uiBlip("ok", muted);
           renderBag();
         });
-        el.querySelectorAll("[data-drop]").forEach((x) => x.onclick = () => {
+        el2.querySelectorAll("[data-drop]").forEach((x) => x.onclick = () => {
           game.useItem("drop", x.dataset.drop);
           renderBag();
         });
-        el.querySelectorAll("[data-use]").forEach((x) => x.onclick = () => {
+        el2.querySelectorAll("[data-use]").forEach((x) => x.onclick = () => {
           const ok = game.useItem("use", x.dataset.use);
           uiBlip(ok ? "ok" : "back", muted);
           if (ok) closeOv("bagOv");
           else renderBag();
         });
-        const ch = el.querySelector("[data-char]");
+        const ch = el2.querySelector("[data-char]");
         if (ch) ch.onclick = () => openChar();
       }
       __name(renderBag, "renderBag");
@@ -50550,10 +53280,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const s = game.statData();
         let h = `<div class="slot"><span class="em">\u2605</span><span class="nm"><b>Stufe ${s.level}</b><span>${s.jobs} Auftr\xE4ge erledigt \xB7 ${s.regions} von ${s.regionsTotal} Vierteln geh\xF6ren dir</span></span></div><div class="sec">Werte</div>`;
         for (const q of s.list) {
-          h += `<div class="stat"><b>${esc(q.name)}</b><span class="bar">${Array.from({ length: 10 }, (_, i) => `<i class="${i < q.v ? "on" : ""}"></i>`).join("")}</span><em>${q.v}</em><small>${esc(q.desc)}</small></div>`;
+          h += `<div class="stat"><b>${esc2(q.name)}</b><span class="bar">${Array.from({ length: 10 }, (_, i) => `<i class="${i < q.v ? "on" : ""}"></i>`).join("")}</span><em>${q.v}</em><small>${esc2(q.desc)}</small></div>`;
         }
         h += '<div class="sec">Freischalten</div>';
-        for (const u of s.unlocks) h += `<div class="slot${u.ok ? "" : " lock"}"><span class="em">${u.ok ? "\u2714" : "\u{1F512}"}</span><span class="nm"><b>${esc(u.name)}</b><span>${u.ok ? "Freigeschaltet" : "Braucht " + esc(u.need)}</span></span></div>`;
+        for (const u of s.unlocks) h += `<div class="slot${u.ok ? "" : " lock"}"><span class="em">${u.ok ? "\u2714" : "\u{1F512}"}</span><span class="nm"><b>${esc2(u.name)}</b><span>${u.ok ? "Freigeschaltet" : "Braucht " + esc2(u.need)}</span></span></div>`;
         if (s.v4) {
           const V = s.v4;
           h += '<div class="sec">Respekt der Banden</div>';
@@ -50561,27 +53291,27 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           for (const c of V.crews) {
             const v = c.v;
             const pc = Math.round((v + 100) / 2);
-            h += `<div class="stat"><b>${esc(c.name)}</b><span class="rbar"><i style="width:${pc}%;background:${v <= -40 ? "#e0442e" : v >= 50 ? "#5fc04a" : "#e8c22a"}"></i></span><em>${v > 0 ? "+" : ""}${v}</em><small>${c.mine ? "Ihr Viertel geh\xF6rt dir" : v <= -40 ? "Die jagen dich" : v >= 50 ? "Lassen dich in Ruhe, Essen umsonst" : "Schutzgeld zahlen hebt Respekt, Pr\xFCgeln senkt ihn"}</small></div>`;
+            h += `<div class="stat"><b>${esc2(c.name)}</b><span class="rbar"><i style="width:${pc}%;background:${v <= -40 ? "#e0442e" : v >= 50 ? "#5fc04a" : "#e8c22a"}"></i></span><em>${v > 0 ? "+" : ""}${v}</em><small>${c.mine ? "Ihr Viertel geh\xF6rt dir" : v <= -40 ? "Die jagen dich" : v >= 50 ? "Lassen dich in Ruhe, Essen umsonst" : "Schutzgeld zahlen hebt Respekt, Pr\xFCgeln senkt ihn"}</small></div>`;
           }
-          h += `<div class="sec">Amok &amp; Export</div><div class="slot"><span class="em">\u2620</span><span class="nm"><b>Multiplikator \xD7${V.mult}</b><span>${V.amok} Amokl\xE4ufe geschafft \xB7 Auftr\xE4ge zahlen \xD7${(1 + 0.25 * (V.mult - 1)).toFixed(2).replace(".", ",")} \xB7 weg, wenn du umf\xE4llst</span></span></div><div class="slot"><span class="em">\u{1F697}</span><span class="nm"><b>GARAGE 9 Export-Liste</b><span>${V.want.map((w) => (w.got ? "\u2714 " : "") + esc(w.name)).join(" \xB7 ")} \xB7 ${V.bonus} Listen komplett</span></span></div>`;
+          h += `<div class="sec">Amok &amp; Export</div><div class="slot"><span class="em">\u2620</span><span class="nm"><b>Multiplikator \xD7${V.mult}</b><span>${V.amok} Amokl\xE4ufe geschafft \xB7 Auftr\xE4ge zahlen \xD7${(1 + 0.25 * (V.mult - 1)).toFixed(2).replace(".", ",")} \xB7 weg, wenn du umf\xE4llst</span></span></div><div class="slot"><span class="em">\u{1F697}</span><span class="nm"><b>GARAGE 9 Export-Liste</b><span>${V.want.map((w) => (w.got ? "\u2714 " : "") + esc2(w.name)).join(" \xB7 ")} \xB7 ${V.bonus} Listen komplett</span></span></div>`;
         }
-        $("charBody").innerHTML = h;
+        $2("charBody").innerHTML = h;
         openOv("charOv");
       }
       __name(openChar, "openChar");
       function showBoard(b) {
-        $("boardWho").textContent = b.who;
-        const bf = $("boardFace");
+        $2("boardWho").textContent = b.who;
+        const bf = $2("boardFace");
         bf.style.display = b.face ? "" : "none";
         if (b.face) bf.src = "assets/faces/" + b.face + ".webp?v=" + (window.HOOD_V || "");
         const lines = { chef: "Setz dich. Oder nimm was mit. Beides kostet.", ute: "Ich hab Arbeit. Du hast H\xE4nde. Passt doch.", deniz: "Du willst Geld? Dann h\xF6r zu und frag nicht.", zack: "Ich hab Jobs, die keiner will. Du bist keiner. Passt. Jeder Job macht dich im Viertel bekannt." };
-        $("boardLine").textContent = lines[b.giver] || "";
+        $2("boardLine").textContent = lines[b.giver] || "";
         let h = "";
         for (const j of b.list) {
-          h += `<button type="button" class="job t${j.tier}${j.lock ? " lock" : ""}" data-job="${j.id}"><span class="tg"></span><span class="jx"><b>${esc(j.title)}</b><span>${esc(j.tierName)}${j.done ? " \xB7 schon " + j.done + "\xD7 erledigt" : ""}</span></span><span class="pay">${j.lock ? esc(j.lock) : j.pay + " \u20AC"}</span></button>`;
+          h += `<button type="button" class="job t${j.tier}${j.lock ? " lock" : ""}" data-job="${j.id}"><span class="tg"></span><span class="jx"><b>${esc2(j.title)}</b><span>${esc2(j.tierName)}${j.done ? " \xB7 schon " + j.done + "\xD7 erledigt" : ""}</span></span><span class="pay">${j.lock ? esc2(j.lock) : j.pay + " \u20AC"}</span></button>`;
         }
-        $("boardBody").innerHTML = h;
-        $("boardBody").querySelectorAll("[data-job]").forEach((x) => x.onclick = () => {
+        $2("boardBody").innerHTML = h;
+        $2("boardBody").querySelectorAll("[data-job]").forEach((x) => x.onclick = () => {
           if (x.classList.contains("lock")) {
             uiBlip("back", muted);
             return;
@@ -50593,13 +53323,13 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(showBoard, "showBoard");
       function showUbahn(u) {
-        let h = `<div class="empty">Station ${esc(u.from)} \u2014 wohin?</div>`;
-        for (const q of u.list) h += `<button type="button" class="job t0" data-ub="${q.i}"><span class="tg" style="background:#3aa0ff"></span><span class="jx"><b>${esc(q.name)}</b><span>${q.d} m Luftlinie</span></span><span class="pay">Fahrt</span></button>`;
-        $("ubBody").innerHTML = h;
-        $("ubBody").querySelectorAll("[data-ub]").forEach((x) => x.onclick = () => {
+        let h = `<div class="empty">Station ${esc2(u.from)} \u2014 wohin?</div>`;
+        for (const q of u.list) h += `<button type="button" class="job t0" data-ub="${q.i}"><span class="tg" style="background:#3aa0ff"></span><span class="jx"><b>${esc2(q.name)}</b><span>${q.d} m Luftlinie</span></span><span class="pay">Fahrt</span></button>`;
+        $2("ubBody").innerHTML = h;
+        $2("ubBody").querySelectorAll("[data-ub]").forEach((x) => x.onclick = () => {
           closeOv("ubOv");
-          const fx = $("ubFx");
-          $("ubFxT").textContent = "N\xE4chster Halt: " + x.querySelector("b").textContent;
+          const fx = $2("ubFx");
+          $2("ubFxT").textContent = "N\xE4chster Halt: " + x.querySelector("b").textContent;
           fx.classList.add("on");
           setTimeout(() => {
             game.ubahnTo(+x.dataset.ub);
@@ -50612,9 +53342,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       var shopCur = null;
       function showShop(o) {
         shopCur = o;
-        $("shopName").textContent = o.name;
-        $("shopSub").textContent = o.sub + " \xB7 " + Math.round(o.cash) + " \u20AC dabei";
-        $("shopMsg").textContent = "";
+        $2("shopName").textContent = o.name;
+        $2("shopSub").textContent = o.sub + " \xB7 " + Math.round(o.cash) + " \u20AC dabei";
+        $2("shopMsg").textContent = "";
         paintShop();
         openOv("shopOv");
       }
@@ -50623,18 +53353,18 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const o = shopCur;
         if (!o) return;
         let h = "";
-        for (const it of o.list) h += `<div class="slot"><span class="em">${it.icon}</span><span class="nm"><b>${esc(it.name)}</b><span>${esc(it.note)}${it.have ? " \xB7 " + it.have + " dabei" : ""}</span></span><span class="pr">${it.price} \u20AC</span><button type="button" data-buy="${it.id}">Kaufen</button></div>`;
+        for (const it of o.list) h += `<div class="slot"><span class="em">${it.icon}</span><span class="nm"><b>${esc2(it.name)}</b><span>${esc2(it.note)}${it.have ? " \xB7 " + it.have + " dabei" : ""}</span></span><span class="pr">${it.price} \u20AC</span><button type="button" data-buy="${it.id}">Kaufen</button></div>`;
         h += '<div class="empty">Gekauftes landet in der Tasche. Charisma dr\xFCckt die Preise.</div>';
-        $("shopBody").innerHTML = h;
-        $("shopBody").querySelectorAll("[data-buy]").forEach((x) => x.onclick = () => {
+        $2("shopBody").innerHTML = h;
+        $2("shopBody").querySelectorAll("[data-buy]").forEach((x) => x.onclick = () => {
           const r = game.shopBuy(o.i, x.dataset.buy);
-          $("shopMsg").textContent = r.msg || "";
+          $2("shopMsg").textContent = r.msg || "";
           uiBlip(r.ok ? "ok" : "back", muted);
           if (r.ok) {
             const it = o.list.find((q) => q.id === x.dataset.buy);
             if (it) it.have = r.have;
             o.cash = r.cash;
-            $("shopSub").textContent = o.sub + " \xB7 " + Math.round(r.cash) + " \u20AC dabei";
+            $2("shopSub").textContent = o.sub + " \xB7 " + Math.round(r.cash) + " \u20AC dabei";
             updateMoney && updateMoney(r.cash);
             paintShop();
           }
@@ -50683,7 +53413,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           g.fillStyle = "#5d3328";
           g.fillRect(0, 0, W, H);
           const bh = Math.round(H / 14), bw = bh * 2.2;
-          for (let y = 0, row = 0; y < H; y += bh, row++) for (let x = -(row % 2) * bw / 2; x < W; x += bw) {
+          for (let y = 0, row2 = 0; y < H; y += bh, row2++) for (let x = -(row2 % 2) * bw / 2; x < W; x += bw) {
             const v = R();
             g.fillStyle = `rgb(${120 + v * 50 | 0},${55 + v * 25 | 0},${42 + v * 18 | 0})`;
             g.fillRect(x + 2, y + 2, bw - 4, bh - 4);
@@ -50699,10 +53429,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(wallBg, "wallBg");
       function showTagWall(info) {
         tagUI.info = info;
-        const cv2 = $("tagCv");
+        const cv3 = $2("tagCv");
         const W = 1024, H = 512;
-        cv2.width = W;
-        cv2.height = H;
+        cv3.width = W;
+        cv3.height = H;
         tagUI.bg = wallBg(info.wall, W, H, info.seed || 7);
         tagUI.ink = document.createElement("canvas");
         tagUI.ink.width = W;
@@ -50710,8 +53440,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         tagUI.bb = null;
         let t = info.region ? "Viertel: " + info.region + " \xB7 " : "";
         t += info.over ? info.over === "mine" ? "Hier h\xE4ngt schon dein Tag \u2014 spr\xFCh ihn neu." : "Hier h\xE4ngt ein Tag der " + info.over + " \u2014 \xFCbermal ihn!" : info.owner === "mine" ? "Dein Revier \u2014 markier es." : "Spr\xFCh deinen Tag, um das Viertel zu holen.";
-        $("tagInfo").textContent = t;
-        const cols = $("tagCols");
+        $2("tagInfo").textContent = t;
+        const cols = $2("tagCols");
         cols.innerHTML = TAG_COLS.map((c) => `<button type="button" data-c="${c}" style="background:${c}" class="${c === tagUI.col ? "on" : ""}"></button>`).join("");
         cols.querySelectorAll("[data-c]").forEach((b) => b.onclick = () => {
           tagUI.col = b.dataset.c;
@@ -50722,8 +53452,8 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(showTagWall, "showTagWall");
       function paintTag() {
-        const cv2 = $("tagCv");
-        const g = cv2.getContext("2d");
+        const cv3 = $2("tagCv");
+        const g = cv3.getContext("2d");
         g.globalAlpha = 1;
         g.drawImage(tagUI.bg, 0, 0);
         const nm = tagUI.info && tagUI.info.hood || "";
@@ -50735,7 +53465,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           g.setLineDash([10, 10]);
           g.lineWidth = 3;
           g.strokeStyle = "rgba(255,255,255,.28)";
-          g.strokeText(nm.toUpperCase(), cv2.width / 2, cv2.height / 2);
+          g.strokeText(nm.toUpperCase(), cv3.width / 2, cv3.height / 2);
           g.restore();
         }
         g.drawImage(tagUI.ink, 0, 0);
@@ -50786,10 +53516,10 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(drip, "drip");
       function initTagWall() {
-        const cv2 = $("tagCv");
+        const cv3 = $2("tagCv");
         const pos = /* @__PURE__ */ __name((e) => {
-          const r = cv2.getBoundingClientRect();
-          return { x: (e.clientX - r.left) / r.width * cv2.width, y: (e.clientY - r.top) / r.height * cv2.height };
+          const r = cv3.getBoundingClientRect();
+          return { x: (e.clientX - r.left) / r.width * cv3.width, y: (e.clientY - r.top) / r.height * cv3.height };
         }, "pos");
         let raf = 0;
         const loop = /* @__PURE__ */ __name(() => {
@@ -50805,11 +53535,11 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
             raf = requestAnimationFrame(loop);
           }
         }, "loop");
-        cv2.addEventListener("pointerdown", (e) => {
+        cv3.addEventListener("pointerdown", (e) => {
           e.preventDefault();
           e.stopPropagation();
           try {
-            cv2.setPointerCapture(e.pointerId);
+            cv3.setPointerCapture(e.pointerId);
           } catch (_) {
           }
           tagUI.drawing = true;
@@ -50821,7 +53551,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           if (game && game.audio && game.audio.sprayOn) game.audio.sprayOn();
           if (!raf) raf = requestAnimationFrame(loop);
         });
-        cv2.addEventListener("pointermove", (e) => {
+        cv3.addEventListener("pointermove", (e) => {
           if (!tagUI.drawing) return;
           e.preventDefault();
           const p = pos(e);
@@ -50841,26 +53571,26 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           paintTag();
           if (game && game.audio && game.audio.sprayOff) game.audio.sprayOff();
         }, "up");
-        for (const ev of ["pointerup", "pointercancel", "lostpointercapture"]) cv2.addEventListener(ev, up);
+        for (const ev of ["pointerup", "pointercancel", "lostpointercapture"]) cv3.addEventListener(ev, up);
         document.querySelectorAll("#tagSizes [data-sz]").forEach((b) => b.addEventListener("click", () => {
           tagUI.sz = +b.dataset.sz;
           document.querySelectorAll("#tagSizes button").forEach((x) => x.classList.toggle("on", x === b));
         }));
-        $("tagNew").addEventListener("click", () => {
+        $2("tagNew").addEventListener("click", () => {
           tagUI.ink.getContext("2d").clearRect(0, 0, tagUI.ink.width, tagUI.ink.height);
           tagUI.bb = null;
           paintTag();
           uiBlip("back", muted);
         });
-        $("tagX").addEventListener("click", () => {
+        $2("tagX").addEventListener("click", () => {
           if (game) game.cancelTag();
           if (game && game.audio && game.audio.sprayOff) game.audio.sprayOff();
           closeOv("tagOv");
         });
-        $("tagDone").addEventListener("click", () => {
+        $2("tagDone").addEventListener("click", () => {
           const cv22 = tagCrop();
           if (!cv22) {
-            $("tagInfo").textContent = "Erst was spr\xFChen \u2014 mit dem Finger auf die Wand.";
+            $2("tagInfo").textContent = "Erst was spr\xFChen \u2014 mit dem Finger auf die Wand.";
             uiBlip("back", muted);
             return;
           }
@@ -50903,9 +53633,9 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       }
       __name(tagCrop, "tagCrop");
       function askHood(done) {
-        const ov = $("hoodOv"), inp = $("hoodIn");
+        const ov = $2("hoodOv"), inp = $2("hoodIn");
         inp.value = nameOf(cityKey) || "";
-        $("hoodMsg").textContent = "";
+        $2("hoodMsg").textContent = "";
         ov.classList.add("open");
         setTimeout(() => {
           try {
@@ -50916,7 +53646,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         const ok = /* @__PURE__ */ __name(() => {
           const n = inp.value.replace(/\s+/g, " ").trim().slice(0, 20);
           if (n.length < 2) {
-            $("hoodMsg").textContent = "Mindestens 2 Zeichen.";
+            $2("hoodMsg").textContent = "Mindestens 2 Zeichen.";
             uiBlip("back", muted);
             return;
           }
@@ -50930,7 +53660,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
           uiBlip("ok", muted);
           if (done) done();
         }, "ok");
-        $("hoodForm").onsubmit = (e) => {
+        $2("hoodForm").onsubmit = (e) => {
           e.preventDefault();
           ok();
         };
@@ -50938,22 +53668,65 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       __name(askHood, "askHood");
       var lvT = 0;
       function showLevel(o) {
-        $("lvlT").textContent = o.title + (o.pay ? " +" + o.pay + " \u20AC" : "");
-        $("lvlS").innerHTML = (o.lines || []).map(esc).join("<br>") + (o.level ? "<br><small>Stufe " + o.level + "</small>" : "");
-        const p = $("lvlPop");
+        $2("lvlT").textContent = o.title + (o.pay ? " +" + o.pay + " \u20AC" : "");
+        $2("lvlS").innerHTML = (o.lines || []).map(esc2).join("<br>") + (o.level ? "<br><small>Stufe " + o.level + "</small>" : "");
+        const p = $2("lvlPop");
         p.classList.add("on");
         clearTimeout(lvT);
         lvT = setTimeout(() => p.classList.remove("on"), 3600);
       }
       __name(showLevel, "showLevel");
+      var myHoods = /* @__PURE__ */ __name(() => {
+        const L = LS.get("myHoods", null);
+        return Array.isArray(L) ? L : [];
+      }, "myHoods");
+      function regHood(S) {
+        try {
+          const L = myHoods().filter((h) => h.k !== cityKey);
+          const c = curCity ? plainCity(curCity) : { builtin: true };
+          const own = S && S.v4 && S.v4.props ? S.v4.props.filter(Boolean).length : 0;
+          L.unshift({ k: cityKey, c, place: cityName(curCity), hood: nameOf(cityKey) || S && S.hood || "", t: Date.now(), cash: Math.round(S && S.cash || 0), lvl: (S && S.jobsDone) | 0, own, done: isDone(cityKey) });
+          LS.set("myHoods", L.slice(0, 24));
+        } catch (e) {
+        }
+      }
+      __name(regHood, "regHood");
+      function continueHood(k) {
+        const h = myHoods().find((q) => q.k === k);
+        if (!h) return;
+        uiBlip("ok", muted);
+        if (k === cityKey) {
+          if (window.hoodPhone) window.hoodPhone.close();
+          if (titleUp()) {
+            if (savedGame) runTitle("cont");
+            else runTitle("play");
+          }
+          return;
+        }
+        LS.set("v5cont", k);
+        const c = h.c && h.c.builtin ? DEFAULT : h.c;
+        goCity(c, false);
+      }
+      __name(continueHood, "continueHood");
+      function hoodListHtml(max) {
+        const L = myHoods();
+        if (!L.length) return "";
+        const ago = /* @__PURE__ */ __name((t) => {
+          const m = Math.round((Date.now() - t) / 6e4);
+          return m < 60 ? "vor " + Math.max(1, m) + " Min." : m < 1440 ? "vor " + Math.round(m / 60) + " Std." : "vor " + Math.round(m / 1440) + " Tg.";
+        }, "ago");
+        return L.slice(0, max || 12).map((h) => `<button type="button" class="hoodRow${h.k === cityKey ? " cur" : ""}" data-hood="${esc2(h.k)}"><b>${esc2(h.hood || h.place)}</b><span>${esc2(h.place)} \xB7 ${h.cash} \u20AC \xB7 ${h.own} Besitz${h.done ? " \xB7 \u2714 fertig" : ""} \xB7 ${ago(h.t)}</span><em>${h.k === cityKey ? "Hier" : "Weiter"}</em></button>`).join("");
+      }
+      __name(hoodListHtml, "hoodListHtml");
       async function saveGame(auto) {
         if (!game) return;
         const S = game.snapshot();
         if (S.hood) setName(cityKey, S.hood);
         S.city = cityKey;
         const ok = await idb.set("kv", "save:" + cityKey, S);
+        if (ok) regHood(S);
         if (!auto) {
-          $("saveMsg").textContent = ok ? "Gespeichert \u2014 " + (/* @__PURE__ */ new Date()).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) + " Uhr." : "Speichern ging nicht (Speicher voll oder privat?).";
+          $2("saveMsg").textContent = ok ? "Gespeichert \u2014 " + (/* @__PURE__ */ new Date()).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" }) + " Uhr." : "Speichern ging nicht (Speicher voll oder privat?).";
           uiBlip(ok ? "ok" : "back", muted);
         }
       }
@@ -50978,16 +53751,16 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         tr.sort((a, b) => a.name.localeCompare(b.name, "de"));
         if (game && game.radio) game.radio.setCustom(tr);
-        $("trackList").innerHTML = tr.length ? tr.length + (tr.length === 1 ? " eigener Titel" : " eigene Titel") + " im Sender \u201EEigene Musik\u201C:<br>" + tr.slice(0, 12).map((t) => "\xB7 " + esc(t.name)).join("<br>") + (tr.length > 12 ? "<br>\u2026" : "") : "Noch keine eigenen Titel. Sie laufen im Auto als Sender \u201EEigene Musik\u201C.";
+        $2("trackList").innerHTML = tr.length ? tr.length + (tr.length === 1 ? " eigener Titel" : " eigene Titel") + " im Sender \u201EEigene Musik\u201C:<br>" + tr.slice(0, 12).map((t) => "\xB7 " + esc2(t.name)).join("<br>") + (tr.length > 12 ? "<br>\u2026" : "") : "Noch keine eigenen Titel. Sie laufen im Auto als Sender \u201EEigene Musik\u201C.";
       }
       __name(loadMusic, "loadMusic");
       async function addMusic(e) {
         const fs = [...e.target.files || []].filter((f) => /^audio\//.test(f.type) || /\.(mp3|m4a|aac|ogg|oga|opus|wav|flac)$/i.test(f.name));
         if (!fs.length) {
-          $("trackList").textContent = "Das waren keine Audiodateien.";
+          $2("trackList").textContent = "Das waren keine Audiodateien.";
           return;
         }
-        $("trackList").textContent = "Speichere " + fs.length + " Titel \u2026";
+        $2("trackList").textContent = "Speichere " + fs.length + " Titel \u2026";
         let n = 0;
         for (const f of fs) {
           const id = f.name + "|" + f.size;
@@ -50996,7 +53769,7 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
         }
         e.target.value = "";
         await loadMusic();
-        if (n < fs.length) $("trackList").insertAdjacentHTML("afterbegin", "Nicht alles passte in den Speicher.<br>");
+        if (n < fs.length) $2("trackList").insertAdjacentHTML("afterbegin", "Nicht alles passte in den Speicher.<br>");
         uiBlip("ok", muted);
       }
       __name(addMusic, "addMusic");
@@ -51013,6 +53786,47 @@ void main(){vec2 uv=vUv;vec2 c=uv-0.5;float r=length(c);
       applyMuteUi();
       lockPortrait();
       boot();
+      try {
+        window.hoodPhone = initPhone({
+          game: /* @__PURE__ */ __name(() => game, "game"),
+          cityName: /* @__PURE__ */ __name(() => cityName(curCity), "cityName"),
+          hoodName: /* @__PURE__ */ __name(() => nameOf(cityKey) || cityName(curCity), "hoodName"),
+          blip: /* @__PURE__ */ __name((k) => uiBlip(k, muted), "blip"),
+          releaseStick,
+          toast: toast2,
+          idb,
+          close: /* @__PURE__ */ __name(() => window.hoodPhone && window.hoodPhone.close(), "close"),
+          openMap,
+          openBag,
+          openChar,
+          openProps: /* @__PURE__ */ __name((sel) => openProps(sel), "openProps"),
+          openOptions: /* @__PURE__ */ __name(() => {
+            openMenu(false);
+            markTime();
+            setMode("opts");
+          }, "openOptions"),
+          openCredits: /* @__PURE__ */ __name(() => {
+            openMenu(false);
+            setMode("opts");
+            $2("credits").classList.add("open");
+          }, "openCredits"),
+          newHood: /* @__PURE__ */ __name(() => {
+            openMenu(false);
+            openHoodPick("");
+          }, "newHood"),
+          openMenu: /* @__PURE__ */ __name(() => openMenu(false), "openMenu"),
+          saveGame: /* @__PURE__ */ __name(() => saveGame(true), "saveGame"),
+          hoodListHtml,
+          continueHood,
+          travel: /* @__PURE__ */ __name((x, z, how) => travelUi(x, z, how), "travel"),
+          log: /* @__PURE__ */ __name(() => game && game.msgLog ? game.msgLog() : [], "log"),
+          unread: /* @__PURE__ */ __name(() => game && game.msgUnread ? game.msgUnread() : 0, "unread"),
+          markRead: /* @__PURE__ */ __name(() => game && game.msgRead && game.msgRead(), "markRead"),
+          tow: /* @__PURE__ */ __name(() => game && game.towCar ? game.towCar() : { ok: false, msg: "\u2014" }, "tow")
+        });
+      } catch (e) {
+        console.warn("phone", e);
+      }
       window.hoodApp = { nameOf, cityKey: /* @__PURE__ */ __name(() => cityKey, "cityKey"), curCity: /* @__PURE__ */ __name(() => curCity, "curCity"), isNew: /* @__PURE__ */ __name(() => NEW, "isNew"), openHoodPick, onHoodDone, isDone, doneHoods, exitApp, askHood, showTagWall, tagUI, tagCrop, showShop, hasSave: /* @__PURE__ */ __name(() => hasSave, "hasSave"), openMap, openBag, openChar, showBoard, showLevel, saveGame, idb, drawMap, cacheHit: /* @__PURE__ */ __name(() => cacheHit, "cacheHit"), titleMusic, TOUCH, openMenu, closeMenu, releaseStick, chooseCity, doSearch, LS, setMode, fitTitle, mode: /* @__PURE__ */ __name(() => tMode, "mode") };
     }
   });
